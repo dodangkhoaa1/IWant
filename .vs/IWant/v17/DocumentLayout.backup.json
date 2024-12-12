@@ -3,8 +3,12 @@
   "WorkspaceRootPath": "D:\\fpt\\SP25\\SEP\\MainProject\\IWant\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{EDC24712-00D6-43B9-A66E-0476B46164FD}|IWant.Web\\IWant.Web.csproj|d:\\fpt\\sp25\\sep\\mainproject\\iwant\\iwant.web\\iwant.web.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{EDC24712-00D6-43B9-A66E-0476B46164FD}|IWant.Web\\IWant.Web.csproj|solutionrelative:iwant.web\\iwant.web.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+      "AbsoluteMoniker": "D:0:0:{2E6E4FDF-DB58-4B53-89CA-7CDBA7484E22}|IWant.API\\IWant.API.csproj|d:\\fpt\\sp25\\sep\\mainproject\\iwant\\iwant.api\\controllers\\playerscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2E6E4FDF-DB58-4B53-89CA-7CDBA7484E22}|IWant.API\\IWant.API.csproj|solutionrelative:iwant.api\\controllers\\playerscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2E6E4FDF-DB58-4B53-89CA-7CDBA7484E22}|IWant.API\\IWant.API.csproj|d:\\fpt\\sp25\\sep\\mainproject\\iwant\\iwant.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2E6E4FDF-DB58-4B53-89CA-7CDBA7484E22}|IWant.API\\IWant.API.csproj|solutionrelative:iwant.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -19,14 +23,27 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "IWant.Web.csproj",
-              "DocumentMoniker": "D:\\fpt\\SP25\\SEP\\MainProject\\IWant\\IWant.Web\\IWant.Web.csproj",
-              "RelativeDocumentMoniker": "IWant.Web\\IWant.Web.csproj",
-              "ToolTip": "D:\\fpt\\SP25\\SEP\\MainProject\\IWant\\IWant.Web\\IWant.Web.csproj",
-              "RelativeToolTip": "IWant.Web\\IWant.Web.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-12-12T05:18:41.35Z",
+              "Title": "PlayersController.cs",
+              "DocumentMoniker": "D:\\fpt\\SP25\\SEP\\MainProject\\IWant\\IWant.API\\Controllers\\PlayersController.cs",
+              "RelativeDocumentMoniker": "IWant.API\\Controllers\\PlayersController.cs",
+              "ToolTip": "D:\\fpt\\SP25\\SEP\\MainProject\\IWant\\IWant.API\\Controllers\\PlayersController.cs",
+              "RelativeToolTip": "IWant.API\\Controllers\\PlayersController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-12T06:58:36.47Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\fpt\\SP25\\SEP\\MainProject\\IWant\\IWant.API\\Program.cs",
+              "RelativeDocumentMoniker": "IWant.API\\Program.cs",
+              "ToolTip": "D:\\fpt\\SP25\\SEP\\MainProject\\IWant\\IWant.API\\Program.cs",
+              "RelativeToolTip": "IWant.API\\Program.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABUAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-12T06:56:46.705Z",
               "EditorCaption": ""
             }
           ]
