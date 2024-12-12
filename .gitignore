@@ -10,6 +10,12 @@
 /[Mm]emoryCaptures/
 /[Rr]ecordings/
 
+# more
+**/bin/
+**/obj/
+IWant.Game/Assets/TextMesh Pro/Resources/Fonts & Materials/*.asset
+
+
 # Unity in IWant.Game
 /IWant.Game/[Ll]ibrary/
 /IWant.Game/[Tt]emp/
@@ -29,7 +35,7 @@
 /[Aa]ssets/Plugins/Editor/JetBrains*
 
 # Visual Studio cache directory
-#.vs/
+.vs/
 /IWant.Game/.vs/
 
 # Gradle cache directory
