@@ -19,7 +19,13 @@ MonoBehaviour:
     rid: 4040966092646252545
   m_Scenes:
   - m_enabled: 1
-    m_path: Assets/Scenes/SampleScene.unity
+    m_path: Assets/Scenes/AACApp/MainMenu.unity
+  - m_enabled: 1
+    m_path: Assets/Scenes/AACApp/LoginScene.unity
+  - m_enabled: 1
+    m_path: Assets/Scenes/AACApp/RegisterScene.unity
+  - m_enabled: 1
+    m_path: Assets/Scenes/AACApp/GameAAC.unity
   m_ScriptingDefines: []
   m_PlayerSettingsYaml:
     m_Settings: []
