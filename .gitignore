@@ -10,6 +10,9 @@
 /[Mm]emoryCaptures/
 /[Rr]ecordings/
 
+**/bin/
+**/obj/
+
 # Unity in IWant.Game
 /IWant.Game/[Ll]ibrary/
 /IWant.Game/[Tt]emp/
