@@ -1,0 +1,11 @@
+D:\fpt\SP25\SEP\MainProject\IWant\IWant.Data\bin\Debug\net8.0\IWant.Data.deps.json
+D:\fpt\SP25\SEP\MainProject\IWant\IWant.Data\bin\Debug\net8.0\IWant.Data.dll
+D:\fpt\SP25\SEP\MainProject\IWant\IWant.Data\bin\Debug\net8.0\IWant.Data.pdb
+D:\fpt\SP25\SEP\MainProject\IWant\IWant.Data\obj\Debug\net8.0\IWant.Data.GeneratedMSBuildEditorConfig.editorconfig
+D:\fpt\SP25\SEP\MainProject\IWant\IWant.Data\obj\Debug\net8.0\IWant.Data.AssemblyInfoInputs.cache
+D:\fpt\SP25\SEP\MainProject\IWant\IWant.Data\obj\Debug\net8.0\IWant.Data.AssemblyInfo.cs
+D:\fpt\SP25\SEP\MainProject\IWant\IWant.Data\obj\Debug\net8.0\IWant.Data.csproj.CoreCompileInputs.cache
+D:\fpt\SP25\SEP\MainProject\IWant\IWant.Data\obj\Debug\net8.0\IWant.Data.dll
+D:\fpt\SP25\SEP\MainProject\IWant\IWant.Data\obj\Debug\net8.0\refint\IWant.Data.dll
+D:\fpt\SP25\SEP\MainProject\IWant\IWant.Data\obj\Debug\net8.0\IWant.Data.pdb
+D:\fpt\SP25\SEP\MainProject\IWant\IWant.Data\obj\Debug\net8.0\ref\IWant.Data.dll
