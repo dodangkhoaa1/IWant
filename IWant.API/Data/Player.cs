@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace IWant.API.Data
 {
-    [Table("players")]
+    [Table("Players")]
     [Index(nameof(username), IsUnique = true)]
     public class Player
     {
