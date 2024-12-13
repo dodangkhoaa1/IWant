@@ -1,3 +1,4 @@
+using Assets.Scripts.AACApp.Models;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,15 +7,6 @@ using UnityEngine.Networking;
 
 public class WebTest : MonoBehaviour
 {
-    [System.Serializable]
-    public class User
-    {
-        public int id;
-        public string username;
-        public string password;
-        public int score;
-    }
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     IEnumerator Start()
     {
@@ -25,7 +17,7 @@ public class WebTest : MonoBehaviour
         {
             string responseText = request.downloadHandler.text;
             Debug.Log(responseText);
-            User[] users = JsonHelper.FromJson<User>(responseText);
+            Player[] users = JsonHelper.FromJson<Player>(responseText);
             foreach (var user in users)
             {
                 Debug.Log($"Username: {user.username}, Score: {user.score}");

@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using Assets.Scripts.AACApp.Models;
+using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.UI;
 
 public class SpawnerButton : MonoBehaviour
@@ -10,23 +12,48 @@ public class SpawnerButton : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        SpawnTTSButtons();
+        StartCoroutine(SpawnTTSButtons());
+        
     }
 
-    public void SpawnTTSButtons()
+    public IEnumerator SpawnTTSButtons()
     {
-        var listOfButton = new List<string>();
-        listOfButton.Add("Con");
-        listOfButton.Add("Không");
-        listOfButton.Add("Muốn");
-        listOfButton.Add("Ăn");
-        listOfButton.Add("Uống");
-        listOfButton.Add("Nước");
-        foreach (var item in listOfButton)
+
+        UnityWebRequest request = new UnityWebRequest(AddressAPI.WORD_URL, "GET");
+        request.downloadHandler = new DownloadHandlerBuffer();
+        yield return request.SendWebRequest();
+        if (request.result == UnityWebRequest.Result.Success)
         {
-            Button newTTSBtn = Instantiate(ttsButtonPrefab, containerButtons.transform, false);
-            newTTSBtn.GetComponentInChildren<TextMeshProUGUI>().text = item;
+            string responseText = request.downloadHandler.text;
+            Debug.Log(responseText);
+            Word[] words = JsonHelper.FromJson<Word>(responseText);
+            foreach (var word in words)
+            {
+                Button newTTSBtn = Instantiate(ttsButtonPrefab, containerButtons.transform, false);
+                newTTSBtn.GetComponentInChildren<TextMeshProUGUI>().text = word.text;
+            }
+
         }
-        
+        else
+        {
+            Debug.Log(request.responseCode);
+        }
+
+
+
+        //EXAMPLE TO SHOW BUTTONS FROM CONSTANT LIST
+        //var listOfButton = new List<string>();
+        //listOfButton.Add("Con");
+        //listOfButton.Add("Không");
+        //listOfButton.Add("Muốn");
+        //listOfButton.Add("Ăn");
+        //listOfButton.Add("Uống");
+        //listOfButton.Add("Nước");
+        //foreach (var item in listOfButton)
+        //{
+        //    Button newTTSBtn = Instantiate(ttsButtonPrefab, containerButtons.transform, false);
+        //    newTTSBtn.GetComponentInChildren<TextMeshProUGUI>().text = item;
+        //}
+
     }
 }
