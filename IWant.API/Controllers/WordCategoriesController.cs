@@ -1,0 +1,107 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using IWant.API.Data;
+
+namespace IWant.API.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class WordCategoriesController : ControllerBase
+    {
+        private readonly ApplicationDBContext _context;
+
+        public WordCategoriesController(ApplicationDBContext context)
+        {
+            _context = context;
+        }
+
+        // GET: api/WordCategories
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<WordCategory>>> GetWordCategories()
+        {
+            return await _context.WordCategories.ToListAsync();
+        }
+
+        // GET: api/WordCategories/5
+        [HttpGet("{id}")]
+        public async Task<ActionResult<WordCategory>> GetWordCategory(int id)
+        {
+            var wordCategory = await _context.WordCategories.FindAsync(id);
+
+            if (wordCategory == null)
+            {
+                return NotFound();
+            }
+
+            return wordCategory;
+        }
+
+        // PUT: api/WordCategories/5
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutWordCategory(int id, WordCategory wordCategory)
+        {
+            if (id != wordCategory.id)
+            {
+                return BadRequest();
+            }
+
+            _context.Entry(wordCategory).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!WordCategoryExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
+
+        // POST: api/WordCategories
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPost]
+        public async Task<ActionResult<WordCategory>> PostWordCategory(WordCategory wordCategory)
+        {
+            _context.WordCategories.Add(wordCategory);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetWordCategory", new { id = wordCategory.id }, wordCategory);
+        }
+
+        // DELETE: api/WordCategories/5
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteWordCategory(int id)
+        {
+            var wordCategory = await _context.WordCategories.FindAsync(id);
+            if (wordCategory == null)
+            {
+                return NotFound();
+            }
+
+            _context.WordCategories.Remove(wordCategory);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
+        private bool WordCategoryExists(int id)
+        {
+            return _context.WordCategories.Any(e => e.id == id);
+        }
+    }
+}
