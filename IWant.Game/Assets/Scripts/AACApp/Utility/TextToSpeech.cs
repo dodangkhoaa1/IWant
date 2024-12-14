@@ -23,6 +23,7 @@ public class TextToSpeech : MonoBehaviour
 
     private Gender gender = Gender.Female;
     private string voiceByGender;
+    private string language;
 
     private void Start()
     {
@@ -30,6 +31,7 @@ public class TextToSpeech : MonoBehaviour
         audioSource = GameObject.FindGameObjectWithTag("AudioSource").GetComponent<AudioSource>();
 
         voiceByGender = gender == Gender.Male ? AddressAPI.MALE_PROVIDER : AddressAPI.FEMALE_PROVIDER;
+        language = "vi-vn";
     }
 
     public void OnButtonPress()
@@ -95,7 +97,7 @@ public class TextToSpeech : MonoBehaviour
             ""volume"": 0,
             ""sampling_rate"": 0,
             ""providers"": [ ""{voiceByGender}"" ],
-            ""language"": ""vi-vn"",
+            ""language"": ""{language}"",
             ""text"": ""{text}"",
             ""audio_format"": ""wav""
         }}";

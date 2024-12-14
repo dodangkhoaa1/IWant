@@ -21,8 +21,6 @@ MonoBehaviour:
   - m_enabled: 1
     m_path: Assets/Scenes/AACApp/GameAAC.unity
   - m_enabled: 1
-    m_path: Assets/Scenes/AACApp/MainMenu.unity
-  - m_enabled: 1
     m_path: Assets/Scenes/AACApp/LoginScene.unity
   - m_enabled: 1
     m_path: Assets/Scenes/AACApp/RegisterScene.unity
