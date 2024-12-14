@@ -11,35 +11,26 @@ using System.Text.RegularExpressions;
 using UnityEngine.SceneManagement;
 using Assets.Scripts.Utility.Const;  // For scene management
 
-
-
-
-
 public class TextToSpeech : MonoBehaviour
 {
     private TextMeshProUGUI textMeshProUGUI;
     private AudioSource audioSource;
     [SerializeField] private SceneName sceneName;
 
-    private Gender gender = Gender.Female;
-    private string voiceByGender;
-    private string language;
 
     private void Start()
     {
         textMeshProUGUI = GetComponentInChildren<TextMeshProUGUI>();
         audioSource = GameObject.FindGameObjectWithTag("AudioSource").GetComponent<AudioSource>();
-
-        voiceByGender = gender == Gender.Male ? AddressAPI.MALE_PROVIDER : AddressAPI.FEMALE_PROVIDER;
-        language = "vi-vn";
     }
+    
 
     public void OnButtonPress()
     {
         string inputText = textMeshProUGUI.text;
         if (!string.IsNullOrEmpty(inputText))
         {
-            string fileName = GetUniqueFileName(inputText, voiceByGender);
+            string fileName = GetUniqueFileName(inputText, PrefsKey.GetVoiceByLanguageAndGender);
             string filePath = Path.Combine(Application.persistentDataPath, fileName + ".wav");
 
             if (File.Exists(filePath))
@@ -93,11 +84,11 @@ public class TextToSpeech : MonoBehaviour
             ""show_base_64"": false,
             ""show_original_response"": false,
             ""rate"": -10, 
-            ""pitch"": 30,
+            ""pitch"": 15,
             ""volume"": 0,
             ""sampling_rate"": 0,
-            ""providers"": [ ""{voiceByGender}"" ],
-            ""language"": ""{language}"",
+            ""providers"": [ ""{PrefsKey.GetVoiceByLanguageAndGender}"" ],
+            ""language"": ""{PrefsKey.LANGUAGE}"",
             ""text"": ""{text}"",
             ""audio_format"": ""wav""
         }}";
@@ -249,7 +240,7 @@ public class TextToSpeech : MonoBehaviour
     // Transition to the next scene (you can replace it with your own scene change logic)
     private void TransitionToNextScene()
     {
-        if(sceneName!=SceneName.Null)
-        SceneManager.LoadScene(sceneName.ToString()); // Replace with the scene you want to load
+        if (sceneName != SceneName.Null)
+            SceneManager.LoadScene(sceneName.ToString()); // Replace with the scene you want to load
     }
 }

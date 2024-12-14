@@ -27,6 +27,10 @@ MonoBehaviour:
     m_Key: startKey
     m_Metadata:
       m_Items: []
+  - m_Id: 38565203300352
+    m_Key: New Entry
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

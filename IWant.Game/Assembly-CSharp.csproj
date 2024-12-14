@@ -122,6 +122,7 @@
     <Compile Include="Assets\Scripts\AACApp\Button\Spawner.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshProFloatingText.cs" />
+    <Compile Include="Assets\Scripts\AACApp\Utility\Const\PrefsKey.cs" />
     <Compile Include="Assets\Scripts\AACApp\Login.cs" />
     <Compile Include="Assets\Scripts\AACApp\Utility\Const\SceneName.cs" />
   </ItemGroup>
