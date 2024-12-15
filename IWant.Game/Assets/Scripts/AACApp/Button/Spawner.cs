@@ -30,7 +30,8 @@ public class SpawnerButton : MonoBehaviour
             foreach (var word in words)
             {
                 Button newTTSBtn = Instantiate(ttsButtonPrefab, containerButtons.transform, false);
-                newTTSBtn.GetComponentInChildren<TextMeshProUGUI>().text = word.text;
+                
+                newTTSBtn.GetComponentInChildren<TextMeshProUGUI>().text = PrefsKey.LANGUAGE == PrefsKey.VIETNAM_CODE ? word.textVi : word.textEn;
             }
 
         }
@@ -38,22 +39,6 @@ public class SpawnerButton : MonoBehaviour
         {
             Debug.Log(request.responseCode);
         }
-
-
-
-        //EXAMPLE TO SHOW BUTTONS FROM CONSTANT LIST
-        //var listOfButton = new List<string>();
-        //listOfButton.Add("Con");
-        //listOfButton.Add("Không");
-        //listOfButton.Add("Muốn");
-        //listOfButton.Add("Ăn");
-        //listOfButton.Add("Uống");
-        //listOfButton.Add("Nước");
-        //foreach (var item in listOfButton)
-        //{
-        //    Button newTTSBtn = Instantiate(ttsButtonPrefab, containerButtons.transform, false);
-        //    newTTSBtn.GetComponentInChildren<TextMeshProUGUI>().text = item;
-        //}
 
     }
 }

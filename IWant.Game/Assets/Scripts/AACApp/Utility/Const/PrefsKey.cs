@@ -5,6 +5,8 @@ public static class PrefsKey
 {
     private const string locale_key = "locale_key";
     private const Gender gender = Gender.Male;
+    public const string ENGLISH_CODE = "en-us";
+    public const string VIETNAM_CODE = "vi-vn";
 
     public static int LOCALE_KEY
     {
@@ -15,7 +17,7 @@ public static class PrefsKey
     //Return code(call API) of language based on LOCALE_KEY
     public static string LANGUAGE
     {
-        get => LOCALE_KEY == 0 ? "en-us" : "vi-vn";
+        get => LOCALE_KEY == 0 ? ENGLISH_CODE : VIETNAM_CODE;
     }
     public static string GetVoiceByLanguageAndGender
     {

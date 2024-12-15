@@ -2076,6 +2076,18 @@ MonoBehaviour:
   logoutButton: {fileID: 1849523118}
   playButton: {fileID: 1282478704}
   playerDisplay: {fileID: 1826260176}
+  localizedPlayerDisplay:
+    m_TableReference:
+      m_TableCollectionName: GUID:2c063cc116ce791429f96631f4a9cbd3
+    m_TableEntryReference:
+      m_KeyId: 1582477234176
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!1001 &1282478702
 PrefabInstance:
   m_ObjectHideFlags: 0

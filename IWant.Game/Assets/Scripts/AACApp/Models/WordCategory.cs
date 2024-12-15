@@ -6,7 +6,8 @@ namespace Assets.Scripts.AACApp.Models
     public class WordCategory
     {
         public int id;
-        public string name;
+        public string? nameEn;
+        public string nameVi;
         public DateTime createdAt;
         public DateTime updatedAt;
         public string? imagePath;

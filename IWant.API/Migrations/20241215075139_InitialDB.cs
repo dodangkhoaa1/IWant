@@ -34,7 +34,8 @@ namespace IWant.API.Migrations
                 {
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    name = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
+                    nameEn = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
+                    nameVi = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
                     createdAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     updatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     imagePath = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
@@ -51,7 +52,8 @@ namespace IWant.API.Migrations
                 {
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    text = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    textEn = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    textVi = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     createdAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     updatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     imagePath = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
@@ -75,22 +77,22 @@ namespace IWant.API.Migrations
 
             migrationBuilder.InsertData(
                 table: "WordCategories",
-                columns: new[] { "id", "createdAt", "imagePath", "name", "status", "updatedAt" },
+                columns: new[] { "id", "createdAt", "imagePath", "nameEn", "nameVi", "status", "updatedAt" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 12, 13, 15, 8, 9, 629, DateTimeKind.Local).AddTicks(9871), "", "Chủ từ", true, new DateTime(2024, 12, 13, 15, 8, 9, 630, DateTimeKind.Local).AddTicks(119) },
-                    { 2, new DateTime(2024, 12, 13, 15, 8, 9, 630, DateTimeKind.Local).AddTicks(737), "", "Động từ", true, new DateTime(2024, 12, 13, 15, 8, 9, 630, DateTimeKind.Local).AddTicks(738) }
+                    { 1, new DateTime(2024, 12, 15, 14, 51, 38, 400, DateTimeKind.Local).AddTicks(557), "", "Subject", "Chủ từ", true, new DateTime(2024, 12, 15, 14, 51, 38, 400, DateTimeKind.Local).AddTicks(783) },
+                    { 2, new DateTime(2024, 12, 15, 14, 51, 38, 400, DateTimeKind.Local).AddTicks(1334), "", "Verb", "Động từ", true, new DateTime(2024, 12, 15, 14, 51, 38, 400, DateTimeKind.Local).AddTicks(1335) }
                 });
 
             migrationBuilder.InsertData(
                 table: "Words",
-                columns: new[] { "id", "createdAt", "imagePath", "status", "text", "updatedAt", "wordCategoryId" },
+                columns: new[] { "id", "createdAt", "imagePath", "status", "textEn", "textVi", "updatedAt", "wordCategoryId" },
                 values: new object[,]
                 {
-                    { 2, new DateTime(2024, 12, 13, 15, 8, 9, 630, DateTimeKind.Local).AddTicks(3248), "", true, "Muốn", new DateTime(2024, 12, 13, 15, 8, 9, 630, DateTimeKind.Local).AddTicks(3250), null },
-                    { 1, new DateTime(2024, 12, 13, 15, 8, 9, 630, DateTimeKind.Local).AddTicks(2293), "", true, "Con", new DateTime(2024, 12, 13, 15, 8, 9, 630, DateTimeKind.Local).AddTicks(2494), 1 },
-                    { 3, new DateTime(2024, 12, 13, 15, 8, 9, 630, DateTimeKind.Local).AddTicks(3254), "", true, "Ăn", new DateTime(2024, 12, 13, 15, 8, 9, 630, DateTimeKind.Local).AddTicks(3254), 2 },
-                    { 4, new DateTime(2024, 12, 13, 15, 8, 9, 630, DateTimeKind.Local).AddTicks(3256), "", true, "Uống", new DateTime(2024, 12, 13, 15, 8, 9, 630, DateTimeKind.Local).AddTicks(3257), 2 }
+                    { 2, new DateTime(2024, 12, 15, 14, 51, 38, 400, DateTimeKind.Local).AddTicks(3615), "", true, "Want", "Muốn", new DateTime(2024, 12, 15, 14, 51, 38, 400, DateTimeKind.Local).AddTicks(3617), null },
+                    { 1, new DateTime(2024, 12, 15, 14, 51, 38, 400, DateTimeKind.Local).AddTicks(2738), "", true, "I", "Con", new DateTime(2024, 12, 15, 14, 51, 38, 400, DateTimeKind.Local).AddTicks(2921), 1 },
+                    { 3, new DateTime(2024, 12, 15, 14, 51, 38, 400, DateTimeKind.Local).AddTicks(3621), "", true, "Eat", "Ăn", new DateTime(2024, 12, 15, 14, 51, 38, 400, DateTimeKind.Local).AddTicks(3621), 2 },
+                    { 4, new DateTime(2024, 12, 15, 14, 51, 38, 400, DateTimeKind.Local).AddTicks(3623), "", true, "Drink", "Uống", new DateTime(2024, 12, 15, 14, 51, 38, 400, DateTimeKind.Local).AddTicks(3624), 2 }
                 });
 
             migrationBuilder.CreateIndex(

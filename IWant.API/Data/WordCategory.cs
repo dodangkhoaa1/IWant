@@ -10,7 +10,10 @@ namespace IWant.API.Data
         [Key]
         public int id { get; set; }
         [MaxLength(length: 150)]
-        public string name { get; set; }
+        public string nameEn { get; set; }
+        [Required]
+        [MaxLength(length: 150)]
+        public string? nameVi { get; set; }
         public DateTime createdAt { get; set; } = DateTime.Now;
         public DateTime updatedAt { get; set; } = DateTime.Now;
         [MaxLength(length: 255)]

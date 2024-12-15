@@ -24,18 +24,14 @@ namespace IWant.API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Word>>> GetWords()
         {
-            return await _context.Words
-                .Include(w => w.wordCategory)
-                .ToListAsync();
+            return await _context.Words.ToListAsync();
         }
 
         // GET: api/Words/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Word>> GetWord(int id)
         {
-            var word = await _context.Words
-                .Include(w => w.wordCategory)
-                .FirstOrDefaultAsync(w=> w.id == id);
+            var word = await _context.Words.FindAsync(id);
 
             if (word == null)
             {

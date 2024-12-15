@@ -10,31 +10,43 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
-  m_Name: ButtonTable Shared Data
+  m_Name: LabelTable Shared Data
   m_EditorClassIdentifier: 
-  m_TableCollectionName: ButtonTable
-  m_TableCollectionNameGuidString: 8947424d8b32f4044929148ace8c2a89
+  m_TableCollectionName: LabelTable
+  m_TableCollectionNameGuidString: 2c063cc116ce791429f96631f4a9cbd3
   m_Entries:
-  - m_Id: 29485846528
-    m_Key: loginKey
+  - m_Id: 12935122944
+    m_Key: signUpAccountLbl
     m_Metadata:
       m_Items: []
-  - m_Id: 246302003200
-    m_Key: signupKey
+  - m_Id: 152248930304
+    m_Key: LogInAccountLbl
     m_Metadata:
       m_Items: []
-  - m_Id: 122490343424
-    m_Key: startKey
+  - m_Id: 312882384896
+    m_Key: passwordLbl
+    m_Metadata:
+      m_Items: []
+  - m_Id: 777498021888
+    m_Key: usernameLbl
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1582477234176
+    m_Key: notifyNotLoggedIn
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1956927918080
+    m_Key: notifyLoggedIn
     m_Metadata:
       m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
-    rid: 4040966139711848713
+    rid: 4040966163635896320
   references:
     version: 2
     RefIds:
-    - rid: 4040966139711848713
+    - rid: 4040966163635896320
       type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
       data:
-        m_CustomEpoch: 1734159024187
+        m_CustomEpoch: 1734249657332
