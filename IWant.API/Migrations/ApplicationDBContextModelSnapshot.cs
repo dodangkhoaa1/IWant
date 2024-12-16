@@ -77,7 +77,11 @@ namespace IWant.API.Migrations
                     b.Property<bool>("status")
                         .HasColumnType("bit");
 
-                    b.Property<string>("text")
+                    b.Property<string>("textEn")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("textVi")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
@@ -98,40 +102,44 @@ namespace IWant.API.Migrations
                         new
                         {
                             id = 1,
-                            createdAt = new DateTime(2024, 12, 13, 15, 8, 9, 630, DateTimeKind.Local).AddTicks(2293),
+                            createdAt = new DateTime(2024, 12, 15, 14, 51, 38, 400, DateTimeKind.Local).AddTicks(2738),
                             imagePath = "",
                             status = true,
-                            text = "Con",
-                            updatedAt = new DateTime(2024, 12, 13, 15, 8, 9, 630, DateTimeKind.Local).AddTicks(2494),
+                            textEn = "I",
+                            textVi = "Con",
+                            updatedAt = new DateTime(2024, 12, 15, 14, 51, 38, 400, DateTimeKind.Local).AddTicks(2921),
                             wordCategoryId = 1
                         },
                         new
                         {
                             id = 2,
-                            createdAt = new DateTime(2024, 12, 13, 15, 8, 9, 630, DateTimeKind.Local).AddTicks(3248),
+                            createdAt = new DateTime(2024, 12, 15, 14, 51, 38, 400, DateTimeKind.Local).AddTicks(3615),
                             imagePath = "",
                             status = true,
-                            text = "Muốn",
-                            updatedAt = new DateTime(2024, 12, 13, 15, 8, 9, 630, DateTimeKind.Local).AddTicks(3250)
+                            textEn = "Want To",
+                            textVi = "Muốn",
+                            updatedAt = new DateTime(2024, 12, 15, 14, 51, 38, 400, DateTimeKind.Local).AddTicks(3617)
                         },
                         new
                         {
                             id = 3,
-                            createdAt = new DateTime(2024, 12, 13, 15, 8, 9, 630, DateTimeKind.Local).AddTicks(3254),
+                            createdAt = new DateTime(2024, 12, 15, 14, 51, 38, 400, DateTimeKind.Local).AddTicks(3621),
                             imagePath = "",
                             status = true,
-                            text = "Ăn",
-                            updatedAt = new DateTime(2024, 12, 13, 15, 8, 9, 630, DateTimeKind.Local).AddTicks(3254),
+                            textEn = "Eat",
+                            textVi = "Ăn",
+                            updatedAt = new DateTime(2024, 12, 15, 14, 51, 38, 400, DateTimeKind.Local).AddTicks(3621),
                             wordCategoryId = 2
                         },
                         new
                         {
                             id = 4,
-                            createdAt = new DateTime(2024, 12, 13, 15, 8, 9, 630, DateTimeKind.Local).AddTicks(3256),
+                            createdAt = new DateTime(2024, 12, 15, 14, 51, 38, 400, DateTimeKind.Local).AddTicks(3623),
                             imagePath = "",
                             status = true,
-                            text = "Uống",
-                            updatedAt = new DateTime(2024, 12, 13, 15, 8, 9, 630, DateTimeKind.Local).AddTicks(3257),
+                            textEn = "Drink",
+                            textVi = "Uống",
+                            updatedAt = new DateTime(2024, 12, 15, 14, 51, 38, 400, DateTimeKind.Local).AddTicks(3624),
                             wordCategoryId = 2
                         });
                 });
@@ -151,7 +159,12 @@ namespace IWant.API.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
-                    b.Property<string>("name")
+                    b.Property<string>("nameEn")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<string>("nameVi")
                         .IsRequired()
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
@@ -170,20 +183,22 @@ namespace IWant.API.Migrations
                         new
                         {
                             id = 1,
-                            createdAt = new DateTime(2024, 12, 13, 15, 8, 9, 629, DateTimeKind.Local).AddTicks(9871),
+                            createdAt = new DateTime(2024, 12, 15, 14, 51, 38, 400, DateTimeKind.Local).AddTicks(557),
                             imagePath = "",
-                            name = "Chủ từ",
+                            nameEn = "Subject",
+                            nameVi = "Chủ từ",
                             status = true,
-                            updatedAt = new DateTime(2024, 12, 13, 15, 8, 9, 630, DateTimeKind.Local).AddTicks(119)
+                            updatedAt = new DateTime(2024, 12, 15, 14, 51, 38, 400, DateTimeKind.Local).AddTicks(783)
                         },
                         new
                         {
                             id = 2,
-                            createdAt = new DateTime(2024, 12, 13, 15, 8, 9, 630, DateTimeKind.Local).AddTicks(737),
+                            createdAt = new DateTime(2024, 12, 15, 14, 51, 38, 400, DateTimeKind.Local).AddTicks(1334),
                             imagePath = "",
-                            name = "Động từ",
+                            nameEn = "Verb",
+                            nameVi = "Động từ",
                             status = true,
-                            updatedAt = new DateTime(2024, 12, 13, 15, 8, 9, 630, DateTimeKind.Local).AddTicks(738)
+                            updatedAt = new DateTime(2024, 12, 15, 14, 51, 38, 400, DateTimeKind.Local).AddTicks(1335)
                         });
                 });
 

@@ -145,7 +145,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      vietnameseflag_0: 2534420815696211802
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

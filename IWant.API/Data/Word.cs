@@ -8,9 +8,11 @@ namespace IWant.API.Data
     {
         [Key]
         public int id { get; set; }
+        [MaxLength(length:50)]
+        public string? textEn { get; set; }
         [Required]
         [MaxLength(length:50)]
-        public string text { get; set; }
+        public string textVi { get; set; }
         public DateTime createdAt { get; set; } = DateTime.Now;
         public DateTime updatedAt { get; set; } = DateTime.Now;
         [MaxLength(length: 255)]

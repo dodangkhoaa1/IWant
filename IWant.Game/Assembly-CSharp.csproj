@@ -75,6 +75,7 @@
     <Compile Include="Assets\Scripts\AACApp\Models\Player.cs" />
     <Compile Include="Assets\Scripts\AACApp\Models\UserResponse.cs" />
     <Compile Include="Assets\Scripts\AACApp\Models\LoginData.cs" />
+    <Compile Include="Assets\Scripts\AACApp\Utility\ApiService.cs" />
     <Compile Include="Assets\Scripts\AACApp\Utility\Scroller.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_ExampleScript_01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMPro_InstructionOverlay.cs" />
@@ -122,6 +123,7 @@
     <Compile Include="Assets\Scripts\AACApp\Button\Spawner.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshProFloatingText.cs" />
+    <Compile Include="Assets\Scripts\AACApp\Utility\Const\PrefsKey.cs" />
     <Compile Include="Assets\Scripts\AACApp\Login.cs" />
     <Compile Include="Assets\Scripts\AACApp\Utility\Const\SceneName.cs" />
   </ItemGroup>

@@ -31,15 +31,15 @@ namespace IWant.API.Data
                 );
 
             modelBuilder.Entity<WordCategory>().HasData(
-                new WordCategory() { id = 1, name = "Chủ từ", createdAt = DateTime.Now, updatedAt = DateTime.Now, imagePath="", status = true },
-                new WordCategory() { id = 2, name = "Động từ", createdAt = DateTime.Now, updatedAt = DateTime.Now, imagePath = "", status = true }
+                new WordCategory() { id = 1, nameVi = "Chủ từ", nameEn= "Subject", createdAt = DateTime.Now, updatedAt = DateTime.Now, imagePath="", status = true },
+                new WordCategory() { id = 2, nameVi = "Động từ", nameEn= "Verb", createdAt = DateTime.Now, updatedAt = DateTime.Now, imagePath = "", status = true }
                 );
 
             modelBuilder.Entity<Word>().HasData(
-                new Word() { id = 1, text = "Con", wordCategoryId = 1, createdAt = DateTime.Now, updatedAt = DateTime.Now, imagePath = "", status = true},
-                new Word() { id = 2, text = "Muốn", wordCategory = null, createdAt = DateTime.Now, updatedAt = DateTime.Now, imagePath = "", status = true },
-                new Word() { id = 3, text = "Ăn", wordCategoryId = 2,createdAt = DateTime.Now, updatedAt = DateTime.Now, imagePath = "", status = true },
-                new Word() { id = 4, text = "Uống", wordCategoryId = 2, createdAt = DateTime.Now, updatedAt = DateTime.Now, imagePath = "", status = true }
+                new Word() { id = 1, textVi = "Con", textEn = "I", wordCategoryId = 1, createdAt = DateTime.Now, updatedAt = DateTime.Now, imagePath = "", status = true},
+                new Word() { id = 2, textVi = "Muốn", textEn= "Want To", wordCategory = null, createdAt = DateTime.Now, updatedAt = DateTime.Now, imagePath = "", status = true },
+                new Word() { id = 3, textVi = "Ăn", textEn = "Eat", wordCategoryId = 2,createdAt = DateTime.Now, updatedAt = DateTime.Now, imagePath = "", status = true },
+                new Word() { id = 4, textVi = "Uống", textEn= "Drink", wordCategoryId = 2, createdAt = DateTime.Now, updatedAt = DateTime.Now, imagePath = "", status = true }
                 );
         }
 

@@ -6,7 +6,8 @@ namespace Assets.Scripts.AACApp.Models
     public class Word
     {
         public int id;
-        public string text;
+        public string? textEn;
+        public string textVi;
         public DateTime createdAt;
         public DateTime updatedAt;
         public string? imagePath;
