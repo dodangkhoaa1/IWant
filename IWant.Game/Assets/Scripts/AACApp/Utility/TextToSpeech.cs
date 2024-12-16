@@ -23,7 +23,7 @@ public class TextToSpeech : MonoBehaviour
         textMeshProUGUI = GetComponentInChildren<TextMeshProUGUI>();
         audioSource = GameObject.FindGameObjectWithTag("AudioSource").GetComponent<AudioSource>();
     }
-    
+
 
     public void OnButtonPress()
     {
@@ -52,31 +52,6 @@ public class TextToSpeech : MonoBehaviour
 
     private IEnumerator SendTextToSpeechRequest(string text, string filePath)
     {
-        UnityWebRequest request = CreateTTSRequest(text);
-
-        yield return request.SendWebRequest();
-
-        if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
-        {
-            Debug.LogError($"Error: {request.error}");
-        }
-        else
-        {
-            string audioUrl = ExtractAudioUrl(request.downloadHandler.text);
-            if (!string.IsNullOrEmpty(audioUrl))
-            {
-                yield return StartCoroutine(DownloadAndSaveAudio(audioUrl, filePath));
-                yield return StartCoroutine(PlayAudioAndWaitThenContinue(filePath)); // Wait until audio finishes
-            }
-            else
-            {
-                Debug.LogError("Audio URL is missing or could not be parsed.");
-            }
-        }
-    }
-
-    private UnityWebRequest CreateTTSRequest(string text)
-    {
         string jsonData = $@"
         {{
             ""response_as_dict"": true,
@@ -93,15 +68,29 @@ public class TextToSpeech : MonoBehaviour
             ""audio_format"": ""wav""
         }}";
 
-        UnityWebRequest request = new UnityWebRequest(AddressAPI.TEXT_TO_SPEECH_URL, "POST");
-        request.uploadHandler = new UploadHandlerRaw(Encoding.UTF8.GetBytes(jsonData));
-        request.downloadHandler = new DownloadHandlerBuffer();
-        request.SetRequestHeader("Content-Type", "application/json");
-        request.SetRequestHeader("accept", "application/json");
-        request.SetRequestHeader("authorization", $"Bearer {AddressAPI.TEXT_TO_SPEECH_API_KEY}");
-
-        return request;
+        yield return ApiService.Instance.PostCoroutine(
+            AddressAPI.TEXT_TO_SPEECH_URL,
+            jsonData,
+            AddressAPI.TEXT_TO_SPEECH_API_KEY,
+            (response) =>
+            {
+                string audioUrl = ExtractAudioUrl(response);
+                if (!string.IsNullOrEmpty(audioUrl))
+                {
+                    StartCoroutine(DownloadAndSaveAudio(audioUrl, filePath));
+                }
+                else
+                {
+                    Debug.LogError("Audio URL is missing or could not be parsed.");
+                }
+            },
+            (error) =>
+            {
+                Debug.LogError($"Error: {error}");
+            }
+        );
     }
+
 
     private string ExtractAudioUrl(string jsonResponse)
     {
@@ -122,30 +111,23 @@ public class TextToSpeech : MonoBehaviour
 
     private IEnumerator DownloadAndSaveAudio(string audioUrl, string filePath)
     {
-        using (UnityWebRequest audioRequest = UnityWebRequestMultimedia.GetAudioClip(audioUrl, AudioType.WAV))
-        {
-            yield return audioRequest.SendWebRequest();
-
-            if (audioRequest.result == UnityWebRequest.Result.ConnectionError || audioRequest.result == UnityWebRequest.Result.ProtocolError)
+        yield return ApiService.Instance.GetAudioClip(audioUrl,
+            (clip, audioRequest) =>
             {
-                Debug.LogError($"Audio Download Error: {audioRequest.error}");
-            }
-            else
-            {
-                AudioClip clip = DownloadHandlerAudioClip.GetContent(audioRequest);
                 if (clip != null)
                 {
                     Debug.Log("Audio downloaded successfully. Saving to file...");
                     File.WriteAllBytes(filePath, audioRequest.downloadHandler.data);
-                    PlayAudioClip(clip);
+                    StartCoroutine(PlayAudioAndWaitThenContinue(filePath));
                 }
-                else
-                {
-                    Debug.LogError("Failed to load audio clip.");
-                }
+            },
+            (error) =>
+            {
+                Debug.LogError($"Audio Download Error: {error}");
             }
-        }
+        );
     }
+
 
     private void PlayAudioClip(AudioClip clip)
     {
