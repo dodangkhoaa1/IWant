@@ -66,6 +66,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />
     <Compile Include="Assets\Scripts\AACApp\Models\SaveDataRequest.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
+    <Compile Include="Assets\Scripts\Coloring\WholeSpriteBrush.cs" />
     <Compile Include="Assets\Scripts\AACApp\MainMenu.cs" />
     <Compile Include="Assets\Scripts\AACApp\NewMonoBehaviourScript.cs" />
     <Compile Include="Assets\Scripts\AACApp\Utility\JsonHelper.cs" />
@@ -75,6 +76,7 @@
     <Compile Include="Assets\Scripts\AACApp\Models\Player.cs" />
     <Compile Include="Assets\Scripts\AACApp\Models\UserResponse.cs" />
     <Compile Include="Assets\Scripts\AACApp\Models\LoginData.cs" />
+    <Compile Include="Assets\Scripts\Coloring\LineRendererBrush.cs" />
     <Compile Include="Assets\Scripts\AACApp\Utility\ApiService.cs" />
     <Compile Include="Assets\Scripts\AACApp\Utility\Scroller.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_ExampleScript_01.cs" />
