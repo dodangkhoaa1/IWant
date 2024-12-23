@@ -71,6 +71,7 @@
     <Compile Include="Assets\Scripts\AACApp\NewMonoBehaviourScript.cs" />
     <Compile Include="Assets\Scripts\AACApp\Utility\JsonHelper.cs" />
     <Compile Include="Assets\Scripts\AACApp\Utility\TabBetween.cs" />
+    <Compile Include="Assets\Scripts\Coloring\SpriteBrush.cs" />
     <Compile Include="Assets\Scripts\Coloring\MeshBrush.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
     <Compile Include="Assets\Scripts\AACApp\Models\WordCategory.cs" />
