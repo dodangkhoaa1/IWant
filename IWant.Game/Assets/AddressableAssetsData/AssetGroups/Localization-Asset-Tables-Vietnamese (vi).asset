@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Localization-Asset-Tables-Vietnamese (vi)
   m_EditorClassIdentifier: 
   m_GroupName: Localization-Asset-Tables-Vietnamese (vi)
+  m_Data:
+    m_SerializedData: []
   m_GUID: d39d665c0cbd19a45bc6133b5c75966a
   m_SerializeEntries:
   - m_GUID: 6ea0f454f4360c945a39938eebf5010a

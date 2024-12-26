@@ -1,6 +1,8 @@
-using IWant.Web.Models;
+﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
+using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Authorization;
+using IWant.Web.Models;
 
 namespace IWant.Web.Controllers
 {
@@ -17,6 +19,21 @@ namespace IWant.Web.Controllers
         {
             return View();
         }
+
+        [Authorize(Roles = "Member")]
+        /*[Authorize(Policy = "MemberDep")]*/
+        public IActionResult Member()
+        {
+            return View();
+        }
+
+        [Authorize(Roles = "Admin")]
+        /*[Authorize(Policy = "AdminDep")]*/
+        public IActionResult Admin()
+        {
+            return View();
+        }
+
 
         public IActionResult Privacy()
         {
