@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MerryYellow.CodeAssist.Edit
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{9EC6BB22-377A-7ECC-CBD0-78CCCE42EE7C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{6DF1529D-4B33-C8FB-5FEE-52C31E146670}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{9EC6BB22-377A-7ECC-CBD0-78CCCE42EE7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9EC6BB22-377A-7ECC-CBD0-78CCCE42EE7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9EC6BB22-377A-7ECC-CBD0-78CCCE42EE7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DF1529D-4B33-C8FB-5FEE-52C31E146670}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DF1529D-4B33-C8FB-5FEE-52C31E146670}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DF1529D-4B33-C8FB-5FEE-52C31E146670}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DF1529D-4B33-C8FB-5FEE-52C31E146670}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
