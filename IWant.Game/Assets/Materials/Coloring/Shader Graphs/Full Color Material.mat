@@ -27,6 +27,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _BrushTexture:
+        m_Texture: {fileID: 2800000, guid: e4bf43d6d1e92494f952cf4372e91e8f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -86,7 +90,7 @@ Material:
     m_Ints: []
     m_Floats:
     - PixelSnap: 0
-    - _BrushSize: 0.008
+    - _BrushSize: 45
     - _BumpScale: 1
     - _ColorMask: 15
     - _CullMode: 0
@@ -97,6 +101,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _Hardness: 0.7
     - _MaskSoftnessX: 0
     - _MaskSoftnessY: 0
     - _Mode: 0
@@ -116,13 +121,13 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _ClipRect: {r: -32767, g: -32767, b: 32767, a: 32767}
-    - _Color: {r: 0.8193599, g: 0.7758279, b: 0.9892281, a: 1}
+    - _Color: {r: 0.06203568, g: 1, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FaceColor: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _UVPosition: {r: 0.11622189, g: 0.68443155, b: 0, a: 0}
+    - _UVPosition: {r: 0.07248992, g: 0.45278642, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &1763300459335227562
 MonoBehaviour:
