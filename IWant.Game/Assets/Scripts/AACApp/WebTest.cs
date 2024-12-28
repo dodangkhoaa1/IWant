@@ -1,4 +1,5 @@
 using Assets.Scripts.AACApp.Models;
+using Newtonsoft.Json;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,10 +18,10 @@ public class WebTest : MonoBehaviour
         {
             string responseText = request.downloadHandler.text;
             Debug.Log(responseText);
-            Player[] users = JsonHelper.FromJson<Player>(responseText);
+            List<Player> users = JsonConvert.DeserializeObject<List<Player>>(responseText);
             foreach (var user in users)
             {
-                Debug.Log($"Username: {user.username}, Score: {user.score}");
+                Debug.Log($"Username: {user.Username}, Score: {user.Score}");
             }
 
         }

@@ -8,17 +8,18 @@ namespace IWant.API.Data
     public class WordCategory
     {
         [Key]
-        public int id { get; set; }
-        [MaxLength(length: 150)]
-        public string nameEn { get; set; }
+        public int Id { get; set; }
         [Required]
         [MaxLength(length: 150)]
-        public string? nameVi { get; set; }
-        public DateTime createdAt { get; set; } = DateTime.Now;
-        public DateTime updatedAt { get; set; } = DateTime.Now;
+        public required string VietnameseName { get; set; }
+        [MaxLength(length: 150)]
+        public string? EnglishName { get; set; }
+        
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
+        public DateTime UpdatedAt { get; set; } = DateTime.Now;
         [MaxLength(length: 255)]
-        public string? imagePath { get; set; }
-        public bool status { get; set; } = true;
+        public string? ImagePath { get; set; }
+        public bool Status { get; set; } = true;
         //public ICollection<Word>? Words{ get; set; }
 
     }

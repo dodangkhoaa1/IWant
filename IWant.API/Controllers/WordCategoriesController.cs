@@ -46,7 +46,7 @@ namespace IWant.API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutWordCategory(int id, WordCategory wordCategory)
         {
-            if (id != wordCategory.id)
+            if (id != wordCategory.Id)
             {
                 return BadRequest();
             }
@@ -80,7 +80,7 @@ namespace IWant.API.Controllers
             _context.WordCategories.Add(wordCategory);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetWordCategory", new { id = wordCategory.id }, wordCategory);
+            return CreatedAtAction("GetWordCategory", new { id = wordCategory.Id }, wordCategory);
         }
 
         // DELETE: api/WordCategories/5
@@ -101,7 +101,7 @@ namespace IWant.API.Controllers
 
         private bool WordCategoryExists(int id)
         {
-            return _context.WordCategories.Any(e => e.id == id);
+            return _context.WordCategories.Any(e => e.Id == id);
         }
     }
 }

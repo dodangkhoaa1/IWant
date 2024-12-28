@@ -30,8 +30,8 @@ public class Game : MonoBehaviour
     {
         SaveDataRequest saveRequest = new SaveDataRequest()
         {
-            username = DBManager.username,
-            score = DBManager.score
+            Username = DBManager.username,
+            Score = DBManager.score
         };
         string jsonData = JsonUtility.ToJson(saveRequest);
         UnityWebRequest playerRequest = new UnityWebRequest(AddressAPI.PLAYER_URL+ "/savescore", "PUT");

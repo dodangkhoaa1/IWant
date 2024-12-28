@@ -24,22 +24,22 @@ namespace IWant.API.Data
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Player>()
-                .HasIndex(p => p.username)
+                .HasIndex(p => p.Username)
                 .IsUnique();
             modelBuilder.Entity<Player>().HasData(
-                new Player() { id = 1, username = "admin", password = "admin", score = 0 }
+                new Player() { Id = 1, Username = "admin", Password = "admin", Score = 0 }
                 );
 
             modelBuilder.Entity<WordCategory>().HasData(
-                new WordCategory() { id = 1, nameVi = "Chủ từ", nameEn= "Subject", createdAt = DateTime.Now, updatedAt = DateTime.Now, imagePath="", status = true },
-                new WordCategory() { id = 2, nameVi = "Động từ", nameEn= "Verb", createdAt = DateTime.Now, updatedAt = DateTime.Now, imagePath = "", status = true }
+                new WordCategory() { Id = 1, VietnameseName = "Chủ từ", EnglishName= "Subject", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath="", Status = true },
+                new WordCategory() { Id = 2, VietnameseName = "Động từ", EnglishName= "Verb", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "", Status = true }
                 );
 
             modelBuilder.Entity<Word>().HasData(
-                new Word() { id = 1, textVi = "Con", textEn = "I", wordCategoryId = 1, createdAt = DateTime.Now, updatedAt = DateTime.Now, imagePath = "", status = true},
-                new Word() { id = 2, textVi = "Muốn", textEn= "Want To", wordCategory = null, createdAt = DateTime.Now, updatedAt = DateTime.Now, imagePath = "", status = true },
-                new Word() { id = 3, textVi = "Ăn", textEn = "Eat", wordCategoryId = 2,createdAt = DateTime.Now, updatedAt = DateTime.Now, imagePath = "", status = true },
-                new Word() { id = 4, textVi = "Uống", textEn= "Drink", wordCategoryId = 2, createdAt = DateTime.Now, updatedAt = DateTime.Now, imagePath = "", status = true }
+                new Word() { Id = 1, VietnameseText = "Con", EnglishText = "I", WordCategoryId = 1, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "", Status = true},
+                new Word() { Id = 2, VietnameseText = "Muốn", EnglishText= "Want To", WordCategory = null, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "", Status = true },
+                new Word() { Id = 3, VietnameseText = "Ăn", EnglishText = "Eat", WordCategoryId = 2,CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "", Status = true },
+                new Word() { Id = 4, VietnameseText = "Uống", EnglishText= "Drink", WordCategoryId = 2, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "", Status = true }
                 );
         }
 

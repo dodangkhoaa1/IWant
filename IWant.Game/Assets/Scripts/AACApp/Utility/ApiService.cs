@@ -7,7 +7,7 @@ using UnityEngine.Networking;
 
 public class ApiService : MonoBehaviour
 {
-    private static ApiService _instance;
+    private static ApiService? _instance;
 
     // Singleton instance to ensure only one instance of the service exists
     public static ApiService Instance

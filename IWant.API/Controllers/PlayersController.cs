@@ -47,7 +47,7 @@ namespace IWant.API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutPlayer(int id, Player player)
         {
-            if (id != player.id)
+            if (id != player.Id)
             {
                 return BadRequest();
             }
@@ -75,9 +75,9 @@ namespace IWant.API.Controllers
         [HttpPut("SaveScore")]
         public async Task<IActionResult> SaveScore(SaveScoreDto saveScoreDto)
         {
-            Player? playerInDb = await _context.Players.FirstOrDefaultAsync(p => p.username == saveScoreDto.username);
+            Player? playerInDb = await _context.Players.FirstOrDefaultAsync(p => p.Username == saveScoreDto.username);
             if (playerInDb == null) return NotFound();
-            playerInDb.score = saveScoreDto.score;
+            playerInDb.Score = saveScoreDto.score;
             _context.Update(playerInDb);
             await _context.SaveChangesAsync();
             return Ok(playerInDb);
@@ -91,7 +91,7 @@ namespace IWant.API.Controllers
             _context.Players.Add(player);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetPlayer", new { id = player.id }, player);
+            return CreatedAtAction("GetPlayer", new { id = player.Id }, player);
         }
 
         [HttpPost("login")]
@@ -99,8 +99,8 @@ namespace IWant.API.Controllers
         {
             Player? playerInDB = null;
             playerInDB = await _context.Players
-                .FirstOrDefaultAsync(p => p.username == loginRequestDto.username
-                                            && p.password == loginRequestDto.password);
+                .FirstOrDefaultAsync(p => p.Username == loginRequestDto.username
+                                            && p.Password == loginRequestDto.password);
             if (playerInDB == null) return NotFound();
             return Ok(playerInDB);
         }
@@ -123,7 +123,7 @@ namespace IWant.API.Controllers
 
         private bool PlayerExists(int id)
         {
-            return _context.Players.Any(e => e.id == id);
+            return _context.Players.Any(e => e.Id == id);
         }
     }
 }

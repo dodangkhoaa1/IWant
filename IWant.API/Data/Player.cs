@@ -6,16 +6,16 @@ using Microsoft.EntityFrameworkCore;
 namespace IWant.API.Data
 {
     [Table("Players")]
-    [Index(nameof(username), IsUnique = true)]
+    [Index(nameof(Username), IsUnique = true)]
     public class Player
     {
         [Key]
-        public int id { get; set; }
+        public int Id { get; set; }
         [StringLength(255)]
-        public string username { get; set; }
+        public required string Username { get; set; }
         [StringLength(255)]
-        public string? password { get; set; }
+        public required string Password { get; set; }
         [Range(0, 10)]
-        public int? score { get; set; } = 0;
+        public int? Score { get; set; } = 0;
     }
 }

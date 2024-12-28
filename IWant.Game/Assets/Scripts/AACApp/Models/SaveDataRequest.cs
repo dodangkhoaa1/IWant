@@ -1,6 +1,6 @@
 ﻿[System.Serializable]
 public class SaveDataRequest
 {
-    public string username;
-    public int score;
+    public string Username;
+    public int Score;
 }

@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.Utility.Const;
 using EasyUI.Toast;
+using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Text;
@@ -35,8 +36,8 @@ public class Login : MonoBehaviour
         // Prepare JSON payload
         LoginData data = new LoginData
         {
-            username = usernameField.text,
-            password = passwordField.text
+            Username = usernameField.text,
+            Password = passwordField.text
         };
 
         string jsonData = JsonUtility.ToJson(data);
@@ -53,13 +54,13 @@ public class Login : MonoBehaviour
             {
                 try
                 {
-                    UserResponse response = JsonUtility.FromJson<UserResponse>(responseText);
+                    UserResponse response =  JsonConvert.DeserializeObject<UserResponse>(responseText);
 
-                    if (response != null && !string.IsNullOrEmpty(response.username))
+                    if (response != null && !string.IsNullOrEmpty(response.Username))
                     {
-                        DBManager.username = response.username;
-                        DBManager.score = response.score;
-                        toastString = PrefsKey.LANGUAGE == PrefsKey.ENGLISH_CODE ? $"User login successful. Welcome, {response.username}!" : $"Đăng nhập thành công. Chào mừng, {response.username}!";
+                        DBManager.username = response.Username;
+                        DBManager.score = response.Score;
+                        toastString = PrefsKey.LANGUAGE == PrefsKey.ENGLISH_CODE ? $"User login successful. Welcome, {response.Username}!" : $"Đăng nhập thành công. Chào mừng, {response.Username}!";
                         Toast.Show(toastString, 1.5f, ToastColor.Green, ToastPosition.BottomCenter);
                         SceneManager.LoadScene(SceneName.MainMenu.ToString());
                     }
