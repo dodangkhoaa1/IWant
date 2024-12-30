@@ -1,3 +1,0 @@
-D:\fpt\SP25\SEP\MainProject\IWant\IWant.Game\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\CMakeLists.txt
-D:\fpt\SP25\SEP\MainProject\IWant\IWant.Game\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\FramePacing\CMakeLists.txt
-D:\fpt\SP25\SEP\MainProject\IWant\IWant.Game\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\GameActivity\CMakeLists.txt
