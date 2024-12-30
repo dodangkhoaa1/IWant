@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using IWant.API.Data;
+using IWant.DataAccess;
+using IWant.BusinessObject.Enitities;
 
 namespace IWant.API.Controllers
 {
@@ -13,9 +9,9 @@ namespace IWant.API.Controllers
     [ApiController]
     public class WordsController : ControllerBase
     {
-        private readonly ApplicationDBContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public WordsController(ApplicationDBContext context)
+        public WordsController(ApplicationDbContext context)
         {
             _context = context;
         }

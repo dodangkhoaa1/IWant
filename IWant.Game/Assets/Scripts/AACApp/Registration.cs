@@ -43,7 +43,7 @@ public class Registration : MonoBehaviour
         string jsonData = JsonUtility.ToJson(data);
         Debug.Log("Sending JSON: " + jsonData);
         // Use ApiService to send the POST request
-        string url = $"{AddressAPI.PLAYER_URL}";
+        string url = $"{AddressAPI.USER_URL}";
         yield return ApiService.Instance.PostCoroutine(
             url,
             jsonData,
@@ -54,11 +54,11 @@ public class Registration : MonoBehaviour
                 {
                     UserResponse response = JsonConvert.DeserializeObject<UserResponse>(responseText);
 
-                    if (response != null && !string.IsNullOrEmpty(response.Username))
+                    if (response != null && !string.IsNullOrEmpty(response.FullName))
                     {
                         toastString = PrefsKey.LANGUAGE == PrefsKey.ENGLISH_CODE 
-                        ? $"User created successfully. Username: {response.Username}"
-                        : $"Người dùng đăng kí thành công. Tên đăng nhập: {response.Username}";
+                        ? $"User created successfully. FullName: {response.FullName}"
+                        : $"Người dùng đăng kí thành công. Tên đăng nhập: {response.FullName}";
                         Toast.Show(toastString, 1.5f, ToastColor.Green, ToastPosition.BottomCenter);
                         SceneManager.LoadScene(SceneName.MainMenu.ToString());
                     }

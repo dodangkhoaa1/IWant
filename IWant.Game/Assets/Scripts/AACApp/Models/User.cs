@@ -1,7 +1,7 @@
 ﻿namespace Assets.Scripts.AACApp.Models
 {
     [System.Serializable]
-    public class Player
+    public class User
     {
         public int Id;
         public string Username;

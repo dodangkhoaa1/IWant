@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace IWant.API.Data
+namespace IWant.BusinessObject.Enitities
 {
     [Table("Words")]
     public class Word

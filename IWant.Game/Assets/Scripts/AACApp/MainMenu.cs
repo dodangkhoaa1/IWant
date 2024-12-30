@@ -36,7 +36,7 @@ public class MainMenu : MonoBehaviour
         if (DBManager.LoggedIn)
         {
 
-            localizedPlayerDisplay.Arguments = new object[] { DBManager.username };
+            localizedPlayerDisplay.Arguments = new object[] { DBManager.fullName };
             localizedPlayerDisplay.TableEntryReference = "notifyLoggedIn"; // Pass the username
         }
         else
