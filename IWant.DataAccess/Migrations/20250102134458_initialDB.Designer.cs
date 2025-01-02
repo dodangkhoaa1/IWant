@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IWant.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241226100554_IdentityDb")]
-    partial class IdentityDb
+    [Migration("20250102134458_initialDB")]
+    partial class initialDB
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,138 @@ namespace IWant.DataAccess.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("IWant.BusinessObject.Enitities.Word", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("EnglishText")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("ImagePath")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("VietnameseText")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int?>("WordCategoryId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("WordCategoryId");
+
+                    b.ToTable("Words");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2025, 1, 2, 20, 44, 57, 606, DateTimeKind.Local).AddTicks(9863),
+                            EnglishText = "T-Shirt",
+                            ImagePath = "images/T-Shirt.png",
+                            Status = true,
+                            UpdatedAt = new DateTime(2025, 1, 2, 20, 44, 57, 606, DateTimeKind.Local).AddTicks(9864),
+                            VietnameseText = "Áo Thun",
+                            WordCategoryId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2025, 1, 2, 20, 44, 57, 606, DateTimeKind.Local).AddTicks(9867),
+                            EnglishText = "Shirt",
+                            ImagePath = "images/Shirt.png",
+                            Status = true,
+                            UpdatedAt = new DateTime(2025, 1, 2, 20, 44, 57, 606, DateTimeKind.Local).AddTicks(9868),
+                            VietnameseText = "Áo Sơ Mi",
+                            WordCategoryId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedAt = new DateTime(2025, 1, 2, 20, 44, 57, 606, DateTimeKind.Local).AddTicks(9870),
+                            EnglishText = "Sweater",
+                            ImagePath = "images/Sweater.png",
+                            Status = true,
+                            UpdatedAt = new DateTime(2025, 1, 2, 20, 44, 57, 606, DateTimeKind.Local).AddTicks(9870),
+                            VietnameseText = "Áo Len",
+                            WordCategoryId = 1
+                        });
+                });
+
+            modelBuilder.Entity("IWant.BusinessObject.Enitities.WordCategory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("EnglishName")
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<string>("ImagePath")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("VietnameseName")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("WordCategories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2025, 1, 2, 20, 44, 57, 606, DateTimeKind.Local).AddTicks(9827),
+                            EnglishName = "Clothes",
+                            ImagePath = "images/Clothes.png",
+                            Status = true,
+                            UpdatedAt = new DateTime(2025, 1, 2, 20, 44, 57, 606, DateTimeKind.Local).AddTicks(9827),
+                            VietnameseName = "Quần Áo"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2025, 1, 2, 20, 44, 57, 606, DateTimeKind.Local).AddTicks(9830),
+                            EnglishName = "Food",
+                            ImagePath = "images/Food.png",
+                            Status = true,
+                            UpdatedAt = new DateTime(2025, 1, 2, 20, 44, 57, 606, DateTimeKind.Local).AddTicks(9830),
+                            VietnameseName = "Thức ăn"
+                        });
+                });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
@@ -301,6 +433,15 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
+                });
+
+            modelBuilder.Entity("IWant.BusinessObject.Enitities.Word", b =>
+                {
+                    b.HasOne("IWant.BusinessObject.Enitities.WordCategory", "WordCategory")
+                        .WithMany()
+                        .HasForeignKey("WordCategoryId");
+
+                    b.Navigation("WordCategory");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

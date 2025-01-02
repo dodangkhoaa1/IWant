@@ -65,45 +65,35 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2024, 12, 28, 16, 43, 12, 43, DateTimeKind.Local).AddTicks(6463),
-                            EnglishText = "I",
-                            ImagePath = "",
+                            CreatedAt = new DateTime(2025, 1, 2, 20, 44, 57, 606, DateTimeKind.Local).AddTicks(9863),
+                            EnglishText = "T-Shirt",
+                            ImagePath = "images/T-Shirt.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2024, 12, 28, 16, 43, 12, 43, DateTimeKind.Local).AddTicks(6464),
-                            VietnameseText = "Con",
+                            UpdatedAt = new DateTime(2025, 1, 2, 20, 44, 57, 606, DateTimeKind.Local).AddTicks(9864),
+                            VietnameseText = "Áo Thun",
                             WordCategoryId = 1
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2024, 12, 28, 16, 43, 12, 43, DateTimeKind.Local).AddTicks(6466),
-                            EnglishText = "Want To",
-                            ImagePath = "",
+                            CreatedAt = new DateTime(2025, 1, 2, 20, 44, 57, 606, DateTimeKind.Local).AddTicks(9867),
+                            EnglishText = "Shirt",
+                            ImagePath = "images/Shirt.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2024, 12, 28, 16, 43, 12, 43, DateTimeKind.Local).AddTicks(6467),
-                            VietnameseText = "Muốn"
+                            UpdatedAt = new DateTime(2025, 1, 2, 20, 44, 57, 606, DateTimeKind.Local).AddTicks(9868),
+                            VietnameseText = "Áo Sơ Mi",
+                            WordCategoryId = 1
                         },
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2024, 12, 28, 16, 43, 12, 43, DateTimeKind.Local).AddTicks(6477),
-                            EnglishText = "Eat",
-                            ImagePath = "",
+                            CreatedAt = new DateTime(2025, 1, 2, 20, 44, 57, 606, DateTimeKind.Local).AddTicks(9870),
+                            EnglishText = "Sweater",
+                            ImagePath = "images/Sweater.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2024, 12, 28, 16, 43, 12, 43, DateTimeKind.Local).AddTicks(6477),
-                            VietnameseText = "Ăn",
-                            WordCategoryId = 2
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CreatedAt = new DateTime(2024, 12, 28, 16, 43, 12, 43, DateTimeKind.Local).AddTicks(6479),
-                            EnglishText = "Drink",
-                            ImagePath = "",
-                            Status = true,
-                            UpdatedAt = new DateTime(2024, 12, 28, 16, 43, 12, 43, DateTimeKind.Local).AddTicks(6479),
-                            VietnameseText = "Uống",
-                            WordCategoryId = 2
+                            UpdatedAt = new DateTime(2025, 1, 2, 20, 44, 57, 606, DateTimeKind.Local).AddTicks(9870),
+                            VietnameseText = "Áo Len",
+                            WordCategoryId = 1
                         });
                 });
 
@@ -145,22 +135,22 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2024, 12, 28, 16, 43, 12, 43, DateTimeKind.Local).AddTicks(6431),
-                            EnglishName = "Subject",
-                            ImagePath = "",
+                            CreatedAt = new DateTime(2025, 1, 2, 20, 44, 57, 606, DateTimeKind.Local).AddTicks(9827),
+                            EnglishName = "Clothes",
+                            ImagePath = "images/Clothes.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2024, 12, 28, 16, 43, 12, 43, DateTimeKind.Local).AddTicks(6432),
-                            VietnameseName = "Chủ từ"
+                            UpdatedAt = new DateTime(2025, 1, 2, 20, 44, 57, 606, DateTimeKind.Local).AddTicks(9827),
+                            VietnameseName = "Quần Áo"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2024, 12, 28, 16, 43, 12, 43, DateTimeKind.Local).AddTicks(6434),
-                            EnglishName = "Verb",
-                            ImagePath = "",
+                            CreatedAt = new DateTime(2025, 1, 2, 20, 44, 57, 606, DateTimeKind.Local).AddTicks(9830),
+                            EnglishName = "Food",
+                            ImagePath = "images/Food.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2024, 12, 28, 16, 43, 12, 43, DateTimeKind.Local).AddTicks(6435),
-                            VietnameseName = "Động từ"
+                            UpdatedAt = new DateTime(2025, 1, 2, 20, 44, 57, 606, DateTimeKind.Local).AddTicks(9830),
+                            VietnameseName = "Thức ăn"
                         });
                 });
 

@@ -86,16 +86,15 @@ public partial class ApplicationDbContext : IdentityDbContext
 
         //Word Category
         builder.Entity<WordCategory>().HasData(
-                new WordCategory() { Id = 1, VietnameseName = "Chủ từ", EnglishName = "Subject", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "", Status = true },
-                new WordCategory() { Id = 2, VietnameseName = "Động từ", EnglishName = "Verb", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "", Status = true }
+                new WordCategory() { Id = 1, VietnameseName = "Quần Áo", EnglishName = "Clothes", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/Clothes.png", Status = true },
+                new WordCategory() { Id = 2, VietnameseName = "Thức ăn", EnglishName = "Food", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/Food.png", Status = true }
         );
 
         //Word
         builder.Entity<Word>().HasData(
-            new Word() { Id = 1, VietnameseText = "Con", EnglishText = "I", WordCategoryId = 1, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "", Status = true },
-            new Word() { Id = 2, VietnameseText = "Muốn", EnglishText = "Want To", WordCategory = null, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "", Status = true },
-            new Word() { Id = 3, VietnameseText = "Ăn", EnglishText = "Eat", WordCategoryId = 2, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "", Status = true },
-            new Word() { Id = 4, VietnameseText = "Uống", EnglishText = "Drink", WordCategoryId = 2, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "", Status = true }
+            new Word() { Id = 1, VietnameseText = "Áo Thun", EnglishText = "T-Shirt", WordCategoryId = 1, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/T-Shirt.png", Status = true },
+            new Word() { Id = 2, VietnameseText = "Áo Sơ Mi", EnglishText = "Shirt", WordCategoryId = 1, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/Shirt.png", Status = true },
+            new Word() { Id = 3, VietnameseText = "Áo Len", EnglishText = "Sweater", WordCategoryId = 1, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/Sweater.png", Status = true }
             );
     }
 

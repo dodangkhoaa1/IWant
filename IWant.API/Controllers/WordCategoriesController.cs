@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using IWant.DataAccess;
 using IWant.BusinessObject.Enitities;
+using IWant.API.Data.DTOs;
 
 namespace IWant.API.Controllers
 {
@@ -18,10 +19,28 @@ namespace IWant.API.Controllers
 
         // GET: api/WordCategories
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<WordCategory>>> GetWordCategories()
+        public async Task<ActionResult<IEnumerable<WordCategoryDTO>>> GetCategories()
         {
-            return await _context.WordCategories.ToListAsync();
+            var categories = await _context.WordCategories
+                .ToListAsync();
+
+            var categoryDtos = categories.Select(category => new WordCategoryDTO
+            {
+                Id = category.Id,
+                VietnameseName = category.VietnameseName,
+                EnglishName = category.EnglishName,
+                CreatedAt = category.CreatedAt,
+                UpdatedAt = category.UpdatedAt,
+                ImagePath = category.ImagePath,
+                Status = category.Status,
+                Image = !string.IsNullOrEmpty(category.ImagePath) && System.IO.File.Exists(Path.Combine("wwwroot", category.ImagePath))
+                    ? System.IO.File.ReadAllBytes(Path.Combine("wwwroot", category.ImagePath))
+                    : null
+            }).ToList();
+
+            return Ok(categoryDtos);
         }
+
 
         // GET: api/WordCategories/5
         [HttpGet("{id}")]
