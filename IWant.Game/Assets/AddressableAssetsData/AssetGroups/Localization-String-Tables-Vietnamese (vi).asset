@@ -15,24 +15,24 @@ MonoBehaviour:
   m_GroupName: Localization-String-Tables-Vietnamese (vi)
   m_Data:
     m_SerializedData: []
-  m_GUID: e1770f788ce474d40938dcd4f71dd49a
+  m_GUID: 3db4560923eff554e95745ad39511943
   m_SerializeEntries:
-  - m_GUID: 1026c23a7c89ad14eb311adb5ddb2dde
-    m_Address: LabelTable_vi
+  - m_GUID: e2f027837e360f7498b5e8f4adbd97b3
+    m_Address: TitleTable_vi
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-vi
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 6dc6f420bfd382b4eba81a69640857ae
-    m_Address: ButtonTable_vi
+  - m_GUID: 919e595349688ab43b36f4c95b01553f
+    m_Address: InputPlaceholderTable_vi
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-vi
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: d0295ee100591234fa06c619e115aeaa
-    m_Address: LanguageTable_vi
+  - m_GUID: 32bead953d2f3054d903aef67d63eb7d
+    m_Address: DynamicString_vi
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-vi

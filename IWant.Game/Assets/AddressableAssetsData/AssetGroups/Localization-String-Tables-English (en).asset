@@ -15,24 +15,24 @@ MonoBehaviour:
   m_GroupName: Localization-String-Tables-English (en)
   m_Data:
     m_SerializedData: []
-  m_GUID: 9c287823dd05eb948b7b00c7717c5007
+  m_GUID: 6fe108ab1c1318d45b9f687f8c00c8fa
   m_SerializeEntries:
-  - m_GUID: 29d698ae16d87454d8cb6edf0e996a2a
-    m_Address: LanguageTable_en
+  - m_GUID: 37ad7b14bf96c2747a52163328deba7c
+    m_Address: TitleTable_en
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 43a1c2f26899e2b4b97d8bfb06e2ff76
-    m_Address: LabelTable_en
+  - m_GUID: 8990cfd768fe8e14f90869213ccfca02
+    m_Address: InputPlaceholderTable_en
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 7bf79a076c3078942a414b335d18f71c
-    m_Address: ButtonTable_en
+  - m_GUID: fadffb1a16270eb4f80b62cd0d720c52
+    m_Address: DynamicString_en
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en

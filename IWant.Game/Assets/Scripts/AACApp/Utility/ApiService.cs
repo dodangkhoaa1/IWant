@@ -1,10 +1,11 @@
+﻿
 using System;
 using System.Collections;
 using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
-#nullable enable
 
+#nullable enable
 public class ApiService : MonoBehaviour
 {
     private static ApiService? _instance;

@@ -29,8 +29,6 @@ namespace EasyUI.Helpers
 
 
         private int maxTextLength = 300;
-
-
         void Awake()
         {
             uiCanvasGroup.alpha = 0f;
