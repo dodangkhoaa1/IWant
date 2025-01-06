@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -13,17 +13,16 @@ using System.Globalization;
 
 public class TextToSpeech : MonoBehaviour
 {
+    [SerializeField] private SceneName sceneName;
+   
     private TextMeshProUGUI textMeshProUGUI;
     private AudioSource audioSource;
-    [SerializeField] private SceneName sceneName;
-
 
     private void Start()
     {
         textMeshProUGUI = GetComponentInChildren<TextMeshProUGUI>();
-        audioSource = GameObject.FindGameObjectWithTag("AudioSource").GetComponent<AudioSource>();
+        audioSource = AudioManager.Instance.GetComponent<AudioSource>();
     }
-
 
     public void CallTextToSpeech()
     {
@@ -42,6 +41,30 @@ public class TextToSpeech : MonoBehaviour
             {
                 Debug.Log($"File not found. Downloading and saving: {filePath}");
                 StartCoroutine(SendTextToSpeechRequest(inputText, filePath));
+            }
+        }
+        else
+        {
+            Debug.LogWarning("Input text is empty.");
+        }
+    }
+    public IEnumerator CallTextToSpeechCoroutine()
+    {
+        string inputText = textMeshProUGUI.text;
+        if (!string.IsNullOrEmpty(inputText))
+        {
+            string fileName = GetUniqueFileName(inputText, PrefsKey.GetVoiceByLanguageAndGender);
+            string filePath = Path.Combine(Application.persistentDataPath, fileName + ".wav");
+
+            if (File.Exists(filePath))
+            {
+                Debug.Log($"File exists: {filePath}. Playing from local storage.");
+                yield return StartCoroutine(PlayAudioAndWaitThenContinue(filePath));
+            }
+            else
+            {
+                Debug.Log($"File not found. Downloading and saving: {filePath}");
+                yield return StartCoroutine(SendTextToSpeechRequest(inputText, filePath));
             }
         }
         else
@@ -91,7 +114,6 @@ public class TextToSpeech : MonoBehaviour
         );
     }
 
-
     private string ExtractAudioUrl(string jsonResponse)
     {
         const string key = "\"audio_resource_url\":\"";
@@ -128,14 +150,14 @@ public class TextToSpeech : MonoBehaviour
         );
     }
 
-
-    private void PlayAudioClip(AudioClip clip)
+    private IEnumerator PlayAudioClip(AudioClip clip)
     {
         if (clip != null)
         {
             audioSource.clip = clip;
             audioSource.Play();
             Debug.Log("Audio is now playing!");
+            yield return new WaitForSeconds(clip.length);
         }
         else
         {
@@ -190,12 +212,6 @@ public class TextToSpeech : MonoBehaviour
         // Play the audio from the file
         yield return StartCoroutine(PlayAudioFromFile(filePath));
 
-        // Wait until the audio finishes playing
-        while (audioSource.isPlaying)
-        {
-            yield return null; // Wait for the next frame
-        }
-
         // Continue with the next action (e.g., changing scene, etc.)
         Debug.Log("Audio finished playing. Continuing with next action...");
         // Call the method to transition scene or perform another action
@@ -214,7 +230,7 @@ public class TextToSpeech : MonoBehaviour
             }
             else
             {
-                PlayAudioClip(DownloadHandlerAudioClip.GetContent(audioRequest));
+                yield return PlayAudioClip(DownloadHandlerAudioClip.GetContent(audioRequest));
             }
         }
     }
