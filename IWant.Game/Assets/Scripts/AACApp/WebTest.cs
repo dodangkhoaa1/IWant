@@ -1,4 +1,5 @@
 using Assets.Scripts.AACApp.Models;
+using Newtonsoft.Json;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,17 +11,17 @@ public class WebTest : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     IEnumerator Start()
     {
-        UnityWebRequest request = new UnityWebRequest(AddressAPI.PLAYER_URL, "GET");
+        UnityWebRequest request = new UnityWebRequest(AddressAPI.USER_URL, "GET");
         request.downloadHandler = new DownloadHandlerBuffer();
         yield return request.SendWebRequest();
         if (request.result == UnityWebRequest.Result.Success)
         {
             string responseText = request.downloadHandler.text;
             Debug.Log(responseText);
-            Player[] users = JsonHelper.FromJson<Player>(responseText);
+            List<User> users = JsonConvert.DeserializeObject<List<User>>(responseText);
             foreach (var user in users)
             {
-                Debug.Log($"Username: {user.username}, Score: {user.score}");
+                Debug.Log($"Username: {user.Username}, Score: {user.Score}");
             }
 
         }

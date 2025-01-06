@@ -3,7 +3,7 @@
 public static class AddressAPI
 {
     public static readonly string BASE_URL = "http://localhost:5000";
-    public static readonly string PLAYER_URL = BASE_URL + "/api/players";
+    public static readonly string USER_URL = BASE_URL + "/api/users";
     public static readonly string WORD_URL = BASE_URL + "/api/words";
 
     public static readonly string TEXT_TO_SPEECH_URL = "https://api.edenai.run/v2/audio/text_to_speech";

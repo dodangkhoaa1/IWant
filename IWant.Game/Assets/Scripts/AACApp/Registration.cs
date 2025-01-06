@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.Utility.Const;
 using EasyUI.Toast;
+using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Text;
@@ -35,14 +36,14 @@ public class Registration : MonoBehaviour
         // Prepare JSON payload
         RegisterData data = new RegisterData
         {
-            username = usernameField.text,
-            password = passwordField.text
+            Username = usernameField.text,
+            Password = passwordField.text
         };
 
         string jsonData = JsonUtility.ToJson(data);
         Debug.Log("Sending JSON: " + jsonData);
         // Use ApiService to send the POST request
-        string url = $"{AddressAPI.PLAYER_URL}";
+        string url = $"{AddressAPI.USER_URL}";
         yield return ApiService.Instance.PostCoroutine(
             url,
             jsonData,
@@ -51,13 +52,13 @@ public class Registration : MonoBehaviour
             {
                 try
                 {
-                    UserResponse response = JsonUtility.FromJson<UserResponse>(responseText);
+                    UserResponse response = JsonConvert.DeserializeObject<UserResponse>(responseText);
 
-                    if (response != null && !string.IsNullOrEmpty(response.username))
+                    if (response != null && !string.IsNullOrEmpty(response.FullName))
                     {
                         toastString = PrefsKey.LANGUAGE == PrefsKey.ENGLISH_CODE 
-                        ? $"User created successfully. Username: {response.username}"
-                        : $"Người dùng đăng kí thành công. Tên đăng nhập: {response.username}";
+                        ? $"User created successfully. FullName: {response.FullName}"
+                        : $"Người dùng đăng kí thành công. Tên đăng nhập: {response.FullName}";
                         Toast.Show(toastString, 1.5f, ToastColor.Green, ToastPosition.BottomCenter);
                         SceneManager.LoadScene(SceneName.MainMenu.ToString());
                     }

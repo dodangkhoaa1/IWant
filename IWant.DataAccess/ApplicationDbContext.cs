@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System.Reflection;
+using System.Reflection.Emit;
 
 namespace IWant.DataAccess;
 
@@ -23,6 +24,8 @@ public partial class ApplicationDbContext : IdentityDbContext
     public virtual DbSet<User> Users { get; set; }
     public virtual DbSet<ChatRoom> ChatRooms { get; set; }
     public virtual DbSet<Message> Messages { get; set; }
+    public virtual DbSet<WordCategory> WordCategories { get; set; }
+    public virtual DbSet<Word> Words { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -86,6 +89,20 @@ public partial class ApplicationDbContext : IdentityDbContext
             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
             RoleId = "d19bb620-77b5-414e-865a-1894fbcbb689"
         });
+
+        //Word Category
+        builder.Entity<WordCategory>().HasData(
+                new WordCategory() { Id = 1, VietnameseName = "Chủ từ", EnglishName = "Subject", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "", Status = true },
+                new WordCategory() { Id = 2, VietnameseName = "Động từ", EnglishName = "Verb", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "", Status = true }
+        );
+
+        //Word
+        builder.Entity<Word>().HasData(
+            new Word() { Id = 1, VietnameseText = "Con", EnglishText = "I", WordCategoryId = 1, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "", Status = true },
+            new Word() { Id = 2, VietnameseText = "Muốn", EnglishText = "Want To", WordCategory = null, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "", Status = true },
+            new Word() { Id = 3, VietnameseText = "Ăn", EnglishText = "Eat", WordCategoryId = 2, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "", Status = true },
+            new Word() { Id = 4, VietnameseText = "Uống", EnglishText = "Drink", WordCategoryId = 2, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "", Status = true }
+            );
     }
 
 }

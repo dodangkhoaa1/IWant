@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using IWant.API.Data;
+using IWant.DataAccess;
+using IWant.BusinessObject.Enitities;
 
 namespace IWant.API.Controllers
 {
@@ -13,9 +9,9 @@ namespace IWant.API.Controllers
     [ApiController]
     public class WordCategoriesController : ControllerBase
     {
-        private readonly ApplicationDBContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public WordCategoriesController(ApplicationDBContext context)
+        public WordCategoriesController(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -46,7 +42,7 @@ namespace IWant.API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutWordCategory(int id, WordCategory wordCategory)
         {
-            if (id != wordCategory.id)
+            if (id != wordCategory.Id)
             {
                 return BadRequest();
             }
@@ -80,7 +76,7 @@ namespace IWant.API.Controllers
             _context.WordCategories.Add(wordCategory);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetWordCategory", new { id = wordCategory.id }, wordCategory);
+            return CreatedAtAction("GetWordCategory", new { id = wordCategory.Id }, wordCategory);
         }
 
         // DELETE: api/WordCategories/5
@@ -101,7 +97,7 @@ namespace IWant.API.Controllers
 
         private bool WordCategoryExists(int id)
         {
-            return _context.WordCategories.Any(e => e.id == id);
+            return _context.WordCategories.Any(e => e.Id == id);
         }
     }
 }

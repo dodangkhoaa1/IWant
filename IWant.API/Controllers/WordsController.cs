@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using IWant.API.Data;
+using IWant.DataAccess;
+using IWant.BusinessObject.Enitities;
 
 namespace IWant.API.Controllers
 {
@@ -13,9 +9,9 @@ namespace IWant.API.Controllers
     [ApiController]
     public class WordsController : ControllerBase
     {
-        private readonly ApplicationDBContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public WordsController(ApplicationDBContext context)
+        public WordsController(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -46,7 +42,7 @@ namespace IWant.API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutWord(int id, Word word)
         {
-            if (id != word.id)
+            if (id != word.Id)
             {
                 return BadRequest();
             }
@@ -80,7 +76,7 @@ namespace IWant.API.Controllers
             _context.Words.Add(word);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetWord", new { id = word.id }, word);
+            return CreatedAtAction("GetWord", new { id = word.Id }, word);
         }
 
         // DELETE: api/Words/5
@@ -101,7 +97,7 @@ namespace IWant.API.Controllers
 
         private bool WordExists(int id)
         {
-            return _context.Words.Any(e => e.id == id);
+            return _context.Words.Any(e => e.Id == id);
         }
     }
 }

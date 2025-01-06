@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.Utility.Const;
 using EasyUI.Toast;
+using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Text;
@@ -26,24 +27,24 @@ public class Login : MonoBehaviour
     {
         if (string.IsNullOrEmpty(usernameField.text) || string.IsNullOrEmpty(passwordField.text))
         {
-            Debug.LogWarning("Username or Password field is empty.");
-            toastString = PrefsKey.LANGUAGE == PrefsKey.ENGLISH_CODE ? "Please fill in both username and password." : "Vui lòng điền cả Tên đăng nhập và Mật khẩu";
+            Debug.LogWarning("FullName or Password field is empty.");
+            toastString = PrefsKey.LANGUAGE == PrefsKey.ENGLISH_CODE ? "Please fill in both FullName and password." : "Vui lòng điền cả Tên đăng nhập và Mật khẩu";
             Toast.Show(toastString, 1.5f, ToastColor.Red, ToastPosition.BottomCenter);
             yield break;
         }
 
         // Prepare JSON payload
-        LoginData data = new LoginData
+        LoginRequestDto data = new LoginRequestDto
         {
-            username = usernameField.text,
-            password = passwordField.text
+            UserName = usernameField.text,
+            PasswordHash = passwordField.text
         };
 
         string jsonData = JsonUtility.ToJson(data);
         Debug.Log("Sending JSON: " + jsonData);
 
         // Use ApiService to send the POST request
-        string url = $"{AddressAPI.PLAYER_URL}/login";
+        string url = $"{AddressAPI.USER_URL}/login";
 
         yield return ApiService.Instance.PostCoroutine(
             url,
@@ -53,13 +54,12 @@ public class Login : MonoBehaviour
             {
                 try
                 {
-                    UserResponse response = JsonUtility.FromJson<UserResponse>(responseText);
+                    UserResponse response =  JsonConvert.DeserializeObject<UserResponse>(responseText);
 
-                    if (response != null && !string.IsNullOrEmpty(response.username))
+                    if (response != null && !string.IsNullOrEmpty(response.FullName))
                     {
-                        DBManager.username = response.username;
-                        DBManager.score = response.score;
-                        toastString = PrefsKey.LANGUAGE == PrefsKey.ENGLISH_CODE ? $"User login successful. Welcome, {response.username}!" : $"Đăng nhập thành công. Chào mừng, {response.username}!";
+                        DBManager.fullName = response.FullName;
+                        toastString = PrefsKey.LANGUAGE == PrefsKey.ENGLISH_CODE ? $"User login successful. Welcome, {response.FullName}!" : $"Đăng nhập thành công. Chào mừng, {response.FullName}!";
                         Toast.Show(toastString, 1.5f, ToastColor.Green, ToastPosition.BottomCenter);
                         SceneManager.LoadScene(SceneName.MainMenu.ToString());
                     }
