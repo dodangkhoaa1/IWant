@@ -1,8 +1,10 @@
-﻿using IWant.Web.Models;
+﻿using IWant.BusinessObject.Enitities;
+using IWant.Web.Models;
 using IWant.Web.Service;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Rewrite;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -26,7 +28,7 @@ namespace IWant.Web.Controllers
 
         public async Task<IActionResult> Signup()
         {
-            var model = new SignupViewModel() { Role = "Menber" };
+            var model = new SignupViewModel() { Role = "Member" };
             return View(model);
         }
 
@@ -42,15 +44,15 @@ namespace IWant.Web.Controllers
         public async Task<IActionResult> ExternalLoginCallback()
         {
             var info = await _signInManager.GetExternalLoginInfoAsync();
-            var emailClaim = info.Principal.Claims.FirstOrDefault(x=>x.Type == ClaimTypes.Email);
-            var user = new IdentityUser {Email = emailClaim.Value, UserName = emailClaim.Value};
+            var emailClaim = info.Principal.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Email);
+            var user = new IdentityUser { Email = emailClaim.Value, UserName = emailClaim.Value };
             var result = await _userManager.CreateAsync(user);
 
             if (result.Succeeded)
             {
                 await _userManager.AddToRoleAsync(user, "MEMBER");
             }
-                await _userManager.AddLoginAsync(user, info);
+            await _userManager.AddLoginAsync(user, info);
             await _signInManager.SignInAsync(user, false);
 
             return RedirectToAction("Index", "Home");
@@ -75,10 +77,21 @@ namespace IWant.Web.Controllers
 
                 if ((await _userManager.FindByEmailAsync(model.Email)) == null)
                 {
-                    var user = new IdentityUser
+                    if (model.Password != model.ConfirmPassword)
+                    {
+                        ModelState.AddModelError("ConfirmPassword", "Password and confirm password not match!");
+                        return View(model);
+                    }
+                    var user = new User
                     {
                         Email = model.Email,
-                        UserName = model.Email
+                        UserName = model.Email,
+                        FullName = model.FullName,
+                        Avatar = "",
+                        Birthday = model.Birthday,
+                        Status = true,
+                        CreatedAt = DateTime.Now,
+                        UpdatedAt = DateTime.Now,
                     };
                     var result = await _userManager.CreateAsync(user, model.Password);
 
@@ -105,7 +118,8 @@ namespace IWant.Web.Controllers
                 }
                 else
                 {
-                    return RedirectToAction("Signin");
+                    ModelState.AddModelError("Signup", "Account was exist");
+                    return View(model);
                 }
             }
             return View(model);

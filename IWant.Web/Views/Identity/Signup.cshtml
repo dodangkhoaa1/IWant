@@ -2,6 +2,12 @@
 @model SignupViewModel
 @{
     ViewData["Title"] = "Signup";
+    var genders = new List<string> { "Male", "Female" };
+    var genderSelectList = genders.Select(gender => new SelectListItem
+            {
+                Text = gender,
+                Value = gender == "Female" ? "true" : "false"
+            }).ToList();
 }
 
 <h1>Signup</h1>
@@ -11,12 +17,36 @@
 
     <div class="form-group col-4">
         <label asp-for="Email">Email:</label>
-        <input type="text" asp-for="Email" class="form-control" />
+        <input type="email" asp-for="Email" class="form-control" />
+    </div>
+
+    <div class="form-group col-4">
+        <label asp-for="FullName">Full Name:</label>
+        <input type="text" asp-for="FullName" class="form-control" />
+    </div>
+
+    <div class="form-group col-4">
+        <label asp-for="Birthday">Birthday:</label>
+        <input type="date" asp-for="Birthday" class="form-control" />
     </div>
 
     <div class="form-group col-4">
         <label asp-for="Password">Password:</label>
         <input type="text" asp-for="Password" class="form-control" />
+    </div>
+
+    <div class="form-group col-4">
+        <label asp-for="ConfirmPassword">Confirm Password:</label>
+        <input type="text" asp-for="ConfirmPassword" class="form-control" />
+    </div>
+
+    <div class="form-group col-4">
+        @Html.DropDownListFor(
+                 x => x.Gender,
+                 genderSelectList,
+                 "Select Gender",
+                 new { @class = "form-control" }
+                 )
     </div>
 
     @* <div class="form-group col-4">

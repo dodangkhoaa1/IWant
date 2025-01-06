@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using System.Reflection;
 
 namespace IWant.DataAccess;
 
@@ -20,6 +21,8 @@ public partial class ApplicationDbContext : IdentityDbContext
     }
 
     public virtual DbSet<User> Users { get; set; }
+    public virtual DbSet<ChatRoom> ChatRooms { get; set; }
+    public virtual DbSet<Message> Messages { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -39,6 +42,8 @@ public partial class ApplicationDbContext : IdentityDbContext
     {
         base.OnModelCreating(builder);
 
+        builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
         builder.Entity<IdentityRole>().HasData(
             new IdentityRole
             {
@@ -57,6 +62,7 @@ public partial class ApplicationDbContext : IdentityDbContext
         {
             Id = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
             FullName = "Hồ Minh Nhật",
+            Avatar = "",
             Gender = true,
             Birthday = DateOnly.Parse("2003-11-24"),
             Status = true,

@@ -2,6 +2,8 @@ using IWant.Web.Service;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using IWant.DataAccess;
+using Microsoft.AspNetCore.Hosting;
+using IWant.Web.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -39,6 +41,14 @@ builder.Services.Configure<SmtpOptions>(builder.Configuration.GetSection("Smtp")
 
 builder.Services.AddSingleton<IEmailSender, SmtpEmailSender>();
 
+builder.Services.AddAutoMapper(typeof(Program));
+
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.PropertyNamingPolicy = null;
+    });
+
 //Set require for claim value and role 
 builder.Services.AddAuthorization(options =>
 {
@@ -53,7 +63,16 @@ builder.Services.AddAuthorization(options =>
     });
 });
 
-builder.Services.AddRazorPages();
+IMvcBuilder build = builder.Services.AddRazorPages();
+#if DEBUG
+var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+if (environment == Environments.Development)
+{
+    build.AddRazorRuntimeCompilation();
+}
+#endif
+
+builder.Services.AddSignalR();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -77,5 +96,11 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+app.MapControllerRoute(
+    name: "chatRoute",
+    pattern: "Chat/Messages/{roomName}",
+    defaults: new { controller = "Chat", action = "Messages" });
+
+app.MapHub<ChatHub>("/ChatHub");
 
 app.Run();
