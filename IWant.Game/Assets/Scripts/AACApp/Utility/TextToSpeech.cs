@@ -16,12 +16,10 @@ public class TextToSpeech : MonoBehaviour
     [SerializeField] private SceneName sceneName;
    
     private TextMeshProUGUI textMeshProUGUI;
-    private AudioSource audioSource;
 
     private void Start()
     {
         textMeshProUGUI = GetComponentInChildren<TextMeshProUGUI>();
-        audioSource = AudioManager.Instance.GetComponent<AudioSource>();
     }
 
     public void CallTextToSpeech()
@@ -154,8 +152,7 @@ public class TextToSpeech : MonoBehaviour
     {
         if (clip != null)
         {
-            audioSource.clip = clip;
-            audioSource.Play();
+            AudioManager.instance.PlaySFX(clip);
             Debug.Log("Audio is now playing!");
             yield return new WaitForSeconds(clip.length);
         }

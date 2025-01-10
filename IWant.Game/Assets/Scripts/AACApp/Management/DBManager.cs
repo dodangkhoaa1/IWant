@@ -1,6 +1,6 @@
 ﻿public static class DBManager
 {
-    public static string fullName;
+    public static string fullName = "Default Name";
 
     public static Gender gender;
 

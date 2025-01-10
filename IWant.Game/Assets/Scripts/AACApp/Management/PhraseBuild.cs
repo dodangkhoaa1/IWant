@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using EasyUI.Toast;
+using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -12,21 +14,21 @@ public class PhraseBuild : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] private float transitionTime = 0.5f;
+    [SerializeField] private int MAX_BUTTON_COUNT = 5; // Max number of buttons allowed in phraseContainer
 
     [Header("UI Elements")]
     [SerializeField] private RectTransform phraseContainer; // Container holding the phrase buttons
+    [SerializeField] private Transform aacButtonContainer; // Container for AAC buttons
     [SerializeField] private Button deleteBtn; // Button to delete the last button
     [SerializeField] private Button playBtn; // Button to play the sequence of buttons
 
-    private AudioSource audioSource;
     private Dictionary<int, Vector2> buttonInitialPositions = new Dictionary<int, Vector2>(); // Stores initial positions of buttons
     private bool isSwapping = false; // Cờ kiểm soát đổi chỗ
     private GameObject currentSwapTarget = null; // Track the current swap target
 
     private void Start()
     {
-        audioSource = AudioManager.Instance.GetComponent<AudioSource>();
-        StartCoroutine(UpdateUIButtons());
+        StartCoroutine(UpdateUIToolBarButtons());
         InitializeButtonPositions();
 
         deleteBtn.onClick.AddListener(() => RemoveAllChildren());
@@ -52,6 +54,11 @@ public class PhraseBuild : MonoBehaviour
     /// </summary>
     public void AddToList(GameObject wordButton)
     {
+        if (phraseContainer.childCount >= MAX_BUTTON_COUNT)
+        {
+            Toast.Show("Phrase container can only hold up to 5 buttons.", Color.red, ToastPosition.BottomCenter);
+            return;
+        }
         GameObject wordButtonInstance = Instantiate(wordButton, phraseContainer.transform);
         wordButtonInstance.tag = "PhraseWord";
         RectTransform instanceRect = wordButtonInstance.GetComponent<RectTransform>();
@@ -64,7 +71,14 @@ public class PhraseBuild : MonoBehaviour
         instanceRect.anchoredPosition = initialPosition;
         buttonInitialPositions[wordButtonInstance.GetInstanceID()] = initialPosition;
 
-        StartCoroutine(UpdateUIButtons());
+        // Disable interaction of the original button in aacButtonContainer
+        Button sourceButton = wordButton.GetComponent<Button>();
+        if (sourceButton != null)
+        {
+            sourceButton.interactable = false;
+        }
+
+        StartCoroutine(UpdateUIToolBarButtons());
         UpdateButtonPositions();
     }
 
@@ -75,20 +89,23 @@ public class PhraseBuild : MonoBehaviour
     {
         foreach (Transform child in phraseContainer)
         {
+            EnableInteractionOfButton(child.gameObject.GetComponent<Button>());
             Destroy(child.gameObject);
         }
-        StartCoroutine(UpdateUIButtons());
+        StartCoroutine(UpdateUIToolBarButtons());
         UpdateButtonPositions();
     }
 
     /// <summary>
     /// Removes a specific button from the phrase container.
     /// </summary>
-    public void RemoveFromList(GameObject button)
+    public IEnumerator RemoveFromList(GameObject aacWordGO)
     {
-        Destroy(button);
-        buttonInitialPositions.Remove(button.GetInstanceID());
-        StartCoroutine(UpdateUIButtons());
+        EnableInteractionOfButton(aacWordGO.GetComponent<Button>());
+        Destroy(aacWordGO.gameObject);
+        yield return null;
+        buttonInitialPositions.Remove(aacWordGO.GetInstanceID());
+        StartCoroutine(UpdateUIToolBarButtons());
         UpdateButtonPositions();
     }
 
@@ -112,7 +129,7 @@ public class PhraseBuild : MonoBehaviour
         }
     }
 
-    private IEnumerator UpdateUIButtons()
+    private IEnumerator UpdateUIToolBarButtons()
     {
         yield return null;
         bool hasChildren = phraseContainer.childCount > 0;
@@ -227,7 +244,7 @@ public class PhraseBuild : MonoBehaviour
     {
         if (data.position.y < Screen.height * 0.5f)
         {
-            Destroy(button.gameObject);
+            StartCoroutine(RemoveFromList(button));
         }
         else
         {
@@ -235,5 +252,21 @@ public class PhraseBuild : MonoBehaviour
         }
     }
 
-
+    private void EnableInteractionOfButton(Button button){
+        // Enable interaction of the original button in aacButtonContainer
+        string originalButtonName = button.name.Replace("(Clone)", "").Trim();
+        Debug.Log(originalButtonName);
+        foreach (Transform child in aacButtonContainer)
+        {
+            if (child.name == originalButtonName)
+            {
+                Button sourceButton = child.GetComponent<Button>();
+                if (sourceButton != null)
+                {
+                    sourceButton.interactable = true;
+                }
+                break;
+            }
+        }
+    }
 }

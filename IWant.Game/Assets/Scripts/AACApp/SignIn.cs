@@ -10,12 +10,12 @@ using UnityEngine.UI;
 
 public class SignIn : MonoBehaviour
 {
-    public TMP_InputField usernameField;
-    public TMP_InputField passwordField;
+    [SerializeField] private SceneName sceneToLoad = SceneName.MainMenu;
+    [SerializeField] private TMP_InputField usernameField;
+    [SerializeField] private TMP_InputField passwordField;
 
     public Button submitButton;
     private string toastString;
-    private SceneName sceneToLoad = SceneName.MainMenu;
 
     public void CallSignIn()
     {
@@ -59,7 +59,9 @@ public class SignIn : MonoBehaviour
                     {
                         if (response.Status)
                         {
-                            DBManager.fullName = response.FullName;
+                            string[] wordInName = response.FullName.Trim().Split(" ");
+                            string lastName = wordInName[wordInName.Length - 1];
+                            DBManager.fullName = lastName;
                             DBManager.gender = response.Gender ? Gender.Male : Gender.Female;
 
                             Debug.Log($"The gender of {DBManager.fullName} is {DBManager.gender.ToString()}");
