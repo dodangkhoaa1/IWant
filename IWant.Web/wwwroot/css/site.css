@@ -2,6 +2,26 @@ html {
     font-size: 14px;
 }
 
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+footer {
+    height: 280px;
+    background: #fff;
+    color: #000;
+    text-align: center;
+}
+
 @media (min-width: 768px) {
     html {
         font-size: 16px;
@@ -15,23 +35,119 @@ html {
 html {
     position: relative;
     min-height: 100%;
+    height: 100%;
+    margin:0;
+    padding:0;
+}
+
+header .logo img {
+    width: 100px;
+    height: 100%
+}
+
+header .navbar {
+    padding: 0 1rem;
+}
+
+    header .navbar .logo img {
+        width: 100px; 
+    }
+
+header .navbar-nav {
+    display: flex;
+    align-items: center;
+}
+
+    header .navbar-nav.ms-auto {
+        margin-left: auto; 
+    }
+
+header .navbar-toggler {
+    border: none;
+    background: transparent;
+}
+
+header .navbar-toggler-icon {
+    background-image: url('data:image/svg+xml;charset=utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30"%3E%3Cpath stroke="rgba%280,0,0,0.5%29" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"/%3E%3C/svg%3E');
+}
+
+.partial-signin {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
 }
 
 body {
-    margin-bottom: 60px;
-    background: #eee
+    background: #FEDA15
 }
+
+.login-container {
+    margin: 30px 0;
+    background-color: #FEDA15;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    .login-container .login-card {
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 20px;
+        width: 350px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        height:600px;
+    }
+
+        .login-container .login-card h1 {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .login-container .login-card .custom-input {
+            width: 100%;
+            padding-top: 10px ;
+            margin-bottom: 10px;
+            border: none;
+            border-bottom: 2px solid #000;
+            font-size: 14px;
+            font-family: Arial, sans-serif;
+            outline: none;
+            box-shadow: none;
+        }
+
+            .login-container .login-card .custom-input::placeholder {
+                color: #BEBEBE;
+                font-size: 14px;
+            }
+
+            .login-container .login-card .custom-input:focus {
+                border-bottom: 2px solid #FEDA15;
+            }
+
+        .login-container .login-card .password-toggle {
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #FEDA15;
+            font-size: 16px;
+        }
+
+
 
 .app {
     display: flex;
-    height: 70vh;
+    height: 650px;
     justify-content: space-between;
     background: white;
     border: 1px solid #ccc;
 }
 
     .app .sidebar {
-        width: 200px;
+        width: 240px;
     }
 
     .app .main-content {
@@ -134,6 +250,11 @@ body {
                 overflow: hidden;
                 text-overflow: ellipsis;
                 max-width: 120px;
+            }
+
+            .sidebar .profile div p {
+                font-size: 14px;
+                margin: 0 5px;
             }
 
         .sidebar .profile .btn-sign-out {

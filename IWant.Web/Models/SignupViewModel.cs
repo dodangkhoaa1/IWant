@@ -9,23 +9,19 @@ namespace IWant.Web.Models
         public string Email { get; set; }
 
         [Required]
-        public string FullName { get; set; }
-        [Required]
-        public bool Gender { get; set; }
+        public string? FullName { get; set; }
+        public bool? Gender { get; set; }
         [Required]
         public DateOnly Birthday { get; set; }
 
         [Required]
         [DataType(DataType.Password, ErrorMessage = "Incorrect or missing password.")]
-        public string Password { get; set; }
+        public string? Password { get; set; }
         [Required]
         [DataType(DataType.Password)]
-        public string ConfirmPassword { get; set; }
+        public string? ConfirmPassword { get; set; }
 
         [Required]
         public string Role { get; set; }
-
-        /*[Required]
-        public string Department { get; set; }*/
     }
 }

@@ -1,42 +1,59 @@
-﻿@using IWant.Web.Models
+﻿@using IWant.BusinessObject.Enitities
+@using IWant.Web.Models
 @using Microsoft.AspNetCore.Identity
 @model SigninViewModel
 
-@inject SignInManager<IdentityUser> signInManager
+@inject SignInManager<User> signInManager
 
 @{
     ViewData["Title"] = "Signin";
 
     var providers = await signInManager.GetExternalAuthenticationSchemesAsync();
 }
-<h1>Signin</h1>
-<form asp-action="SignIn" method="post">
-    
-    @Html.ValidationSummary()
 
-    <div class="form-group col-4">
-        <label asp-for="Username">Username:</label>
-        <input type="text" asp-for="Username" />
-    </div>
-    <div class="form-group col-4">
-        <label asp-for="Password">Password:</label>
-        <input type="password" asp-for="Password" />
-    </div>
-    <div class="form-group col-4">
-        <input type="checkbox" asp-for="RememberMe" />Remember Me
-    </div>
-    <button type="submit" class="btn btn-primary">Sign In</button>
-</form>
+<div class="login-container signin-page">
+    <div class="login-card">
+        <h1>Sign In</h1>
+        <form style="padding:0 20px" asp-action="SignIn" method="post">
+            @Html.ValidationSummary()
 
-<p>
-    You can use your social media account to login as well.
-</p>
+            <div style="margin-bottom: 15px;">
+                <input type="text" asp-for="Username" placeholder="Username" class="custom-input" />
+            </div>
+            <div style="margin-bottom: 15px; position: relative;">
+                <input type="password" asp-for="Password" id="passwordInput" placeholder="Password" class="custom-input" />
+                <span class="password-toggle" id="togglePassword">
+                    <i class="fa-regular fa-eye"></i>
+                </span>
+            </div>
+            <div style="text-align: right; margin-bottom: 20px;">
+                <a asp-action="ForgotPassword" style="font-size: 12px; color: #FEDA15; font-weight:bold;">Forgot password</a>
+            </div>
+            <div style="text-align: center; margin-bottom: 80px">
+                <button type="submit" style="width:200px; padding: 10px; background-color: #FEDA15; border: none; border-radius: 25px; color: #fff; font-size: 16px; font-weight: bold; cursor: pointer;margin:0 auto;">SIGN IN</button>
+            </div>
+        </form>
 
-<form asp-action="ExternalLogin" method="post">
-    <div class="form-group">
-        @foreach (var provider in providers)
-        {
-            <button type="submit" name="provider" value="@provider.Name" class="btn btn-primary">Login with @provider.DisplayName</button>
-        }
+        <p style="text-align: center; margin: 15px 0; color: #000;">or Continue with</p>
+
+        <form asp-action="ExternalLogin" method="post">
+            <div style="text-align: center; margin-bottom: 20px;">
+                @foreach (var provider in providers)
+                {
+                    <button type="submit" name="provider" value="@provider.Name" style=" background-color: #1877F2; color: #fff; border: none; border-radius: 5px; padding: 10px 20px; font-size: 14px; cursor: pointer;">
+                        <i class="fa-brands fa-facebook"></i> Continue with @provider.DisplayName
+                    </button>
+                }
+            </div>
+        </form>
+
+        <div class="d-flex justify-content-between">
+            <p style="text-align: center; font-size: 12px; margin:auto 0; ">
+                Don’t have an account? <a asp-action="Signup" style="color: #FEDA15;font-weight:bold">Sign Up</a>
+            </p>
+            <img src="~/images/mascot-1.png" alt="Alternate Text" />
+        </div>
     </div>
-</form>
+</div>
+
+

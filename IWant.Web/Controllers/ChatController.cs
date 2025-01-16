@@ -64,7 +64,7 @@ namespace IWant.Web.Controllers
                 Content = Regex.Replace(messageViewModel.Content, @"<.*?>", string.Empty),
                 FromUser = user,
                 ToRoom = room,
-                TimeStamp = DateTime.UtcNow
+                TimeStamp = DateTime.Now
             };
 
             _context.Messages.Add(msg);

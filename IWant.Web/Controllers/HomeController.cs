@@ -6,7 +6,6 @@ using IWant.Web.Models;
 
 namespace IWant.Web.Controllers
 {
-    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -20,7 +19,7 @@ namespace IWant.Web.Controllers
         {
             return View();
         }
-
+        [Authorize]
         [Authorize(Roles = "Member")]
         /*[Authorize(Policy = "MemberDep")]*/
         public IActionResult Member()
@@ -28,6 +27,7 @@ namespace IWant.Web.Controllers
             return View();
         }
 
+        [Authorize]
         [Authorize(Roles = "Admin")]
         /*[Authorize(Policy = "AdminDep")]*/
         public IActionResult Admin()

@@ -2,63 +2,55 @@
 @model SignupViewModel
 @{
     ViewData["Title"] = "Signup";
-    var genders = new List<string> { "Male", "Female" };
-    var genderSelectList = genders.Select(gender => new SelectListItem
-            {
-                Text = gender,
-                Value = gender == "Female" ? "true" : "false"
-            }).ToList();
 }
 
-<h1>Signup</h1>
+<div class="login-container signin-page">
+    <div class="login-card">
+        <h1>Sign Up</h1>
 
-<form asp-controller="Identity" asp-action="Signup" method="post">
-    @Html.ValidationSummary()
+        <form style="padding:0 20px" asp-controller="Identity" asp-action="Signup" method="post">
 
-    <div class="form-group col-4">
-        <label asp-for="Email">Email:</label>
-        <input type="email" asp-for="Email" class="form-control" />
+            <div style="margin-bottom: 15px;">
+                <input type="email" asp-for="Email" placeholder="Email" class="custom-input" />
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <input type="text" asp-for="FullName" placeholder="Full Name" class="custom-input" />
+            </div>
+
+            <div style="margin-bottom: 15px">
+                <input type="date" asp-for="Birthday" placeholder="Birthday" class="custom-input" />
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <select asp-for="Gender" class="custom-input">
+                    <option value="">Other</option>
+                    <option value="true">Male</option>
+                    <option value="false">Female</option>
+                </select>
+                <span asp-validation-for="Gender" class="text-danger"></span>
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <input type="password" asp-for="Password" placeholder="Password" class="custom-input" />
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <input type="password" asp-for="ConfirmPassword" placeholder="Re-Password" class="custom-input" />
+            </div>
+
+            <input type="hidden" asp-for="Role" class="form-control" value="Member" />
+            <div style="text-align: center; margin-bottom: 0">
+                <button type="submit" class="btn btn-primary" style="width:200px; padding: 10px; background-color: #FEDA15; border: none; border-radius: 25px; color: #fff; font-size: 16px; font-weight: bold; cursor: pointer;margin:0 auto;">SIGN UP</button>
+            </div>
+        </form>
+
+
+        <div class="d-flex justify-content-between">
+            <p style=" font-size: 12px; margin:auto 0; ">
+                Already have a account? <a asp-action="Signin" style="color: #FEDA15;font-weight:bold">Sign In</a>
+            </p>
+            <img src="~/images/mascot-1.png" alt="Alternate Text" />
+        </div>
     </div>
-
-    <div class="form-group col-4">
-        <label asp-for="FullName">Full Name:</label>
-        <input type="text" asp-for="FullName" class="form-control" />
-    </div>
-
-    <div class="form-group col-4">
-        <label asp-for="Birthday">Birthday:</label>
-        <input type="date" asp-for="Birthday" class="form-control" />
-    </div>
-
-    <div class="form-group col-4">
-        <label asp-for="Password">Password:</label>
-        <input type="text" asp-for="Password" class="form-control" />
-    </div>
-
-    <div class="form-group col-4">
-        <label asp-for="ConfirmPassword">Confirm Password:</label>
-        <input type="text" asp-for="ConfirmPassword" class="form-control" />
-    </div>
-
-    <div class="form-group col-4">
-        @Html.DropDownListFor(
-                 x => x.Gender,
-                 genderSelectList,
-                 "Select Gender",
-                 new { @class = "form-control" }
-                 )
-    </div>
-
-    @* <div class="form-group col-4">
-            <label asp-for="Department">Department:</label>
-            <input type="text" asp-for="Department" class="form-control" />
-        </div> *@
-
-    <input type="hidden" asp-for="Role" class="form-control" value="Member" />
-
-    <button type="submit" class="btn btn-primary">Signup!</button>
-</form>
-
-<div class="alert alert-info">
-    If you already have a account, please <a asp-action="Signin">sign in</a>
 </div>

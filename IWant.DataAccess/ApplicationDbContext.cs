@@ -8,7 +8,7 @@ using System.Reflection.Emit;
 
 namespace IWant.DataAccess;
 
-public partial class ApplicationDbContext : IdentityDbContext
+public partial class ApplicationDbContext : IdentityDbContext<User>
 {
 
     public ApplicationDbContext()
@@ -16,7 +16,7 @@ public partial class ApplicationDbContext : IdentityDbContext
 
     }
 
-    public ApplicationDbContext(DbContextOptions options) : base(options)
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
     {
 
     }
@@ -61,11 +61,16 @@ public partial class ApplicationDbContext : IdentityDbContext
                 NormalizedName = "MEMBER"
             });
 
+        builder.Entity<User>(entity =>
+        {
+            entity.ToTable("AspNetUsers"); 
+        });
+
         builder.Entity<User>().HasData(new User
         {
             Id = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
             FullName = "Hồ Minh Nhật",
-            Avatar = "",
+            Avatar = "avatar1.png",
             Gender = true,
             Birthday = DateOnly.Parse("2003-11-24"),
             Status = true,

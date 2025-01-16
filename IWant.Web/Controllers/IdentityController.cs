@@ -1,10 +1,13 @@
 ﻿using IWant.BusinessObject.Enitities;
+using IWant.DataAccess;
 using IWant.Web.Models;
 using IWant.Web.Service;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Rewrite;
+using Microsoft.EntityFrameworkCore;
+using NuGet.Protocol.Plugins;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -13,17 +16,19 @@ namespace IWant.Web.Controllers
 {
     public class IdentityController : Controller
     {
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<User> _userManager;
+        private readonly SignInManager<User> _signInManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly ApplicationDbContext _context;
         private readonly IEmailSender emailSender;
 
-        public IdentityController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, RoleManager<IdentityRole> roleManager, IEmailSender emailSender)
+        public IdentityController(UserManager<User> userManager, SignInManager<User> signInManager, RoleManager<IdentityRole> roleManager, IEmailSender emailSender, ApplicationDbContext context)
         {
             _userManager = userManager;
             this._signInManager = signInManager;
             this._roleManager = roleManager;
             this.emailSender = emailSender;
+            _context = context;
         }
 
         public async Task<IActionResult> Signup()
@@ -45,16 +50,19 @@ namespace IWant.Web.Controllers
         {
             var info = await _signInManager.GetExternalLoginInfoAsync();
             var emailClaim = info.Principal.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Email);
-            var user = new IdentityUser { Email = emailClaim.Value, UserName = emailClaim.Value };
+            var fullNameClaim = info.Principal.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Name);
+            var genderClaim = info.Principal.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Gender);
+            var user = new User { Email = emailClaim.Value, UserName = emailClaim.Value , FullName = fullNameClaim.Value, Status = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, Avatar = "default-avatar.png", Gender = true};
             var result = await _userManager.CreateAsync(user);
 
             if (result.Succeeded)
             {
-                await _userManager.AddToRoleAsync(user, "MEMBER");
+                await _userManager.AddToRoleAsync(user, "Member");
             }
             await _userManager.AddLoginAsync(user, info);
             await _signInManager.SignInAsync(user, false);
 
+            TempData["success"] = "Sign-in successfull!";
             return RedirectToAction("Index", "Home");
         }
 
@@ -79,7 +87,7 @@ namespace IWant.Web.Controllers
                 {
                     if (model.Password != model.ConfirmPassword)
                     {
-                        ModelState.AddModelError("ConfirmPassword", "Password and confirm password not match!");
+                        TempData["error"] = "Password and confirm password not match!";
                         return View(model);
                     }
                     var user = new User
@@ -87,42 +95,54 @@ namespace IWant.Web.Controllers
                         Email = model.Email,
                         UserName = model.Email,
                         FullName = model.FullName,
-                        Avatar = "",
+                        Avatar = "default-avatar.png",
                         Birthday = model.Birthday,
                         Status = true,
                         CreatedAt = DateTime.Now,
                         UpdatedAt = DateTime.Now,
+                        Gender = model.Gender
                     };
                     var result = await _userManager.CreateAsync(user, model.Password);
 
                     if (result.Succeeded)
                     {
                         await _userManager.AddToRoleAsync(user, model.Role);
-                        return RedirectToAction("Signin");
+                        TempData["success"] = "Sign-up successfull!";
+
+                        user = await _userManager.FindByEmailAsync(model.Email);
+
+                        var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                        if (result.Succeeded)
+                        {
+                            var confirmationLink = Url.ActionLink("ConfirmEmail", "Identity", new { userId = user.Id, @token = token });
+
+                            await emailSender.SendEmailAsync("nhathmce170171@fpt.edu.vn", user.Email, "Confirm your email address", confirmationLink);
+
+                            return RedirectToAction("ConfirmEmailPage");
+                        }
+                        else
+                        {
+                            TempData["error"] = "Failed to send email!";
+                            return View(model);
+                        }
                     }
-
-                    /* user = await _userManager.FindByEmailAsync(model.Email);
-
-                     var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                     if (result.Succeeded)
-                     {
-                         var confirmationLink = Url.ActionLink("ConfirmEmail", "Identity", new { userId = user.Id, @token = token });
-
-                         await emailSender.SendEmailAsync("nhathmce170171@fpt.edu.vn", user.Email, "Confirm your email address", confirmationLink);
-
-                         return RedirectToAction("Signin");
-                     }*/
-
-                    ModelState.AddModelError("Signup", string.Join("", result.Errors.Select(x => x.Description)));
+                    
+                    TempData["error"] = "Create Failed!";
                     return View(model);
                 }
                 else
                 {
-                    ModelState.AddModelError("Signup", "Account was exist");
+                    TempData["error"] = "Account was exist!";
                     return View(model);
                 }
             }
             return View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ConfirmEmailPage()
+        {
+            return View();
         }
 
         /*[Authorize]
@@ -181,17 +201,17 @@ namespace IWant.Web.Controllers
             if (ModelState.IsValid)
             {
                 var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, model.RememberMe, false);
+                var user = await _userManager.FindByEmailAsync(model.Username);
                 if (!result.Succeeded)
                 {
-                    // Kiểm tra từng trường hợp
-                    if (result.IsLockedOut)
+                    if (result.IsLockedOut || (user!=null && user.Status == false))
                     {
-                        ModelState.AddModelError("Login", "Your account is locked out.");
+                        TempData["error"] = "Account is locked out.";
                         Console.WriteLine("Sign-in failed: Account is locked out.");
                     }
                     else if (result.IsNotAllowed)
                     {
-                        ModelState.AddModelError("Login", "Sign-in not allowed. Email confirmation may be required.");
+                        TempData["error"] = "Not allowed (e.g., email not confirmed).";
                         Console.WriteLine("Sign-in failed: Not allowed (e.g., email not confirmed).");
                     }
                     else if (result.RequiresTwoFactor)
@@ -202,14 +222,14 @@ namespace IWant.Web.Controllers
                     }
                     else
                     {
-                        ModelState.AddModelError("Login", "Invalid login attempt.");
+                        TempData["error"] = "Invalid credentials.";
                         Console.WriteLine("Sign-in failed: Invalid credentials.");
                     }
                 }
                 else
                 {
-                    // Đăng nhập thành công
                     Console.WriteLine("Sign-in successful.");
+                    TempData["success"] = "Sign-in successfull!";
                     return RedirectToAction("Index", "Home");
                 }
                 /*if (result.RequiresTwoFactor) return RedirectToAction("MFACheck");*/
@@ -265,6 +285,165 @@ namespace IWant.Web.Controllers
             return View(model);
         }*/
 
+        [HttpGet]
+        public async Task<IActionResult> ForgotPassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ForgotPassword(ForgotPasswordViewModel model)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == model.Email);
+            if (user == null)
+            {
+                TempData["error"] = "Email not exist!";
+                return View(model);
+            }
+            Random random = new Random();
+
+            var codeOTP = random.Next(1000, 9999).ToString();
+            model.Otp = codeOTP;
+
+            await emailSender.SendEmailAsync(
+                "nhathmce170171@fpt.edu.vn",
+                user.Email,
+                "\"I Want\" Recover Password Verification",
+                $@"
+                <html>
+                <head>
+                    <style>
+                        body {{
+                            font-family: Arial, sans-serif;
+                            color: #333;
+                            line-height: 1.5;
+                        }}
+                        .verification-box {{
+                            text-align: center;
+                            padding: 20px;
+                            background-color: #f5f5f5;
+                            border-radius: 8px;
+                        }}
+                        .verification-box img {{
+                            width: 300px;
+                            height: 90px;
+                        }}
+                        .otp-code {{
+                            font-size: 30px;
+                            font-weight: bold;
+                            color: #a3745e;
+                            margin-top: 20px;
+                        }}
+                        .resend-button {{
+                            display: inline-block;
+                            margin-top: 20px;
+                            padding: 10px 20px;
+                            background-color: #007bff;
+                            color: white;
+                            border: none;
+                            border-radius: 5px;
+                            text-decoration: none;
+                            font-size: 16px;
+                        }}
+                        .resend-button:hover {{
+                            background-color: #0056b3;
+                        }}
+                    </style>
+                </head>
+                <body>
+                    <div class='verification-box'>
+                        <h2>RESET PASSWORD OTP VERIFICATION</h2>
+                        <p>A verification email has been sent to your email <strong>{user.FullName}</strong>.</p>
+                        <p>Please check your email and verify the OTP code to recover your password.</p>
+                        <p class='otp-code'>OTP: {codeOTP}</p>
+                    </div>
+                </body>
+                </html>"
+                );
+                
+            TempData["success"] = $"The OTP was sent to {user.FullName}'s mail!";
+            TempData["Otp"] = model.Otp;
+            TempData["email"] = model.Email;
+
+            return RedirectToAction("VerifyOtp", new ForgotPasswordViewModel{Email = model.Email, Otp = model.Otp});
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> VerifyOtp(ForgotPasswordViewModel model)
+        {
+            TempData.Keep("email");
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> VerifyOtp(string otp)
+        {
+            var email = TempData["email"].ToString();
+            var otpCode = TempData["Otp"].ToString();
+            if (otp == otpCode)
+            {
+                TempData["email"] = email;
+                TempData["success"] = "OTP verification successfull!";
+                return RedirectToAction("ResetPassword");
+            }
+            TempData["error"] = "OTP verification failed!";
+            TempData["email"] = email;
+            return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ResetPassword()
+        {
+            var emailTemp = TempData["email"];
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == emailTemp);
+            if (user == null)
+            {
+                TempData.Keep("email");
+                TempData["error"] = "Email not exist!";
+                return RedirectToAction("ForgotPassword");
+            }
+            TempData["email"] = emailTemp;
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ResetPassword(ResetPasswordViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var emailTemp = TempData["email"];
+                var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == emailTemp);
+                if (user == null)
+                {
+                    TempData["error"] = "Email not exist!";
+                    TempData.Keep("email");
+                    return View(model);
+                }
+                if (model.Password != model.ConfirmPassword)
+                {
+                    TempData["error"] = "Password and confirm password not match!";
+                    TempData.Keep("email");
+                    return View(model);
+                }
+                user.PasswordHash = _userManager.PasswordHasher.HashPassword(user, model.Password);
+                user.UpdatedAt = DateTime.Now;
+                try
+                {
+                    _context.Users.Update(user);
+                    await _context.SaveChangesAsync();
+                    TempData["success"] = "Password reset successfull!";
+                    return RedirectToAction("Signin");
+                }
+                catch (Exception)
+                {
+                    TempData["error"] = "Failed to reset password!";
+                    TempData.Keep("email");
+                    return View(model);
+                }
+            }
+            return View(model);
+        }
+
         public async Task<IActionResult> AccessDenied()
         {
             return View();
@@ -273,6 +452,8 @@ namespace IWant.Web.Controllers
         public async Task<IActionResult> Signout()
         {
             await _signInManager.SignOutAsync();
+
+            TempData["success"] = "Sign-out successfull!";
             return RedirectToAction("Signin");
         }
     }

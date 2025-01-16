@@ -4,13 +4,16 @@ using Microsoft.EntityFrameworkCore;
 using IWant.DataAccess;
 using Microsoft.AspNetCore.Hosting;
 using IWant.Web.Hubs;
+using IWant.BusinessObject.Enitities;
 
 var builder = WebApplication.CreateBuilder(args);
 
 var connString = builder.Configuration["ConnectionStrings:Default"];
 
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connString));
-builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
+builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
+builder.Services.AddScoped<SignInManager<User>>();
+builder.Services.AddScoped<UserManager<User>>();
 
 builder.Services.Configure<IdentityOptions>(options =>
 {
@@ -21,7 +24,7 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.Lockout.MaxFailedAccessAttempts = 3;
     options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(10);
 
-    options.SignIn.RequireConfirmedEmail = false;
+    options.SignIn.RequireConfirmedEmail = true;
 });
 
 builder.Services.ConfigureApplicationCookie(options =>
