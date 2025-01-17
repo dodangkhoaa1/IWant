@@ -5,7 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class SceneManagement : MonoBehaviour
 {
-    public void GoToHome(){
+    public void GoToHome()
+    {
         SceneManager.LoadScene(SceneName.MainMenu.ToString());
+    }
+
+    public void ReLoadScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

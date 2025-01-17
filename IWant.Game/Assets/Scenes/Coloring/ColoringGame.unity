@@ -311,7 +311,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1032394991}
         m_TargetAssemblyTypeName: GPUSpriteBrush, Assembly-CSharp
-        m_MethodName: Undo
+        m_MethodName: Redo
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -550,6 +550,7 @@ Transform:
   - {fileID: 1032394990}
   - {fileID: 450497838}
   - {fileID: 1646973091}
+  - {fileID: 204705447}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &179807307
@@ -606,6 +607,50 @@ MonoBehaviour:
   - 15
   selectedColor: {r: 0.37246913, g: 1, b: 0.13679248, a: 1}
   unSelectedColor: {r: 0.6886792, g: 0.6886792, b: 0.6886792, a: 1}
+--- !u!1 &204705446
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 204705447}
+  - component: {fileID: 204705448}
+  m_Layer: 0
+  m_Name: SceneManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &204705447
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 204705446}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 167222418}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &204705448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 204705446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cd94db12ac1bd54a99167b94d8900cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &293891825
 GameObject:
   m_ObjectHideFlags: 0
@@ -1440,9 +1485,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1032394991}
-        m_TargetAssemblyTypeName: GPUSpriteBrush, Assembly-CSharp
-        m_MethodName: Undo
+      - m_Target: {fileID: 204705448}
+        m_TargetAssemblyTypeName: SceneManagement, Assembly-CSharp
+        m_MethodName: ReLoadScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1835,7 +1880,9 @@ MonoBehaviour:
   brushSize: 0.0003333333
   brushMaterial: {fileID: 2100000, guid: 1b7cc003e8904d04da6347e10e3faae9, type: 2}
   undoObjects: []
+  redoObjects: []
   undoButton: {fileID: 778600143}
+  redoButton: {fileID: 66525682}
 --- !u!1 &1092489176
 GameObject:
   m_ObjectHideFlags: 0
@@ -2857,9 +2904,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1032394991}
-        m_TargetAssemblyTypeName: GPUSpriteBrush, Assembly-CSharp
-        m_MethodName: Undo
+      - m_Target: {fileID: 204705448}
+        m_TargetAssemblyTypeName: SceneManagement, Assembly-CSharp
+        m_MethodName: GoToHome
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -12,7 +12,7 @@ public class GPUSpriteBrush : MonoBehaviour
     private SpriteRenderer currentSpriteRenderer;
 
     [Header(" Settings ")]
-    [SerializeField] private Color color;
+    [SerializeField] private Color brushColor;
     [Range(0, 2)]
     [SerializeField] private float brushSize;
     [SerializeField] private Material brushMaterial;
@@ -24,62 +24,63 @@ public class GPUSpriteBrush : MonoBehaviour
     [SerializeField] private List<UndoObject> undoObjects = new List<UndoObject>();
     [SerializeField] private Button undoButton;
 
+    [Header(" Redo ")]
+    [SerializeField] private List<UndoObject> redoObjects = new List<UndoObject>();
+    [SerializeField] private Button redoButton;
+
     [Header(" Improvements ")]
-    private Vector2 previousMousePosition; 
+    private Vector2 previousMousePosition;
+
     private void Awake()
     {
+        // Ensure there is only one instance of GPUSpriteBrush
         if (instance == null)
         {
             instance = this;
         }
         else
+        {
             Destroy(gameObject);
+        }
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        // Set the target frame rate for the application
         Application.targetFrameRate = 60;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        //If user click left mouse
+        // Check for mouse input to start or continue painting
         if (Input.GetMouseButtonDown(0))
-            RaycastSprites(); // Identify the sprite was clicked
+        {
+            RaycastSprites();
+        }
         else if (Input.GetMouseButton(0))
+        {
             RaycastCurrentSprite();
+        }
     }
 
     private void RaycastSprites()
     {
         previousMousePosition = Input.mousePosition;
-
         Vector2 origin = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        RaycastHit2D[] hits = Physics2D.RaycastAll(origin, Vector2.zero);
 
-        Vector2 direction = Vector2.zero;
-
-        // Get array GO in area was clicked
-        RaycastHit2D[] hits = Physics2D.RaycastAll(origin, direction);
-
-        // Ensure there is something was clicked
         if (hits.Length <= 0) return;
 
         int highestOrderInLayer = int.MinValue;
-
         int highestOrderIndex = -1;
 
+        // Find the sprite with the highest sorting order
         for (int i = 0; i < hits.Length; i++)
         {
             SpriteRenderer spriteRenderer = hits[i].collider.GetComponent<SpriteRenderer>();
-
-            // Skip the GO didnt have SpriteRenderer 
             if (spriteRenderer == null) continue;
 
-            // At this point, we have SpriteRenderer
             int orderInLayer = spriteRenderer.sortingOrder;
-
             if (orderInLayer > highestOrderInLayer)
             {
                 highestOrderInLayer = orderInLayer;
@@ -87,55 +88,51 @@ public class GPUSpriteBrush : MonoBehaviour
             }
         }
 
-        //At end of loop, we have the highest order in layer
-        //Get collider of highest order layer
         Collider2D highestCollider = hits[highestOrderIndex].collider;
-
-        // Store the current sprite renderer
         currentSpriteRenderer = highestCollider.GetComponent<SpriteRenderer>();
 
-        // Check if we have this current sprite original texture or not
         int key = currentSpriteRenderer.transform.GetSiblingIndex();
-
         int width = currentSpriteRenderer.sprite.texture.width;
         int height = currentSpriteRenderer.sprite.texture.height;
 
         Texture2D undoTexture = new Texture2D(width, height);
 
+        // Store the original and edited textures for undo/redo functionality
         if (!originalTextures.ContainsKey(key))
         {
             originalTextures.Add(key, currentSpriteRenderer.sprite.texture);
             editedTextures.Add(key, new Texture2D(width, height));
 
-            RenderTexture rt = new RenderTexture(width, height, 0, RenderTextureFormat.ARGB32, 10);
-            rt.useMipMap = true;
+            RenderTexture renderTexture = new RenderTexture(width, height, 0, RenderTextureFormat.ARGB32, 10)
+            {
+                useMipMap = true
+            };
 
-            renderTextures.Add(key, rt);
-
+            renderTextures.Add(key, renderTexture);
             Graphics.CopyTexture(originalTextures[key], undoTexture);
-        }else{
+        }
+        else
+        {
             Graphics.CopyTexture(editedTextures[key], undoTexture);
         }
 
         undoObjects.Add(new UndoObject(key, undoTexture));
-        UpdateUndoButtonUI(); 
+        redoObjects.Clear();
+        UpdateButtonUI();
 
-        //Color it
         ColorSpriteAtPosition(highestCollider, hits[highestOrderIndex].point);
     }
+
     private void RaycastCurrentSprite()
     {
         if ((Vector2)Input.mousePosition == previousMousePosition) return;
 
         Vector2 origin = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-        Vector2 direction = Vector2.zero;
-
-        // Get array GO in area was clicked
-        RaycastHit2D[] hits = Physics2D.RaycastAll(origin, direction);
+        RaycastHit2D[] hits = Physics2D.RaycastAll(origin, Vector2.zero);
 
         if (hits.Length <= 0) return;
 
+        // Continue painting on the current sprite
         for (int i = 0; i < hits.Length; i++)
         {
             if (!hits[i].collider.TryGetComponent(out SpriteRenderer spriteRenderer)) continue;
@@ -153,64 +150,47 @@ public class GPUSpriteBrush : MonoBehaviour
     private void ColorSpriteAtPosition(Collider2D collider, Vector2 hitPoint)
     {
         SpriteRenderer spriteRenderer = collider.GetComponent<SpriteRenderer>();
-
-        //Ensure the GO has SpriteRenderer component
         if (spriteRenderer == null) return;
 
-        //Convert world point to texture point
         Vector2 texturePoint = WorldToTexturePoint(spriteRenderer, hitPoint);
-
         Sprite sprite = spriteRenderer.sprite;
 
         int key = currentSpriteRenderer.transform.GetSiblingIndex();
-
         Texture2D originalTexture = originalTextures[key];
-
         Texture2D tex = editedTextures[key];
 
         if (sprite.texture != tex)
+        {
             Graphics.CopyTexture(sprite.texture, tex);
+        }
 
+        // Set brush material properties
         brushMaterial.SetTexture("_MainTex", tex);
         brushMaterial.SetTexture("_Original", originalTexture);
-        brushMaterial.SetColor("_Color", color);
+        brushMaterial.SetColor("_Color", brushColor);
         brushMaterial.SetFloat("_BrushSize", brushSize);
         brushMaterial.SetVector("_UVPosition", texturePoint / sprite.texture.width);
 
-        RenderTexture rt = renderTextures[key];
+        RenderTexture renderTexture = renderTextures[key];
+        Graphics.Blit(tex, renderTexture, brushMaterial);
+        Graphics.CopyTexture(renderTexture, tex);
 
-        Graphics.Blit(tex, rt, brushMaterial);
-
-        //At this point, we have a colored render texture
-        Graphics.CopyTexture(rt, tex);
-
-        //tex.Apply();
-
+        // Create a new sprite with the edited texture
         Sprite newSprite = Sprite.Create(tex, sprite.rect, Vector2.one / 2, sprite.pixelsPerUnit);
         spriteRenderer.sprite = newSprite;
-
-
     }
 
-    private Vector2 WorldToTexturePoint(SpriteRenderer sr, Vector2 worldPos)
+    private Vector2 WorldToTexturePoint(SpriteRenderer spriteRenderer, Vector2 worldPos)
     {
-        Vector2 texturePoint = sr.transform.InverseTransformPoint(worldPos);
-
-        // Position between -.5 and .5
-        texturePoint.x /= sr.bounds.size.x;
-        texturePoint.y /= sr.bounds.size.y;
-
-        // Position between 0 and -1
+        // Convert world position to texture coordinates
+        Vector2 texturePoint = spriteRenderer.transform.InverseTransformPoint(worldPos);
+        texturePoint.x /= spriteRenderer.bounds.size.x;
+        texturePoint.y /= spriteRenderer.bounds.size.y;
         texturePoint += Vector2.one / 2;
-
-        // Offset in texture space
-        texturePoint.x *= sr.sprite.rect.width;
-        texturePoint.y *= sr.sprite.rect.height;
-
-        // Position in Texture Space
-        texturePoint.x += sr.sprite.rect.x;
-        texturePoint.y += sr.sprite.rect.y;
-
+        texturePoint.x *= spriteRenderer.sprite.rect.width;
+        texturePoint.y *= spriteRenderer.sprite.rect.height;
+        texturePoint.x += spriteRenderer.sprite.rect.x;
+        texturePoint.y += spriteRenderer.sprite.rect.y;
 
         return texturePoint;
     }
@@ -220,71 +200,77 @@ public class GPUSpriteBrush : MonoBehaviour
         this.brushSize = brushSize;
     }
 
-    private void ColorSprite(Collider2D collider)
-    {
-        SpriteRenderer spriteRenderer = collider.GetComponent<SpriteRenderer>();
-
-        //Ensure the GO has SpriteRenderer component
-        if (spriteRenderer == null) return;
-
-        //Texture2D tex = spriteRenderer.sprite.texture;
-        Sprite sprite = spriteRenderer.sprite;
-
-        Texture2D tex = new Texture2D(sprite.texture.width, sprite.texture.height);
-
-        for (int x = 0; x < tex.width; x++)
-        {
-            for (int y = 0; y < tex.height; y++)
-            {
-                Color pixelColor = color;
-                pixelColor.a = sprite.texture.GetPixel(x, y).a;
-
-                pixelColor *= sprite.texture.GetPixel(x, y);
-
-                tex.SetPixel(x, y, pixelColor);
-            }
-        }
-        tex.Apply();
-
-        Sprite newSprite = Sprite.Create(tex, sprite.rect, Vector2.one / 2, sprite.pixelsPerUnit);
-        spriteRenderer.sprite = newSprite;
-    }
-
     public void SetColor(Color color)
     {
-        this.color = color;
+        this.brushColor = color;
     }
 
     public void SetBrush(BrushData brushData)
     {
+        // Set brush texture and hardness
         brushMaterial.SetTexture("_BrushTexture", brushData.Texture);
         brushMaterial.SetFloat("_Hardness", brushData.Hardness);
     }
 
-    public void Undo(){
+    public void Undo()
+    {
         if (undoObjects.Count <= 0) return;
 
         UndoObject undoObj = undoObjects[undoObjects.Count - 1];
+        int key = undoObj.spriteIndex;
+        Texture2D redoTexture = new Texture2D(editedTextures[key].width, editedTextures[key].height);
+        Graphics.CopyTexture(editedTextures[key], redoTexture);
+        redoObjects.Add(new UndoObject(key, redoTexture));
 
         Graphics.CopyTexture(undoObj.texture, editedTextures[undoObj.spriteIndex]);
 
-        SpriteRenderer sp = spriteRenderersParent.GetChild(undoObj.spriteIndex).GetComponent<SpriteRenderer>();
-        Sprite sprite = sp.sprite;
-
+        SpriteRenderer spriteRenderer = spriteRenderersParent.GetChild(undoObj.spriteIndex).GetComponent<SpriteRenderer>();
+        Sprite sprite = spriteRenderer.sprite;
         Sprite newSprite = Sprite.Create(editedTextures[undoObj.spriteIndex], sprite.rect, Vector2.one / 2, sprite.pixelsPerUnit);
-        sp.sprite = newSprite;
+        spriteRenderer.sprite = newSprite;
 
         LeanTween.delayedCall(gameObject, Time.deltaTime * 2, () => RemoveLastUndo(undoObj));
     }
 
     private void RemoveLastUndo(UndoObject undoObj)
     {
+        // Remove the last undo object and update the UI
         undoObjects.Remove(undoObj);
-        UpdateUndoButtonUI();
+        UpdateButtonUI();
     }
 
-    private void UpdateUndoButtonUI(){
+    public void Redo()
+    {
+        if (redoObjects.Count <= 0) return;
+
+        UndoObject redoObj = redoObjects[redoObjects.Count - 1];
+        int key = redoObj.spriteIndex;
+        Texture2D undoTexture = new Texture2D(editedTextures[key].width, editedTextures[key].height);
+        Graphics.CopyTexture(editedTextures[key], undoTexture);
+        undoObjects.Add(new UndoObject(key, undoTexture));
+
+        Graphics.CopyTexture(redoObj.texture, editedTextures[redoObj.spriteIndex]);
+
+        SpriteRenderer spriteRenderer = spriteRenderersParent.GetChild(redoObj.spriteIndex).GetComponent<SpriteRenderer>();
+        Sprite sprite = spriteRenderer.sprite;
+        Sprite newSprite = Sprite.Create(editedTextures[redoObj.spriteIndex], sprite.rect, Vector2.one / 2, sprite.pixelsPerUnit);
+        spriteRenderer.sprite = newSprite;
+
+        LeanTween.delayedCall(gameObject, Time.deltaTime * 2, () => RemoveLastRedo(redoObj));
+    }
+
+    private void RemoveLastRedo(UndoObject redoObj)
+    {
+        // Remove the last redo object and update the UI
+        redoObjects.Remove(redoObj);
+        UpdateButtonUI();
+    }
+
+    private void UpdateButtonUI()
+    {
+        // Update the interactable state of undo and redo buttons
         undoButton.interactable = undoObjects.Count > 0;
+        redoButton.interactable = redoObjects.Count > 0;
     }
 }
 [System.Serializable]
