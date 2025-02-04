@@ -26,6 +26,7 @@ public partial class ApplicationDbContext : IdentityDbContext<User>
     public virtual DbSet<Message> Messages { get; set; }
     public virtual DbSet<WordCategory> WordCategories { get; set; }
     public virtual DbSet<Word> Words { get; set; }
+    public virtual DbSet<Blog> Blogs { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

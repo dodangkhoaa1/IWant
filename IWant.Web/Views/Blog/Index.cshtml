@@ -1,0 +1,42 @@
+﻿@model IEnumerable<IWant.Web.Models.BlogViewModel>
+
+<h1>Danh sách Blogs</h1>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+        
+            <th>Title</th>
+            <th>Content</th>
+            <th>Created At</th>
+            <th>Updated At</th>
+            <th>Status</th>
+            <th>ImageUrl</th>
+            
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var blog in Model)
+        {
+            <tr>
+               
+                <td>@blog.Title</td>
+                <td>@blog.Content</td>
+                <td>@blog.CreatedAt</td>
+                <td>@blog.UpdatedAt</td>
+                <td>@blog.Status</td>
+                <td><img src="@blog.ImageUrl" alt="@blog.Title" style="max-width:100px;"/></td>
+                
+                <td>
+                    <a asp-action="Edit" asp-route-id="@blog.Id" class="btn btn-warning">Edit</a>
+                    <form asp-action="Delete" asp-route-id="@blog.Id" method="post" style="display:inline;">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Create" class="btn btn-primary">Add New Blog</a>

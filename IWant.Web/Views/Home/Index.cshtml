@@ -2,26 +2,635 @@
     ViewData["Title"] = "Home Page";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<link rel="stylesheet" href="~/css/main.css" />
 
-<div class="text-center">
-    <h1 class="display-4">Welcome to ASP.NET Core Identity Management </h1>
-    <div class="alert ">
-        <a class="btn btn-info" asp-action="member">Go to Member Area</a>
+<section id="banner" class="banner">
+
+    <div class="info d-flex align-items-center">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6 text-center">
+                    <h2 data-aos="fade-down">Welcome to <span>I WANT</span></h2>
+                    <p data-aos="fade-up">Group02</p>
+                    <a data-aos="fade-up" data-aos-delay="200" href="#get-started" class="btn-get-started">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="banner-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+        <div class="carousel-item active" style="background-image: url(images/banner.jpg)">
+        </div>
+        <div class="carousel-item" style="background-image: url(images/banner1.jpg)"></div>
+        <a class="carousel-control-prev" href="#banner-carousel" role="button" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon fa-solid fa-chevron-left" aria-hidden="true"></span>
+        </a>
+
+        <a class="carousel-control-next" href="#banner-carousel" role="button" data-bs-slide="next">
+            <span class="carousel-control-next-icon fa-solid fa-chevron-right" aria-hidden="true"></span>
+        </a>
+
     </div>
 
-    <div class="alert">
-        <a class="btn btn-info" asp-action="admin">Go to Admin Area</a>
-    </div>
+</section>
 
-    <div class="alert">
-        <a class="btn btn-info" asp-controller="Room" asp-action="ChatIndex">Chat With Admin</a>
-    </div>
 
-    <div class="alert">
-        <a class="btn btn-info" asp-controller="Profile" asp-action="UpdateProfile">Update Profile</a>
-    </div>
+<main id="main">
 
-</div>
+    <!-- ======= Video game ======= -->
+    <section id="alt-intro" class="alt-intro">
+        <div class="container" data-aos="fade-up">
+
+            <div class="row justify-content-around gy-4">
+
+                <div class="col-lg-6" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="video-wrapper">
+                        <iframe width="100%" height="315" src="https://www.youtube.com/embed/FuVLmA2b9Z0"
+                                title="YouTube video player" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
+                    </div>
+                </div>
+
+                <div class="col-lg-5 d-flex flex-column justify-content-center ">
+                    <div class="text-intro">
+                        <h3>GAME INTRODUCTION</h3>
+                    </div>
+
+                    <div class="text-content">
+                        <div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="100">
+                            <div>
+
+                                <p>
+                                    Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati
+                                    cupiditate
+                                    non provident
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="icon-box d-flex justify-content-center align-items-center position-relative"
+                                     data-aos="fade-up" data-aos-delay="300">
+                                    <button class="btn-downloads">
+                                        <i class="fa-solid fa-download"></i> Downloads
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="icon-box d-flex justify-content-center align-items-center position-relative"
+                                     data-aos-delay="400">
+                                    <button class="btn-get-started">Get Started</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======= Introdution mini game ======= -->
+    <section id="minigame" class="minigame section-bg">
+        <div class="container" data-aos="fade-up">
+            <div class="section-header text-center">
+                <h2>MINI GAME</h2>
+            </div>
+
+            <div class="row gy-4">
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="minigame-item position-relative">
+                        <div>
+                            <img src="images/CardTalk_1.png" alt="Mountain City" width="120" height="120">
+                        </div>
+                        <h3>Nesciunt Mete</h3>
+                        <p>
+                            Provident nihil minus qui consequatur non omnis maiores. Eos accusantium minus dolores iure perferendis
+                            tempore et consequatur.
+                        </p>
+                        <a href="minigame-details.html" class="readmore stretched-link">
+                            Learn more <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="minigame-item position-relative">
+                        <div>
+                            <img src="images/CardTalk_2.png" alt="Arrow Water" width="120" height="120">
+                        </div>
+                        <h3>Eosle Commodi</h3>
+                        <p>
+                            Ut autem aut autem non a. Sint sint sit facilis nam iusto sint. Libero corrupti neque eum hic non ut
+                            nesciunt dolorem.
+                        </p>
+                        <a href="minigame-details.html" class="readmore stretched-link">
+                            Learn more <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="minigame-item position-relative">
+                        <div>
+
+                            <img src="images/CardTalk_3.png" alt="Compass" width="120" height="120">
+                        </div>
+                        <h3>Ledo Markt</h3>
+                        <p>
+                            Ut excepturi voluptatem nisi sed. Quidem fuga consequatur. Minus ea aut. Vel qui id voluptas adipisci
+                            eos earum corrupti.
+                        </p>
+                        <a href="minigame-details.html" class="readmore stretched-link">
+                            Learn more <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="minigame-item position-relative">
+                        <div>
+
+                            <img src="images/CardTalk_4.png" alt="Trowel" width="120" height="120">
+                        </div>
+                        <h3>Asperiores Commodit</h3>
+                        <p>
+                            Non et temporibus minus omnis sed dolor esse consequatur. Cupiditate sed error ea fuga sit provident
+                            adipisci neque.
+                        </p>
+                        <a href="minigame-details.html" class="readmore stretched-link">
+                            Learn more <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
+                    <div class="minigame-item position-relative">
+                        <div>
+                            <img src="images/CardTalk_5.png" alt="Helmet" width="120" height="120">
+                        </div>
+                        <h3>Velit Doloremque</h3>
+                        <p>
+                            Cumque et suscipit saepe. Est maiores autem enim facilis ut aut ipsam corporis aut. Sed animi at autem
+                            alias eius labore.
+                        </p>
+                        <a href="minigame-details.html" class="readmore stretched-link">
+                            Learn more <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+                    <div class="minigame-item position-relative">
+                        <div>
+                            <img src="images/CardTalk_6.png" alt="Arrow Water" width="120" height="120">
+                        </div>
+                        <h3>Dolori Architecto</h3>
+                        <p>
+                            Hic molestias ea quibusdam eos. Fugiat enim doloremque aut neque non et debitis iure. Corrupti
+                            recusandae ducimus enim.
+                        </p>
+                        <a href="minigame-details.html" class="readmore stretched-link">
+                            Learn more <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ======= Video tutorial game ======= -->
+    <section id="video-tutorial" class="video-tutorial section-bg">
+        <div class="container" data-aos="fade-up">
+            <div class="section-header text-center">
+                <h2>VIDEO TUTORIAL GAME</h2>
+            </div>
+            <ul class="nav nav-tabs row  g-2 d-flex">
+
+                <li class="nav-item col-2">
+                    <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#tab-1">
+                        <h4>Modisit</h4>
+                    </a>
+                </li><!-- End tab nav item -->
+
+                <li class="nav-item col-2">
+                    <a class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-2">
+                        <h4>Praesenti</h4>
+                    </a><!-- End tab nav item -->
+
+                <li class="nav-item col-2">
+                    <a class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-3">
+                        <h4>Explica</h4>
+                    </a>
+                </li><!-- End tab nav item -->
+
+                <li class="nav-item col-2">
+                    <a class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-4">
+                        <h4>Nostrum</h4>
+                    </a>
+                </li><!-- End tab nav item -->
+                <li class="nav-item col-2">
+                    <a class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-4">
+                        <h4>Nostrum</h4>
+                    </a>
+                </li><!-- End tab nav item -->
+                <li class="nav-item col-2">
+                    <a class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-4">
+                        <h4>Nostrum</h4>
+                    </a>
+                </li><!-- End tab nav item -->
+
+            </ul>
+
+            <div class="tab-content">
+
+                <div class="tab-pane active show" id="tab-1">
+                    <div class="row">
+                        <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center"
+                             data-aos="fade-up" data-aos-delay="100">
+                            <h3>Voluptatem dignissimos provident</h3>
+                            <p class="fst-italic">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                                dolore
+                                magna aliqua.
+                            </p>
+                            <ul>
+                                <li> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
+                                <li> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
+                                <li>
+                                     Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+                                    aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla
+                                    pariatur.
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-6 order-1 order-lg-2 text-center" data-aos="fade-up" data-aos-delay="200">
+                            <iframe width="100%" height="315" src="https://www.youtube.com/embed/FuVLmA2b9Z0"
+                                    title="YouTube video player" frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div><!-- End tab content item -->
+
+                <div class="tab-pane" id="tab-2">
+                    <div class="row">
+                        <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center">
+                            <h3>Neque exercitationem debitis</h3>
+                            <p class="fst-italic">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                                dolore
+                                magna aliqua.
+                            </p>
+                            <ul>
+                                <li> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
+                                <li> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
+                                <li>
+                                     Provident mollitia neque rerum asperiores dolores quos qui a.
+                                    Ipsum neque dolor voluptate nisi sed.
+                                </li>
+                                <li>
+                                     Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+                                    aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla
+                                    pariatur.
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-6 order-1 order-lg-2 text-center">
+                            <iframe width="100%" height="315" src="https://www.youtube.com/embed/FuVLmA2b9Z0"
+                                    title="YouTube video player" frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div><!-- End tab content item -->
+
+                <div class="tab-pane" id="tab-3">
+                    <div class="row">
+                        <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center">
+                            <h3>Voluptatibus commodi accusamu</h3>
+                            <ul>
+                                <li> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
+                                <li> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
+                                <li>
+                                     Provident mollitia neque rerum asperiores dolores quos qui a.
+                                    Ipsum neque dolor voluptate nisi sed.
+                                </li>
+                            </ul>
+                            <p class="fst-italic">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                                dolore
+                                magna aliqua.
+                            </p>
+                        </div>
+                        <div class="col-lg-6 order-1 order-lg-2 text-center">
+                            <iframe width="100%" height="315" src="https://www.youtube.com/embed/FuVLmA2b9Z0"
+                                    title="YouTube video player" frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div><!-- End tab content item -->
+
+                <div class="tab-pane" id="tab-4">
+                    <div class="row">
+                        <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center">
+                            <h3>Omnis fugiat ea explicabo sunt</h3>
+                            <p class="fst-italic">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                                dolore
+                                magna aliqua.
+                            </p>
+                            <ul>
+                                <li> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
+                                <li> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
+                                <li>
+                                     Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+                                    aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla
+                                    pariatur.
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-6 order-1 order-lg-2 text-center">
+                            <iframe width="100%" height="315" src="https://www.youtube.com/embed/FuVLmA2b9Z0"
+                                    title="YouTube video player" frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div><!-- End tab content item -->
+                <div class="tab-pane" id="tab-4">
+                    <div class="row">
+                        <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center">
+                            <h3>Omnis fugiat ea explicabo sunt</h3>
+                            <p class="fst-italic">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                                dolore
+                                magna aliqua.
+                            </p>
+                            <ul>
+                                <li> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
+                                <li> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
+                                <li>
+                                     Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+                                    aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla
+                                    pariatur.
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-6 order-1 order-lg-2 text-center">
+                            <img src="images/features-4.jpg" alt="" class="img-fluid">
+                        </div>
+                    </div>
+                </div><!-- End tab content item -->
+                <div class="tab-pane" id="tab-4">
+                    <div class="row">
+                        <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center">
+                            <h3>Omnis fugiat ea explicabo sunt</h3>
+                            <p class="fst-italic">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                                dolore
+                                magna aliqua.
+                            </p>
+                            <ul>
+                                <li> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
+                                <li> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
+                                <li>
+                                     Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+                                    aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla
+                                    pariatur.
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-6 order-1 order-lg-2 text-center">
+                            <iframe width="100%" height="315" src="https://www.youtube.com/embed/FuVLmA2b9Z0"
+                                    title="YouTube video player" frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+
+    <!-- ======= Blog Posts Section ======= -->
+    <section id="recent-blog-posts" class="recent-blog-posts">
+        <div class="container" data-aos="fade-up">
+            <div class=" section-header text-center">
+                <h2>RECENT BLOG</h2>
+            </div>
+
+            <div class="row gy-5">
+
+                <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="post-item position-relative h-100">
+
+                        <div class="post-img position-relative overflow-hidden">
+                            <img src="images/banner1.jpg" class="img-fluid" alt="">
+                        </div>
+
+                        <div class="post-content d-flex flex-column">
+
+                            <h3 class="post-title">Eum ad dolor et. Autem aut fugiat debitis</h3>
+
+                            <div class="meta d-flex align-items-center">
+                                <div class="d-flex align-items-center">
+                                    <i class="fa-solid fa-person"></i> <span class="ps-2">Julia Parker</span>
+                                </div>
+                                <span class="px-3 text-black-50">/</span>
+                                <div class="d-flex align-items-center">
+                                    <i class="fa-regular fa-folder"></i> <span class="ps-2">12-01-2025</span>
+                                </div>
+                            </div>
+
+                            <hr>
+
+                            <a href="blog-details.html" class="readmore stretched-link">
+                                <span>Read More</span><i class="fa-solid fa-arrow-right"></i>
+                            </a>
+
+                        </div>
+
+                    </div>
+                </div><!-- End post item -->
+
+                <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="post-item position-relative h-100">
+
+                        <div class="post-img position-relative overflow-hidden">
+                            <img src="images/banner1.jpg" class="img-fluid" alt="">
+
+                        </div>
+
+                        <div class="post-content d-flex flex-column">
+
+                            <h3 class="post-title">Et repellendus molestiae qui est sed omnis</h3>
+
+                            <div class="meta d-flex align-items-center">
+                                <div class="d-flex align-items-center">
+                                    <i class="fa-solid fa-person"></i> <span class="ps-2">Mario Douglas</span>
+                                </div>
+                                <span class="px-3 text-black-50">/</span>
+                                <div class="d-flex align-items-center">
+                                    <i class="fa-regular fa-folder"></i> <span class="ps-2">12-01-2025</span>
+                                </div>
+                            </div>
+
+                            <hr>
+
+                            <a href="blog-details.html" class="readmore stretched-link">
+                                <span>Read More</span><i class="fa-solid fa-arrow-right"></i>
+                            </a>
+
+                        </div>
+
+                    </div>
+                </div><!-- End post item -->
+
+                <div class="col-xl-4 col-md-6">
+                    <div class="post-item position-relative h-100" data-aos="fade-up" data-aos-delay="300">
+
+                        <div class="post-img position-relative overflow-hidden">
+                            <img src="images/banner1.jpg" class="img-fluid" alt="">
+
+                        </div>
+
+                        <div class="post-content d-flex flex-column">
+
+                            <h3 class="post-title">Quia assumenda est et veritati tirana ploder</h3>
+
+                            <div class="meta d-flex align-items-center">
+                                <div class="d-flex align-items-center">
+                                    <i class="fa-solid fa-person"></i> <span class="ps-2">Lisa Hunter</span>
+                                </div>
+                                <span class="px-3 text-black-50">/</span>
+                                <div class="d-flex align-items-center">
+                                    <i class="fa-regular fa-folder"></i> <span class="ps-2">12-01-2025</span>
+                                </div>
+                            </div>
+
+                            <hr>
+
+                            <a href="blog-details.html" class="readmore stretched-link">
+                                <span>Read More</span><i class="fa-solid fa-arrow-right"></i>
+                            </a>
+
+                        </div>
+
+                    </div>
+                </div><!-- End post item -->
+
+            </div>
+
+        </div>
+    </section>
+    <!-- End Recent Blog Posts Section -->
+    <section>
+        <div class="about-section-box">
+            <div class="container">
+                <div class="row justify-content-md-center">
+                    <div class="text-center">
+                        <h2>Our Team</h2>
+                        <p>
+                            We are a group of innovative, experienced, and proficient teams. You will love to collaborate with us.
+                        </p>
+                        <hr class="w-50 mx-auto mb-4 border-dark-subtle">
+                    </div>
+                </div>
+            </div>
+
+            <div class="container overflow-hidden">
+                <div class="row gy-4 gx-xxl-5 justify-content-center">
+                    <div class="col-2">
+                        <div class="card border-0 border-bottom border-primary shadow-sm overflow-hidden">
+                            <div class="card-body p-0">
+                                <figure class="m-0 p-0">
+                                    <img class="img-fluid" loading="lazy" src="images/default_team.jpg" alt="Nguyen Tran Trung Thanh"
+                                         style="object-fit: cover; width: 100%; height: 200px;">
+                                    <figcaption class="m-0 p-4">
+                                        <h4 class="mb-1">Nguyen Tran Trung Thanh</h4>
+                                        <p class="text-secondary mb-0">Team Member</p>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-2">
+                        <div class="card border-0 border-bottom border-primary shadow-sm overflow-hidden">
+                            <div class="card-body p-0">
+                                <figure class="m-0 p-0">
+                                    <img class="img-fluid" loading="lazy" src="images/default_team.jpg" alt="Do Dang Khoa"
+                                         style="object-fit: cover; width: 100%; height: 200px;">
+                                    <figcaption class="m-0 p-4">
+                                        <h4 class="mb-1">Do Dang Khoa</h4>
+                                        <p class="text-secondary mb-0">Team Member</p>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-2">
+                        <div class="card border-0 border-bottom border-primary shadow-sm overflow-hidden">
+                            <div class="card-body p-0">
+                                <figure class="m-0 p-0">
+                                    <img class="img-fluid" loading="lazy" src="images/default_team.jpg" alt="Vo Minh Nhut"
+                                         style="object-fit: cover; width: 100%; height: 200px;">
+                                    <figcaption class="m-0 p-4">
+                                        <h4 class="mb-1">Vo Minh Nhut</h4>
+                                        <p class="text-secondary mb-0">Team Leader</p>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-2">
+                        <div class="card border-0 border-bottom border-primary shadow-sm overflow-hidden">
+                            <div class="card-body p-0">
+                                <figure class="m-0 p-0">
+                                    <img class="img-fluid" loading="lazy" src="images/default_team.jpg" alt="Ho Minh Nhat"
+                                         style="object-fit: cover; width: 100%; height: 200px;">
+                                    <figcaption class="m-0 p-4">
+                                        <h4 class="mb-1">Ho Minh Nhat</h4>
+                                        <p class="text-secondary mb-0">Team Member</p>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-2">
+                        <div class="card border-0 border-bottom border-primary shadow-sm overflow-hidden">
+                            <div class="card-body p-0">
+                                <figure class="m-0 p-0">
+                                    <img class="img-fluid" loading="lazy" src="images/default_team.jpg" alt="Nguyen Huynh Nhu"
+                                         style="object-fit: cover; width: 100%; height: 200px;">
+                                    <figcaption class="m-0 p-4">
+                                        <h4 class="mb-1">Nguyen Huynh Nhu</h4>
+                                        <p class="text-secondary mb-0">Team Member</p>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
 
 
 
@@ -30,4 +639,5 @@
     <script src="~/lib/knockoutjs/knockout-3.5.1.js"></script>
     <script src="~/js/site.js"></script>
     <script src="~/js/chat.js"></script>
+    <script src="~/js/main.js"></script>
 }

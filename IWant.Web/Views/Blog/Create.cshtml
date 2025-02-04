@@ -1,0 +1,57 @@
+﻿@model IWant.Web.Models.BlogViewModel
+
+<h2>Create New Blog</h2>
+
+<form asp-action="Create" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="Title">Title</label>
+        <input type="text" asp-for="Title" class="form-control" required />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="Content">Content</label>
+        <textarea asp-for="Content" class="form-control summernote" required></textarea>
+        <span asp-validation-for="Content" class="text-danger"></span>
+    </div>
+
+    <div class="col-10 pb-3">
+        <input asp-for="Image" type="file" class="form-control" style="border-color: #cfa671;" />
+        <input asp-for="ImageUrl" hidden />
+        <span asp-validation-for="Image" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="Status">Status</label>
+        <select asp-for="Status" class="form-control">
+            <option value="true">Published</option>
+            <option value="false">Draft</option>
+        </select>
+        <span asp-validation-for="Status" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-success">Save</button>
+</form>
+
+@section Scripts {
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('.summernote').summernote({
+                height: 200,
+                placeholder: 'Nhập nội dung bài viết...',
+                toolbar: [
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['font', ['strikethrough', 'superscript', 'subscript']],
+                    ['fontsize', ['fontsize']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['insert', ['link', 'picture']],
+                    ['view', ['fullscreen', 'codeview']]
+                ]
+            });
+        });
+    </script>
+}

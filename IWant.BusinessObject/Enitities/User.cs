@@ -8,11 +8,12 @@ namespace IWant.BusinessObject.Enitities
         public string? Avatar { get; set; }
         public DateOnly Birthday { get; set; }
         public bool? Gender { get; set; }
-        public bool? Status { get; set; }
+        public bool? Status { get; set; }   
         public DateTime? CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
 
         public ICollection<ChatRoom> ChatRooms { get; set; }
         public ICollection<Message> Messages { get; set; }
+        public ICollection<Blog> Blogs { get; set; }    
     }
 }

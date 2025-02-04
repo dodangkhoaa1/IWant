@@ -19,6 +19,8 @@ namespace IWant.Web
 
             CreateMap<ChatRoom, ChatRoomViewModel>();
             CreateMap<ChatRoomViewModel, ChatRoom>();
+            CreateMap<BlogViewModel, Blog>();
+            CreateMap<Blog, BlogViewModel>();
 
             CreateMap<User, UserViewModel>().ForMember(dst=>dst.Username, opt => opt.MapFrom(x=>x.UserName));
             CreateMap<UserViewModel, User>();
