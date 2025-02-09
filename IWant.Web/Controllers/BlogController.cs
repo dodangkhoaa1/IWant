@@ -4,6 +4,7 @@ using IWant.DataAccess;
 using IWant.Web.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -22,8 +23,8 @@ namespace IWant.Web.Controllers
             _mapper = mapper;
         }
 
-        [Route("Blogs")]
-        [Route("Blogs/Index")]
+        [Route("Blog")]
+        [Route("Blog/Index")]
         public IActionResult Index()
         {
             var blogs = _context.Blogs.ToList();
@@ -104,6 +105,8 @@ namespace IWant.Web.Controllers
                 await _context.SaveChangesAsync();
             }
 
+            TempData["success"] = "Create Blog successfull!";
+
             return RedirectToAction("Index");
         }
 
@@ -164,49 +167,59 @@ namespace IWant.Web.Controllers
                 _context.Blogs.Update(blog);
                 await _context.SaveChangesAsync();
 
+                TempData["success"] = "Update Blog Successfull!";
+
                 return RedirectToAction("Index");
             }
 
             return View(model);
         }
 
-        public IActionResult Delete(int id)
-        {
-            var blog = _context.Blogs.Find(id);
-            if (blog == null)
-            {
-                return NotFound();
-            }
-
-            var blogViewModel = _mapper.Map<BlogViewModel>(blog);
-            return View(blogViewModel);
-        }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            // Tìm blog theo ID
             var blog = await _context.Blogs.FindAsync(id);
             if (blog == null)
             {
                 return NotFound();
             }
 
-            if (!string.IsNullOrEmpty(blog.ImageLocalPath))
+            /*if (!string.IsNullOrEmpty(blog.ImageLocalPath))
             {
                 var imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", blog.ImageLocalPath);
                 if (System.IO.File.Exists(imagePath))
                 {
                     System.IO.File.Delete(imagePath);
                 }
+            }*/
+
+            if(blog.Status == true)
+            {
+                blog.Status = false;
+            }
+            else
+            {
+                blog.Status = true;
             }
 
-            _context.Blogs.Remove(blog);
+            _context.Blogs.Update(blog);
             await _context.SaveChangesAsync();
+
+            TempData["success"] = blog.Status == true ? "Show Blog successfull!" : "Hide Blog Successfull!";
 
             return RedirectToAction(nameof(Index));
         }
 
+        public async Task<IActionResult> BlogDetail([FromRoute] int id)
+        {
+            var blog = await _context.Blogs.Include(u=>u.User).FirstOrDefaultAsync(b=>b.Id == id);
+            if (blog == null)
+            {
+                return NotFound();
+            }
+            var blogViewModel = _mapper.Map<BlogViewModel>(blog);
+            return View(blogViewModel);
+        }
     }
 }

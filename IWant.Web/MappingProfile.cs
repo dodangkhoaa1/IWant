@@ -11,7 +11,7 @@ namespace IWant.Web
             CreateMap<Message, MessageViewModel>()
                 .ForMember(dst => dst.From, otp => otp.MapFrom(x => x.FromUser.FullName))
                 .ForMember(dst => dst.Room, otp => otp.MapFrom(x => x.ToRoom.Id))
-                .ForMember(dst => dst.Avatar, otp => otp.MapFrom(x => x.FromUser.Avatar))
+                .ForMember(dst => dst.Avatar, otp => otp.MapFrom(x => x.FromUser.ImageUrl))
                 .ForMember(dst => dst.From, otp => otp.MapFrom(x => x.FromUser.FullName))
                 .ForMember(dst => dst.TimeStamp, otp => otp.MapFrom(x => x.TimeStamp));
             CreateMap<MessageViewModel, Message>();

@@ -71,7 +71,8 @@ public partial class ApplicationDbContext : IdentityDbContext<User>
         {
             Id = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
             FullName = "Hồ Minh Nhật",
-            Avatar = "avatar1.png",
+            ImageUrl = "http://localhost:5130/images/avatar/default-avatar.png",
+            ImageLocalPath = "default-avatar.png",
             Gender = true,
             Birthday = DateOnly.Parse("2003-11-24"),
             Status = true,
@@ -79,7 +80,7 @@ public partial class ApplicationDbContext : IdentityDbContext<User>
             NormalizedUserName = "NHATHM2411@GMAIL.COM",
             Email = "nhathm2411@gmail.com",
             NormalizedEmail = "NHATHM2411@GMAIL.COM",
-            EmailConfirmed = false,
+            EmailConfirmed = true,
             PasswordHash = "AQAAAAIAAYagAAAAEJbJ5Wbc5Ukymbc73mgTlipOMojxe5yqV9bB5aymAnvaiaoaNOdfqdNTi++md7JOUQ==",
             SecurityStamp = "4ROV5G3THUAAZ5C5NDWOBZ76P4VKU6RY",
             ConcurrencyStamp = "bd591428-5d71-49ee-abd2-c1740ff5f70c",

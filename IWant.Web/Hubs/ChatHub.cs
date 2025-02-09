@@ -94,7 +94,7 @@ namespace IWant.Web.Hubs
                     _ConnectionsMap.Add(IdentityName, Context.ConnectionId);
                 }
 
-                Clients.Caller.SendAsync("getProfileInfo", user.FullName, user.Avatar);
+                Clients.Caller.SendAsync("getProfileInfo", user.FullName, user.ImageUrl);
             }
             catch (Exception ex)
             {

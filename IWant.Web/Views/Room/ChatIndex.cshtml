@@ -4,7 +4,8 @@
     var roomName = User.Identity.Name;
 
     var roleMember = "Admin";
-    if (User.IsInRole("Member")){
+    if (User.IsInRole("Member"))
+    {
         roleMember = "Member";
     }
 }
@@ -36,7 +37,7 @@
                 <h5>Chat Rooms</h5>
                 @if (User.IsInRole("Member"))
                 {
-                    <a href="#" id="create-room" data-toggle="modal" data-target="#create-room-modal">
+                    <a href="#" id="create-room" data-bs-toggle="modal" data-bs-target="#create-room-modal">
                         <i class="fas fa-plus"></i>
                     </a>
                 }
@@ -49,15 +50,15 @@
             </ul>
             <div class="profile">
                 <div>
-                    <img src="#" class="user-avatar" data-bind="attr: { src: '/images/avatar/' + myAvatar() }" />
+                    <img src="#" class="user-avatar" data-bind="attr: { src:  myAvatar() }" />
                     <a data-bind="text: myName"></a>
                     <p class="role"> (@roleMember)</p>
                 </div>
-                <form class="form-inline" asp-controller="Identity" asp-action="Signout">
+                @* <form class="form-inline" asp-controller="Identity" asp-action="Signout">
                     <button type="submit" class="btn-sign-out">
                         <i class="fa-solid fa-arrow-right-from-bracket"></i>
                     </button>
-                </form>
+                </form> *@
             </div>
         </div>
 
@@ -73,12 +74,15 @@
             <div class="header">
                 <h5 id="joinedRoom" data-bind="text: joinedRoom()">Lobby</h5>
                 <div class="room-actions">
-                    <button type="button" class="btn btn-link text-secondary px-1" data-toggle="modal" data-target="#rename-room-modal">
+                    @* <button type="button" class="btn btn-link text-secondary px-1" data-bs-toggle="modal" data-bs-target="#rename-room-modal">
                         <i class="fa-regular fa-pen-to-square"></i>
-                    </button>
-                    <button type="button" class="btn btn-link text-secondary px-1" data-toggle="modal" data-target="#remove-room-modal">
-                        <i class="fa-solid fa-x"></i>
-                    </button>
+                    </button> *@
+                    @if (User.IsInRole("Member"))
+                    {
+                        <button type="button" class="btn btn-link text-secondary px-1" data-bs-toggle="modal" data-bs-target="#remove-room-modal">
+                            <i class="fa-solid fa-x"></i>
+                        </button>
+                    }
                 </div>
             </div>
             <div class="chat-body">
@@ -88,7 +92,7 @@
                              data-bind="css: $data.isMine() === true ? 'ismine' : 'isother'">
                             <div class="left-side d-flex">
                                 <img class="message-avatar"
-                                     data-bind="attr: { src: '/images/avatar/' + $data.avatar() }" />
+                                     data-bind="attr: { src:  $data.avatar() }" />
                             </div>
                             <div class="message-content d-flex flex-column">
                                 <div class="d-flex justify-content-between">
@@ -147,7 +151,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Create Room</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -156,8 +160,8 @@
                 <input id="roomName" type="hidden" value="@roomName" />
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal" data-bind="click: createRoom">Create</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" data-bind="click: createRoom">Create</button>
             </div>
         </div>
     </div>
@@ -168,7 +172,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Rename Room</h5>
-                <button type="button" class="close" data-dismiss="modal"
+                <button type="button" class="close" data-bs-dismiss="modal"
                         aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -178,11 +182,11 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary"
-                        data-dismiss="modal">
+                        data-bs-dismiss="modal">
                     Close
                 </button>
                 <button type="button" class="btn btn-primary"
-                        data-dismiss="modal"
+                        data-bs-dismiss="modal"
                         data-bind="click: editRoom">
                     Update
                 </button>
@@ -196,7 +200,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Delete Room</h5>
-                <button type="button" class="close" data-dismiss="modal"
+                <button type="button" class="close" data-bs-dismiss="modal"
                         aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -206,11 +210,11 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary"
-                        data-dismiss="modal">
+                        data-bs-dismiss="modal">
                     Close
                 </button>
                 <button type="button" class="btn btn-danger"
-                        data-dismiss="modal"
+                        data-bs-dismiss="modal"
                         data-bind="click: deleteRoom">
                     Delete
                 </button>

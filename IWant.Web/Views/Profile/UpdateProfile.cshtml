@@ -3,6 +3,11 @@
 @{
     ViewData["Title"] = "Update Profile";
 }
+<style>
+    .profile-header label:hover img{
+        opacity: 0.5;
+    }
+</style>
 
 <div style="border:1px solid #000; border-radius:20px" class="container mt-5 mb-5 p-5 Profile">
     <h2>Update Profile</h2>
@@ -14,21 +19,21 @@
         </div>
     }
 
-    <form asp-action="UpdateProfile" method="post">
+    <form asp-action="UpdateProfile" method="post" enctype="multipart/form-data">
 
-        <div class="profile-header">
-            <img asp-for="" alt="Profile Picture">
-            <div class="info">
-                <h4>Alexa Rowles</h4>
-                <p>alexarowles@gmail.com</p>
+        <div class="profile-header d-flex">
+            <label for="avatarInput" class="avatar-container position-relative me-3">
+                <img id="avatarPreview"
+                     style="width:100px; height:100px; border-radius:50%; border:solid 2px #000; cursor:pointer; object-fit:cover; object-position:center"
+                     src="@Model.ImageUrl"
+                     alt="Profile Picture">
+                <i style="border-radius: 50%;padding: 5px;background-color: gray; right: 0; bottom: 0; color: lightgray; font-size: 20px;" class="fa-solid fa-camera position-absolute"></i>
+            </label>
+            <input type="file" asp-for="Image" id="avatarInput" style="display: none;" accept="image/*">
+            <div class="info align-content-center">
+                <h4>@Model.FullName</h4>
+                <p style="color:gray">@Model.Email</p>
             </div>
-            <button class="edit-btn">Edit</button>
-        </div>
-
-        <div class="form-group">
-            <label asp-for="Email"></label>
-            <input asp-for="Email" class="form-control" />
-            <span asp-validation-for="Email" class="text-danger"></span>
         </div>
 
         <div class="form-group">
@@ -56,6 +61,32 @@
         <button type="submit" class="btn btn-primary">Update</button>
     </form>
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const avatarPreview = document.getElementById("avatarPreview");
+        const avatarInput = document.getElementById("avatarInput");
+
+        avatarPreview.addEventListener("click", function (event) {
+            event.preventDefault();
+            avatarInput.click();
+        });
+
+        avatarInput.addEventListener("change", function (event) {
+            if (avatarInput.files.length > 0) {
+                const file = avatarInput.files[0];
+                const reader = new FileReader();
+
+                reader.onload = function (e) {
+                    avatarPreview.src = e.target.result;
+                };
+
+                reader.readAsDataURL(file);
+            }
+        });
+    });
+</script>
+
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

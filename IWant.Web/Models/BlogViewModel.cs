@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using IWant.Web.Models;
 using Microsoft.AspNetCore.Identity;
+using IWant.BusinessObject.Enitities;
 
 namespace IWant.Web.Models
 {
@@ -33,8 +34,7 @@ namespace IWant.Web.Models
         public string? ImageLocalPath { get; set; }
 
         public bool Status { get; set; }
-       
 
-
+        public User? User { get; set; }
     }
 }

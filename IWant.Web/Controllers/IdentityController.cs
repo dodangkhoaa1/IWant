@@ -52,7 +52,18 @@ namespace IWant.Web.Controllers
             var emailClaim = info.Principal.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Email);
             var fullNameClaim = info.Principal.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Name);
             var genderClaim = info.Principal.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Gender);
-            var user = new User { Email = emailClaim.Value, UserName = emailClaim.Value , FullName = fullNameClaim.Value, Status = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, Avatar = "default-avatar.png", Gender = true};
+            var user = new User
+            {
+                Email = emailClaim.Value,
+                UserName = emailClaim.Value,
+                FullName = fullNameClaim.Value,
+                Status = true,
+                CreatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now,
+                ImageUrl = "http://localhost:5130/images/avatar/default-avatar.png",
+                ImageLocalPath = "default-avatar.png",
+                Gender = true
+            };
             var result = await _userManager.CreateAsync(user);
 
             if (result.Succeeded)
@@ -95,7 +106,8 @@ namespace IWant.Web.Controllers
                         Email = model.Email,
                         UserName = model.Email,
                         FullName = model.FullName,
-                        Avatar = "default-avatar.png",
+                        ImageUrl = "http://localhost:5130/images/avatar/default-avatar.png",
+                        ImageLocalPath = "default-avatar.png",
                         Birthday = model.Birthday,
                         Status = true,
                         CreatedAt = DateTime.Now,
@@ -126,7 +138,7 @@ namespace IWant.Web.Controllers
                             return View(model);
                         }
                     }
-                    
+
                     TempData["error"] = "Create Failed!";
                     return View(model);
                 }
@@ -204,7 +216,7 @@ namespace IWant.Web.Controllers
                 var user = await _userManager.FindByEmailAsync(model.Username);
                 if (!result.Succeeded)
                 {
-                    if (result.IsLockedOut || (user!=null && user.Status == false))
+                    if (result.IsLockedOut || (user != null && user.Status == false))
                     {
                         TempData["error"] = "Account is locked out.";
                         Console.WriteLine("Sign-in failed: Account is locked out.");
@@ -360,12 +372,12 @@ namespace IWant.Web.Controllers
                 </body>
                 </html>"
                 );
-                
+
             TempData["success"] = $"The OTP was sent to {user.FullName}'s mail!";
             TempData["Otp"] = model.Otp;
             TempData["email"] = model.Email;
 
-            return RedirectToAction("VerifyOtp", new ForgotPasswordViewModel{Email = model.Email, Otp = model.Otp});
+            return RedirectToAction("VerifyOtp", new ForgotPasswordViewModel { Email = model.Email, Otp = model.Otp });
         }
 
         [HttpGet]

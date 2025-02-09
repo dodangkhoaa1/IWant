@@ -1,0 +1,43 @@
+﻿@model BlogViewModel
+
+@{
+    ViewData["Title"] = "BlogDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
+    @if (Model.CreatedAt.Day == Model.UpdatedAt.Value.Day)
+    {
+        <div class="text-end">
+            <p>@Model.CreatedAt</p>
+        </div>
+    }
+    else
+    {
+        <div class="text-end">
+            <p>@Model.UpdatedAt</p>
+            <p>Updated</p>
+        </div>
+    }
+
+    <hr />
+
+    <h1 class="text-end">@Model.Title</h1>
+
+    <hr />
+
+    <div class="d-flex">
+        <label for="avatarInput" class="avatar-container position-relative me-3">
+            <img style=" width:50px; height:50px; border-radius:50%; border:solid 2px #000; cursor:pointer; object-fit:cover; object-position:center" src="@Model.User.ImageUrl" alt="Profile Picture">
+        </label>
+        <div class="info align-content-center">
+            <h5 style="margin:0;">@Model.User.FullName</h5>
+            <p style="color:gray; font-size:12px">@Model.User.Email</p>
+        </div>
+    </div>
+
+    <div>
+        @Html.Raw(Model.Content)
+    </div>
+</div>
