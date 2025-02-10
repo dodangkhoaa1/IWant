@@ -19,6 +19,12 @@ namespace IWant.Web.Controllers
         {
             return View();
         }
+
+        public IActionResult Privacy()
+        {
+            return View();
+        }
+
         [Authorize]
         [Authorize(Roles = "Member")]
         /*[Authorize(Policy = "MemberDep")]*/
@@ -31,12 +37,6 @@ namespace IWant.Web.Controllers
         [Authorize(Roles = "Admin")]
         /*[Authorize(Policy = "AdminDep")]*/
         public IActionResult Admin()
-        {
-            return View();
-        }
-
-
-        public IActionResult Privacy()
         {
             return View();
         }

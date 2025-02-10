@@ -1,9 +1,44 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "ConfirmEmail";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Confirm Email</h1>
+<div class="d-flex confirmSignUp-container" style="justify-content: center; padding: 40px; height: 100vh; align-items: center;">
+    <div class="confetti-container"></div>
+    <div class="confirmSignUp-card" style="display: flex; flex-direction: column; justify-content: center; align-items: center; border-radius: 10px; background-color: #fff; height: auto; padding: 20px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); overflow: hidden; z-index: 2;">
+        <img src="~/images/confirmSignUpBG.svg" alt="Alternate Text" class="popup-img" style="max-width: 100%; margin-bottom: 20px;" />
+        <h2 style="font-size: 24px; font-weight: bold; color: black; text-align: center;">Hi userSignUpName, welcome to I Want!</h2>
+        <p style="font-size: 16px; color: #888; text-align: center; margin-top: 10px; padding: 0 20px;">Just one more step! Please check and confirm your email to verify your account.</p>
+    </div>
+</div>
+@* confetti background animation *@
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const confettiContainer = document.querySelector('.confetti-container');
 
-<h3>Sign Up Successfull! Please Check Your Email To Confirm Your Email!</h3>
+        function createConfetti() {
+            const confetti = document.createElement('div');
+            confetti.classList.add('confetti');
+            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.backgroundColor = getRandomColor();
+            confetti.style.animationDuration = Math.random() * 2 + 3 + 's';
+            confetti.style.width = Math.random() * 5 + 2 + 'px';
+            confetti.style.height = Math.random() * 25 + 15 + 'px';
+
+            confettiContainer.appendChild(confetti);
+
+            setTimeout(() => confetti.remove(), 5000);
+        }
+
+        function getRandomColor() {
+            const colors = [
+                '#FFD700', '#FF4500', '#1E90FF', '#32CD32', '#FF69B4', '#8A2BE2',
+                '#FF6347', '#00FA9A', '#9400D3', '#FF7F50', '#00CED1', '#FFB6C1',
+                '#4B0082', '#ADFF2F'
+            ];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+
+        setInterval(createConfetti, 200);
+    });
+</script>

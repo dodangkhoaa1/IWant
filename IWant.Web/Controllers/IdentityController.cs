@@ -112,7 +112,13 @@ namespace IWant.Web.Controllers
                         Status = true,
                         CreatedAt = DateTime.Now,
                         UpdatedAt = DateTime.Now,
-                        Gender = model.Gender
+                        Gender = model.Gender,
+                        PhoneNumber = model.PhoneNumber,
+                        //Child
+                        ChildName = model.ChildName,
+                        ChildNickName = model.ChildNickName,
+                        ChildBirthday = model.ChildBirthday,
+                        ChildGender = model.ChildGender,
                     };
                     var result = await _userManager.CreateAsync(user, model.Password);
 
@@ -399,7 +405,8 @@ namespace IWant.Web.Controllers
                 return RedirectToAction("ResetPassword");
             }
             TempData["error"] = "OTP verification failed!";
-            TempData["email"] = email;
+            TempData.Keep("email");
+            TempData.Keep("Otp");
             return View();
         }
 

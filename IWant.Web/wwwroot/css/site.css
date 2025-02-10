@@ -36,43 +36,44 @@ html {
     position: relative;
     min-height: 100%;
     height: 100%;
-    margin:0;
-    padding:0;
-}
-header{
-    z-index:10;
+    margin: 0;
+    padding: 0;
 }
 
-header .logo img {
-    width: 100px;
-    height: 100%
+header {
+    z-index: 10;
 }
 
-header .navbar {
-    padding: 0 1rem;
-}
-
-    header .navbar .logo img {
-        width: 100px; 
+    header .logo img {
+        width: 100px;
+        height: 100%
     }
 
-header .navbar-nav {
-    display: flex;
-    align-items: center;
-}
-
-    header .navbar-nav.ms-auto {
-        margin-left: auto; 
+    header .navbar {
+        padding: 0 1rem;
     }
 
-header .navbar-toggler {
-    border: none;
-    background: transparent;
-}
+        header .navbar .logo img {
+            width: 100px;
+        }
 
-header .navbar-toggler-icon {
-    background-image: url('data:image/svg+xml;charset=utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30"%3E%3Cpath stroke="rgba%280,0,0,0.5%29" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"/%3E%3C/svg%3E');
-}
+    header .navbar-nav {
+        display: flex;
+        align-items: center;
+    }
+
+        header .navbar-nav.ms-auto {
+            margin-left: auto;
+        }
+
+    header .navbar-toggler {
+        border: none;
+        background: transparent;
+    }
+
+    header .navbar-toggler-icon {
+        background-image: url('data:image/svg+xml;charset=utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30"%3E%3Cpath stroke="rgba%280,0,0,0.5%29" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"/%3E%3C/svg%3E');
+    }
 
 .partial-signin {
     display: flex;
@@ -86,7 +87,7 @@ header .navbar-toggler-icon {
 
 .login-container {
     margin: 30px 0;
-    padding: 30px 0;
+    padding-right: 30px;
     background-color: #FEDA15;
     display: flex;
     justify-content: center;
@@ -96,26 +97,24 @@ header .navbar-toggler-icon {
     .login-container .login-card {
         background-color: #fff;
         border-radius: 10px;
-        padding: 20px;
-        width: 350px;
+        padding-right: 30px;
+        width: 550px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        height:600px;
     }
 
         .login-container .login-card h1 {
             text-align: center;
-            font-size: 24px;
             font-weight: bold;
             margin-bottom: 20px;
         }
 
         .login-container .login-card .custom-input {
-            width: 100%;
-            padding-top: 10px ;
+            width: 80%;
+            padding-top: 10px;
             margin-bottom: 10px;
             border: none;
             border-bottom: 2px solid #000;
-            font-size: 14px;
+            font-size: 16px;
             font-family: Arial, sans-serif;
             outline: none;
             box-shadow: none;
@@ -132,12 +131,12 @@ header .navbar-toggler-icon {
 
         .login-container .login-card .password-toggle {
             position: absolute;
-            top: 50%;
+            top: 40%;
             right: 0;
             transform: translateY(-50%);
             cursor: pointer;
-            color: #FEDA15;
-            font-size: 16px;
+            color: #9B30FF;
+            font-size: 20px;
         }
 
 
@@ -555,142 +554,204 @@ header .navbar-toggler-icon {
     margin: 0;
 }
 
-
-/*Profile Page*/
-
-/*.container.Profile {
-    max-width: 800px;
-    background: #fff;
-    border-radius: 12px;
-    padding: 20px 40px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin: 0 auto;
-}
-
-h2 {
-    text-align: center;
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-    font-weight: bold;
-    color: #333;
-}
-
-.alert.alert-success {
-    text-align: center;
-    font-size: 1rem;
-    margin-bottom: 15px;
-}*/
-
-/* Form Styling */
-/*form {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-}
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-}
-
-label {
-    font-weight: 600;
-    margin-bottom: 8px;
-    font-size: 0.9rem;
-    color: #555;
-}
-
-input, select {
-    height: 45px;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    font-size: 0.9rem;
-}
-
-    input:focus, select:focus {
-        outline: none;
-        border-color: #007bff;
-        box-shadow: 0 0 4px rgba(0, 123, 255, 0.3);
+/* SignIn CSS and Animation */
+@keyframes fadeInOut {
+    0%, 100% {
+        opacity: 0;
+        transform: translateY(30px);
     }
 
-span.text-danger {
-    font-size: 0.8rem;
-    color: red;
-    margin-top: 5px;
-}*/
-
-/* Full Width for Specific Elements */
-/*form .form-group:nth-child(1),
-form .form-group:nth-child(4) {
-    grid-column: span 2;
-}*/
-
-/* Button Styling */
-/*button[type="submit"] {
-    grid-column: span 2;
-    height: 50px;
-    background: #007bff;
-    color: #fff;
-    font-size: 1rem;
-    font-weight: 600;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.3s;
+    50% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-    button[type="submit"]:hover {
-        background: #0056b3;
-    }*/
+.endMascot img {
+    animation: fadeInOut 5s infinite;
+}
 
-/* Profile Header Styling */
-/*.profile-header {
+.confetti-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.confetti {
+    position: absolute;
+    width: 4px;
+    height: 20px;
+    background-color: red;
+    opacity: 0.9;
+    transform-origin: center;
+    animation: confetti-fall linear infinite;
+    transform: rotate(-20deg);
+}
+
+@keyframes confetti-fall {
+    0% {
+        transform: translateX(0) translateY(-10vh) rotate(0deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(-20vw) translateY(100vh) rotate(-45deg);
+        opacity: 0;
+    }
+}
+
+/*-----------------------------------*/
+
+/* Forgot Password CSS and Animation */
+.forgotPassword-container {
+    margin: 30px 0;
+    padding-right: 30px;
+    background-color: #FEDA15;
     display: flex;
+    justify-content: center;
     align-items: center;
-    gap: 20px;
-    margin-bottom: 20px;
 }
 
-    .profile-header img {
-        width: 80px;
-        height: 80px;
-        border-radius: 50%;
-        object-fit: cover;
+    .forgotPassword-container .forgotPassword-card {
+        background-color: #fff;
+        border-radius: 10px;
+        width: 400px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 
-    .profile-header .info {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
-
-        .profile-header .info h4 {
-            font-size: 1.2rem;
+        .forgotPassword-container .forgotPassword-card h1 {
+            text-align: center;
             font-weight: bold;
-            margin: 0;
-            color: #333;
+            margin-bottom: 20px;
         }
 
-        .profile-header .info p {
-            font-size: 0.9rem;
-            margin: 0;
-            color: #777;
+        .forgotPassword-container .forgotPassword-card .custom-input {
+            width: 80%;
+            padding-top: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-bottom: 2px solid #000;
+            font-size: 16px;
+            font-family: Arial, sans-serif;
+            outline: none;
+            box-shadow: none;
         }
 
-.edit-btn {
-    margin-left: auto;
-    padding: 8px 16px;
-    background: #007bff;
-    color: #fff;
-    font-size: 0.9rem;
-    font-weight: 600;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.3s;
+            .forgotPassword-container .forgotPassword-card .custom-input::placeholder {
+                color: #BEBEBE;
+                font-size: 14px;
+            }
+
+            .forgotPassword-container .forgotPassword-card .custom-input:focus {
+                border-bottom: 2px solid #FEDA15;
+            }
+
+        .forgotPassword-container .forgotPassword-card .password-toggle {
+            position: absolute;
+            top: 40%;
+            right: 0;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #FEDA15;
+            font-size: 20px;
+        }
+
+/*---------------------------------------------------*/
+
+/* Verify CSS and Animation */
+.verify-container {
+    margin: 30px 0;
+    padding-right: 30px;
+    background-color: #FEDA15;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-    .edit-btn:hover {
-        background: #0056b3;
-    }*/
+    .verify-container .verify-card {
+        background-color: #fff;
+        border-radius: 10px;
+        width: 400px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+        .verify-container .verify-card h1 {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .verify-container .verify-card .custom-input {
+            width: 80%;
+            padding-top: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-bottom: 2px solid #000;
+            font-size: 16px;
+            font-family: Arial, sans-serif;
+            outline: none;
+            box-shadow: none;
+        }
+
+            .verify-container .verify-card .custom-input::placeholder {
+                color: #BEBEBE;
+                font-size: 14px;
+            }
+
+            .verify-container .verify-card .custom-input:focus {
+                border-bottom: 2px solid #FEDA15;
+            }
+
+        .verify-container .verify-card .password-toggle {
+            position: absolute;
+            top: 40%;
+            right: 0;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #FEDA15;
+            font-size: 20px;
+        }
+
+/*---------------------------------------------------*/
+
+/* ConfirmSignUp CSS and Animation*/
+
+
+.confirmSignUp-container {
+    margin: 30px 0;
+    padding-right: 30px;
+    background-color: #FEDA15;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    .confirmSignUp-container .confirmSignUp-card {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+@keyframes popupEffect {
+    0%, 100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+.popup-img {
+    animation: popupEffect 3s infinite ease-in-out;
+}
+
+/*---------------------------------------------------*/
+
+/*  */
+

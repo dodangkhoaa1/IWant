@@ -45,7 +45,7 @@ namespace IWant.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("Status")
+                    b.Property<bool?>("Status")
                         .HasColumnType("bit");
 
                     b.Property<string>("Title")
@@ -137,6 +137,18 @@ namespace IWant.DataAccess.Migrations
                     b.Property<DateOnly>("Birthday")
                         .HasColumnType("date");
 
+                    b.Property<DateOnly>("ChildBirthday")
+                        .HasColumnType("date");
+
+                    b.Property<bool?>("ChildGender")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("ChildName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ChildNickName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
@@ -220,6 +232,7 @@ namespace IWant.DataAccess.Migrations
                             Id = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             AccessFailedCount = 0,
                             Birthday = new DateOnly(2003, 11, 24),
+                            ChildBirthday = new DateOnly(1, 1, 1),
                             ConcurrencyStamp = "bd591428-5d71-49ee-abd2-c1740ff5f70c",
                             Email = "nhathm2411@gmail.com",
                             EmailConfirmed = true,
@@ -282,2541 +295,2541 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2280),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8082),
                             EnglishText = "Brush Hair",
                             ImagePath = "images/word/actions/Brush hair.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2281),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8082),
                             VietnameseText = "Chải Tóc",
                             WordCategoryId = 1
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2284),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8086),
                             EnglishText = "Brush Teeth",
                             ImagePath = "images/word/actions/Brush teeth.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2284),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8086),
                             VietnameseText = "Đánh Răng",
                             WordCategoryId = 1
                         },
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2286),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8089),
                             EnglishText = "Close",
                             ImagePath = "images/word/actions/Close.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2287),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8089),
                             VietnameseText = "Đóng",
                             WordCategoryId = 1
                         },
                         new
                         {
                             Id = 4,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2289),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8092),
                             EnglishText = "Drink",
                             ImagePath = "images/word/actions/Drink.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2289),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8093),
                             VietnameseText = "Uống",
                             WordCategoryId = 1
                         },
                         new
                         {
                             Id = 5,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2292),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8096),
                             EnglishText = "Eat",
                             ImagePath = "images/word/actions/Eat.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2293),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8097),
                             VietnameseText = "Ăn",
                             WordCategoryId = 1
                         },
                         new
                         {
                             Id = 6,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2294),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8099),
                             EnglishText = "Look",
                             ImagePath = "images/word/actions/Look.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2295),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8100),
                             VietnameseText = "Nhìn",
                             WordCategoryId = 1
                         },
                         new
                         {
                             Id = 7,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2297),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8102),
                             EnglishText = "Off",
                             ImagePath = "images/word/actions/Off.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2297),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8102),
                             VietnameseText = "Tắt",
                             WordCategoryId = 1
                         },
                         new
                         {
                             Id = 8,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2299),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8105),
                             EnglishText = "On",
                             ImagePath = "images/word/actions/On.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2299),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8105),
                             VietnameseText = "Bật",
                             WordCategoryId = 1
                         },
                         new
                         {
                             Id = 9,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2301),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8109),
                             EnglishText = "Open",
                             ImagePath = "images/word/actions/Open.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2302),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8110),
                             VietnameseText = "Mở",
                             WordCategoryId = 1
                         },
                         new
                         {
                             Id = 10,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2304),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8112),
                             EnglishText = "Play",
                             ImagePath = "images/word/actions/Play.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2304),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8113),
                             VietnameseText = "Chơi",
                             WordCategoryId = 1
                         },
                         new
                         {
                             Id = 11,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2306),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8115),
                             EnglishText = "Put On",
                             ImagePath = "images/word/actions/Put on.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2306),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8115),
                             VietnameseText = "Mặc Vào",
                             WordCategoryId = 1
                         },
                         new
                         {
                             Id = 12,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2309),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8118),
                             EnglishText = "Run",
                             ImagePath = "images/word/actions/Run.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2309),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8118),
                             VietnameseText = "Chạy",
                             WordCategoryId = 1
                         },
                         new
                         {
                             Id = 13,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2311),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8121),
                             EnglishText = "Sit",
                             ImagePath = "images/word/actions/Sit.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2311),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8121),
                             VietnameseText = "Ngồi",
                             WordCategoryId = 1
                         },
                         new
                         {
                             Id = 14,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2313),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8124),
                             EnglishText = "Sleep",
                             ImagePath = "images/word/actions/Sleep.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2313),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8124),
                             VietnameseText = "Ngủ",
                             WordCategoryId = 1
                         },
                         new
                         {
                             Id = 15,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2315),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8127),
                             EnglishText = "Stand",
                             ImagePath = "images/word/actions/Stand.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2316),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8127),
                             VietnameseText = "Đứng",
                             WordCategoryId = 1
                         },
                         new
                         {
                             Id = 16,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2318),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8130),
                             EnglishText = "Swim",
                             ImagePath = "images/word/actions/Swim.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2318),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8130),
                             VietnameseText = "Bơi",
                             WordCategoryId = 1
                         },
                         new
                         {
                             Id = 17,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2320),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8132),
                             EnglishText = "Take Off",
                             ImagePath = "images/word/actions/Take off.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2321),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8133),
                             VietnameseText = "Cởi Ra",
                             WordCategoryId = 1
                         },
                         new
                         {
                             Id = 18,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2323),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8135),
                             EnglishText = "Talk",
                             ImagePath = "images/word/actions/Talk.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2324),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8136),
                             VietnameseText = "Nói Chuyện",
                             WordCategoryId = 1
                         },
                         new
                         {
                             Id = 19,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2326),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8139),
                             EnglishText = "Wake Up",
                             ImagePath = "images/word/actions/Wake up.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2326),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8140),
                             VietnameseText = "Thức Dậy",
                             WordCategoryId = 1
                         },
                         new
                         {
                             Id = 20,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2328),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8142),
                             EnglishText = "Walk",
                             ImagePath = "images/word/actions/Walk.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2328),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8142),
                             VietnameseText = "Đi Bộ",
                             WordCategoryId = 1
                         },
                         new
                         {
                             Id = 21,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2337),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8145),
                             EnglishText = "Wash",
                             ImagePath = "images/word/actions/Wash.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2337),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8145),
                             VietnameseText = "Rửa Tay",
                             WordCategoryId = 1
                         },
                         new
                         {
                             Id = 22,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2368),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8184),
                             EnglishText = "Bee",
                             ImagePath = "images/word/animals/Bee.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2368),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8184),
                             VietnameseText = "Ong",
                             WordCategoryId = 2
                         },
                         new
                         {
                             Id = 23,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2370),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8187),
                             EnglishText = "Bird",
                             ImagePath = "images/word/animals/Bird.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2370),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8188),
                             VietnameseText = "Chim",
                             WordCategoryId = 2
                         },
                         new
                         {
                             Id = 24,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2372),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8191),
                             EnglishText = "Butterfly",
                             ImagePath = "images/word/animals/Butterfly.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2373),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8191),
                             VietnameseText = "Bướm",
                             WordCategoryId = 2
                         },
                         new
                         {
                             Id = 25,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2375),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8193),
                             EnglishText = "Cat",
                             ImagePath = "images/word/animals/Cat.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2375),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8194),
                             VietnameseText = "Mèo",
                             WordCategoryId = 2
                         },
                         new
                         {
                             Id = 26,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2377),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8196),
                             EnglishText = "Chicken",
                             ImagePath = "images/word/animals/Chicken.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2378),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8197),
                             VietnameseText = "Gà",
                             WordCategoryId = 2
                         },
                         new
                         {
                             Id = 27,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2379),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8199),
                             EnglishText = "Cow",
                             ImagePath = "images/word/animals/Cow.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2380),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8200),
                             VietnameseText = "Bò",
                             WordCategoryId = 2
                         },
                         new
                         {
                             Id = 28,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2382),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8202),
                             EnglishText = "Dog",
                             ImagePath = "images/word/animals/Dog.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2382),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8203),
                             VietnameseText = "Chó",
                             WordCategoryId = 2
                         },
                         new
                         {
                             Id = 29,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2384),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8205),
                             EnglishText = "Duck",
                             ImagePath = "images/word/animals/Duck.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2384),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8205),
                             VietnameseText = "Vịt",
                             WordCategoryId = 2
                         },
                         new
                         {
                             Id = 30,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2387),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8208),
                             EnglishText = "Fish",
                             ImagePath = "images/word/animals/Fish.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2388),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8208),
                             VietnameseText = "Cá",
                             WordCategoryId = 2
                         },
                         new
                         {
                             Id = 31,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2389),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8211),
                             EnglishText = "Horse",
                             ImagePath = "images/word/animals/Horse.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2390),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8211),
                             VietnameseText = "Ngựa",
                             WordCategoryId = 2
                         },
                         new
                         {
                             Id = 32,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2392),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8215),
                             EnglishText = "Mouse",
                             ImagePath = "images/word/animals/Mouse.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2392),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8216),
                             VietnameseText = "Chuột",
                             WordCategoryId = 2
                         },
                         new
                         {
                             Id = 33,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2394),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8218),
                             EnglishText = "Pig",
                             ImagePath = "images/word/animals/Pig.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2394),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8219),
                             VietnameseText = "Heo",
                             WordCategoryId = 2
                         },
                         new
                         {
                             Id = 34,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2415),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8245),
                             EnglishText = "Arm",
                             ImagePath = "images/word/bodyParts/Arm.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2415),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8246),
                             VietnameseText = "Cánh tay",
                             WordCategoryId = 3
                         },
                         new
                         {
                             Id = 35,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2417),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8257),
                             EnglishText = "Back",
                             ImagePath = "images/word/bodyParts/Back.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2418),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8257),
                             VietnameseText = "Lưng",
                             WordCategoryId = 3
                         },
                         new
                         {
                             Id = 36,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2420),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8259),
                             EnglishText = "Belly",
                             ImagePath = "images/word/bodyParts/Belly.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2420),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8260),
                             VietnameseText = "Bụng",
                             WordCategoryId = 3
                         },
                         new
                         {
                             Id = 37,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2422),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8262),
                             EnglishText = "Bottom",
                             ImagePath = "images/word/bodyParts/Bottom.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2423),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8263),
                             VietnameseText = "Mông",
                             WordCategoryId = 3
                         },
                         new
                         {
                             Id = 38,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2424),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8265),
                             EnglishText = "Ear",
                             ImagePath = "images/word/bodyParts/Ear.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2425),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8266),
                             VietnameseText = "Tai",
                             WordCategoryId = 3
                         },
                         new
                         {
                             Id = 39,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2427),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8268),
                             EnglishText = "Eye",
                             ImagePath = "images/word/bodyParts/Eye.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2427),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8269),
                             VietnameseText = "Mắt",
                             WordCategoryId = 3
                         },
                         new
                         {
                             Id = 40,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2429),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8271),
                             EnglishText = "Face",
                             ImagePath = "images/word/bodyParts/Face.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2430),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8271),
                             VietnameseText = "Khuôn mặt",
                             WordCategoryId = 3
                         },
                         new
                         {
                             Id = 41,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2432),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8274),
                             EnglishText = "Finger",
                             ImagePath = "images/word/bodyParts/Finger.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2432),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8274),
                             VietnameseText = "Ngón tay",
                             WordCategoryId = 3
                         },
                         new
                         {
                             Id = 42,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2434),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8277),
                             EnglishText = "Foot",
                             ImagePath = "images/word/bodyParts/Foot.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2434),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8277),
                             VietnameseText = "Bàn chân",
                             WordCategoryId = 3
                         },
                         new
                         {
                             Id = 43,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2437),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8280),
                             EnglishText = "Hair",
                             ImagePath = "images/word/bodyParts/Hair.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2438),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8280),
                             VietnameseText = "Tóc",
                             WordCategoryId = 3
                         },
                         new
                         {
                             Id = 44,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2440),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8283),
                             EnglishText = "Hand",
                             ImagePath = "images/word/bodyParts/Hand.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2440),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8284),
                             VietnameseText = "Bàn tay",
                             WordCategoryId = 3
                         },
                         new
                         {
                             Id = 45,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2442),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8286),
                             EnglishText = "Leg",
                             ImagePath = "images/word/bodyParts/Leg.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2442),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8287),
                             VietnameseText = "Chân",
                             WordCategoryId = 3
                         },
                         new
                         {
                             Id = 46,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2444),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8289),
                             EnglishText = "Lips",
                             ImagePath = "images/word/bodyParts/Lips.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2444),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8289),
                             VietnameseText = "Môi",
                             WordCategoryId = 3
                         },
                         new
                         {
                             Id = 47,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2446),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8292),
                             EnglishText = "Nose",
                             ImagePath = "images/word/bodyParts/Nose.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2447),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8292),
                             VietnameseText = "Mũi",
                             WordCategoryId = 3
                         },
                         new
                         {
                             Id = 48,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2449),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8295),
                             EnglishText = "Teeth",
                             ImagePath = "images/word/bodyParts/Teeth.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2449),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8295),
                             VietnameseText = "Răng",
                             WordCategoryId = 3
                         },
                         new
                         {
                             Id = 49,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2451),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8298),
                             EnglishText = "Throat",
                             ImagePath = "images/word/bodyParts/Throat.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2451),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8298),
                             VietnameseText = "Họng",
                             WordCategoryId = 3
                         },
                         new
                         {
                             Id = 50,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2453),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8300),
                             EnglishText = "Toe",
                             ImagePath = "images/word/bodyParts/Toe.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2454),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8301),
                             VietnameseText = "Ngón chân",
                             WordCategoryId = 3
                         },
                         new
                         {
                             Id = 51,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2456),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8303),
                             EnglishText = "Tongue",
                             ImagePath = "images/word/bodyParts/Tongue.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2456),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8304),
                             VietnameseText = "Lưỡi",
                             WordCategoryId = 3
                         },
                         new
                         {
                             Id = 52,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2480),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8334),
                             EnglishText = "Backpack",
                             ImagePath = "images/word/clothes/Backpack.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2480),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8335),
                             VietnameseText = "Ba lô",
                             WordCategoryId = 4
                         },
                         new
                         {
                             Id = 53,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2482),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8337),
                             EnglishText = "Cap",
                             ImagePath = "images/word/clothes/Cap.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2483),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8338),
                             VietnameseText = "Mũ lưỡi trai",
                             WordCategoryId = 4
                         },
                         new
                         {
                             Id = 54,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2484),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8340),
                             EnglishText = "Jacket",
                             ImagePath = "images/word/clothes/Jacket.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2485),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8341),
                             VietnameseText = "Áo khoác",
                             WordCategoryId = 4
                         },
                         new
                         {
                             Id = 55,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2487),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8343),
                             EnglishText = "Pajamas",
                             ImagePath = "images/word/clothes/Pajamas.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2487),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8344),
                             VietnameseText = "Đồ ngủ",
                             WordCategoryId = 4
                         },
                         new
                         {
                             Id = 56,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2489),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8346),
                             EnglishText = "Pants",
                             ImagePath = "images/word/clothes/Pants.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2489),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8347),
                             VietnameseText = "Quần dài",
                             WordCategoryId = 4
                         },
                         new
                         {
                             Id = 57,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2491),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8350),
                             EnglishText = "Scarf",
                             ImagePath = "images/word/clothes/Scarf.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2492),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8350),
                             VietnameseText = "Khăn quàng cổ",
                             WordCategoryId = 4
                         },
                         new
                         {
                             Id = 58,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2494),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8353),
                             EnglishText = "Shirt",
                             ImagePath = "images/word/clothes/Shirt.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2494),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8353),
                             VietnameseText = "Áo sơ mi",
                             WordCategoryId = 4
                         },
                         new
                         {
                             Id = 59,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2496),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8356),
                             EnglishText = "Shoes",
                             ImagePath = "images/word/clothes/Shoes.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2496),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8356),
                             VietnameseText = "Giày",
                             WordCategoryId = 4
                         },
                         new
                         {
                             Id = 60,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2498),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8359),
                             EnglishText = "Shorts",
                             ImagePath = "images/word/clothes/Short.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2499),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8359),
                             VietnameseText = "Quần short",
                             WordCategoryId = 4
                         },
                         new
                         {
                             Id = 61,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2500),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8362),
                             EnglishText = "Skirt",
                             ImagePath = "images/word/clothes/Skirt.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2501),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8362),
                             VietnameseText = "Váy ngắn",
                             WordCategoryId = 4
                         },
                         new
                         {
                             Id = 62,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2503),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8364),
                             EnglishText = "Socks",
                             ImagePath = "images/word/clothes/Socks.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2503),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8365),
                             VietnameseText = "Tất",
                             WordCategoryId = 4
                         },
                         new
                         {
                             Id = 63,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2505),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8367),
                             EnglishText = "Sweater",
                             ImagePath = "images/word/clothes/Sweater.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2505),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8368),
                             VietnameseText = "Áo len",
                             WordCategoryId = 4
                         },
                         new
                         {
                             Id = 64,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2508),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8370),
                             EnglishText = "Swimsuit",
                             ImagePath = "images/word/clothes/Swimsuit.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2508),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8371),
                             VietnameseText = "Đồ bơi",
                             WordCategoryId = 4
                         },
                         new
                         {
                             Id = 65,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2510),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8373),
                             EnglishText = "T-Shirt",
                             ImagePath = "images/word/clothes/T-Shirt.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2510),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8374),
                             VietnameseText = "Áo phông",
                             WordCategoryId = 4
                         },
                         new
                         {
                             Id = 66,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2512),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8376),
                             EnglishText = "Underwear",
                             ImagePath = "images/word/clothes/Underwear.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2513),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8376),
                             VietnameseText = "Đồ lót",
                             WordCategoryId = 4
                         },
                         new
                         {
                             Id = 67,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2534),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8407),
                             EnglishText = "Black",
                             ImagePath = "images/word/color/Black.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2535),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8408),
                             VietnameseText = "Màu đen",
                             WordCategoryId = 5
                         },
                         new
                         {
                             Id = 68,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2537),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8411),
                             EnglishText = "Blue",
                             ImagePath = "images/word/color/Blue.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2537),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8411),
                             VietnameseText = "Màu xanh dương",
                             WordCategoryId = 5
                         },
                         new
                         {
                             Id = 69,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2539),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8416),
                             EnglishText = "Green",
                             ImagePath = "images/word/color/Green.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2540),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8417),
                             VietnameseText = "Màu xanh lá",
                             WordCategoryId = 5
                         },
                         new
                         {
                             Id = 70,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2542),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8420),
                             EnglishText = "Orange",
                             ImagePath = "images/word/color/Orange.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2542),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8420),
                             VietnameseText = "Màu cam",
                             WordCategoryId = 5
                         },
                         new
                         {
                             Id = 71,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2544),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8424),
                             EnglishText = "Pink",
                             ImagePath = "images/word/color/Pink.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2544),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8425),
                             VietnameseText = "Màu hồng",
                             WordCategoryId = 5
                         },
                         new
                         {
                             Id = 72,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2546),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8427),
                             EnglishText = "Red",
                             ImagePath = "images/word/color/Red.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2547),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8428),
                             VietnameseText = "Màu đỏ",
                             WordCategoryId = 5
                         },
                         new
                         {
                             Id = 73,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2548),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8430),
                             EnglishText = "Violet",
                             ImagePath = "images/word/color/Violet.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2549),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8431),
                             VietnameseText = "Màu tím",
                             WordCategoryId = 5
                         },
                         new
                         {
                             Id = 74,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2551),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8434),
                             EnglishText = "White",
                             ImagePath = "images/word/color/White.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2551),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8434),
                             VietnameseText = "Màu trắng",
                             WordCategoryId = 5
                         },
                         new
                         {
                             Id = 75,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2553),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8437),
                             EnglishText = "Yellow",
                             ImagePath = "images/word/color/Yellow.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2553),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8437),
                             VietnameseText = "Màu vàng",
                             WordCategoryId = 5
                         },
                         new
                         {
                             Id = 76,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2576),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8459),
                             EnglishText = "Agree",
                             ImagePath = "images/word/feeling/Agree.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2577),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8459),
                             VietnameseText = "Đồng ý",
                             WordCategoryId = 6
                         },
                         new
                         {
                             Id = 77,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2579),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8462),
                             EnglishText = "Angry",
                             ImagePath = "images/word/feeling/Angry.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2579),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8463),
                             VietnameseText = "Tức giận",
                             WordCategoryId = 6
                         },
                         new
                         {
                             Id = 78,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2581),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8465),
                             EnglishText = "Bored",
                             ImagePath = "images/word/feeling/Bored.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2582),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8466),
                             VietnameseText = "Chán nản",
                             WordCategoryId = 6
                         },
                         new
                         {
                             Id = 79,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2584),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8468),
                             EnglishText = "Disagree",
                             ImagePath = "images/word/feeling/Disagree.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2584),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8469),
                             VietnameseText = "Không đồng ý",
                             WordCategoryId = 6
                         },
                         new
                         {
                             Id = 80,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2586),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8471),
                             EnglishText = "Embarrassing",
                             ImagePath = "images/word/feeling/Embarrassing.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2586),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8472),
                             VietnameseText = "Xấu hổ",
                             WordCategoryId = 6
                         },
                         new
                         {
                             Id = 81,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2589),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8474),
                             EnglishText = "Happy",
                             ImagePath = "images/word/feeling/Happy.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2590),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8474),
                             VietnameseText = "Vui vẻ",
                             WordCategoryId = 6
                         },
                         new
                         {
                             Id = 82,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2591),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8478),
                             EnglishText = "Hungry",
                             ImagePath = "images/word/feeling/Hungry.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2592),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8478),
                             VietnameseText = "Đói",
                             WordCategoryId = 6
                         },
                         new
                         {
                             Id = 83,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2594),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8481),
                             EnglishText = "Hurt",
                             ImagePath = "images/word/feeling/Hurt.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2594),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8481),
                             VietnameseText = "Đau",
                             WordCategoryId = 6
                         },
                         new
                         {
                             Id = 84,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2596),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8483),
                             EnglishText = "Not understand",
                             ImagePath = "images/word/feeling/Not understand.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2596),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8484),
                             VietnameseText = "Không hiểu",
                             WordCategoryId = 6
                         },
                         new
                         {
                             Id = 85,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2598),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8486),
                             EnglishText = "Sad",
                             ImagePath = "images/word/feeling/Sad.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2599),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8487),
                             VietnameseText = "Buồn",
                             WordCategoryId = 6
                         },
                         new
                         {
                             Id = 86,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2601),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8489),
                             EnglishText = "Scared",
                             ImagePath = "images/word/feeling/Scared.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2601),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8489),
                             VietnameseText = "Sợ hãi",
                             WordCategoryId = 6
                         },
                         new
                         {
                             Id = 87,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2603),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8492),
                             EnglishText = "Sick",
                             ImagePath = "images/word/feeling/Sick.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2603),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8492),
                             VietnameseText = "Ốm",
                             WordCategoryId = 6
                         },
                         new
                         {
                             Id = 88,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2605),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8495),
                             EnglishText = "Sleepy",
                             ImagePath = "images/word/feeling/Sleepy.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2606),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8495),
                             VietnameseText = "Buồn ngủ",
                             WordCategoryId = 6
                         },
                         new
                         {
                             Id = 89,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2608),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8498),
                             EnglishText = "Thirsty",
                             ImagePath = "images/word/feeling/Thirsty.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2608),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8498),
                             VietnameseText = "Khát",
                             WordCategoryId = 6
                         },
                         new
                         {
                             Id = 90,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2610),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8501),
                             EnglishText = "Tired",
                             ImagePath = "images/word/feeling/Tired.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2610),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8501),
                             VietnameseText = "Mệt mỏi",
                             WordCategoryId = 6
                         },
                         new
                         {
                             Id = 91,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2612),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8503),
                             EnglishText = "Vomit",
                             ImagePath = "images/word/feeling/Vomited.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2613),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8504),
                             VietnameseText = "Nôn mửa",
                             WordCategoryId = 6
                         },
                         new
                         {
                             Id = 92,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2614),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8508),
                             EnglishText = "Yucky",
                             ImagePath = "images/word/feeling/Yucky.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2615),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8508),
                             VietnameseText = "Ghê tởm",
                             WordCategoryId = 6
                         },
                         new
                         {
                             Id = 93,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2617),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8511),
                             EnglishText = "Yummy",
                             ImagePath = "images/word/feeling/Yummy.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2617),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8511),
                             VietnameseText = "Ngon miệng",
                             WordCategoryId = 6
                         },
                         new
                         {
                             Id = 94,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2641),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8540),
                             EnglishText = "Bread",
                             ImagePath = "images/word/food/Bread.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2641),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8541),
                             VietnameseText = "Bánh mì",
                             WordCategoryId = 7
                         },
                         new
                         {
                             Id = 95,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2643),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8544),
                             EnglishText = "Cake",
                             ImagePath = "images/word/food/Cake.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2644),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8544),
                             VietnameseText = "Bánh kem",
                             WordCategoryId = 7
                         },
                         new
                         {
                             Id = 96,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2646),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8547),
                             EnglishText = "Chocolate",
                             ImagePath = "images/word/food/Chocolate.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2646),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8548),
                             VietnameseText = "Sô cô la",
                             WordCategoryId = 7
                         },
                         new
                         {
                             Id = 97,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2648),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8550),
                             EnglishText = "Cookie",
                             ImagePath = "images/word/food/Cookie.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2648),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8551),
                             VietnameseText = "Bánh quy",
                             WordCategoryId = 7
                         },
                         new
                         {
                             Id = 98,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2650),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8553),
                             EnglishText = "Gum",
                             ImagePath = "images/word/food/Gum.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2651),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8554),
                             VietnameseText = "Kẹo cao su",
                             WordCategoryId = 7
                         },
                         new
                         {
                             Id = 99,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2652),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8556),
                             EnglishText = "Hamburger",
                             ImagePath = "images/word/food/Hambuger.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2653),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8557),
                             VietnameseText = "Bánh hamburger",
                             WordCategoryId = 7
                         },
                         new
                         {
                             Id = 100,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2655),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8559),
                             EnglishText = "Ice Cream",
                             ImagePath = "images/word/food/IceCream.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2655),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8559),
                             VietnameseText = "Kem",
                             WordCategoryId = 7
                         },
                         new
                         {
                             Id = 101,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2657),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8562),
                             EnglishText = "Juice",
                             ImagePath = "images/word/food/Juice.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2658),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8562),
                             VietnameseText = "Nước ép",
                             WordCategoryId = 7
                         },
                         new
                         {
                             Id = 102,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2659),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8565),
                             EnglishText = "Milk",
                             ImagePath = "images/word/food/Milk.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2660),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8565),
                             VietnameseText = "Sữa",
                             WordCategoryId = 7
                         },
                         new
                         {
                             Id = 103,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2662),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8567),
                             EnglishText = "Pizza",
                             ImagePath = "images/word/food/Pizza.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2662),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8568),
                             VietnameseText = "Pizza",
                             WordCategoryId = 7
                         },
                         new
                         {
                             Id = 104,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2664),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8570),
                             EnglishText = "Rice",
                             ImagePath = "images/word/food/Rice.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2664),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8571),
                             VietnameseText = "Cơm",
                             WordCategoryId = 7
                         },
                         new
                         {
                             Id = 105,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2667),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8574),
                             EnglishText = "Sandwich",
                             ImagePath = "images/word/food/Sandwich.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2667),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8574),
                             VietnameseText = "Bánh sandwich",
                             WordCategoryId = 7
                         },
                         new
                         {
                             Id = 106,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2669),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8577),
                             EnglishText = "Snack",
                             ImagePath = "images/word/food/Snack.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2670),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8577),
                             VietnameseText = "Đồ ăn vặt",
                             WordCategoryId = 7
                         },
                         new
                         {
                             Id = 107,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2672),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8585),
                             EnglishText = "Soup",
                             ImagePath = "images/word/food/Soup.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2672),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8585),
                             VietnameseText = "Súp",
                             WordCategoryId = 7
                         },
                         new
                         {
                             Id = 108,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2674),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8588),
                             EnglishText = "Spaghetti",
                             ImagePath = "images/word/food/Spagetti.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2674),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8589),
                             VietnameseText = "Mì Ý",
                             WordCategoryId = 7
                         },
                         new
                         {
                             Id = 109,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2676),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8591),
                             EnglishText = "Tea",
                             ImagePath = "images/word/food/Tea.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2676),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8591),
                             VietnameseText = "Trà",
                             WordCategoryId = 7
                         },
                         new
                         {
                             Id = 110,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2678),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8594),
                             EnglishText = "Water",
                             ImagePath = "images/word/food/Water.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2679),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8594),
                             VietnameseText = "Nước",
                             WordCategoryId = 7
                         },
                         new
                         {
                             Id = 111,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2681),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8597),
                             EnglishText = "Yogurt",
                             ImagePath = "images/word/food/Yogurt.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2681),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8597),
                             VietnameseText = "Sữa chua",
                             WordCategoryId = 7
                         },
                         new
                         {
                             Id = 112,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2703),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8627),
                             EnglishText = "Apple",
                             ImagePath = "images/word/fruit/Apple.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2704),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8628),
                             VietnameseText = "Táo",
                             WordCategoryId = 8
                         },
                         new
                         {
                             Id = 113,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2706),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8631),
                             EnglishText = "Avocado",
                             ImagePath = "images/word/fruit/Avocado.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2706),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8631),
                             VietnameseText = "Bơ",
                             WordCategoryId = 8
                         },
                         new
                         {
                             Id = 114,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2708),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8633),
                             EnglishText = "Banana",
                             ImagePath = "images/word/fruit/Banana.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2709),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8634),
                             VietnameseText = "Chuối",
                             WordCategoryId = 8
                         },
                         new
                         {
                             Id = 115,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2711),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8636),
                             EnglishText = "Dragon Fruit",
                             ImagePath = "images/word/fruit/Dragon Fruit.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2711),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8637),
                             VietnameseText = "Thanh long",
                             WordCategoryId = 8
                         },
                         new
                         {
                             Id = 116,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2713),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8639),
                             EnglishText = "Grape",
                             ImagePath = "images/word/fruit/Grape.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2713),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8640),
                             VietnameseText = "Nho",
                             WordCategoryId = 8
                         },
                         new
                         {
                             Id = 117,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2715),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8642),
                             EnglishText = "Guava",
                             ImagePath = "images/word/fruit/Guava.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2716),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8643),
                             VietnameseText = "Ổi",
                             WordCategoryId = 8
                         },
                         new
                         {
                             Id = 118,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2718),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8650),
                             EnglishText = "Kiwi",
                             ImagePath = "images/word/fruit/Kiwi.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2718),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8650),
                             VietnameseText = "Kiwi",
                             WordCategoryId = 8
                         },
                         new
                         {
                             Id = 119,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2721),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8653),
                             EnglishText = "Orange",
                             ImagePath = "images/word/fruit/Orange.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2721),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8654),
                             VietnameseText = "Cam",
                             WordCategoryId = 8
                         },
                         new
                         {
                             Id = 120,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2723),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8656),
                             EnglishText = "Peach",
                             ImagePath = "images/word/fruit/Peace.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2724),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8657),
                             VietnameseText = "Đào",
                             WordCategoryId = 8
                         },
                         new
                         {
                             Id = 121,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2726),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8659),
                             EnglishText = "Pineapple",
                             ImagePath = "images/word/fruit/Pineapple.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2726),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8660),
                             VietnameseText = "Dứa",
                             WordCategoryId = 8
                         },
                         new
                         {
                             Id = 122,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2728),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8662),
                             EnglishText = "Strawberry",
                             ImagePath = "images/word/fruit/Strawberry.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2728),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8663),
                             VietnameseText = "Dâu tây",
                             WordCategoryId = 8
                         },
                         new
                         {
                             Id = 123,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2730),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8666),
                             EnglishText = "Watermelon",
                             ImagePath = "images/word/fruit/Watermelon.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2731),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8666),
                             VietnameseText = "Dưa hấu",
                             WordCategoryId = 8
                         },
                         new
                         {
                             Id = 124,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2751),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8694),
                             EnglishText = "One",
                             ImagePath = "images/word/number/One.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2752),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8694),
                             VietnameseText = "Một",
                             WordCategoryId = 9
                         },
                         new
                         {
                             Id = 125,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2754),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8697),
                             EnglishText = "Two",
                             ImagePath = "images/word/number/Two.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2754),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8697),
                             VietnameseText = "Hai",
                             WordCategoryId = 9
                         },
                         new
                         {
                             Id = 126,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2756),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8700),
                             EnglishText = "Three",
                             ImagePath = "images/word/number/Three.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2756),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8701),
                             VietnameseText = "Ba",
                             WordCategoryId = 9
                         },
                         new
                         {
                             Id = 127,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2758),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8703),
                             EnglishText = "Four",
                             ImagePath = "images/word/number/Four.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2759),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8704),
                             VietnameseText = "Bốn",
                             WordCategoryId = 9
                         },
                         new
                         {
                             Id = 128,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2761),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8706),
                             EnglishText = "Five",
                             ImagePath = "images/word/number/Five.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2761),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8707),
                             VietnameseText = "Năm",
                             WordCategoryId = 9
                         },
                         new
                         {
                             Id = 129,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2763),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8709),
                             EnglishText = "Six",
                             ImagePath = "images/word/number/Six.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2763),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8710),
                             VietnameseText = "Sáu",
                             WordCategoryId = 9
                         },
                         new
                         {
                             Id = 130,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2765),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8712),
                             EnglishText = "Seven",
                             ImagePath = "images/word/number/Seven.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2766),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8713),
                             VietnameseText = "Bảy",
                             WordCategoryId = 9
                         },
                         new
                         {
                             Id = 131,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2768),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8715),
                             EnglishText = "Eight",
                             ImagePath = "images/word/number/Eight.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2768),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8715),
                             VietnameseText = "Tám",
                             WordCategoryId = 9
                         },
                         new
                         {
                             Id = 132,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2771),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8718),
                             EnglishText = "Nine",
                             ImagePath = "images/word/number/Nine.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2771),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8718),
                             VietnameseText = "Chín",
                             WordCategoryId = 9
                         },
                         new
                         {
                             Id = 133,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2773),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8722),
                             EnglishText = "Ten",
                             ImagePath = "images/word/number/Ten.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2774),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8722),
                             VietnameseText = "Mười",
                             WordCategoryId = 9
                         },
                         new
                         {
                             Id = 134,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2795),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8751),
                             EnglishText = "Again",
                             ImagePath = "images/word/people/Again.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2796),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8751),
                             VietnameseText = "Lại lần nữa",
                             WordCategoryId = 10
                         },
                         new
                         {
                             Id = 135,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2804),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8754),
                             EnglishText = "Baby",
                             ImagePath = "images/word/people/Baby.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2804),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8754),
                             VietnameseText = "Em bé",
                             WordCategoryId = 10
                         },
                         new
                         {
                             Id = 136,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2806),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8757),
                             EnglishText = "Boy",
                             ImagePath = "images/word/people/Boy.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2806),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8757),
                             VietnameseText = "Cậu bé",
                             WordCategoryId = 10
                         },
                         new
                         {
                             Id = 137,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2808),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8759),
                             EnglishText = "Dad",
                             ImagePath = "images/word/people/Dad.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2809),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8760),
                             VietnameseText = "Bố",
                             WordCategoryId = 10
                         },
                         new
                         {
                             Id = 138,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2811),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8762),
                             EnglishText = "Everyone",
                             ImagePath = "images/word/people/Everyone.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2811),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8763),
                             VietnameseText = "Mọi người",
                             WordCategoryId = 10
                         },
                         new
                         {
                             Id = 139,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2813),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8765),
                             EnglishText = "Girl",
                             ImagePath = "images/word/people/Girl.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2813),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8766),
                             VietnameseText = "Cô bé",
                             WordCategoryId = 10
                         },
                         new
                         {
                             Id = 140,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2815),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8768),
                             EnglishText = "Grandma",
                             ImagePath = "images/word/people/Grandma.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2816),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8768),
                             VietnameseText = "Bà",
                             WordCategoryId = 10
                         },
                         new
                         {
                             Id = 141,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2817),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8771),
                             EnglishText = "Grandpa",
                             ImagePath = "images/word/people/Grandpa.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2818),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8771),
                             VietnameseText = "Ông",
                             WordCategoryId = 10
                         },
                         new
                         {
                             Id = 142,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2820),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8773),
                             EnglishText = "How much",
                             ImagePath = "images/word/people/How much.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2820),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8774),
                             VietnameseText = "Bao nhiêu tiền",
                             WordCategoryId = 10
                         },
                         new
                         {
                             Id = 143,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2822),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8776),
                             EnglishText = "Mom",
                             ImagePath = "images/word/people/Mom.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2822),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8777),
                             VietnameseText = "Mẹ",
                             WordCategoryId = 10
                         },
                         new
                         {
                             Id = 144,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2825),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8779),
                             EnglishText = "Older brother",
                             ImagePath = "images/word/people/Older brother.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2826),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8780),
                             VietnameseText = "Anh trai",
                             WordCategoryId = 10
                         },
                         new
                         {
                             Id = 145,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2827),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8782),
                             EnglishText = "Older sister",
                             ImagePath = "images/word/people/Older sister.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2828),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8784),
                             VietnameseText = "Chị gái",
                             WordCategoryId = 10
                         },
                         new
                         {
                             Id = 146,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2830),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8786),
                             EnglishText = "What",
                             ImagePath = "images/word/people/What.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2830),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8786),
                             VietnameseText = "Cái gì",
                             WordCategoryId = 10
                         },
                         new
                         {
                             Id = 147,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2832),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8789),
                             EnglishText = "When",
                             ImagePath = "images/word/people/When.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2832),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8789),
                             VietnameseText = "Khi nào",
                             WordCategoryId = 10
                         },
                         new
                         {
                             Id = 148,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2834),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8791),
                             EnglishText = "Where",
                             ImagePath = "images/word/people/Where.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2835),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8792),
                             VietnameseText = "Ở đâu",
                             WordCategoryId = 10
                         },
                         new
                         {
                             Id = 149,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2837),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8794),
                             EnglishText = "Which one",
                             ImagePath = "images/word/people/Which one.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2837),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8795),
                             VietnameseText = "Cái nào",
                             WordCategoryId = 10
                         },
                         new
                         {
                             Id = 150,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2839),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8797),
                             EnglishText = "Who",
                             ImagePath = "images/word/people/Who.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2839),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8798),
                             VietnameseText = "Ai",
                             WordCategoryId = 10
                         },
                         new
                         {
                             Id = 151,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2841),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8800),
                             EnglishText = "Why",
                             ImagePath = "images/word/people/Why.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2842),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8800),
                             VietnameseText = "Tại sao",
                             WordCategoryId = 10
                         },
                         new
                         {
                             Id = 152,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2844),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8803),
                             EnglishText = "Younger brother",
                             ImagePath = "images/word/people/Younger brother.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2844),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8803),
                             VietnameseText = "Em trai",
                             WordCategoryId = 10
                         },
                         new
                         {
                             Id = 153,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2846),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8809),
                             EnglishText = "Younger sister",
                             ImagePath = "images/word/people/Younger sister.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2846),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8810),
                             VietnameseText = "Em gái",
                             WordCategoryId = 10
                         },
                         new
                         {
                             Id = 154,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2848),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8813),
                             EnglishText = "What time",
                             ImagePath = "images/word/people/What time.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2849),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8814),
                             VietnameseText = "Mấy giờ",
                             WordCategoryId = 10
                         },
                         new
                         {
                             Id = 155,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2874),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8847),
                             EnglishText = "Aquarium",
                             ImagePath = "images/word/places/Aquarium.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2875),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8848),
                             VietnameseText = "Thủy cung",
                             WordCategoryId = 11
                         },
                         new
                         {
                             Id = 156,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2877),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8850),
                             EnglishText = "Bathroom",
                             ImagePath = "images/word/places/Bathroom.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2877),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8851),
                             VietnameseText = "Phòng tắm",
                             WordCategoryId = 11
                         },
                         new
                         {
                             Id = 157,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2879),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8854),
                             EnglishText = "Bedroom",
                             ImagePath = "images/word/places/Bedroom.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2879),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8854),
                             VietnameseText = "Phòng ngủ",
                             WordCategoryId = 11
                         },
                         new
                         {
                             Id = 158,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2881),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8858),
                             EnglishText = "Hospital",
                             ImagePath = "images/word/places/Hospital.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2882),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8858),
                             VietnameseText = "Bệnh viện",
                             WordCategoryId = 11
                         },
                         new
                         {
                             Id = 159,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2884),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8861),
                             EnglishText = "House",
                             ImagePath = "images/word/places/House.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2884),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8862),
                             VietnameseText = "Ngôi nhà",
                             WordCategoryId = 11
                         },
                         new
                         {
                             Id = 160,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2886),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8865),
                             EnglishText = "Kitchen",
                             ImagePath = "images/word/places/Kitchen.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2886),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8866),
                             VietnameseText = "Nhà bếp",
                             WordCategoryId = 11
                         },
                         new
                         {
                             Id = 161,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2888),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8868),
                             EnglishText = "Living room",
                             ImagePath = "images/word/places/Living room.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2889),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8868),
                             VietnameseText = "Phòng khách",
                             WordCategoryId = 11
                         },
                         new
                         {
                             Id = 162,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2891),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8871),
                             EnglishText = "Park",
                             ImagePath = "images/word/places/Park.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2891),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8871),
                             VietnameseText = "Công viên",
                             WordCategoryId = 11
                         },
                         new
                         {
                             Id = 163,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2893),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8874),
                             EnglishText = "School",
                             ImagePath = "images/word/places/School.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2893),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8874),
                             VietnameseText = "Trường học",
                             WordCategoryId = 11
                         },
                         new
                         {
                             Id = 164,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2895),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8876),
                             EnglishText = "Supermarket",
                             ImagePath = "images/word/places/Supermarket.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2895),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8877),
                             VietnameseText = "Siêu thị",
                             WordCategoryId = 11
                         },
                         new
                         {
                             Id = 165,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2899),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8879),
                             EnglishText = "Toilet",
                             ImagePath = "images/word/places/Toilet.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2899),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8880),
                             VietnameseText = "Nhà vệ sinh",
                             WordCategoryId = 11
                         },
                         new
                         {
                             Id = 166,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2901),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8882),
                             EnglishText = "Zoo",
                             ImagePath = "images/word/places/Zoo.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2901),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8883),
                             VietnameseText = "Sở thú",
                             WordCategoryId = 11
                         },
                         new
                         {
                             Id = 167,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2921),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8917),
                             EnglishText = "Again",
                             ImagePath = "images/word/questions/Again.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2921),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8917),
                             VietnameseText = "Lại lần nữa",
                             WordCategoryId = 12
                         },
                         new
                         {
                             Id = 168,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2923),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8920),
                             EnglishText = "How much",
                             ImagePath = "images/word/questions/How much.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2923),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8920),
                             VietnameseText = "Bao nhiêu tiền",
                             WordCategoryId = 12
                         },
                         new
                         {
                             Id = 169,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2925),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8923),
                             EnglishText = "What time",
                             ImagePath = "images/word/questions/WHat time.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2926),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8923),
                             VietnameseText = "Mấy giờ",
                             WordCategoryId = 12
                         },
                         new
                         {
                             Id = 170,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2928),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8927),
                             EnglishText = "What",
                             ImagePath = "images/word/questions/What.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2928),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8928),
                             VietnameseText = "Cái gì",
                             WordCategoryId = 12
                         },
                         new
                         {
                             Id = 171,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2930),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8930),
                             EnglishText = "When",
                             ImagePath = "images/word/questions/When.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2930),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8930),
                             VietnameseText = "Khi nào",
                             WordCategoryId = 12
                         },
                         new
                         {
                             Id = 172,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2932),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8933),
                             EnglishText = "Where",
                             ImagePath = "images/word/questions/Where.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2933),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8933),
                             VietnameseText = "Ở đâu",
                             WordCategoryId = 12
                         },
                         new
                         {
                             Id = 173,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2935),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8936),
                             EnglishText = "Which one",
                             ImagePath = "images/word/questions/Which one.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2935),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8936),
                             VietnameseText = "Cái nào",
                             WordCategoryId = 12
                         },
                         new
                         {
                             Id = 174,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2937),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8938),
                             EnglishText = "Who",
                             ImagePath = "images/word/questions/Who.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2937),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8939),
                             VietnameseText = "Ai",
                             WordCategoryId = 12
                         },
                         new
                         {
                             Id = 175,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2939),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8941),
                             EnglishText = "Why",
                             ImagePath = "images/word/questions/Why.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2940),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8942),
                             VietnameseText = "Tại sao",
                             WordCategoryId = 12
                         },
                         new
                         {
                             Id = 176,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2958),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8966),
                             EnglishText = "Above",
                             ImagePath = "images/word/relations/Above.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2959),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8967),
                             VietnameseText = "Ở trên",
                             WordCategoryId = 13
                         },
                         new
                         {
                             Id = 177,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2961),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8971),
                             EnglishText = "Behind",
                             ImagePath = "images/word/relations/Behind.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2962),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8971),
                             VietnameseText = "Phía sau",
                             WordCategoryId = 13
                         },
                         new
                         {
                             Id = 178,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2963),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8974),
                             EnglishText = "Below",
                             ImagePath = "images/word/relations/Below.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2964),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8974),
                             VietnameseText = "Ở dưới",
                             WordCategoryId = 13
                         },
                         new
                         {
                             Id = 179,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2966),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8977),
                             EnglishText = "Few",
                             ImagePath = "images/word/relations/Few.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2966),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8977),
                             VietnameseText = "Ít",
                             WordCategoryId = 13
                         },
                         new
                         {
                             Id = 180,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2968),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8979),
                             EnglishText = "Heavy",
                             ImagePath = "images/word/relations/Heavy.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2968),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8980),
                             VietnameseText = "Nặng",
                             WordCategoryId = 13
                         },
                         new
                         {
                             Id = 181,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2970),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8982),
                             EnglishText = "High",
                             ImagePath = "images/word/relations/High.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2971),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8983),
                             VietnameseText = "Cao",
                             WordCategoryId = 13
                         },
                         new
                         {
                             Id = 182,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2976),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8985),
                             EnglishText = "In front",
                             ImagePath = "images/word/relations/In front.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2977),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8986),
                             VietnameseText = "Phía trước",
                             WordCategoryId = 13
                         },
                         new
                         {
                             Id = 183,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2979),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8989),
                             EnglishText = "Inside",
                             ImagePath = "images/word/relations/Inside.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2979),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8990),
                             VietnameseText = "Ở trong",
                             WordCategoryId = 13
                         },
                         new
                         {
                             Id = 184,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2981),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8992),
                             EnglishText = "Large",
                             ImagePath = "images/word/relations/Large.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2981),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8993),
                             VietnameseText = "Lớn",
                             WordCategoryId = 13
                         },
                         new
                         {
                             Id = 185,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2983),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8995),
                             EnglishText = "Light",
                             ImagePath = "images/word/relations/Light.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2984),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8995),
                             VietnameseText = "Nhẹ",
                             WordCategoryId = 13
                         },
                         new
                         {
                             Id = 186,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2985),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8998),
                             EnglishText = "Long",
                             ImagePath = "images/word/relations/Long.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2986),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8998),
                             VietnameseText = "Dài",
                             WordCategoryId = 13
                         },
                         new
                         {
                             Id = 187,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2988),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9000),
                             EnglishText = "Low",
                             ImagePath = "images/word/relations/Low.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2988),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9001),
                             VietnameseText = "Thấp",
                             WordCategoryId = 13
                         },
                         new
                         {
                             Id = 188,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2990),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9003),
                             EnglishText = "Many",
                             ImagePath = "images/word/relations/Many.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2990),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9004),
                             VietnameseText = "Nhiều",
                             WordCategoryId = 13
                         },
                         new
                         {
                             Id = 189,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2992),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9006),
                             EnglishText = "Outside",
                             ImagePath = "images/word/relations/Outside.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2993),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9007),
                             VietnameseText = "Bên ngoài",
                             WordCategoryId = 13
                         },
                         new
                         {
                             Id = 190,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2995),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9009),
                             EnglishText = "Short",
                             ImagePath = "images/word/relations/Short.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2995),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9009),
                             VietnameseText = "Ngắn",
                             WordCategoryId = 13
                         },
                         new
                         {
                             Id = 191,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2997),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9012),
                             EnglishText = "Small",
                             ImagePath = "images/word/relations/Small.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2997),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9012),
                             VietnameseText = "Nhỏ",
                             WordCategoryId = 13
                         },
                         new
                         {
                             Id = 192,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2999),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9015),
                             EnglishText = "Thick",
                             ImagePath = "images/word/relations/Thick.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3000),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9015),
                             VietnameseText = "Dày",
                             WordCategoryId = 13
                         },
                         new
                         {
                             Id = 193,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3001),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9017),
                             EnglishText = "Thin",
                             ImagePath = "images/word/relations/Thin.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3002),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9018),
                             VietnameseText = "Mỏng",
                             WordCategoryId = 13
                         },
                         new
                         {
                             Id = 194,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3022),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9046),
                             EnglishText = "Afternoon",
                             ImagePath = "images/word/time/Afternoon.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3023),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9046),
                             VietnameseText = "Buổi chiều",
                             WordCategoryId = 14
                         },
                         new
                         {
                             Id = 195,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3025),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9049),
                             EnglishText = "Evening",
                             ImagePath = "images/word/time/Evening.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3025),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9049),
                             VietnameseText = "Buổi tối",
                             WordCategoryId = 14
                         },
                         new
                         {
                             Id = 196,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3027),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9052),
                             EnglishText = "Morning",
                             ImagePath = "images/word/time/Morning.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3028),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9052),
                             VietnameseText = "Buổi sáng",
                             WordCategoryId = 14
                         },
                         new
                         {
                             Id = 197,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3029),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9055),
                             EnglishText = "Night",
                             ImagePath = "images/word/time/Night.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3030),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9055),
                             VietnameseText = "Ban đêm",
                             WordCategoryId = 14
                         },
                         new
                         {
                             Id = 198,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3032),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9058),
                             EnglishText = "One Hour",
                             ImagePath = "images/word/time/One Hour.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3032),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9058),
                             VietnameseText = "Một giờ",
                             WordCategoryId = 14
                         },
                         new
                         {
                             Id = 199,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3034),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9060),
                             EnglishText = "Ten Minutes",
                             ImagePath = "images/word/time/Ten Minutes.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3034),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9061),
                             VietnameseText = "Mười phút",
                             WordCategoryId = 14
                         },
                         new
                         {
                             Id = 200,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3036),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9064),
                             EnglishText = "Thirty Minutes",
                             ImagePath = "images/word/time/Thidy Minutes.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3037),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9065),
                             VietnameseText = "Ba mươi phút",
                             WordCategoryId = 14
                         },
                         new
                         {
                             Id = 201,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3039),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9068),
                             EnglishText = "Today",
                             ImagePath = "images/word/time/Today.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3039),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9069),
                             VietnameseText = "Hôm nay",
                             WordCategoryId = 14
                         },
                         new
                         {
                             Id = 202,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3041),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9071),
                             EnglishText = "Tomorrow",
                             ImagePath = "images/word/time/Tomorrow.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3041),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9072),
                             VietnameseText = "Ngày mai",
                             WordCategoryId = 14
                         },
                         new
                         {
                             Id = 203,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3043),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9074),
                             EnglishText = "Yesterday",
                             ImagePath = "images/word/time/Yesterday.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3044),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9074),
                             VietnameseText = "Hôm qua",
                             WordCategoryId = 14
                         },
                         new
                         {
                             Id = 204,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3063),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9098),
                             EnglishText = "Ball",
                             ImagePath = "images/word/toys/Ball.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3063),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9098),
                             VietnameseText = "Bóng",
                             WordCategoryId = 15
                         },
                         new
                         {
                             Id = 205,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3065),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9101),
                             EnglishText = "Balloon",
                             ImagePath = "images/word/toys/Ballon.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3066),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9101),
                             VietnameseText = "Bóng bay",
                             WordCategoryId = 15
                         },
                         new
                         {
                             Id = 206,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3067),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9104),
                             EnglishText = "Bear",
                             ImagePath = "images/word/toys/Bear.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3068),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9104),
                             VietnameseText = "Gấu bông",
                             WordCategoryId = 15
                         },
                         new
                         {
                             Id = 207,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3071),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9107),
                             EnglishText = "Block",
                             ImagePath = "images/word/toys/Block.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3071),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9107),
                             VietnameseText = "Khối xếp hình",
                             WordCategoryId = 15
                         },
                         new
                         {
                             Id = 208,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3073),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9110),
                             EnglishText = "Board Game",
                             ImagePath = "images/word/toys/BoardGame.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3074),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9110),
                             VietnameseText = "Cờ bàn",
                             WordCategoryId = 15
                         },
                         new
                         {
                             Id = 209,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3075),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9114),
                             EnglishText = "Bubble",
                             ImagePath = "images/word/toys/Bubble.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3076),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9114),
                             VietnameseText = "Bong bóng xà phòng",
                             WordCategoryId = 15
                         },
                         new
                         {
                             Id = 210,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3078),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9117),
                             EnglishText = "Car",
                             ImagePath = "images/word/toys/Car.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3078),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9117),
                             VietnameseText = "Xe hơi",
                             WordCategoryId = 15
                         },
                         new
                         {
                             Id = 211,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3080),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9119),
                             EnglishText = "Clay",
                             ImagePath = "images/word/toys/Clay.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3080),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9120),
                             VietnameseText = "Đất nặn",
                             WordCategoryId = 15
                         },
                         new
                         {
                             Id = 212,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3082),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9122),
                             EnglishText = "Coloring",
                             ImagePath = "images/word/toys/Coloring.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3083),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9123),
                             VietnameseText = "Tô màu",
                             WordCategoryId = 15
                         },
                         new
                         {
                             Id = 213,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3085),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9125),
                             EnglishText = "Crayon",
                             ImagePath = "images/word/toys/Crayon.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3085),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9126),
                             VietnameseText = "Bút màu",
                             WordCategoryId = 15
                         },
                         new
                         {
                             Id = 214,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3087),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9128),
                             EnglishText = "Doll",
                             ImagePath = "images/word/toys/Doll.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3087),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9128),
                             VietnameseText = "Búp bê",
                             WordCategoryId = 15
                         },
                         new
                         {
                             Id = 215,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3089),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9131),
                             EnglishText = "Kite",
                             ImagePath = "images/word/toys/Kite.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3090),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9131),
                             VietnameseText = "Diều",
                             WordCategoryId = 15
                         },
                         new
                         {
                             Id = 216,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3092),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9134),
                             EnglishText = "Puzzle",
                             ImagePath = "images/word/toys/Puzzle.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3092),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9134),
                             VietnameseText = "Trò chơi ghép hình",
                             WordCategoryId = 15
                         },
                         new
                         {
                             Id = 217,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3094),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9137),
                             EnglishText = "Television",
                             ImagePath = "images/word/toys/Television.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3094),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9137),
                             VietnameseText = "Tivi",
                             WordCategoryId = 15
                         },
                         new
                         {
                             Id = 218,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3102),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9139),
                             EnglishText = "Toy",
                             ImagePath = "images/word/toys/Toy.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3102),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9140),
                             VietnameseText = "Đồ chơi",
                             WordCategoryId = 15
                         },
                         new
                         {
                             Id = 219,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3123),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9168),
                             EnglishText = "Airplane",
                             ImagePath = "images/word/vehicles/Airplane.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3124),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9168),
                             VietnameseText = "Máy bay",
                             WordCategoryId = 16
                         },
                         new
                         {
                             Id = 220,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3126),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9171),
                             EnglishText = "Bike",
                             ImagePath = "images/word/vehicles/Bike.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3126),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9171),
                             VietnameseText = "Xe đạp",
                             WordCategoryId = 16
                         },
                         new
                         {
                             Id = 221,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3128),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9174),
                             EnglishText = "Bus",
                             ImagePath = "images/word/vehicles/Bus.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3129),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9174),
                             VietnameseText = "Xe buýt",
                             WordCategoryId = 16
                         },
                         new
                         {
                             Id = 222,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3131),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9177),
                             EnglishText = "Car",
                             ImagePath = "images/word/vehicles/Car.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3131),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9177),
                             VietnameseText = "Xe hơi",
                             WordCategoryId = 16
                         },
                         new
                         {
                             Id = 223,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3134),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9179),
                             EnglishText = "Motorbike",
                             ImagePath = "images/word/vehicles/Motorbike.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3134),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9180),
                             VietnameseText = "Xe máy",
                             WordCategoryId = 16
                         },
                         new
                         {
                             Id = 224,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3136),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9182),
                             EnglishText = "Ship",
                             ImagePath = "images/word/vehicles/Ship.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3136),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9183),
                             VietnameseText = "Tàu thủy",
                             WordCategoryId = 16
                         },
                         new
                         {
                             Id = 225,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3152),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9204),
                             EnglishText = "Hug",
                             ImagePath = "images/word/want/Hug.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3153),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9204),
                             VietnameseText = "Ôm",
                             WordCategoryId = 17
                         },
                         new
                         {
                             Id = 226,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3155),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9207),
                             EnglishText = "I don't want",
                             ImagePath = "images/word/want/I don't want.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3155),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9207),
                             VietnameseText = "Tôi không muốn",
                             WordCategoryId = 17
                         },
                         new
                         {
                             Id = 227,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3157),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9210),
                             EnglishText = "I want",
                             ImagePath = "images/word/want/I want.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3158),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9210),
                             VietnameseText = "Tôi muốn",
                             WordCategoryId = 17
                         },
                         new
                         {
                             Id = 228,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3159),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9213),
                             EnglishText = "No",
                             ImagePath = "images/word/want/No.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3160),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9213),
                             VietnameseText = "Không",
                             WordCategoryId = 17
                         },
                         new
                         {
                             Id = 229,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3162),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9215),
                             EnglishText = "Sorry",
                             ImagePath = "images/word/want/Sorry.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3162),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9216),
                             VietnameseText = "Xin lỗi",
                             WordCategoryId = 17
                         },
                         new
                         {
                             Id = 230,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3164),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9218),
                             EnglishText = "Thank you",
                             ImagePath = "images/word/want/Thank you.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3164),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9219),
                             VietnameseText = "Cảm ơn",
                             WordCategoryId = 17
                         },
                         new
                         {
                             Id = 231,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3166),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9221),
                             EnglishText = "Yes",
                             ImagePath = "images/word/want/Yes.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(3167),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(9222),
                             VietnameseText = "Có",
                             WordCategoryId = 17
                         });
@@ -2860,171 +2873,171 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2206),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(7994),
                             EnglishName = "Actions",
                             ImagePath = "images/wordCategories/Actions.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2206),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(7995),
                             VietnameseName = "Hành Động"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2209),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(7998),
                             EnglishName = "Animals",
                             ImagePath = "images/wordCategories/Animals.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2209),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(7999),
                             VietnameseName = "Động Vật"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2212),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8001),
                             EnglishName = "BodyParts",
                             ImagePath = "images/wordCategories/BodyParts.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2212),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8002),
                             VietnameseName = "Bộ Phận Cơ Thể"
                         },
                         new
                         {
                             Id = 4,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2214),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8004),
                             EnglishName = "Clothes",
                             ImagePath = "images/wordCategories/Clothes.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2214),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8005),
                             VietnameseName = "Quần Áo"
                         },
                         new
                         {
                             Id = 5,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2216),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8007),
                             EnglishName = "Colors",
                             ImagePath = "images/wordCategories/Colors.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2217),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8007),
                             VietnameseName = "Màu Sắc"
                         },
                         new
                         {
                             Id = 6,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2218),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8009),
                             EnglishName = "Feeling",
                             ImagePath = "images/wordCategories/Feeling.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2219),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8010),
                             VietnameseName = "Cảm Xúc"
                         },
                         new
                         {
                             Id = 7,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2220),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8012),
                             EnglishName = "Food",
                             ImagePath = "images/wordCategories/Food.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2222),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8013),
                             VietnameseName = "Thức Ăn"
                         },
                         new
                         {
                             Id = 8,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2224),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8015),
                             EnglishName = "Fruits",
                             ImagePath = "images/wordCategories/Fruits.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2224),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8015),
                             VietnameseName = "Trái Cây"
                         },
                         new
                         {
                             Id = 9,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2226),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8018),
                             EnglishName = "Numbers",
                             ImagePath = "images/wordCategories/Numbers.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2226),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8019),
                             VietnameseName = "Con Số"
                         },
                         new
                         {
                             Id = 10,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2228),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8021),
                             EnglishName = "People",
                             ImagePath = "images/wordCategories/People.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2228),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8022),
                             VietnameseName = "Con Người"
                         },
                         new
                         {
                             Id = 11,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2230),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8024),
                             EnglishName = "Places",
                             ImagePath = "images/wordCategories/Places.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2231),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8024),
                             VietnameseName = "Địa Điểm"
                         },
                         new
                         {
                             Id = 12,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2232),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8027),
                             EnglishName = "Questions",
                             ImagePath = "images/wordCategories/Questions.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2233),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8028),
                             VietnameseName = "Câu Hỏi"
                         },
                         new
                         {
                             Id = 13,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2234),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8030),
                             EnglishName = "Relations",
                             ImagePath = "images/wordCategories/Relations.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2235),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8030),
                             VietnameseName = "Mối Quan Hệ"
                         },
                         new
                         {
                             Id = 14,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2236),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8033),
                             EnglishName = "Time",
                             ImagePath = "images/wordCategories/Time.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2237),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8033),
                             VietnameseName = "Thời Gian"
                         },
                         new
                         {
                             Id = 15,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2239),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8035),
                             EnglishName = "Toys",
                             ImagePath = "images/wordCategories/Toys.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2239),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8036),
                             VietnameseName = "Đồ Chơi"
                         },
                         new
                         {
                             Id = 16,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2241),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8038),
                             EnglishName = "Vehicles",
                             ImagePath = "images/wordCategories/Vehicles.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2241),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8038),
                             VietnameseName = "Phương Tiện"
                         },
                         new
                         {
                             Id = 17,
-                            CreatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2243),
+                            CreatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8041),
                             EnglishName = "Want",
                             ImagePath = "images/wordCategories/Want.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 2, 6, 10, 40, 37, 787, DateTimeKind.Local).AddTicks(2243),
+                            UpdatedAt = new DateTime(2025, 2, 10, 12, 41, 14, 107, DateTimeKind.Local).AddTicks(8041),
                             VietnameseName = "Mong Muốn"
                         });
                 });

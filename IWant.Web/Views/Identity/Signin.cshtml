@@ -11,48 +11,75 @@
     var providers = await signInManager.GetExternalAuthenticationSchemesAsync();
 }
 
-<div class="login-container signin-page">
-    <div class="login-card">
-        <h1>Sign In</h1>
-        <form style="padding:0 20px" asp-action="SignIn" method="post">
+<div class="d-flex login-container signin-page" style="justify-content: center; padding: 40px">
+    <div class="confetti-container"></div>
+    <div class="login-card" style="display: flex; border-radius: 10px; background-color: #fff; width: 50%; height: auto; align-items: stretch; overflow: hidden; z-index: 2">
 
-            <div style="margin-bottom: 15px;">
-                <input type="text" asp-for="Username" placeholder="Username" class="custom-input" />
-            </div>
-            <div style="margin-bottom: 15px; position: relative;">
-                <input type="password" asp-for="Password" id="passwordInput" placeholder="Password" class="custom-input" />
-                <span class="password-toggle" id="togglePassword">
-                    <i class="fa-regular fa-eye"></i>
-                </span>
-            </div>
-            <div style="text-align: right; margin-bottom: 20px;">
-                <a asp-action="ForgotPassword" style="font-size: 12px; color: #FEDA15; font-weight:bold;">Forgot password</a>
-            </div>
-            <div style="text-align: center; margin-bottom: 80px">
-                <button type="submit" style="width:200px; padding: 10px; background-color: #FEDA15; border: none; border-radius: 25px; color: #fff; font-size: 16px; font-weight: bold; cursor: pointer;margin:0 auto;">SIGN IN</button>
-            </div>
-        </form>
+        <div style="flex: 4; text-align: left;">
+            <img src="/images/signInBG.svg" alt="Sign In Illustration"
+                 style="width: 125%; border-radius: 10px 0 0 10px;" />
+        </div>
 
-        <p style="text-align: center; margin: 15px 0; color: #000;">or Continue with</p>
+        <div style="flex: 4; display: flex; flex-direction: column; justify-content: end; margin-left: 70px;">
+            <form asp-action="SignIn" method="post" style="margin-left: 50px; margin-bottom: 24px; margin-right:20px">
+                <h1 style="font-size: 32px; margin-top: 20px; margin-bottom: 30px; text-align: center;">Sign In</h1>
+                <div style="margin-bottom: 20px;">
+                    <input type="text" asp-for="Username" placeholder="Username" class="custom-input" style="width: 100%; padding: 10px;" />
+                </div>
+                <div style="margin-bottom: 20px; position: relative;">
+                    <input type="password" asp-for="Password" id="passwordInput" placeholder="Password" class="custom-input" style="width: 100%; padding: 10px;" />
+                    <span class="password-toggle" id="togglePassword" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+                        <i class="fa-regular fa-eye"></i>
+                    </span>
+                </div>
+                <div style="text-align: right; margin-bottom: 20px;">
+                    <a asp-action="ForgotPassword" style="font-size: 14px; color: #9B30FF; font-weight:400;">Forgot password</a>
+                </div>
+                <div style="text-align: center; margin-bottom: 30px">
+                    <button type="submit" style="width:250px; padding: 10px; background-color: #FEDA15; border: none; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 400; cursor: pointer;">Sign In</button>
+                </div>
+                <div>
+                    <p style="text-align: center; font-size: 14px;">
+                        Don’t have an account? <a asp-action="Signup" style="color: #9B30FF; font-weight:400; font-size: 14px">Sign Up</a>
+                    </p>
 
-        <form asp-action="ExternalLogin" method="post">
-            <div style="text-align: center; margin-bottom: 20px;">
-                @foreach (var provider in providers)
-                {
-                    <button type="submit" name="provider" value="@provider.Name" style=" background-color: #1877F2; color: #fff; border: none; border-radius: 5px; padding: 10px 20px; font-size: 14px; cursor: pointer;">
-                        <i class="fa-brands fa-facebook"></i> Continue with @provider.DisplayName
-                    </button>
-                }
+                </div>
+            </form>
+            <div class="endMascot" style="display: flex; justify-content: flex-end;">
+                <img src="~/images/mascot-1.png" style="width: 30%;" />
             </div>
-        </form>
-
-        <div class="d-flex justify-content-between">
-            <p style="text-align: center; font-size: 12px; margin:auto 0; ">
-                Don’t have an account? <a asp-action="Signup" style="color: #FEDA15;font-weight:bold">Sign Up</a>
-            </p>
-            <img src="~/images/mascot-1.png" alt="Alternate Text" />
         </div>
     </div>
 </div>
 
 
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const confettiContainer = document.querySelector('.confetti-container');
+
+        function createConfetti() {
+            const confetti = document.createElement('div');
+            confetti.classList.add('confetti');
+            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.backgroundColor = getRandomColor();
+            confetti.style.animationDuration = Math.random() * 2 + 3 + 's';
+            confetti.style.width = Math.random() * 5 + 2 + 'px';
+            confetti.style.height = Math.random() * 25 + 15 + 'px';
+
+            confettiContainer.appendChild(confetti);
+
+            setTimeout(() => confetti.remove(), 5000);
+        }
+
+        function getRandomColor() {
+            const colors = [
+                '#FFD700', '#FF4500', '#1E90FF', '#32CD32', '#FF69B4', '#8A2BE2',
+                '#FF6347', '#00FA9A', '#9400D3', '#FF7F50', '#00CED1', '#FFB6C1',
+                '#4B0082', '#ADFF2F'
+            ];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+
+        setInterval(createConfetti, 200);
+    });
+</script>

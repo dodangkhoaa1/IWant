@@ -1,19 +1,137 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "VerifyOtp";
     Layout = "~/Views/Shared/_Layout.cshtml";
 
     var email = TempData["Email"].ToString();
 }
 
-<h1>VerifyOtp</h1>
-
-<form asp-action="VerifyOtp" method="post">
-    <input type="hidden" name="email" value="@email"/>
-    <div class="form-group">
-        <label >Otp</label>
-        <input type="text" name="otp" class="form-control" />
+<div class="d-flex verify-container" style="display: flex; justify-content: center; align-items: center; padding: 40px; height: 100vh;;background-color: #FEDA15;">
+    <div class="confetti-container"></div>
+    <div class="verify-card" style="display: flex; border-radius: 10px; background-color: #fff; height: auto; align-items: center; overflow: hidden; z-index: 2; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); padding: 20px;">
+        <form asp-action="VerifyOtp" method="post" style="text-align: center; display: flex; flex-direction: column; align-items: center; width: 100%;" id="otpForm">
+            <h1 style="font-size: 32px; margin-top: 20px;">Enter Verification OTP</h1>
+            <p style="margin-bottom: 10px; color: #555; font-size: 14px; margin-bottom: 40px;">
+                We've sent you a verification code in your email.
+                <br />
+                This OTP will expire in <span id="timer" style="font-weight: bold; color: #9B30FF">2:00</span>
+            </p>
+            <input type="hidden" name="email" value="@email" />
+            <input type="hidden" name="otp" id="otpInput" value="" />
+            <div class="form-group" style="display: flex; justify-content: center; gap: 10px; margin-bottom: 30px;">
+                <input type="tel" maxlength="1" class="otp-input" style="width: 50px; height: 50px; font-size: 24px; text-align: center; border: 1px solid #ddd; border-radius: 5px;" />
+                <input type="tel" maxlength="1" class="otp-input" style="width: 50px; height: 50px; font-size: 24px; text-align: center; border: 1px solid #ddd; border-radius: 5px;" />
+                <input type="tel" maxlength="1" class="otp-input" style="width: 50px; height: 50px; font-size: 24px; text-align: center; border: 1px solid #ddd; border-radius: 5px;" />
+                <input type="tel" maxlength="1" class="otp-input" style="width: 50px; height: 50px; font-size: 24px; text-align: center; border: 1px solid #ddd; border-radius: 5px;" />
+            </div>
+            <button type="submit" id="verifyOtpButton" style="width: 70%; padding: 10px; margin-bottom: 10px; background-color: #FEDA15; border: none; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 400; cursor: pointer;" class="btn btn-primary">Verify OTP</button>
+            <button type="button" id="requestOtpButton" disabled style="width: 70%; padding: 10px; margin-top: 10px; background-color: #ddd; border: none; border-radius: 10px; color: #888; font-size: 16px; font-weight: 400; cursor: not-allowed;">Request new OTP</button>
+        </form>
     </div>
+</div>
 
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+
+
+@* each square is a number only and concat 4 number into an otp code *@
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const inputs = document.querySelectorAll(".otp-input");
+        const otpInputHidden = document.getElementById("otpInput");
+
+        inputs.forEach((input, index) => {
+            input.addEventListener("input", (event) => {
+                const value = event.target.value;
+                if (!/^\d$/.test(value)) {
+                    event.target.value = "";
+                    return;
+                }
+                if (value.length === 1 && index < inputs.length - 1) {
+                    inputs[index + 1].focus();
+                }
+            });
+
+            input.addEventListener("keydown", (event) => {
+                if (event.key === "Backspace" && !input.value && index > 0) {
+                    inputs[index - 1].focus();
+                }
+            });
+        });
+
+        document.getElementById("otpForm").addEventListener("submit", function (event) {
+            let otp = "";
+            inputs.forEach((input) => {
+                otp += input.value;
+            });
+            otpInputHidden.value = otp;
+        });
+
+        inputs[0].focus();
+    });
+</script>
+
+@* confetti background animation *@
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const confettiContainer = document.querySelector('.confetti-container');
+
+        function createConfetti() {
+            const confetti = document.createElement('div');
+            confetti.classList.add('confetti');
+            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.backgroundColor = getRandomColor();
+            confetti.style.animationDuration = Math.random() * 2 + 3 + 's';
+            confetti.style.width = Math.random() * 5 + 2 + 'px';
+            confetti.style.height = Math.random() * 25 + 15 + 'px';
+
+            confettiContainer.appendChild(confetti);
+
+            setTimeout(() => confetti.remove(), 5000);
+        }
+
+        function getRandomColor() {
+            const colors = [
+                '#FFD700', '#FF4500', '#1E90FF', '#32CD32', '#FF69B4', '#8A2BE2',
+                '#FF6347', '#00FA9A', '#9400D3', '#FF7F50', '#00CED1', '#FFB6C1',
+                '#4B0082', '#ADFF2F'
+            ];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+
+        setInterval(createConfetti, 200);
+    });
+</script>
+
+@* countdown timer and button disable relied on timer*@
+<script>
+    let timerElement = document.getElementById("timer");
+    let requestOtpButton = document.getElementById("requestOtpButton");
+    let verifyOtpButton = document.getElementById("verifyOtpButton");
+    let timeLeft = 120;
+
+    function startCountdown() {
+        const countdown = setInterval(() => {
+            let minutes = Math.floor(timeLeft / 60);
+            let seconds = timeLeft % 60;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+            timerElement.textContent = `${minutes}:${seconds}`;
+            if (timeLeft <= 0) {
+                clearInterval(countdown);
+                timerElement.textContent = "Expired";
+                requestOtpButton.disabled = false;
+                requestOtpButton.style.backgroundColor = "#FEDA15";
+                requestOtpButton.style.color = "#fff";
+                requestOtpButton.style.cursor = "pointer";
+                verifyOtpButton.disabled = true;
+                verifyOtpButton.style.backgroundColor = "#ddd";
+                verifyOtpButton.style.color = "#888";
+                verifyOtpButton.style.cursor = "not-allowed";
+            }
+            timeLeft--;
+        }, 1000);
+    }
+
+    startCountdown();
+
+</script>
+
+
+

@@ -4,7 +4,7 @@
     ViewData["Title"] = "Update Profile";
 }
 <style>
-    .profile-header label:hover img{
+    .profile-header label:hover img {
         opacity: 0.5;
     }
 </style>
@@ -36,26 +36,65 @@
             </div>
         </div>
 
-        <div class="form-group">
-            <label asp-for="FullName"></label>
-            <input asp-for="FullName" class="form-control" />
-            <span asp-validation-for="FullName" class="text-danger"></span>
-        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="FullName"></label>
+                    <input asp-for="FullName" class="form-control" />
+                    <span asp-validation-for="FullName" class="text-danger"></span>
+                </div>
 
-        <div class="form-group">
-            <label asp-for="Birthday"></label>
-            <input asp-for="Birthday" type="date" class="form-control" />
-            <span asp-validation-for="Birthday" class="text-danger"></span>
-        </div>
+                <div class="form-group">
+                    <label asp-for="Birthday"></label>
+                    <input asp-for="Birthday" type="date" class="form-control" />
+                    <span asp-validation-for="Birthday" class="text-danger"></span>
+                </div>
 
-        <div class="form-group">
-            <label asp-for="Gender"></label>
-            <select asp-for="Gender" class="form-control">
-                <option selected="@(Model.Gender==null)" value="">Other</option>
-                <option selected="@(Model.Gender==true)" value="true">Male</option>
-                <option selected="@(Model.Gender==false)" value="false">Female</option>
-            </select>
-            <span asp-validation-for="Gender" class="text-danger"></span>
+                <div class="form-group">
+                    <label asp-for="Gender"></label>
+                    <select asp-for="Gender" class="form-control">
+                        <option selected="@(Model.Gender==null)" value="">Other</option>
+                        <option selected="@(Model.Gender==true)" value="true">Male</option>
+                        <option selected="@(Model.Gender==false)" value="false">Female</option>
+                    </select>
+                    <span asp-validation-for="Gender" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="PhoneNumber"></label>
+                    <input asp-for="PhoneNumber" type="text" class="form-control" />
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="ChildName"></label>
+                    <input asp-for="ChildName" class="form-control" />
+                    <span asp-validation-for="ChildName" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="ChildNickName"></label>
+                    <input asp-for="ChildNickName" class="form-control" />
+                    <span asp-validation-for="ChildNickName" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="ChildBirthday"></label>
+                    <input asp-for="ChildBirthday" type="date" class="form-control" />
+                    <span asp-validation-for="ChildBirthday" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="ChildGender"></label>
+                    <select asp-for="ChildGender" class="form-control">
+                        <option selected="@(Model.ChildGender==null)" value="">Other</option>
+                        <option selected="@(Model.ChildGender==true)" value="true">Male</option>
+                        <option selected="@(Model.ChildGender==false)" value="false">Female</option>
+                    </select>
+                    <span asp-validation-for="ChildGender" class="text-danger"></span>
+                </div>
+            </div>
         </div>
 
         <button type="submit" class="btn btn-primary">Update</button>

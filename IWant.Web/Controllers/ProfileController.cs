@@ -33,11 +33,18 @@ namespace IWant.Web.Controllers
 
             var model = new UpdateProfileViewModel
             {
+                //Parent
                 Email = user.Email,
                 FullName = user.FullName,
                 Birthday = user.Birthday,
                 Gender = user.Gender,
                 ImageUrl = user.ImageUrl,
+                PhoneNumber = user.PhoneNumber,
+                //Child
+                ChildName = user.ChildName,
+                ChildNickName = user.ChildNickName,
+                ChildGender = user.ChildGender,
+                ChildBirthday = user.ChildBirthday,
 
             };
 
@@ -121,6 +128,12 @@ namespace IWant.Web.Controllers
             user.Birthday = model.Birthday;
             user.Gender = model.Gender;
             user.UpdatedAt = DateTime.Now;
+            user.PhoneNumber = model.PhoneNumber;
+
+            user.ChildName = model.ChildName;
+            user.ChildNickName = model.ChildNickName;
+            user.ChildGender = model.ChildGender;
+            user.ChildBirthday = model.ChildBirthday;
 
             if (model.Image != null && model.Image.Length > 0)
             {

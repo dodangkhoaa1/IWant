@@ -19,6 +19,10 @@
             </div>
 
             <div style="margin-bottom: 15px">
+                <input type="text" asp-for="PhoneNumber" placeholder="Phone Number" class="custom-input" />
+            </div>
+
+            <div style="margin-bottom: 15px">
                 <input type="date" asp-for="Birthday" placeholder="Birthday" class="custom-input" />
             </div>
 
@@ -37,6 +41,34 @@
 
             <div style="margin-bottom: 15px;">
                 <input type="password" asp-for="ConfirmPassword" placeholder="Re-Password" class="custom-input" />
+            </div>
+
+            @*Child Information*@
+
+            <div style="margin-bottom: 15px;">
+                <input type="text" asp-for="ChildName" placeholder="Child Name" class="custom-input" />
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <input type="text" asp-for="ChildNickName" placeholder="Child Nick Name" class="custom-input" />
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <input type="date" asp-for="ChildBirthday" class="custom-input" />
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <select asp-for="ChildGender" class="custom-input">
+                    <option value="">Other</option>
+                    <option value="true">Male</option>
+                    <option value="false">Female</option>
+                </select>
+                <span asp-validation-for="ChildGender" class="text-danger"></span>
+            </div>
+
+            <div class="d-flex">
+                <input type="checkbox" name="Term&Condition" />
+                <p>I accept with <a target="_blank" asp-controller="Home" asp-action="Privacy">Term & Condition</a></p>
             </div>
 
             <input type="hidden" asp-for="Role" class="form-control" value="Member" />

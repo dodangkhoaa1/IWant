@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace IWant.Web.Models
 {
@@ -23,5 +24,17 @@ namespace IWant.Web.Models
 
         [Required]
         public string Role { get; set; }
+        [Required]
+        public string? PhoneNumber { get; set; }
+
+        //Child information
+        [DisplayName("Child Name")]
+        public string? ChildName { get; set; }
+        [DisplayName("Child Nick Name")]
+        public string? ChildNickName { get; set; }
+        [DisplayName("Child Birthday")]
+        public DateOnly ChildBirthday { get; set; }
+        [DisplayName("Child Gender")]
+        public bool? ChildGender { get; set; }
     }
 }

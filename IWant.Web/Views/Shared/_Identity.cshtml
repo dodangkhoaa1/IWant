@@ -1,32 +1,34 @@
 ﻿@{
     var loggedIn = User.Identity.IsAuthenticated;
     var isAdmin = User.IsInRole("Admin");
-    var role ="";
-    if(isAdmin){
-        role = "(Admin)"; 
+    var role = "";
+    if (isAdmin)
+    {
+        role = "(Admin)";
     }
-    else {
+    else
+    {
         role = "(Member)";
     }
 }
 @if (loggedIn)
 {
     <li class="nav-item">
-        <a class="nav-link text-dark" asp-controller="Identity" asp-action="Signout">Sign out</a>
+        <a class="nav-link text-dark" asp-controller="Identity" asp-action="Signout">Sign Out</a>
     </li>
     <li style="margin: auto 0" class="nav-item">
         <a class="nav-link text-dark" asp-controller="Profile" asp-action="UpdateProfile">
             <i class="fa-regular fa-user"></i>
-            </a>
-        
+        </a>
+
     </li>
-}   
+}
 else
 {
     <li class="nav-item">
-        <a class="nav-link text-dark" asp-controller="Identity" asp-action="Signup">Sign up</a> 
+        <a class="nav-link text-dark" asp-controller="Identity" asp-action="Signin">Sign In</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link text-dark" asp-controller="Identity" asp-action="Signin">Sign in</a>
+        <a class="nav-link text-dark" asp-controller="Identity" asp-action="Signup">Sign Up</a>
     </li>
 }
