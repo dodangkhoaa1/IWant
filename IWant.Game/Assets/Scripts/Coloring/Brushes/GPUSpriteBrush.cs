@@ -8,7 +8,7 @@ public class GPUSpriteBrush : MonoBehaviour
     public static GPUSpriteBrush instance;
 
     [Header(" Elements ")]
-    [SerializeField] private Transform spriteRenderersParent;
+    private Transform spriteRenderersParent;
     private SpriteRenderer currentSpriteRenderer;
 
     [Header(" Settings ")]
@@ -48,6 +48,7 @@ public class GPUSpriteBrush : MonoBehaviour
     {
         // Set the target frame rate for the application
         Application.targetFrameRate = 60;
+        spriteRenderersParent = GameObject.FindWithTag("PictureToColor").transform;
     }
 
     void Update()

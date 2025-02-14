@@ -10,6 +10,7 @@ Library: D:\fpt\SP25\SEP\MainProject\IWant\IWant.Game\Temp\BurstOutput\tempburst
 --assembly-defines=UnityEngine;
 --assembly-defines=Assembly-CSharp;
 --assembly-defines=Unity.2D.IK.Runtime;
+--assembly-defines=NativeGallery.Runtime;
 --assembly-defines=Unity.RenderPipelines.Core.Runtime;
 --assembly-defines=Unity.ResourceManager;
 --assembly-defines=Unity.ScriptableBuildPipeline;
@@ -118,6 +119,7 @@ Library: D:\fpt\SP25\SEP\MainProject\IWant\IWant.Game\Temp\BurstOutput\tempburst
 --assembly-defines=UnityEngine;
 --assembly-defines=Assembly-CSharp;
 --assembly-defines=Unity.2D.IK.Runtime;
+--assembly-defines=NativeGallery.Runtime;
 --assembly-defines=Unity.RenderPipelines.Core.Runtime;
 --assembly-defines=Unity.ResourceManager;
 --assembly-defines=Unity.ScriptableBuildPipeline;

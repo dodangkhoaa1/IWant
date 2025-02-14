@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 60a68c44ec18ba94d8bba702d215b105
+guid: 7851fdaf36ebac742972453ae89910c7
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 150
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -110,106 +110,106 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: rabbit_0
+      name: Rabbit_0
       rect:
         serializedVersion: 2
-        x: 81
-        y: 203
-        width: 209
-        height: 286
+        x: 7
+        y: 205
+        width: 219
+        height: 302
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d5ee2a6071ec1b84ca934f1655eec486
-      internalID: 985280487
+      spriteID: 4b43cf006a9197347a4a7429447b5c6f
+      internalID: 1462496989
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rabbit_1
+      name: Rabbit_1
       rect:
         serializedVersion: 2
-        x: 387
-        y: 349
-        width: 85
-        height: 118
+        x: 287
+        y: 346
+        width: 89
+        height: 125
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c7727df5ad570044ea63bc7c0affba1f
-      internalID: -251531824
+      spriteID: 7e5588010393a5e4a8893358809cbafd
+      internalID: 2145445961
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rabbit_2
+      name: Rabbit_2
       rect:
         serializedVersion: 2
-        x: 296
-        y: 236
-        width: 82
-        height: 95
+        x: 437
+        y: 425
+        width: 48
+        height: 69
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8ef7ef51f63b1114b944f84aadebc738
-      internalID: -37309126
+      spriteID: 2e8da12cd73ad7543a68a1e95000a608
+      internalID: -1905487075
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rabbit_3
+      name: Rabbit_3
       rect:
         serializedVersion: 2
-        x: 156
-        y: 0
-        width: 42
-        height: 66
+        x: 39
+        y: 34
+        width: 78
+        height: 98
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e7e46e91f72f96743bb623f884323efd
-      internalID: 1849958326
+      spriteID: 9c087943fe0460a48ae50dc7ea261000
+      internalID: -951262372
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rabbit_4
+      name: Rabbit_4
       rect:
         serializedVersion: 2
-        x: 212
-        y: 8
-        width: 300
-        height: 200
+        x: 184
+        y: 5
+        width: 323
+        height: 210
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 021d6957827c62b43a02e75f83fe55cc
-      internalID: -130105225
+      spriteID: 2d778088ad8e8e64ca43bae516235b9c
+      internalID: 683186701
       vertices: []
       indices: 
       edges: []
@@ -225,11 +225,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      rabbit_0: 985280487
-      rabbit_1: -251531824
-      rabbit_2: -37309126
-      rabbit_3: 1849958326
-      rabbit_4: -130105225
+      Rabbit_0: 1462496989
+      Rabbit_1: 2145445961
+      Rabbit_2: -1905487075
+      Rabbit_3: -951262372
+      Rabbit_4: 683186701
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

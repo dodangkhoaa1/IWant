@@ -14,4 +14,8 @@ public class SceneManagement : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+
+    public void ReturnMenu(){
+        SceneManager.LoadScene(SceneName.MenuColor.ToString());
+    }
 }

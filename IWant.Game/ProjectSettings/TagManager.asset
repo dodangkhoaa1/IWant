@@ -6,6 +6,7 @@ TagManager:
   tags:
   - AudioSource
   - PhraseWord
+  - PictureToColor
   layers:
   - Default
   - TransparentFX

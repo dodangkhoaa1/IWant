@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
-#nullable enable
 public class AudioManager : MonoBehaviour
 {
     [Header("Elements")]
@@ -12,7 +11,7 @@ public class AudioManager : MonoBehaviour
     [Header("Sounds")]
     [SerializeField] private AudioClip backgroundMusic;
 
-    public static AudioManager? instance { get; private set; }
+    public static AudioManager instance { get; private set; }
 
     private void Awake()
     {
