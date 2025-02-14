@@ -25,4 +25,6 @@ public class PictureManagement : MonoBehaviour
         GameObject spawnedPicture = Instantiate(picturePrefab, spawnPosition, Quaternion.identity, pictureContainer);
         spawnedPicture.tag = "PictureToColor";
     }
+
+
 }
