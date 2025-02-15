@@ -4,16 +4,20 @@ using System.IO;
 using UnityEngine.UI;
 using UnityEngine.Android;
 using EasyUI.Toast;
-using System.Drawing;
 
 public class CaptureManager : MonoBehaviour
 {
     public Camera captureCamera; // Camera used to capture GameObject Paper
     public Transform paperObject;
+
+[Header("Watermark Settings")]
+    public Sprite waterMark;
+    [SerializeField] float alphaScale = 0.3f; // Độ trong suốt của watermark (1.0 = không trong suốt, 0.0 = hoàn toàn trong suốt)
+    [SerializeField] int percentOfWatermark = 30;
+
     private int imageWidth = 1920;
     private int imageHeight = 1080;
-    // Bán kính bo góc (pixel). Có thể chỉnh trong Inspector
-    public float cornerRadius = 50f;
+
 
     private void Start()
     {
@@ -95,7 +99,14 @@ public class CaptureManager : MonoBehaviour
         captureCamera.targetTexture = null;
         RenderTexture.active = null;
         Destroy(renderTexture);
-        // 6) Lưu ảnh
+
+        //6 them water mark
+        if (waterMark != null)
+        {
+            Texture2D watermarkTex = SpriteToTexture2D(waterMark);
+            screenshot = AddWatermark(screenshot, watermarkTex);
+        }
+        // 7) Lưu ảnh
         SaveImageToGallery(screenshot);
     }
     private void SaveImageToGallery(Texture2D image)
@@ -121,6 +132,65 @@ public class CaptureManager : MonoBehaviour
         Debug.Log("Image saved to: " + savePath);
 #endif
         Toast.Show("Save successfully!", 1.5f, ToastColor.Green, ToastPosition.BottomCenter);
+    }
+
+    private Texture2D SpriteToTexture2D(Sprite sprite)
+    {
+        Texture2D texture = new Texture2D((int)sprite.rect.width, (int)sprite.rect.height);
+        Color[] pixels = sprite.texture.GetPixels((int)sprite.rect.x, (int)sprite.rect.y, (int)sprite.rect.width, (int)sprite.rect.height);
+        texture.SetPixels(pixels);
+        texture.Apply();
+        return texture;
+    }
+    private Texture2D AddWatermark(Texture2D baseImage, Texture2D watermark)
+    {
+        int margin = 20; // Khoảng cách từ góc dưới phải
+       
+
+        // Tính toán kích thước watermark dựa trên chiều rộng 20% ảnh đã cắt
+        int newWidth = baseImage.width * percentOfWatermark / 100; // 20% của ảnh gốc
+        float aspectRatio = (float)watermark.height / watermark.width; // Giữ nguyên tỷ lệ
+        int newHeight = Mathf.RoundToInt(newWidth * aspectRatio); // Tính chiều cao dựa vào tỷ lệ
+
+        // Resize watermark
+        Texture2D resizedWatermark = ResizeTexture(watermark, newWidth, newHeight);
+
+        // Vị trí góc dưới phải
+        int posX = baseImage.width - newWidth - margin;
+        int posY = margin;
+
+        Color[] watermarkPixels = resizedWatermark.GetPixels();
+        Color[] basePixels = baseImage.GetPixels(posX, posY, newWidth, newHeight);
+
+        for (int i = 0; i < watermarkPixels.Length; i++)
+        {
+            Color wmColor = watermarkPixels[i];
+            if (wmColor.a > 0.1f) // Chỉ áp dụng pixel có alpha > 0.1
+            {
+                wmColor.a *= alphaScale; // Giảm độ đậm của watermark
+                basePixels[i] = Color.Lerp(basePixels[i], wmColor, wmColor.a);
+            }
+        }
+
+        baseImage.SetPixels(posX, posY, newWidth, newHeight, basePixels);
+        baseImage.Apply();
+        return baseImage;
+    }
+
+
+    private Texture2D ResizeTexture(Texture2D source, int newWidth, int newHeight)
+    {
+        RenderTexture rt = new RenderTexture(newWidth, newHeight, 24);
+        RenderTexture.active = rt;
+
+        Graphics.Blit(source, rt);
+        Texture2D result = new Texture2D(newWidth, newHeight, TextureFormat.RGBA32, false);
+        result.ReadPixels(new Rect(0, 0, newWidth, newHeight), 0, 0);
+        result.Apply();
+
+        RenderTexture.active = null;
+        rt.Release();
+        return result;
     }
 
 
