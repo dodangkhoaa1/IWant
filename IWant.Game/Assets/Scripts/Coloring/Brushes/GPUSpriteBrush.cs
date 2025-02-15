@@ -10,9 +10,10 @@ public class GPUSpriteBrush : MonoBehaviour
     [Header(" Elements ")]
     private Transform spriteRenderersParent;
     private SpriteRenderer currentSpriteRenderer;
+    [SerializeField] private BrushSizeManager brushSizeManager;
 
     [Header(" Settings ")]
-    [SerializeField] private Color brushColor;
+    [SerializeField] private Color brushColor = Color.green;
     [Range(0, 2)]
     [SerializeField] private float brushSize;
     [SerializeField] private Material brushMaterial;
@@ -204,6 +205,8 @@ public class GPUSpriteBrush : MonoBehaviour
     public void SetColor(Color color)
     {
         this.brushColor = color;
+        brushSizeManager.selectedColor = color;
+        brushSizeManager.UpdateSelectedBrushColor(color);
     }
 
     public void SetBrush(BrushData brushData)

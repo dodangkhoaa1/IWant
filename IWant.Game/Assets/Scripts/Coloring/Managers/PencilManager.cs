@@ -13,11 +13,17 @@ public class PencilManager : MonoBehaviour
     [SerializeField] private Color[] colors;
     private PencilContainer previousPencilContainer;
 
-    // Start is called before the first frame update
     void Start()
     {
         CreatePencils();
+        if (colors.Length > 0)
+        {
+            PencilContainer firstPencilContainer = pencilContainersParent.GetChild(0).GetComponent<PencilContainer>();
+            PencilContainerClickedCallback(firstPencilContainer);
+            
+        }
     }
+
 
     // Update is called once per frame
     void Update()
@@ -37,11 +43,14 @@ public class PencilManager : MonoBehaviour
     {
         PencilContainer pencilContainerInstance = Instantiate(pencilContainerPrefab, pencilContainersParent);
         pencilContainerInstance.Configure(color, this);
+        
+
+
     }
 
     internal void PencilContainerClickedCallback(PencilContainer pencilContainer)
     {
-        if (previousPencilContainer != null && previousPencilContainer == pencilContainer) return; 
+        if (previousPencilContainer != null && previousPencilContainer == pencilContainer) return;
         pencilContainer.Select();
 
         //Unselect previous pencil container
