@@ -9,7 +9,6 @@ public class GreetingUser : MonoBehaviour
 {
     [SerializeField] private LocalizedString localGreeting;
     [SerializeField] private TextMeshProUGUI textGreeting;
-    [SerializeField] private Animator animator;
     // Start is called before the first frame update
     void Start()
     {

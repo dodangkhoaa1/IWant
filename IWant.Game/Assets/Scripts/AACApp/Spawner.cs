@@ -30,6 +30,11 @@ public class AACWordSpawner : MonoBehaviour
     private PhraseBuild phraseBuild;
     private Button currentCategoryButton;
 
+    private void Awake()
+    {
+        Screen.orientation = ScreenOrientation.Portrait;
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

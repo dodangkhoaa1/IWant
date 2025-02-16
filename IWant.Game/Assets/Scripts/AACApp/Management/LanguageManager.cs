@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Localization.Settings;
+using UnityEngine.SceneManagement;
 
 public class LanguageManager : MonoBehaviour
 {
@@ -12,19 +13,28 @@ public class LanguageManager : MonoBehaviour
     }
     private bool active = false;
 
-    public void ChangeToEnglish()
+    public void ChangeToEnglish(bool is_reload = false)
     {
-        ChangeLocal(0);
+        StartCoroutine(ChangeLocalAndReload(0, is_reload));
     }
-    public void ChangeToVietnamese()
+    public void ChangeToVietnamese(bool is_reload = false)
     {
-        ChangeLocal(1);
+        StartCoroutine(ChangeLocalAndReload(1, is_reload));
     }
 
-    private void ChangeLocal(int localeID)
+    private IEnumerator ChangeLocalAndReload(int localeID, bool is_reload)
     {
-        if (active) return;
-        StartCoroutine(SetLocale(localeID));
+        yield return ChangeLocal(localeID);
+        if (is_reload)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+    }
+
+    private IEnumerator ChangeLocal(int localeID)
+    {
+        if (active) yield break;
+        yield return SetLocale(localeID);
     }
 
     IEnumerator SetLocale(int _localeID)

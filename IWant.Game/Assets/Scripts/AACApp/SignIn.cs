@@ -16,7 +16,10 @@ public class SignIn : MonoBehaviour
 
     public Button submitButton;
     private string toastString;
-
+    private void Awake()
+    {
+        Screen.orientation = ScreenOrientation.Portrait;
+    }
     public void CallSignIn()
     {
         StartCoroutine(SignInMethod());

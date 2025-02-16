@@ -8,8 +8,12 @@ public class PictureManagement : MonoBehaviour
 
     private void Awake()
     {
-        SpawnPicture();
         SetLandscapeOrientation();
+        
+    }
+    private void Start()
+    {
+        SpawnPicture();
     }
 
     private void SetLandscapeOrientation()

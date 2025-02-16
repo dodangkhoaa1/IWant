@@ -154,7 +154,9 @@ public class TextToSpeech : MonoBehaviour
         {
             AudioManager.instance.PlaySFX(clip);
             Debug.Log("Audio is now playing!");
-            yield return new WaitForSeconds(clip.length);
+            //yield return new WaitForSeconds(clip.length);
+            yield return new WaitForSecondsRealtime(clip.length); // Use WaitForSecondsRealtime to avoid delays
+
         }
         else
         {
