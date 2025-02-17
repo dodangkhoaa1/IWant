@@ -12,9 +12,9 @@ namespace IWant.API.Controllers
     public class UsersController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly SignInManager<User> _signInManager;
 
-        public UsersController(ApplicationDbContext context, SignInManager<IdentityUser> signInManager)
+        public UsersController(ApplicationDbContext context, SignInManager<User> signInManager)
         {
 
             _context = context;
