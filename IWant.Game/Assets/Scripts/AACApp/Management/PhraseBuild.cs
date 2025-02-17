@@ -204,7 +204,6 @@ public class PhraseBuild : MonoBehaviour
                 Vector2 currentButtonPosition = buttonInitialPositions[button.GetInstanceID()];
                 Vector2 anotherButtonPosition = buttonInitialPositions[anotherButton.GetInstanceID()];
 
-                //LeanTween.moveLocal(button, anotherButtonPosition, transitionTime).setEase(LeanTweenType.easeOutQuad);
                 LeanTween.moveLocal(anotherButton, currentButtonPosition, transitionTime).setEase(LeanTweenType.easeOutQuad);
 
                 // Swap sibling indexes
