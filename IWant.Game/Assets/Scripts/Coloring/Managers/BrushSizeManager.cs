@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,7 +11,7 @@ public class BrushSizeManager : MonoBehaviour
 
     [Header(" Settings ")]
     [SerializeField] private float[] brushSizes;
-    [SerializeField] private Color selectedColor;
+    public Color selectedColor;
     [SerializeField] private Color unSelectedColor;
     // Start is called before the first frame update
     void Start()
@@ -38,5 +39,16 @@ public class BrushSizeManager : MonoBehaviour
         //Color the current brush size button
         for (int i = 0; i < brushImages.Length; i++)
             brushImages[i].color = (i == sizeIndex) ? selectedColor : unSelectedColor;
+    }
+
+    internal void UpdateSelectedBrushColor(Color color)
+    {
+        for (int i = 0; i < brushImages.Length; i++)
+        {
+            if (brushImages[i].color != unSelectedColor)
+            {
+                brushImages[i].color = color;
+            }
+        }
     }
 }

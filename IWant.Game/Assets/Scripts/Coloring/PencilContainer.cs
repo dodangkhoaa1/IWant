@@ -20,7 +20,7 @@ public class PencilContainer : MonoBehaviour
     private Color color;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         unSelectedPosition = pencilParent.anchoredPosition;
         selectedPosition = unSelectedPosition + moveMagnitude * Vector2.right;
@@ -52,7 +52,6 @@ public class PencilContainer : MonoBehaviour
     {
         LeanTween.cancel(pencilParent);
         LeanTween.move(pencilParent, selectedPosition, moveDuration).setEase(LeanTweenType.easeInOutCubic);
-
     }
 
     public void Unselect()

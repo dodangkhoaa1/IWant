@@ -29,6 +29,9 @@ public partial class ApplicationDbContext : IdentityDbContext<User>
     public virtual DbSet<Blog> Blogs { get; set; }
     public virtual DbSet<Rate> Rates { get; set; }
     public virtual DbSet<Comment> Comments { get; set; }
+    public virtual DbSet<PersonalWord> PersonalWords { get; set; }
+    public virtual DbSet<Game> Games { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         if (optionsBuilder.IsConfigured)
@@ -419,7 +422,13 @@ public partial class ApplicationDbContext : IdentityDbContext<User>
             new Word() { Id = 231, VietnameseText = "Có", EnglishText = "Yes", WordCategoryId = 17, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/want/Yes.png", Status = true }
         );
 
-
+        builder.Entity<Game>().HasData(
+            new Game() { Id = 1, Name = "Dot Connection", Description = "", VideoUrl = "" },
+            new Game() { Id = 2, Name = "Coloring", Description = "", VideoUrl = "" },
+            new Game() { Id = 3, Name = "AAC", Description = "", VideoUrl = "" },
+            new Game() { Id = 4, Name = "Emotion Selection", Description = "", VideoUrl = "" },
+            new Game() { Id = 5, Name = "Fruit Drop", Description = "", VideoUrl = "" }
+        );
     }
 
 }

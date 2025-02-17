@@ -1,22 +1,40 @@
 using UnityEngine;
+using UnityEngine.Audio;
+using UnityEngine.UI;
 
-#nullable enable
 public class AudioManager : MonoBehaviour
 {
-    private static AudioManager? _instance;
+    [Header("Elements")]
+    [SerializeField] private AudioSource musicSource;
+    [SerializeField] private AudioSource sfxSource;
 
-    public static AudioManager Instance
+    [Header("Sounds")]
+    [SerializeField] private AudioClip backgroundMusic;
+
+    public static AudioManager instance { get; private set; }
+
+    private void Awake()
     {
-        get
+        if (instance != null && instance != this)
         {
-            if (_instance == null)
-            {
-                GameObject obj = new GameObject("AudioManager");
-                obj.AddComponent<AudioSource>();
-                _instance = obj.AddComponent<AudioManager>();
-                DontDestroyOnLoad(obj);
-            }
-            return _instance;
+            Destroy(gameObject);
         }
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(this);
+        }
+    }
+
+    private void Start()
+    {
+        musicSource.clip = backgroundMusic;
+        musicSource.Play();
+    }
+
+    public void PlaySFX(AudioClip audioClip)
+    {
+        sfxSource.clip = audioClip;
+        sfxSource.Play();
     }
 }

@@ -38,6 +38,25 @@ MonoBehaviour:
     - Locale-vi
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b0269a3d73d4ede4b9b4f9ac5d19558d
+    m_Address: WordTable_vi
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-vi
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 74ac422dfa8ab294284647f536889acd
+    m_Address: CategoryTable_vi
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-vi
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ba4241c7c3e77e34ea5faeec6afa7479
+    m_Address: Game Name Table_vi
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-vi
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: ddaf8320a26379341b67b480ae07b33b, type: 2}
   m_SchemaSet:

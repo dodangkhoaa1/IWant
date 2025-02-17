@@ -1261,6 +1261,14 @@
       <Project>{9EC6BB22-377A-7ECC-CBD0-78CCCE42EE7C}</Project>
       <Name>Assembly-CSharp</Name>
     </ProjectReference>
+    <ProjectReference Include="NativeGallery.Runtime.csproj">
+      <Project>{74D431FE-B904-C00F-9E72-6A126F54FA05}</Project>
+      <Name>NativeGallery.Runtime</Name>
+    </ProjectReference>
+    <ProjectReference Include="NativeGallery.Editor.csproj">
+      <Project>{189C1BBC-6537-6D8B-33C9-0798209741A6}</Project>
+      <Name>NativeGallery.Editor</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

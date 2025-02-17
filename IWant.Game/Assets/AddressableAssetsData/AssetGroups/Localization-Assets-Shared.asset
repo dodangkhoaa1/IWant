@@ -32,6 +32,21 @@ MonoBehaviour:
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6a926b13b6daeb440b53accbcd2d1484
+    m_Address: Assets/LocalSettings/Table/WordTable Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8f734c2b38e2fc74f9ad2cbc5a41a576
+    m_Address: Assets/LocalSettings/Table/CategoryTable Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4c59b4b6284e0544ba5d8463c8637d98
+    m_Address: Assets/LocalSettings/Table/Game Name Table Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: ddaf8320a26379341b67b480ae07b33b, type: 2}
   m_SchemaSet:

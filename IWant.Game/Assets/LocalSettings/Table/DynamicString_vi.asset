@@ -19,7 +19,7 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 191507615744
-    m_Localized: "Xin ch\xE0o, {0}"
+    m_Localized: "Ch\xE0o, {0}"
     m_Metadata:
       m_Items: []
   references:

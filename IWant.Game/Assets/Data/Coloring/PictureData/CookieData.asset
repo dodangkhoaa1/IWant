@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8461c51373b30e84e85cbf7584fefea1, type: 3}
+  m_Name: CookieData
+  m_EditorClassIdentifier: 
+  Name: Cookie
+  Prefab: {fileID: 98162073824698540, guid: 30ba930d8bd59604d8c97cb40f0a168a, type: 3}
+  Sprite: {fileID: 21300000, guid: 7ce118151b04640448be9c4a94eeb2d8, type: 3}

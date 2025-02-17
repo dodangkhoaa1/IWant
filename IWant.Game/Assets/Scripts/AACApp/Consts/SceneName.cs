@@ -1,6 +1,6 @@
 ﻿public enum SceneName
 {
-    Null, MainMenu, LoginScene, GameAAC, Game
+    Null, MainMenu, SignInScene, GameAAC, Game, MenuColor, ColoringGame
 }
 
 public enum Gender

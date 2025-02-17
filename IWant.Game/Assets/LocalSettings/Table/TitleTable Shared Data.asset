@@ -19,6 +19,26 @@ MonoBehaviour:
     m_Key: SignInKey
     m_Metadata:
       m_Items: []
+  - m_Id: 2917726724968448
+    m_Key: ForgotPasswordKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2917962218360832
+    m_Key: SignUpKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2918024969342976
+    m_Key: DontHaveAccountKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3267936110137344
+    m_Key: OrContinueKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3268122064605184
+    m_Key: ContinueFBKey
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

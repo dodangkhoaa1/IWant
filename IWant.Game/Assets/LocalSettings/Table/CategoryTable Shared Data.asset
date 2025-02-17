@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: CategoryTable Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: CategoryTable
+  m_TableCollectionNameGuidString: 8f734c2b38e2fc74f9ad2cbc5a41a576
+  m_Entries: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 2113738703844409347
+  references:
+    version: 2
+    RefIds:
+    - rid: 2113738703844409347
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1736242567374

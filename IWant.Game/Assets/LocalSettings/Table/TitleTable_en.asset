@@ -22,6 +22,26 @@ MonoBehaviour:
     m_Localized: Sign In
     m_Metadata:
       m_Items: []
+  - m_Id: 2917726724968448
+    m_Localized: Forgot password
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2918024969342976
+    m_Localized: Don't have account?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2917962218360832
+    m_Localized: Sign Up
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3267936110137344
+    m_Localized: or continue with
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3268122064605184
+    m_Localized: Continue with Facebook
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -75,8 +75,11 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralBasics2d.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ChatController.cs" />
+    <Compile Include="Assets\Scripts\Coloring\Managers\MenuColoringManagement.cs" />
+    <Compile Include="Assets\Scripts\AACApp\Management\SceneManagement.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathSplineTrack.cs" />
     <Compile Include="Assets\Scripts\AACApp\GreetingUser.cs" />
+    <Compile Include="Assets\Scripts\Coloring\Data\PictureData.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathSpline.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_DigitValidator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
@@ -88,9 +91,11 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshSpawner.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralAdvancedTechniques.cs" />
+    <Compile Include="Assets\Scripts\Coloring\Managers\PictureManagement.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
     <Compile Include="Assets\Scripts\AACApp\DTOs\SignInRequestDTO.cs" />
     <Compile Include="Assets\LeanTween\Testing\TestingSceneSwitching.cs" />
+    <Compile Include="Assets\Scripts\AACApp\Consts\PrefConst.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralSequencer.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralEventsListeners.cs" />
     <Compile Include="Assets\Scripts\Coloring\Brushes\LineRendererBrush.cs" />
@@ -129,7 +134,9 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\DropdownSample.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexColorCycler.cs" />
     <Compile Include="Assets\LeanTween\Testing\TestingColorTweening.cs" />
+    <Compile Include="Assets\Scripts\Coloring\Managers\PictureSpawner.cs" />
     <Compile Include="Assets\Scripts\AACApp\Spawner.cs" />
+    <Compile Include="Assets\Scripts\AACApp\Management\SliderVolumeSettings.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralSimpleUI.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathSplineEndless.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\Following.cs" />
@@ -154,6 +161,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_UiFrameRateCounter.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
     <Compile Include="Assets\Scripts\Coloring\PencilContainer.cs" />
+    <Compile Include="Assets\Scripts\AACApp\Management\BackgroundManagement.cs" />
     <Compile Include="Assets\Scripts\AACApp\Consts\AddressAPI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_B.cs" />
     <Compile Include="Assets\LeanTween\Testing\Testing246.cs" />
@@ -165,7 +173,9 @@
     <Compile Include="Assets\LeanTween\Framework\LTSeq.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ShaderPropAnimator.cs" />
     <Compile Include="Assets\LeanTween\Framework\LeanTween.cs" />
+    <Compile Include="Assets\Scripts\Coloring\Managers\CaptureManager.cs" />
     <Compile Include="Assets\Toast UI\Scripts\Toast.cs" />
+    <Compile Include="Assets\Scripts\AACApp\Management\LanguageManager.cs" />
     <Compile Include="Assets\LeanTween\Framework\LeanSmooth.cs" />
     <Compile Include="Assets\Scripts\Coloring\Managers\BrushManager.cs" />
     <Compile Include="Assets\LeanTween\Testing\TestingMaxTweens.cs" />
@@ -1286,6 +1296,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="NativeGallery.Runtime.csproj">
+      <Project>{74D431FE-B904-C00F-9E72-6A126F54FA05}</Project>
+      <Name>NativeGallery.Runtime</Name>
+    </ProjectReference>
+    <ProjectReference Include="NativeGallery.Editor.csproj">
+      <Project>{189C1BBC-6537-6D8B-33C9-0798209741A6}</Project>
+      <Name>NativeGallery.Editor</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
