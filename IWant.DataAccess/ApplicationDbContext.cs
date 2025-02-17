@@ -26,6 +26,8 @@ public partial class ApplicationDbContext : IdentityDbContext
     public virtual DbSet<Message> Messages { get; set; }
     public virtual DbSet<WordCategory> WordCategories { get; set; }
     public virtual DbSet<Word> Words { get; set; }
+    public virtual DbSet<PersonalWord> PersonalWords { get; set; }
+    public virtual DbSet<Game> Games { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -411,7 +413,13 @@ public partial class ApplicationDbContext : IdentityDbContext
             new Word() { Id = 231, VietnameseText = "Có", EnglishText = "Yes", WordCategoryId = 17, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/want/Yes.png", Status = true }
         );
 
-
+        builder.Entity<Game>().HasData(
+            new Game() { Id = 1, Name = "Dot Connection", Description = "", VideoUrl = "" },
+            new Game() { Id = 2, Name = "Coloring", Description = "", VideoUrl = "" },
+            new Game() { Id = 3, Name = "AAC", Description = "", VideoUrl = "" },
+            new Game() { Id = 4, Name = "Emotion Selection", Description = "", VideoUrl = "" },
+            new Game() { Id = 5, Name = "Fruit Drop", Description = "", VideoUrl = "" }
+        );
     }
 
 }
