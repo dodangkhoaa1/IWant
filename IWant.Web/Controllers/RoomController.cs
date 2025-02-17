@@ -83,8 +83,6 @@ namespace IWant.Web.Controllers
 
             await _hubContext.Clients.All.SendAsync("addChatRoom", new { id = chatRoom.Id, name = chatRoom.Name });
 
-            TempData["success"] = "Create room successfull!";
-
             return CreatedAtAction(nameof(Get), new { id = chatRoom.Id }, new { id = chatRoom.Id, name = chatRoom.Name });
         }
 
@@ -122,7 +120,6 @@ namespace IWant.Web.Controllers
             await _hubContext.Clients.All.SendAsync("removeChatRoom", room.Id );
             await _hubContext.Clients.Group(room.Name).SendAsync("onRoomDeleted", string.Format("Room {0} has been deleted.\nYou are moved to the first available room!", room.Name));
 
-            TempData["success"] = "Remove room successfull!";
 
             return NoContent();
         }

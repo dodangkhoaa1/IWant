@@ -1,6 +1,95 @@
 ﻿@{
-    ViewData["Title"] = "Privacy Policy";
+    ViewData["Title"] = "I Want Terms and Conditions";
 }
-<h1>@ViewData["Title"]</h1>
 
-<p>Use this page to detail your site's privacy policy.</p>
+<div style="padding: 0; margin: 0; margin-bottom: 20px">
+    <div class="confetti-container"></div>
+    <div style="background-color: #feda15; padding: 20px; text-align: left; ">
+        <h1 style="color: #9B30FF; font-weight: bold; font-size: 32px; margin: 0; font-size: 36px; text-shadow: 3px 3px 6px #ffffff; margin-left: 60px">Terms and Conditions</h1>
+    </div>
+
+
+    <div style="background-color: #white; margin: 50px 160px; padding: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); z-index: 2">
+        <p>Welcome to the "I Want" Game Application and Website. Please read the following terms and conditions carefully as you agree to abide by them by using our platform:</p>
+        <ol style="padding-left: 40px; padding-right: 40px; color: #555; font-size: 16px; line-height: 1.8;">
+            <li>
+                <strong>Overview</strong><br>
+                Under the direction of Mr. Lu Thanh Quy, group SEP490_10 created the "I Want" application, which uses the Augmentative and Alternative Communication (AAC) approach to help adults and children who struggle with communication. To encourage learning, conversation, and engagement, the platform incorporates educational games and a different kind of communication tool.
+            </li>
+            <li>
+                <strong>User Accounts</strong><br>
+                All users must provide accurate and current information when registering, and they are responsible for keeping their login credentials confidential. The platform has the right to suspend or terminate accounts that are found to be in violation of these terms.
+            </li>
+            <li>
+                <strong>Features of the Platform</strong><br>
+                Educational games that encourage the development of motor skills and cognitive abilities include tower building, drag and drop, and joining dots. AAC capabilities to enhance communication and put phrases together. Opportunities for personalization, such as changing the backdrop or customizing the card.
+            </li>
+            <li>
+                <strong>Limitations on Usage</strong><br>
+                The platform does not presently support PC or iOS interfaces and is only accessible through the Google Play Store. Content and features are especially designed for adults and children who struggle with communication. It is forbidden to try to abuse the application or reverse-engineer it.
+            </li>
+            <li>
+                <strong>Security and Content</strong><br>
+                All material, including blogs and comments, is regulated to provide a safe atmosphere, and user data is safely preserved. For further protection, purchases and account settings are subject to extra verification.
+            </li>
+            <li>
+                <strong>Liability Restrictions</strong><br>
+                Although the platform verifies client information, it cannot ensure that it is accurate in the actual world. Even though we work hard to ensure seamless operation, sporadic errors or interruptions could happen.
+            </li>
+            <li>
+                <strong>Subscriptions and Payment</strong><br>
+                Premium content is one example of a feature that costs money. Prices might change based on market needs. Using safe payment methods, users may buy more games, customization choices, or premium content.
+            </li>
+            <li>
+                <strong>Intellectual Property</strong><br>
+                The SEP490_10 team generated all of the material, including logos, features, and graphics, and some of the designs were taken from the Internet and are publicly accessible without copyright. These components are utilized in accordance with the relevant copyright regulations. It is completely forbidden to use or reproduce any content from the site without permission in writing.
+            </li>
+            <li>
+                <strong>Updates and Adjustments</strong><br>
+                The platform has the right to change these conditions or add additional functionality at any time. Acceptance of such modifications is shown by continued usage of the application.
+            </li>
+            <li>
+                <strong>Law Governing</strong><br>
+                These conditions are subject to our company's regulatory laws, and any disagreements will be settled in accordance with those rules.
+            </li>
+        </ol>
+        <p style="padding-left: 40px;">If you have any questions about these Terms and Conditions, please contact us at <a href="mailto:support@iwantapp.com" style="color: #9B30FF; text-decoration: underline;">support@iwantapp.com</a>.</p>
+
+        <div class="endSeal" style="display: flex; justify-content: flex-end; margin-right: 200px">
+            <img src="~/images/redSeal.svg" style="width: 20%;" />
+        </div>
+    </div>
+</div>
+
+@* confetti background animation *@
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const confettiContainer = document.querySelector('.confetti-container');
+
+        function createConfetti() {
+            const confetti = document.createElement('div');
+            confetti.classList.add('confetti');
+            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.backgroundColor = getRandomColor();
+            confetti.style.animationDuration = Math.random() * 2 + 3 + 's';
+            confetti.style.width = Math.random() * 5 + 2 + 'px';
+            confetti.style.height = Math.random() * 25 + 15 + 'px';
+
+            confettiContainer.appendChild(confetti);
+
+            setTimeout(() => confetti.remove(), 5000);
+        }
+
+        function getRandomColor() {
+            const colors = [
+                '#FFD700', '#FF4500', '#1E90FF', '#32CD32', '#FF69B4', '#8A2BE2',
+                '#FF6347', '#00FA9A', '#9400D3', '#FF7F50', '#00CED1', '#FFB6C1',
+                '#4B0082', '#ADFF2F'
+            ];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+
+        setInterval(createConfetti, 200);
+    });
+</script>
+

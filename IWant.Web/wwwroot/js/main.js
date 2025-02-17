@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const mobileNavShow = document.querySelector('.mobile-nav-show');
   const mobileNavHide = document.querySelector('.mobile-nav-hide');
-
+    
   document.querySelectorAll('.mobile-nav-toggle').forEach(el => {
     el.addEventListener('click', function(event) {
       event.preventDefault();
@@ -208,5 +208,21 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('load', () => {
     aos_init();
   });
+
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    "use strict";
+
+
+    let bannerCarouselElement = document.querySelector('#banner_carousel');
+    if (bannerCarouselElement) {
+        new bootstrap.Carousel(bannerCarouselElement, {
+            interval: 3000,
+            ride: 'carousel',
+            pause: false
+        });
+    }
+
 
 });

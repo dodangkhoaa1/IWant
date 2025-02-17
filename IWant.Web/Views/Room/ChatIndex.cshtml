@@ -1,16 +1,322 @@
-﻿@{
+﻿@using IWant.DataAccess
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 
     var roomName = User.Identity.Name;
-
     var roleMember = "Admin";
     if (User.IsInRole("Member"))
     {
         roleMember = "Member";
     }
+
+
 }
 
-@* Alert *@
+<!-- Add/Update your styles here -->
+<style>
+    .app {
+        display: flex;
+        background-color: #f8f9fa;
+        margin-top: 20px;
+    }
+
+    .sidebar .header i {
+        color: #000000;
+        font-size: 14px;
+    }
+
+    .sidebar {
+        width: 300px;
+        background-color: #FFFFFF;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        border-right: 2px solid #ccc;
+    }
+
+    .main-content .chat-input .actions i {
+        margin: auto 0;
+        padding: 0 5px;
+        color: rgba(226, 157, 82, 0.8);
+        cursor: pointer;
+    }
+
+        .main-content .chat-input .actions i:hover {
+            margin: auto 0;
+            padding: 0 5px;
+            color: #F8A90D;
+            cursor: pointer;
+        }
+
+    .sidebar .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem;
+        background-color: #FFFFFF;
+        border-bottom: 1px solid #ccc;
+    }
+
+        .sidebar .header h5 {
+            margin: 0;
+            font-size: 1.2rem;
+            color: #000;
+        }
+
+    .main-content .header h4 {
+        margin: 0;
+        font-size: 1.2rem;
+        color: #000;
+        font-weight: 600;
+    }
+
+    .sidebar .header a {
+        color: #000;
+        text-decoration: none;
+        font-size: 1.2rem;
+    }
+
+    .main-content .chat-input input {
+        width: 100%;
+        border: none;
+        border-radius: 0;
+        border-top: 1px solid #eee;
+        background: #f2f2f2;
+        margin-top: auto;
+        text-indent: 10px;
+    }
+
+    .sidebar .rooms {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        flex: 1;
+        overflow-y: auto;
+    }
+
+        .sidebar .rooms li a {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: #000;
+            font-weight: 600;
+            text-decoration: none;
+            border-bottom: 1px solid #e2e2e2;
+        }
+
+
+            .sidebar .rooms li a:hover,
+            .sidebar .rooms li a.active {
+                background-color: #F0F8FF;
+                color: #000;
+                font-weight: 600;
+            }
+
+    .sidebar .profile {
+        padding: 1rem;
+        border-top: 1px solid #ccc;
+        background-color: #FFFFFF;
+    }
+
+        .sidebar .profile img.user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 0.5rem;
+        }
+
+        .sidebar .profile .role {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #333;
+        }
+
+        .sidebar .profile div a {
+            font-size: 14px;
+            color: #000000;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 120px;
+        }
+
+    .main-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        background-color: #fff;
+    }
+
+        .main-content .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            border-bottom: 1px solid #ccc;
+            background-color: #fff;
+        }
+
+            .main-content .header h5 {
+                margin: 0;
+                color: #000;
+                font-weight: 600;
+            }
+
+    .room-actions button {
+        border: none;
+        background: transparent;
+        cursor: pointer;
+    }
+
+    .chat-body {
+        flex: 1;
+        padding: 1rem;
+        overflow-y: auto;
+    }
+
+    .chat-message {
+        margin-bottom: 1rem;
+    }
+
+        .chat-message.ismine {
+            justify-content: flex-end;
+        }
+
+            .chat-message.ismine .message-content {
+                background-color: rgba(226, 157, 82, 0.8);
+                border-radius: 10px 10px 0 10px;
+                border: 1px solid #FEDA15;
+                color: #000;
+                margin-left: auto;
+                margin-right: 0;
+                max-width: 60%;
+                padding: 0.5rem 1rem;
+                font-weight: 600;
+                text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            }
+
+
+
+        .chat-message.isother {
+            justify-content: flex-start;
+        }
+
+            .chat-message.isother .message-content {
+                background-color: #f1f1f1;
+                border-radius: 10px 10px 10px 0;
+                color: #333;
+                margin-right: auto;
+                margin-left: 0;
+                max-width: 60%;
+                padding: 0.5rem 1rem;
+            }
+
+
+    .message-avatar {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-right: 0.5rem;
+    }
+
+    .message-content .author {
+        font-weight: bold;
+        margin-right: 0.5rem;
+    }
+
+    .message-content .timestamp {
+        font-size: 0.8rem;
+        color: #666;
+        margin-left: 0.5rem;
+    }
+
+    .chat-input {
+        display: flex;
+        align-items: center;
+        padding: 0.5rem 2rem;
+        border-top: 1px solid #ccc;
+    }
+
+        .chat-input input[type="text"] {
+            flex: 1;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            outline: none;
+            height: 100%;
+        }
+
+        .chat-input .actions {
+            display: flex;
+            align-items: center;
+            margin-left: 0.5rem;
+        }
+
+
+
+    .modal-footer .btn-primary {
+        background-color: #FEDA15;
+        border-color: #FEDA15;
+        color: #000;
+        border-radius: 4px;
+        transition: background-color 0.3s;
+    }
+
+
+    .modal-footer .btn-secondary {
+        background-color: #e0e0e0;
+        border-color: #e0e0e0;
+        color: #000;
+        border-radius: 4px;
+    }
+
+    .sidebar .header #create-room {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        background-color: #E8E8E8;
+        color: #000;
+        border-radius: 50%;
+        text-decoration: none;
+        transition: background-color 0.3s;
+    }
+
+        .sidebar .header #create-room:hover {
+            background-color: #CCCCCC;
+        }
+
+
+
+    .modal-footer .btn-danger {
+        background-color: #f44336;
+        border-color: #f44336;
+        color: #fff;
+        border-radius: 4px;
+        transition: background-color 0.3s;
+    }
+
+
+
+    .room-actions button {
+        background-color: transparent;
+        color: #000;
+        border: none;
+        font-size: 1.1rem;
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        transition: background-color 0.2s, color 0.2s;
+    }
+
+    .sidebar ul li a:before {
+        content: none;
+        margin-right: 2px;
+    }
+
+</style>
+
+<!-- Your original code below (unchanged HTML/Razor) -->
 <div class="alert alert-warning alert-dismissible d-none"
      id="errorAlert" role="alert">
     <span data-bind="text:serverInfoMessage"></span>
@@ -27,7 +333,7 @@
 </div>
 
 <div class="container" style="min-height:700px">
-    <h2>Chat Room</h2>
+
 
     <input id="userId" type="hidden" value="" />
 
@@ -37,15 +343,14 @@
                 <h5>Chat Rooms</h5>
                 @if (User.IsInRole("Member"))
                 {
-                    <a href="#" id="create-room" data-bs-toggle="modal" data-bs-target="#create-room-modal">
-                        <i class="fas fa-plus"></i>
+                    <a id="create-room" data-bs-toggle="modal" data-bs-target="#create-room-modal">
+                        <i id="plus-icon" class="fas fa-plus"></i>
                     </a>
                 }
             </div>
             <ul class="rooms list-unstyled" id="room-list" data-bind="foreach: chatRooms">
                 <li>
-                    <a href="#"
-                       data-bind="text: $data.name, attr: { 'data-roomId': $data.id }, click: $parent.joinRoom.bind($data), css: { active: $root.joinedRoom() == $data.name()}"></a>
+                    <a data-bind="text: $data.name, attr: { 'data-roomId': $data.id }, click: $parent.joinRoom.bind($data), css: { active: $root.joinedRoom() == $data.name()}"></a>
                 </li>
             </ul>
             <div class="profile">
@@ -54,14 +359,8 @@
                     <a data-bind="text: myName"></a>
                     <p class="role"> (@roleMember)</p>
                 </div>
-                @* <form class="form-inline" asp-controller="Identity" asp-action="Signout">
-                    <button type="submit" class="btn-sign-out">
-                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                    </button>
-                </form> *@
             </div>
         </div>
-
 
         <div class="main-content" data-bind="visible: joinedRoom().length == 0">
             <span class="m-auto">
@@ -69,14 +368,10 @@
             </span>
         </div>
 
-
         <div class="main-content" data-bind="visible: joinedRoom().length > 0">
             <div class="header">
-                <h5 id="joinedRoom" data-bind="text: joinedRoom()">Lobby</h5>
+                <h4 class="join" id="joinedRoom" data-bind="text: joinedRoom()">Lobby</h4>
                 <div class="room-actions">
-                    @* <button type="button" class="btn btn-link text-secondary px-1" data-bs-toggle="modal" data-bs-target="#rename-room-modal">
-                        <i class="fa-regular fa-pen-to-square"></i>
-                    </button> *@
                     @if (User.IsInRole("Member"))
                     {
                         <button type="button" class="btn btn-link text-secondary px-1" data-bs-toggle="modal" data-bs-target="#remove-room-modal">
@@ -91,7 +386,7 @@
                         <div class="chat-message d-flex"
                              data-bind="css: $data.isMine() === true ? 'ismine' : 'isother'">
                             <div class="left-side d-flex">
-                                <img class="message-avatar"
+                                <img style="max-width: 200px;" class="message-avatar"
                                      data-bind="attr: { src:  $data.avatar() }" />
                             </div>
                             <div class="message-content d-flex flex-column">
@@ -112,6 +407,7 @@
                 <input id="chat-message" type="text" value=""
                        data-bind="value: message, valueUpdate: 'afterkeydown', event: { keypress: onEnter}"
                        placeholder="What's on your mind?" />
+
                 <div class="actions d-flex align-content-center">
                     <form method="post" asp-action="Upload" asp-controller="Upload" enctype="multipart/form-data" id="uploadForm">
                         <label for="UploadedFile" class="custom-file-upload">
@@ -125,24 +421,6 @@
                 </div>
             </div>
         </div>
-        @* <div class="users-container">
-        <div class="header">
-            <h5>Who's Here(<span data-bind="text: filteredChatUsers().length">0</span>)</h5>
-        </div>
-        <ul id="users-list" class="list-unstyled" data-bind="foreach: filteredChatUsers">
-            <li>
-                <div class="user">
-                    <img class="user-avatar" data-bind="attr: { src: '/images/avatar/' + $data.avatar() }" />
-                    <div class="right-side">
-                        <input type="hidden" class="username" data-bind="value: $data.userName" />
-                        <span class="author" data-bind="text: $data.displayName"></span>
-                        <small data-bind="text: $data.device"></small>
-                    </div>
-                </div>
-            </li>
-        </ul>
-        <input type="text" class="" placeholder="Search someone..." data-bind="value: filter, valueUpdate: 'afterkeydown'" />
-    </div> *@
     </div>
 </div>
 
@@ -229,3 +507,23 @@
     <script src="~/js/site.js"></script>
     <script src="~/js/chat.js"></script>
 }
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var chatInput = document.getElementById("chat-message");
+        var sendIcon = document.getElementById("btn-send-message");
+
+        // Kiểm tra ban đầu nếu ô input trống thì ẩn send icon
+        if (chatInput.value.trim() === "") {
+            sendIcon.disabled = true;
+        }
+
+        // Lắng nghe sự kiện thay đổi của ô input
+        chatInput.addEventListener("input", function () {
+            if (chatInput.value.trim().length > 0) {
+                sendIcon.style.display = "inline-block"; // hiện nút gửi
+            } else {
+                sendIcon.disabled = true; // ẩn nút gửi
+            }
+        });
+    });
+</script>

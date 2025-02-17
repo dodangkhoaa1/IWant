@@ -41,11 +41,11 @@ namespace IWant.Web.Controllers
 
         public async Task<IActionResult> Upload([FromForm] UploadViewModel uploadViewModel)
         {
-            if (!ModelState.IsValid || !Validate(uploadViewModel.File))
+            /*if (!ModelState.IsValid || !Validate(uploadViewModel.File))
             {
                 ViewBag.ErrorMessage = "Validation failed!";
                 return View("Index");
-            }
+            }*/
 
             var fileName = DateTime.Now.ToString("yyyyMMddHHmmss") + "_" + Path.GetFileName(uploadViewModel.File.FileName);
             var folderPath = Path.Combine(_environment.WebRootPath, "uploads");

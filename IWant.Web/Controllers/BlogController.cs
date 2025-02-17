@@ -7,11 +7,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace IWant.Web.Controllers
 {
-    [Authorize]
+
     public class BlogController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -23,8 +24,14 @@ namespace IWant.Web.Controllers
             _mapper = mapper;
         }
 
+        public IActionResult Blogs()
+        {
+            return View();
+        }
+
         [Route("Blog")]
         [Route("Blog/Index")]
+        [Authorize]
         public IActionResult Index()
         {
             var blogs = _context.Blogs.ToList();
@@ -32,6 +39,7 @@ namespace IWant.Web.Controllers
             return View(blogViewModels);
         }
 
+        [Authorize]
         public IActionResult Create()
         {
             return View();
@@ -40,10 +48,10 @@ namespace IWant.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(BlogViewModel model)
         {
-            if (!ModelState.IsValid)
+            /*if (!ModelState.IsValid)
             {
                 return View(model);
-            }
+            }*/
 
             var user = _context.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
             if (user == null)
@@ -51,13 +59,13 @@ namespace IWant.Web.Controllers
                 return Unauthorized();
             }
 
-            string defaultFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot","images", "blog");
+            string defaultFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "blog");
             if (!Directory.Exists(defaultFolder))
             {
-                Directory.CreateDirectory(defaultFolder); 
+                Directory.CreateDirectory(defaultFolder);
             }
 
-            string imageUrl = ""; 
+            string imageUrl = "";
             string imageLocalPath = null;
 
             if (model.Image != null && model.Image.Length > 0)
@@ -81,7 +89,7 @@ namespace IWant.Web.Controllers
                 CreatedAt = DateTime.Now,
                 UpdatedAt = DateTime.Now,
                 ImageUrl = imageUrl,
-                ImageLocalPath = imageLocalPath ?? "blog/default.png", 
+                ImageLocalPath = imageLocalPath ?? "blog/default.png",
                 Status = model.Status,
                 User = user
             };
@@ -94,10 +102,10 @@ namespace IWant.Web.Controllers
                 string newFileName = blog.Id + Path.GetExtension(model.Image.FileName);
                 string newFilePath = Path.Combine(defaultFolder, newFileName);
 
-              
+
                 System.IO.File.Move(Path.Combine(defaultFolder, Path.GetFileName(imageLocalPath)), newFilePath);
 
-             
+
                 blog.ImageUrl = $"{Request.Scheme}://{Request.Host}/images/blog/{newFileName}";
                 blog.ImageLocalPath = Path.Combine("blog", newFileName);
 
@@ -111,7 +119,7 @@ namespace IWant.Web.Controllers
         }
 
 
-
+        [Authorize]
         public IActionResult Edit(int id)
         {
             var blog = _context.Blogs.Find(id);
@@ -194,7 +202,7 @@ namespace IWant.Web.Controllers
                 }
             }*/
 
-            if(blog.Status == true)
+            if (blog.Status == true)
             {
                 blog.Status = false;
             }
@@ -213,13 +221,48 @@ namespace IWant.Web.Controllers
 
         public async Task<IActionResult> BlogDetail([FromRoute] int id)
         {
-            var blog = await _context.Blogs.Include(u=>u.User).FirstOrDefaultAsync(b=>b.Id == id);
+            var blog = await _context.Blogs.Include(b => b.User)
+                                           .Include(b => b.Comments)
+                                           .Include(b => b.Rates)
+                                           .ThenInclude(c => c.User)
+                                           .FirstOrDefaultAsync(b => b.Id == id);
             if (blog == null)
             {
                 return NotFound();
             }
-            var blogViewModel = _mapper.Map<BlogViewModel>(blog);
-            return View(blogViewModel);
+
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var userRating = await _context.Rates
+                .Where(r => r.Blog.Id == id && r.User.Id == userId)
+                .Select(r => r.RatingStar)
+                .FirstOrDefaultAsync();
+
+            var countRates = await _context.Rates.Where(r => r.Blog.Id == id).ToListAsync();
+
+            var averageRating = _context.Rates.Where(r => r.Blog.Id == id)
+                                              .Select(r => r.RatingStar)
+                                              .AsEnumerable() 
+                                              .DefaultIfEmpty(0)
+                                              .Average();
+
+            var commentViewModels = _mapper.Map<List<Comment>, List<CommentViewModel>>(blog.Comments);
+
+            var model = new BlogViewModel
+            {
+                Id = blog.Id,
+                Title = blog.Title,
+                Content = blog.Content,
+                CreatedAt = blog.CreatedAt,
+                User = blog.User,
+                ImageUrl = blog.ImageUrl,
+                Comments = commentViewModels,
+                UserRating = userRating,
+                AverageRating = (int)Math.Ceiling(averageRating),
+                CountRate = countRates.Count()
+            };
+
+            return View(model);
         }
     }
 }

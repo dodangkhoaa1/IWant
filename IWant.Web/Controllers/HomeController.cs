@@ -25,6 +25,11 @@ namespace IWant.Web.Controllers
             return View();
         }
 
+        public IActionResult AboutUs()
+        {
+            return View();
+        }
+
         [Authorize]
         [Authorize(Roles = "Member")]
         /*[Authorize(Policy = "MemberDep")]*/

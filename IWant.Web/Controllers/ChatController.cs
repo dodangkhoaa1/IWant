@@ -54,6 +54,9 @@ namespace IWant.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] MessageViewModel messageViewModel)
         {
+            if (string.IsNullOrWhiteSpace(messageViewModel.Content))
+                return Ok();
+
             var user = _context.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
             var room = _context.ChatRooms.FirstOrDefault(r => r.Name == messageViewModel.Room);
             if (room == null)

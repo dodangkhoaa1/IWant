@@ -6,7 +6,6 @@ namespace IWant.Web.Models
     {
         [Required]
         public int RoomId { get; set; }
-        [Required]
         public IFormFile File { get; set; }
     }
 }

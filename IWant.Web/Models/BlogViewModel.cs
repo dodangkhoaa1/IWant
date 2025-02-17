@@ -17,10 +17,10 @@ namespace IWant.Web.Models
 
         [Required]
         [MaxLength(200)]
-        public string Title { get; set; }
+        public string? Title { get; set; }
 
         [Required]
-        public string Content { get; set; }
+        public string? Content { get; set; }
 
      
         public DateTime CreatedAt { get; set; }
@@ -34,7 +34,16 @@ namespace IWant.Web.Models
         public string? ImageLocalPath { get; set; }
 
         public bool Status { get; set; }
+        public int UserRating { get; set; } = 0;
+        public double AverageRating { get; set; } = 0;
+        public int CountRate { get; set; } = 0;
 
         public User? User { get; set; }
+
+        public CommentViewModel? Comment { get; set; } = new CommentViewModel();
+
+        public List<CommentViewModel>? Comments { get; set; } = new List<CommentViewModel>();
+        public List<RateViewModel>? Rates { get; set; } = new List<RateViewModel>();
+
     }
 }

@@ -9,111 +9,141 @@
     }
 </style>
 
-<div style="border:1px solid #000; border-radius:20px" class="container mt-5 mb-5 p-5 Profile">
-    <h2>Update Profile</h2>
+<div class="d-flex signup-container signup-page" style="padding: 40px; height: 100vh">
+    <div class="confetti-container"></div>
+    <div class="signup-card" style="display: flex; border-radius: 10px; background-color: #fff; width: 50%; height: auto; align-items: start; overflow: hidden; z-index: 2;">
+        <div style="flex: 1; display: flex; flex-direction: column; justify-content: space-between; margin: 20px;">
+            <h1 style="font-size: 32px; text-align: start;">Update Profile</h1>
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="alert alert-success">
+                    @TempData["SuccessMessage"]
+                </div>
+            }
+            <form asp-action="UpdateProfile" method="post" enctype="multipart/form-data">
+                <div class="profile-header d-flex" style="margin-bottom: 30px">
+                    <label for="avatarInput" class="avatar-container position-relative me-3">
+                        <img id="avatarPreview"
+                             style="width:100px; height:100px; border-radius:50%; border:solid 1px #9B30FF; cursor:pointer; object-fit:cover; object-position:center; margin-left: 50px"
+                             src="@Model.ImageUrl"
+                             alt="Profile Picture">
+                        <i style="border-radius: 50%;padding: 5px;background-color: #9B30FF; right: 0; bottom: 0; color: #feda15; font-size: 20px;" class="fa-solid fa-camera position-absolute"></i>
+                    </label>
+                    <input type="file" asp-for="Image" id="avatarInput" style="display: none;" accept="image/*">
+                    <div class="info align-content-center">
+                        <h4>@Model.FullName</h4>
+                        <p style="color:gray">@Model.Email</p>
+                    </div>
+                </div>
 
-    @if (TempData["SuccessMessage"] != null)
-    {
-        <div class="alert alert-success">
-            @TempData["SuccessMessage"]
+                <div class="row" style="justify-content:space-around; margin-bottom: 30px">
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label asp-for="FullName" style="color: #888; font-size: 12px; display: block; margin-top: 10px;"></label>
+                            <input asp-for="FullName" class="custom-input" />
+                            <span asp-validation-for="FullName" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="PhoneNumber" style="color: #888; font-size: 12px; display: block; margin-top: 10px;">Phone</label>
+                            <input asp-for="PhoneNumber" type="text" class="custom-input" />
+                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Birthday" style="color: #888; font-size: 12px; display: block; margin-top: 10px;">Birthday mm/dd/yyyy</label>
+                            <input asp-for="Birthday" type="date" class="custom-input" />
+                            <span asp-validation-for="Birthday" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Gender" style="color: #888; font-size: 12px; display: block; margin-top: 10px;"></label>
+                            <select asp-for="Gender" class="custom-input">
+                                <option selected="@(Model.Gender==true)" value="true">Male</option>
+                                <option selected="@(Model.Gender==false)" value="false">Female</option>
+                                <option selected="@(Model.Gender==null)" value="">Other</option>
+                            </select>
+                            <span asp-validation-for="Gender" class="text-danger"></span>
+                        </div>
+
+                    </div>
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label asp-for="ChildName" style="color: #888; font-size: 12px; display: block; margin-top: 10px;"></label>
+                            <input asp-for="ChildName" class="custom-input" />
+                            <span asp-validation-for="ChildName" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="ChildNickName" style="color: #888; font-size: 12px; display: block; margin-top: 10px;">Child Nickname</label>
+                            <input asp-for="ChildNickName" class="custom-input" />
+                            <span asp-validation-for="ChildNickName" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="ChildBirthday" style="color: #888; font-size: 12px; display: block; margin-top: 10px;">Child Birthday mm/dd/yyyy</label>
+                            <input asp-for="ChildBirthday" type="date" class="custom-input" />
+                            <span asp-validation-for="ChildBirthday" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="ChildGender" style="color: #888; font-size: 12px; display: block; margin-top: 10px;"></label>
+                            <select asp-for="ChildGender" class="custom-input">
+                                <option selected="@(Model.ChildGender==true)" value="true">Male</option>
+                                <option selected="@(Model.ChildGender==false)" value="false">Female</option>
+                                <option selected="@(Model.ChildGender==null)" value="">Other</option>
+                            </select>
+                            <span asp-validation-for="ChildGender" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div style="display: flex; justify-content: center; align-items: center;">
+                    <button type="submit" style="width: 350px; padding: 10px; background-color: #FEDA15; border: none; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 400; cursor: pointer;">
+                        Update
+                    </button>
+                </div>
+            </form>
         </div>
-    }
-
-    <form asp-action="UpdateProfile" method="post" enctype="multipart/form-data">
-
-        <div class="profile-header d-flex">
-            <label for="avatarInput" class="avatar-container position-relative me-3">
-                <img id="avatarPreview"
-                     style="width:100px; height:100px; border-radius:50%; border:solid 2px #000; cursor:pointer; object-fit:cover; object-position:center"
-                     src="@Model.ImageUrl"
-                     alt="Profile Picture">
-                <i style="border-radius: 50%;padding: 5px;background-color: gray; right: 0; bottom: 0; color: lightgray; font-size: 20px;" class="fa-solid fa-camera position-absolute"></i>
-            </label>
-            <input type="file" asp-for="Image" id="avatarInput" style="display: none;" accept="image/*">
-            <div class="info align-content-center">
-                <h4>@Model.FullName</h4>
-                <p style="color:gray">@Model.Email</p>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label asp-for="FullName"></label>
-                    <input asp-for="FullName" class="form-control" />
-                    <span asp-validation-for="FullName" class="text-danger"></span>
-                </div>
-
-                <div class="form-group">
-                    <label asp-for="Birthday"></label>
-                    <input asp-for="Birthday" type="date" class="form-control" />
-                    <span asp-validation-for="Birthday" class="text-danger"></span>
-                </div>
-
-                <div class="form-group">
-                    <label asp-for="Gender"></label>
-                    <select asp-for="Gender" class="form-control">
-                        <option selected="@(Model.Gender==null)" value="">Other</option>
-                        <option selected="@(Model.Gender==true)" value="true">Male</option>
-                        <option selected="@(Model.Gender==false)" value="false">Female</option>
-                    </select>
-                    <span asp-validation-for="Gender" class="text-danger"></span>
-                </div>
-
-                <div class="form-group">
-                    <label asp-for="PhoneNumber"></label>
-                    <input asp-for="PhoneNumber" type="text" class="form-control" />
-                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label asp-for="ChildName"></label>
-                    <input asp-for="ChildName" class="form-control" />
-                    <span asp-validation-for="ChildName" class="text-danger"></span>
-                </div>
-
-                <div class="form-group">
-                    <label asp-for="ChildNickName"></label>
-                    <input asp-for="ChildNickName" class="form-control" />
-                    <span asp-validation-for="ChildNickName" class="text-danger"></span>
-                </div>
-
-                <div class="form-group">
-                    <label asp-for="ChildBirthday"></label>
-                    <input asp-for="ChildBirthday" type="date" class="form-control" />
-                    <span asp-validation-for="ChildBirthday" class="text-danger"></span>
-                </div>
-
-                <div class="form-group">
-                    <label asp-for="ChildGender"></label>
-                    <select asp-for="ChildGender" class="form-control">
-                        <option selected="@(Model.ChildGender==null)" value="">Other</option>
-                        <option selected="@(Model.ChildGender==true)" value="true">Male</option>
-                        <option selected="@(Model.ChildGender==false)" value="false">Female</option>
-                    </select>
-                    <span asp-validation-for="ChildGender" class="text-danger"></span>
-                </div>
-            </div>
-        </div>
-
-        <button type="submit" class="btn btn-primary">Update</button>
-    </form>
+    </div>
 </div>
 
+
+@* camera choose file *@
 <script>
     document.addEventListener("DOMContentLoaded", function () {
+        let formModified = false;
+        const formElements = document.querySelectorAll('input, select, textarea');
+        const updateButton = document.querySelector('button[type="submit"]');
         const avatarPreview = document.getElementById("avatarPreview");
         const avatarInput = document.getElementById("avatarInput");
 
-        avatarPreview.addEventListener("click", function (event) {
-            event.preventDefault();
-            avatarInput.click();
+        // Đánh dấu form đã thay đổi khi có sự thay đổi trong form
+        formElements.forEach(element => {
+            element.addEventListener('change', () => {
+                formModified = true;
+            });
         });
 
-        avatarInput.addEventListener("change", function (event) {
-            if (avatarInput.files.length > 0) {
+        updateButton.addEventListener('click', () => {
+            formModified = false;
+        });
+
+        window.addEventListener('beforeunload', (event) => {
+            if (formModified) {
+                event.preventDefault();
+                event.returnValue = '';
+            }
+        });
+
+        avatarInput.addEventListener('change', function () {
+            if (avatarInput.files && avatarInput.files[0]) {
                 const file = avatarInput.files[0];
+
+                if (!file.type.startsWith('image/')) {
+                    alert("Please upload a valid image file.");
+                    return;
+                }
+
                 const reader = new FileReader();
 
                 reader.onload = function (e) {
@@ -123,6 +153,41 @@
                 reader.readAsDataURL(file);
             }
         });
+    });
+
+</script>
+
+
+
+@* confetti background animation *@
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const confettiContainer = document.querySelector('.confetti-container');
+
+        function createConfetti() {
+            const confetti = document.createElement('div');
+            confetti.classList.add('confetti');
+            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.backgroundColor = getRandomColor();
+            confetti.style.animationDuration = Math.random() * 2 + 3 + 's';
+            confetti.style.width = Math.random() * 5 + 2 + 'px';
+            confetti.style.height = Math.random() * 25 + 15 + 'px';
+
+            confettiContainer.appendChild(confetti);
+
+            setTimeout(() => confetti.remove(), 5000);
+        }
+
+        function getRandomColor() {
+            const colors = [
+                '#FFD700', '#FF4500', '#1E90FF', '#32CD32', '#FF69B4', '#8A2BE2',
+                '#FF6347', '#00FA9A', '#9400D3', '#FF7F50', '#00CED1', '#FFB6C1',
+                '#4B0082', '#ADFF2F'
+            ];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+
+        setInterval(createConfetti, 200);
     });
 </script>
 

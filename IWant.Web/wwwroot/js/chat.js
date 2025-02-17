@@ -1,5 +1,6 @@
 ﻿$(document).ready(function () {
     var connection = new signalR.HubConnectionBuilder().withUrl("/ChatHub").build();
+    var plusIcon = document.getElementById("plus-icon");
 
     connection.start().then(function () {
         console.log('SignalR Started...')
@@ -135,6 +136,9 @@
                 .then(response => response.json())
                 .then(data => {
                     self.chatRooms.removeAll();
+                    if (data.length == 0) {
+                        plusIcon.style.display = "none";
+                    } 
                     for (var i = 0; i < data.length; i++) {
                         self.chatRooms.push(new ChatRoom(data[i].Id, data[i].Name));
                     }
@@ -287,6 +291,7 @@
         self.avatar = ko.observable(Avatar);
     }
 
+    
     var viewModel = new AppViewModel();
     ko.applyBindings(viewModel);
 });

@@ -31,16 +31,16 @@
                     <div class="navbar-collapse collapse">
                         <ul class="navbar-nav ms-auto">
                             <li style="margin-right:50px" class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">HOME</a>
+                                <a class="nav-link" style="color: #9B30FF;" asp-controller="Home" asp-action="Index">HOME</a>
                             </li>
                             <li style="margin-right:50px" class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Home" asp-action="AboutUs">ABOUT US</a>
+                                <a class="nav-link" style="color: #9B30FF;" asp-controller="Home" asp-action="AboutUs">ABOUT US</a>
                             </li>
                             <li style="margin-right:50px" class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Home" asp-action="Game">GAME</a>
+                                <a class="nav-link" style="color: #9B30FF;" asp-controller="Home" asp-action="Game">GAME</a>
                             </li>
                             <li style="margin-right:550px" class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Blog" asp-action="Index">BLOG</a>
+                                <a class="nav-link" style="color: #9B30FF;" asp-controller="Blog" asp-action="Blogs">BLOG</a>
                             </li>
                             <partial name="_Identity" />
                         </ul>
@@ -125,22 +125,7 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
 
-    <script>
-        document.getElementById('togglePassword').addEventListener('click', function () {
-            const passwordInput = document.getElementById('passwordInput');
-            const icon = this.querySelector('i');
-
-            if (passwordInput.type === 'password') {
-                passwordInput.type = 'text';
-                icon.classList.remove('fa-eye');
-                icon.classList.add('fa-eye-slash');
-            } else {
-                passwordInput.type = 'password';
-                icon.classList.remove('fa-eye-slash');
-                icon.classList.add('fa-eye');
-            }
-        });
-    </script>
+    
 </body>
 
 

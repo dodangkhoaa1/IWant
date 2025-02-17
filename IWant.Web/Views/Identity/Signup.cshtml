@@ -4,85 +4,121 @@
     ViewData["Title"] = "Signup";
 }
 
-<div class="login-container signin-page">
-    <div class="login-card">
-        <h1>Sign Up</h1>
+<div class="d-flex signup-container signup-page" style="padding: 40px;">
+    <div class="confetti-container"></div>
+    <div class="signup-card" style="display: flex; border-radius: 10px; background-color: #fff; width: 50%; height: auto; align-items: stretch; overflow: hidden; z-index: 2;">
+        <div style="flex: 1; display: flex; flex-direction: column; justify-content: space-between; margin: 20px;">
+            <h1 style="font-size: 32px; text-align: center;">Sign Up</h1>
+            <form class="d-flex flex-column" asp-controller="Identity" asp-action="Signup" method="post">
+                <div class="d-flex" style="justify-content: space-between;">
+                    <div class="col-md-5" style="padding-left: 20px">
+                        <p style="font-size: 16px; color: #9B30FF; margin-bottom: 5px;">*Member Information</p>
+                        <input type="text" asp-for="FullName" placeholder="Full Name" class="custom-input" />
+                        <input type="email" asp-for="Email" placeholder="Email" class="custom-input" />
+                        <label for="Birthday" style="color: #888; font-size: 12px; display: block; margin-top: 10px;">Birthday mm/dd/yyyy</label>
+                        <input type="date" asp-for="Birthday" class="custom-input" />
+                        <label for="Gender" style="color: #888; font-size: 12px; display: block; margin-top: 10px;">Gender</label>
+                        <select asp-for="Gender" class="custom-input">
+                            <option value="true">Male</option>
+                            <option value="false">Female</option>
+                            <option value="">Other</option>
+                        </select>
+                        <input type="text" asp-for="PhoneNumber" placeholder="Phone" class="custom-input" />
+                        <input type="password" asp-for="Password" placeholder="Password" class="custom-input" />
+                        <input type="password" asp-for="ConfirmPassword" placeholder="Re-Password" class="custom-input" />
+                    </div>
 
-        <form style="padding:0 20px" asp-controller="Identity" asp-action="Signup" method="post">
+                    <div class="col-md-5" style="padding-right: 20px">
+                        <p style="font-size: 16px; color: #9B30FF; margin-bottom: 5px;">*Child Information (optional)</p>
+                        <input type="text" asp-for="ChildName" placeholder="Child Name" class="custom-input" />
+                        <input type="text" asp-for="ChildNickName" placeholder="Child Nickname" class="custom-input" />
+                        <label for="ChildBirthday" style="color: #888; font-size: 12px; display: block; margin-top: 10px;">Child Birthday mm/dd/yyyy</label>
+                        <input type="date" asp-for="ChildBirthday" class="custom-input" />
+                        <label for="ChildGender" style="color: #888; font-size: 12px; display: block; margin-top: 10px;">Child Gender</label>
+                        <select asp-for="ChildGender" class="custom-input">
+                            <option value="true">Male</option>
+                            <option value="false">Female</option>
+                            <option value="">Other</option>
+                        </select>
+                    </div>
+                </div>
 
-            <div style="margin-bottom: 15px;">
-                <input type="email" asp-for="Email" placeholder="Email" class="custom-input" />
+                <div style="padding-left: 20px; padding-top: 10px;">
+                    <input type="checkbox" name="Term&Condition" id="terms" style="margin-right: 10px; width: 16px; height: 16px;" />
+                    <label for="terms" style="margin: 0;">
+                        I agree to the <a target="_blank" asp-controller="Home" asp-action="Privacy" style="color: #9B30FF; text-decoration: none;">Terms & Conditions</a>
+                    </label>
+
+                    <input type="hidden" asp-for="Role" class="form-control" value="Member" />
+                    <div style="text-align: center; margin-top: 30px;">
+                        <button type="submit" class="btn btn-primary" style="width:350px; padding: 10px; background-color: #FEDA15; border: none; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 400; cursor: pointer;">Sign Up</button>
+                    </div>
+                </div>
+            </form>
+
+            <div class="endMascot" style="display: flex; justify-content: flex-end;">
+                <img src="~/images/mascot-1.png" style="width: 15%;" />
             </div>
-
-            <div style="margin-bottom: 15px;">
-                <input type="text" asp-for="FullName" placeholder="Full Name" class="custom-input" />
-            </div>
-
-            <div style="margin-bottom: 15px">
-                <input type="text" asp-for="PhoneNumber" placeholder="Phone Number" class="custom-input" />
-            </div>
-
-            <div style="margin-bottom: 15px">
-                <input type="date" asp-for="Birthday" placeholder="Birthday" class="custom-input" />
-            </div>
-
-            <div style="margin-bottom: 15px;">
-                <select asp-for="Gender" class="custom-input">
-                    <option value="">Other</option>
-                    <option value="true">Male</option>
-                    <option value="false">Female</option>
-                </select>
-                <span asp-validation-for="Gender" class="text-danger"></span>
-            </div>
-
-            <div style="margin-bottom: 15px;">
-                <input type="password" asp-for="Password" placeholder="Password" class="custom-input" />
-            </div>
-
-            <div style="margin-bottom: 15px;">
-                <input type="password" asp-for="ConfirmPassword" placeholder="Re-Password" class="custom-input" />
-            </div>
-
-            @*Child Information*@
-
-            <div style="margin-bottom: 15px;">
-                <input type="text" asp-for="ChildName" placeholder="Child Name" class="custom-input" />
-            </div>
-
-            <div style="margin-bottom: 15px;">
-                <input type="text" asp-for="ChildNickName" placeholder="Child Nick Name" class="custom-input" />
-            </div>
-
-            <div style="margin-bottom: 15px;">
-                <input type="date" asp-for="ChildBirthday" class="custom-input" />
-            </div>
-
-            <div style="margin-bottom: 15px;">
-                <select asp-for="ChildGender" class="custom-input">
-                    <option value="">Other</option>
-                    <option value="true">Male</option>
-                    <option value="false">Female</option>
-                </select>
-                <span asp-validation-for="ChildGender" class="text-danger"></span>
-            </div>
-
-            <div class="d-flex">
-                <input type="checkbox" name="Term&Condition" />
-                <p>I accept with <a target="_blank" asp-controller="Home" asp-action="Privacy">Term & Condition</a></p>
-            </div>
-
-            <input type="hidden" asp-for="Role" class="form-control" value="Member" />
-            <div style="text-align: center; margin-bottom: 0">
-                <button type="submit" class="btn btn-primary" style="width:200px; padding: 10px; background-color: #FEDA15; border: none; border-radius: 25px; color: #fff; font-size: 16px; font-weight: bold; cursor: pointer;margin:0 auto;">SIGN UP</button>
-            </div>
-        </form>
-
-
-        <div class="d-flex justify-content-between">
-            <p style=" font-size: 12px; margin:auto 0; ">
-                Already have a account? <a asp-action="Signin" style="color: #FEDA15;font-weight:bold">Sign In</a>
-            </p>
-            <img src="~/images/mascot-1.png" alt="Alternate Text" />
         </div>
     </div>
 </div>
+
+@* button disable and checkbox privacy *@
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const checkbox = document.getElementById("terms");
+        const submitButton = document.querySelector("button[type='submit']");
+
+        submitButton.disabled = true;
+        submitButton.style.backgroundColor = "#ddd";
+        submitButton.style.color = "#888";
+        submitButton.style.cursor = "not-allowed";
+
+        checkbox.addEventListener("change", function () {
+            if (checkbox.checked) {
+                submitButton.disabled = false;
+                submitButton.style.backgroundColor = "#FEDA15";
+                submitButton.style.color = "#fff";
+                submitButton.style.cursor = "pointer";
+            } else {
+                submitButton.disabled = true;
+                submitButton.style.backgroundColor = "#ddd";
+                submitButton.style.color = "#888";
+                submitButton.style.cursor = "not-allowed";
+            }
+        });
+    });
+</script>
+
+
+@* confetti background animation *@
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const confettiContainer = document.querySelector('.confetti-container');
+
+        function createConfetti() {
+            const confetti = document.createElement('div');
+            confetti.classList.add('confetti');
+            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.backgroundColor = getRandomColor();
+            confetti.style.animationDuration = Math.random() * 2 + 3 + 's';
+            confetti.style.width = Math.random() * 5 + 2 + 'px';
+            confetti.style.height = Math.random() * 25 + 15 + 'px';
+
+            confettiContainer.appendChild(confetti);
+
+            setTimeout(() => confetti.remove(), 5000);
+        }
+
+        function getRandomColor() {
+            const colors = [
+                '#FFD700', '#FF4500', '#1E90FF', '#32CD32', '#FF69B4', '#8A2BE2',
+                '#FF6347', '#00FA9A', '#9400D3', '#FF7F50', '#00CED1', '#FFB6C1',
+                '#4B0082', '#ADFF2F'
+            ];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+
+        setInterval(createConfetti, 200);
+    });
+</script>
