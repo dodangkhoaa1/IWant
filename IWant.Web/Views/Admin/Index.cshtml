@@ -1,0 +1,541 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<head>
+    <style>
+        .card-custom {
+            background: #fff;
+            border: none;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+
+        .card-custom1 {
+            background: #fff;
+            border: none;
+            border-radius: 10px;
+            padding: 20px;
+            height: 230px;
+            width: 100%;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+
+        .chart-wrapper {
+            display: block;
+            box-sizing: border-box;
+            height: 230px;
+        }
+
+        .card-title {
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: #6b7280;
+            text-transform: uppercase;
+        }
+
+        .card-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #111827;
+        }
+
+        .card-subtext {
+            font-size: 0.9rem;
+            color: #10b981;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(to bottom right, #ff7e5f, #feb47b);
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+            .card-icon i {
+                font-size: 24px;
+                color: white;
+            }
+
+
+
+
+        .recent-orders table thead th {
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            color: #6b7280;
+        }
+
+        .recent-orders table tbody tr td {
+            vertical-align: middle;
+        }
+
+        .top-selling-products img {
+            width: 60px;
+            margin-right: 10px;
+            border-radius: 8px;
+        }
+
+        .top-selling-products .product-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+            .top-selling-products .product-item h6 {
+                font-size: 0.95rem;
+                margin: 0;
+            }
+
+            .top-selling-products .product-item span {
+                font-size: 0.85rem;
+                color: #6b7280;
+            }
+
+
+        .campaign-container,
+        .chart-container {
+            height: 550px;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .campaign-container {
+            justify-content: space-between;
+        }
+
+        .chart-container {
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+            .chart-container h5 {
+                margin-bottom: 20px;
+                font-size: 1.25rem;
+                color: #333;
+            }
+
+            .chart-container canvas {
+                width: 100%;
+                max-height: 450px;
+            }
+
+
+        .chart-container,
+        .campaign-container {
+            height: 550px;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .combined-container {
+            height: 450px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+            .combined-container > .chart-container,
+            .combined-container > .campaign-container {
+                flex: 1;
+                padding: 20px;
+                background: #fff;
+                border-radius: 10px;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            }
+
+        .info-card {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 300px;
+        }
+
+        .card-header-area {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 10px;
+        }
+
+            .card-header-area h6 {
+                margin: 0;
+                font-weight: 600;
+                color: #333;
+            }
+
+        .card-subtext {
+            margin-top: 5px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #555;
+        }
+
+            .card-subtext small {
+                font-size: 0.85rem;
+            }
+
+        .chart-wrapper {
+            flex: 1; /* chart takes the remaining vertical space */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .legend-row .badge {
+            font-size: 0.8rem;
+        }
+
+        .blog, .score {
+            width: 100%;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .row.mt-4.container.custom {
+            margin-left: 0;
+            padding-left: 15px;
+        }
+
+        .avt img {
+            width: 70px;
+            height: 50px;
+        }
+
+        .text-comment {
+            margin-left: 20px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="container mt-4">
+        <div class="row g-3">
+            <div class="col-md-3">
+                <div class="card-custom d-flex justify-content-between align-items-center">
+                    <div>
+                        <div class="card-title">Blog</div>
+                        <div class="card-value">350,897</div>
+                    </div>
+                    <div class="card-icon" style="background: linear-gradient(to bottom right, #ff7e5f, #feb47b);">
+                        <i class="fa-solid fa-blog"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card-custom d-flex justify-content-between align-items-center">
+                    <div>
+                        <div class="card-title">User</div>
+                        <div class="card-value">2,356</div>
+                    </div>
+                    <div class="card-icon" style="background: linear-gradient(to bottom right, #f97316, #facc15);">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card-custom d-flex justify-content-between align-items-center">
+                    <div>
+                        <div class="card-title">Game</div>
+                        <div class="card-value">924</div>
+                    </div>
+                    <div class="card-icon" style="background: linear-gradient(to bottom right, #10b981, #34d399);">
+                        <i class="fa-solid fa-gamepad"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card-custom d-flex justify-content-between align-items-center">
+                    <div>
+                        <div class="card-title">Game</div>
+                        <div class="card-value">924</div>
+                    </div>
+                    <div class="card-icon" style="background: linear-gradient(to bottom right, #3b82f6, #60a5fa);">
+                        <i class="fa-solid fa-gamepad"></i>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-8">
+                <div class="chart-container">
+                    <h5>Visit and Sales Statistics</h5>
+                    <canvas id="salesChart" style="height:450px;"></canvas>
+                </div>
+            </div>
+            <div class="col-md-4 d-flex flex-column gap-3">
+
+                <div class="info-card p-3">
+                    <div class="card-header-area">
+                        <h6>Traffic Distribution</h6>
+                        <div class="card-subtext">
+                        </div>
+                    </div>
+                    <div class="chart-wrapper">
+                        <canvas id="trafficChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="top-selling-products">
+                    <div class="card-custom1 mt-3">
+                        <h5>The New Blog</h5>
+                        <div class="product-item mt-3">
+                            <img src="~/images/banner.jpg" alt="Banner" />
+                            <div>
+                                <h6>Nội dung blog mới</h6>
+                            </div>
+                        </div>
+                        <div class="product-item">
+                            <img src="~/images/banner1.jpg" alt="Banner" />
+                            <div>
+                                <h6>Nội dung blog hot</h6>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Bảng Blog được yêu thích nhất và phân trang JS -->
+    <div class="row mt-4 container custom">
+        <div class="col-md-6">
+            <div class="blog">
+                <h5>The most watched</h5>
+                <table class="table align-middle mt-3" data-table="watched">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Title blog</th>
+                            <th>Watched</th>
+                            <th>Trạng thái</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1</td><td>Cách làm blog hiệu quả</td><td>2000</td><td><span class="badge bg-success">Công khai</span></td></tr>
+                        <tr><td>2</td><td>Tuyển tập bài blog công nghệ</td><td>1800</td><td><span class="badge bg-success">Công khai</span></td></tr>
+                        <tr><td>3</td><td>Hành trình du lịch qua blog</td><td>1500</td><td><span class="badge bg-success">Công khai</span></td></tr>
+                        <tr><td>4</td><td>Bí quyết SEO cho blog</td><td>1200</td><td><span class="badge bg-success">Công khai</span></td></tr>
+                        <tr><td>5</td><td>Top tips cho blog mới</td><td>1100</td><td><span class="badge bg-success">Công khai</span></td></tr>
+                        <tr><td>6</td><td>Hướng dẫn viết blog chuyên nghiệp</td><td>1400</td><td><span class="badge bg-success">Công khai</span></td></tr>
+                    </tbody>
+                </table>
+                <nav>
+                    <ul class="pagination" data-pagination="watched"></ul>
+                </nav>
+            </div>
+        </div>
+
+        <!-- The most score -->
+        <div class="col-md-6 ">
+            <div class="score ">
+                <h5>The most score</h5>
+                <table class="table align-middle mt-3" data-table="score">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Score</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>AAAAA</td><td>2000</td></tr>
+                        <tr><td>BBB</td><td>1800</td></tr>
+                        <tr><td>CCCC</td><td>1500</td></tr>
+                        <tr><td>DDDD</td><td>1200</td></tr>
+                        <tr><td>EEEE</td><td>1100</td></tr>
+                        <tr><td>FFFF</td><td>1000</td></tr>
+                    </tbody>
+                </table>
+                <nav>
+                    <ul class="pagination" data-pagination="score"></ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container mt-4">
+        <div class="row mt-4">
+            <div class="col-md-8">
+                <div class="chart-container">
+                    <h5>Visit and Sales Statistics</h5>
+                    <canvas id="lineChart" style="height:450px;"></canvas>
+                </div>
+            </div>
+            <div class="col-md-4 d-flex flex-column gap-3">
+
+                <div class="info-card p-3">
+                    <div class="card-header-area">
+                        <h6>Comment</h6>
+                        <div class="card-subtext"></div>
+                        <div class="avt mt-3 d-flex align-items-center gap-3">
+                            <img src="~/images/avatar/9c15ce64-52df-4cd0-b451-595cea90d9c9.jpg" alt="Banner" />
+                            <div class="text-comment">
+                                <h6 class="mb-1 ">User</h6>
+                                <h6 class="mb-0 text-muted">Content</h6>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="top-selling-products">
+                    <div class="card-custom1 mt-3">
+                        <h5>Game</h5>
+                        <div class="product-item mt-3">
+                            <img src="~/images/banner.jpg" alt="Banner" />
+                            <div>
+                                <h6>Name</h6>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    @section Scripts {
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script>
+            const ctx1 = document.getElementById('salesChart').getContext('2d');
+            new Chart(ctx1, {
+                type: 'bar',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
+                    datasets: [{
+                        label: 'CTR',
+                        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                        data: [12, 19, 3, 5, 2, 3, 10, 7]
+                    }, {
+                        label: 'UV',
+                        backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                        data: [22, 10, 15, 8, 5, 6, 13, 9]
+                    }, {
+                        label: 'LV',
+                        backgroundColor: 'rgba(75, 192, 192, 0.5)',
+                        data: [8, 12, 7, 14, 9, 15, 5, 12]
+                    }]
+                }
+            });
+
+            var ctxTraffic = document.getElementById('trafficChart').getContext('2d');
+            var trafficChart = new Chart(ctxTraffic, {
+                type: 'pie',
+                data: {
+                    labels: ["Direct", "Referral", "Social Media"],
+                    datasets: [{
+                        data: [40, 35, 25],
+                        backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"]
+                    }]
+                }
+            });
+
+            const ctx3 = document.getElementById('lineChart').getContext('2d');
+            new Chart(ctx3, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
+                    datasets: [{
+                        label: 'Sales Growth',
+                        borderColor: '#ff6384',
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        data: [10, 15, 8, 12, 20, 18, 25, 30],
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+
+            document.addEventListener("DOMContentLoaded", function () {
+                const rowsPerPage = 3;
+
+                function setupPagination(tableSelector, paginationSelector) {
+                    const tableBody = document.querySelector(`table[data-table="${tableSelector}"] tbody`);
+                    const rows = Array.from(tableBody.querySelectorAll("tr"));
+                    const totalRows = rows.length;
+                    const totalPages = Math.ceil(totalRows / rowsPerPage);
+                    const paginationContainer = document.querySelector(`ul[data-pagination="${paginationSelector}"]`);
+
+                    function displayRows(page) {
+                        rows.forEach((row) => (row.style.display = "none"));
+                        const start = (page - 1) * rowsPerPage;
+                        rows.slice(start, start + rowsPerPage).forEach((row) => (row.style.display = ""));
+                    }
+
+                    function renderPagination() {
+                        paginationContainer.innerHTML = "";
+                        for (let i = 1; i <= totalPages; i++) {
+                            const li = document.createElement("li");
+                            li.classList.add("page-item");
+                            if (i === 1) li.classList.add("active");
+                            const a = document.createElement("a");
+                            a.classList.add("page-link");
+                            a.href = "#";
+                            a.textContent = i;
+                            a.addEventListener("click", function (e) {
+                                e.preventDefault();
+                                paginationContainer.querySelectorAll(".page-item").forEach((item) => item.classList.remove("active"));
+                                li.classList.add("active");
+                                displayRows(i);
+                            });
+                            li.appendChild(a);
+                            paginationContainer.appendChild(li);
+                        }
+                    }
+
+                    renderPagination();
+                    displayRows(1);
+                }
+
+                setupPagination("watched", "watched");
+                setupPagination("score", "score");
+            });
+        </script>
+
+    }
+</body>
+
+

@@ -258,7 +258,7 @@ namespace IWant.Web.Controllers
                 ImageUrl = blog.ImageUrl,
                 Comments = commentViewModels,
                 UserRating = userRating,
-                AverageRating = (int)Math.Ceiling(averageRating),
+                AverageRating = (int)Math.Round(averageRating, MidpointRounding.AwayFromZero),
                 CountRate = countRates.Count()
             };
 
