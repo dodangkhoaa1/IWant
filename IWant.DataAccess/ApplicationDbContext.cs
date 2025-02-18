@@ -103,23 +103,24 @@ public partial class ApplicationDbContext : IdentityDbContext<User>
 
         //Word Category
         builder.Entity<WordCategory>().HasData(
-            new WordCategory() { Id = 1, VietnameseName = "Hành Động", EnglishName = "Actions", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/wordCategories/Actions.png", Status = true },
-            new WordCategory() { Id = 2, VietnameseName = "Động Vật", EnglishName = "Animals", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/wordCategories/Animals.png", Status = true },
-            new WordCategory() { Id = 3, VietnameseName = "Bộ Phận Cơ Thể", EnglishName = "BodyParts", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/wordCategories/BodyParts.png", Status = true },
-            new WordCategory() { Id = 4, VietnameseName = "Quần Áo", EnglishName = "Clothes", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/wordCategories/Clothes.png", Status = true },
-            new WordCategory() { Id = 5, VietnameseName = "Màu Sắc", EnglishName = "Colors", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/wordCategories/Colors.png", Status = true },
-            new WordCategory() { Id = 6, VietnameseName = "Cảm Xúc", EnglishName = "Feeling", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/wordCategories/Feeling.png", Status = true },
-            new WordCategory() { Id = 7, VietnameseName = "Thức Ăn", EnglishName = "Food", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/wordCategories/Food.png", Status = true },
-            new WordCategory() { Id = 8, VietnameseName = "Trái Cây", EnglishName = "Fruits", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/wordCategories/Fruits.png", Status = true },
-            new WordCategory() { Id = 9, VietnameseName = "Con Số", EnglishName = "Numbers", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/wordCategories/Numbers.png", Status = true },
-            new WordCategory() { Id = 10, VietnameseName = "Con Người", EnglishName = "People", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/wordCategories/People.png", Status = true },
-            new WordCategory() { Id = 11, VietnameseName = "Địa Điểm", EnglishName = "Places", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/wordCategories/Places.png", Status = true },
-            new WordCategory() { Id = 12, VietnameseName = "Câu Hỏi", EnglishName = "Questions", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/wordCategories/Questions.png", Status = true },
-            new WordCategory() { Id = 13, VietnameseName = "Mối Quan Hệ", EnglishName = "Relations", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/wordCategories/Relations.png", Status = true },
-            new WordCategory() { Id = 14, VietnameseName = "Thời Gian", EnglishName = "Time", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/wordCategories/Time.png", Status = true },
-            new WordCategory() { Id = 15, VietnameseName = "Đồ Chơi", EnglishName = "Toys", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/wordCategories/Toys.png", Status = true },
-            new WordCategory() { Id = 16, VietnameseName = "Phương Tiện", EnglishName = "Vehicles", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/wordCategories/Vehicles.png", Status = true },
-            new WordCategory() { Id = 17, VietnameseName = "Mong Muốn", EnglishName = "Want", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/wordCategories/Want.png", Status = true }
+            new WordCategory() { Id = 1, VietnameseName = "Từ Cá Nhân", EnglishName = "Personal Words", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/wordCategories/Personal.png", Status = true },
+            new WordCategory() { Id = 2, VietnameseName = "Hành Động", EnglishName = "Actions", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/wordCategories/Actions.png", Status = true },
+            new WordCategory() { Id = 3, VietnameseName = "Động Vật", EnglishName = "Animals", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/wordCategories/Animals.png", Status = true },
+            new WordCategory() { Id = 4, VietnameseName = "Bộ Phận Cơ Thể", EnglishName = "BodyParts", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/wordCategories/BodyParts.png", Status = true },
+            new WordCategory() { Id = 5, VietnameseName = "Quần Áo", EnglishName = "Clothes", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/wordCategories/Clothes.png", Status = true },
+            new WordCategory() { Id = 6, VietnameseName = "Màu Sắc", EnglishName = "Colors", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/wordCategories/Colors.png", Status = true },
+            new WordCategory() { Id = 7, VietnameseName = "Cảm Xúc", EnglishName = "Feeling", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/wordCategories/Feeling.png", Status = true },
+            new WordCategory() { Id = 8, VietnameseName = "Thức Ăn", EnglishName = "Food", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/wordCategories/Food.png", Status = true },
+            new WordCategory() { Id = 9, VietnameseName = "Trái Cây", EnglishName = "Fruits", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/wordCategories/Fruits.png", Status = true },
+            new WordCategory() { Id = 10, VietnameseName = "Con Số", EnglishName = "Numbers", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/wordCategories/Numbers.png", Status = true },
+            new WordCategory() { Id = 11, VietnameseName = "Con Người", EnglishName = "People", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/wordCategories/People.png", Status = true },
+            new WordCategory() { Id = 12, VietnameseName = "Địa Điểm", EnglishName = "Places", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/wordCategories/Places.png", Status = true },
+            new WordCategory() { Id = 13, VietnameseName = "Câu Hỏi", EnglishName = "Questions", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/wordCategories/Questions.png", Status = true },
+            new WordCategory() { Id = 14, VietnameseName = "Mối Quan Hệ", EnglishName = "Relations", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/wordCategories/Relations.png", Status = true },
+            new WordCategory() { Id = 15, VietnameseName = "Thời Gian", EnglishName = "Time", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/wordCategories/Time.png", Status = true },
+            new WordCategory() { Id = 16, VietnameseName = "Đồ Chơi", EnglishName = "Toys", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/wordCategories/Toys.png", Status = true },
+            new WordCategory() { Id = 17, VietnameseName = "Phương Tiện", EnglishName = "Vehicles", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/wordCategories/Vehicles.png", Status = true },
+            new WordCategory() { Id = 18, VietnameseName = "Mong Muốn", EnglishName = "Want", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/wordCategories/Want.png", Status = true }
         );
 
 
