@@ -36,7 +36,7 @@ public class PhraseBuild : MonoBehaviour
     }
 
     /// <summary>
-    /// Initializes the positions of all buttons in the container.
+    /// Allow to initialize the positions of all buttons in the container.
     /// </summary>
     private void InitializeButtonPositions()
     {
@@ -50,7 +50,7 @@ public class PhraseBuild : MonoBehaviour
     }
 
     /// <summary>
-    /// Adds a button to the phrase container.
+    /// Allow to add a button to the phrase container.
     /// </summary>
     public void AddToList(GameObject wordButton)
     {
@@ -83,7 +83,7 @@ public class PhraseBuild : MonoBehaviour
     }
 
     /// <summary>
-    /// Clears all buttons from the phrase container.
+    /// Allow to clear all buttons from the phrase container.
     /// </summary>
     public void RemoveAllChildren()
     {
@@ -97,7 +97,7 @@ public class PhraseBuild : MonoBehaviour
     }
 
     /// <summary>
-    /// Removes a specific button from the phrase container.
+    /// Allow to remove a specific button from the phrase container.
     /// </summary>
     public IEnumerator RemoveFromList(GameObject aacWordGO)
     {
@@ -110,7 +110,7 @@ public class PhraseBuild : MonoBehaviour
     }
 
     /// <summary>
-    /// Plays the sequence of buttons with audio feedback.
+    /// Allow to play the sequence of buttons with audio feedback.
     /// </summary>
     public void PlayPhrase()
     {
@@ -129,6 +129,9 @@ public class PhraseBuild : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Allow to update the UI toolbar buttons.
+    /// </summary>
     private IEnumerator UpdateUIToolBarButtons()
     {
         yield return null;
@@ -137,6 +140,9 @@ public class PhraseBuild : MonoBehaviour
         playBtn.interactable = hasChildren;
     }
 
+    /// <summary>
+    /// Allow to update the positions of all buttons in the container.
+    /// </summary>
     private void UpdateButtonPositions()
     {
         Debug.Log("UpdateButtonPositions");
@@ -150,12 +156,17 @@ public class PhraseBuild : MonoBehaviour
         }
     }
 
-
+    /// <summary>
+    /// Allow to calculate the position of a button based on its index.
+    /// </summary>
     private Vector2 CalculateButtonPosition(int index)
     {
         return new Vector2(175 + index * (350 + 50), -200);
     }
 
+    /// <summary>
+    /// Allow to add drag events to a button.
+    /// </summary>
     private void AddDragEvent(GameObject button)
     {
         EventTrigger trigger = button.GetComponent<EventTrigger>() ?? button.AddComponent<EventTrigger>();
@@ -169,6 +180,9 @@ public class PhraseBuild : MonoBehaviour
         trigger.triggers.Add(endDragEntry);
     }
 
+    /// <summary>
+    /// Allow to handle the drag event of a button.
+    /// </summary>
     private void OnDrag(PointerEventData data, GameObject button)
     {
         RectTransform buttonRect = button.GetComponent<RectTransform>();
@@ -224,12 +238,19 @@ public class PhraseBuild : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Allow to reset the swap flag after a delay.
+    /// </summary>
     private IEnumerator ResetSwapFlag()
     {
         yield return new WaitForSeconds(transitionTime); // Wait to avoid instant re-triggering
         isSwapping = false;
         currentSwapTarget = null; // Reset the current swap target
     }
+
+    /// <summary>
+    /// Allow to enable the colliders of two buttons after a delay.
+    /// </summary>
     private IEnumerator EnableColliders(GameObject button, GameObject anotherButton)
     {
         yield return new WaitForSeconds(transitionTime);
@@ -238,7 +259,9 @@ public class PhraseBuild : MonoBehaviour
         isSwapping = false;
     }
 
-
+    /// <summary>
+    /// Allow to handle the end drag event of a button.
+    /// </summary>
     private void OnEndDrag(PointerEventData data, GameObject button)
     {
         if (data.position.y < Screen.height * 0.5f)
@@ -251,7 +274,11 @@ public class PhraseBuild : MonoBehaviour
         }
     }
 
-    private void EnableInteractionOfButton(Button button){
+    /// <summary>
+    /// Allow to enable interaction of the original button in aacButtonContainer.
+    /// </summary>
+    private void EnableInteractionOfButton(Button button)
+    {
         // Enable interaction of the original button in aacButtonContainer
         string originalButtonName = button.name.Replace("(Clone)", "").Trim();
         Debug.Log(originalButtonName);

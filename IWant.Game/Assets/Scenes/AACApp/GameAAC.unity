@@ -2281,6 +2281,7 @@ MonoBehaviour:
   categoryContainer: {fileID: 50919521}
   categoryButtonPrefab: {fileID: 76730854460449779, guid: 54cc0ed5522335a46ae160fecab159ad, type: 3}
   phraseBuildGO: {fileID: 1695819874}
+  categoryScrollRect: {fileID: 1161515276}
 --- !u!1 &1115964694
 GameObject:
   m_ObjectHideFlags: 0

@@ -48,14 +48,19 @@ public class SliderVolumeSettings : MonoBehaviour
             SetSFXVolume();
         }
     }
+
+    // Allow to set the music volume
     public void SetMusicVolume()
     {
         float volume = musicSlider.value;
 
-        if(volume == minVolumeSlider){
+        if (volume == minVolumeSlider)
+        {
             musicDisplay.sprite = musicOff;
             musicEnabled = false;
-        }else{
+        }
+        else
+        {
             musicDisplay.sprite = musicOn;
             musicEnabled = true;
         }
@@ -63,6 +68,8 @@ public class SliderVolumeSettings : MonoBehaviour
         myMixer.SetFloat("music", Mathf.Log10(volume) * 20);
         PrefConst.MUSIC_VOLUME = volume;
     }
+
+    // Allow to set the SFX volume
     public void SetSFXVolume()
     {
         float volume = sfxSlider.value;
@@ -82,6 +89,7 @@ public class SliderVolumeSettings : MonoBehaviour
         PrefConst.SFX_VOLUME = volume;
     }
 
+    // Allow to load the volume settings
     private void LoadVolume()
     {
         musicSlider.value = PrefConst.MUSIC_VOLUME;
@@ -91,6 +99,7 @@ public class SliderVolumeSettings : MonoBehaviour
         SetSFXVolume();
     }
 
+    // Allow to turn off the music
     private void TurnOffMusic()
     {
         if (musicSlider.value != minVolumeSlider)
@@ -98,18 +107,21 @@ public class SliderVolumeSettings : MonoBehaviour
         musicSlider.value = minVolumeSlider;
     }
 
+    // Allow to turn on the music
     private void TurnOnMusic()
     {
         musicSlider.value = oldMusicVolume;
     }
 
+    // Allow to handle music button click
     public void OnClickMusic()
     {
         if (musicEnabled) TurnOffMusic();
         else TurnOnMusic();
         musicEnabled = !musicEnabled;
     }
-    
+
+    // Allow to handle SFX button click
     public void OnClickSFX()
     {
         if (musicEnabled) TurnOffSFX();
@@ -117,6 +129,7 @@ public class SliderVolumeSettings : MonoBehaviour
         sfxEnabled = !sfxEnabled;
     }
 
+    // Allow to turn off the SFX
     private void TurnOffSFX()
     {
         if (sfxSlider.value != minVolumeSlider)
@@ -124,6 +137,7 @@ public class SliderVolumeSettings : MonoBehaviour
         sfxSlider.value = minVolumeSlider;
     }
 
+    // Allow to turn on the SFX
     private void TurnOnSFX()
     {
         sfxSlider.value = oldSFXVolume;

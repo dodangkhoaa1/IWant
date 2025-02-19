@@ -2,6 +2,7 @@
 
 public static class Convert
 {
+    // Allow to convert a byte array to a Sprite
     public static Sprite ConvertBytesToSprite(byte[] imageBytes)
     {
         Texture2D texture = new Texture2D(2, 2); // Placeholder size, will resize automatically

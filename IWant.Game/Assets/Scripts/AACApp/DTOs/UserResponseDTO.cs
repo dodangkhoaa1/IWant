@@ -1,7 +1,13 @@
-﻿[System.Serializable]
+﻿#nullable enable
+[System.Serializable]
 public class UserResponseDTO
 {
+    public string UserId;
     public string FullName;
-    public bool Gender;
-    public bool Status;
+    public string Email;
+    public bool? Gender;
+    public string? ChildName;
+    public string? ChildNickName;
+    public bool? ChildGender;
+    public bool? Status;
 }

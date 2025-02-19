@@ -20,6 +20,7 @@ public class WholeSpriteBrush : MonoBehaviour
             RaycastSprites(); // Identify the sprite was clicked
     }
 
+    // Allow to raycast a single sprite
     private void RaycastSprite()
     {
         Vector2 origin = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -37,8 +38,10 @@ public class WholeSpriteBrush : MonoBehaviour
         Debug.Log(hit.collider.name);
 
     }
+
+    // Allow to raycast multiple sprites and color the one with the highest order in layer
     private void RaycastSprites()
-    { 
+    {
         Vector2 origin = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         Vector2 direction = Vector2.zero;
@@ -63,7 +66,8 @@ public class WholeSpriteBrush : MonoBehaviour
             // At this point, we have SpriteRenderer
             int orderInLayer = spriteRenderer.sortingOrder;
 
-            if(orderInLayer > highestOrderInLayer){
+            if (orderInLayer > highestOrderInLayer)
+            {
                 highestOrderInLayer = orderInLayer;
                 highestOrderIndex = i;
             }
@@ -77,6 +81,7 @@ public class WholeSpriteBrush : MonoBehaviour
         ColorSprite(highestCollider);
     }
 
+    // Allow to color a sprite
     private void ColorSprite(Collider2D collider)
     {
         SpriteRenderer spriteRenderer = collider.GetComponent<SpriteRenderer>();

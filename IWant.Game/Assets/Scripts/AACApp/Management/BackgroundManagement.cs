@@ -28,41 +28,46 @@ public class BackgroundManagement : MonoBehaviour
 
     private void Awake()
     {
+        // Set the screen orientation to portrait mode
         Screen.orientation = ScreenOrientation.Portrait;
     }
+
     // Start is called before the first frame update
     void Start()
     {
-
+        // Initialize the current image index and set the initial background images
         currentImageIndex = 0;
         backgroundCanvas.sprite = backgroundImages[currentImageIndex];
         displayBackground.sprite = backgroundImages[currentImageIndex];
     }
 
+    // Allow to switch to the next background image
     public void NextBackground()
     {
         currentImageIndex++;
-        //Validate index
+        // Validate index
         if (currentImageIndex > backgroundImages.Length - 1) currentImageIndex = 0;
 
         displayBackground.sprite = backgroundImages[currentImageIndex];
     }
 
+    // Allow to switch to the previous background image
     public void PreviousBackground()
     {
         currentImageIndex--;
-        //Validate index
+        // Validate index
         if (currentImageIndex < 0) currentImageIndex = backgroundImages.Length - 1;
 
         displayBackground.sprite = backgroundImages[currentImageIndex];
     }
 
-
+    // Allow to select the current background image
     public void SelectBackground()
     {
         backgroundCanvas.sprite = backgroundImages[currentImageIndex];
     }
 
+    // Allow to turn off all setting panels
     private void TurnOffAll()
     {
         darkPanel.gameObject.SetActive(false);
@@ -71,6 +76,7 @@ public class BackgroundManagement : MonoBehaviour
         soundLanguageSetting.gameObject.SetActive(false);
     }
 
+    // Allow to open the adjust background panel
     public void OpenAdjustBackground()
     {
         TurnOffAll();
@@ -81,6 +87,7 @@ public class BackgroundManagement : MonoBehaviour
         UpdateCloseBtnUI();
     }
 
+    // Allow to open the sound and language setting panel
     public void OpenSoundLanguageSetting()
     {
         TurnOffAll();
@@ -91,6 +98,7 @@ public class BackgroundManagement : MonoBehaviour
         UpdateCloseBtnUI();
     }
 
+    // Allow to open the sound setting panel
     public void OpenAdjustSound()
     {
         panelStack.Push(soundSetting);
@@ -99,6 +107,7 @@ public class BackgroundManagement : MonoBehaviour
         UpdateCloseBtnUI();
     }
 
+    // Allow to open the language setting panel
     public void OpenSelectLanguage()
     {
         panelStack.Push(languageSetting);
@@ -107,6 +116,7 @@ public class BackgroundManagement : MonoBehaviour
         UpdateCloseBtnUI();
     }
 
+    // Allow to close the currently open panel
     public void Close()
     {
         Transform lastPanel = panelStack.Pop();
@@ -115,6 +125,7 @@ public class BackgroundManagement : MonoBehaviour
         UpdateCloseBtnUI();
     }
 
+    // Allow to update the close button UI based on the panel stack count
     private void UpdateCloseBtnUI()
     {
         closeButton.sprite = panelStack.Count > 1 ? leftArrowSprite : closeSprite;

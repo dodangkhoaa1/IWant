@@ -10,7 +10,7 @@ public class CaptureManager : MonoBehaviour
     public Camera captureCamera; // Camera used to capture GameObject Paper
     public Transform paperObject;
 
-[Header("Watermark Settings")]
+    [Header("Watermark Settings")]
     public Sprite waterMark;
     [SerializeField] float alphaScale = 0.3f; // Độ trong suốt của watermark (1.0 = không trong suốt, 0.0 = hoàn toàn trong suốt)
     [SerializeField] int percentOfWatermark = 30;
@@ -18,12 +18,12 @@ public class CaptureManager : MonoBehaviour
     private int imageWidth = 1920;
     private int imageHeight = 1080;
 
-
     private void Start()
     {
 
     }
 
+    // Allow to capture and save image
     public void CaptureAndSaveImage()
     {
         // Request write permission on Android
@@ -37,6 +37,7 @@ public class CaptureManager : MonoBehaviour
         StartCoroutine(CaptureScreenshot());
     }
 
+    // Allow to capture screenshot
     private IEnumerator CaptureScreenshot()
     {
         // 1) Tạo RenderTexture
@@ -100,15 +101,17 @@ public class CaptureManager : MonoBehaviour
         RenderTexture.active = null;
         Destroy(renderTexture);
 
-        //6 them water mark
+        // 6) Add watermark
         if (waterMark != null)
         {
             Texture2D watermarkTex = SpriteToTexture2D(waterMark);
             screenshot = AddWatermark(screenshot, watermarkTex);
         }
-        // 7) Lưu ảnh
+        // 7) Save image
         SaveImageToGallery(screenshot);
     }
+
+    // Allow to save image to gallery
     private void SaveImageToGallery(Texture2D image)
     {
         string filename = "PaperScreenshot_" + System.DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".png";
@@ -134,6 +137,7 @@ public class CaptureManager : MonoBehaviour
         Toast.Show("Save successfully!", 1.5f, ToastColor.Green, ToastPosition.BottomCenter);
     }
 
+    // Allow to convert sprite to Texture2D
     private Texture2D SpriteToTexture2D(Sprite sprite)
     {
         Texture2D texture = new Texture2D((int)sprite.rect.width, (int)sprite.rect.height);
@@ -142,10 +146,11 @@ public class CaptureManager : MonoBehaviour
         texture.Apply();
         return texture;
     }
+
+    // Allow to add watermark to base image
     private Texture2D AddWatermark(Texture2D baseImage, Texture2D watermark)
     {
         int margin = 20; // Khoảng cách từ góc dưới phải
-       
 
         // Tính toán kích thước watermark dựa trên chiều rộng 20% ảnh đã cắt
         int newWidth = baseImage.width * percentOfWatermark / 100; // 20% của ảnh gốc
@@ -177,7 +182,7 @@ public class CaptureManager : MonoBehaviour
         return baseImage;
     }
 
-
+    // Allow to resize texture
     private Texture2D ResizeTexture(Texture2D source, int newWidth, int newHeight)
     {
         RenderTexture rt = new RenderTexture(newWidth, newHeight, 24);
@@ -192,6 +197,4 @@ public class CaptureManager : MonoBehaviour
         rt.Release();
         return result;
     }
-
-
 }

@@ -31,8 +31,7 @@ public class MeshBrush : MonoBehaviour
             Paint();
     }
 
-
-
+    // Allow to create a new mesh
     private void CreateMesh()
     {
         RaycastHit hit;
@@ -58,7 +57,7 @@ public class MeshBrush : MonoBehaviour
         uvs.Add(Vector2.right);
         uvs.Add(Vector2.zero);
         uvs.Add(Vector2.up);
-        
+
         //Setting up triangles
         triangles.Add(0);
         triangles.Add(1);
@@ -84,6 +83,7 @@ public class MeshBrush : MonoBehaviour
         lastClickedPosition = Input.mousePosition;
     }
 
+    // Allow to paint on the existing mesh
     private void Paint()
     {
         if (Vector2.Distance(lastClickedPosition, Input.mousePosition) < distanceThreshold) return;

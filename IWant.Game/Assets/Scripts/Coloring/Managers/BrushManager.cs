@@ -7,6 +7,7 @@ public class BrushManager : MonoBehaviour
     [Header("Data")]
     [SerializeField] private BrushData[] brushes;
 
+    // Allow to select a brush by its index
     public void SelectBrush(int index)
     {
         if (index < 0 || index > brushes.Length - 1)

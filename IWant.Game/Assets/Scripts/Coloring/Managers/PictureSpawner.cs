@@ -12,16 +12,20 @@ public class PictureSpawner : MonoBehaviour
 
     private PictureData[] picturesToColor;
 
+    // Allow to set the screen orientation to portrait mode
     private void Awake()
     {
         Screen.orientation = ScreenOrientation.Portrait;
     }
+
+    // Allow to initialize pictures to color and spawn menu pictures
     private void Start()
     {
         picturesToColor = MenuColoringManagement.instance.PicturesToColor;
         SpawnMenuPictures();
     }
 
+    // Allow to spawn menu pictures with buttons
     private void SpawnMenuPictures()
     {
         for (int i = 0; i < picturesToColor.Length; i++)
@@ -35,6 +39,7 @@ public class PictureSpawner : MonoBehaviour
         }
     }
 
+    // Allow to choose a picture and load the coloring game scene
     private void ChoosePicture(int indexOfPicture)
     {
         MenuColoringManagement.instance.INDEX_OF_CHOSE_PICTURE = indexOfPicture;

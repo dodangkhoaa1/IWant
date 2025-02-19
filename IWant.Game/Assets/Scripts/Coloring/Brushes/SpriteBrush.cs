@@ -14,12 +14,14 @@ public class SpriteBrush : MonoBehaviour
     private Dictionary<int, Texture2D> originalTextures = new Dictionary<int, Texture2D>();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    // Allow to initialize the brush
     void Start()
     {
 
     }
 
     // Update is called once per frame
+    // Allow to update the brush state and handle user input
     void Update()
     {
         //If user click left mouse
@@ -29,6 +31,7 @@ public class SpriteBrush : MonoBehaviour
             RaycastCurrentSprite();
     }
 
+    // Allow to identify the sprite that was clicked
     private void RaycastSprites()
     {
         Vector2 origin = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -80,6 +83,8 @@ public class SpriteBrush : MonoBehaviour
         //Color it
         ColorSpriteAtPosition(highestCollider, hits[highestOrderIndex].point);
     }
+
+    // Allow to color the current sprite at the position of the mouse
     private void RaycastCurrentSprite()
     {
         Vector2 origin = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -103,6 +108,7 @@ public class SpriteBrush : MonoBehaviour
         }
     }
 
+    // Allow to color the sprite at the specified position
     private void ColorSpriteAtPosition(Collider2D collider, Vector2 hitPoint)
     {
         SpriteRenderer spriteRenderer = collider.GetComponent<SpriteRenderer>();
@@ -165,6 +171,7 @@ public class SpriteBrush : MonoBehaviour
         */
 
         //Rounded Smooth Brush
+        // Allow to apply a rounded smooth brush effect
         for (int x = -brushSize / 2; x < brushSize / 2; x++)
         {
             for (int y = -brushSize / 2; y < brushSize / 2; y++)
@@ -172,8 +179,8 @@ public class SpriteBrush : MonoBehaviour
                 int pixelX = x + (int)texturePoint.x;
                 int pixelY = y + (int)texturePoint.y;
 
-                float squaredRadius = x* x + y * y;
-                float factor = Mathf.Exp(-squaredRadius/ brushSize);
+                float squaredRadius = x * x + y * y;
+                float factor = Mathf.Exp(-squaredRadius / brushSize);
 
                 Color previousColor = sprite.texture.GetPixel(pixelX, pixelY);
 
@@ -188,12 +195,13 @@ public class SpriteBrush : MonoBehaviour
             }
         }
 
-                tex.Apply();
+        tex.Apply();
 
         Sprite newSprite = Sprite.Create(tex, sprite.rect, Vector2.one / 2, sprite.pixelsPerUnit);
         spriteRenderer.sprite = newSprite;
     }
 
+    // Allow to convert world position to texture position
     private Vector2 WorldToTexturePoint(SpriteRenderer sr, Vector2 worldPos)
     {
         Vector2 texturePoint = sr.transform.InverseTransformPoint(worldPos);
@@ -217,6 +225,7 @@ public class SpriteBrush : MonoBehaviour
         return texturePoint;
     }
 
+    // Allow to color the entire sprite
     private void ColorSprite(Collider2D collider)
     {
         SpriteRenderer spriteRenderer = collider.GetComponent<SpriteRenderer>();

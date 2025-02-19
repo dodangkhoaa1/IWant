@@ -26,7 +26,7 @@ public class ApiService : MonoBehaviour
     }
 
     /// <summary>
-    /// Makes a POST request to the given URL with the specified JSON payload.
+    /// Allow to make a POST request to the given URL with the specified JSON payload.
     /// </summary>
     /// <param name="url">The API endpoint URL.</param>
     /// <param name="jsonPayload">The JSON payload as a string.</param>
@@ -61,7 +61,7 @@ public class ApiService : MonoBehaviour
     }
 
     /// <summary>
-    /// Makes a GET request to the given URL.
+    /// Allow to make a GET request to the given URL.
     /// </summary>
     /// <param name="url">The API endpoint URL.</param>
     /// <param name="onSuccess">Callback executed on success with the response text.</param>
@@ -86,6 +86,13 @@ public class ApiService : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Allow to get an audio clip from the given URL.
+    /// </summary>
+    /// <param name="url">The API endpoint URL.</param>
+    /// <param name="onSuccess">Callback executed on success with the audio clip and request.</param>
+    /// <param name="onError">Callback executed on failure with the error message.</param>
+
     public IEnumerator GetAudioClip(string url, Action<AudioClip, UnityWebRequest> onSuccess, Action<string> onError)
     {
         using (UnityWebRequest audioRequest = UnityWebRequestMultimedia.GetAudioClip(url, AudioType.WAV))
@@ -104,7 +111,7 @@ public class ApiService : MonoBehaviour
     }
 
     /// <summary>
-    /// Makes a DELETE request to the given URL.
+    /// Allow to make a DELETE request to the given URL.
     /// </summary>
     /// <param name="url">The API endpoint URL.</param>
     /// <param name="onSuccess">Callback executed on success with the response text.</param>
@@ -130,7 +137,7 @@ public class ApiService : MonoBehaviour
     }
 
     /// <summary>
-    /// Makes a PUT request to the given URL with the specified JSON payload.
+    /// Allow to make a PUT request to the given URL with the specified JSON payload.
     /// </summary>
     /// <param name="url">The API endpoint URL.</param>
     /// <param name="jsonPayload">The JSON payload as a string.</param>

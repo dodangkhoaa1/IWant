@@ -5,17 +5,21 @@ using UnityEngine.SceneManagement;
 
 public class SceneManagement : MonoBehaviour
 {
+    // Allow to go to the home scene
     public void GoToHome()
     {
         SceneManager.LoadScene(SceneName.MainMenu.ToString());
     }
 
+    // Allow to reload the current scene
     public void ReLoadScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    public void ReturnMenu(){
+    // Allow to return to the menu scene
+    public void ReturnMenu()
+    {
         SceneManager.LoadScene(SceneName.MenuColor.ToString());
     }
 }

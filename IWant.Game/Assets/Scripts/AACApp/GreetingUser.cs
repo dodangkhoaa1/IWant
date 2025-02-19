@@ -15,6 +15,7 @@ public class GreetingUser : MonoBehaviour
         //animator = GetComponent<Animator>();
     }
 
+    // Allow to greet the user with a localized string
     public void GreetUser()
     {
         localGreeting.Arguments = new object[] { DBManager.fullName };
@@ -22,6 +23,7 @@ public class GreetingUser : MonoBehaviour
         textGreeting.gameObject.SetActive(true);
     }
 
+    // Allow to update the greeting text
     private void UpdateText(string value)
     {
         textGreeting.text = value;

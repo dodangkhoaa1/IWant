@@ -16,15 +16,20 @@ public class SignIn : MonoBehaviour
 
     public Button submitButton;
     private string toastString;
+
+    // Allow to set the screen orientation to portrait mode
     private void Awake()
     {
         Screen.orientation = ScreenOrientation.Portrait;
     }
+
+    // Allow to initiate the sign-in process
     public void CallSignIn()
     {
         StartCoroutine(SignInMethod());
     }
 
+    // Allow to handle the sign-in process asynchronously
     IEnumerator SignInMethod()
     {
         if (string.IsNullOrEmpty(usernameField.text) || string.IsNullOrEmpty(passwordField.text))
@@ -60,12 +65,12 @@ public class SignIn : MonoBehaviour
 
                     if (response != null && !string.IsNullOrEmpty(response.FullName))
                     {
-                        if (response.Status)
+                        if (response.Status == true)
                         {
                             string[] wordInName = response.FullName.Trim().Split(" ");
                             string lastName = wordInName[wordInName.Length - 1];
                             DBManager.fullName = lastName;
-                            DBManager.gender = response.Gender ? Gender.Male : Gender.Female;
+                            DBManager.gender = response.Gender == true ? Gender.Male : Gender.Female;
 
                             Debug.Log($"The gender of {DBManager.fullName} is {DBManager.gender.ToString()}");
                             toastString = PrefsKey.LANGUAGE == PrefsKey.ENGLISH_CODE ? $"User login successful. Welcome, {response.FullName}!" : $"Đăng nhập thành công. Chào mừng, {response.FullName}!";
@@ -74,12 +79,12 @@ public class SignIn : MonoBehaviour
                         }
                         else
                         {
-                            toastString = PrefsKey.LANGUAGE == PrefsKey.ENGLISH_CODE ? $"Sign in fail! The user {response.FullName} was not vailable!" 
+                            toastString = PrefsKey.LANGUAGE == PrefsKey.ENGLISH_CODE ? $"Sign in fail! The user {response.FullName} was not vailable!"
                                                                                     : $"Đăng nhập thất bại! Tài khoản {response.FullName} đã hết hạn! Vui lòng thử lại với tài khoản khác!";
                             Toast.Show(toastString, 1.5f, ToastColor.Red, ToastPosition.BottomCenter);
                         }
 
-                       
+
                     }
                     else
                     {
@@ -104,6 +109,7 @@ public class SignIn : MonoBehaviour
         );
     }
 
+    // Allow to verify the input fields and enable/disable the submit button
     public void VerifyInputs()
     {
         submitButton.interactable = (usernameField.text.Length >= 8 && passwordField.text.Length >= 8);

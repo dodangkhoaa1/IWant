@@ -45,16 +45,16 @@ public class GPUSpriteBrush : MonoBehaviour
         }
     }
 
+    // Allow to set the target frame rate for the application
     void Start()
     {
-        // Set the target frame rate for the application
         Application.targetFrameRate = 60;
         spriteRenderersParent = GameObject.FindWithTag("PictureToColor").transform;
     }
 
+    // Allow to check for mouse input to start or continue painting
     void Update()
     {
-        // Check for mouse input to start or continue painting
         if (Input.GetMouseButtonDown(0))
         {
             RaycastSprites();
@@ -65,6 +65,7 @@ public class GPUSpriteBrush : MonoBehaviour
         }
     }
 
+    // Allow to raycast sprites and start painting
     private void RaycastSprites()
     {
         previousMousePosition = Input.mousePosition;
@@ -125,6 +126,7 @@ public class GPUSpriteBrush : MonoBehaviour
         ColorSpriteAtPosition(highestCollider, hits[highestOrderIndex].point);
     }
 
+    // Allow to continue painting on the current sprite
     private void RaycastCurrentSprite()
     {
         if ((Vector2)Input.mousePosition == previousMousePosition) return;
@@ -134,7 +136,6 @@ public class GPUSpriteBrush : MonoBehaviour
 
         if (hits.Length <= 0) return;
 
-        // Continue painting on the current sprite
         for (int i = 0; i < hits.Length; i++)
         {
             if (!hits[i].collider.TryGetComponent(out SpriteRenderer spriteRenderer)) continue;
@@ -149,6 +150,7 @@ public class GPUSpriteBrush : MonoBehaviour
         previousMousePosition = Input.mousePosition;
     }
 
+    // Allow to color the sprite at the specified position
     private void ColorSpriteAtPosition(Collider2D collider, Vector2 hitPoint)
     {
         SpriteRenderer spriteRenderer = collider.GetComponent<SpriteRenderer>();
@@ -182,9 +184,9 @@ public class GPUSpriteBrush : MonoBehaviour
         spriteRenderer.sprite = newSprite;
     }
 
+    // Allow to convert world position to texture coordinates
     private Vector2 WorldToTexturePoint(SpriteRenderer spriteRenderer, Vector2 worldPos)
     {
-        // Convert world position to texture coordinates
         Vector2 texturePoint = spriteRenderer.transform.InverseTransformPoint(worldPos);
         texturePoint.x /= spriteRenderer.bounds.size.x;
         texturePoint.y /= spriteRenderer.bounds.size.y;
@@ -197,11 +199,13 @@ public class GPUSpriteBrush : MonoBehaviour
         return texturePoint;
     }
 
+    // Allow to set the brush size
     public void SetBrushSize(float brushSize)
     {
         this.brushSize = brushSize;
     }
 
+    // Allow to set the brush color
     public void SetColor(Color color)
     {
         this.brushColor = color;
@@ -209,13 +213,14 @@ public class GPUSpriteBrush : MonoBehaviour
         brushSizeManager.UpdateSelectedBrushColor(color);
     }
 
+    // Allow to set brush texture and hardness
     public void SetBrush(BrushData brushData)
     {
-        // Set brush texture and hardness
         brushMaterial.SetTexture("_BrushTexture", brushData.Texture);
         brushMaterial.SetFloat("_Hardness", brushData.Hardness);
     }
 
+    // Allow to undo the last action
     public void Undo()
     {
         if (undoObjects.Count <= 0) return;
@@ -236,13 +241,14 @@ public class GPUSpriteBrush : MonoBehaviour
         LeanTween.delayedCall(gameObject, Time.deltaTime * 2, () => RemoveLastUndo(undoObj));
     }
 
+    // Allow to remove the last undo object and update the UI
     private void RemoveLastUndo(UndoObject undoObj)
     {
-        // Remove the last undo object and update the UI
         undoObjects.Remove(undoObj);
         UpdateButtonUI();
     }
 
+    // Allow to redo the last undone action
     public void Redo()
     {
         if (redoObjects.Count <= 0) return;
@@ -263,16 +269,16 @@ public class GPUSpriteBrush : MonoBehaviour
         LeanTween.delayedCall(gameObject, Time.deltaTime * 2, () => RemoveLastRedo(redoObj));
     }
 
+    // Allow to remove the last redo object and update the UI
     private void RemoveLastRedo(UndoObject redoObj)
     {
-        // Remove the last redo object and update the UI
         redoObjects.Remove(redoObj);
         UpdateButtonUI();
     }
 
+    // Allow to update the interactable state of undo and redo buttons
     private void UpdateButtonUI()
     {
-        // Update the interactable state of undo and redo buttons
         undoButton.interactable = undoObjects.Count > 0;
         redoButton.interactable = redoObjects.Count > 0;
     }
