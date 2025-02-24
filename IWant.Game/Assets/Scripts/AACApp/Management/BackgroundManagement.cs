@@ -7,6 +7,11 @@ using UnityEngine.UI;
 
 public class BackgroundManagement : MonoBehaviour
 {
+    [Header("Macos")]
+    [SerializeField] private Transform macosPosition;
+    [SerializeField] private Transform[] positions;
+
+
     [Header("Adjust background")]
     [SerializeField] private Sprite[] backgroundImages;
     [SerializeField] private Image backgroundCanvas;
@@ -42,6 +47,7 @@ public class BackgroundManagement : MonoBehaviour
         currentImageIndex = 0;
         backgroundCanvas.sprite = backgroundImages[currentImageIndex];
         displayBackground.sprite = backgroundImages[currentImageIndex];
+        macosPosition.position = positions[currentImageIndex].position;
     }
 
     // Allow to switch to the next background image
@@ -68,6 +74,7 @@ public class BackgroundManagement : MonoBehaviour
     public void SelectBackground()
     {
         backgroundCanvas.sprite = backgroundImages[currentImageIndex];
+        macosPosition.position = positions[currentImageIndex].position;
     }
 
     // Allow to turn off all setting panels

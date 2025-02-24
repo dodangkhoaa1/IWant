@@ -8,10 +8,10 @@ using UnityEngine.UI;
 public class LanguageManager : MonoBehaviour
 {
     [SerializeField] private Sprite vietnameseFlag;
-    [SerializeField] private Sprite americaFlag;
+    [SerializeField] private Sprite unitedstateFlag;
     [SerializeField] private Image displayFlag;
-    [SerializeField] private Color vietnameseColor;
-    [SerializeField] private Color americaColor;
+    private Color vietnameseColor = new Color(0.85f, 0.15f, 0.11f, 0.7f);
+    private Color unitedstateColor = new Color(0.196f, 0.290f, 1f);
 
     private void Start()
     {
@@ -65,7 +65,7 @@ public class LanguageManager : MonoBehaviour
     {
         if (localeID == 0)
         {
-            displayFlag.sprite = americaFlag;
+            displayFlag.sprite = unitedstateFlag;
         }
         else if (localeID == 1)
         {
@@ -87,7 +87,7 @@ public class LanguageManager : MonoBehaviour
                 Image grandParentImage = grandParentTransform.GetComponent<Image>();
                 if (grandParentImage != null)
                 {
-                    grandParentImage.color = localeID == 0 ? americaColor : vietnameseColor;
+                    grandParentImage.color = localeID == 0 ? unitedstateColor : vietnameseColor;
                 }
             }
         }
