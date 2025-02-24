@@ -39,6 +39,26 @@ MonoBehaviour:
     m_Key: ContinueFBKey
     m_Metadata:
       m_Items: []
+  - m_Id: 20350949184655360
+    m_Key: LanguageKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20351049273331712
+    m_Key: CancelKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20351130072403968
+    m_Key: QuitKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20351705845485568
+    m_Key: ConfirmKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20351931587121152
+    m_Key: ConfirmDetailsKey
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

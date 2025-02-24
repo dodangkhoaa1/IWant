@@ -42,6 +42,26 @@ MonoBehaviour:
     m_Localized: "Ti\u1EBFp t\u1EE5c v\u1EDBi Facebook"
     m_Metadata:
       m_Items: []
+  - m_Id: 20350949184655360
+    m_Localized: "Ng\xF4n ng\u1EEF"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20351049273331712
+    m_Localized: "H\u1EE7y\n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20351130072403968
+    m_Localized: "Tho\xE1t"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20351705845485568
+    m_Localized: "X\xE1c nh\u1EADn"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20351931587121152
+    m_Localized: "B\u1EA1n c\xF3 ch\u1EAFc ch\u1EAFn mu\u1ED1n tho\xE1t tr\xF2 ch\u01A1i?"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
