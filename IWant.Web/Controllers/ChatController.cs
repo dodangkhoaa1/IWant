@@ -22,15 +22,17 @@ namespace IWant.Web.Controllers
             _hubContext = hubContext;
         }
 
+        // Allow to get a message by id
         public async Task<IActionResult> Get(int id)
         {
             var message = await _context.Messages.FindAsync(id);
-            if(message == null) return NotFound();
+            if (message == null) return NotFound();
 
-            var messageViewModel = _mapper.Map<Message,MessageViewModel>(message);
+            var messageViewModel = _mapper.Map<Message, MessageViewModel>(message);
             return View(messageViewModel);
         }
 
+        // Allow to get messages by room name
         [HttpGet("Chat/Messages/{roomName}")]
         public IActionResult Messages([FromRoute] string roomName)
         {
@@ -48,9 +50,10 @@ namespace IWant.Web.Controllers
                 .ToList();
 
             var messagesViewModel = _mapper.Map<IEnumerable<Message>, IEnumerable<MessageViewModel>>(messages);
-            return Ok(messagesViewModel); 
+            return Ok(messagesViewModel);
         }
 
+        // Allow to create a new message
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] MessageViewModel messageViewModel)
         {
@@ -79,12 +82,13 @@ namespace IWant.Web.Controllers
             return CreatedAtAction(nameof(Get), new { id = msg.Id }, createdMessage);
         }
 
+        // Allow to delete a message by id
         [HttpDelete]
         public async Task<IActionResult> Delete(int id)
         {
-            var message = await _context.Messages.Include(u=>u.FromUser).Where(m=>m.Id == id && m.FromUser.UserName == User.Identity.Name).FirstOrDefaultAsync();
+            var message = await _context.Messages.Include(u => u.FromUser).Where(m => m.Id == id && m.FromUser.UserName == User.Identity.Name).FirstOrDefaultAsync();
 
-            if(message == null) return NotFound();
+            if (message == null) return NotFound();
 
             _context.Messages.Remove(message);
             await _context.SaveChangesAsync();

@@ -19,6 +19,7 @@ namespace IWant.Web.Controllers
             _mapper = mapper;
         }
 
+        // Allow to create a comment
         [HttpPost]
         public async Task<IActionResult> CreateComment(CommentViewModel model)
         {
@@ -55,13 +56,14 @@ namespace IWant.Web.Controllers
             return RedirectToAction("BlogDetail", "Blog", new { id = model.BlogId });
         }
 
+        // Allow to rate a blog
         [HttpPost]
         public async Task<IActionResult> RatingBlog(int BlogId, int Rating)
         {
             var user = _context.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
             if (user == null)
             {
-                return Unauthorized(); 
+                return Unauthorized();
             }
 
             var blog = await _context.Blogs.FindAsync(BlogId);

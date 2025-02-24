@@ -31,12 +31,14 @@ namespace IWant.Web.Controllers
             _context = context;
         }
 
+        // Allow to display the signup page
         public async Task<IActionResult> Signup()
         {
             var model = new SignupViewModel() { Role = "Member" };
             return View(model);
         }
 
+        // Allow to initiate external login
         [HttpPost]
         public IActionResult ExternalLogin(string provider, string returnUrl = null)
         {
@@ -46,6 +48,7 @@ namespace IWant.Web.Controllers
             return Challenge(properties, provider);
         }
 
+        // Allow to handle external login callback
         public async Task<IActionResult> ExternalLoginCallback()
         {
             var info = await _signInManager.GetExternalLoginInfoAsync();
@@ -77,6 +80,7 @@ namespace IWant.Web.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        // Allow to handle signup form submission
         [HttpPost]
         public async Task<IActionResult> Signup(SignupViewModel model)
         {
@@ -157,45 +161,14 @@ namespace IWant.Web.Controllers
             return View(model);
         }
 
+        // Allow to display the email confirmation page
         [HttpGet]
         public async Task<IActionResult> ConfirmEmailPage()
         {
             return View();
         }
 
-        /*[Authorize]
-        public async Task<IActionResult> MFASetup()
-        {
-            const string provider = "iwant";
-            var user = await _userManager.GetUserAsync(User);
-            await _userManager.ResetAuthenticatorKeyAsync(user);
-            var token = await _userManager.GetAuthenticatorKeyAsync(user);
-            var qrCodeUrl = $"otpauth://totp/{provider}:{user.Email}?secret={token}&issuer={provider}&digits=6";
-
-            var model = new MFAViewModel { Token = token ,QRCodeUrl = qrCodeUrl};
-            return View(model);
-        }
-
-        [HttpPost]
-        [Authorize]
-        public async Task<IActionResult> MFASetup(MFAViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                var user = await _userManager.GetUserAsync(User);
-                var succeeded = await _userManager.VerifyTwoFactorTokenAsync(user, _userManager.Options.Tokens.AuthenticatorTokenProvider, model.Code);
-                if (succeeded)
-                {
-                    await _userManager.SetTwoFactorEnabledAsync(user, true);
-                }
-                else
-                {
-                    ModelState.AddModelError("Verify", "Your MFA code could not be validated.");
-                }
-            }
-            return View(model);
-        }*/
-
+        // Allow to confirm email
         public async Task<IActionResult> ConfirmEmail(string userId, string token)
         {
             var user = await _userManager.FindByIdAsync(userId);
@@ -208,11 +181,13 @@ namespace IWant.Web.Controllers
             return new NotFoundResult();
         }
 
+        // Allow to display the signin page
         public IActionResult Signin()
         {
             return View(new SigninViewModel());
         }
 
+        // Allow to handle signin form submission
         [HttpPost]
         public async Task<IActionResult> Signin(SigninViewModel model)
         {
@@ -250,65 +225,18 @@ namespace IWant.Web.Controllers
                     TempData["success"] = "Sign-in successfull!";
                     return RedirectToAction("Index", "Home");
                 }
-                /*if (result.RequiresTwoFactor) return RedirectToAction("MFACheck");*/
-
-                /*if (result.Succeeded)
-                {
-                    var user = await _userManager.FindByEmailAsync(model.Username);
-
-                    //Get Claim
-                    var userClaim = await _userManager.GetClaimsAsync(user);
-                    if (!userClaim.Any(x => x.Value == "test"))
-                    {
-                        ModelState.AddModelError("Claim", "User not in test department");
-                        return View(model);
-                    }
-                    //Check role
-                    if (await _userManager.IsInRoleAsync(user, "Member"))
-                    {
-                        return RedirectToAction("Member", "Home");
-                    }
-                    else
-                    {
-                        return RedirectToAction("Admin", "Home");
-                    }
-                }*/
-
-
-
-                /*if (!result.Succeeded)
-                {
-                    ModelState.AddModelError("Login", "Cannot login.");
-                }
-                else
-                    return RedirectToAction("Index", "Home");*/
             }
             return View(model);
         }
 
-        /*public IActionResult MFACheck()
-        {
-            return View(new MFACheckViewModel());
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> MFACheck(MFACheckViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                var result = await _signInManager.TwoFactorAuthenticatorSignInAsync(model.Code, false, false);
-                if (result.Succeeded) return RedirectToAction("Index", "Home", null);
-            }
-
-            return View(model);
-        }*/
-
+        // Allow to display the forgot password page
         [HttpGet]
         public async Task<IActionResult> ForgotPassword()
         {
             return View();
         }
 
+        // Allow to handle forgot password form submission
         [HttpPost]
         public async Task<IActionResult> ForgotPassword(ForgotPasswordViewModel model)
         {
@@ -328,55 +256,55 @@ namespace IWant.Web.Controllers
                 user.Email,
                 "\"I Want\" Recover Password Verification",
                 $@"
-                <html>
-                <head>
-                    <style>
-                        body {{
-                            font-family: Arial, sans-serif;
-                            color: #333;
-                            line-height: 1.5;
-                        }}
-                        .verification-box {{
-                            text-align: center;
-                            padding: 20px;
-                            background-color: #f5f5f5;
-                            border-radius: 8px;
-                        }}
-                        .verification-box img {{
-                            width: 300px;
-                            height: 90px;
-                        }}
-                        .otp-code {{
-                            font-size: 30px;
-                            font-weight: bold;
-                            color: #a3745e;
-                            margin-top: 20px;
-                        }}
-                        .resend-button {{
-                            display: inline-block;
-                            margin-top: 20px;
-                            padding: 10px 20px;
-                            background-color: #007bff;
-                            color: white;
-                            border: none;
-                            border-radius: 5px;
-                            text-decoration: none;
-                            font-size: 16px;
-                        }}
-                        .resend-button:hover {{
-                            background-color: #0056b3;
-                        }}
-                    </style>
-                </head>
-                <body>
-                    <div class='verification-box'>
-                        <h2>RESET PASSWORD OTP VERIFICATION</h2>
-                        <p>A verification email has been sent to your email <strong>{user.FullName}</strong>.</p>
-                        <p>Please check your email and verify the OTP code to recover your password.</p>
-                        <p class='otp-code'>OTP: {codeOTP}</p>
-                    </div>
-                </body>
-                </html>"
+                    <html>
+                    <head>
+                        <style>
+                            body {{
+                                font-family: Arial, sans-serif;
+                                color: #333;
+                                line-height: 1.5;
+                            }}
+                            .verification-box {{
+                                text-align: center;
+                                padding: 20px;
+                                background-color: #f5f5f5;
+                                border-radius: 8px;
+                            }}
+                            .verification-box img {{
+                                width: 300px;
+                                height: 90px;
+                            }}
+                            .otp-code {{
+                                font-size: 30px;
+                                font-weight: bold;
+                                color: #a3745e;
+                                margin-top: 20px;
+                            }}
+                            .resend-button {{
+                                display: inline-block;
+                                margin-top: 20px;
+                                padding: 10px 20px;
+                                background-color: #007bff;
+                                color: white;
+                                border: none;
+                                border-radius: 5px;
+                                text-decoration: none;
+                                font-size: 16px;
+                            }}
+                            .resend-button:hover {{
+                                background-color: #0056b3;
+                            }}
+                        </style>
+                    </head>
+                    <body>
+                        <div class='verification-box'>
+                            <h2>RESET PASSWORD OTP VERIFICATION</h2>
+                            <p>A verification email has been sent to your email <strong>{user.FullName}</strong>.</p>
+                            <p>Please check your email and verify the OTP code to recover your password.</p>
+                            <p class='otp-code'>OTP: {codeOTP}</p>
+                        </div>
+                    </body>
+                    </html>"
                 );
 
             TempData["success"] = $"The OTP was sent to {user.FullName}'s mail!";
@@ -386,6 +314,7 @@ namespace IWant.Web.Controllers
             return RedirectToAction("VerifyOtp", new ForgotPasswordViewModel { Email = model.Email, Otp = model.Otp });
         }
 
+        // Allow to display the OTP verification page
         [HttpGet]
         public async Task<IActionResult> VerifyOtp(ForgotPasswordViewModel model)
         {
@@ -393,6 +322,7 @@ namespace IWant.Web.Controllers
             return View();
         }
 
+        // Allow to handle OTP verification form submission
         [HttpPost]
         public async Task<IActionResult> VerifyOtp(string otp)
         {
@@ -410,6 +340,7 @@ namespace IWant.Web.Controllers
             return View();
         }
 
+        // Allow to display the reset password page
         [HttpGet]
         public async Task<IActionResult> ResetPassword()
         {
@@ -425,6 +356,7 @@ namespace IWant.Web.Controllers
             return View();
         }
 
+        // Allow to handle reset password form submission
         [HttpPost]
         public async Task<IActionResult> ResetPassword(ResetPasswordViewModel model)
         {
@@ -463,11 +395,13 @@ namespace IWant.Web.Controllers
             return View(model);
         }
 
+        // Allow to display the access denied page
         public async Task<IActionResult> AccessDenied()
         {
             return View();
         }
 
+        // Allow to sign out the user
         public async Task<IActionResult> Signout()
         {
             await _signInManager.SignOutAsync();

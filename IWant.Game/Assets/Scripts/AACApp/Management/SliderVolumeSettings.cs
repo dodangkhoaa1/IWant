@@ -52,41 +52,33 @@ public class SliderVolumeSettings : MonoBehaviour
     // Allow to set the music volume
     public void SetMusicVolume()
     {
-        float volume = musicSlider.value;
-
-        if (volume == minVolumeSlider)
-        {
-            musicDisplay.sprite = musicOff;
-            musicEnabled = false;
-        }
-        else
-        {
-            musicDisplay.sprite = musicOn;
-            musicEnabled = true;
-        }
-
-        myMixer.SetFloat("music", Mathf.Log10(volume) * 20);
-        PrefConst.MUSIC_VOLUME = volume;
+        SetVolume(musicSlider, musicDisplay, musicOn, musicOff, "music", ref musicEnabled, ref oldMusicVolume);
+        PrefConst.MUSIC_VOLUME = musicSlider.value;
     }
 
     // Allow to set the SFX volume
     public void SetSFXVolume()
     {
-        float volume = sfxSlider.value;
+        SetVolume(sfxSlider, sfxDisplay, sfxOn, sfxOff, "sfx", ref sfxEnabled, ref oldSFXVolume);
+        PrefConst.SFX_VOLUME = sfxSlider.value;
+    }
+
+    private void SetVolume(Slider slider, Image display, Sprite onSprite, Sprite offSprite, string mixerParam, ref bool enabledFlag, ref float oldVolume)
+    {
+        float volume = slider.value;
 
         if (volume == minVolumeSlider)
         {
-            sfxDisplay.sprite = sfxOff;
-            musicEnabled = false;
+            display.sprite = offSprite;
+            enabledFlag = false;
         }
         else
         {
-            sfxDisplay.sprite = sfxOn;
-            musicEnabled = true;
+            display.sprite = onSprite;
+            enabledFlag = true;
         }
 
-        myMixer.SetFloat("sfx", Mathf.Log10(volume) * 20);
-        PrefConst.SFX_VOLUME = volume;
+        myMixer.SetFloat(mixerParam, Mathf.Log10(volume) * 20);
     }
 
     // Allow to load the volume settings
@@ -124,7 +116,7 @@ public class SliderVolumeSettings : MonoBehaviour
     // Allow to handle SFX button click
     public void OnClickSFX()
     {
-        if (musicEnabled) TurnOffSFX();
+        if (sfxEnabled) TurnOffSFX();
         else TurnOnSFX();
         sfxEnabled = !sfxEnabled;
     }

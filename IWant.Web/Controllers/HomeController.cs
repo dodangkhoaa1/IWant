@@ -15,21 +15,25 @@ namespace IWant.Web.Controllers
             _logger = logger;
         }
 
+        // Allow to display the Index page
         public IActionResult Index()
         {
             return View();
         }
 
+        // Allow to display the Privacy page
         public IActionResult Privacy()
         {
             return View();
         }
 
+        // Allow to display the About Us page
         public IActionResult AboutUs()
         {
             return View();
         }
 
+        // Allow to display the Member page for authorized users with Member role
         [Authorize]
         [Authorize(Roles = "Member")]
         /*[Authorize(Policy = "MemberDep")]*/
@@ -38,6 +42,7 @@ namespace IWant.Web.Controllers
             return View();
         }
 
+        // Allow to display the Admin page for authorized users with Admin role
         [Authorize]
         [Authorize(Roles = "Admin")]
         /*[Authorize(Policy = "AdminDep")]*/
@@ -46,6 +51,7 @@ namespace IWant.Web.Controllers
             return View();
         }
 
+        // Allow to display the Error page
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

@@ -18,9 +18,13 @@ namespace IWant.API.Controllers
 
         // GET: api/PersonalWords
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<PersonalWord>>> GetPersonalWords()
+        public async Task<ActionResult<IEnumerable<PersonalWord>>> GetPersonalWords(string userId)
         {
-            return await _context.PersonalWords.Include(pw => pw.User).Include(pw => pw.WordCategory).ToListAsync();
+            return await _context.PersonalWords
+                .Include(pw => pw.User)
+                .Include(pw => pw.WordCategory)
+                .Where(pw => pw.UserId == userId)
+                .ToListAsync();
         }
 
         // GET: api/PersonalWords/5
