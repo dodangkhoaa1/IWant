@@ -1,6 +1,8 @@
+﻿using EasyUI.Toast;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class BackgroundManagement : MonoBehaviour
@@ -25,6 +27,7 @@ public class BackgroundManagement : MonoBehaviour
     Stack<Transform> panelStack = new Stack<Transform>();
 
     private int currentImageIndex;
+    private string toastString;
 
     private void Awake()
     {
@@ -129,5 +132,24 @@ public class BackgroundManagement : MonoBehaviour
     private void UpdateCloseBtnUI()
     {
         closeButton.sprite = panelStack.Count > 1 ? leftArrowSprite : closeSprite;
+    }
+
+    public void SignOut()
+    {
+        // Clear user data from DBManager
+        DBManager.USER_DATA = null;
+        DBManager.fullName = string.Empty;
+        DBManager.gender = Gender.Female;
+
+        PlayerPrefs.DeleteAll();
+
+        // Show sign out success message
+        toastString = PrefsKey.LANGUAGE == PrefsKey.ENGLISH_CODE
+            ? "You have been signed out successfully."
+            : "Bạn đã đăng xuất thành công.";
+        Toast.Show(toastString, 1.5f, ToastColor.Green, ToastPosition.BottomCenter);
+
+        // Load the sign-in scene
+        SceneManager.LoadScene(SceneName.SignInScene.ToString());
     }
 }

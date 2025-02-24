@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/AACApp/SignInScene.unity
+    guid: 3d5993b26a984b646abed8593d5b2fd2
+  - enabled: 1
     path: Assets/Scenes/Coloring/MenuColor.unity
     guid: cfcab64d2bb7664468cfc5b11268d703
   - enabled: 1
@@ -17,9 +20,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/AACApp/MainMenu.unity
     guid: 34bc252ec2335dc4b97e7778e8be2c8d
-  - enabled: 1
-    path: Assets/Scenes/AACApp/SignInScene.unity
-    guid: 3d5993b26a984b646abed8593d5b2fd2
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 7ce4537969d852444a9b4e145f12214a, type: 2}
     com.unity.localization.settings: {fileID: 11400000, guid: 65fc21662af7e4441843914a8dba39a0, type: 2}
