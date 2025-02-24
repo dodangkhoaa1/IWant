@@ -136,51 +136,50 @@ namespace IWant.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(BlogViewModel model)
         {
-            if (ModelState.IsValid)
+            /*if (ModelState.IsValid)
+            {*/
+            var blog = await _context.Blogs.FindAsync(model.Id);
+            if (blog == null)
             {
-                var blog = await _context.Blogs.FindAsync(model.Id);
-                if (blog == null)
-                {
-                    return NotFound();
-                }
-
-                blog.Title = model.Title;
-                blog.Content = model.Content;
-                blog.Status = model.Status;
-                blog.UpdatedAt = DateTime.Now;
-
-                if (model.Image != null)
-                {
-                    if (!string.IsNullOrEmpty(blog.ImageLocalPath))
-                    {
-                        var oldFilePath = Path.Combine(Directory.GetCurrentDirectory(), blog.ImageLocalPath);
-                        if (System.IO.File.Exists(oldFilePath))
-                        {
-                            System.IO.File.Delete(oldFilePath);
-                        }
-                    }
-
-                    string fileName = $"{blog.Id}{Path.GetExtension(model.Image.FileName)}";
-                    string filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "blog", fileName);
-
-                    using (var fileStream = new FileStream(filePath, FileMode.Create))
-                    {
-                        await model.Image.CopyToAsync(fileStream);
-                    }
-
-                    blog.ImageUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}/images/blog/{fileName}";
-                    blog.ImageLocalPath = Path.Combine("blog", fileName);
-                }
-
-                _context.Blogs.Update(blog);
-                await _context.SaveChangesAsync();
-
-                TempData["success"] = "Update Blog Successfull!";
-
-                return RedirectToAction("Index");
+                return NotFound();
             }
 
-            return View(model);
+            blog.Title = model.Title;
+            blog.Content = model.Content;
+            blog.Status = model.Status;
+            blog.UpdatedAt = DateTime.Now;
+
+            if (model.Image != null)
+            {
+                if (!string.IsNullOrEmpty(blog.ImageLocalPath))
+                {
+                    var oldFilePath = Path.Combine(Directory.GetCurrentDirectory(), blog.ImageLocalPath);
+                    if (System.IO.File.Exists(oldFilePath))
+                    {
+                        System.IO.File.Delete(oldFilePath);
+                    }
+                }
+
+                string fileName = $"{blog.Id}{Path.GetExtension(model.Image.FileName)}";
+                string filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "blog", fileName);
+
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    await model.Image.CopyToAsync(fileStream);
+                }
+
+                blog.ImageUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}/images/blog/{fileName}";
+                blog.ImageLocalPath = Path.Combine("blog", fileName);
+            }
+
+            _context.Blogs.Update(blog);
+            await _context.SaveChangesAsync();
+
+            TempData["success"] = "Update Blog Successfull!";
+
+            return RedirectToAction("Index");
+            /*}
+            return View(model);*/
         }
 
         [HttpPost]
@@ -223,6 +222,7 @@ namespace IWant.Web.Controllers
         {
             var blog = await _context.Blogs.Include(b => b.User)
                                            .Include(b => b.Comments)
+                                           .ThenInclude(b=>b.User)
                                            .Include(b => b.Rates)
                                            .ThenInclude(c => c.User)
                                            .FirstOrDefaultAsync(b => b.Id == id);
@@ -242,7 +242,7 @@ namespace IWant.Web.Controllers
 
             var averageRating = _context.Rates.Where(r => r.Blog.Id == id)
                                               .Select(r => r.RatingStar)
-                                              .AsEnumerable() 
+                                              .AsEnumerable()
                                               .DefaultIfEmpty(0)
                                               .Average();
 

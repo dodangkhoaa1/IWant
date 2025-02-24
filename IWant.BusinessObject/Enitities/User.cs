@@ -25,5 +25,7 @@ namespace IWant.BusinessObject.Enitities
         public ICollection<ChatRoom> ChatRooms { get; set; }
         public ICollection<Message> Messages { get; set; }
         public ICollection<Blog> Blogs { get; set; }    
+        public ICollection<Rate> Rates { get; set; }    
+        public ICollection<Comment> Comments { get; set; }    
     }
 }

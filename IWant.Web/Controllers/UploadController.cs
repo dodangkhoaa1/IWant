@@ -34,11 +34,7 @@ namespace IWant.Web.Controllers
             AllowedExtensions = configuration.GetSection("FileUpload").GetValue<string>("AllowedExtensions").Split(",");
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
-
+        // Allow to upload a file and send a message to the chat room
         public async Task<IActionResult> Upload([FromForm] UploadViewModel uploadViewModel)
         {
             /*if (!ModelState.IsValid || !Validate(uploadViewModel.File))
@@ -91,6 +87,7 @@ namespace IWant.Web.Controllers
             return View("Index");
         }
 
+        // Allow to validate the uploaded file
         private bool Validate(IFormFile file)
         {
             if (file.Length > FileSizeLimit)

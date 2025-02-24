@@ -276,18 +276,17 @@
         </div>
         <h4 class="mt-4">Comments</h4>
         @{
-            var listComment = Model.Comments.ToList();
-            if (listComment.Count == 0)
+            if (Model.Comments.Count == 0)
             {
                 <p style="color: gray; font-style: italic;">No Comment in this blog!</p>
             }
             else
             {
-                foreach (var comment in listComment)
+                foreach (var comment in Model.Comments)
                 {
                     <div style="display: flex; align-items: center; padding: 10px; border-bottom: 1px solid #ddd;">
                         <img src="@comment.User.ImageUrl" alt="Avatar"
-                             style="width: 40px; height: 40px; border-radius: 50%; margin-right: 10px;">
+                             style="width: 40px; height: 40px; border-radius: 50%; margin-right: 10px;object-fit:cover">
                         <div>
                             <strong style="color: #007bff;">@comment.User.FullName</strong>
                             <p style="margin: 5px 0; color: #333;">@comment.Content</p>

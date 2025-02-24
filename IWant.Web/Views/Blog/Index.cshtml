@@ -1,12 +1,27 @@
 ﻿@model IEnumerable<IWant.Web.Models.BlogViewModel>
 
+<style>
+    table tbody tr td {
+        min-height: 150px;
+    }
+
+    .truncate-content {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 3; 
+        -webkit-box-orient: vertical;
+        white-space: normal;
+    }
+</style>
+
 <div class="container mt-4">
     <div class="card shadow-lg border-0 rounded-3">
         <div class="card-header bg-primary text-white text-center">
             <h2>Blogs List</h2>
         </div>
         <div class="card-body p-4">
-            <table class="table table-striped table-hover">
+            <table class="table">
                 <thead class="table-dark">
                     <tr>
                         <th>Title</th>
@@ -23,7 +38,7 @@
                     {
                         <tr>
                             <td>@blog.Title</td>
-                            <td>@Html.Raw(blog.Content)</td>
+                            <td class="truncate-content">@Html.Raw(blog.Content)</td>
                             <td>@blog.CreatedAt.ToString("dd/MM/yyyy HH:mm")</td>
                             <td>@blog.UpdatedAt?.ToString("dd/MM/yyyy HH:mm")</td>
                             <td>

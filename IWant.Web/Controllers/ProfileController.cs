@@ -23,6 +23,7 @@ namespace IWant.Web.Controllers
             this.emailSender = emailSender;
         }
 
+        // Allow to display the update profile page
         public async Task<IActionResult> UpdateProfile()
         {
             var user = await _context.Users.FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
@@ -51,64 +52,7 @@ namespace IWant.Web.Controllers
             return View(model);
         }
 
-        /*[HttpPost]
-        public async Task<IActionResult> UpdateProfile(UpdateProfileViewModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
-
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
-            if (user == null)
-            {
-                TempData["error"] = "Account not found!";
-                return RedirectToAction("Signin", "Identity");
-            }
-
-            user.FullName = model.FullName;
-            user.Birthday = model.Birthday;
-            user.Gender = model.Gender;
-            user.UpdatedAt = DateTime.Now;
-
-            if(model.Image != null)
-            {
-                if (!string.IsNullOrEmpty(user.ImageLocalPath))
-                {
-                    var oldFilePath = Path.Combine(Directory.GetCurrentDirectory(), user.ImageLocalPath);
-                    if (System.IO.File.Exists(oldFilePath))
-                    {
-                        System.IO.File.Delete(oldFilePath);
-                    }
-                }
-
-                string fileName = $"{user.Id}{Path.GetExtension(model.Image.FileName)}";
-                string filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "avatar", fileName);
-
-                using (var fileStream = new FileStream(filePath, FileMode.Create))
-                {
-                    await model.Image.CopyToAsync(fileStream);
-                }
-
-                user.ImageUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}/images/avatar/{fileName}";
-                user.ImageLocalPath = Path.Combine("avatar", fileName);
-            }
-
-            try
-            {
-                _context.Users.Update(user);
-                await _context.SaveChangesAsync();
-
-                TempData["success"] = "Profile updated successfully.";
-                return RedirectToAction("Index", "Home");
-            }
-            catch (Exception)
-            {
-                TempData["error"] = "Failed to update profile!";
-                return View(model);
-            }
-        }*/
-
+        // Allow to update the profile information
         [HttpPost]
         public async Task<IActionResult> UpdateProfile(UpdateProfileViewModel model)
         {
@@ -179,7 +123,7 @@ namespace IWant.Web.Controllers
             }
         }
 
-
+        // Allow to display the change password page
         [HttpGet]
         public async Task<IActionResult> ChangePassword()
         {
@@ -191,6 +135,7 @@ namespace IWant.Web.Controllers
             return View();
         }
 
+        // Allow to change the password
         [HttpPost]
         public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
         {

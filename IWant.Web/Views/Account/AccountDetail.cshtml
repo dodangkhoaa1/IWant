@@ -1,0 +1,195 @@
+﻿@model AccountDetailViewModel
+
+@{
+    ViewData["Title"] = "AccountDetail";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<a asp-action="Index"><i class="fa-solid fa-arrow-left"></i></a>
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card-body p-4">
+                <h1 class="mb-4 text-center text-primary">Account Member Profile</h1>
+
+                @if (TempData["SuccessMessage"] != null)
+                {
+                    <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+                }
+
+                <div class="d-flex align-items-center mb-4 justify-content-around">
+                    <div class="d-flex align-items-center">
+                        <label for="avatarInput" class="position-relative me-3">
+                            <img id="avatarPreview"
+                                 class="rounded-circle border border-primary shadow"
+                                 style="width:100px; height:100px; object-fit:cover; cursor:pointer;"
+                                 src="@Model.ImageUrl"
+                                 alt="Profile Picture">
+                        </label>
+                        <div>
+                            <h4 class="mb-1">@Model.FullName</h4>
+                            <p class="text-muted">@Model.Email</p>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="mb-1">Blogs</h4>
+                        <p class="text-muted">@Model.TotalBlogs</p>
+                    </div>
+                    <div>
+                        <h4 class="mb-1">Rates</h4>
+                        <p class="text-muted">@Model.TotalRates</p>
+                    </div>
+                    <div>
+                        <h4 class="mb-1">Comments</h4>
+                        <p class="text-muted">@Model.TotalComments</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label asp-for="FullName" class="form-label text-muted"></label>
+                            <input asp-for="FullName" class="form-control" disabled>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="PhoneNumber" class="form-label text-muted">Phone</label>
+                            <input asp-for="PhoneNumber" type="text" class="form-control" disabled>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Birthday" class="form-label text-muted">Birthday</label>
+                            <input asp-for="Birthday" type="date" class="form-control" disabled>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Gender" class="form-label text-muted"></label>
+                            <select asp-for="Gender" class="form-select" disabled>
+                                <option selected="@(Model.Gender==true)" value="true">Male</option>
+                                <option selected="@(Model.Gender==false)" value="false">Female</option>
+                                <option selected="@(Model.Gender==null)" value="">Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label asp-for="ChildName" class="form-label text-muted"></label>
+                            <input asp-for="ChildName" class="form-control" disabled>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="ChildNickName" class="form-label text-muted">Child Nickname</label>
+                            <input asp-for="ChildNickName" class="form-control" disabled>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="ChildBirthday" class="form-label text-muted">Child Birthday</label>
+                            <input asp-for="ChildBirthday" type="date" class="form-control" disabled>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="ChildGender" class="form-label text-muted"></label>
+                            <select asp-for="ChildGender" class="form-select" disabled>
+                                <option selected="@(Model.ChildGender==true)" value="true">Male</option>
+                                <option selected="@(Model.ChildGender==false)" value="false">Female</option>
+                                <option selected="@(Model.ChildGender==null)" value="">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+            </div> <!-- card-body -->
+        </div> <!-- col-md-8 -->
+    </div> <!-- row -->
+</div> <!-- container -->
+
+
+@* <div class="d-flex signup-container signup-page">
+    <div class="signup-card" style="display: flex; border-radius: 10px; background-color: #fff; width: 50%; height: auto; align-items: start; overflow: hidden; z-index: 2;">
+        <div style="flex: 1; display: flex; flex-direction: column; justify-content: space-between; margin: 20px;">
+            <h1 style="font-size: 32px; text-align: start;">Account Member Profile</h1>
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="alert alert-success">
+                    @TempData["SuccessMessage"]
+                </div>
+            }
+            <div class="profile-header d-flex" style="margin-bottom: 30px">
+                <label for="avatarInput" class="avatar-container position-relative me-3">
+                    <img id="avatarPreview"
+                         style="width:100px; height:100px; border-radius:50%; border:solid 1px #9B30FF; cursor:pointer; object-fit:cover; object-position:center; margin-left: 50px"
+                         src="@Model.ImageUrl"
+                         alt="Profile Picture">
+                </label>
+                <div class="info align-content-center">
+                    <h4>@Model.FullName</h4>
+                    <p style="color:gray">@Model.Email</p>
+                </div>
+            </div>
+
+            <div class="row" style="justify-content:space-around; margin-bottom: 30px">
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <label asp-for="FullName" style="color: #888; font-size: 12px; display: block; margin-top: 10px;"></label>
+                        <input asp-for="FullName" class="custom-input" readonly/>
+                        <span asp-validation-for="FullName" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="PhoneNumber" style="color: #888; font-size: 12px; display: block; margin-top: 10px;">Phone</label>
+                        <input asp-for="PhoneNumber" type="text" class="custom-input" readonly />
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Birthday" style="color: #888; font-size: 12px; display: block; margin-top: 10px;">Birthday mm/dd/yyyy</label>
+                        <input asp-for="Birthday" type="date" class="custom-input" readonly />
+                        <span asp-validation-for="Birthday" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Gender" style="color: #888; font-size: 12px; display: block; margin-top: 10px;"></label>
+                        <select asp-for="Gender" class="custom-input" readonly>
+                            <option selected="@(Model.Gender==true)" value="true">Male</option>
+                            <option selected="@(Model.Gender==false)" value="false">Female</option>
+                            <option selected="@(Model.Gender==null)" value="">Other</option>
+                        </select>
+                        <span asp-validation-for="Gender" class="text-danger"></span>
+                    </div>
+
+                </div>
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <label asp-for="ChildName" style="color: #888; font-size: 12px; display: block; margin-top: 10px;"></label>
+                        <input asp-for="ChildName" class="custom-input" readonly />
+                        <span asp-validation-for="ChildName" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="ChildNickName" style="color: #888; font-size: 12px; display: block; margin-top: 10px;">Child Nickname</label>
+                        <input asp-for="ChildNickName" class="custom-input" readonly />
+                        <span asp-validation-for="ChildNickName" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="ChildBirthday" style="color: #888; font-size: 12px; display: block; margin-top: 10px;">Child Birthday mm/dd/yyyy</label>
+                        <input asp-for="ChildBirthday" type="date" class="custom-input" readonly />
+                        <span asp-validation-for="ChildBirthday" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="ChildGender" style="color: #888; font-size: 12px; display: block; margin-top: 10px;"></label>
+                        <select asp-for="ChildGender" class="custom-input" readonly>
+                            <option selected="@(Model.ChildGender==true)" value="true">Male</option>
+                            <option selected="@(Model.ChildGender==false)" value="false">Female</option>
+                            <option selected="@(Model.ChildGender==null)" value="">Other</option>
+                        </select>
+                        <span asp-validation-for="ChildGender" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> *@
+

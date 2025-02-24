@@ -175,7 +175,7 @@ h6 {
             font-size: 14px;
             font-weight: 500;
             color: rgba(255, 255, 255, 0.6);
-            text-transform: uppercase;
+            /*text-transform: uppercase;*/
             white-space: nowrap;
             transition: 0.3s;
             position: relative;
@@ -185,7 +185,6 @@ h6 {
             .navbar a:focus i {
                 font-size: 12px;
                 line-height: 0;
-                margin-left: 5px;
             }
 
         .navbar > ul > li > a:before {

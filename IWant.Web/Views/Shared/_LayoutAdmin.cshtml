@@ -1,10 +1,20 @@
-﻿<!DOCTYPE html>
+﻿@using IWant.BusinessObject.Enitities
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+@{
+    var user = await UserManager.GetUserAsync(User);
+    var imageUrl = user?.ImageUrl ?? "/images/default-avatar.png";
+}
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
     <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//cdn.datatables.net/2.1.7/css/dataTables.dataTables.min.css" />
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css" />
@@ -12,6 +22,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Arbutus+Slab&family=Athiti:wght@400;500;600&display=swap" rel="stylesheet">
 
     <style>
+        .avatar-layout {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 1px solid black;
+        }
+
         .sidebar {
             background: #FFFFFF;
             padding-top: 20px;
@@ -65,7 +83,6 @@
                 text-decoration: none;
                 background-color: #f4f4f4;
                 color: #000000;
-                padding-left: 25px;
                 border-radius: 0 10px 10px 0;
             }
 
@@ -126,8 +143,6 @@
             color: black;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             border-radius: 15px;
-            width: 200px;
-            height: 200px;
             display: none;
             margin-top: 10px;
             flex-direction: column;
@@ -162,28 +177,28 @@
 
                     <div class="list-group">
                         <h6 class="text-muted">DASHBOARD</h6>
-                        <a asp-controller="Admin" asp-action="Index" class="list-group-item d-flex align-items-center">
+                        <a asp-action="Statistic" asp-controller="Admin" class="list-group-item d-flex align-items-center">
                             <i class="fa-solid fa-chart-line"></i>Statistic
                         </a>
                         <h6 class="text-muted mt-3">MANAGE</h6>
 
                         <!-- Additional links for Shop, initially hidden -->
 
-                        <a asp-controller="Chat" asp-action="ChatIndex" class="list-group-item d-flex align-items-center">
-                            <i class="fa-brands fa-rocketchat"></i>Chat
+                        <a asp-controller="Room" asp-action="ChatIndex" class="list-group-item d-flex align-items-center">
+                            <i class="fa-brands fa-rocketchat"></i>Chat With Member
                         </a>
-                        <a asp-controller="Blog" asp-action="BlogIndex" class="list-group-item d-flex align-items-center">
-                            <i class="fa-solid fa-blog"></i>Blog
+                        <a asp-controller="Blog" asp-action="Index" class="list-group-item d-flex align-items-center">
+                            <i class="fa-solid fa-blog"></i>Blogs
                         </a>
-                        <a asp-controller="Auth" asp-action="ManageCustomers" class="list-group-item d-flex align-items-center">
-                            <i class="fa-solid fa-users"></i>Member
+                        <a asp-controller="Account" asp-action="Index" class="list-group-item d-flex align-items-center">
+                            <i class="fa-solid fa-users"></i>Accounts
                         </a>
-                        <a asp-controller="Auth" asp-action="ManageCustomers" class="list-group-item d-flex align-items-center">
+                        @* <a asp-controller="Auth" asp-action="ManageCustomers" class="list-group-item d-flex align-items-center">
                             <i class="fa-solid fa-shield-halved"></i>Privacy & Police
                         </a>
                         <a asp-controller="Feedback" asp-action="FeedbackIndex" class="list-group-item d-flex align-items-center">
                             <i class="fa-solid fa-pen"></i>Feedback
-                        </a>
+                        </a> *@
                         <!--
                         <h6 class="text-muted mt-3">USER</h6>
                         <div id="profileSection">
@@ -202,21 +217,22 @@
                     <div class="container-fluid">
                         <span class="navbar-brand fw-bold">ADMIN</span>
                         <div style="cursor:pointer" class="d-flex align-items-center">
-                            <img src="https://i.pravatar.cc/40" alt="User Avatar" class="rounded-circle border border-secondary" id="avatar">
+                            <img src="@imageUrl" alt="User Avatar" class="rounded-circle border border-secondary avatar-layout" id="avatar">
                             <div class="dropdown" id="dropdown">
-                                <a href="#" class="list-group-item d-flex align-items-center">
+                                <a asp-action="UpdateProfile" asp-controller="Profile" class="list-group-item d-flex align-items-center">
                                     <i class="fa-regular fa-user"></i> My Profile
                                 </a>
-                                <a href="#" class="list-group-item d-flex align-items-center">
+                                <a asp-action="ChangePassword" asp-controller="Profile" class="list-group-item d-flex align-items-center">
                                     <i class="fa-solid fa-lock"></i> Change Password
                                 </a>
-                                <a href="#" class="list-group-item d-flex align-items-center"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
-
+                                <a asp-action="SignOut" asp-controller="Identity" class="list-group-item d-flex align-items-center">
+                                    <i class="fa-solid fa-right-from-bracket"></i> Sign out
+                                </a>
                             </div>
                         </div>
                     </div>
                 </nav>
-                <div class="content">
+                <div style="min-height: 90vh" class="content">
                     @RenderBody()
                 </div>
             </div>

@@ -26,6 +26,12 @@ namespace IWant.Web
             CreateMap<User, UserViewModel>().ForMember(dst=>dst.Username, opt => opt.MapFrom(x=>x.UserName));
             CreateMap<UserViewModel, User>();
 
+            CreateMap<User, AccountViewModel>();
+            CreateMap<AccountViewModel, User>();
+            
+            CreateMap<User, AccountDetailViewModel>();
+            CreateMap<AccountDetailViewModel, User>();
+
             CreateMap<Comment, CommentViewModel>();
             CreateMap<CommentViewModel, Comment>();
 

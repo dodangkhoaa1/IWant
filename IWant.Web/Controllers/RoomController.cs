@@ -23,20 +23,22 @@ namespace IWant.Web.Controllers
         {
             _context = context;
             _mapper = mapper;
-            _hubContext = hubContext;  
+            _hubContext = hubContext;
         }
 
+        // Allow to display the chat index view
         public async Task<IActionResult> ChatIndex()
         {
             return View();
         }
 
+        // Allow to get the list of chat rooms
         [HttpGet]
-        public async Task<IActionResult> GetRooms() 
+        public async Task<IActionResult> GetRooms()
         {
             var user = await _context.Users.FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
 
-            if(user != null && user.UserName == User.Identity.Name && User.IsInRole("Admin"))
+            if (user != null && user.UserName == User.Identity.Name && User.IsInRole("Admin"))
             {
                 var rooms = await _context.ChatRooms.ToListAsync();
                 var roomsViewModel = _mapper.Map<IEnumerable<ChatRoom>, IEnumerable<ChatRoomViewModel>>(rooms);
@@ -44,12 +46,13 @@ namespace IWant.Web.Controllers
                 return Ok(roomsViewModel);
             }
 
-            var room = await _context.ChatRooms.Where(r=>r.Admin.Id == user.Id).ToListAsync();
+            var room = await _context.ChatRooms.Where(r => r.Admin.Id == user.Id).ToListAsync();
             var roomViewModel = _mapper.Map<IEnumerable<ChatRoom>, IEnumerable<ChatRoomViewModel>>(room);
 
             return Ok(roomViewModel);
         }
 
+        // Allow to get a specific chat room by id
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
@@ -61,6 +64,7 @@ namespace IWant.Web.Controllers
             return Ok(roomsViewModel);
         }
 
+        // Allow to create a new chat room
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] ChatRoomViewModel chatRoomViewModel)
         {
@@ -86,13 +90,14 @@ namespace IWant.Web.Controllers
             return CreatedAtAction(nameof(Get), new { id = chatRoom.Id }, new { id = chatRoom.Id, name = chatRoom.Name });
         }
 
+        // Allow to edit an existing chat room
         [HttpPut]
-        public async Task<IActionResult> Edit ([FromRoute] int id, [FromBody] ChatRoomViewModel chatRoomViewModel)
+        public async Task<IActionResult> Edit([FromRoute] int id, [FromBody] ChatRoomViewModel chatRoomViewModel)
         {
             if (_context.ChatRooms.Any(r => r.Name == chatRoomViewModel.Name))
                 return BadRequest("Invalid room name or room already exists");
-            
-            var room = await _context.ChatRooms.Include(r=>r.Admin).Where(r=>r.Id == id && r.Admin.UserName == User.Identity.Name).FirstOrDefaultAsync();
+
+            var room = await _context.ChatRooms.Include(r => r.Admin).Where(r => r.Id == id && r.Admin.UserName == User.Identity.Name).FirstOrDefaultAsync();
 
             if (room == null)
                 return NotFound();
@@ -106,6 +111,7 @@ namespace IWant.Web.Controllers
             return NoContent();
         }
 
+        // Allow to delete an existing chat room
         [HttpDelete]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {
@@ -117,9 +123,8 @@ namespace IWant.Web.Controllers
             _context.ChatRooms.Remove(room);
             await _context.SaveChangesAsync();
 
-            await _hubContext.Clients.All.SendAsync("removeChatRoom", room.Id );
+            await _hubContext.Clients.All.SendAsync("removeChatRoom", room.Id);
             await _hubContext.Clients.Group(room.Name).SendAsync("onRoomDeleted", string.Format("Room {0} has been deleted.\nYou are moved to the first available room!", room.Name));
-
 
             return NoContent();
         }
