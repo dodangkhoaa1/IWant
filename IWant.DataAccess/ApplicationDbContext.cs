@@ -415,8 +415,8 @@ public partial class ApplicationDbContext : IdentityDbContext<User>
         // want
         builder.Entity<Word>().HasData(
             new Word() { Id = 225, VietnameseText = "Ôm", EnglishText = "Hug", WordCategoryId = 18, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/want/Hug.png", Status = true },
-            new Word() { Id = 226, VietnameseText = "Tôi không muốn", EnglishText = "I don't want", WordCategoryId = 18, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/want/I don't want.png", Status = true },
-            new Word() { Id = 227, VietnameseText = "Tôi muốn", EnglishText = "I want", WordCategoryId = 18, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/want/I want.png", Status = true },
+            new Word() { Id = 226, VietnameseText = "Con không muốn", EnglishText = "I don't want", WordCategoryId = 18, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/want/I don't want.png", Status = true },
+            new Word() { Id = 227, VietnameseText = "Con muốn", EnglishText = "I want", WordCategoryId = 18, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/want/I want.png", Status = true },
             new Word() { Id = 228, VietnameseText = "Không", EnglishText = "No", WordCategoryId = 18, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/want/No.png", Status = true },
             new Word() { Id = 229, VietnameseText = "Xin lỗi", EnglishText = "Sorry", WordCategoryId = 18, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/want/Sorry.png", Status = true },
             new Word() { Id = 230, VietnameseText = "Cảm ơn", EnglishText = "Thank you", WordCategoryId = 18, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/want/Thank you.png", Status = true },
