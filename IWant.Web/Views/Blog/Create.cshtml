@@ -2,6 +2,14 @@
 
 @{
     ViewData["Title"] = "Create Blog";
+    if (User.IsInRole("Admin"))
+    {
+        Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
 }
 
 <style>
@@ -13,26 +21,25 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-       color: rgba(226, 157, 82, 0.8);
+        color: rgba(226, 157, 82, 0.8);
         transition: background-color 0.2s ease;
     }
 
-    .btn{
+    .btn {
         background-color: rgba(226, 157, 82, 0.8);
     }
 
-        .upload-box i {
-            font-size: 2rem;
-        }
-
-        .upload-box p {
-            margin: 8px 0 0;
-        }
-
-    .card-body {
-        padding-bottom:30px;
+    .upload-box i {
+        font-size: 2rem;
     }
 
+    .upload-box p {
+        margin: 8px 0 0;
+    }
+
+    .card-body {
+        padding-bottom: 30px;
+    }
 
 </style>
 
@@ -42,27 +49,25 @@
             <h4 class="text-white m-0">Create New Blog</h4>
         </div>
         <div class="card-body p-4 pb-3">
-            <div class="row">
-                <div class="col-md-4 mb-3">
-
-                    <div id="uploadBox" class="upload-box">
-                        <div id="uploadPlaceholder" class="text-center">
-                            <i class="fas fa-upload"></i>
-                            <p>Drag files to upload</p>
+            <form asp-action="Create" method="post" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <div id="uploadBox" class="upload-box">
+                            <div id="uploadPlaceholder" class="text-center">
+                                <i class="fas fa-upload"></i>
+                                <p>Drag files to upload</p>
+                            </div>
+                            <img id="imgPreview" src="#" alt="Image Preview" style="max-height: 100%; max-width: 100%; display: none;" />
                         </div>
-                        <img id="imgPreview" src="#" alt="Image Preview" style="max-height: 100%; max-width: 100%; display: none;" />
-                    </div>
 
-                    <div class="mt-3 text-center">
-                        <button type="button" class="btn btn-success" id="chooseFileButton">Choose File</button>
-                        <input id="fileInput" asp-for="Image" type="file" style="display: none;" />
-                        <input asp-for="ImageUrl" hidden />
-                        <span asp-validation-for="Image" class="text-danger"></span>
+                        <div class="mt-3 text-center">
+                            <button type="button" class="btn btn-success" id="chooseFileButton">Choose File</button>
+                            <input asp-for="Image" id="fileInput" asp-for="Image" type="file" style="display: none;" />
+                            <input asp-for="ImageUrl" hidden />
+                            <span asp-validation-for="Image" class="text-danger"></span>
+                        </div>
                     </div>
-                </div>
-
-                <div class="col-md-8">
-                    <form asp-action="Create" method="post" enctype="multipart/form-data">
+                    <div class="col-md-8">
                         <div class="mb-3">
                             <label for="Title" class="form-label fw-bold">Blog Title</label>
                             <input type="text" asp-for="Title" class="form-control" placeholder="Enter Blog Title" required />
@@ -81,13 +86,20 @@
                             </select>
                             <span asp-validation-for="Status" class="text-danger"></span>
                         </div> *@
-                        <input type="hidden" asp-for="Status" class="form-control" value="" />
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <input type="hidden" asp-for="Status" class="form-control" value="true" />
+                        }
+                        else
+                        {
+                            <input type="hidden" asp-for="Status" class="form-control" value="" />
+                        }
                         <div class="text-center">
                             <button type="submit" class="btn btn-success px-4">Save</button>
                         </div>
-                    </form>
+                    </div>
                 </div>
-            </div>
+            </form>
 
             <div class="mt-4 position-relative" style="height: 100px; overflow: hidden;">
                 <img id="scrolling-logo" src="~/images/logo-1.png" alt="Logo" style="position: absolute; top: 50%; transform: translateY(-50%); left: 100%; height: 80px;" />

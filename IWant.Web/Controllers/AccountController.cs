@@ -2,11 +2,13 @@
 using IWant.BusinessObject.Enitities;
 using IWant.DataAccess;
 using IWant.Web.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace IWant.Web.Controllers
 {
+    [Authorize]
     public class AccountController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -20,13 +22,14 @@ namespace IWant.Web.Controllers
 
         [Route("Account")]
         [Route("Account/Index")]
+        [Authorize(Roles = "Admin")]
         public IActionResult Index()
         {
             List<User> accounts = _context.Users.ToList();
             List<AccountViewModel> accountViewModels = _mapper.Map<List<User>, List<AccountViewModel>>(accounts);
             return View(accountViewModels);
         }
-
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AccountDetail([FromRoute] string id)
         {
             var account = await _context.Users.Include(a=>a.Rates)
@@ -39,7 +42,7 @@ namespace IWant.Web.Controllers
             accountDetailViewModel.TotalComments = account.Comments.Count();
             return View(accountDetailViewModel);
         }
-
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> UpdateStatus([FromRoute] string id)
         {
             var account = await _context.Users.FirstOrDefaultAsync(a => a.Id == id);

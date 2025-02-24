@@ -33,7 +33,7 @@ namespace IWant.Web.Models
         public IFormFile? Image { get; set; }
         public string? ImageLocalPath { get; set; }
 
-        public bool Status { get; set; }
+        public bool? Status { get; set; }
         public int UserRating { get; set; } = 0;
         public double AverageRating { get; set; } = 0;
         public int CountRate { get; set; } = 0;

@@ -32,10 +32,26 @@ namespace IWant.Web.Controllers
         [Route("Blog")]
         [Route("Blog/Index")]
         [Authorize]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var blogs = _context.Blogs.ToList();
-            var blogViewModels = _mapper.Map<List<Blog>, List<BlogViewModel>>(blogs);
+            List<Blog> blogs;
+            List<BlogViewModel> blogViewModels;
+
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
+            if (user == null || user.Status == false)
+            {
+                TempData["error"] = "Your account was banned!";
+                return RedirectToAction("Signin", "Identity");
+            }
+            
+            if (User.IsInRole("Admin"))
+            {
+                blogs = await _context.Blogs.ToListAsync();
+                blogViewModels = _mapper.Map<List<Blog>, List<BlogViewModel>>(blogs);
+                return View(blogViewModels);
+            }
+            blogs = await _context.Blogs.Where(b=>b.User.Id == user.Id).ToListAsync();
+            blogViewModels = _mapper.Map<List<Blog>, List<BlogViewModel>>(blogs);
             return View(blogViewModels);
         }
 
@@ -214,6 +230,48 @@ namespace IWant.Web.Controllers
             await _context.SaveChangesAsync();
 
             TempData["success"] = blog.Status == true ? "Show Blog successfull!" : "Hide Blog Successfull!";
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AcceptBlog(int id)
+        {
+            var blog = await _context.Blogs.FindAsync(id);
+            if (blog == null)
+            {
+                return NotFound();
+            }
+            blog.Status = true;
+
+            _context.Blogs.Update(blog);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> RejectBlog(int id)
+        {
+            var blog = await _context.Blogs.FindAsync(id);
+            if (blog == null)
+            {
+                return NotFound();
+            }
+
+            if (!string.IsNullOrEmpty(blog.ImageLocalPath))
+            {
+                var imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", blog.ImageLocalPath);
+                if (System.IO.File.Exists(imagePath))
+                {
+                    System.IO.File.Delete(imagePath);
+                }
+            }
+
+            /*Send mail chua lam*/
+
+            _context.Blogs.Remove(blog);
+            await _context.SaveChangesAsync();
 
             return RedirectToAction(nameof(Index));
         }

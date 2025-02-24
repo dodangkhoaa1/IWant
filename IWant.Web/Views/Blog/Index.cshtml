@@ -1,5 +1,17 @@
 ﻿@model IEnumerable<IWant.Web.Models.BlogViewModel>
 
+@{
+    ViewData["Title"] = "Manage Blog";
+    if(User.IsInRole("Admin")){
+        Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    } else {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    bool? isWaiting;
+}
+
+
 <style>
     table tbody tr td {
         min-height: 150px;
@@ -20,6 +32,9 @@
         <div class="card-header bg-primary text-white text-center">
             <h2>Blogs List</h2>
         </div>
+        <div class="text-center mt-3 ">
+            <a asp-action="Create" class="btn btn-primary">Create</a>
+        </div>
         <div class="card-body p-4">
             <table class="table">
                 <thead class="table-dark">
@@ -34,6 +49,12 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @if (Model.Count() == 0)
+                    {
+                        <tr>
+                            <td colspan="7" class="text-center">No blog found</td>
+                        </tr>
+                    }
                     @foreach (var blog in Model)
                     {
                         <tr>
@@ -42,32 +63,49 @@
                             <td>@blog.CreatedAt.ToString("dd/MM/yyyy HH:mm")</td>
                             <td>@blog.UpdatedAt?.ToString("dd/MM/yyyy HH:mm")</td>
                             <td>
-                                <span class="badge @(blog.Status ? "bg-success" : "bg-danger")">
-                                    @(blog.Status ? "Show" : "Hide")
+                                <span class="badge @(blog.Status == true ? "bg-success" : blog.Status == false ? "bg-danger" :  "bg-primary")">
+                                    @(blog.Status == true ? "Show" : blog.Status == false ? "Hide" : "Waiting")
                                 </span>
                             </td>
                             <td>
                                 <img src="@blog.ImageUrl" alt="@blog.Title" class="img-thumbnail" style="max-width: 100px;" />
                             </td>
                             <td class="text-center">
-                                <a asp-action="Edit" asp-route-id="@blog.Id" class="btn btn-warning btn-sm">Edit</a>
-                                @if(blog.Status == true){
-                                    <form asp-action="DeleteConfirmed" asp-route-id="@blog.Id" method="post" class="d-inline">
-                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure to hide this blog?');">Hide</button>
-                                    </form>
-                                } else {
-                                    <form asp-action="DeleteConfirmed" asp-route-id="@blog.Id" method="post" class="d-inline">
-                                        <button type="submit" class="btn btn-success btn-sm" onclick="return confirm('Are you sure to show this blog?');">Show</button>
-                                    </form>
+                                @if(User.IsInRole("Member") && blog.Status != true && blog.Status != false){
+                                    <a asp-action="Edit" asp-route-id="@blog.Id" class="btn btn-warning btn-sm">Edit</a>
+                                }
+                                @if(User.IsInRole("Admin")){
+                                    @if (blog.Status == true)
+                                    {
+                                        <form asp-action="DeleteConfirmed" asp-route-id="@blog.Id" method="post" class="d-inline">
+                                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure to hide this blog?');">Hide</button>
+                                        </form>
+                                        <a asp-action="BlogDetail" asp-route-id="@blog.Id" class="btn btn-primary btn-sm">View Blog</a>
+                                    }
+                                    else if (blog.Status == false)
+                                    {
+                                        <form asp-action="DeleteConfirmed" asp-route-id="@blog.Id" method="post" class="d-inline">
+                                            <button type="submit" class="btn btn-success btn-sm" onclick="return confirm('Are you sure to show this blog?');">Show</button>
+                                        </form>
+                                    }
+                                    else
+                                    {
+                                        <form asp-action="AcceptBlog" asp-route-id="@blog.Id" method="post" class="d-inline">
+                                            <button type="submit" class="btn btn-success btn-sm" onclick="return confirm('Are you sure to accept this blog?');">Accept</button>
+                                        </form>
+                                        <form asp-action="RejectBlog" asp-route-id="@blog.Id" method="post" class="d-inline">
+                                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure to reject this blog?');">Reject</button>
+                                        </form>
+                                    }
+                                } else if(blog.Status == true) {
+                                    <a asp-action="BlogDetail" asp-route-id="@blog.Id" class="btn btn-primary btn-sm">View Blog</a>
                                 }
                             </td>
                         </tr>
                     }
                 </tbody>
             </table>
-            <div class="text-center mt-3">
-                <a asp-action="Create" class="btn btn-primary">Add New Blog</a>
-            </div>
+            
         </div>
     </div>
 </div>

@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using IWant.DataAccess;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace IWant.Web.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -19,7 +21,5 @@ namespace IWant.Web.Controllers
         {
             return View();
         }
-
-
     }
 }

@@ -10,7 +10,6 @@
 }
 
 
-
 @if (loggedIn)
 {
     var user = await UserManager.GetUserAsync(User);
@@ -21,21 +20,21 @@
             <img src="@imageUrl" id="Avatar" class="avatar-layout" style=""></img>
             <div class="dropdown" id="dropdown">
                 @if(User.IsInRole("Member")){
-                    <a style="padding: 12px 15px;text-decoration: none; color: black; display: flex; align-items: center; gap: 10px; font-size: 14px;" asp-action="UpdateProfile" asp-controller="Profile" class="list-group-item d-flex align-items-center">
+                    <a style="padding: 12px 15px;text-decoration: none; color: black; display: flex; align-items: center; gap: 10px; font-size: 14px; justify-content:left" asp-action="UpdateProfile" asp-controller="Profile" class="list-group-item d-flex align-items-center">
                         <i class="fa-regular fa-user"></i> My Profile
                     </a>
-                    <a style="padding: 12px 15px;text-decoration: none; color: black; display: flex; align-items: center; gap: 10px; font-size: 14px;" asp-action="ChangePassword" asp-controller="Profile" class="list-group-item d-flex align-items-center">
+                    <a style="padding: 12px 15px;text-decoration: none; color: black; display: flex; align-items: center; gap: 10px; font-size: 14px; justify-content:left" asp-action="ChangePassword" asp-controller="Profile" class="list-group-item d-flex align-items-center">
                         <i class="fa-solid fa-lock"></i> Change Password
                     </a>
-                    <a style="padding: 12px 15px;text-decoration: none; color: black; display: flex; align-items: center; gap: 10px; font-size: 14px;" asp-action="SignOut" asp-controller="Identity" class="list-group-item d-flex align-items-center">
+                    <a style="padding: 12px 15px;text-decoration: none; color: black; display: flex; align-items: center; gap: 10px; font-size: 14px; justify-content:left" asp-action="SignOut" asp-controller="Identity" class="list-group-item d-flex align-items-center">
                         <i class="fa-solid fa-right-from-bracket"></i> Sign out
                     </a>
                 }
                 else if (User.IsInRole("Admin")){
-                    <a style="padding: 12px 15px;text-decoration: none; color: black; display: flex; align-items: center; gap: 10px; font-size: 14px;" asp-action="Statistic" asp-controller="Admin" class="list-group-item d-flex align-items-center">
+                    <a style="padding: 12px 15px;text-decoration: none; color: black; display: flex; align-items: center; gap: 10px; font-size: 14px; justify-content:left" asp-action="Statistic" asp-controller="Admin" class="list-group-item d-flex align-items-center">
                         <i class="fa-solid fa-lock"></i> Dashboard
                     </a>
-                    <a style="padding: 12px 15px;text-decoration: none; color: black; display: flex; align-items: center; gap: 10px; font-size: 14px;" asp-action="SignOut" asp-controller="Identity" class="list-group-item d-flex align-items-center">
+                    <a style="padding: 12px 15px;text-decoration: none; color: black; display: flex; align-items: center; gap: 10px; font-size: 14px; justify-content:left" asp-action="SignOut" asp-controller="Identity" class="list-group-item d-flex align-items-center">
                         <i class="fa-solid fa-right-from-bracket"></i> Sign out
                     </a>
                 }
