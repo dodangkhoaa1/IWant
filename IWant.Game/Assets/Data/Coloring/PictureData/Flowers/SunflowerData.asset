@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8461c51373b30e84e85cbf7584fefea1, type: 3}
+  m_Name: SunflowerData
+  m_EditorClassIdentifier: 
+  EnglishName: Sunflower
+  VietnameseName: "Hoa H\u01B0\u1EDBng D\u01B0\u01A1ng"
+  CategoryName: 3
+  Prefab: {fileID: 359138421304531925, guid: 92fe5691df450674088a08e1f95f6805, type: 3}
+  Sprite: {fileID: 21300000, guid: a0ac612ee64816e419689a58695c942a, type: 3}

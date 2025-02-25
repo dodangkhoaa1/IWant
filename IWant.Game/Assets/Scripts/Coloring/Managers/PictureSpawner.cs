@@ -30,9 +30,10 @@ public class PictureSpawner : MonoBehaviour
     {
         for (int i = 0; i < picturesToColor.Length; i++)
         {
+            if (picturesToColor[i].CategoryName != MenuColoringManagement.instance.INDEX_OF_CHOSE_CATEGORY) continue;
             GameObject buttonGO = Instantiate(buttonPrefab, pictureContainer);
             buttonGO.transform.GetChild(0).GetComponent<Image>().sprite = picturesToColor[i].Sprite;
-            buttonGO.GetComponentInChildren<TextMeshProUGUI>().text = picturesToColor[i].Name;
+            buttonGO.GetComponentInChildren<TextMeshProUGUI>().text = PrefsKey.LANGUAGE == PrefsKey.ENGLISH_CODE ? picturesToColor[i].EnglishName : picturesToColor[i].VietnameseName;
 
             int index = i;
             buttonGO.GetComponent<Button>().onClick.AddListener(() => ChoosePicture(index));

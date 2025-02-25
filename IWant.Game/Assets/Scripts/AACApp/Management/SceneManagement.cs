@@ -22,4 +22,8 @@ public class SceneManagement : MonoBehaviour
     {
         SceneManager.LoadScene(SceneName.MenuColor.ToString());
     }
+
+    public void LoadScene(string sceneName){
+        SceneManager.LoadScene(sceneName);
+    }
 }

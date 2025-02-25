@@ -12,7 +12,8 @@ public class MenuColoringManagement : MonoBehaviour
     public PictureData[] PicturesToColor => picturesToColor;
 
     [HideInInspector]
-    public int INDEX_OF_CHOSE_PICTURE = 0;
+    public int INDEX_OF_CHOSE_PICTURE;
+    public Category INDEX_OF_CHOSE_CATEGORY;
 
     private void Awake()
     {

@@ -24,10 +24,6 @@ public class BackgroundManagement : MonoBehaviour
     [SerializeField] private Transform soundSetting;
     [SerializeField] private Transform languageSetting;
 
-    [Header("Close Button")]
-    [SerializeField] private Sprite closeSprite;
-    [SerializeField] private Sprite leftArrowSprite;
-    [SerializeField] private Image closeButton;
 
     Stack<Transform> panelStack = new Stack<Transform>();
 
@@ -94,7 +90,6 @@ public class BackgroundManagement : MonoBehaviour
 
         darkPanel.gameObject.SetActive(true);
         adjustBackground.gameObject.SetActive(true);
-        UpdateCloseBtnUI();
     }
 
     // Allow to open the sound and language setting panel
@@ -105,25 +100,30 @@ public class BackgroundManagement : MonoBehaviour
 
         darkPanel.gameObject.SetActive(true);
         soundLanguageSetting.gameObject.SetActive(true);
-        UpdateCloseBtnUI();
     }
 
     // Allow to open the sound setting panel
     public void OpenAdjustSound()
     {
+        if (soundLanguageSetting.gameObject.activeSelf)
+        {
+            soundLanguageSetting.gameObject.SetActive(false);
+        }
         panelStack.Push(soundSetting);
 
         soundSetting.gameObject.SetActive(true);
-        UpdateCloseBtnUI();
     }
 
     // Allow to open the language setting panel
     public void OpenSelectLanguage()
     {
+        if (soundLanguageSetting.gameObject.activeSelf)
+        {
+            soundLanguageSetting.gameObject.SetActive(false);
+        }
         panelStack.Push(languageSetting);
 
         languageSetting.gameObject.SetActive(true);
-        UpdateCloseBtnUI();
     }
 
     // Allow to close the currently open panel
@@ -131,15 +131,16 @@ public class BackgroundManagement : MonoBehaviour
     {
         Transform lastPanel = panelStack.Pop();
         lastPanel.gameObject.SetActive(false);
-        if (panelStack.Count == 0) darkPanel.gameObject.SetActive(false);
-        UpdateCloseBtnUI();
+        if (panelStack.Count == 0)
+        {
+            darkPanel.gameObject.SetActive(false);
+        }
+        else if (panelStack.Peek() == soundLanguageSetting)
+        {
+            soundLanguageSetting.gameObject.SetActive(true);
+        }
     }
 
-    // Allow to update the close button UI based on the panel stack count
-    private void UpdateCloseBtnUI()
-    {
-        closeButton.sprite = panelStack.Count > 1 ? leftArrowSprite : closeSprite;
-    }
 
     public void SignOut()
     {

@@ -20,6 +20,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/AACApp/GameAAC.unity
     guid: 7047f2f4c0aca924aacf11cab81d6cd5
+  - enabled: 1
+    path: Assets/Scenes/Coloring/CategoryMenu.unity
+    guid: 8687a3895fa80dd4d847e6e045d6387c
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 7ce4537969d852444a9b4e145f12214a, type: 2}
     com.unity.localization.settings: {fileID: 11400000, guid: 65fc21662af7e4441843914a8dba39a0, type: 2}

@@ -134,7 +134,8 @@ public class CaptureManager : MonoBehaviour
         File.WriteAllBytes(savePath, image.EncodeToPNG());
         Debug.Log("Image saved to: " + savePath);
 #endif
-        Toast.Show("Save successfully!", 1.5f, ToastColor.Green, ToastPosition.BottomCenter);
+        string toastString = PrefsKey.LANGUAGE == PrefsKey.ENGLISH_CODE ? "Save successfully!" : "Lưu Ảnh Thành Công!";
+        Toast.Show(toastString, 1.5f, ToastColor.Green, ToastPosition.BottomCenter);
     }
 
     // Allow to convert sprite to Texture2D

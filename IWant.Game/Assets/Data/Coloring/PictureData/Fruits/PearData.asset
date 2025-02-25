@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8461c51373b30e84e85cbf7584fefea1, type: 3}
+  m_Name: PearData
+  m_EditorClassIdentifier: 
+  EnglishName: Pear
+  VietnameseName: "Tr\xE1i L\xEA"
+  CategoryName: 2
+  Prefab: {fileID: 3504276935600627847, guid: 2122294deabfb904caea6568c0b4aebd, type: 3}
+  Sprite: {fileID: 21300000, guid: 96b91b01f1f63ca4caad18115502d132, type: 3}
