@@ -20,7 +20,7 @@ MonoBehaviour:
   gameID: 0
   game_version: 1.0.0.0
   sdk_version: 3.8.0
-  deviceID: defaultPlayerId
+  deviceID: 
   playerULID: 
   url: https://api.lootlocker.com/v1
   adminUrl: https://api.lootlocker.com/admin
