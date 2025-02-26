@@ -14,12 +14,21 @@ namespace IWant.Web.Service
         }
         public async Task SendEmailAsync(string fromAddress, string toAddress, string subject, string message)
         {
-            var mailMessage = new MailMessage(fromAddress, toAddress, subject, message);
-            using (var client = new SmtpClient(options.Value.Host, options.Value.Port)
+            var mailMessage = new MailMessage
             {
-                Credentials = new NetworkCredential(options.Value.Username, options.Value.Password)
-            })
+                From = new MailAddress(fromAddress),
+                Subject = subject,
+                Body = message,
+                IsBodyHtml = true
+            };
+            mailMessage.To.Add(toAddress);
+
+            using (var client = new SmtpClient(options.Value.Host, options.Value.Port))
             {
+                client.Credentials = new NetworkCredential(options.Value.Username, options.Value.Password);
+                client.EnableSsl = true;
+                client.DeliveryMethod = SmtpDeliveryMethod.Network;
+
                 await client.SendMailAsync(mailMessage);
             }
         }

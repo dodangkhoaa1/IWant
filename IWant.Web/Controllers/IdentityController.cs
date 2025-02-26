@@ -33,11 +33,12 @@ namespace IWant.Web.Controllers
 
         public async Task<IActionResult> Signup()
         {
+            if (User.Identity.IsAuthenticated) return RedirectToAction("Index", "Home");
             var model = new SignupViewModel() { Role = "Member" };
             return View(model);
         }
 
-        [HttpPost]
+        /*[HttpPost]
         public IActionResult ExternalLogin(string provider, string returnUrl = null)
         {
             var properties = _signInManager.ConfigureExternalAuthenticationProperties(provider, returnUrl);
@@ -75,7 +76,7 @@ namespace IWant.Web.Controllers
 
             TempData["success"] = "Sign-in successfull!";
             return RedirectToAction("Index", "Home");
-        }
+        }*/
 
         [HttpPost]
         public async Task<IActionResult> Signup(SignupViewModel model)
@@ -136,6 +137,7 @@ namespace IWant.Web.Controllers
 
                             await emailSender.SendEmailAsync("nhathmce170171@fpt.edu.vn", user.Email, "Confirm your email address", confirmationLink);
 
+                            TempData["ConfirmationEmail"] = user.FullName;
                             return RedirectToAction("ConfirmEmailPage");
                         }
                         else
@@ -160,6 +162,7 @@ namespace IWant.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> ConfirmEmailPage()
         {
+            ViewBag.ConfirmationEmail = TempData["ConfirmationEmail"];
             return View();
         }
 
@@ -210,6 +213,7 @@ namespace IWant.Web.Controllers
 
         public IActionResult Signin()
         {
+            if (User.Identity.IsAuthenticated) return RedirectToAction("Index", "Home");
             return View(new SigninViewModel());
         }
 

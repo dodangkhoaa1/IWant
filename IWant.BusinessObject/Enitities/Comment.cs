@@ -10,7 +10,7 @@ namespace IWant.BusinessObject.Enitities
     {
         public int Id { get; set; }
         public string Content { get; set; }
-        public bool? Status { get; set; }
+        public bool Status { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
         public User User { get; set; }

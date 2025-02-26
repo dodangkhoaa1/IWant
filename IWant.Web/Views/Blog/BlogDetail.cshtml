@@ -207,7 +207,7 @@
             <span style="font-weight: bold; color: gray;">@Model.AverageRating / 5</span>
             <p>@Model.CountRate</p>
         </div>
-        
+
 
         <div class="author-section">
             <img src="@Model.User.ImageUrl" alt="Author Avatar" class="author-avatar">
@@ -219,6 +219,93 @@
                 @Html.Raw(Model.Content)
             </p>
         </div>
+
+        <h4 class="mt-4">Comments</h4>
+        @{
+            if (Model.Comments.Count == 0)
+            {
+                <p style="color: gray; font-style: italic;">No Comment in this blog!</p>
+            }
+            else
+            {
+                foreach (var comment in Model.Comments)
+                {
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <div style="display: flex; align-items: center; padding: 10px; border-bottom: 1px solid #ddd;">
+                            <img src="@comment.User.ImageUrl" alt="Avatar"
+                                 style="width: 40px; height: 40px; border-radius: 50%; margin-right: 10px; object-fit: cover;">
+                            <div style="flex-grow: 1;">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <strong style="color: #007bff;">@comment.User.FullName</strong>
+                                    <p class="fw-bold mb-0 @(comment.Status ? "text-success" : "text-danger")">@(comment.Status ? "Active" : "Banned")</p>
+                                </div>
+                                @if(comment.Status == true){
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <p class="mb-0 text-dark">@comment.Content</p>
+                                        <a asp-action="BanComment" asp-controller="Comment" asp-route-id="@comment.Id" class="btn btn-danger btn-sm">Ban Comment</a>
+                                    </div>
+                                } else {
+                                    <div class="d-flex justify-content-between align-items-center">
+                                    <p class="mb-0 text-dark">@comment.Content</p>
+                                </div>
+                                }
+                            </div>
+                        </div>
+
+                    }
+                    else
+                    {
+                        @if(comment.Status == true) {
+                            <div style="display: flex; align-items: center; padding: 10px; border-bottom: 1px solid #ddd;">
+                                <img src="@comment.User.ImageUrl" alt="Avatar"
+                                     style="width: 40px; height: 40px; border-radius: 50%; margin-right: 10px;object-fit:cover">
+                                <div>
+                                    <strong style="color: #007bff;">@comment.User.FullName</strong>
+                                    <p style="margin: 5px 0; color: #333;">@comment.Content</p>
+                                </div>
+                            </div>
+                        }
+                    }
+                }
+            }
+        }
+
+        @if (User.Identity.IsAuthenticated)
+        {
+            <form asp-action="RatingBlog" asp-controller="Comment" method="post">
+                <input type="hidden" name="BlogId" value="@Model.Id" />
+                <div class="rating">
+                    <span class="star" data-value="1">&#9733;</span>
+                    <span class="star" data-value="2">&#9733;</span>
+                    <span class="star" data-value="3">&#9733;</span>
+                    <span class="star" data-value="4">&#9733;</span>
+                    <span class="star" data-value="5">&#9733;</span>
+                    <input type="hidden" id="ratingValue" name="Rating" value="@Model.UserRating">
+                </div>
+            </form>
+
+            <form asp-action="CreateComment" asp-controller="Comment" method="post"
+                  style="margin-top: 20px; padding: 15px; border: 1px solid #ddd; border-radius: 5px; background: #f9f9f9;">
+                <input type="hidden" name="BlogId" value="@Model.Id" />
+
+                <div style="margin-bottom: 10px;">
+                    <label style="font-weight: bold;">Comment Blog</label>
+                    <input type="text" name="Content" class="form-control" required
+                           style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                </div>
+
+                <button type="submit"
+                        style="background: #007bff; color: white; padding: 8px 15px; border: none; border-radius: 4px; cursor: pointer;">
+                    Send
+                </button>
+            </form>
+        }
+        else
+        {
+            <p style="color: red; font-weight: bold;">Sign in to comment</p>
+        }
+
         <h4 class="mt-4">Related Posts</h4>
         <div class="related-container">
             <div class="related-posts">
@@ -274,63 +361,6 @@
             </div>
             <div class="slider-dots"></div>
         </div>
-        <h4 class="mt-4">Comments</h4>
-        @{
-            if (Model.Comments.Count == 0)
-            {
-                <p style="color: gray; font-style: italic;">No Comment in this blog!</p>
-            }
-            else
-            {
-                foreach (var comment in Model.Comments)
-                {
-                    <div style="display: flex; align-items: center; padding: 10px; border-bottom: 1px solid #ddd;">
-                        <img src="@comment.User.ImageUrl" alt="Avatar"
-                             style="width: 40px; height: 40px; border-radius: 50%; margin-right: 10px;object-fit:cover">
-                        <div>
-                            <strong style="color: #007bff;">@comment.User.FullName</strong>
-                            <p style="margin: 5px 0; color: #333;">@comment.Content</p>
-                        </div>
-                    </div>
-                }
-            }
-        }
-
-        @if (User.Identity.IsAuthenticated)
-        {
-            <form asp-action="RatingBlog" asp-controller="Comment" method="post">
-                <input type="hidden" name="BlogId" value="@Model.Id" />
-                <div class="rating">
-                    <span class="star" data-value="1">&#9733;</span>
-                    <span class="star" data-value="2">&#9733;</span>
-                    <span class="star" data-value="3">&#9733;</span>
-                    <span class="star" data-value="4">&#9733;</span>
-                    <span class="star" data-value="5">&#9733;</span>
-                    <input type="hidden" id="ratingValue" name="Rating" value="@Model.UserRating">
-                </div>
-            </form>
-
-            <form asp-action="CreateComment" asp-controller="Comment" method="post"
-                  style="margin-top: 20px; padding: 15px; border: 1px solid #ddd; border-radius: 5px; background: #f9f9f9;">
-                <input type="hidden" name="BlogId" value="@Model.Id" />
-
-                <div style="margin-bottom: 10px;">
-                    <label style="font-weight: bold;">Comment Blog</label>
-                    <input type="text" name="Content" class="form-control" required
-                           style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
-                </div>
-
-                <button type="submit"
-                        style="background: #007bff; color: white; padding: 8px 15px; border: none; border-radius: 4px; cursor: pointer;">
-                    Send
-                </button>
-            </form>
-        }
-        else
-        {
-            <p style="color: red; font-weight: bold;">Sign in to comment</p>
-        }
-
     </div>
 
     <script>

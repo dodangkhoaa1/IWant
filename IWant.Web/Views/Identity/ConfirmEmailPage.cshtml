@@ -3,11 +3,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="d-flex confirmSignUp-container" style="justify-content: center; padding: 40px; height: 100vh; align-items: center;">
+<div class="d-flex confirmSignUp-container" style="justify-content: center; padding: 40px; height: 60vh; align-items: center;">
     <div class="confetti-container"></div>
     <div class="confirmSignUp-card" style="display: flex; flex-direction: column; justify-content: center; align-items: center; border-radius: 10px; background-color: #fff; height: auto; padding: 20px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); overflow: hidden; z-index: 2;">
         <img src="~/images/confirmSignUpBG.svg" alt="Alternate Text" class="popup-img" style="max-width: 100%; margin-bottom: 20px;" />
-        <h2 style="font-size: 24px; font-weight: bold; color: black; text-align: center;">Hi userSignUpName, welcome to I Want!</h2>
+        <h2 style="font-size: 24px; font-weight: bold; color: black; text-align: center;">Hi @ViewBag.ConfirmationEmail, welcome to I Want!</h2>
         <p style="font-size: 16px; color: #888; text-align: center; margin-top: 10px; padding: 0 20px;">Just one more step! Please check and confirm your email to verify your account.</p>
     </div>
 </div>

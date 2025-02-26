@@ -2,8 +2,10 @@
 using IWant.BusinessObject.Enitities;
 using IWant.DataAccess;
 using IWant.Web.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages;
 using System.Security.Claims;
 
 namespace IWant.Web.Controllers
@@ -17,6 +19,16 @@ namespace IWant.Web.Controllers
         {
             _context = context;
             _mapper = mapper;
+        }
+
+        [Route("Comment")]
+        [Route("Comment/Index")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> Index()
+        {
+            var blogs = await _context.Blogs.Include(b=>b.Rates).Include(b=>b.Comments).Where(b=>b.Status == true).ToListAsync();
+            var blogViewModels = _mapper.Map<List<Blog>, List<BlogViewModel>>(blogs);
+            return View(blogViewModels);
         }
 
         [HttpPost]
@@ -61,7 +73,7 @@ namespace IWant.Web.Controllers
             var user = _context.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
             if (user == null)
             {
-                return Unauthorized(); 
+                return Unauthorized();
             }
 
             var blog = await _context.Blogs.FindAsync(BlogId);
@@ -95,5 +107,22 @@ namespace IWant.Web.Controllers
             return RedirectToAction("BlogDetail", "Blog", new { id = BlogId });
         }
 
+        public async Task<IActionResult> BanComment([FromRoute] int id)
+        {
+            var comment = await _context.Comments.Include(c=>c.Blog).FirstOrDefaultAsync(c => c.Id == id);
+            if (comment == null)
+            {
+                TempData["error"] = "Comment not found";
+                return NotFound();
+            }
+
+            comment.Status = false;
+
+            _context.Comments.Update(comment);
+            await _context.SaveChangesAsync();
+
+            TempData["success"] = "Ban Comment Successful!";
+            return RedirectToAction("BlogDetail", "Blog", new { id = comment.Blog.Id });
+        }
     }
 }
