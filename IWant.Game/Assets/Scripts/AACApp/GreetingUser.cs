@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -18,6 +19,11 @@ public class GreetingUser : MonoBehaviour
     // Allow to greet the user with a localized string
     public void GreetUser()
     {
+        DBManager.fullName = JsonConvert.DeserializeObject<UserResponseDTO>(DBManager.USER_DATA).FullName;
+        string fullName = DBManager.fullName;
+        string[] wordInName = fullName.Trim().Split(" ");
+        string lastName = wordInName[wordInName.Length - 1];
+        DBManager.fullName = lastName;
         localGreeting.Arguments = new object[] { DBManager.fullName };
         localGreeting.StringChanged += UpdateText;
         textGreeting.gameObject.SetActive(true);

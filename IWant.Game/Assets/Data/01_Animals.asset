@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0741231db5c94b4695cd19307e6da63, type: 3}
+  m_Name: 01_Animals
+  m_EditorClassIdentifier: 
+  name: Animals
+  price: 2120
+  objectPrefabs:
+  - {fileID: 3089275129421153749, guid: 2e36b868617fae540b2d85a4a5513697, type: 3}
+  - {fileID: 5129200393640579661, guid: b6271b920a55ee84485845f56e7f2f7c, type: 3}
+  - {fileID: 7089354233189333590, guid: a544afeec8f306849a889369c88284f9, type: 3}
+  - {fileID: 3964479681805264136, guid: 4cf45e456316c1f4c80ad45411369c57, type: 3}
+  - {fileID: 3964479681805264136, guid: 256aea1f918d6d04fb3982268ec9af6f, type: 3}
+  - {fileID: 3964479681805264136, guid: 5680681faeaf29d449eeed6bda202cef, type: 3}
+  - {fileID: 3964479681805264136, guid: 662f33df934b6be4e8fa14d02aa72d98, type: 3}
+  - {fileID: 3964479681805264136, guid: 2b77924872cc73f458d7f4483ea348c1, type: 3}
+  - {fileID: 3964479681805264136, guid: 0325c9ceee2a28842ad1ff3158c1ae74, type: 3}
+  spawnablePrefabs:
+  - {fileID: 3089275129421153749, guid: 2e36b868617fae540b2d85a4a5513697, type: 3}
+  - {fileID: 5129200393640579661, guid: b6271b920a55ee84485845f56e7f2f7c, type: 3}
+  - {fileID: 7089354233189333590, guid: a544afeec8f306849a889369c88284f9, type: 3}
+  - {fileID: 3964479681805264136, guid: 4cf45e456316c1f4c80ad45411369c57, type: 3}

@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0741231db5c94b4695cd19307e6da63, type: 3}
+  m_Name: xx_CommingSoon
+  m_EditorClassIdentifier: 
+  name: Comming Soon
+  price: 99999
+  objectPrefabs:
+  - {fileID: 6354177348609496543, guid: 56e22c8437245b242a3b529d47305ae9, type: 3}
+  spawnablePrefabs:
+  - {fileID: 6354177348609496543, guid: 56e22c8437245b242a3b529d47305ae9, type: 3}
