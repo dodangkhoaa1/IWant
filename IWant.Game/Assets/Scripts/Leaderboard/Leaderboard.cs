@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using TMPro;
 using System;
+using System.Net.NetworkInformation;
 
 public class Leaderboard : MonoBehaviour
 {
@@ -54,8 +55,8 @@ public class Leaderboard : MonoBehaviour
     IEnumerator SubmitScoreCoroutine(string memberId, int score)
     {
         bool done = false;
-
-        LootLockerSDKManager.SubmitScore(memberId, score, leaderboardKey, (response) =>
+        string metadataJson = "{\"character\":\"warrior\",\"level\":5}"; // JSON metadata
+        LootLockerSDKManager.SubmitScore(memberId, score, leaderboardKey, metadataJson, (response) =>
         {
             if (response.success)
             {

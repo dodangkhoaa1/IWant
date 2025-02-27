@@ -71,6 +71,14 @@ MonoBehaviour:
     m_Key: PersonalWordKey
     m_Metadata:
       m_Items: []
+  - m_Id: 21523290136662016
+    m_Key: SelectKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21523611751698432
+    m_Key: ChangeBGKey
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

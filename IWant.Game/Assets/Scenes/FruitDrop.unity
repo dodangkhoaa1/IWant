@@ -11346,7 +11346,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leaderboardText: {fileID: 1323180878}
-  leaderboardKey: 30275
+  leaderboardKey: 30288
 --- !u!1 &1426388302
 GameObject:
   m_ObjectHideFlags: 0
