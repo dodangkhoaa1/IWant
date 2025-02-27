@@ -68,6 +68,7 @@ public class SignIn : MonoBehaviour
                     {
                         if (response.Status == true)
                         {
+                            //DBManager.USER_DATA = (UserResponseDTO)response;
                             // Chuyển đổi response thành JSON và lưu vào PlayerPrefs
                             string userJson = JsonConvert.SerializeObject(response);
                             DBManager.USER_DATA = userJson;

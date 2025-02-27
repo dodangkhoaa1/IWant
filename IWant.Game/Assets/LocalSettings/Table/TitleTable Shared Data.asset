@@ -67,6 +67,10 @@ MonoBehaviour:
     m_Key: ColoringKey
     m_Metadata:
       m_Items: []
+  - m_Id: 21283972533080064
+    m_Key: PersonalWordKey
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

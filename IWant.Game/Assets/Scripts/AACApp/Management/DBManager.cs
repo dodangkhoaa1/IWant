@@ -1,8 +1,14 @@
-﻿using UnityEngine;
+﻿using Newtonsoft.Json;
+using UnityEngine;
 
 public static class DBManager
 {
     public static string fullName = "Default Name";
+    public static UserResponseDTO User
+    {
+        set{}
+        get => JsonConvert.DeserializeObject<UserResponseDTO>(USER_DATA);
+    }
 
     public static Gender gender;
 

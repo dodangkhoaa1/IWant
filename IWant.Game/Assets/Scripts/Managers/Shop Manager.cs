@@ -1,7 +1,5 @@
 using System;
 using UnityEngine;
-using System.Collections;
-using UnityEditor.Overlays;
 using UnityEngine.UI;
 using TMPro;
 public class ShopManager : MonoBehaviour

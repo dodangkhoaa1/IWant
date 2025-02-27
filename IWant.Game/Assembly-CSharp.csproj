@@ -189,6 +189,7 @@
     <Compile Include="Assets\Scripts\AACApp\Management\BackgroundManagement.cs" />
     <Compile Include="Assets\Scripts\AACApp\Consts\AddressAPI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_B.cs" />
+    <Compile Include="Assets\Scripts\AACApp\Management\PersonalWordManagement.cs" />
     <Compile Include="Assets\LeanTween\Testing\Testing246.cs" />
     <Compile Include="Assets\Scripts\Managers\Score Manager.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\TestingZLegacyExt.cs" />

@@ -26,6 +26,14 @@ MonoBehaviour:
     m_Localized: Password
     m_Metadata:
       m_Items: []
+  - m_Id: 21471817604419584
+    m_Localized: Type english
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21472133649420288
+    m_Localized: Type vietnamese
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

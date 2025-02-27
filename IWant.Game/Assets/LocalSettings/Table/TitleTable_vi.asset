@@ -70,6 +70,10 @@ MonoBehaviour:
     m_Localized: "T\xF4 M\xE0u"
     m_Metadata:
       m_Items: []
+  - m_Id: 21283972533080064
+    m_Localized: "T\u1EEB C\xE1 Nh\xE2n"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
