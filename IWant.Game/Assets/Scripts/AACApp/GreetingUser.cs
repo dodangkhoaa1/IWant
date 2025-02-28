@@ -19,13 +19,18 @@ public class GreetingUser : MonoBehaviour
     // Allow to greet the user with a localized string
     public void GreetUser()
     {
-        DBManager.fullName = JsonConvert.DeserializeObject<UserResponseDTO>(DBManager.USER_DATA).FullName;
-        string fullName = DBManager.fullName;
-        string[] wordInName = fullName.Trim().Split(" ");
+        if (DBManager.User == null || string.IsNullOrEmpty(DBManager.User.FullName))
+        {
+            Debug.LogError("User or User's FullName is null or empty.");
+            return;
+        }
+
+        string fullName = DBManager.User.FullName;
+        string[] wordInName = fullName.Trim().Split(' ');
         string lastName = wordInName[wordInName.Length - 1];
-        DBManager.fullName = lastName;
-        localGreeting.Arguments = new object[] { DBManager.fullName };
+        localGreeting.Arguments = new object[] { lastName };
         localGreeting.StringChanged += UpdateText;
+        localGreeting.RefreshString(); // Ensure the localized string is refreshed
         textGreeting.gameObject.SetActive(true);
     }
 

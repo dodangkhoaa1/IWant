@@ -11,7 +11,7 @@ public class LanguageManager : MonoBehaviour
     [SerializeField] private Sprite unitedstateFlag;
     [SerializeField] private Image displayFlag;
     private Color vietnameseColor = new Color(0.85f, 0.15f, 0.11f, 0.7f);
-    private Color unitedstateColor = new Color(0.196f, 0.290f, 1f);
+    private Color unitedstateColor = new Color(0.196f, 0.290f, 0.596f);
 
     private void Start()
     {

@@ -82,6 +82,10 @@ MonoBehaviour:
     m_Localized: Change Background
     m_Metadata:
       m_Items: []
+  - m_Id: 21667541587742720
+    m_Localized: Choose A Photo
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

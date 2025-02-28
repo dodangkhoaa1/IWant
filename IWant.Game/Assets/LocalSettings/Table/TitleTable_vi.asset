@@ -82,6 +82,10 @@ MonoBehaviour:
     m_Localized: "Thay \u0110\u1ED5i N\u1EC1n"
     m_Metadata:
       m_Items: []
+  - m_Id: 21667541587742720
+    m_Localized: "Ch\u1ECDn \u1EA2nh"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -79,6 +79,10 @@ MonoBehaviour:
     m_Key: ChangeBGKey
     m_Metadata:
       m_Items: []
+  - m_Id: 21667541587742720
+    m_Key: ChoosePhotoKey
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
