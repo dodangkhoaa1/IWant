@@ -1,284 +1,653 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Blogs";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<link rel="stylesheet" href="~/css/responsive.css" />
+<link rel="stylesheet" href="~/css/site.css" />
+<link rel="stylesheet" href="~/css/main.css" />
 
 
+<style>
+    .blog-container {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        padding: 20px 0;
+    }
 
-<head>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
+    .meta-info {
+        font-size: 0.9rem;
+        color: gray;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+        .meta-info i {
+            min-width: 20px;
+            text-align: center;
         }
 
-        .meta-info {
-            font-size: 0.9rem;
-            color: gray;
+    .main-article img,
+    .main-news img {
+        width: 100%;
+        height: 40vh;
+        border-radius: 5px;
+    }
+
+    .sidebar-blog img {
+        width: 60%;
+        height: 100px;
+        border-radius: 5px;
+    }
+
+    .see-all {
+        font-size: 1rem;
+        font-weight: bold;
+        text-decoration: none;
+        color: #000;
+        transition: color 0.3s ease-in-out;
+    }
+
+        .see-all:hover {
+            color: #0056b3;
+            text-decoration: underline;
         }
 
-            .meta-info i {
-                margin-right: 5px;
-            }
+    .section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+        margin-bottom: 20px;
+    }
 
-        .main-article img,
-        .most-watched .card img,
-        .most-see img, .main-news img {
-            width: 100%;
-            height: 40vh;
-            border-radius: 5px;
-        }
+    .section-header1 {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+        margin-bottom: 20px;
+    }
+
+    .most-watched .card:hover,
+    .most-see .news-item:hover,
+    .sidebar .col-6:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+    }
+
+    .most-watched .card-body, .most-see .news-title {
+        padding-top: 10px;
+    }
+
+    .card {
+        height: 380px;
+        width: 95%;
+    }
 
 
+    .news-text {
+        font-size: 1rem;
+        color: #BEBEBE;
+    }
 
-        .sidebar img {
-            width: 80%;
-            height: 100px;
-            border-radius: 5px;
-        }
+    .section-header h3 {
+        margin: 0;
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
 
+    .section-header1 h3 {
+        margin: 0;
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
 
-        .see-all {
-            font-size: 1rem;
+    .main-article {
+        margin: auto;
+    }
+
+        .main-article h2 {
             font-weight: bold;
-            text-decoration: none;
-            color: #000000;
-            transition: color 0.3s ease-in-out;
+            font-size: 2.5rem;
         }
 
-            .see-all:hover {
-                color: #0056b3;
-                text-decoration: underline;
-            }
-
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .most-watched .card:hover,
-        .most-see .main-news:hover,
-        .sidebar .col-6:hover {
-            transform: scale(1.05);
-            box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.25);
-        }
-
-        .most-watched .card-body, .most-see .news-title {
-            padding-top: 10px;
-        }
-
-
-        .news-title {
-            font-size: 1.3rem;
-            font-weight: bold;
-        }
-
-        .news-text {
-            font-size: 1rem;
-            color: #BEBEBE;
-        }
-
-        .section-header {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-
-            .section-header h3 {
-                margin: 0;
-                font-size: 1.5rem;
-                font-weight: bold;
-            }
-
-        .main-article {
+        .main-article img {
+            max-width: 80%;
+            height: auto;
+            display: block;
             margin: auto;
         }
 
-            .main-article h2 {
-                font-weight: bold;
-                font-size: 2.5rem;
-            }
 
-            .main-article img {
-                max-width: 80%;
-                height: auto;
+    .section-header .line {
+        flex-grow: 1;
+        height: 4px;
+        background-color: #BEBEBE;
+    }
+
+    .section-header1 .line {
+        flex-grow: 1;
+        height: 4px;
+        background-color: #BEBEBE;
+    }
+
+    .blog-header {
+        text-align: center;
+        margin: 30px 0;
+    }
+
+        .blog-header h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-top: 60px;
+        }
+
+        .blog-header p {
+            font-size: 1rem;
+            color: #BEBEBE;
+            margin: auto;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+            .blog-header p::after {
+                content: "";
                 display: block;
-                margin: auto;
+                width: 100%;
+                height: 3px;
+                background-color: #BEBEBE;
+                margin-top: 10px;
             }
 
+    .news {
+        width: 40%;
+        margin: 10px 10px 20px 20px;
+    }
 
-        .section-header .line {
-            flex-grow: 1;
-            height: 4px;
-            background-color: #BEBEBE;
+    .news-title {
+        font-size: 24px;
+        font-weight: bold;
+        width: 100%;
+        max-width: 800px;
+        min-height: 60px;
+        max-height: 80px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: normal;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
+
+    .meta-info {
+        font-size: 14px;
+        color: #666;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+        .meta-info i {
+            font-size: 16px;
+            color: #ff5733;
         }
 
-        .blog-header {
-            text-align: center;
-            margin: 30px 0;
+    .sidebar-blog {
+        display: flex;
+        flex-direction: column;
+        background: #fff;
+        color: #000;
+    }
+
+    .limited-text {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .card-title {
+        font-size: 24px;
+        font-weight: bold;
+        width: 100%;
+        max-width: 800px;
+        min-height: 60px;
+        max-height: 80px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: normal;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
+
+    .news-container {
+        display: flex;
+        gap: 20px;
+    }
+
+
+
+
+    .pagination-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+        .pagination-container button {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 14px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: #333;
+            background-color: transparent;
+            border: 2px solid rgba(226, 157, 82, 0.8);
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease-in-out;
         }
 
-            .blog-header h1 {
-                font-size: 3rem;
-                font-weight: bold;
+            .pagination-container button:hover {
+                background: #e5c90d;
+                color: #000;
             }
 
-            .blog-header p {
-                font-size: 1rem;
-                color: #BEBEBE;
-                margin: auto;
-                position: relative;
-                padding-bottom: 15px;
+            .pagination-container button.active {
+                background: rgba(226, 157, 82, 0.8);
+                border-color: #FEDA15;
+                color: #fff;
             }
 
-                .blog-header p::after {
-                    content: "";
-                    display: block;
-                    width: 100%;
-                    height: 3px;
-                    background-color: #BEBEBE;
-                    margin-top: 10px;
-                }
+            .pagination-container button:disabled {
+                opacity: 0.5;
+                cursor: default;
+            }
 
-        .news {
-            width: 40%;
-            margin: 10px 10px 20px 20px;
+    .news-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+
+
+    .most-see .card {
+        max-width: 400px; /* Giới hạn chiều rộng card */
+        margin: auto; /* Canh giữa */
+    }
+
+    .read-more {
+        display: inline-block;
+        margin: 10px auto;
+        padding: 10px 16px;
+        font-size: 1rem;
+        font-weight: bold;
+        color: #333;
+        background-color: transparent;
+        border: 2px solid rgba(226, 157, 82, 0.8);
+        border-radius: 5px;
+        text-decoration: none;
+        text-align: center;
+        transition: background-color 0.3s ease-in-out;
+    }
+
+        .read-more:hover {
+            background-color: rgba(226, 157, 82, 0.8);
+            color: #fff;
         }
 
-        .sidebar {
-            display: flex;
-            flex-direction: column;
-            background: #fff;
-            color: #000000;
-        }
 
-    </style>
-</head>
+    /* Căn giữa pagination */
+    .pagination-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
 
-<body>
+</style>
+
+<div class="blog-container">
     <div class="container">
         <div class="blog-header">
             <h1>BLOGS</h1>
             <p>Chia sẻ những bài viết mới nhất về đời sống, xã hội và nhiều lĩnh vực khác.</p>
         </div>
-
-
-
         <div class="row main-article">
             <div class="col-md-8">
                 <img src="~/images/banner.jpg" alt="Queen's life">
             </div>
             <div class="col-md-4">
                 <h2>Queen's life in pictures</h2>
-                <p>The Queen's Platinum Jubilee celebrations have begun...</p>
+                <p class="limited-text">
+                    The Queen's Platinum Jubilee celebrations have begun with great enthusiasm across the United Kingdom.
+                    Streets are decorated with flags, and people are gathering to celebrate the 70th anniversary of Her Majesty's reign.
+                </p>
             </div>
         </div>
-
-        <div class="mt-5">
+        <div class="mt-5 watch">
             <div class="section-header">
                 <h3>Most Watched</h3>
                 <div class="line"></div>
-
             </div>
-            <div class="row most-watched">
+
+            <!-- Hiển thị 3 bài viết khi màn hình ≥ 769px -->
+            <div class="row most-watched d-md-flex">
                 <div class="col-md-4">
                     <div class="card">
-                        <img src="~/images/banner.jpg" alt="Most Watched 1">
+                        <img src="~/images/banner.jpg" alt="Most Watched 1" width="100%" height="250px">
                         <div class="card-body">
                             <h5 class="card-title">Fighting for Afghan women’s rights</h5>
                             <p class="meta-info">
                                 <i class="fas fa-calendar-alt"></i> 25/09/2024 | <i class="fas fa-eye"></i> 1.2K
                             </p>
-
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="card">
-                        <img src="~/images/banner1.jpg" alt="Most Watched 2">
+                        <img src="~/images/banner.jpg" alt="Most Watched 2" width="100%" height="250px">
                         <div class="card-body">
                             <h5 class="card-title">Life after war in Syria</h5>
                             <p class="meta-info">
                                 <i class="fas fa-calendar-alt"></i> 25/09/2024 | <i class="fas fa-eye"></i> 1.2K
                             </p>
-
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="card">
-                        <img src="~/images/banner.jpg" alt="Most Watched 3">
+                        <img src="~/images/banner.jpg" alt="Most Watched 3" width="100%" height="250px">
                         <div class="card-body">
                             <h5 class="card-title">The future of climate change</h5>
                             <p class="meta-info">
                                 <i class="fas fa-calendar-alt"></i> 25/09/2024 | <i class="fas fa-eye"></i> 1.2K
                             </p>
-
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="mt-5">
+
+
+        </div>
+        @* <div class="mt-5 dot-watch">
+            <div class="section-header1">
+                <h3>Most Watched</h3>
+                <div class="line"></div>
+            </div>
+
+            <!-- Slider cho màn hình nhỏ -->
+            <div class="most-watched-wrapper">
+                <div class="most-watched-slider d-md-none">
+                    <div class="card">
+                        <img src="~/images/banner.jpg" alt="Most Watched 1" width="100%" height="250px">
+                        <div class="card-body">
+                            <h5 class="card-title">Fighting for Afghan women’s rights</h5>
+                            <p class="meta-info"><i class="fas fa-calendar-alt"></i> 25/09/2024 | <i class="fas fa-eye"></i> 1.2K</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <img src="~/images/banner.jpg" alt="Most Watched 2" width="100%" height="250px">
+                        <div class="card-body">
+                            <h5 class="card-title">Life after war in Syria</h5>
+                            <p class="meta-info"><i class="fas fa-calendar-alt"></i> 25/09/2024 | <i class="fas fa-eye"></i> 1.2K</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <img src="~/images/banner.jpg" alt="Most Watched 3" width="100%" height="250px">
+                        <div class="card-body">
+                            <h5 class="card-title">The future of climate change</h5>
+                            <p class="meta-info"><i class="fas fa-calendar-alt"></i> 25/09/2024 | <i class="fas fa-eye"></i> 1.2K</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dấu ba chấm slider -->
+            <div class="slider-dots">
+                <span class="dot active" onclick="changeSlide(0)"></span>
+                <span class="dot" onclick="changeSlide(1)"></span>
+                <span class="dot" onclick="changeSlide(2)"></span>
+            </div>
+        </div> *@
+
+
+
+        <div class="mt-5 most-see">
             <div class="section-header">
                 <h3>Most See</h3>
                 <div class="line"></div>
-                <a href="#" class="see-all">See All</a>
-
             </div>
-            <div class="row">
-                <div class="col-md-6 main-news">
-                    <img src="~/images/banner1.jpg" alt="Main News">
-                    <h2 class="news-title mt-3">Mothers who helped uncover the biggest NHS maternity scandal</h2>
-                    <p class="meta-info">
-                        <i class="fas fa-calendar-alt"></i> 25/09/2024 | <i class="fas fa-eye"></i>
-                        1.2K
-                    </p>
+
+            <!-- Hiển thị 3 bài viết khi màn hình ≥ 769px -->
+            <div class="row most-watched d-md-flex" id="mostSeeContainer">
+                <div class="col-md-4">
+                    <div class="card mt-4">
+                        <img src="~/images/banner.jpg" alt="Most See 1" width="100%" height="200px">
+                        <div class="card-body">
+                            <h3 class="remote-title mt-2" style="font-size:1rem;font-weight:bold;">
+                                Another Webinar Title Goes Here: Remote Collaboration
+                            </h3>
+
+                            <p class="meta-info">
+                                <i class="fas fa-calendar-alt"></i> 25/09/2024 | <i class="fa-solid fa-user"></i>
+                            </p>
+                            <button class="read-more">
+                                Read more
+                            </button>
+                        </div>
+
+                    </div>
 
                 </div>
-                <div class="col-md-6 sidebar">
-                    <div class="row mb-3">
-                        <div class="col-6 news">
-                            <img src="~/images/CardTalk_4.png" alt="News 1">
-                            <h6 class="news-title">A child’s kiss she does not remember</h6>
-                            <p class="meta-info">
-                                <i class="fas fa-calendar-alt"></i> 25/09/2024 | <i class="fas fa-eye"></i> 1.2K
-                            </p>
 
-                        </div>
-                        <div class="col-6 news">
-                            <img src="~/images/CardTalk_1.png" alt="News 2">
-                            <h6 class="news-title">Our mission: To reveal the truth</h6>
-                            <p class="meta-info">
-                                <i class="fas fa-calendar-alt"></i> 25/09/2024 | <i class="fas fa-eye"></i> 1.2K
-                            </p>
+                <div class="col-md-4">
+                    <div class="card mt-4">
+                        <img src="~/images/banner.jpg" alt="Most See 2" width="100%" height="200px">
+                        <div class="card-body">
+                            <h3 class="remote-title mt-2" style="font-size:1rem;font-weight:bold;">
+                                Another Webinar Title Goes Here: Remote Collaboration
+                            </h3>
 
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6 news">
-                            <img src="~/images/CardTalk_2.png" alt="News 3">
-                            <h6 class="news-title">Cyril Ramaphosa: Judicial fears across South Africa</h6>
                             <p class="meta-info">
-                                <i class="fas fa-calendar-alt"></i> 25/09/2024 | <i class="fas fa-eye"></i> 1.2K
+                                <i class="fas fa-calendar-alt"></i> 25/09/2024 | <i class="fa-solid fa-user"></i>
                             </p>
-
-                        </div>
-                        <div class="col-6 news">
-                            <img src="~/images/CardTalk_3.png" alt="News 4">
-                            <h6 class="news-title">Our business: Campaign success</h6>
-                            <p class="meta-info">
-                                <i class="fas fa-calendar-alt"></i> 25/09/2024 | <i class="fas fa-eye"></i> 1.2K
-                            </p>
-
+                            <button class="read-more">
+                                Read more
+                            </button>
                         </div>
                     </div>
                 </div>
+
+                <div class="col-md-4">
+                    <div class="card mt-4">
+                        <img src="~/images/banner.jpg" alt="Most See 3" width="100%" height="200px">
+                        <div class="card-body">
+                            <h3 class="remote-title mt-2" style="font-size:1rem;font-weight:bold;">
+                                Another Webinar Title Goes Here: Remote Collaboration
+                            </h3>
+
+                            <p class="meta-info">
+                                <i class="fas fa-calendar-alt"></i> 25/09/2024 | <i class="fa-solid fa-user"></i>
+                            </p>
+                            <button class="read-more">
+                                Read more
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card mt-4">
+                        <img src="~/images/banner.jpg" alt="Most See 4" width="100%" height="200px">
+                        <div class="card-body">
+                            <h3 class="remote-title mt-2" style="font-size:1rem;font-weight:bold;">
+                                Another Webinar Title Goes Here: Remote Collaboration
+                            </h3>
+
+                            <p class="meta-info">
+                                <i class="fas fa-calendar-alt"></i> 25/09/2024 | <i class="fa-solid fa-user"></i>
+                            </p>
+                            <button class="read-more">
+                                Read more
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card mt-4">
+                        <img src="~/images/banner.jpg" alt="Most See 5" width="100%" height="200px">
+                        <div class="card-body">
+                            <h3 class="remote-title mt-2" style="font-size:1rem;font-weight:bold;">
+                                Another Webinar Title Goes Here: Remote Collaboration
+                            </h3>
+
+                            <p class="meta-info">
+                                <i class="fas fa-calendar-alt"></i> 25/09/2024 | <i class="fa-solid fa-user"></i>
+                            </p>
+                            <button class="read-more">
+                                Read more
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card mt-4">
+                        <img src="~/images/banner.jpg" alt="Most See 6" width="100%" height="200px">
+                        <div class="card-body">
+                            <h3 class="remote-title mt-2" style="font-size:1rem;font-weight:bold;">
+                                Another Webinar Title Goes Here: Remote Collaboration
+                            </h3>
+
+                            <p class="meta-info">
+                                <i class="fas fa-calendar-alt"></i> 25/09/2024 | <i class="fa-solid fa-user"></i>
+                            </p>
+                            <button class="read-more">
+                                Read more
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card mt-4">
+                        <img src="~/images/banner.jpg" alt="Most See 7" width="100%" height="200px">
+                        <div class="card-body">
+                            <h3 class="remote-title mt-2" style="font-size:1rem;font-weight:bold;">
+                                Another Webinar Title Goes Here: Remote Collaboration
+                            </h3>
+
+                            <p class="meta-info">
+                                <i class="fas fa-calendar-alt"></i> 25/09/2024 | <i class="fa-solid fa-user"></i>
+                            </p>
+                            <button class="read-more">
+                                Read more
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
+            <nav id="mostSeePagination" class="pagination-container"></nav>
         </div>
+
     </div>
-</body>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var container = document.getElementById('mostSeeContainer');
+        var items = container.querySelectorAll('.col-md-4'); // Lấy đúng các bài viết
+        var paginationContainer = document.getElementById('mostSeePagination');
+        var itemsPerPage = 6;
+        var currentPage = 1;
+        var totalPages = Math.ceil(items.length / itemsPerPage);
+
+        function showPage(page) {
+            currentPage = page;
+            items.forEach((item, index) => {
+                item.style.display = (index >= (page - 1) * itemsPerPage && index < page * itemsPerPage) ? 'block' : 'none';
+            });
+
+            renderPagination();
+        }
+
+        function renderPagination() {
+            paginationContainer.innerHTML = '';
+            if (totalPages <= 1) return;
+
+            var prev = document.createElement('button');
+            prev.innerText = 'Previous';
+            prev.disabled = currentPage === 1;
+            prev.addEventListener('click', () => showPage(currentPage - 1));
+            paginationContainer.appendChild(prev);
+
+            for (let i = 1; i <= totalPages; i++) {
+                let btn = document.createElement('button');
+                btn.innerText = i;
+                btn.classList.toggle('active', i === currentPage);
+                btn.addEventListener('click', () => showPage(i));
+                paginationContainer.appendChild(btn);
+            }
+
+            var next = document.createElement('button');
+            next.innerText = 'Next';
+            next.disabled = currentPage === totalPages;
+            next.addEventListener('click', () => showPage(currentPage + 1));
+            paginationContainer.appendChild(next);
+        }
+
+        showPage(1);
+    });
+
+
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+        let slider = document.querySelector(".most-watched-slider");
+        let dots = document.querySelectorAll(".slider-dots .dot");
+        let currentIndex = 0;
+        let totalSlides = dots.length;
+        let autoSlideInterval;
+
+        function showSlide(index) {
+            currentIndex = index;
+            let translateX = -index * 100 + "%";
+            slider.style.transform = "translateX(" + translateX + ")";
+
+            dots.forEach((dot, i) => {
+                dot.classList.toggle("active", i === index);
+            });
+
+            restartAutoSlide();
+        }
+
+        function changeSlide(index) {
+            showSlide(index);
+        }
+
+        function nextSlide() {
+            let nextIndex = (currentIndex + 1) % totalSlides;
+            showSlide(nextIndex);
+        }
+
+        // Gán sự kiện click cho từng dot
+        dots.forEach((dot, index) => {
+            dot.addEventListener("click", function () {
+                changeSlide(index);
+            });
+        });
+
+        function restartAutoSlide() {
+            clearInterval(autoSlideInterval);
+            autoSlideInterval = setInterval(nextSlide, 3000); // Auto slide mỗi 3 giây
+        }
+
+        restartAutoSlide(); // Bắt đầu auto-slide khi load trang
+    });
+
+</script>

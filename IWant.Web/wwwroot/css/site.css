@@ -10,7 +10,6 @@ html, body {
 }
 
 .wrapper {
-    flex: 1;
     display: flex;
     flex-direction: column;
 }
@@ -59,7 +58,7 @@ header {
 
     header .navbar-nav {
         display: flex;
-        align-items: center;
+        /* align-items: center; */
     }
 
         header .navbar-nav.ms-auto {
@@ -108,61 +107,6 @@ header {
     background: #FEDA15
 }*/
 
-.login-container {
-    margin: 30px 0;
-    padding-right: 30px;
-    background-color: #FEDA15;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-    .login-container .login-card {
-        background-color: #fff;
-        border-radius: 10px;
-        padding-right: 30px;
-        width: 550px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-
-        .login-container .login-card h1 {
-            text-align: center;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-
-        .login-container .login-card .custom-input {
-            width: 80%;
-            padding-top: 10px;
-            margin-bottom: 10px;
-            border: none;
-            border-bottom: 2px solid #000;
-            font-size: 16px;
-            font-family: Arial, sans-serif;
-            outline: none;
-            box-shadow: none;
-        }
-
-            .login-container .login-card .custom-input::placeholder {
-                color: #BEBEBE;
-                font-size: 14px;
-            }
-
-            .login-container .login-card .custom-input:focus {
-                border-bottom: 2px solid #FEDA15;
-            }
-
-        .login-container .login-card .password-toggle {
-            position: absolute;
-            top: 40%;
-            right: 0;
-            transform: translateY(-50%);
-            cursor: pointer;
-            color: #9B30FF;
-            font-size: 20px;
-        }
-
-
 
 .app {
     display: flex;
@@ -172,9 +116,7 @@ header {
     border: 1px solid #ccc;
 }
 
-    .app .sidebar {
-        width: 240px;
-    }
+
 
     .app .main-content {
         flex-grow: 1;
@@ -261,14 +203,7 @@ header {
             flex-grow: 1
         }
 
-            .sidebar .profile div .user-avatar {
-                width: 32px;
-                height: 32px;
-                border: 2px solid white;
-                padding: 1px;
-                border-radius: 50%;
-                margin-right: 5px;
-            }
+
 
             .sidebar .profile div a {
                 font-size: 14px;
@@ -287,6 +222,8 @@ header {
             background: none;
             border: none
         }
+
+
 
 .main-content {
     border-right: 1px solid #eee;
@@ -378,7 +315,7 @@ header {
     }
 
         .chat-message .message-content img.post-image {
-            max-width: 200px;
+            max-width: 100px;
             max-height: 100%;
         }
 
@@ -631,58 +568,7 @@ header {
 /*-----------------------------------*/
 
 /* Forgot Password CSS and Animation */
-.forgotPassword-container {
-    margin: 30px 0;
-    padding-right: 30px;
-    background-color: #FEDA15;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
-    .forgotPassword-container .forgotPassword-card {
-        background-color: #fff;
-        border-radius: 10px;
-        width: 400px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-
-        .forgotPassword-container .forgotPassword-card h1 {
-            text-align: center;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-
-        .forgotPassword-container .forgotPassword-card .custom-input {
-            width: 80%;
-            padding-top: 10px;
-            margin-bottom: 10px;
-            border: none;
-            border-bottom: 2px solid #000;
-            font-size: 16px;
-            font-family: Arial, sans-serif;
-            outline: none;
-            box-shadow: none;
-        }
-
-            .forgotPassword-container .forgotPassword-card .custom-input::placeholder {
-                color: #BEBEBE;
-                font-size: 14px;
-            }
-
-            .forgotPassword-container .forgotPassword-card .custom-input:focus {
-                border-bottom: 2px solid #FEDA15;
-            }
-
-        .forgotPassword-container .forgotPassword-card .password-toggle {
-            position: absolute;
-            top: 40%;
-            right: 0;
-            transform: translateY(-50%);
-            cursor: pointer;
-            color: #FEDA15;
-            font-size: 20px;
-        }
 
 /*---------------------------------------------------*/
 
@@ -745,41 +631,17 @@ header {
 /* ConfirmSignUp CSS and Animation*/
 
 
-.confirmSignUp-container {
-    margin: 30px 0;
-    padding-right: 30px;
-    background-color: #FEDA15;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
-    .confirmSignUp-container .confirmSignUp-card {
-        background-color: #fff;
-        border-radius: 10px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
 
-@keyframes popupEffect {
-    0%, 100% {
-        transform: scale(1);
-    }
 
-    50% {
-        transform: scale(1.2);
-    }
-}
 
-.popup-img {
-    animation: popupEffect 3s infinite ease-in-out;
-}
+
 
 /*---------------------------------------------------*/
 
 /* SignUp CSS and Animation */
 .signup-container {
-    margin: 30px 0;
-    padding: 40px;
+    padding-right: 30px;
     background-color: #FEDA15;
     display: flex;
     justify-content: center;
@@ -791,7 +653,6 @@ header {
         border-radius: 10px;
         padding-right: 15px;
         padding-left: 15px;
-        width: 400px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 
@@ -835,6 +696,10 @@ header {
 }
 
 .endMascot img {
+    animation: fadeInOut 5s infinite;
+}
+
+.endMascot-change img {
     animation: fadeInOut 5s infinite;
 }
 

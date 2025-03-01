@@ -2,20 +2,81 @@
 
 @{
     ViewData["Title"] = "Update Profile";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-
-
+<link rel="stylesheet" href="~/css/main.css" />
+<link rel="stylesheet" href="~/css/responsive.css" />
+<link rel="stylesheet" href="~/css/site.css" />
 <style>
     .profile-header label:hover img {
         opacity: 0.5;
     }
+
+    .updateprofile-container {
+        background-color: #FEDA15;
+        padding: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .updateprofile-card {
+        display: flex;
+        border-radius: 10px;
+        background-color: #fff;
+        max-width: 600px;
+        width: 100%;
+        height: auto;
+        align-items: stretch;
+        overflow: hidden;
+        z-index: 2;
+        padding: 20px;
+        flex-grow: 1;
+        margin-top: 60px;
+    }
+
+    .updateprofile-container .updateprofile-card h1 {
+        text-align: center;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    .updateprofile-container .updateprofile-card .custom-input {
+        width: 100%;
+        padding-top: 10px;
+        margin-bottom: 20px;
+        border: none;
+        border-bottom: 2px solid #000;
+        font-size: 16px;
+        font-family: Arial, sans-serif;
+        outline: none;
+        box-shadow: none;
+    }
+
+        .updateprofile-container .updateprofile-card .custom-input::placeholder {
+            color: #BEBEBE;
+            font-size: 14px;
+        }
+
+        .updateprofile-container .updateprofile-card .custom-input:focus {
+            border-bottom: 2px solid #FEDA15;
+        }
+
+    .profile-headerprofile {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+
+
+    .endMascot img {
+        animation: fadeInOut 5s infinite;
+    }
 </style>
 
-<div class="d-flex signup-container signup-page">
+<div class="d-flex updateprofile-container signup-page">
     <div class="confetti-container"></div>
-    <div class="signup-card" style="display: flex; border-radius: 10px; background-color: #fff; width: 50%; height: auto; align-items: start; overflow: hidden; z-index: 2;">
+    <div class="updateprofile-card">
         <div style="flex: 1; display: flex; flex-direction: column; justify-content: space-between; margin: 20px;">
             <h1 style="font-size: 32px; text-align: start;">Update Profile</h1>
             @if (TempData["SuccessMessage"] != null)
@@ -25,7 +86,7 @@
                 </div>
             }
             <form asp-action="UpdateProfile" method="post" enctype="multipart/form-data">
-                <div class="profile-header d-flex" style="margin-bottom: 30px">
+                <div class="profile-headerprofile d-flex" style="margin-bottom: 30px">
                     <label for="avatarInput" class="avatar-container position-relative me-3">
                         <img id="avatarPreview"
                              style="width:100px; height:100px; border-radius:50%; border:solid 1px #9B30FF; cursor:pointer; object-fit:cover; object-position:center; margin-left: 50px"
@@ -194,6 +255,7 @@
         setInterval(createConfetti, 200);
     });
 </script>
+
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

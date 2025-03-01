@@ -1,0 +1,1454 @@
+﻿
+/* Fonts */
+:root {
+    --font-default: "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --font-primary: "Roboto", sans-serif;
+    --font-secondary: "Work Sans", sans-serif;
+}
+
+/* Colors */
+:root {
+    --color-default: #364d59;
+    --color-primary: #FEDA15;
+    --color-secondary: #52565e;
+}
+
+/* Smooth scroll behavior */
+:root {
+    scroll-behavior: smooth;
+}
+
+/*--------------------------------------------------------------
+# General
+--------------------------------------------------------------*/
+body {
+    font-family: var(--font-default);
+    color: var(--color-default);
+    overflow-x: hidden;
+}
+
+a {
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
+    a:hover {
+        color: #ffc732;
+        text-decoration: none;
+    }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-primary);
+    font-size: 2.3rem;
+}
+
+
+
+
+
+@media (max-width: 1025px) {
+    .login-card {
+        max-width: 700px;
+        min-width: 300px;
+        height: auto;
+        border-radius: 10px;
+        overflow: hidden;
+        background: #fff;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+}
+
+@media (max-width: 768px) {
+    .login-container .login-card {
+        flex-direction: column;
+        max-width: 80% !important;
+    }
+
+    .image {
+        width: 0 !important;
+        height: 0 !important;
+        overflow: hidden;
+        visibility: hidden;
+    }
+
+    .form {
+        width: 100% !important;
+        display: block;
+    }
+
+    .login-card form {
+        max-width: 100%;
+    }
+
+    .login-card-img {
+        display: none;
+        object-fit: contain;
+    }
+
+        .login-card-img img {
+            width: 70%;
+            height: auto;
+        }
+}
+
+@media (max-width: 600px) {
+    .login-container .login-card {
+        max-width: 70%;
+    }
+
+    .login-card form {
+        max-width: 100%;
+    }
+
+    .login-card-img img {
+        display: none;
+        height: auto;
+    }
+
+    .image {
+        width: 0 !important;
+        height: 0 !important;
+        overflow: hidden;
+        visibility: hidden;
+    }
+
+    .form {
+        width: 100% !important;
+        display: block;
+    }
+}
+
+@media (max-width: 320px) {
+    .login-container .login-card {
+        max-width: 80%;
+    }
+
+    .login-card form {
+        max-width: 100%;
+    }
+
+    .image {
+        width: 0 !important;
+        height: 0 !important;
+        overflow: hidden;
+        visibility: hidden;
+    }
+
+    .form {
+        width: 100% !important;
+        display: block;
+    }
+
+    .login-card-img {
+        display: none;
+        height: auto;
+    }
+
+        .login-card-img img {
+            width: 70%;
+            height: auto;
+        }
+
+    .login-card h1 {
+        font-size: 18px;
+    }
+
+    .login-card h2 {
+        font-size: 14px;
+    }
+
+    .login-card input {
+        font-size: 14px;
+        padding: 6px;
+    }
+
+    .login-card button {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    .login-card a {
+        font-size: 12px;
+    }
+}
+
+
+
+@media (max-width: 1025px) {
+    .signup-card {
+        display: flex;
+        border-radius: 10px;
+        background-color: #fff;
+        max-width: 600px;
+        width: 100%;
+        height: auto;
+        align-items: stretch;
+        overflow: hidden;
+        z-index: 2;
+        padding: 20px;
+        flex-grow: 1;
+        margin-top: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .signup-card {
+        width: 90%;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 600px) {
+    .signup-container {
+        padding: 20px;
+    }
+
+    .btn-signup {
+        width: 80px;
+    }
+}
+
+@media (max-width: 320px) {
+    .signup-card {
+        width: 100%;
+        padding: 10px;
+    }
+}
+
+
+/* Mặc định cho màn hình lớn (>1025px) */
+.sidebar {
+    width: 300px;
+}
+
+@media (max-width: 1025px) {
+    .sidebar {
+        width: 250px;
+    }
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 200px;
+    }
+
+    .chat-container {
+        width: 90%;
+        margin: 0 auto;
+    }
+
+
+
+    .chat-body {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 600px) {
+    .sidebar {
+        width: 120px;
+    }
+
+    .chat-container {
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    .sidebar .profile img.user-avatar {
+        width: 20px !important;
+        height: 20px !important;
+    }
+
+    .sidebar .profile div a {
+        font-size: 12px !important;
+        color: #000000;
+    }
+
+    .chat-message .message-content .author {
+        font-size: 11px !important;
+    }
+
+    .chat-message .message-content .timestamp {
+        font-size: 10px !important;
+    }
+
+    .sidebar .header h5 {
+        margin: 0;
+        font-size: 1.0rem !important;
+        color: #000;
+    }
+
+    .sidebar .profile .role {
+        margin: 0;
+        font-size: 8px !important;
+        color: #333;
+    }
+
+    .chat-message.ismine .message-content {
+        display: inline-block !important;
+        max-width: 40% !important;
+    }
+
+    .chat-body {
+        font-size: 13px;
+    }
+
+    .sidebar .profile div a {
+        font-size: 8px !important;
+    }
+
+    .chat-message.isother .message-content {
+        background-color: #f1f1f1;
+        border-radius: 10px 10px 10px 0;
+        color: #333;
+        margin-right: auto;
+        margin-left: 0;
+        max-width: 30% !important;
+        min-width: 100px !important;
+        padding: 0.2rem 0.5rem !important;
+    }
+
+    .timestamp {
+        font-size: 10px !important;
+    }
+
+    .chat-message.ismine .message-content {
+        max-width: 30% !important;
+        min-width: 100px !important;
+        padding: 0.2rem 0.5rem !important;
+        font-weight: 400 !important;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .app {
+        width: 600px;
+        height: 320px;
+        display: flex;
+        background-color: #f8f9fa;
+        margin-top: 80px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+    }
+
+    .sidebar {
+        width: 200px; /* Đặt chiều rộng sidebar */
+        transition: transform 0.3s ease;
+    }
+
+        .sidebar.hidden {
+            transform: translateX(-100%);
+        }
+
+    .main-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        background-color: #fff;
+    }
+}
+
+
+
+
+@media (max-width: 320px) {
+    .sidebar {
+        width: 100px;
+    }
+
+    .chat-container {
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    .sidebar .profile img.user-avatar {
+        width: 18px !important;
+        height: 18px !important;
+    }
+
+    .sidebar .profile div a {
+        font-size: 10px !important;
+        color: #000000;
+    }
+
+    .chat-message .message-content .author {
+        font-size: 9px !important;
+    }
+
+    .chat-message .message-content .timestamp {
+        font-size: 8px !important;
+    }
+
+    .sidebar .header h5 {
+        margin: 0;
+        font-size: 10px !important;
+        color: #000;
+    }
+
+    .sidebar .profile .role {
+        margin: 0;
+        font-size: 7px !important;
+        color: #333;
+    }
+
+    .chat-message.ismine .message-content {
+        display: inline-block !important;
+        max-width: 40% !important;
+    }
+
+    .chat-body {
+        font-size: 13px;
+    }
+
+    .sidebar .profile div a {
+        font-size: 6px !important;
+    }
+}
+
+
+@media (min-width: 769px) {
+    .dot-watch, .section-header1 {
+        display: none !important;
+        visibility: hidden !important;
+    }
+}
+
+
+
+
+@media (max-width: 768px) {
+    .blog-header, .main-article, .section-header .line, .section-header1 .line {
+        display: none !important;
+    }
+
+    .watch {
+        display: none !important;
+    }
+
+    .most-watched {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+        .most-watched .card {
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+
+
+    .most-see .card {
+        max-width: 90%;
+        margin: auto;
+        height: 260px;
+    }
+
+        .most-see .card img {
+            height: 120px;
+            object-fit: cover;
+        }
+
+    .most-see .card-body h3 {
+        font-size: 0.9rem;
+    }
+
+    .most-see .card-body .meta-info {
+        font-size: 0.8rem;
+    }
+
+    .dot-watch .card img {
+        height: 350px;
+    }
+
+    .dot-watch .card {
+        max-width: 90%;
+        margin: auto;
+        height: 500px;
+    }
+
+    .most-see .card-body .read-more {
+        font-size: 0.8rem;
+        padding: 5px 10px;
+    }
+
+
+    .card-body {
+        text-align: left;
+    }
+
+    .most-watched-wrapper {
+        overflow: hidden;
+        width: 100%;
+        position: relative;
+    }
+
+    .most-watched-slider {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+    }
+
+        .most-watched-slider .card {
+            min-width: 100%;
+            flex: 0 0 auto;
+        }
+
+    /* Style cho dots */
+    .slider-dots {
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .dot {
+        height: 10px;
+        width: 10px;
+        margin: 5px;
+        background-color: #bbb;
+        border-radius: 50%;
+        display: inline-block;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+        .dot.active {
+            background-color: #333;
+        }
+}
+
+
+
+@media (max-width: 600px) {
+    .blog-header, .main-article, .section-header .line, .section-header1 .line {
+        display: none !important;
+    }
+
+    .watch {
+        display: none !important;
+    }
+
+    .most-watched {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+        .most-watched .card {
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+
+
+    .most-see .card {
+        max-width: 90%;
+        margin: auto;
+        height: 260px;
+    }
+
+        .most-see .card img {
+            height: 120px;
+            object-fit: cover;
+        }
+
+    .most-see .card-body h3 {
+        font-size: 0.9rem;
+    }
+
+    .most-see .card-body .meta-info {
+        font-size: 0.8rem;
+    }
+
+    .dot-watch .card img {
+        height: 350px;
+    }
+
+    .dot-watch .card {
+        max-width: 90%;
+        margin: auto;
+        height: 500px;
+    }
+
+    .most-see .card-body .read-more {
+        font-size: 0.8rem;
+        padding: 5px 10px;
+    }
+
+
+    .card-body {
+        text-align: left;
+    }
+
+    .most-watched-wrapper {
+        overflow: hidden;
+        width: 100%;
+        position: relative;
+    }
+
+    .most-watched-slider {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+    }
+
+        .most-watched-slider .card {
+            min-width: 100%;
+            flex: 0 0 auto;
+        }
+
+    /* Style cho dots */
+    .slider-dots {
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .dot {
+        height: 10px;
+        width: 10px;
+        margin: 5px;
+        background-color: #bbb;
+        border-radius: 50%;
+        display: inline-block;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+        .dot.active {
+            background-color: #333;
+        }
+}
+
+@media (max-width: 320px) {
+    .blog-header, .main-article, .section-header .line, .section-header1 .line {
+        display: none !important;
+    }
+
+    .watch {
+        display: none !important;
+    }
+
+    .most-watched {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+        .most-watched .card {
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+
+
+    .most-see .card {
+        max-width: 90%;
+        margin: auto;
+        height: 260px;
+    }
+
+        .most-see .card img {
+            height: 120px;
+            object-fit: cover;
+        }
+
+    .most-see .card-body h3 {
+        font-size: 0.9rem;
+    }
+
+    .most-see .card-body .meta-info {
+        font-size: 0.8rem;
+    }
+
+    .dot-watch .card img {
+        height: 350px;
+    }
+
+    .dot-watch .card {
+        max-width: 90%;
+        margin: auto;
+        height: 500px;
+    }
+
+    .most-see .card-body .read-more {
+        font-size: 0.8rem;
+        padding: 5px 10px;
+    }
+
+
+    .card-body {
+        text-align: left;
+    }
+
+    .most-watched-wrapper {
+        overflow: hidden;
+        width: 100%;
+        position: relative;
+    }
+
+    .most-watched-slider {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+    }
+
+        .most-watched-slider .card {
+            min-width: 100%;
+            flex: 0 0 auto;
+        }
+
+    /* Style cho dots */
+    .slider-dots {
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .dot {
+        height: 10px;
+        width: 10px;
+        margin: 5px;
+        background-color: #bbb;
+        border-radius: 50%;
+        display: inline-block;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+        .dot.active {
+            background-color: #333;
+        }
+}
+
+@media (max-width: 768px) {
+    .container-center {
+        height: auto;
+        padding: 20px;
+        margin-top: 20px !important;
+    }
+
+    .password-card {
+        width: 90%;
+        height: auto;
+        padding: 15px;
+        margin-top: 20px;
+    }
+
+    .input-group input {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    .lock-icon-wrapper {
+        width: 60px;
+        height: 50px;
+    }
+
+    .lock-icon {
+        font-size: 40px;
+    }
+
+    .check-icon {
+        font-size: 16px;
+    }
+
+    .logo-1 {
+        width: 80px;
+        right: 10px;
+        bottom: 10px;
+    }
+
+    .container-center {
+        height: 600px !important;
+    }
+
+    endMascot-change {
+        width: 30 !important;
+    }
+}
+
+@media (max-width: 600px) {
+    .password-card {
+        width: 95%;
+        padding: 10px;
+        margin-top: 20px !important;
+    }
+
+    .lock-icon-wrapper {
+        width: 50px;
+        height: 40px;
+    }
+
+    endMascot-change {
+        width: 30 !important;
+    }
+
+    .lock-icon {
+        font-size: 30px;
+    }
+
+    .check-icon {
+        font-size: 14px;
+    }
+
+    .container-center {
+        height: 600px !important;
+    }
+
+    .title {
+        font-size: 18px;
+    }
+
+    .subtitle {
+        font-size: 10px;
+    }
+
+    .input-group input {
+        font-size: 13px;
+    }
+
+    button {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .logo-1 {
+        width: 70px;
+    }
+}
+
+@media (max-width: 320px) {
+    .password-card {
+        width: 100%;
+        padding: 8px;
+        margin-top: 20px !important;
+    }
+
+    .container-center {
+        height: 550px !important;
+    }
+
+    .title {
+        font-size: 16px;
+    }
+
+    endMascot-change {
+        width: 30 !important;
+    }
+
+    .subtitle {
+        font-size: 10px;
+    }
+
+    .input-group input {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    button {
+        font-size: 12px;
+        padding: 6px;
+    }
+
+    .logo-1 {
+        width: 50px;
+    }
+}
+
+
+
+@media (max-width: 768px) {
+    .user-avatar {
+        width: 40px;
+        height: 40px;
+    }
+
+    .updateprofile-card {
+        display: flex;
+        margin-top: 40px !important;
+    }
+
+    .profile-headerprofile {
+        flex-direction: column;
+    }
+
+    .user-name {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 600px) {
+    .user-avatar {
+        width: 35px;
+        height: 35px;
+    }
+
+    .updateprofile-card {
+        display: flex;
+        width: 90%;
+        flex-direction: column;
+        margin-top: 40px !important;
+    }
+
+    .profile-headerprofile {
+        flex-direction: column;
+    }
+
+    .updateprofile-container .updateprofile-card h1 {
+        margin-bottom: 10px !important;
+    }
+
+    .user-name {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 320px) {
+    .user-avatar {
+        width: 30px;
+        height: 30px;
+    }
+
+    .updateprofile-container .updateprofile-card h1 {
+        margin-bottom: 8px !important;
+    }
+
+    .updateprofile-card {
+        display: flex;
+        width: 90%;
+        flex-direction: column;
+        margin-top: 40px !important;
+    }
+
+    .profile-headerprofile {
+        flex-direction: column;
+    }
+
+    .user-name {
+        font-size: 14px;
+    }
+}
+
+
+@keyframes fadeInOut {
+    0%, 100% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+
+
+
+@keyframes popupEffect {
+    0%, 100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+}
+/* === Responsive cho 768px === */
+@media (max-width: 768px) {
+    .confirmSignUp-container {
+        padding: 20px;
+        height: auto;
+    }
+
+    .confirmSignUp-card {
+        max-width: 90%;
+        padding: 15px;
+    }
+
+        .confirmSignUp-card h2 {
+            font-size: 22px;
+        }
+
+        .confirmSignUp-card p {
+            font-size: 15px;
+            padding: 0 15px;
+        }
+
+    .popup-img {
+        max-width: 90%;
+    }
+}
+
+/* === Responsive cho 600px === */
+@media (max-width: 600px) {
+    .confirmSignUp-container {
+        padding: 15px;
+    }
+
+    .confirmSignUp-card {
+        max-width: 85%;
+        padding: 12px;
+    }
+
+        .confirmSignUp-card h2 {
+            font-size: 20px;
+        }
+
+        .confirmSignUp-card p {
+            font-size: 14px;
+        }
+
+    .popup-img {
+        max-width: 85%;
+        margin-bottom: 15px;
+    }
+}
+
+/* === Responsive cho 320px (Điện thoại nhỏ) === */
+@media (max-width: 320px) {
+    .confirmSignUp-container {
+        padding: 10px;
+    }
+
+    .confirmSignUp-card {
+        max-width: 95%;
+        padding: 10px;
+    }
+
+        .confirmSignUp-card h2 {
+            font-size: 18px;
+        }
+
+        .confirmSignUp-card p {
+            font-size: 13px;
+            padding: 0 10px;
+        }
+
+    .popup-img {
+        max-width: 80%;
+        margin-bottom: 10px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .forgotPassword-card {
+        width: 350px;
+        padding: 15px;
+    }
+
+    .custom-input {
+        width: 90%;
+    }
+
+    .forgotPassword-btn {
+        width: 80%;
+    }
+}
+
+/* Responsive for 600px */
+@media screen and (max-width: 600px) {
+    .forgotPassword-container {
+        padding: 20px;
+        height: auto;
+    }
+
+    .forgotPassword-card {
+        width: 300px;
+        padding: 15px;
+    }
+
+    .title-forgot {
+        font-size: 26px !important;
+    }
+}
+
+/* Responsive for 320px */
+@media screen and (max-width: 320px) {
+    .forgotPassword-card {
+        width: 90%;
+        padding: 10px;
+    }
+
+    .title-forgot {
+        font-size: 22px !important;
+    }
+
+    .custom-input {
+        width: 100%;
+    }
+
+    .forgotPassword-btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 1000px) {
+    .row {
+        display: flex;
+        flex-direction: row; /* Giữ bố cục hàng ngang */
+        align-items: center;
+    }
+
+    .uploads-img {
+        width: 30% !important; /* Chiếm 50% chiều rộng */
+        display: flex;
+        justify-content: center;
+    }
+
+    .form-post {
+        width: 70% !important; /* Chiếm 50% chiều rộng */
+    }
+
+    .createblog-container {
+        padding: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #FEDA15;
+    }
+
+    .blog-input, .blog-textarea, .blog-select {
+        font-size: 10px !important;
+    }
+
+    .createblog-card {
+        margin-top: 30px !important;
+        height: 650px !important;
+        align-items: stretch;
+        overflow: hidden;
+        z-index: 2;
+        flex-grow: 1;
+    }
+
+    .endMascot img {
+        width: 20% !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .row {
+        display: flex;
+        flex-direction: row; /* Giữ bố cục hàng ngang */
+        align-items: center;
+    }
+
+    .endMascot img {
+        width: 20% !important;
+    }
+
+    .uploads-img {
+        width: 30% !important;
+        display: flex;
+        justify-content: center;
+    }
+
+    .form-post {
+        width: 70% !important;
+    }
+
+    .createblog-container {
+        padding: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #FEDA15;
+    }
+
+    .blog-input, .blog-textarea, .blog-select {
+        font-size: 10px !important;
+    }
+
+    .createblog-card {
+        margin-top: 30px !important;
+        width: 90%;
+        height: 650px !important;
+        align-items: stretch;
+        overflow: hidden;
+        z-index: 2;
+        flex-grow: 1;
+    }
+
+    .card-title {
+        font-size: 22px !important;
+        font-weight: bold
+    }
+}
+
+@media (max-width: 600px) {
+
+    .row {
+        display: flex;
+        flex-direction: column; /* Chuyển thành cột để ảnh trên, nội dung dưới */
+        align-items: center;
+        width: 100%;
+    }
+
+    .uploads-img {
+        width: 100% !important; /* Ảnh full chiều rộng */
+        display: flex;
+        height: 80px !important;
+        justify-content: center;
+        margin-bottom: 10px; /* Khoảng cách với nội dung */
+    }
+
+    .card-title {
+        font-size: 22px !important;
+        font-weight: bold
+    }
+
+    .uploads-img img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .form-post {
+        width: 100% !important; /* Nội dung cũng full chiều rộng */
+    }
+
+    .createblog-card {
+        margin-top: 30px !important;
+        height: 700px !important;
+        margin-top: 0px !important;
+    }
+
+    .blog-input, .blog-textarea, .blog-select {
+        font-size: 10px !important;
+    }
+
+    .summernote {
+        height: 100px !important;
+    }
+
+    .note-toolbar .btn {
+        padding: 2px 4px !important; /* Giảm padding của các nút */
+        font-size: 12px !important; /* Giảm kích thước chữ */
+    }
+
+    .note-editor .dropdown-menu {
+        font-size: 12px !important; /* Giảm kích thước menu dropdown */
+    }
+
+    .endMascot img {
+        width: 20% !important;
+    }
+
+    .blog-submit {
+        font-size: 12px !important;
+        padding: 8px 16px !important;
+    }
+}
+
+@media (max-width: 320px) {
+    .row {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .uploads-img {
+        width: 100% !important;
+        display: flex;
+        height: 100px !important;
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+
+    .card-title {
+        font-size: 22px !important;
+        font-weight: bold
+    }
+
+    .uploads-img img {
+        max-width: 80%;
+        height: auto;
+    }
+
+    .form-post {
+        width: 100% !important;
+    }
+
+    .createblog-card {
+        margin-top: 30px !important;
+        height: 800px !important;
+        margin-top: 0px !important;
+    }
+
+    .blog-input, .blog-textarea, .blog-select {
+        font-size: 10px !important;
+    }
+
+    .summernote {
+        height: 100px !important;
+    }
+
+    .note-toolbar .btn {
+        padding: 2px 4px !important;
+        font-size: 12px !important;
+    }
+
+    .note-editor .dropdown-menu {
+        font-size: 12px !important;
+    }
+
+    .endMascot img {
+        width: 20% !important;
+    }
+
+    .blog-submit {
+        font-size: 12px !important;
+        padding: 8px 16px !important;
+    }
+}
+
+
+
+@media screen and (max-width: 768px) {
+    .changepassword-card {
+        max-width: 90%;
+        padding: 20px;
+    }
+
+    .changepassword-title {
+        font-size: 28px;
+    }
+
+    .custom-input {
+        padding: 8px;
+    }
+
+    .reset-password-button {
+        width: 100%;
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .changepassword-container {
+        padding: 20px;
+    }
+
+    .changepassword-card {
+        max-width: 95%;
+        padding: 15px;
+    }
+
+    .changepassword-title {
+        font-size: 24px;
+    }
+
+    .custom-input {
+        padding: 7px;
+        font-size: 14px;
+    }
+
+    .reset-password-button {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .changepassword-title {
+        font-size: 28px !important;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .changepassword-card {
+        max-width: 100%;
+        padding: 10px;
+    }
+
+    .changepassword-title {
+        font-size: 20px;
+    }
+
+    .custom-input {
+        padding: 6px;
+        font-size: 12px;
+    }
+
+    .reset-password-button {
+        padding: 8px;
+        font-size: 12px;
+    }
+
+    .changepassword-title {
+        font-size: 28px !important;
+    }
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh);
+    }
+}
+
+@media (max-width: 768px) {
+    .notfound-card {
+        max-width: 90%;
+        padding: 20px;
+        height: auto;
+    }
+
+    .notfound-icon img {
+        width: 120px;
+    }
+
+    .access-denied h2 {
+        font-size: 28px;
+    }
+
+    .access-denied p {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 600px) {
+    .notfound-card {
+        padding: 15px;
+        max-width: 350px !important;
+        height: 350px !important;
+    }
+
+    .notfound-icon img {
+        width: 100px;
+    }
+
+    .access-denied h2 {
+        font-size: 24px !important;
+    }
+
+    .access-denied p {
+        font-size: 13px !important;
+    }
+}
+
+@media (max-width: 320px) {
+    .notfound-container {
+        padding: 10px;
+    }
+
+    .notfound-card {
+        padding: 10px;
+    }
+
+    .notfound-icon img {
+        width: 80px;
+    }
+
+    .access-denied h2 {
+        font-size: 20px !important;
+    }
+
+    .access-denied p {
+        font-size: 12px !important;
+    }
+
+    .notfound-btn {
+        padding: 8px;
+        font-size: 12px;
+        max-width: 150px;
+    }
+}

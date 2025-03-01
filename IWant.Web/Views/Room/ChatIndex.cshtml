@@ -8,7 +8,9 @@
     {
         roleMember = "Member";
     }
-
+    <link rel="stylesheet" href="~/css/main.css" />
+    <link rel="stylesheet" href="~/css/responsive.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
 
 }
 
@@ -17,7 +19,7 @@
     .app {
         display: flex;
         background-color: #f8f9fa;
-        margin-top: 20px;
+        margin-top: 80px;
     }
 
     .sidebar .header i {
@@ -26,7 +28,6 @@
     }
 
     .sidebar {
-        width: 300px;
         background-color: #FFFFFF;
         display: flex;
         flex-direction: column;
@@ -112,7 +113,6 @@
             }
 
     .sidebar .profile {
-        padding: 1rem;
         border-top: 1px solid #ccc;
         background-color: #FFFFFF;
     }
@@ -177,39 +177,61 @@
         margin-bottom: 1rem;
     }
 
-        .chat-message.ismine {
-            justify-content: flex-end;
+        .chat-message.isother .message-content {
+            background-color: #f1f1f1;
+            border-radius: 10px 10px 10px 0;
+            color: #333;
+            margin-right: auto;
+            margin-left: 0;
+            max-width: 40%;
+            min-width: 130px;
+            padding: 0.3rem 0.7rem;
         }
 
-            .chat-message.ismine .message-content {
-                background-color: rgba(226, 157, 82, 0.8);
-                border-radius: 10px 10px 0 10px;
-                border: 1px solid #FEDA15;
-                color: #000;
-                margin-left: auto;
-                margin-right: 0;
-                max-width: 60%;
-                padding: 0.5rem 1rem;
-                font-weight: 600;
-                text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            }
-
-
-
-        .chat-message.isother {
-            justify-content: flex-start;
+        .chat-message.ismine .message-content {
+            background-color: rgba(226, 157, 82, 0.8);
+            border-radius: 10px 10px 0 10px;
+            border: 1px solid #FEDA15;
+            color: #000;
+            margin-left: auto;
+            margin-right: 0;
+            max-width: 40%;
+            min-width: 130px;
+            font-size: 14px;
+            padding: 0.3rem 0.7rem;
+            font-weight: 600;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
-            .chat-message.isother .message-content {
-                background-color: #f1f1f1;
-                border-radius: 10px 10px 10px 0;
-                color: #333;
-                margin-right: auto;
-                margin-left: 0;
-                max-width: 60%;
-                padding: 0.5rem 1rem;
-            }
+    .message-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .timestamp {
+        font-size: 12px;
+        color: gray;
+        margin-bottom: 2px; /* Cách dòng tin nhắn */
+        align-self: flex-start;
+    }
+
+    .message-content {
+        background-color: #007bff;
+        color: white;
+        padding: 8px 12px;
+        border-radius: 15px;
+        max-width: fit-content;
+        word-wrap: break-word;
+        align-self: flex-end;
+    }
+
+
+    .chat-message.isother {
+        justify-content: flex-start;
+    }
+
 
 
     .message-avatar {
@@ -225,11 +247,7 @@
         margin-right: 0.5rem;
     }
 
-    .message-content .timestamp {
-        font-size: 0.8rem;
-        color: #666;
-        margin-left: 0.5rem;
-    }
+
 
     .chat-input {
         display: flex;
@@ -298,7 +316,6 @@
     }
 
 
-
     .room-actions button {
         background-color: transparent;
         color: #000;
@@ -307,6 +324,15 @@
         padding: 0.25rem 0.5rem;
         border-radius: 4px;
         transition: background-color 0.2s, color 0.2s;
+    }
+
+    .chat-body {
+        width: 100%;
+        height: 400px; /* Hoặc auto nếu muốn tự động co dãn */
+        overflow-y: auto; /* Đảm bảo không có thanh cuộn ngang */
+        overflow-x: hidden;
+        white-space: normal; /* Để tin nhắn xuống dòng nếu quá dài */
+        word-wrap: break-word;
     }
 
     .sidebar ul li a:before {
@@ -332,7 +358,7 @@
     </div>
 </div>
 
-<div class="container" style="min-height:700px">
+<div class="container chat" style="min-height:600px;">
 
 
     <input id="userId" type="hidden" value="" />
@@ -386,18 +412,19 @@
                         <div class="chat-message d-flex"
                              data-bind="css: $data.isMine() === true ? 'ismine' : 'isother'">
                             <div class="left-side d-flex">
-                                <img style="max-width: 200px;" class="message-avatar"
+                                <img style="max-width: 100ps;" class="message-avatar"
                                      data-bind="attr: { src:  $data.avatar() }" />
                             </div>
-                            <div class="message-content d-flex flex-column">
-                                <div class="d-flex justify-content-between">
-                                    <span class="author" data-bind="text: $data.from"></span>
-                                    <span class="timestamp">
-                                        <i class="fa-regular fa-clock"></i>
-                                        <span data-bind="text: $data.timestamp"></span>
-                                    </span>
+
+                            <div class="message-wrapper">
+                                <span class="timestamp">
+                                    <i class="fa-regular fa-clock"></i>
+                                    <span data-bind="text: $data.timestamp"></span>
+                                </span>
+
+                                <div class="message-content d-flex flex-column">
+                                    <span class="content" data-bind="html: $data.content"></span>
                                 </div>
-                                <span class="content" data-bind="html: $data.content"></span>
                             </div>
                         </div>
                     </li>

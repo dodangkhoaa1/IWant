@@ -1,6 +1,117 @@
-﻿
-@{
-    ViewData["Title"] = "AccessDenied";
+﻿@{
+    ViewData["Title"] = "Access Denied";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<link rel="stylesheet" href="~/css/main.css" />
+<link rel="stylesheet" href="~/css/responsive.css" />
+<link rel="stylesheet" href="~/css/site.css" />
 
-<h1>Access Denied</h1>
+<style>
+    .notfound-container {
+        background-color: #FEDA15;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        text-align: center;
+    }
+
+    .notfound-card {
+        background: #fff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+        max-width: 500px;
+        height: 450px;
+        position: relative;
+        align-items: stretch;
+        overflow: hidden;
+        z-index: 2;
+        flex-grow: 1;
+    }
+
+    .notfound-icon img {
+        width: 150px;
+    }
+
+    .access-denied {
+        text-align: center;
+        font-family: Arial, sans-serif;
+        color: #CC3333;
+        margin-top: 50px;
+        font-weight: bold;
+    }
+
+        .access-denied h2 {
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        .access-denied p {
+            font-size: 16px;
+            color: #999999;
+            text-align: justify;
+            max-width: 400px;
+            margin: 0 auto;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+    .notfound-btn {
+        text-align: center;
+        font-family: Arial, sans-serif;
+        background: white;
+        border: 2px solid #FEDA15; /* Viền vàng */
+        padding: 10px;
+        max-width: 200px;
+        margin-top: 30px;
+        border-radius: 10px;
+        color: #999999;
+    }
+
+        .notfound-btn:hover {
+            background: #FEDA15;
+            color: #FFFFFF;
+        }
+
+</style>
+
+<div class="notfound-container">
+    <div class="confetti-container"></div>
+    <div class="notfound-card">
+        <div class="notfound-icon">
+            <div class="text-end endMascot" style="display: flex; justify-content: center;">
+                <img src="~/images/mascot-1.png" style="width: 30%;" />
+            </div>
+        </div>
+        <div class="access-denied">
+            <h2> Access Denied</h2>
+            <p>You currently do not have access to this page.<br> Please try again later.</p>
+        </div>
+        <a href="/" class="notfound-btn">Go to Homepage</a>
+    </div>
+</div>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const confettiContainer = document.querySelector('.confetti-container');
+        function createConfetti() {
+            const confetti = document.createElement('div');
+            confetti.classList.add('confetti');
+            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.backgroundColor = getRandomColor();
+            confetti.style.animationDuration = Math.random() * 2 + 3 + 's';
+            confetti.style.width = Math.random() * 5 + 2 + 'px';
+            confetti.style.height = Math.random() * 25 + 15 + 'px';
+            confettiContainer.appendChild(confetti);
+            setTimeout(() => confetti.remove(), 5000);
+        }
+        function getRandomColor() {
+            const colors = ['#FFD700', '#FF4500', '#1E90FF', '#32CD32', '#FF69B4', '#8A2BE2', '#FF6347', '#00FA9A', '#9400D3'];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+        setInterval(createConfetti, 200);
+    });
+</script>
+

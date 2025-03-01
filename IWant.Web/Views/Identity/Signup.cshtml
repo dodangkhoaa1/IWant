@@ -2,22 +2,70 @@
 @model SignupViewModel
 @{
     ViewData["Title"] = "Signup";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<link rel="stylesheet" href="~/css/main.css" />
+<link rel="stylesheet" href="~/css/responsive.css" />
+<link rel="stylesheet" href="~/css/site.css" />
+<style>
+    .signup-container {
+        padding: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
-<div class="d-flex signup-container signup-page" style="padding: 40px;">
+    .signup-card {
+        display: flex;
+        border-radius: 10px;
+        background-color: #fff;
+        max-width: 600px;
+        width: 100%;
+        height: auto;
+        align-items: stretch;
+        overflow: hidden;
+        z-index: 2;
+        padding: 20px;
+        flex-grow: 1;
+        margin-top: 60px;
+    }
+
+
+    .custom-input {
+        width: 100%;
+        padding: 8px;
+        margin: 5px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .btn-signup {
+        width: 100%;
+        padding: 10px;
+        background-color: #FEDA15;
+        border: none;
+        border-radius: 10px;
+        color: #fff;
+        font-size: 16px;
+        font-weight: 400;
+        cursor: pointer;
+    }
+
+</style>
+<div class="d-flex signup-container signup-page">
     <div class="confetti-container"></div>
-    <div class="signup-card" style="display: flex; border-radius: 10px; background-color: #fff; width: 50%; height: auto; align-items: stretch; overflow: hidden; z-index: 2;">
+    <div class="signup-card">
         <div style="flex: 1; display: flex; flex-direction: column; justify-content: space-between; margin: 20px;">
             <h1 style="font-size: 32px; text-align: center;">Sign Up</h1>
-            <form class="d-flex flex-column" asp-controller="Identity" asp-action="Signup" method="post">
-                <div class="d-flex" style="justify-content: space-between;">
-                    <div class="col-md-5" style="padding-left: 20px">
-                        <p style="font-size: 16px; color: #9B30FF; margin-bottom: 5px;">*Member Information</p>
+            <form asp-controller="Identity" asp-action="Signup" method="post" class="w-100">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="text" style="color: #9B30FF; text-decoration: none;">*Member Information</p>
                         <input type="text" asp-for="FullName" placeholder="Full Name" class="custom-input" />
                         <input type="email" asp-for="Email" placeholder="Email" class="custom-input" />
-                        <label for="Birthday" style="color: #888; font-size: 12px; display: block; margin-top: 10px;">Birthday mm/dd/yyyy</label>
+                        <label>Birthday mm/dd/yyyy</label>
                         <input type="date" asp-for="Birthday" class="custom-input" />
-                        <label for="Gender" style="color: #888; font-size: 12px; display: block; margin-top: 10px;">Gender</label>
+                        <label>Gender</label>
                         <select asp-for="Gender" class="custom-input">
                             <option value="true">Male</option>
                             <option value="false">Female</option>
@@ -27,14 +75,13 @@
                         <input type="password" asp-for="Password" placeholder="Password" class="custom-input" />
                         <input type="password" asp-for="ConfirmPassword" placeholder="Re-Password" class="custom-input" />
                     </div>
-
-                    <div class="col-md-5" style="padding-right: 20px">
-                        <p style="font-size: 16px; color: #9B30FF; margin-bottom: 5px;">*Child Information (optional)</p>
+                    <div class="col-md-6">
+                        <p class="text" style="color: #9B30FF; text-decoration: none;">*Child Information (optional)</p>
                         <input type="text" asp-for="ChildName" placeholder="Child Name" class="custom-input" />
                         <input type="text" asp-for="ChildNickName" placeholder="Child Nickname" class="custom-input" />
-                        <label for="ChildBirthday" style="color: #888; font-size: 12px; display: block; margin-top: 10px;">Child Birthday mm/dd/yyyy</label>
+                        <label>Child Birthday mm/dd/yyyy</label>
                         <input type="date" asp-for="ChildBirthday" class="custom-input" />
-                        <label for="ChildGender" style="color: #888; font-size: 12px; display: block; margin-top: 10px;">Child Gender</label>
+                        <label>Child Gender</label>
                         <select asp-for="ChildGender" class="custom-input">
                             <option value="true">Male</option>
                             <option value="false">Female</option>
@@ -42,7 +89,6 @@
                         </select>
                     </div>
                 </div>
-
                 <div style="padding-left: 20px; padding-top: 10px;">
                     <input type="checkbox" name="Term&Condition" id="terms" style="margin-right: 10px; width: 16px; height: 16px;" />
                     <label for="terms" style="margin: 0;">
@@ -51,7 +97,7 @@
 
                     <input type="hidden" asp-for="Role" class="form-control" value="Member" />
                     <div style="text-align: center; margin-top: 30px;">
-                        <button type="submit" class="btn btn-primary" style="width:350px; padding: 10px; background-color: #FEDA15; border: none; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 400; cursor: pointer;">Sign Up</button>
+                        <button type="submit" class="btn btn-primary btn-signup">Sign Up</button>
                     </div>
                 </div>
             </form>

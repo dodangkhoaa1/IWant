@@ -2,13 +2,91 @@
     ViewData["Title"] = "ConfirmEmail";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<link rel="stylesheet" href="~/css/main.css" />
+<link rel="stylesheet" href="~/css/responsive.css" />
+<link rel="stylesheet" href="~/css/site.css" />
+<style>
+    /* Container chính - Căn giữa nội dung */
 
-<div class="d-flex confirmSignUp-container" style="justify-content: center; padding: 40px; height: 60vh; align-items: center;">
+
+    .popup-img {
+        animation: popupEffect 3s infinite ease-in-out;
+    }
+
+    .confirmSignUp-container {
+        margin: 30px 0;
+        padding-right: 30px;
+        background-color: #FEDA15;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        padding: 40px;
+    }
+
+        .confirmSignUp-container .confirmSignUp-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+    .confetti-container {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+    }
+
+    .confirmSignUp-card {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px;
+        background-color: #fff;
+        padding: 20px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        z-index: 2;
+        text-align: center;
+        max-width: 400px;
+    }
+
+    /* Ảnh popup */
+    .popup-img {
+        max-width: 100%;
+        margin-bottom: 20px;
+    }
+
+    /* Tiêu đề */
+    .confirmSignUp-card h2 {
+        font-size: 24px;
+        font-weight: bold;
+        color: black;
+        text-align: center;
+    }
+
+    /* Đoạn mô tả */
+    .confirmSignUp-card p {
+        font-size: 16px;
+        color: #888;
+        text-align: center;
+        margin-top: 10px;
+        padding: 0 20px;
+    }
+
+</style>
+<div class="confirmSignUp-container">
     <div class="confetti-container"></div>
-    <div class="confirmSignUp-card" style="display: flex; flex-direction: column; justify-content: center; align-items: center; border-radius: 10px; background-color: #fff; height: auto; padding: 20px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); overflow: hidden; z-index: 2;">
-        <img src="~/images/confirmSignUpBG.svg" alt="Alternate Text" class="popup-img" style="max-width: 100%; margin-bottom: 20px;" />
-        <h2 style="font-size: 24px; font-weight: bold; color: black; text-align: center;">Hi @ViewBag.ConfirmationEmail, welcome to I Want!</h2>
-        <p style="font-size: 16px; color: #888; text-align: center; margin-top: 10px; padding: 0 20px;">Just one more step! Please check and confirm your email to verify your account.</p>
+    <div class="confirmSignUp-card">
+        <img src="~/images/confirmSignUpBG.svg" alt="Alternate Text" class="popup-img" />
+        <h2>Hi userSignUpName, welcome to I Want!</h2>
+        <p>Just one more step! Please check and confirm your email to verify your account.</p>
     </div>
 </div>
 @* confetti background animation *@
