@@ -1,0 +1,50 @@
+﻿@model IWant.Web.Controllers.LeaderboardResponse
+
+@{
+    ViewData["Title"] = "Bảng Xếp Hạng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h2 class="mt-4">Bảng Xếp Hạng FruitDrop</h2>
+
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger">@ViewBag.Error</div>
+    }
+    else
+    {
+        <table class="table table-striped mt-3">
+            <thead>
+                <tr>
+                    <th>Position</th>
+                    <th>Player</th>
+                    <th>Score</th>
+                    <th>User ID</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.items != null)
+                {
+                    @foreach (var entry in Model.items)
+                    {
+                        <tr>
+                            <td>#@entry.rank</td>
+                            <td>@entry.player.name</td>
+                            <td>@entry.score</td>
+                            <td>@entry.GetUserId()</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="7" class="text-center">No blog found!</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
+
+

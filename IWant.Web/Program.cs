@@ -77,6 +77,8 @@ if (environment == Environments.Development)
 
 builder.Services.AddSignalR();
 
+builder.Services.AddHttpClient();
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
