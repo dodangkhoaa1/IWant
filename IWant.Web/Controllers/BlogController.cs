@@ -2,6 +2,7 @@
 using IWant.BusinessObject.Enitities;
 using IWant.DataAccess;
 using IWant.Web.Models;
+using IWant.Web.Service;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -15,11 +16,13 @@ namespace IWant.Web.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly IMapper _mapper;
+        private readonly IEmailSender emailSender;
 
-        public BlogController(ApplicationDbContext context, IMapper mapper)
+        public BlogController(ApplicationDbContext context, IMapper mapper, IEmailSender emailSender)
         {
             _context = context;
             _mapper = mapper;
+            this.emailSender = emailSender;
         }
 
         public async Task<IActionResult> Blogs()
@@ -255,23 +258,38 @@ namespace IWant.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> AcceptBlog(int id)
         {
-            var blog = await _context.Blogs.FindAsync(id);
+            var blog = await _context.Blogs.Include(b=>b.User).FirstOrDefaultAsync(b=>b.Id == id);
             if (blog == null)
             {
                 return NotFound();
             }
-            blog.Status = true;
 
+            blog.Status = true;
             _context.Blogs.Update(blog);
             await _context.SaveChangesAsync();
+
+            // Send Email
+            var subject = "Your Blog Has Been Approved!";
+            var message = $"<h2 style='color: #28a745; text-align: center;'>🎉 Congratulations! Your Blog is Approved</h2>"
+            + $"<p>Dear <strong>{blog.User.FullName}</strong>,</p>"
+            + $"<p>We are pleased to inform you that your blog post titled '<strong>{blog.Title}</strong>' "
+            + $"has been approved and is now live on our website! 🎉</p>"
+            + $"<p>Thank you for your contribution! We encourage you to keep sharing your knowledge and experiences with our community.</p>"
+            + $"<hr style='border: none; border-top: 1px solid #ddd;'>"
+            + $"<p style='font-size: 14px; color: #666; text-align: center;'>Best Regards,<br><strong>IWant Team</strong></p>";
+
+
+            await emailSender.SendEmailAsync("nhathmce170171@fpt.edu.vn", blog.User.Email, subject, message);
+
+            TempData["success"] = "Accept Blog Successful!";
 
             return RedirectToAction(nameof(Index));
         }
 
         [HttpPost]
-        public async Task<IActionResult> RejectBlog(int id)
+        public async Task<IActionResult> RejectBlog(int id, string reason)
         {
-            var blog = await _context.Blogs.FindAsync(id);
+            var blog = await _context.Blogs.Include(b => b.User).FirstOrDefaultAsync(b => b.Id == id);
             if (blog == null)
             {
                 return NotFound();
@@ -286,13 +304,31 @@ namespace IWant.Web.Controllers
                 }
             }
 
-            /*Send mail chua lam*/
-
             _context.Blogs.Remove(blog);
             await _context.SaveChangesAsync();
 
+            // Send Email
+            var subject = "Your Blog Submission Has Been Rejected";
+            var message = $"<h2 style='color: #dc3545; text-align: center;'>⚠️ Your Blog Submission Was Rejected</h2>"
+            + $"<p>Dear <strong>{blog.User.FullName}</strong>,</p>"
+            + $"<p>We appreciate your effort in submitting your blog post titled '<strong>{blog.Title}</strong>'. "
+            + $"Unfortunately, after review, we have decided not to approve it for publication on our platform.</p>"
+            + $"<p><strong>Reason for rejection:</strong></p>"
+            + $"<blockquote style='background: #f8d7da; color: #721c24; padding: 10px; border-radius: 5px; border-left: 5px solid #dc3545;'>"
+            + $"{reason}"
+            + $"</blockquote>"
+            + $"<p>If you wish to make changes and resubmit your blog, feel free to do so. We highly encourage well-researched, high-quality content that provides value to our readers.</p>"
+            + $"<hr style='border: none; border-top: 1px solid #ddd;'>"
+            + $"<p style='font-size: 14px; color: #666; text-align: center;'>Best Regards,<br><strong>IWant Team</strong></p>";
+
+
+            await emailSender.SendEmailAsync("nhathmce170171@fpt.edu.vn", blog.User.Email, subject, message);
+
+            TempData["success"] = "Reject Blog Successful!";
+
             return RedirectToAction(nameof(Index));
         }
+
 
         public async Task<IActionResult> BlogDetail([FromRoute] int id)
         {

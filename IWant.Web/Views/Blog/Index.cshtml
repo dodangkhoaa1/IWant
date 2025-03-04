@@ -96,7 +96,7 @@
                                             <button type="submit" class="btn btn-success btn-sm" onclick="return confirm('Are you sure to accept this blog?');">Accept</button>
                                         </form>
                                         <form asp-action="RejectBlog" asp-route-id="@blog.Id" method="post" class="d-inline">
-                                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure to reject this blog?');">Reject</button>
+                                            <button type="button" class="btn btn-danger btn-sm" onclick="openRejectModal(@blog.Id)">Reject</button>
                                         </form>
                                     }
                                 } else if(blog.Status == true) {
@@ -111,3 +111,61 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="rejectModal" tabindex="-1" aria-labelledby="rejectModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="rejectModalLabel">Reject Blog</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Please provide a reason for rejecting this blog:</p>
+                <textarea id="rejectReason" class="form-control" rows="3"></textarea>
+                <input type="hidden" id="rejectBlogId">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger" onclick="submitRejectForm()">Confirm Reject</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function openRejectModal(blogId) {
+        document.getElementById("rejectBlogId").value = blogId;
+        document.getElementById("rejectReason").value = "";
+        var modal = new bootstrap.Modal(document.getElementById("rejectModal"));
+        modal.show();
+    }
+
+    function submitRejectForm() {
+        var blogId = document.getElementById("rejectBlogId").value;
+        var reason = document.getElementById("rejectReason").value.trim();
+
+        if (reason === "") {
+            alert("Please enter a reason for rejection.");
+            return;
+        }
+
+        // Create a hidden form to submit
+        var form = document.createElement("form");
+        form.method = "POST";
+        form.action = "/Blog/RejectBlog";
+
+        var inputId = document.createElement("input");
+        inputId.type = "hidden";
+        inputId.name = "id";
+        inputId.value = blogId;
+        form.appendChild(inputId);
+
+        var inputReason = document.createElement("input");
+        inputReason.type = "hidden";
+        inputReason.name = "reason";
+        inputReason.value = reason;
+        form.appendChild(inputReason);
+
+        document.body.appendChild(form);
+        form.submit();
+    }
+</script>

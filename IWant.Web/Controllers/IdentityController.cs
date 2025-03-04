@@ -134,8 +134,35 @@ namespace IWant.Web.Controllers
                         if (result.Succeeded)
                         {
                             var confirmationLink = Url.ActionLink("ConfirmEmail", "Identity", new { userId = user.Id, @token = token });
+                            string emailBody = $@"
+                                            <div style='font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; 
+                                                        border: 1px solid #ddd; border-radius: 10px; background-color: #f9f9f9;'>
+                                                <h2 style='color: #333; text-align: center;'>Confirm Your Email Address</h2>
+                                                <p style='color: #555; font-size: 16px;'>Hello <strong>{user.Email}</strong>,</p>
+                                                <p style='color: #555; font-size: 16px;'>
+                                                    Thank you for signing up! To complete your registration, please confirm your email address by clicking the button below:
+                                                </p>
+                                                <div style='text-align: center; margin: 20px 0;'>
+                                                    <a href='{confirmationLink}' 
+                                                       style='display: inline-block; padding: 12px 20px; font-size: 16px; 
+                                                              color: white; background-color: #007bff; text-decoration: none; 
+                                                              border-radius: 5px; font-weight: bold;'>
+                                                        ✅ Confirm Email
+                                                    </a>
+                                                </div>
+                                                <p style='color: #555; font-size: 14px;'>If you did not create this account, please ignore this email.</p>
+                                                <hr style='border: 0; height: 1px; background-color: #ddd;' />
+                                                <p style='color: #777; font-size: 12px; text-align: center;'>
+                                                    If you are unable to click the button above, use the following link:
+                                                </p>
+                                                <p style='word-break: break-all; color: #007bff; text-align: center; font-size: 12px;'>
+                                                    <a href='{confirmationLink}' style='color: #007bff;'>{confirmationLink}</a>
+                                                </p>
+                                                <p style='color: #777; font-size: 12px; text-align: center;'>© 2024 IWant. All Rights Reserved.</p>
+                                            </div>";
 
-                            await emailSender.SendEmailAsync("nhathmce170171@fpt.edu.vn", user.Email, "Confirm your email address", confirmationLink);
+
+                            await emailSender.SendEmailAsync("nhathmce170171@fpt.edu.vn", user.Email, "Confirm your email address", emailBody);
 
                             TempData["ConfirmationEmail"] = user.FullName;
                             return RedirectToAction("ConfirmEmailPage");
