@@ -16,8 +16,9 @@ namespace IWant.BusinessObject.Enitities
         public string ImageUrl { get; set; }
         public string ImageLocalPath { get; set; }
         public bool? Status { get; set; }
-        public User User { get; set; }
+        public int ViewCount { get; set; } = 0;
 
+        public User User { get; set; }
         public List<Comment> Comments { get; set; } = new List<Comment>();
         public List<Rate> Rates { get; set; } = new List<Rate>();
     }

@@ -77,6 +77,7 @@ public partial class ApplicationDbContext : IdentityDbContext<User>
             FullName = "Hồ Minh Nhật",
             ImageUrl = "http://localhost:5130/images/avatar/default-avatar.png",
             ImageLocalPath = "default-avatar.png",
+            PhoneNumber = "0888408052",
             Gender = true,
             Birthday = DateOnly.Parse("2003-11-24"),
             Status = true,
@@ -88,7 +89,6 @@ public partial class ApplicationDbContext : IdentityDbContext<User>
             PasswordHash = "AQAAAAIAAYagAAAAEJbJ5Wbc5Ukymbc73mgTlipOMojxe5yqV9bB5aymAnvaiaoaNOdfqdNTi++md7JOUQ==",
             SecurityStamp = "4ROV5G3THUAAZ5C5NDWOBZ76P4VKU6RY",
             ConcurrencyStamp = "bd591428-5d71-49ee-abd2-c1740ff5f70c",
-            PhoneNumber = null,
             PhoneNumberConfirmed = false,
             TwoFactorEnabled = false,
             LockoutEnabled = true,
@@ -423,11 +423,11 @@ public partial class ApplicationDbContext : IdentityDbContext<User>
         );
 
         builder.Entity<Game>().HasData(
-            new Game() { Id = 1, Name = "Dot Connection", Description = "", VideoUrl = "" },
-            new Game() { Id = 2, Name = "Coloring", Description = "", VideoUrl = "" },
-            new Game() { Id = 3, Name = "AAC", Description = "", VideoUrl = "" },
-            new Game() { Id = 4, Name = "Emotion Selection", Description = "", VideoUrl = "" },
-            new Game() { Id = 5, Name = "Fruit Drop", Description = "", VideoUrl = "" }
+            new Game() { Id = 1, Name = "Dot Connection", Description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.", VideoUrl = "https://www.youtube.com/watch?v=ynJ_nraLqU4" },
+            new Game() { Id = 2, Name = "Coloring", Description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.", VideoUrl = "https://www.youtube.com/watch?v=ynJ_nraLqU4" },
+            new Game() { Id = 3, Name = "AAC", Description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.", VideoUrl = "https://www.youtube.com/watch?v=ynJ_nraLqU4" },
+            new Game() { Id = 4, Name = "Emotion Selection", Description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.", VideoUrl = "https://www.youtube.com/watch?v=ynJ_nraLqU4" },
+            new Game() { Id = 5, Name = "Fruit Drop", Description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.", VideoUrl = "https://www.youtube.com/watch?v=ynJ_nraLqU4" }
         );
     }
 

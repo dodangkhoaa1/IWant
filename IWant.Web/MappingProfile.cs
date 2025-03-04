@@ -37,6 +37,9 @@ namespace IWant.Web
 
             CreateMap<Rate, RateViewModel>();
             CreateMap<RateViewModel, Rate>();
+
+            CreateMap<Game, GameViewModel>();
+            CreateMap<GameViewModel, Game>();
         }
     }
 }

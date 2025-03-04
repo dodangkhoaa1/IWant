@@ -40,6 +40,14 @@ builder.Services.AddAuthentication().AddFacebook(options =>
     options.AppSecret = builder.Configuration["FacebookAppSecret"];
 });
 
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(15);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+
 builder.Services.Configure<SmtpOptions>(builder.Configuration.GetSection("Smtp"));
 
 builder.Services.AddSingleton<IEmailSender, SmtpEmailSender>();
@@ -92,6 +100,8 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
+app.UseSession();
 
 app.UseRouting();
 

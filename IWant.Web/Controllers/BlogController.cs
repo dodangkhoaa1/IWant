@@ -5,10 +5,8 @@ using IWant.Web.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Linq;
 using System.Security.Claims;
-using System.Threading.Tasks;
+using System.Text.Json;
 
 namespace IWant.Web.Controllers
 {
@@ -24,9 +22,29 @@ namespace IWant.Web.Controllers
             _mapper = mapper;
         }
 
-        public IActionResult Blogs()
+        public async Task<IActionResult> Blogs()
         {
-            return View();
+            var blogs = await _context.Blogs.Include(b => b.User)
+                                            .Include(b => b.Comments)
+                                            .Include(b => b.Rates)
+                                            .Where(b => b.Status == true)
+                                            .ToListAsync();
+
+            var blogViewModels = _mapper.Map<List<Blog>, List<BlogViewModel>>(blogs);
+
+            foreach(var blogItem in blogViewModels)
+            {
+                var averageRating = _context.Rates.Where(r => r.Blog.Id == blogItem.Id)
+                                                  .Select(r => r.RatingStar)
+                                                  .AsEnumerable()
+                                                  .DefaultIfEmpty(0)
+                                                  .Average();
+                var blogInDBItem = blogs.FirstOrDefault(b => b.Id == blogItem.Id);
+                blogItem.User = blogInDBItem.User;
+                blogItem.AverageRating = (int)Math.Round(averageRating, MidpointRounding.AwayFromZero);
+            }
+
+            return View(blogViewModels);
         }
 
         [Route("Blog")]
@@ -280,7 +298,7 @@ namespace IWant.Web.Controllers
         {
             var blog = await _context.Blogs.Include(b => b.User)
                                            .Include(b => b.Comments)
-                                           .ThenInclude(b=>b.User)
+                                           .ThenInclude(b => b.User)
                                            .Include(b => b.Rates)
                                            .ThenInclude(c => c.User)
                                            .FirstOrDefaultAsync(b => b.Id == id);
@@ -289,38 +307,58 @@ namespace IWant.Web.Controllers
                 return NotFound();
             }
 
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-            var userRating = await _context.Rates
-                .Where(r => r.Blog.Id == id && r.User.Id == userId)
-                .Select(r => r.RatingStar)
-                .FirstOrDefaultAsync();
-
-            var countRates = await _context.Rates.Where(r => r.Blog.Id == id).ToListAsync();
-
-            var averageRating = _context.Rates.Where(r => r.Blog.Id == id)
-                                              .Select(r => r.RatingStar)
-                                              .AsEnumerable()
-                                              .DefaultIfEmpty(0)
-                                              .Average();
-
-            var commentViewModels = _mapper.Map<List<Comment>, List<CommentViewModel>>(blog.Comments);
-
-            var model = new BlogViewModel
+            if (blog.Status == true)
             {
-                Id = blog.Id,
-                Title = blog.Title,
-                Content = blog.Content,
-                CreatedAt = blog.CreatedAt,
-                User = blog.User,
-                ImageUrl = blog.ImageUrl,
-                Comments = commentViewModels,
-                UserRating = userRating,
-                AverageRating = (int)Math.Round(averageRating, MidpointRounding.AwayFromZero),
-                CountRate = countRates.Count()
-            };
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            return View(model);
+                var viewedPosts = HttpContext.Session.GetString("ViewedPosts");
+                List<int> viewedPostIds = viewedPosts != null
+                    ? JsonSerializer.Deserialize<List<int>>(viewedPosts)
+                    : new List<int>();
+
+                if (!viewedPostIds.Contains(id))
+                {
+                    viewedPostIds.Add(id);
+                    HttpContext.Session.SetString("ViewedPosts", JsonSerializer.Serialize(viewedPostIds));
+
+                    blog.ViewCount++;
+                    await _context.SaveChangesAsync();
+                }
+
+                var userRating = await _context.Rates
+                    .Where(r => r.Blog.Id == id && r.User.Id == userId)
+                    .Select(r => r.RatingStar)
+                    .FirstOrDefaultAsync();
+
+                var countRates = await _context.Rates.Where(r => r.Blog.Id == id).ToListAsync();
+
+                var averageRating = _context.Rates.Where(r => r.Blog.Id == id)
+                                                  .Select(r => r.RatingStar)
+                                                  .AsEnumerable()
+                                                  .DefaultIfEmpty(0)
+                                                  .Average();
+
+                var commentViewModels = _mapper.Map<List<Comment>, List<CommentViewModel>>(blog.Comments);
+
+                var model = new BlogViewModel
+                {
+                    Id = blog.Id,
+                    Title = blog.Title,
+                    Content = blog.Content,
+                    CreatedAt = blog.CreatedAt,
+                    User = blog.User,
+                    ImageUrl = blog.ImageUrl,
+                    Comments = commentViewModels,
+                    UserRating = userRating,
+                    AverageRating = (int)Math.Round(averageRating, MidpointRounding.AwayFromZero),
+                    CountRate = countRates.Count()
+                };
+
+                return View(model);
+            }
+
+            return NotFound();
         }
+
     }
 }

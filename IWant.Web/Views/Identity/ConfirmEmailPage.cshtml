@@ -1,6 +1,8 @@
 ﻿@{
     ViewData["Title"] = "ConfirmEmail";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    ViewBag.ConfirmationEmail = TempData["ConfirmationEmail"];
 }
 <link rel="stylesheet" href="~/css/main.css" />
 <link rel="stylesheet" href="~/css/responsive.css" />
@@ -85,7 +87,8 @@
     <div class="confetti-container"></div>
     <div class="confirmSignUp-card">
         <img src="~/images/confirmSignUpBG.svg" alt="Alternate Text" class="popup-img" />
-        <h2>Hi userSignUpName, welcome to I Want!</h2>
+        <h2>Hi @ViewBag.ConfirmationEmail,</h2>
+        <h2>Welcome to I Want!</h2>
         <p>Just one more step! Please check and confirm your email to verify your account.</p>
     </div>
 </div>

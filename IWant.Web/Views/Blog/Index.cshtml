@@ -41,6 +41,7 @@
                     <tr>
                         <th>Title</th>
                         <th>Content</th>
+                        <th>Views</th>
                         <th>Created At</th>
                         <th>Updated At</th>
                         <th>Status</th>
@@ -60,6 +61,7 @@
                         <tr>
                             <td>@blog.Title</td>
                             <td class="truncate-content">@Html.Raw(blog.Content)</td>
+                            <td>@blog.ViewCount</td>
                             <td>@blog.CreatedAt.ToString("dd/MM/yyyy HH:mm")</td>
                             <td>@blog.UpdatedAt?.ToString("dd/MM/yyyy HH:mm")</td>
                             <td>
