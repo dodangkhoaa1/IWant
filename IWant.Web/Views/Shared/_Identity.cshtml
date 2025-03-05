@@ -2,56 +2,80 @@
 @using Microsoft.AspNetCore.Identity
 @inject SignInManager<User> SignInManager
 @inject UserManager<User> UserManager
-
+<link rel="stylesheet" href="~/css/main.css" />
 @{
     var loggedIn = User.Identity.IsAuthenticated;
     var isAdmin = User.IsInRole("Admin");
     var role = isAdmin ? "(Admin)" : "(Member)";
 }
 
-
 @if (loggedIn)
 {
     var user = await UserManager.GetUserAsync(User);
     var imageUrl = user?.ImageUrl ?? "/images/default-avatar.png";
 
-    <li style="margin: auto 0" class="nav-item">
+
+    <li class="nav-item">
         <div class="nav-link text-dark">
-            <img src="@imageUrl" id="Avatar" class="avatar-layout" style=""></img>
+            <img src="@imageUrl" id="Avatar" class="avatar-layout" style="width: 40px; height: 40px; border-radius: 50%;">
             <div class="dropdown" id="dropdown">
-                @if(User.IsInRole("Member")){
-                    <a style="padding: 12px 15px;text-decoration: none; color: black; display: flex; align-items: center; gap: 10px; font-size: 14px; justify-content:left" asp-action="UpdateProfile" asp-controller="Profile" class="list-group-item d-flex align-items-center">
-                        <i class="fa-regular fa-user"></i> My Profile
+                @if (User.IsInRole("Member"))
+                {
+                    <a class="name">
+                        PROFILE
                     </a>
-                    <a style="padding: 12px 15px;text-decoration: none; color: black; display: flex; align-items: center; gap: 10px; font-size: 14px; justify-content:left" asp-action="ChangePassword" asp-controller="Profile" class="list-group-item d-flex align-items-center">
-                        <i class="fa-solid fa-lock"></i> Change Password
+                    <a asp-action="UpdateProfile" asp-controller="Profile"
+                       class="list-group-item d-flex align-items-center identity-item">
+                        <i class="fa-regular fa-user fa-fw"></i> MY PROFILE
                     </a>
-                    <a style="padding: 12px 15px;text-decoration: none; color: black; display: flex; align-items: center; gap: 10px; font-size: 14px; justify-content:left" asp-action="Index" asp-controller="Blog" class="list-group-item d-flex align-items-center">
-                        <i class="fa-solid fa-blog"></i> History Blog
+                    <a asp-action="ChangePassword" asp-controller="Profile"
+                       class="list-group-item d-flex align-items-center identity-item">
+                        <i class="fa-solid fa-lock fa-fw"></i> CHANGE PASSWORD
                     </a>
-                    <a style="padding: 12px 15px;text-decoration: none; color: black; display: flex; align-items: center; gap: 10px; font-size: 14px; justify-content:left" asp-action="SignOut" asp-controller="Identity" class="list-group-item d-flex align-items-center">
-                        <i class="fa-solid fa-right-from-bracket"></i> Sign out
+                    <a asp-action="Index" asp-controller="Blog"
+                       class="list-group-item d-flex align-items-center identity-item">
+                        <i class="fa-solid fa-blog fa-fw"></i> HISTORY BLOG
+                    </a>
+                    <a asp-action="SignOut" asp-controller="Identity"
+                       class="list-group-item d-flex align-items-center identity-item">
+                        <i class="fa-solid fa-right-from-bracket fa-fw"></i> SIGNOUT
                     </a>
                 }
-                else if (User.IsInRole("Admin")){
-                    <a style="padding: 12px 15px;text-decoration: none; color: black; display: flex; align-items: center; gap: 10px; font-size: 14px; justify-content:left" asp-action="Statistic" asp-controller="Admin" class="list-group-item d-flex align-items-center">
-                        <i class="fa-solid fa-lock"></i> Dashboard
+                else if (User.IsInRole("Admin"))
+                {
+                    <a class="name">
+                        PROFILE
                     </a>
-                    <a style="padding: 12px 15px;text-decoration: none; color: black; display: flex; align-items: center; gap: 10px; font-size: 14px; justify-content:left" asp-action="SignOut" asp-controller="Identity" class="list-group-item d-flex align-items-center">
-                        <i class="fa-solid fa-right-from-bracket"></i> Sign out
+                    <a asp-action="Statistic" asp-controller="Admin"
+                       class="list-group-item d-flex align-items-center identity-item">
+                        <i class="fa-solid fa-lock"></i> DASHBOARD
+                    </a>
+                    <a asp-action="SignOut" asp-controller="Identity"
+                       class="list-group-item d-flex align-items-center identity-item">
+                        <i class="fa-solid fa-right-from-bracket"></i> SIGN OUT
                     </a>
                 }
             </div>
         </div>
     </li>
-
 }
 else
 {
-    <li class="nav-item">
-        <a class="nav-link" style="color: #9B30FF;" asp-controller="Identity" asp-action="Signin">SIGN IN</a>
+
+    <li class="nav-item nav-link text-dark ">
+
+        <a asp-controller="Identity" asp-action="Signin"
+           class=" d-flex align-items-center identity-item">
+            <i class="fa-solid fa-right-to-bracket"></i>
+            SIGN IN
+        </a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link" style="color: #9B30FF;" asp-controller="Identity" asp-action="Signup">SIGN UP</a>
+    <li class="nav-item nav-link text-dark">
+
+        <a asp-controller="Identity" asp-action="Signup"
+           class=" d-flex align-items-center identity-item ">
+            <i class="fa-solid fa-user-plus"></i>
+            SIGN UP
+        </a>
     </li>
 }
