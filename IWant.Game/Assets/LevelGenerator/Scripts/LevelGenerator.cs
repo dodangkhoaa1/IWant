@@ -14,6 +14,7 @@ namespace Connect.Generator
         [SerializeField] private bool canGeneratorOnce;
 
         [SerializeField] private int stage;
+        [SerializeField] private int numberOfLevel;
 
         public int levelSize => stage + 4;
 
@@ -153,7 +154,7 @@ namespace Connect.Generator
 
         private IEnumerator GenerateAllLevels()
         {
-            for (int i = 1; i < 51; i++)
+            for (int i = 1; i <= numberOfLevel; i++)
             {
                 yield return GenerateSingleLevelData(i);
                 _counterText.text = i.ToString();
