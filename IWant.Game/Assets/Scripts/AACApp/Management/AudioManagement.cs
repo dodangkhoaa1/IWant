@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class AudioManagement : MonoBehaviour
@@ -23,6 +24,24 @@ public class AudioManagement : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(this);
+        }
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "FruitDrop")
+        {
+            Destroy(gameObject);
         }
     }
 

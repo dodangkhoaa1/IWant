@@ -86,6 +86,22 @@ MonoBehaviour:
     m_Localized: "Ch\u1ECDn \u1EA2nh"
     m_Metadata:
       m_Items: []
+  - m_Id: 23215838899097600
+    m_Localized: "\xC2m Thanh"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23215895882911744
+    m_Localized: "Ng\xF4n Ng\u1EEF"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23216629080805376
+    m_Localized: "\u0110\u0103ng Xu\u1EA5t"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23482204642234368
+    m_Localized: "M\xE0n H\xECnh Ch\xEDnh"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

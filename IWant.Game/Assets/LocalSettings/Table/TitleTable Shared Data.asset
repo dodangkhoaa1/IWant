@@ -83,6 +83,22 @@ MonoBehaviour:
     m_Key: ChoosePhotoKey
     m_Metadata:
       m_Items: []
+  - m_Id: 23215838899097600
+    m_Key: SoundKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23215895882911744
+    m_Key: LanguageKeyt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23216629080805376
+    m_Key: SignOutKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23482204642234368
+    m_Key: MainMenuKey
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
