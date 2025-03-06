@@ -14,22 +14,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   apiKey: dev_198b80b1aa6a405d89f3428dd6276e10
   token: 
-  adminToken: 
+  adminToken: 21cab58a071c6587849d82ce7acc4686664482ed
   refreshToken: 
-  domainKey: 
+  domainKey: nicuyz34
   gameID: 0
   game_version: 1.0.0.0
   sdk_version: 
   deviceID: defaultPlayerId
   playerULID: 
   url: https://api.lootlocker.com/v1
-  adminUrl: https://api.lootlocker.com/admin
-  playerUrl: https://api.lootlocker.com/player
-  userUrl: https://api.lootlocker.com/game
-  baseUrl: https://api.lootlocker.com
+  adminUrl: https://nicuyz34.api.lootlocker.com/admin
+  playerUrl: https://nicuyz34.api.lootlocker.com/player
+  userUrl: https://nicuyz34.api.lootlocker.com/game
+  baseUrl: https://nicuyz34.api.lootlocker.com
   clientSideRequestTimeOut: 180
   currentDebugLevel: 0
-  logLevel: 2
+  logLevel: 5
   logErrorsAsWarnings: 0
   logInBuilds: 0
   allowTokenRefresh: 1

@@ -93,9 +93,10 @@ namespace EasyUI.Toast {
 
       public static void Show (string text, float duration, ToastColor color, ToastPosition position) {
          Prepare () ;
+
          toastUI.Init (text, duration, color, position) ;
       }
-
+        
 
       public static void Show (string text, float duration, Color color) {
          Prepare () ;
