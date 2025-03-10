@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 public class AACWordSpawner : MonoBehaviour
 {
-    private readonly Color yellowColor = new Color32(254, 218, 21, 255); //#FEDA15
+    [SerializeField] private Color yellowColor = new Color32(255, 241, 136, 255); //#FFF188
 
     [Header("Suggestion")]
     [SerializeField] Sprite suggestCategoryWordSprite;

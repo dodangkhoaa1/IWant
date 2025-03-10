@@ -4468,6 +4468,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1802634926}
     - target: {fileID: 8112783610241386879, guid: ac9e493c06d948d4ebc770f182b8f2d9, type: 3}
+      propertyPath: settingsPanel
+      value: 
+      objectReference: {fileID: 1931877307742372556}
+    - target: {fileID: 8112783610241386879, guid: ac9e493c06d948d4ebc770f182b8f2d9, type: 3}
       propertyPath: languageSetting
       value: 
       objectReference: {fileID: 356701000}
