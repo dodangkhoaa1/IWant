@@ -44,6 +44,6 @@ public class PictureSpawner : MonoBehaviour
     private void ChoosePicture(int indexOfPicture)
     {
         MenuColoringManagement.instance.INDEX_OF_CHOSE_PICTURE = indexOfPicture;
-        SceneManager.LoadScene(SceneName.ColoringGame.ToString());
+        SceneManager.LoadScene(SceneName.ColoringScene.ToString());
     }
 }

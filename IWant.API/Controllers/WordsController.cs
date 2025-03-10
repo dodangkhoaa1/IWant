@@ -94,6 +94,23 @@ namespace IWant.API.Controllers
         [HttpPost]
         public async Task<ActionResult<Word>> PostWord(Word word)
         {
+            if (word.Image != null && word.Image.Length > 0)
+            {
+                var category = await _context.WordCategories.FindAsync(word.WordCategoryId);
+                if (category == null)
+                {
+                    return BadRequest("Invalid WordCategoryId");
+                }
+
+                string categoryFolder = category.EnglishName.ToLower();
+                string uniqueFileName = $"{Guid.NewGuid()}.png";
+                string filePath = Path.Combine("wwwroot", "images", "word", categoryFolder, uniqueFileName);
+
+                Directory.CreateDirectory(Path.GetDirectoryName(filePath));
+                await System.IO.File.WriteAllBytesAsync(filePath, word.Image);
+                word.ImagePath = Path.Combine("images", "word", categoryFolder, uniqueFileName);
+            }
+
             _context.Words.Add(word);
             await _context.SaveChangesAsync();
 

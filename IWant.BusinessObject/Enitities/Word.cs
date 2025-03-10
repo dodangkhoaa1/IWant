@@ -17,6 +17,8 @@ namespace IWant.BusinessObject.Enitities
         public DateTime UpdatedAt { get; set; } = DateTime.Now;
         [MaxLength(length: 255)]
         public string? ImagePath { get; set; }
+        [NotMapped]
+        public byte[]? Image { get; set; }
         public bool Status { get; set; } = true;
         public int? WordCategoryId { get; set; }
 

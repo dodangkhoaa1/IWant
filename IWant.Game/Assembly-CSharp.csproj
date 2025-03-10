@@ -135,6 +135,7 @@
     <Compile Include="Assets\Scripts\AACApp\Consts\SceneName.cs" />
     <Compile Include="Assets\LeanTween\Testing\TestingOptionalCancel.cs" />
     <Compile Include="Assets\Scripts\Coloring\Data\BrushData.cs" />
+    <Compile Include="Assets\Scripts\AACApp\Management\SettingsManagement.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\TestingUnitTests.cs" />
     <Compile Include="Assets\LeanTween\Framework\LTDescr.cs" />
     <Compile Include="Assets\Scripts\Scriptable Object\LevelDataSO.cs" />

@@ -41,6 +41,7 @@ public class CategorySpawner : MonoBehaviour
             {
                 Debug.Log(categories[index]);
                 ChooseCategory(categories[index]);
+
             });
 
         }
@@ -50,6 +51,6 @@ public class CategorySpawner : MonoBehaviour
     {
 
         MenuColoringManagement.instance.INDEX_OF_CHOSE_CATEGORY = categoryName;
-        SceneManager.LoadScene(SceneName.MenuColor.ToString());
+        SceneManager.LoadScene(SceneName.PictureSelection.ToString());
     }
 }

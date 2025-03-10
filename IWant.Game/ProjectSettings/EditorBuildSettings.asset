@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/AACApp/GameAAC.unity
+    guid: 7047f2f4c0aca924aacf11cab81d6cd5
+  - enabled: 1
     path: Assets/Scenes/AACApp/MainMenu.unity
     guid: 34bc252ec2335dc4b97e7778e8be2c8d
   - enabled: 1
@@ -15,20 +18,17 @@ EditorBuildSettings:
     path: Assets/Scenes/AACApp/SignInScene.unity
     guid: 3d5993b26a984b646abed8593d5b2fd2
   - enabled: 1
-    path: Assets/Scenes/Coloring/MenuColor.unity
-    guid: cfcab64d2bb7664468cfc5b11268d703
-  - enabled: 1
-    path: Assets/Scenes/Coloring/ColoringGame.unity
-    guid: f4be9c346d5eb6c448201c0b3a83eb3d
-  - enabled: 1
-    path: Assets/Scenes/AACApp/GameAAC.unity
-    guid: 7047f2f4c0aca924aacf11cab81d6cd5
-  - enabled: 1
-    path: Assets/Scenes/Coloring/CategoryMenu.unity
+    path: Assets/Scenes/Coloring/CategorySelection.unity
     guid: 8687a3895fa80dd4d847e6e045d6387c
   - enabled: 1
-    path: Assets/Scenes/FruitDrop.unity
-    guid: d4bdd3c54fb908541957587cb9d1c74c
+    path: Assets/Scenes/Coloring/ColoringScene.unity
+    guid: f4be9c346d5eb6c448201c0b3a83eb3d
+  - enabled: 1
+    path: Assets/Scenes/Coloring/MainColoring.unity
+    guid: 88cb39e170d6ed4469e9198985ce7318
+  - enabled: 1
+    path: Assets/Scenes/Coloring/PictureSelection.unity
+    guid: cfcab64d2bb7664468cfc5b11268d703
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 7ce4537969d852444a9b4e145f12214a, type: 2}
     com.unity.localization.settings: {fileID: 11400000, guid: 65fc21662af7e4441843914a8dba39a0, type: 2}
