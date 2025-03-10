@@ -1,0 +1,229 @@
+﻿@model List<GameViewModel>
+@{
+    ViewData["Title"] = "GameDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/css/reponsive.css" />
+<style>
+    .game-container {
+        background-color: #FEDA15;
+        position: relative;
+        width: 100%;
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        z-index: 2;
+    }
+    /* Banner ảnh bự ở trên cùng */
+    .banner-image {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .confetti-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: -1;
+    }
+    /* Container chứa các card */
+    .section-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        width: 90%;
+        margin: 20px auto;
+        margin-top: 50px;
+        gap: 20px;
+        justify-content: space-between;
+    }
+    /* Mỗi card */
+    .sectiongame {
+        border-radius: 10px;
+        overflow: hidden;
+        width: calc(33.333% - 20px);
+        text-align: center;
+        background: transparent;
+        /* Chiều cao cố định cho mỗi card */
+        height: 420px;
+        background-color: white;
+        border-radius: 15px;
+    }
+    /* Video */
+    .video-wrapper {
+        width: 101%;
+        height: 55%;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+
+        .video-wrapper iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+    .game-info {
+        padding: 15px;
+        text-align: left;
+    }
+
+    .game-info-label-container {
+        display: flex;
+        margin-bottom: 10px;
+    }
+
+    .game-info-label-left {
+        background-color: #bf0000;
+        color: #fff;
+        padding: 5px 10px;
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+    }
+
+    .game-info-label-right {
+        background-color: #ffffff;
+        color: #333;
+        padding: 5px 10px;
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px;
+    }
+
+    .game-title {
+        margin: 0;
+        font-size: 30px;
+        font-weight: bold;
+        color: #ff7f00;
+    }
+
+    .game-description {
+        margin: 10px 0 0 0;
+        font-size: 15px;
+        color: #555;
+    }
+
+    .round-image {
+        display: block;
+        margin: 40px auto 20px;
+        width: 98vw;
+        height: 85vh;
+        border-radius: 20px;
+        object-fit: cover;
+        margin-bottom: 50px;
+    }
+</style>
+
+<div class="game-container">
+    <!-- Banner ảnh bự -->
+
+    <div class="section-wrapper">
+        <div class="confetti-container"></div>
+
+        @if(Model.Count() != 0) {
+            foreach(var game in Model){
+                <div class="sectiongame">
+                    <div class="video-wrapper">
+                        <iframe src="@game.VideoUrl?.Replace("watch?v=", "embed/")" allowfullscreen></iframe>
+                    </div>
+                    <div class="game-info">
+                        <h3 class="game-title">@game.Name</h3>
+                        <p class="game-description">@game.Description</p>
+                    </div>
+                </div>
+            }
+        } else {
+            <div class="sectiongame">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/example2" allowfullscreen></iframe>
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">Best of Talking Tom</h3>
+                    <p class="game-description">This is the description for Best of Talking Tom. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </div>
+            </div>
+
+            <div class="sectiongame">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/example3" allowfullscreen></iframe>
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">Best of Talking Angela</h3>
+                    <p class="game-description">This is the description for Best of Talking Angela. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </div>
+            </div>
+
+            <div class="sectiongame">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/example5" allowfullscreen></iframe>
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">My Talking Tom 2</h3>
+                    <p class="game-description">This is the description for My Talking Tom 2. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </div>
+            </div>
+
+            <div class="sectiongame">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/example6" allowfullscreen></iframe>
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">My Talking Angela 2</h3>
+                    <p class="game-description">This is the description for My Talking Angela 2. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </div>
+            </div>
+
+            <div class="sectiongame">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/example6" allowfullscreen></iframe>
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">My Talking Angela 2</h3>
+                    <p class="game-description">This is the description for My Talking Angela 2. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </div>
+            </div>
+        }
+        <div class="sectiongame">
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/example6" allowfullscreen></iframe>
+            </div>
+            <div class="game-info">
+                <h3 class="game-title">My Talking Angela 2</h3>
+                <p class="game-description">This is the description for My Talking Angela 2. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+        </div>
+        
+
+    </div>
+    <img src="~/images/banner.jpg" alt="Banner" class="round-image" />
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const confettiContainer = document.querySelector('.confetti-container');
+        function createConfetti() {
+            const confetti = document.createElement('div');
+            confetti.classList.add('confetti');
+            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.backgroundColor = getRandomColor();
+            confetti.style.animationDuration = Math.random() * 2 + 3 + 's';
+            confetti.style.width = Math.random() * 5 + 2 + 'px';
+            confetti.style.height = Math.random() * 25 + 15 + 'px';
+            confettiContainer.appendChild(confetti);
+            setTimeout(() => confetti.remove(), 5000);
+        }
+        function getRandomColor() {
+            const colors = [
+                '#FFD700', '#FF4500', '#1E90FF', '#32CD32', '#FF69B4', '#8A2BE2',
+                '#FF6347', '#00FA9A', '#9400D3', '#FF7F50', '#00CED1', '#FFB6C1',
+                '#4B0082', '#ADFF2F'
+            ];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+        setInterval(createConfetti, 200);
+    });
+</script>

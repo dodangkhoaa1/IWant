@@ -60,6 +60,9 @@ builder.Services.AddControllers()
         options.JsonSerializerOptions.PropertyNamingPolicy = null;
     });
 
+builder.Services.AddHttpClient<IWordService, WordService>();
+
+
 //Set require for claim value and role 
 builder.Services.AddAuthorization(options =>
 {

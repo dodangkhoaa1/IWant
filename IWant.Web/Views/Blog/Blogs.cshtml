@@ -72,6 +72,14 @@
         transition: color 0.3s ease;
     }
 
+    .card{
+        height:100%;
+    }
+
+        .card-title{
+            height:85px;
+        }
+
     .main-article:hover h1 {
         color: #ff6600;
     }
@@ -79,11 +87,11 @@
     .limited-text {
         font-size: 16px;
         color: #555;
-        max-height: 100px;
+        max-height: 230px;
         overflow: hidden;
         text-overflow: ellipsis;
         display: -webkit-box;
-        -webkit-line-clamp: 3;
+        -webkit-line-clamp: 10;
         -webkit-box-orient: vertical;
     }
 
@@ -253,9 +261,9 @@
                 </div>
                 <div class="col-md-6">
                     <h1>@topBlog.Title</h1>
-                    <p class="limited-text">
+                    <div class="limited-text">
                         @Html.Raw(topBlog.Content)
-                    </p>
+                    </div>
                 </div>
             </div>
         }

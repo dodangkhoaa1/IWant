@@ -285,7 +285,7 @@ h6 {
     }
 
     .nav-item a i {
-        display: inline-block;
+        display: inline-block !important;
     }
 
     .dropdown {

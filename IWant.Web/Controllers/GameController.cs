@@ -18,6 +18,13 @@ namespace IWant.Web.Controllers
             _mapper = mapper;
         }
 
+        public async Task<IActionResult> GameDetails()
+        {
+            var games = await _context.Games.ToListAsync();
+            var gameViewModels = _mapper.Map<List<GameViewModel>>(games);
+            return View(gameViewModels);
+        }
+
         // GET: Game
         [Route("Game")]
         [Route("Game/Index")]

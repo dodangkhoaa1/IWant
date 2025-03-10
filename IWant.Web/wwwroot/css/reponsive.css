@@ -1577,3 +1577,76 @@ h6 {
         font-size: 12px;
     }
 }
+
+/*Game*/
+@media (max-width: 768px) {
+    .sectiongame {
+        width: 100% !important;
+        height: 500px !important; /* tự động cao theo nội dung */
+    }
+
+    .video-wrapper {
+        height: 290px !important;
+    }
+
+    .game-title {
+        font-size: 16px;
+    }
+
+    .game-description {
+        font-size: 13px;
+    }
+
+    .round-image {
+        width: 95vw;
+        height: auto;
+    }
+}
+/* Responsive cho màn hình ≤600px */
+@media (max-width: 600px) {
+    .sectiongame {
+        width: 100% !important;
+        height: 450px !important; /* tự động cao theo nội dung */
+    }
+
+    .video-wrapper {
+        height: 260px !important;
+    }
+
+    .game-title {
+        font-size: 15px;
+    }
+
+    .game-description {
+        font-size: 12px;
+    }
+
+    .round-image {
+        width: 90vw;
+        height: auto;
+    }
+}
+/* Responsive cho màn hình ≤320px */
+@media (max-width: 320px) {
+    .sectiongame {
+        width: 100% !important;
+        height: 350px !important;
+    }
+
+    .video-wrapper {
+        height: 180px !important;
+    }
+
+    .game-title {
+        font-size: 14px;
+    }
+
+    .game-description {
+        font-size: 11px;
+    }
+
+    .round-image {
+        width: 100vw;
+        height: auto;
+    }
+}

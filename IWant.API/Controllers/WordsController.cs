@@ -92,13 +92,39 @@ namespace IWant.API.Controllers
         // POST: api/Words
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Word>> PostWord(Word word)
+        public async Task<ActionResult<Word>> PostWord([FromForm] Word word)
         {
+            if (word.ImageFile != null)
+            {
+                var category = await _context.WordCategories.FindAsync(word.WordCategoryId);
+                if (category == null)
+                {
+                    return BadRequest("Invalid WordCategoryId");
+                }
+
+                string categoryFolder = category.EnglishName.ToLower();
+                string uniqueFileName = $"{Guid.NewGuid()}{Path.GetExtension(word.ImageFile.FileName)}";
+                string savePath = Path.Combine("wwwroot", "images", "word", categoryFolder, uniqueFileName);
+                string relativePath = Path.Combine("images", "word", categoryFolder, uniqueFileName).Replace("\\", "/");
+
+                Directory.CreateDirectory(Path.GetDirectoryName(savePath));
+
+                using (var stream = new FileStream(savePath, FileMode.Create))
+                {
+                    await word.ImageFile.CopyToAsync(stream);
+                }
+
+                word.ImagePath = "/" + relativePath; 
+            }
+
             _context.Words.Add(word);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetWord", new { id = word.Id }, word);
         }
+
+
+
 
         // DELETE: api/Words/5
         [HttpDelete("{id}")]

@@ -2,69 +2,183 @@
     ViewData["Title"] = "AboutUs";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <link rel="stylesheet" href="~/css/main.css" />
 
-<div class="container py-5">
-    <p class="team-title text-center align-content-center">My Team</p>
-    <div class="row g-4 justify-content-center">
-        <div class="col-md-6 d-flex align-items-center p-3">
-            <div class="col-5 text-center">
-                <img src="~/images/default_team.jpg" alt="Ảnh 1" class="profile-img">
-            </div>
-            <div class="col-5 profile-info">
-                <h4>Thầy</h4>
-                <p>Mô tả ngắn gọn về nhân vật này.</p>
-            </div>
-        </div>
+<style>
+    .aboutus-container {
+        background-color: #FEDA15;
+        position: relative;
+        width: 100%;
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        z-index: 2;
+    }
 
-        <div class="col-md-6 d-flex align-items-center p-3">
-            <div class="col-5 text-center">
-                <img src="~/images/default_team.jpg" alt="Ảnh 2" class="profile-img">
-            </div>
-            <div class="col-5 profile-info">
-                <h4>Người 2</h4>
-                <p>Mô tả ngắn gọn về nhân vật này.</p>
-            </div>
-        </div>
+    .confetti-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        pointer-events: none;
+        z-index: -1;
+    }
 
-        <div class="col-md-6 d-flex align-items-center p-3">
-            <div class="col-5 text-center">
-                <img src="~/images/default_team.jpg" alt="Ảnh 3" class="profile-img">
-            </div>
-            <div class="col-5 profile-info">
-                <h4>Người 3</h4>
-                <p>Thông tin thêm về nhân vật.</p>
-            </div>
-        </div>
+    .card-person {
+        background-color: #fff;
+        border: 2px solid #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        margin: 20px auto 0;
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        height: 300px;
+        padding: 15px;
+    }
 
-        <div class="col-md-6 d-flex align-items-center p-3">
-            <div class="col-5 text-center">
-                <img src="~/images/default_team.jpg" alt="Ảnh 4" class="profile-img">
-            </div>
-            <div class="col-5 profile-info">
-                <h4>Người 4</h4>
-                <p>Thông tin thêm về nhân vật.</p>
-            </div>
-        </div>
-        <div class="col-md-6 d-flex align-items-center p-3">
-            <div class="col-5 text-center">
-                <img src="~/images/default_team.jpg" alt="Ảnh 5" class="profile-img">
-            </div>
-            <div class="col-5 profile-info">
-                <h4>Người 5</h4>
-                <p>Thông tin thêm về nhân vật.</p>
-            </div>
-        </div>
+    .card-img-container {
+        flex: 0 0 auto;
+        height: 100%;
+    }
 
-        <div class="col-md-6 d-flex align-items-center p-3">
-            <div class="col-5 text-center">
-                <img src="~/images/default_team.jpg" alt="Ảnh 6" class="profile-img">
+        .card-img-container img {
+            height: 100%;
+            width: auto;
+            border-radius: 5px;
+        }
+
+    .profile-info {
+        flex: 1;
+    }
+
+        .profile-info h4 {
+            margin: 0 0 10px;
+            font-size: 1.25rem;
+        }
+
+        .profile-info p {
+            margin: 0;
+            font-size: 1rem;
+        }
+
+    .team-title {
+        font-size: 2rem;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+</style>
+<div class="aboutus-container">
+    <div class="confetti-container"></div>
+    <div class="container py-5">
+        <p class="team-title text-center">My Team</p>
+        <div class="row g-4 justify-content-center">
+            <div class="col-md-6 p-3">
+                <div class="card-person">
+                    <div class="card-img-container">
+                        <img src="~/images/default_team.jpg" alt="Ảnh 1" class="profile-img">
+                    </div>
+                    <div class="profile-info">
+                        <h4>Thầy</h4>
+                        <p>Mô tả ngắn gọn về nhân vật này.</p>
+                    </div>
+                </div>
             </div>
-            <div class="col-5 profile-info">
-                <h4>Người 6</h4>
-                <p>Thông tin thêm về nhân vật.</p>
+
+            <div class="col-md-6 p-3">
+                <div class="card-person">
+                    <div class="card-img-container">
+                        <img src="~/images/default_team.jpg" alt="Ảnh 2" class="profile-img">
+                    </div>
+                    <div class="profile-info">
+                        <h4>Người 2</h4>
+                        <p>Mô tả ngắn gọn về nhân vật này.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 p-3">
+                <div class="card-person">
+                    <div class="card-img-container">
+                        <img src="~/images/default_team.jpg" alt="Ảnh 3" class="profile-img">
+                    </div>
+                    <div class="profile-info">
+                        <h4>Người 3</h4>
+                        <p>Thông tin thêm về nhân vật.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 p-3">
+                <div class="card-person">
+                    <div class="card-img-container">
+                        <img src="~/images/default_team.jpg" alt="Ảnh 4" class="profile-img">
+                    </div>
+                    <div class="profile-info">
+                        <h4>Người 4</h4>
+                        <p>Thông tin thêm về nhân vật.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 p-3">
+                <div class="card-person">
+                    <div class="card-img-container">
+                        <img src="~/images/default_team.jpg" alt="Ảnh 5" class="profile-img">
+                    </div>
+                    <div class="profile-info">
+                        <h4>Người 5</h4>
+                        <p>Thông tin thêm về nhân vật.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 p-3">
+                <div class="card-person">
+                    <div class="card-img-container">
+                        <img src="~/images/default_team.jpg" alt="Ảnh 6" class="profile-img">
+                    </div>
+                    <div class="profile-info">
+                        <h4>Người 6</h4>
+                        <p>Thông tin thêm về nhân vật.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const confettiContainer = document.querySelector('.confetti-container');
+
+        function createConfetti() {
+            const confetti = document.createElement('div');
+            confetti.classList.add('confetti');
+            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.backgroundColor = getRandomColor();
+            confetti.style.animationDuration = Math.random() * 2 + 3 + 's';
+            confetti.style.width = Math.random() * 5 + 2 + 'px';
+            confetti.style.height = Math.random() * 25 + 15 + 'px';
+
+            confettiContainer.appendChild(confetti);
+
+            setTimeout(() => confetti.remove(), 5000);
+        }
+
+        function getRandomColor() {
+            const colors = [
+                '#FFD700', '#FF4500', '#1E90FF', '#32CD32', '#FF69B4', '#8A2BE2',
+                '#FF6347', '#00FA9A', '#9400D3', '#FF7F50', '#00CED1', '#FFB6C1',
+                '#4B0082', '#ADFF2F'
+            ];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+
+        setInterval(createConfetti, 200);
+    });
+</script>
