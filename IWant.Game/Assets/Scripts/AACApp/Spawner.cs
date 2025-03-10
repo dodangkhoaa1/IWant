@@ -50,6 +50,34 @@ public class AACWordSpawner : MonoBehaviour
         StartCoroutine(InitializeLocalization());
     }
 
+    private void Update()
+    {
+        CheckAndDisableSuggestionButtons();
+    }
+
+    private void CheckAndDisableSuggestionButtons()
+    {
+        foreach (var suggestWord in suggestWordList)
+        {
+            bool allWordsExist = true;
+            foreach (int wordId in suggestWord.aacWordsId)
+            {
+                WordDTO word = words.Find(w => w.Id == wordId);
+                if (word == null || !phraseBuild.ContainsWord(word.EnglishText))
+                {
+                    allWordsExist = false;
+                    break;
+                }
+            }
+
+            Button suggestionButton = wordContainer.transform.Find(suggestWord.EnglishText)?.GetComponent<Button>();
+            if (suggestionButton != null)
+            {
+                suggestionButton.interactable = !allWordsExist;
+            }
+        }
+    }
+
     // Allow to initialize localization settings and spawn word categories and personal words
     private IEnumerator InitializeLocalization()
     {
@@ -146,7 +174,16 @@ public class AACWordSpawner : MonoBehaviour
                     }
                 }
 
-                newTTSBtn.GetComponent<Button>().onClick.AddListener(() => phraseBuild.AddToList(newTTSBtn.gameObject));
+                // Check if the word is already in the phrase build
+                if (phraseBuild.ContainsWord(word.EnglishText))
+                {
+                    newTTSBtn.interactable = false;
+                }
+
+                newTTSBtn.GetComponent<Button>().onClick.AddListener(() =>
+                {
+                    phraseBuild.AddToList(newTTSBtn.gameObject);
+                });
             }
         }
     }
@@ -350,40 +387,44 @@ private void ScrollToSelected(Button selectedButton)
     // Cập nhật vị trí cuộn
     contentRectTransform.anchoredPosition = new Vector2(targetPosition, contentRectTransform.anchoredPosition.y);
 }
-private void CreateSuggestionButtons()
-{
-    foreach (Transform child in wordContainer.transform)
+    private void CreateSuggestionButtons()
     {
-        Destroy(child.gameObject);
-    }
-    foreach (var suggestWord in suggestWordList)
-    {
-        Button newSuggestBtn = Instantiate(wordButtonPrefab, wordContainer.transform, false);
-        newSuggestBtn.GetComponentInChildren<TextMeshProUGUI>().text = PrefsKey.LANGUAGE == PrefsKey.VIETNAM_CODE ? suggestWord.VietnameseText : suggestWord.EnglishText;
-        newSuggestBtn.name = suggestWord.EnglishText;
-
-        if (suggestWord.groupWordSprite != null)
+        foreach (Transform child in wordContainer.transform)
         {
-            Image childImage = newSuggestBtn.transform.Find("Image").GetComponent<Image>();
-            childImage.sprite = suggestWord.groupWordSprite;
+            Destroy(child.gameObject);
         }
-
-        newSuggestBtn.GetComponent<Button>().onClick.AddListener(() =>
+        foreach (var suggestWord in suggestWordList)
         {
-            foreach (int wordId in suggestWord.aacWordsId)
+            Button newSuggestBtn = Instantiate(wordButtonPrefab, wordContainer.transform, false);
+            newSuggestBtn.GetComponentInChildren<TextMeshProUGUI>().text = PrefsKey.LANGUAGE == PrefsKey.VIETNAM_CODE ? suggestWord.VietnameseText : suggestWord.EnglishText;
+            newSuggestBtn.name = suggestWord.EnglishText;
+
+            if (suggestWord.groupWordSprite != null)
             {
-                WordDTO word = words.Find(w => w.Id == wordId);
-                if (word != null)
-                {
-                    Sprite sprite = Convert.ConvertBytesToSprite(word.Image);
-                    GameObject wordButtonInstance = Instantiate(wordButtonPrefab.gameObject, phraseBuildGO.transform);
-                    Image childImage = wordButtonInstance.transform.Find("Image").GetComponent<Image>();
-                    childImage.sprite = sprite;
-                    wordButtonInstance.GetComponentInChildren<TextMeshProUGUI>().text = PrefsKey.LANGUAGE == PrefsKey.VIETNAM_CODE ? word.VietnameseText : word.EnglishText;
-                    phraseBuild.AddToList(wordButtonInstance);
-                }
+                Image childImage = newSuggestBtn.transform.Find("Image").GetComponent<Image>();
+                childImage.sprite = suggestWord.groupWordSprite;
             }
-        });
+
+            newSuggestBtn.GetComponent<Button>().onClick.AddListener(() =>
+            {
+                foreach (int wordId in suggestWord.aacWordsId)
+                {
+                    WordDTO word = words.Find(w => w.Id == wordId);
+                    if (word != null)
+                    {
+                        Sprite sprite = Convert.ConvertBytesToSprite(word.Image);
+                        GameObject wordButtonInstance = Instantiate(wordButtonPrefab.gameObject, phraseBuildGO.transform);
+                        wordButtonInstance.name = word.EnglishText;
+                        Image childImage = wordButtonInstance.transform.Find("Image").GetComponent<Image>();
+                        childImage.sprite = sprite;
+                        wordButtonInstance.GetComponentInChildren<TextMeshProUGUI>().text = PrefsKey.LANGUAGE == PrefsKey.ENGLISH_CODE ? word.EnglishText : word.VietnameseText;
+                        phraseBuild.AddToList(wordButtonInstance);
+
+                        // Disable the original button in the suggestion list
+                        newSuggestBtn.interactable = false;
+                    }
+                }
+            });
+        }
     }
-}
 }
