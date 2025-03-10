@@ -1302,7 +1302,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 119298921512972116, guid: de3ad33eb71bc174faa0d86aa745680a, type: 3}
       propertyPath: m_CellSize.x
-      value: 400
+      value: 350
+      objectReference: {fileID: 0}
+    - target: {fileID: 119298921512972116, guid: de3ad33eb71bc174faa0d86aa745680a, type: 3}
+      propertyPath: m_CellSize.y
+      value: 350
       objectReference: {fileID: 0}
     - target: {fileID: 5248404370579933089, guid: de3ad33eb71bc174faa0d86aa745680a, type: 3}
       propertyPath: m_Name
