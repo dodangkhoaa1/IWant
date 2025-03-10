@@ -39,6 +39,74 @@ MonoBehaviour:
     m_Key: ContinueFBKey
     m_Metadata:
       m_Items: []
+  - m_Id: 20350949184655360
+    m_Key: LanguageKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20351049273331712
+    m_Key: CancelKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20351130072403968
+    m_Key: QuitKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20351705845485568
+    m_Key: ConfirmKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20351931587121152
+    m_Key: ConfirmDetailsKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20782892372086784
+    m_Key: SettingKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20783485304066048
+    m_Key: ColoringKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21283972533080064
+    m_Key: PersonalWordKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21523290136662016
+    m_Key: SelectKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21523611751698432
+    m_Key: ChangeBGKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21667541587742720
+    m_Key: ChoosePhotoKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23215838899097600
+    m_Key: SoundKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23215895882911744
+    m_Key: LanguageKeyt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23216629080805376
+    m_Key: SignOutKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23482204642234368
+    m_Key: MainMenuKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25314462109945856
+    m_Key: CategoryKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25314762531164160
+    m_Key: PictureKey
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

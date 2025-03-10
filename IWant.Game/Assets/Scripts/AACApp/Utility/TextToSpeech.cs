@@ -14,7 +14,7 @@ using System.Globalization;
 public class TextToSpeech : MonoBehaviour
 {
     [SerializeField] private SceneName sceneName;
-   
+
     private TextMeshProUGUI textMeshProUGUI;
 
     private void Start()
@@ -22,6 +22,7 @@ public class TextToSpeech : MonoBehaviour
         textMeshProUGUI = GetComponentInChildren<TextMeshProUGUI>();
     }
 
+    // Allow to call text to speech functionality
     public void CallTextToSpeech()
     {
         string inputText = textMeshProUGUI.text;
@@ -46,6 +47,8 @@ public class TextToSpeech : MonoBehaviour
             Debug.LogWarning("Input text is empty.");
         }
     }
+
+    // Allow to call text to speech functionality as a coroutine
     public IEnumerator CallTextToSpeechCoroutine()
     {
         string inputText = textMeshProUGUI.text;
@@ -71,6 +74,7 @@ public class TextToSpeech : MonoBehaviour
         }
     }
 
+    // Allow to send text to speech request
     private IEnumerator SendTextToSpeechRequest(string text, string filePath)
     {
         string jsonData = $@"
@@ -112,6 +116,7 @@ public class TextToSpeech : MonoBehaviour
         );
     }
 
+    // Allow to extract audio URL from JSON response
     private string ExtractAudioUrl(string jsonResponse)
     {
         const string key = "\"audio_resource_url\":\"";
@@ -129,6 +134,7 @@ public class TextToSpeech : MonoBehaviour
         return null;
     }
 
+    // Allow to download and save audio
     private IEnumerator DownloadAndSaveAudio(string audioUrl, string filePath)
     {
         yield return ApiService.Instance.GetAudioClip(audioUrl,
@@ -148,11 +154,12 @@ public class TextToSpeech : MonoBehaviour
         );
     }
 
+    // Allow to play audio clip
     private IEnumerator PlayAudioClip(AudioClip clip)
     {
         if (clip != null)
         {
-            AudioManager.instance.PlaySFX(clip);
+            AudioManagement.instance.PlaySFX(clip);
             Debug.Log("Audio is now playing!");
             //yield return new WaitForSeconds(clip.length);
             yield return new WaitForSecondsRealtime(clip.length); // Use WaitForSecondsRealtime to avoid delays
@@ -164,6 +171,7 @@ public class TextToSpeech : MonoBehaviour
         }
     }
 
+    // Allow to get unique file name
     private string GetUniqueFileName(string text, string gender)
     {
         string sanitizedText = RemoveVietnameseAccents(text);
@@ -178,6 +186,7 @@ public class TextToSpeech : MonoBehaviour
         return fileName;
     }
 
+    // Allow to remove Vietnamese accents from text
     private string RemoveVietnameseAccents(string input)
     {
         string normalized = input.Normalize(NormalizationForm.FormD);
@@ -191,6 +200,7 @@ public class TextToSpeech : MonoBehaviour
         return cleaned;
     }
 
+    // Allow to get hash of a string
     private string GetHash(string input)
     {
         using (SHA256 sha256 = SHA256.Create())
@@ -205,7 +215,7 @@ public class TextToSpeech : MonoBehaviour
         }
     }
 
-    // Coroutine to play the audio and wait until it finishes before continuing
+    // Allow to play the audio and wait until it finishes before continuing
     private IEnumerator PlayAudioAndWaitThenContinue(string filePath)
     {
         // Play the audio from the file
@@ -217,6 +227,7 @@ public class TextToSpeech : MonoBehaviour
         TransitionToNextScene();
     }
 
+    // Allow to play audio from file
     private IEnumerator PlayAudioFromFile(string filePath)
     {
         using (UnityWebRequest audioRequest = UnityWebRequestMultimedia.GetAudioClip($"file://{filePath}", AudioType.WAV))
@@ -234,7 +245,7 @@ public class TextToSpeech : MonoBehaviour
         }
     }
 
-    // Transition to the next scene (you can replace it with your own scene change logic)
+    // Allow to transition to the next scene
     private void TransitionToNextScene()
     {
         if (sceneName != SceneName.Null)

@@ -76,20 +76,17 @@ namespace IWant.Web.Controllers
             return View(blogViewModels);
         }
 
+        // Allow to display the create blog page
         [Authorize]
         public IActionResult Create()
         {
             return View();
         }
 
+        // Allow to create a new blog
         [HttpPost]
         public async Task<IActionResult> Create(BlogViewModel model)
         {
-            /*if (!ModelState.IsValid)
-            {
-                return View(model);
-            }*/
-
             var user = _context.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
             if (user == null)
             {
@@ -139,9 +136,7 @@ namespace IWant.Web.Controllers
                 string newFileName = blog.Id + Path.GetExtension(model.Image.FileName);
                 string newFilePath = Path.Combine(defaultFolder, newFileName);
 
-
                 System.IO.File.Move(Path.Combine(defaultFolder, Path.GetFileName(imageLocalPath)), newFilePath);
-
 
                 blog.ImageUrl = $"{Request.Scheme}://{Request.Host}/images/blog/{newFileName}";
                 blog.ImageLocalPath = Path.Combine("blog", newFileName);
@@ -155,7 +150,7 @@ namespace IWant.Web.Controllers
             return RedirectToAction("Index");
         }
 
-
+        // Allow to display the edit blog page
         [Authorize]
         public IActionResult Edit(int id)
         {
@@ -169,6 +164,7 @@ namespace IWant.Web.Controllers
             return View(blogViewModel);
         }
 
+        // Allow to edit an existing blog
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(BlogViewModel model)
@@ -219,6 +215,7 @@ namespace IWant.Web.Controllers
             return View(model);*/
         }
 
+        // Allow to delete a blog
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -228,15 +225,6 @@ namespace IWant.Web.Controllers
             {
                 return NotFound();
             }
-
-            /*if (!string.IsNullOrEmpty(blog.ImageLocalPath))
-            {
-                var imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", blog.ImageLocalPath);
-                if (System.IO.File.Exists(imagePath))
-                {
-                    System.IO.File.Delete(imagePath);
-                }
-            }*/
 
             if (blog.Status == true)
             {

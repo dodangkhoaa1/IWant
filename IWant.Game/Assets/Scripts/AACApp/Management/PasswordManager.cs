@@ -18,7 +18,7 @@ public class PasswordManager : MonoBehaviour
 
     private bool isPasswordVisible { get; set; }
 
-    // Start is called before the first frame update
+    // Allow to initialize the password manager
     void Start()
     {
         passwordField = gameObject.GetComponent<TMP_InputField>();
@@ -28,6 +28,7 @@ public class PasswordManager : MonoBehaviour
         toggleImage.sprite = showPasswordSprite;
     }
 
+    // Allow to toggle the visibility of the password
     public void TogglePasswordVisible()
     {
         //Change the state of password visibility

@@ -5,17 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class SceneManagement : MonoBehaviour
 {
-    public void GoToHome()
-    {
-        SceneManager.LoadScene(SceneName.MainMenu.ToString());
-    }
-
+    // Allow to reload the current scene
     public void ReLoadScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    public void ReturnMenu(){
-        SceneManager.LoadScene(SceneName.MenuColor.ToString());
+    public void LoadScene(string sceneName = "MainMenu")
+    {
+        SceneManager.LoadScene(sceneName);
     }
 }

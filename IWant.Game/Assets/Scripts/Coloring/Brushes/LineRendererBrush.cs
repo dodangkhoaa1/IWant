@@ -25,7 +25,7 @@ public class LineRendererBrush : MonoBehaviour
             PaintOnCanvas();
     }
 
-
+    // Allow to create a new line
     private void CreateLine()
     {
         RaycastHit hit;
@@ -44,6 +44,8 @@ public class LineRendererBrush : MonoBehaviour
         // Save the last clicked position
         lastClickedPosition = Input.mousePosition;
     }
+
+    // Allow to paint on the canvas
     private void PaintOnCanvas()
     {
         if (currentLineRenderer == null) return;
@@ -62,6 +64,7 @@ public class LineRendererBrush : MonoBehaviour
         AddPoint(hit.point);
     }
 
+    // Allow to add a point to the current line
     private void AddPoint(Vector3 worldPos)
     {
         currentLineRenderer.positionCount++;

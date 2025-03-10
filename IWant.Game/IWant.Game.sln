@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MerryYellow.CodeAssist.Editor", "MerryYellow.CodeAssist.Editor.csproj", "{FB4B5DA8-0C08-A78F-2501-4AE440023C23}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NaughtyAttributes.Test", "NaughtyAttributes.Test.csproj", "{FB39D3F2-8058-07DD-65A6-5C150D280277}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{9EC6BB22-377A-7ECC-CBD0-78CCCE42EE7C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NaughtyAttributes.Core", "NaughtyAttributes.Core.csproj", "{E4670E55-6B4B-E6D4-D4B1-B9C44DD2C800}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NaughtyAttributes.Editor", "NaughtyAttributes.Editor.csproj", "{AF797582-1BD3-5B84-9896-464E04128725}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NativeGallery.Editor", "NativeGallery.Editor.csproj", "{189C1BBC-6537-6D8B-33C9-0798209741A6}"
 EndProject
@@ -21,10 +27,22 @@ Global
 		{FB4B5DA8-0C08-A78F-2501-4AE440023C23}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB4B5DA8-0C08-A78F-2501-4AE440023C23}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB4B5DA8-0C08-A78F-2501-4AE440023C23}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB39D3F2-8058-07DD-65A6-5C150D280277}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB39D3F2-8058-07DD-65A6-5C150D280277}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB39D3F2-8058-07DD-65A6-5C150D280277}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB39D3F2-8058-07DD-65A6-5C150D280277}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9EC6BB22-377A-7ECC-CBD0-78CCCE42EE7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9EC6BB22-377A-7ECC-CBD0-78CCCE42EE7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9EC6BB22-377A-7ECC-CBD0-78CCCE42EE7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9EC6BB22-377A-7ECC-CBD0-78CCCE42EE7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4670E55-6B4B-E6D4-D4B1-B9C44DD2C800}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4670E55-6B4B-E6D4-D4B1-B9C44DD2C800}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4670E55-6B4B-E6D4-D4B1-B9C44DD2C800}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4670E55-6B4B-E6D4-D4B1-B9C44DD2C800}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF797582-1BD3-5B84-9896-464E04128725}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF797582-1BD3-5B84-9896-464E04128725}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF797582-1BD3-5B84-9896-464E04128725}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF797582-1BD3-5B84-9896-464E04128725}.Release|Any CPU.Build.0 = Release|Any CPU
 		{189C1BBC-6537-6D8B-33C9-0798209741A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{189C1BBC-6537-6D8B-33C9-0798209741A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{189C1BBC-6537-6D8B-33C9-0798209741A6}.Release|Any CPU.ActiveCfg = Release|Any CPU

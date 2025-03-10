@@ -54,8 +54,13 @@ namespace IWant.API.Controllers
 
             return Ok(new SigninResponseDTO()
             {
+                UserId = userInDB.Id,
                 FullName = userInDB.FullName,
+                Email = userInDB.Email,
                 Gender = userInDB.Gender,
+                ChildName = userInDB.ChildName,
+                ChildNickName = userInDB.ChildNickName,
+                ChildGender = userInDB.ChildGender,
                 Status = userInDB.Status
             });
         }

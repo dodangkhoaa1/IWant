@@ -23,11 +23,12 @@ namespace IWant.Web.Hubs
             _mapper = mapper;
         }
 
-        public async Task SendPrivate(string receiverName,string message)
+        // Allow to send a private message to a specific user
+        public async Task SendPrivate(string receiverName, string message)
         {
-            if(_ConnectionsMap.TryGetValue(receiverName, out string userId))
+            if (_ConnectionsMap.TryGetValue(receiverName, out string userId))
             {
-                var sender = _Connections.Where(u=>u.Username == IdentityName).First();
+                var sender = _Connections.Where(u => u.Username == IdentityName).First();
 
                 if (!string.IsNullOrEmpty(message.Trim()))
                 {
@@ -46,6 +47,7 @@ namespace IWant.Web.Hubs
             }
         }
 
+        // Allow to join a chat room
         public async Task Join(string roomName)
         {
             try
@@ -69,6 +71,7 @@ namespace IWant.Web.Hubs
             }
         }
 
+        // Allow to leave a chat room
         public async Task Leave(string roomName)
         {
             await Groups.RemoveFromGroupAsync(Context.ConnectionId, roomName);
@@ -79,6 +82,7 @@ namespace IWant.Web.Hubs
             get { return Context.User.Identity.Name; }
         }
 
+        // Allow to handle user connection
         public override Task OnConnectedAsync()
         {
             try
@@ -103,6 +107,7 @@ namespace IWant.Web.Hubs
             return base.OnConnectedAsync();
         }
 
+        // Allow to handle user disconnection
         public override Task OnDisconnectedAsync(Exception exception)
         {
             try
@@ -122,11 +127,13 @@ namespace IWant.Web.Hubs
             return base.OnDisconnectedAsync(exception);
         }
 
+        // Allow to get users in a specific chat room
         public IEnumerable<UserViewModel> GetUsers(string roomName)
         {
-            return _Connections.Where(u=>u.CurrentRoom == roomName).ToList();    
+            return _Connections.Where(u => u.CurrentRoom == roomName).ToList();
         }
 
+        // Allow to get the device type of the user
         private string GetDevice()
         {
             var device = Context.GetHttpContext().Request.Headers["Device"].ToString();

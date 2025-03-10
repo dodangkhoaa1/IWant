@@ -13,18 +13,19 @@ public class BrushSizeManager : MonoBehaviour
     [SerializeField] private float[] brushSizes;
     public Color selectedColor;
     [SerializeField] private Color unSelectedColor;
-    // Start is called before the first frame update
+
+    // Allow to initialize the brush size manager
     void Start()
     {
         BrushSizeButtonCallback(0);
     }
 
-    // Update is called once per frame
+    // Allow to update the brush size manager each frame
     void Update()
     {
-
     }
 
+    // Allow to handle brush size button click
     public void BrushSizeButtonCallback(int sizeIndex)
     {
         if (sizeIndex > brushSizes.Length - 1)
@@ -41,6 +42,7 @@ public class BrushSizeManager : MonoBehaviour
             brushImages[i].color = (i == sizeIndex) ? selectedColor : unSelectedColor;
     }
 
+    // Allow to update the color of the selected brush
     internal void UpdateSelectedBrushColor(Color color)
     {
         for (int i = 0; i < brushImages.Length; i++)

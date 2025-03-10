@@ -12,6 +12,8 @@ namespace IWant.Web.Service
         {
             this.options = options;
         }
+
+        // Allow to send an email asynchronously
         public async Task SendEmailAsync(string fromAddress, string toAddress, string subject, string message)
         {
             var mailMessage = new MailMessage

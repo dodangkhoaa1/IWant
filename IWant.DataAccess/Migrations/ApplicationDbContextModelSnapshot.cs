@@ -477,7 +477,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9564),
                             VietnameseText = "Chải Tóc",
-                            WordCategoryId = 1
+                            WordCategoryId = 2
                         },
                         new
                         {
@@ -488,7 +488,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9566),
                             VietnameseText = "Đánh Răng",
-                            WordCategoryId = 1
+                            WordCategoryId = 2
                         },
                         new
                         {
@@ -499,7 +499,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9569),
                             VietnameseText = "Đóng",
-                            WordCategoryId = 1
+                            WordCategoryId = 2
                         },
                         new
                         {
@@ -510,7 +510,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9571),
                             VietnameseText = "Uống",
-                            WordCategoryId = 1
+                            WordCategoryId = 2
                         },
                         new
                         {
@@ -521,7 +521,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9573),
                             VietnameseText = "Ăn",
-                            WordCategoryId = 1
+                            WordCategoryId = 2
                         },
                         new
                         {
@@ -532,7 +532,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9575),
                             VietnameseText = "Nhìn",
-                            WordCategoryId = 1
+                            WordCategoryId = 2
                         },
                         new
                         {
@@ -543,7 +543,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9578),
                             VietnameseText = "Tắt",
-                            WordCategoryId = 1
+                            WordCategoryId = 2
                         },
                         new
                         {
@@ -554,7 +554,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9580),
                             VietnameseText = "Bật",
-                            WordCategoryId = 1
+                            WordCategoryId = 2
                         },
                         new
                         {
@@ -565,7 +565,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9582),
                             VietnameseText = "Mở",
-                            WordCategoryId = 1
+                            WordCategoryId = 2
                         },
                         new
                         {
@@ -576,7 +576,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9584),
                             VietnameseText = "Chơi",
-                            WordCategoryId = 1
+                            WordCategoryId = 2
                         },
                         new
                         {
@@ -587,7 +587,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9586),
                             VietnameseText = "Mặc Vào",
-                            WordCategoryId = 1
+                            WordCategoryId = 2
                         },
                         new
                         {
@@ -598,7 +598,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9588),
                             VietnameseText = "Chạy",
-                            WordCategoryId = 1
+                            WordCategoryId = 2
                         },
                         new
                         {
@@ -609,7 +609,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9591),
                             VietnameseText = "Ngồi",
-                            WordCategoryId = 1
+                            WordCategoryId = 2
                         },
                         new
                         {
@@ -620,7 +620,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9594),
                             VietnameseText = "Ngủ",
-                            WordCategoryId = 1
+                            WordCategoryId = 2
                         },
                         new
                         {
@@ -631,7 +631,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9596),
                             VietnameseText = "Đứng",
-                            WordCategoryId = 1
+                            WordCategoryId = 2
                         },
                         new
                         {
@@ -642,7 +642,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9598),
                             VietnameseText = "Bơi",
-                            WordCategoryId = 1
+                            WordCategoryId = 2
                         },
                         new
                         {
@@ -653,7 +653,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9600),
                             VietnameseText = "Cởi Ra",
-                            WordCategoryId = 1
+                            WordCategoryId = 2
                         },
                         new
                         {
@@ -664,7 +664,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9602),
                             VietnameseText = "Nói Chuyện",
-                            WordCategoryId = 1
+                            WordCategoryId = 2
                         },
                         new
                         {
@@ -675,7 +675,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9605),
                             VietnameseText = "Thức Dậy",
-                            WordCategoryId = 1
+                            WordCategoryId = 2
                         },
                         new
                         {
@@ -686,7 +686,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9607),
                             VietnameseText = "Đi Bộ",
-                            WordCategoryId = 1
+                            WordCategoryId = 2
                         },
                         new
                         {
@@ -697,7 +697,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9609),
                             VietnameseText = "Rửa Tay",
-                            WordCategoryId = 1
+                            WordCategoryId = 2
                         },
                         new
                         {
@@ -708,7 +708,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9637),
                             VietnameseText = "Ong",
-                            WordCategoryId = 2
+                            WordCategoryId = 3
                         },
                         new
                         {
@@ -719,7 +719,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9639),
                             VietnameseText = "Chim",
-                            WordCategoryId = 2
+                            WordCategoryId = 3
                         },
                         new
                         {
@@ -730,7 +730,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9641),
                             VietnameseText = "Bướm",
-                            WordCategoryId = 2
+                            WordCategoryId = 3
                         },
                         new
                         {
@@ -741,7 +741,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9643),
                             VietnameseText = "Mèo",
-                            WordCategoryId = 2
+                            WordCategoryId = 3
                         },
                         new
                         {
@@ -752,7 +752,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9647),
                             VietnameseText = "Gà",
-                            WordCategoryId = 2
+                            WordCategoryId = 3
                         },
                         new
                         {
@@ -763,7 +763,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9649),
                             VietnameseText = "Bò",
-                            WordCategoryId = 2
+                            WordCategoryId = 3
                         },
                         new
                         {
@@ -774,7 +774,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9651),
                             VietnameseText = "Chó",
-                            WordCategoryId = 2
+                            WordCategoryId = 3
                         },
                         new
                         {
@@ -785,7 +785,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9653),
                             VietnameseText = "Vịt",
-                            WordCategoryId = 2
+                            WordCategoryId = 3
                         },
                         new
                         {
@@ -796,7 +796,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9655),
                             VietnameseText = "Cá",
-                            WordCategoryId = 2
+                            WordCategoryId = 3
                         },
                         new
                         {
@@ -807,7 +807,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9657),
                             VietnameseText = "Ngựa",
-                            WordCategoryId = 2
+                            WordCategoryId = 3
                         },
                         new
                         {
@@ -818,7 +818,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9659),
                             VietnameseText = "Chuột",
-                            WordCategoryId = 2
+                            WordCategoryId = 3
                         },
                         new
                         {
@@ -829,7 +829,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9661),
                             VietnameseText = "Heo",
-                            WordCategoryId = 2
+                            WordCategoryId = 3
                         },
                         new
                         {
@@ -840,7 +840,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9682),
                             VietnameseText = "Cánh tay",
-                            WordCategoryId = 3
+                            WordCategoryId = 4
                         },
                         new
                         {
@@ -851,7 +851,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9684),
                             VietnameseText = "Lưng",
-                            WordCategoryId = 3
+                            WordCategoryId = 4
                         },
                         new
                         {
@@ -862,7 +862,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9686),
                             VietnameseText = "Bụng",
-                            WordCategoryId = 3
+                            WordCategoryId = 4
                         },
                         new
                         {
@@ -873,7 +873,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9688),
                             VietnameseText = "Mông",
-                            WordCategoryId = 3
+                            WordCategoryId = 4
                         },
                         new
                         {
@@ -884,7 +884,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9691),
                             VietnameseText = "Tai",
-                            WordCategoryId = 3
+                            WordCategoryId = 4
                         },
                         new
                         {
@@ -895,7 +895,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9694),
                             VietnameseText = "Mắt",
-                            WordCategoryId = 3
+                            WordCategoryId = 4
                         },
                         new
                         {
@@ -906,7 +906,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9696),
                             VietnameseText = "Khuôn mặt",
-                            WordCategoryId = 3
+                            WordCategoryId = 4
                         },
                         new
                         {
@@ -917,7 +917,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9698),
                             VietnameseText = "Ngón tay",
-                            WordCategoryId = 3
+                            WordCategoryId = 4
                         },
                         new
                         {
@@ -928,7 +928,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9700),
                             VietnameseText = "Bàn chân",
-                            WordCategoryId = 3
+                            WordCategoryId = 4
                         },
                         new
                         {
@@ -939,7 +939,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9702),
                             VietnameseText = "Tóc",
-                            WordCategoryId = 3
+                            WordCategoryId = 4
                         },
                         new
                         {
@@ -950,7 +950,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9705),
                             VietnameseText = "Bàn tay",
-                            WordCategoryId = 3
+                            WordCategoryId = 4
                         },
                         new
                         {
@@ -961,7 +961,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9707),
                             VietnameseText = "Chân",
-                            WordCategoryId = 3
+                            WordCategoryId = 4
                         },
                         new
                         {
@@ -972,7 +972,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9709),
                             VietnameseText = "Môi",
-                            WordCategoryId = 3
+                            WordCategoryId = 4
                         },
                         new
                         {
@@ -983,7 +983,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9711),
                             VietnameseText = "Mũi",
-                            WordCategoryId = 3
+                            WordCategoryId = 4
                         },
                         new
                         {
@@ -994,7 +994,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9714),
                             VietnameseText = "Răng",
-                            WordCategoryId = 3
+                            WordCategoryId = 4
                         },
                         new
                         {
@@ -1005,7 +1005,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9721),
                             VietnameseText = "Họng",
-                            WordCategoryId = 3
+                            WordCategoryId = 4
                         },
                         new
                         {
@@ -1016,7 +1016,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9723),
                             VietnameseText = "Ngón chân",
-                            WordCategoryId = 3
+                            WordCategoryId = 4
                         },
                         new
                         {
@@ -1027,7 +1027,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9725),
                             VietnameseText = "Lưỡi",
-                            WordCategoryId = 3
+                            WordCategoryId = 4
                         },
                         new
                         {
@@ -1038,7 +1038,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9748),
                             VietnameseText = "Ba lô",
-                            WordCategoryId = 4
+                            WordCategoryId = 5
                         },
                         new
                         {
@@ -1049,7 +1049,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9751),
                             VietnameseText = "Mũ lưỡi trai",
-                            WordCategoryId = 4
+                            WordCategoryId = 5
                         },
                         new
                         {
@@ -1060,7 +1060,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9753),
                             VietnameseText = "Áo khoác",
-                            WordCategoryId = 4
+                            WordCategoryId = 5
                         },
                         new
                         {
@@ -1071,7 +1071,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9755),
                             VietnameseText = "Đồ ngủ",
-                            WordCategoryId = 4
+                            WordCategoryId = 5
                         },
                         new
                         {
@@ -1082,7 +1082,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9757),
                             VietnameseText = "Quần dài",
-                            WordCategoryId = 4
+                            WordCategoryId = 5
                         },
                         new
                         {
@@ -1093,7 +1093,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9759),
                             VietnameseText = "Khăn quàng cổ",
-                            WordCategoryId = 4
+                            WordCategoryId = 5
                         },
                         new
                         {
@@ -1104,7 +1104,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9762),
                             VietnameseText = "Áo sơ mi",
-                            WordCategoryId = 4
+                            WordCategoryId = 5
                         },
                         new
                         {
@@ -1115,7 +1115,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9764),
                             VietnameseText = "Giày",
-                            WordCategoryId = 4
+                            WordCategoryId = 5
                         },
                         new
                         {
@@ -1126,7 +1126,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9766),
                             VietnameseText = "Quần short",
-                            WordCategoryId = 4
+                            WordCategoryId = 5
                         },
                         new
                         {
@@ -1137,7 +1137,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9768),
                             VietnameseText = "Váy ngắn",
-                            WordCategoryId = 4
+                            WordCategoryId = 5
                         },
                         new
                         {
@@ -1148,7 +1148,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9770),
                             VietnameseText = "Tất",
-                            WordCategoryId = 4
+                            WordCategoryId = 5
                         },
                         new
                         {
@@ -1159,7 +1159,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9772),
                             VietnameseText = "Áo len",
-                            WordCategoryId = 4
+                            WordCategoryId = 5
                         },
                         new
                         {
@@ -1170,7 +1170,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9775),
                             VietnameseText = "Đồ bơi",
-                            WordCategoryId = 4
+                            WordCategoryId = 5
                         },
                         new
                         {
@@ -1181,7 +1181,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9777),
                             VietnameseText = "Áo phông",
-                            WordCategoryId = 4
+                            WordCategoryId = 5
                         },
                         new
                         {
@@ -1192,7 +1192,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9780),
                             VietnameseText = "Đồ lót",
-                            WordCategoryId = 4
+                            WordCategoryId = 5
                         },
                         new
                         {
@@ -1203,7 +1203,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9801),
                             VietnameseText = "Màu đen",
-                            WordCategoryId = 5
+                            WordCategoryId = 6
                         },
                         new
                         {
@@ -1214,7 +1214,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9804),
                             VietnameseText = "Màu xanh dương",
-                            WordCategoryId = 5
+                            WordCategoryId = 6
                         },
                         new
                         {
@@ -1225,7 +1225,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9806),
                             VietnameseText = "Màu xanh lá",
-                            WordCategoryId = 5
+                            WordCategoryId = 6
                         },
                         new
                         {
@@ -1236,7 +1236,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9808),
                             VietnameseText = "Màu cam",
-                            WordCategoryId = 5
+                            WordCategoryId = 6
                         },
                         new
                         {
@@ -1247,7 +1247,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9810),
                             VietnameseText = "Màu hồng",
-                            WordCategoryId = 5
+                            WordCategoryId = 6
                         },
                         new
                         {
@@ -1258,7 +1258,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9812),
                             VietnameseText = "Màu đỏ",
-                            WordCategoryId = 5
+                            WordCategoryId = 6
                         },
                         new
                         {
@@ -1269,7 +1269,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9814),
                             VietnameseText = "Màu tím",
-                            WordCategoryId = 5
+                            WordCategoryId = 6
                         },
                         new
                         {
@@ -1280,7 +1280,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9816),
                             VietnameseText = "Màu trắng",
-                            WordCategoryId = 5
+                            WordCategoryId = 6
                         },
                         new
                         {
@@ -1291,7 +1291,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9818),
                             VietnameseText = "Màu vàng",
-                            WordCategoryId = 5
+                            WordCategoryId = 6
                         },
                         new
                         {
@@ -1302,7 +1302,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9836),
                             VietnameseText = "Đồng ý",
-                            WordCategoryId = 6
+                            WordCategoryId = 7
                         },
                         new
                         {
@@ -1313,7 +1313,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9838),
                             VietnameseText = "Tức giận",
-                            WordCategoryId = 6
+                            WordCategoryId = 7
                         },
                         new
                         {
@@ -1324,7 +1324,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9840),
                             VietnameseText = "Chán nản",
-                            WordCategoryId = 6
+                            WordCategoryId = 7
                         },
                         new
                         {
@@ -1335,7 +1335,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9842),
                             VietnameseText = "Không đồng ý",
-                            WordCategoryId = 6
+                            WordCategoryId = 7
                         },
                         new
                         {
@@ -1346,7 +1346,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9844),
                             VietnameseText = "Xấu hổ",
-                            WordCategoryId = 6
+                            WordCategoryId = 7
                         },
                         new
                         {
@@ -1357,7 +1357,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9846),
                             VietnameseText = "Vui vẻ",
-                            WordCategoryId = 6
+                            WordCategoryId = 7
                         },
                         new
                         {
@@ -1368,7 +1368,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9848),
                             VietnameseText = "Đói",
-                            WordCategoryId = 6
+                            WordCategoryId = 7
                         },
                         new
                         {
@@ -1379,7 +1379,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9851),
                             VietnameseText = "Đau",
-                            WordCategoryId = 6
+                            WordCategoryId = 7
                         },
                         new
                         {
@@ -1390,7 +1390,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9853),
                             VietnameseText = "Không hiểu",
-                            WordCategoryId = 6
+                            WordCategoryId = 7
                         },
                         new
                         {
@@ -1401,7 +1401,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9855),
                             VietnameseText = "Buồn",
-                            WordCategoryId = 6
+                            WordCategoryId = 7
                         },
                         new
                         {
@@ -1412,7 +1412,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9857),
                             VietnameseText = "Sợ hãi",
-                            WordCategoryId = 6
+                            WordCategoryId = 7
                         },
                         new
                         {
@@ -1423,7 +1423,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9859),
                             VietnameseText = "Ốm",
-                            WordCategoryId = 6
+                            WordCategoryId = 7
                         },
                         new
                         {
@@ -1434,7 +1434,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9861),
                             VietnameseText = "Buồn ngủ",
-                            WordCategoryId = 6
+                            WordCategoryId = 7
                         },
                         new
                         {
@@ -1445,7 +1445,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9865),
                             VietnameseText = "Khát",
-                            WordCategoryId = 6
+                            WordCategoryId = 7
                         },
                         new
                         {
@@ -1456,7 +1456,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9867),
                             VietnameseText = "Mệt mỏi",
-                            WordCategoryId = 6
+                            WordCategoryId = 7
                         },
                         new
                         {
@@ -1467,7 +1467,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9869),
                             VietnameseText = "Nôn mửa",
-                            WordCategoryId = 6
+                            WordCategoryId = 7
                         },
                         new
                         {
@@ -1478,7 +1478,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9871),
                             VietnameseText = "Ghê tởm",
-                            WordCategoryId = 6
+                            WordCategoryId = 7
                         },
                         new
                         {
@@ -1489,7 +1489,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9873),
                             VietnameseText = "Ngon miệng",
-                            WordCategoryId = 6
+                            WordCategoryId = 7
                         },
                         new
                         {
@@ -1500,7 +1500,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9896),
                             VietnameseText = "Bánh mì",
-                            WordCategoryId = 7
+                            WordCategoryId = 8
                         },
                         new
                         {
@@ -1511,7 +1511,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9899),
                             VietnameseText = "Bánh kem",
-                            WordCategoryId = 7
+                            WordCategoryId = 8
                         },
                         new
                         {
@@ -1522,7 +1522,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9901),
                             VietnameseText = "Sô cô la",
-                            WordCategoryId = 7
+                            WordCategoryId = 8
                         },
                         new
                         {
@@ -1533,7 +1533,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9904),
                             VietnameseText = "Bánh quy",
-                            WordCategoryId = 7
+                            WordCategoryId = 8
                         },
                         new
                         {
@@ -1544,7 +1544,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9906),
                             VietnameseText = "Kẹo cao su",
-                            WordCategoryId = 7
+                            WordCategoryId = 8
                         },
                         new
                         {
@@ -1555,7 +1555,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9908),
                             VietnameseText = "Bánh hamburger",
-                            WordCategoryId = 7
+                            WordCategoryId = 8
                         },
                         new
                         {
@@ -1566,7 +1566,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9910),
                             VietnameseText = "Kem",
-                            WordCategoryId = 7
+                            WordCategoryId = 8
                         },
                         new
                         {
@@ -1577,7 +1577,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9912),
                             VietnameseText = "Nước ép",
-                            WordCategoryId = 7
+                            WordCategoryId = 8
                         },
                         new
                         {
@@ -1588,7 +1588,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9915),
                             VietnameseText = "Sữa",
-                            WordCategoryId = 7
+                            WordCategoryId = 8
                         },
                         new
                         {
@@ -1599,7 +1599,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9917),
                             VietnameseText = "Pizza",
-                            WordCategoryId = 7
+                            WordCategoryId = 8
                         },
                         new
                         {
@@ -1610,7 +1610,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9919),
                             VietnameseText = "Cơm",
-                            WordCategoryId = 7
+                            WordCategoryId = 8
                         },
                         new
                         {
@@ -1621,7 +1621,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9922),
                             VietnameseText = "Bánh sandwich",
-                            WordCategoryId = 7
+                            WordCategoryId = 8
                         },
                         new
                         {
@@ -1632,7 +1632,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9924),
                             VietnameseText = "Đồ ăn vặt",
-                            WordCategoryId = 7
+                            WordCategoryId = 8
                         },
                         new
                         {
@@ -1643,7 +1643,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9926),
                             VietnameseText = "Súp",
-                            WordCategoryId = 7
+                            WordCategoryId = 8
                         },
                         new
                         {
@@ -1654,7 +1654,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9928),
                             VietnameseText = "Mì Ý",
-                            WordCategoryId = 7
+                            WordCategoryId = 8
                         },
                         new
                         {
@@ -1665,7 +1665,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9930),
                             VietnameseText = "Trà",
-                            WordCategoryId = 7
+                            WordCategoryId = 8
                         },
                         new
                         {
@@ -1676,7 +1676,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9932),
                             VietnameseText = "Nước",
-                            WordCategoryId = 7
+                            WordCategoryId = 8
                         },
                         new
                         {
@@ -1687,7 +1687,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9934),
                             VietnameseText = "Sữa chua",
-                            WordCategoryId = 7
+                            WordCategoryId = 8
                         },
                         new
                         {
@@ -1698,7 +1698,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9956),
                             VietnameseText = "Táo",
-                            WordCategoryId = 8
+                            WordCategoryId = 9
                         },
                         new
                         {
@@ -1709,7 +1709,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9958),
                             VietnameseText = "Bơ",
-                            WordCategoryId = 8
+                            WordCategoryId = 9
                         },
                         new
                         {
@@ -1720,7 +1720,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9960),
                             VietnameseText = "Chuối",
-                            WordCategoryId = 8
+                            WordCategoryId = 9
                         },
                         new
                         {
@@ -1731,7 +1731,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9963),
                             VietnameseText = "Thanh long",
-                            WordCategoryId = 8
+                            WordCategoryId = 9
                         },
                         new
                         {
@@ -1742,7 +1742,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9965),
                             VietnameseText = "Nho",
-                            WordCategoryId = 8
+                            WordCategoryId = 9
                         },
                         new
                         {
@@ -1753,7 +1753,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9967),
                             VietnameseText = "Ổi",
-                            WordCategoryId = 8
+                            WordCategoryId = 9
                         },
                         new
                         {
@@ -1764,7 +1764,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9974),
                             VietnameseText = "Kiwi",
-                            WordCategoryId = 8
+                            WordCategoryId = 9
                         },
                         new
                         {
@@ -1775,7 +1775,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9976),
                             VietnameseText = "Cam",
-                            WordCategoryId = 8
+                            WordCategoryId = 9
                         },
                         new
                         {
@@ -1786,7 +1786,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9978),
                             VietnameseText = "Đào",
-                            WordCategoryId = 8
+                            WordCategoryId = 9
                         },
                         new
                         {
@@ -1797,7 +1797,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9981),
                             VietnameseText = "Dứa",
-                            WordCategoryId = 8
+                            WordCategoryId = 9
                         },
                         new
                         {
@@ -1808,7 +1808,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9983),
                             VietnameseText = "Dâu tây",
-                            WordCategoryId = 8
+                            WordCategoryId = 9
                         },
                         new
                         {
@@ -1819,7 +1819,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 873, DateTimeKind.Local).AddTicks(9985),
                             VietnameseText = "Dưa hấu",
-                            WordCategoryId = 8
+                            WordCategoryId = 9
                         },
                         new
                         {
@@ -1830,7 +1830,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(4),
                             VietnameseText = "Một",
-                            WordCategoryId = 9
+                            WordCategoryId = 10
                         },
                         new
                         {
@@ -1841,7 +1841,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(6),
                             VietnameseText = "Hai",
-                            WordCategoryId = 9
+                            WordCategoryId = 10
                         },
                         new
                         {
@@ -1852,7 +1852,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(8),
                             VietnameseText = "Ba",
-                            WordCategoryId = 9
+                            WordCategoryId = 10
                         },
                         new
                         {
@@ -1863,7 +1863,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(11),
                             VietnameseText = "Bốn",
-                            WordCategoryId = 9
+                            WordCategoryId = 10
                         },
                         new
                         {
@@ -1874,7 +1874,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(13),
                             VietnameseText = "Năm",
-                            WordCategoryId = 9
+                            WordCategoryId = 10
                         },
                         new
                         {
@@ -1885,7 +1885,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(16),
                             VietnameseText = "Sáu",
-                            WordCategoryId = 9
+                            WordCategoryId = 10
                         },
                         new
                         {
@@ -1896,7 +1896,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(18),
                             VietnameseText = "Bảy",
-                            WordCategoryId = 9
+                            WordCategoryId = 10
                         },
                         new
                         {
@@ -1907,7 +1907,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(20),
                             VietnameseText = "Tám",
-                            WordCategoryId = 9
+                            WordCategoryId = 10
                         },
                         new
                         {
@@ -1918,7 +1918,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(22),
                             VietnameseText = "Chín",
-                            WordCategoryId = 9
+                            WordCategoryId = 10
                         },
                         new
                         {
@@ -1929,7 +1929,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(24),
                             VietnameseText = "Mười",
-                            WordCategoryId = 9
+                            WordCategoryId = 10
                         },
                         new
                         {
@@ -1940,7 +1940,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(44),
                             VietnameseText = "Lại lần nữa",
-                            WordCategoryId = 10
+                            WordCategoryId = 11
                         },
                         new
                         {
@@ -1951,7 +1951,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(46),
                             VietnameseText = "Em bé",
-                            WordCategoryId = 10
+                            WordCategoryId = 11
                         },
                         new
                         {
@@ -1962,7 +1962,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(48),
                             VietnameseText = "Cậu bé",
-                            WordCategoryId = 10
+                            WordCategoryId = 11
                         },
                         new
                         {
@@ -1973,7 +1973,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(50),
                             VietnameseText = "Bố",
-                            WordCategoryId = 10
+                            WordCategoryId = 11
                         },
                         new
                         {
@@ -1984,7 +1984,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(53),
                             VietnameseText = "Mọi người",
-                            WordCategoryId = 10
+                            WordCategoryId = 11
                         },
                         new
                         {
@@ -1995,7 +1995,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(55),
                             VietnameseText = "Cô bé",
-                            WordCategoryId = 10
+                            WordCategoryId = 11
                         },
                         new
                         {
@@ -2006,7 +2006,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(58),
                             VietnameseText = "Bà",
-                            WordCategoryId = 10
+                            WordCategoryId = 11
                         },
                         new
                         {
@@ -2017,7 +2017,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(60),
                             VietnameseText = "Ông",
-                            WordCategoryId = 10
+                            WordCategoryId = 11
                         },
                         new
                         {
@@ -2028,7 +2028,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(62),
                             VietnameseText = "Bao nhiêu tiền",
-                            WordCategoryId = 10
+                            WordCategoryId = 11
                         },
                         new
                         {
@@ -2039,7 +2039,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(64),
                             VietnameseText = "Mẹ",
-                            WordCategoryId = 10
+                            WordCategoryId = 11
                         },
                         new
                         {
@@ -2050,7 +2050,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(66),
                             VietnameseText = "Anh trai",
-                            WordCategoryId = 10
+                            WordCategoryId = 11
                         },
                         new
                         {
@@ -2061,7 +2061,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(68),
                             VietnameseText = "Chị gái",
-                            WordCategoryId = 10
+                            WordCategoryId = 11
                         },
                         new
                         {
@@ -2072,7 +2072,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(71),
                             VietnameseText = "Cái gì",
-                            WordCategoryId = 10
+                            WordCategoryId = 11
                         },
                         new
                         {
@@ -2083,7 +2083,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(73),
                             VietnameseText = "Khi nào",
-                            WordCategoryId = 10
+                            WordCategoryId = 11
                         },
                         new
                         {
@@ -2094,7 +2094,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(75),
                             VietnameseText = "Ở đâu",
-                            WordCategoryId = 10
+                            WordCategoryId = 11
                         },
                         new
                         {
@@ -2105,7 +2105,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(77),
                             VietnameseText = "Cái nào",
-                            WordCategoryId = 10
+                            WordCategoryId = 11
                         },
                         new
                         {
@@ -2116,7 +2116,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(79),
                             VietnameseText = "Ai",
-                            WordCategoryId = 10
+                            WordCategoryId = 11
                         },
                         new
                         {
@@ -2127,7 +2127,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(81),
                             VietnameseText = "Tại sao",
-                            WordCategoryId = 10
+                            WordCategoryId = 11
                         },
                         new
                         {
@@ -2138,7 +2138,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(84),
                             VietnameseText = "Em trai",
-                            WordCategoryId = 10
+                            WordCategoryId = 11
                         },
                         new
                         {
@@ -2149,7 +2149,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(86),
                             VietnameseText = "Em gái",
-                            WordCategoryId = 10
+                            WordCategoryId = 11
                         },
                         new
                         {
@@ -2160,7 +2160,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(89),
                             VietnameseText = "Mấy giờ",
-                            WordCategoryId = 10
+                            WordCategoryId = 11
                         },
                         new
                         {
@@ -2171,7 +2171,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(112),
                             VietnameseText = "Thủy cung",
-                            WordCategoryId = 11
+                            WordCategoryId = 12
                         },
                         new
                         {
@@ -2182,7 +2182,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(114),
                             VietnameseText = "Phòng tắm",
-                            WordCategoryId = 11
+                            WordCategoryId = 12
                         },
                         new
                         {
@@ -2193,7 +2193,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(117),
                             VietnameseText = "Phòng ngủ",
-                            WordCategoryId = 11
+                            WordCategoryId = 12
                         },
                         new
                         {
@@ -2204,7 +2204,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(119),
                             VietnameseText = "Bệnh viện",
-                            WordCategoryId = 11
+                            WordCategoryId = 12
                         },
                         new
                         {
@@ -2215,7 +2215,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(121),
                             VietnameseText = "Ngôi nhà",
-                            WordCategoryId = 11
+                            WordCategoryId = 12
                         },
                         new
                         {
@@ -2226,7 +2226,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(123),
                             VietnameseText = "Nhà bếp",
-                            WordCategoryId = 11
+                            WordCategoryId = 12
                         },
                         new
                         {
@@ -2237,7 +2237,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(125),
                             VietnameseText = "Phòng khách",
-                            WordCategoryId = 11
+                            WordCategoryId = 12
                         },
                         new
                         {
@@ -2248,7 +2248,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(127),
                             VietnameseText = "Công viên",
-                            WordCategoryId = 11
+                            WordCategoryId = 12
                         },
                         new
                         {
@@ -2259,7 +2259,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(130),
                             VietnameseText = "Trường học",
-                            WordCategoryId = 11
+                            WordCategoryId = 12
                         },
                         new
                         {
@@ -2270,7 +2270,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(132),
                             VietnameseText = "Siêu thị",
-                            WordCategoryId = 11
+                            WordCategoryId = 12
                         },
                         new
                         {
@@ -2281,7 +2281,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(134),
                             VietnameseText = "Nhà vệ sinh",
-                            WordCategoryId = 11
+                            WordCategoryId = 12
                         },
                         new
                         {
@@ -2292,7 +2292,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(137),
                             VietnameseText = "Sở thú",
-                            WordCategoryId = 11
+                            WordCategoryId = 12
                         },
                         new
                         {
@@ -2303,7 +2303,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(156),
                             VietnameseText = "Lại lần nữa",
-                            WordCategoryId = 12
+                            WordCategoryId = 13
                         },
                         new
                         {
@@ -2314,7 +2314,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(158),
                             VietnameseText = "Bao nhiêu tiền",
-                            WordCategoryId = 12
+                            WordCategoryId = 13
                         },
                         new
                         {
@@ -2325,7 +2325,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(160),
                             VietnameseText = "Mấy giờ",
-                            WordCategoryId = 12
+                            WordCategoryId = 13
                         },
                         new
                         {
@@ -2336,7 +2336,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(162),
                             VietnameseText = "Cái gì",
-                            WordCategoryId = 12
+                            WordCategoryId = 13
                         },
                         new
                         {
@@ -2347,7 +2347,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(165),
                             VietnameseText = "Khi nào",
-                            WordCategoryId = 12
+                            WordCategoryId = 13
                         },
                         new
                         {
@@ -2358,7 +2358,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(167),
                             VietnameseText = "Ở đâu",
-                            WordCategoryId = 12
+                            WordCategoryId = 13
                         },
                         new
                         {
@@ -2369,7 +2369,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(169),
                             VietnameseText = "Cái nào",
-                            WordCategoryId = 12
+                            WordCategoryId = 13
                         },
                         new
                         {
@@ -2380,7 +2380,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(171),
                             VietnameseText = "Ai",
-                            WordCategoryId = 12
+                            WordCategoryId = 13
                         },
                         new
                         {
@@ -2391,7 +2391,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(173),
                             VietnameseText = "Tại sao",
-                            WordCategoryId = 12
+                            WordCategoryId = 13
                         },
                         new
                         {
@@ -2402,7 +2402,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(196),
                             VietnameseText = "Ở trên",
-                            WordCategoryId = 13
+                            WordCategoryId = 14
                         },
                         new
                         {
@@ -2413,7 +2413,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(198),
                             VietnameseText = "Phía sau",
-                            WordCategoryId = 13
+                            WordCategoryId = 14
                         },
                         new
                         {
@@ -2424,7 +2424,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(200),
                             VietnameseText = "Ở dưới",
-                            WordCategoryId = 13
+                            WordCategoryId = 14
                         },
                         new
                         {
@@ -2435,7 +2435,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(203),
                             VietnameseText = "Ít",
-                            WordCategoryId = 13
+                            WordCategoryId = 14
                         },
                         new
                         {
@@ -2446,7 +2446,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(205),
                             VietnameseText = "Nặng",
-                            WordCategoryId = 13
+                            WordCategoryId = 14
                         },
                         new
                         {
@@ -2457,7 +2457,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(207),
                             VietnameseText = "Cao",
-                            WordCategoryId = 13
+                            WordCategoryId = 14
                         },
                         new
                         {
@@ -2468,7 +2468,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(209),
                             VietnameseText = "Phía trước",
-                            WordCategoryId = 13
+                            WordCategoryId = 14
                         },
                         new
                         {
@@ -2479,7 +2479,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(211),
                             VietnameseText = "Ở trong",
-                            WordCategoryId = 13
+                            WordCategoryId = 14
                         },
                         new
                         {
@@ -2490,7 +2490,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(213),
                             VietnameseText = "Lớn",
-                            WordCategoryId = 13
+                            WordCategoryId = 14
                         },
                         new
                         {
@@ -2501,7 +2501,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(216),
                             VietnameseText = "Nhẹ",
-                            WordCategoryId = 13
+                            WordCategoryId = 14
                         },
                         new
                         {
@@ -2512,7 +2512,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(218),
                             VietnameseText = "Dài",
-                            WordCategoryId = 13
+                            WordCategoryId = 14
                         },
                         new
                         {
@@ -2523,7 +2523,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(220),
                             VietnameseText = "Thấp",
-                            WordCategoryId = 13
+                            WordCategoryId = 14
                         },
                         new
                         {
@@ -2534,7 +2534,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(222),
                             VietnameseText = "Nhiều",
-                            WordCategoryId = 13
+                            WordCategoryId = 14
                         },
                         new
                         {
@@ -2545,7 +2545,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(224),
                             VietnameseText = "Bên ngoài",
-                            WordCategoryId = 13
+                            WordCategoryId = 14
                         },
                         new
                         {
@@ -2556,7 +2556,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(226),
                             VietnameseText = "Ngắn",
-                            WordCategoryId = 13
+                            WordCategoryId = 14
                         },
                         new
                         {
@@ -2567,7 +2567,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(229),
                             VietnameseText = "Nhỏ",
-                            WordCategoryId = 13
+                            WordCategoryId = 14
                         },
                         new
                         {
@@ -2578,7 +2578,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(231),
                             VietnameseText = "Dày",
-                            WordCategoryId = 13
+                            WordCategoryId = 14
                         },
                         new
                         {
@@ -2589,7 +2589,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(233),
                             VietnameseText = "Mỏng",
-                            WordCategoryId = 13
+                            WordCategoryId = 14
                         },
                         new
                         {
@@ -2600,7 +2600,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(254),
                             VietnameseText = "Buổi chiều",
-                            WordCategoryId = 14
+                            WordCategoryId = 15
                         },
                         new
                         {
@@ -2611,7 +2611,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(257),
                             VietnameseText = "Buổi tối",
-                            WordCategoryId = 14
+                            WordCategoryId = 15
                         },
                         new
                         {
@@ -2622,7 +2622,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(259),
                             VietnameseText = "Buổi sáng",
-                            WordCategoryId = 14
+                            WordCategoryId = 15
                         },
                         new
                         {
@@ -2633,7 +2633,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(261),
                             VietnameseText = "Ban đêm",
-                            WordCategoryId = 14
+                            WordCategoryId = 15
                         },
                         new
                         {
@@ -2644,7 +2644,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(263),
                             VietnameseText = "Một giờ",
-                            WordCategoryId = 14
+                            WordCategoryId = 15
                         },
                         new
                         {
@@ -2655,7 +2655,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(266),
                             VietnameseText = "Mười phút",
-                            WordCategoryId = 14
+                            WordCategoryId = 15
                         },
                         new
                         {
@@ -2666,7 +2666,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(268),
                             VietnameseText = "Ba mươi phút",
-                            WordCategoryId = 14
+                            WordCategoryId = 15
                         },
                         new
                         {
@@ -2677,7 +2677,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(270),
                             VietnameseText = "Hôm nay",
-                            WordCategoryId = 14
+                            WordCategoryId = 15
                         },
                         new
                         {
@@ -2688,7 +2688,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(272),
                             VietnameseText = "Ngày mai",
-                            WordCategoryId = 14
+                            WordCategoryId = 15
                         },
                         new
                         {
@@ -2699,7 +2699,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(275),
                             VietnameseText = "Hôm qua",
-                            WordCategoryId = 14
+                            WordCategoryId = 15
                         },
                         new
                         {
@@ -2710,7 +2710,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(293),
                             VietnameseText = "Bóng",
-                            WordCategoryId = 15
+                            WordCategoryId = 16
                         },
                         new
                         {
@@ -2721,7 +2721,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(296),
                             VietnameseText = "Bóng bay",
-                            WordCategoryId = 15
+                            WordCategoryId = 16
                         },
                         new
                         {
@@ -2732,7 +2732,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(298),
                             VietnameseText = "Gấu bông",
-                            WordCategoryId = 15
+                            WordCategoryId = 16
                         },
                         new
                         {
@@ -2743,7 +2743,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(300),
                             VietnameseText = "Khối xếp hình",
-                            WordCategoryId = 15
+                            WordCategoryId = 16
                         },
                         new
                         {
@@ -2754,7 +2754,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(302),
                             VietnameseText = "Cờ bàn",
-                            WordCategoryId = 15
+                            WordCategoryId = 16
                         },
                         new
                         {
@@ -2765,7 +2765,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(304),
                             VietnameseText = "Bong bóng xà phòng",
-                            WordCategoryId = 15
+                            WordCategoryId = 16
                         },
                         new
                         {
@@ -2776,7 +2776,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(306),
                             VietnameseText = "Xe hơi",
-                            WordCategoryId = 15
+                            WordCategoryId = 16
                         },
                         new
                         {
@@ -2787,7 +2787,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(308),
                             VietnameseText = "Đất nặn",
-                            WordCategoryId = 15
+                            WordCategoryId = 16
                         },
                         new
                         {
@@ -2798,7 +2798,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(311),
                             VietnameseText = "Tô màu",
-                            WordCategoryId = 15
+                            WordCategoryId = 16
                         },
                         new
                         {
@@ -2809,7 +2809,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(313),
                             VietnameseText = "Bút màu",
-                            WordCategoryId = 15
+                            WordCategoryId = 16
                         },
                         new
                         {
@@ -2820,7 +2820,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(315),
                             VietnameseText = "Búp bê",
-                            WordCategoryId = 15
+                            WordCategoryId = 16
                         },
                         new
                         {
@@ -2831,7 +2831,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(317),
                             VietnameseText = "Diều",
-                            WordCategoryId = 15
+                            WordCategoryId = 16
                         },
                         new
                         {
@@ -2842,7 +2842,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(320),
                             VietnameseText = "Trò chơi ghép hình",
-                            WordCategoryId = 15
+                            WordCategoryId = 16
                         },
                         new
                         {
@@ -2853,7 +2853,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(322),
                             VietnameseText = "Tivi",
-                            WordCategoryId = 15
+                            WordCategoryId = 16
                         },
                         new
                         {
@@ -2864,7 +2864,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(324),
                             VietnameseText = "Đồ chơi",
-                            WordCategoryId = 15
+                            WordCategoryId = 16
                         },
                         new
                         {
@@ -2875,7 +2875,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(345),
                             VietnameseText = "Máy bay",
-                            WordCategoryId = 16
+                            WordCategoryId = 17
                         },
                         new
                         {
@@ -2886,7 +2886,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(347),
                             VietnameseText = "Xe đạp",
-                            WordCategoryId = 16
+                            WordCategoryId = 17
                         },
                         new
                         {
@@ -2897,7 +2897,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(349),
                             VietnameseText = "Xe buýt",
-                            WordCategoryId = 16
+                            WordCategoryId = 17
                         },
                         new
                         {
@@ -2908,7 +2908,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(351),
                             VietnameseText = "Xe hơi",
-                            WordCategoryId = 16
+                            WordCategoryId = 17
                         },
                         new
                         {
@@ -2919,7 +2919,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(353),
                             VietnameseText = "Xe máy",
-                            WordCategoryId = 16
+                            WordCategoryId = 17
                         },
                         new
                         {
@@ -2930,7 +2930,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(355),
                             VietnameseText = "Tàu thủy",
-                            WordCategoryId = 16
+                            WordCategoryId = 17
                         },
                         new
                         {
@@ -2941,7 +2941,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(371),
                             VietnameseText = "Ôm",
-                            WordCategoryId = 17
+                            WordCategoryId = 18
                         },
                         new
                         {
@@ -2974,7 +2974,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(378),
                             VietnameseText = "Không",
-                            WordCategoryId = 17
+                            WordCategoryId = 18
                         },
                         new
                         {
@@ -2985,7 +2985,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(380),
                             VietnameseText = "Xin lỗi",
-                            WordCategoryId = 17
+                            WordCategoryId = 18
                         },
                         new
                         {
@@ -2996,7 +2996,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(382),
                             VietnameseText = "Cảm ơn",
-                            WordCategoryId = 17
+                            WordCategoryId = 18
                         },
                         new
                         {
@@ -3007,7 +3007,7 @@ namespace IWant.DataAccess.Migrations
                             Status = true,
                             UpdatedAt = new DateTime(2025, 3, 3, 13, 27, 58, 874, DateTimeKind.Local).AddTicks(384),
                             VietnameseText = "Có",
-                            WordCategoryId = 17
+                            WordCategoryId = 18
                         });
                 });
 

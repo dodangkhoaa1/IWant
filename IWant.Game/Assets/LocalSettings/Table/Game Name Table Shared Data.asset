@@ -39,6 +39,10 @@ MonoBehaviour:
     m_Key: TowerBuildKey
     m_Metadata:
       m_Items: []
+  - m_Id: 17622846326853632
+    m_Key: EmotionKey
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

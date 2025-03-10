@@ -19,14 +19,14 @@ public class PencilContainer : MonoBehaviour
     private PencilManager pencilManager;
     private Color color;
 
-    // Start is called before the first frame update
+    // Allow to initialize positions
     void Awake()
     {
         unSelectedPosition = pencilParent.anchoredPosition;
         selectedPosition = unSelectedPosition + moveMagnitude * Vector2.right;
     }
 
-    // Update is called once per frame
+    // Allow to check for input and select/unselect
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.S))
@@ -35,6 +35,7 @@ public class PencilContainer : MonoBehaviour
             Unselect();
     }
 
+    // Allow to configure the pencil container
     public void Configure(Color color, PencilManager pencilManager)
     {
         this.color = color;
@@ -44,22 +45,26 @@ public class PencilContainer : MonoBehaviour
         this.pencilManager = pencilManager;
     }
 
-    public void ClickedCallback(){
+    // Allow to handle click callback
+    public void ClickedCallback()
+    {
         pencilManager.PencilContainerClickedCallback(this);
     }
 
+    // Allow to select the pencil container
     public void Select()
     {
         LeanTween.cancel(pencilParent);
         LeanTween.move(pencilParent, selectedPosition, moveDuration).setEase(LeanTweenType.easeInOutCubic);
     }
 
+    // Allow to unselect the pencil container
     public void Unselect()
     {
         LeanTween.cancel(pencilParent);
         LeanTween.move(pencilParent, unSelectedPosition, moveDuration).setEase(LeanTweenType.easeInOutCubic);
-
     }
 
+    // Allow to get the color of the pencil container
     public Color GetColor() => this.color;
 }

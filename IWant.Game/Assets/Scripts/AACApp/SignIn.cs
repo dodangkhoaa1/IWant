@@ -16,15 +16,21 @@ public class SignIn : MonoBehaviour
 
     public Button submitButton;
     private string toastString;
+
+    // Allow to set the screen orientation to portrait mode
     private void Awake()
     {
         Screen.orientation = ScreenOrientation.Portrait;
     }
+
+    // Allow to initiate the sign-in process
     public void CallSignIn()
     {
+
         StartCoroutine(SignInMethod());
     }
 
+    // Allow to handle the sign-in process asynchronously
     IEnumerator SignInMethod()
     {
         if (string.IsNullOrEmpty(usernameField.text) || string.IsNullOrEmpty(passwordField.text))
@@ -60,41 +66,59 @@ public class SignIn : MonoBehaviour
 
                     if (response != null && !string.IsNullOrEmpty(response.FullName))
                     {
-                        if (response.Status)
+                        if (response.Status == true)
                         {
+                            //DBManager.USER_DATA = (UserResponseDTO)response;
+                            // Chuyển đổi response thành JSON và lưu vào PlayerPrefs
+                            string userJson = JsonConvert.SerializeObject(response);
+                            DBManager.USER_DATA = userJson;
+
+                            Debug.Log("User data saved to PlayerPrefs: " + userJson);
+
+                            // Xử lý đăng nhập thành công
                             string[] wordInName = response.FullName.Trim().Split(" ");
                             string lastName = wordInName[wordInName.Length - 1];
                             DBManager.fullName = lastName;
-                            DBManager.gender = response.Gender ? Gender.Male : Gender.Female;
+                            DBManager.gender = response.Gender == true ? Gender.Male : Gender.Female;
 
                             Debug.Log($"The gender of {DBManager.fullName} is {DBManager.gender.ToString()}");
-                            toastString = PrefsKey.LANGUAGE == PrefsKey.ENGLISH_CODE ? $"User login successful. Welcome, {response.FullName}!" : $"Đăng nhập thành công. Chào mừng, {response.FullName}!";
+                            toastString = PrefsKey.LANGUAGE == PrefsKey.ENGLISH_CODE
+                                ? $"User login successful. Welcome, {response.FullName}!"
+                                : $"Đăng nhập thành công. Chào mừng, {response.FullName}!";
+
                             Toast.Show(toastString, 1.5f, ToastColor.Green, ToastPosition.BottomCenter);
                             SceneManager.LoadScene(sceneToLoad.ToString());
                         }
                         else
                         {
-                            toastString = PrefsKey.LANGUAGE == PrefsKey.ENGLISH_CODE ? $"Sign in fail! The user {response.FullName} was not vailable!" 
-                                                                                    : $"Đăng nhập thất bại! Tài khoản {response.FullName} đã hết hạn! Vui lòng thử lại với tài khoản khác!";
+                            toastString = PrefsKey.LANGUAGE == PrefsKey.ENGLISH_CODE
+                                ? $"Sign in fail! The user {response.FullName} was not available!"
+                                : $"Đăng nhập thất bại! Tài khoản {response.FullName} đã hết hạn! Vui lòng thử lại với tài khoản khác!";
+
                             Toast.Show(toastString, 1.5f, ToastColor.Red, ToastPosition.BottomCenter);
                         }
-
-                       
                     }
                     else
                     {
                         Debug.LogWarning("Unexpected response format. Response: " + responseText);
-                        toastString = PrefsKey.LANGUAGE == PrefsKey.ENGLISH_CODE ? "Invalid response from server. Please try again." : "Phản hồi từ máy chủ không hợp lệ. Vui lòng thử lại.";
+                        toastString = PrefsKey.LANGUAGE == PrefsKey.ENGLISH_CODE
+                            ? "Invalid response from server. Please try again."
+                            : "Phản hồi từ máy chủ không hợp lệ. Vui lòng thử lại.";
+
                         Toast.Show(toastString, 1.5f, ToastColor.Red, ToastPosition.BottomCenter);
                     }
                 }
                 catch (Exception ex)
                 {
                     Debug.LogError($"Failed to parse server response: {ex.Message}\nResponse: {responseText}");
-                    toastString = PrefsKey.LANGUAGE == PrefsKey.ENGLISH_CODE ? "An error occurred while processing the server response." : "Xảy ra lỗi trong quá trình phản hồi từ máy chủ. Vui lòng thử lại.";
+                    toastString = PrefsKey.LANGUAGE == PrefsKey.ENGLISH_CODE
+                        ? "An error occurred while processing the server response."
+                        : "Xảy ra lỗi trong quá trình phản hồi từ máy chủ. Vui lòng thử lại.";
+
                     Toast.Show(toastString, 1.5f, ToastColor.Red, ToastPosition.BottomCenter);
                 }
             },
+
             onError: error =>
             {
                 Debug.LogWarning($"Login request error: {error}");
@@ -104,8 +128,24 @@ public class SignIn : MonoBehaviour
         );
     }
 
+    // Allow to verify the input fields and enable/disable the submit button
     public void VerifyInputs()
     {
         submitButton.interactable = (usernameField.text.Length >= 8 && passwordField.text.Length >= 8);
     }
+    private void Start()
+    {
+        if (!string.IsNullOrEmpty(DBManager.USER_DATA))
+        {
+            SceneManager.LoadScene(sceneToLoad.ToString());
+        }
+    }
+    public void QuitGame()
+    {
+        Debug.Log("Game is exiting...");
+        Application.Quit();
+    }
+    
+
+    
 }

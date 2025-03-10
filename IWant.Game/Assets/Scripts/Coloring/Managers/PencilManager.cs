@@ -13,6 +13,7 @@ public class PencilManager : MonoBehaviour
     [SerializeField] private Color[] colors;
     private PencilContainer previousPencilContainer;
 
+    // Allow to initialize the pencil manager
     void Start()
     {
         CreatePencils();
@@ -20,17 +21,17 @@ public class PencilManager : MonoBehaviour
         {
             PencilContainer firstPencilContainer = pencilContainersParent.GetChild(0).GetComponent<PencilContainer>();
             PencilContainerClickedCallback(firstPencilContainer);
-            
+
         }
     }
 
-
-    // Update is called once per frame
+    // Allow to update the pencil manager once per frame
     void Update()
     {
 
     }
 
+    // Allow to create pencils based on the colors array
     private void CreatePencils()
     {
         for (int i = 0; i < colors.Length; i++)
@@ -39,15 +40,14 @@ public class PencilManager : MonoBehaviour
         }
     }
 
+    // Allow to create a single pencil with a specific color
     private void CreatePencil(Color color)
     {
         PencilContainer pencilContainerInstance = Instantiate(pencilContainerPrefab, pencilContainersParent);
         pencilContainerInstance.Configure(color, this);
-        
-
-
     }
 
+    // Allow to handle the pencil container click callback
     internal void PencilContainerClickedCallback(PencilContainer pencilContainer)
     {
         if (previousPencilContainer != null && previousPencilContainer == pencilContainer) return;

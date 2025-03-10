@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName ="BrushData", menuName ="Scriptable Objects/Brush Data", order = 0)]
+[CreateAssetMenu(fileName ="BrushData", menuName ="Scriptable Objects/Brush Data")]
 public class BrushData : ScriptableObject
 {
     //Texture
