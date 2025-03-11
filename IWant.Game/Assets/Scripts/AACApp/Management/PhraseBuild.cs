@@ -296,15 +296,15 @@ public class PhraseBuild : MonoBehaviour
             }
         }
     }
-    public bool ContainsWord(string wordText)
+    public Transform ContainsWord(string wordText)
     {
         foreach (Transform child in phraseContainer)
         {
             if (child.GetComponentInChildren<TextMeshProUGUI>().text == wordText)
             {
-                return true;
+                return child;
             }
         }
-        return false;
+        return null;
     }
 }

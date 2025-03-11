@@ -121,7 +121,7 @@ public class PersonalWordManagement : MonoBehaviour
     {
         if (Application.platform == RuntimePlatform.WindowsEditor || Application.platform == RuntimePlatform.WindowsPlayer)
         {
-            //PickImageFromFileExplorer();
+            PickImageFromFileExplorer();
         }
         else if (Application.platform == RuntimePlatform.Android)
         {
@@ -160,17 +160,17 @@ public class PersonalWordManagement : MonoBehaviour
         }
     }
 
-    //private void PickImageFromFileExplorer()
-    //{
-    //    string path = UnityEditor.EditorUtility.OpenFilePanel("Select an image", "", "png,jpg,jpeg");
-    //    if (!string.IsNullOrEmpty(path))
-    //    {
-    //        byte[] fileData = System.IO.File.ReadAllBytes(path);
-    //        Texture2D texture = new Texture2D(2, 2);
-    //        texture.LoadImage(fileData);
-    //        displaySelectedImage.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
-    //    }
-    //}
+    private void PickImageFromFileExplorer()
+    {
+        string path = UnityEditor.EditorUtility.OpenFilePanel("Select an image", "", "png,jpg,jpeg");
+        if (!string.IsNullOrEmpty(path))
+        {
+            byte[] fileData = System.IO.File.ReadAllBytes(path);
+            Texture2D texture = new Texture2D(2, 2);
+            texture.LoadImage(fileData);
+            displaySelectedImage.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+        }
+    }
 
     private void OnCreatePersonalBtnClicked()
     {
