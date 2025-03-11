@@ -16,3 +16,4 @@ MonoBehaviour:
   groupWordSprite: {fileID: 21300000, guid: ad690e9bd5e09b24fa2b5ca97ed1b704, type: 3}
   VietnameseText: "Con Mu\u1ED1n N\xF3i Chuy\u1EC7n"
   EnglishText: I Want Talk
+  nextCategoryId: 11

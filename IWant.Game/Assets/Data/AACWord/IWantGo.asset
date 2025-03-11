@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 91c3889224f3b624dbe8cfc8c236a8b1, type: 3}
-  m_Name: IWantWash
+  m_Name: IWantGo
   m_EditorClassIdentifier: 
-  aacWordsId: e300000015000000
-  groupWordSprite: {fileID: 21300000, guid: 355aa77d0234b824a89a948508c7fbe7, type: 3}
-  VietnameseText: "Con Mu\u1ED1n R\u1EEDa"
-  EnglishText: I Want Wash
-  nextCategoryId: 4
+  aacWordsId: e300000014000000
+  groupWordSprite: {fileID: 21300000, guid: 86922784eac8ec041925f730bea58327, type: 3}
+  VietnameseText: "Con Mu\u1ED1n \u0110i"
+  EnglishText: I Want Go
+  nextCategoryId: 12

@@ -424,7 +424,7 @@ public class AACWordSpawner : MonoBehaviour
 
                         // Remove the word button from phraseContainer if it already exists
                         Transform exitedWord = phraseBuild.ContainsWord(word.EnglishText);
-                        if (exitedWord!=null)
+                        if (exitedWord != null)
                         {
                             StartCoroutine(phraseBuild.RemoveFromList(exitedWord.gameObject));
 
@@ -435,6 +435,20 @@ public class AACWordSpawner : MonoBehaviour
 
                         // Disable the original button in the suggestion list
                         newSuggestBtn.interactable = false;
+
+                        if (suggestWord.nextCategoryId != 0)
+                        {
+                            SpawnWords(suggestWord.nextCategoryId);
+
+                            //get corresponding child 
+                            int indexOfCategoryInContainer = suggestWord.nextCategoryId + 1;
+                            // Highlight the corresponding category button
+                            Button correspondingCategoryButton = categoryContainer.transform.GetChild(suggestWord.nextCategoryId + 1).GetComponent<Button>();
+                            if (correspondingCategoryButton != null)
+                            {
+                                HighlightCategoryButton(correspondingCategoryButton);
+                            }
+                        }
                     }
                 }
             });
