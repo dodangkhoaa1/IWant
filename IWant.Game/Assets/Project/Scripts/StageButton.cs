@@ -17,9 +17,16 @@ namespace Connect.Core
 
         private void ClickedButton()
         {
-            GameManager.Instance.CurrentStage = _stageNumber;
-            GameManager.Instance.StageName = _stageName;
-            MainMenuManager.Instance.ClickedStage(_stageName, _stageColor);
+            GameManagerDotGame.Instance.CurrentStage = _stageNumber;
+            GameManagerDotGame.Instance.StageName = _stageName;
+
+            // Store the selected stage information in PlayerPrefs
+            PlayerPrefs.SetInt("SelectedStageNumber", _stageNumber);
+            PlayerPrefs.SetString("SelectedStageName", _stageName);
+            PlayerPrefs.SetString("SelectedStageColor", ColorUtility.ToHtmlStringRGBA(_stageColor));
+
+
+            UIManagerDotGame.instance.ClickedStage(_stageName, _stageColor);
         }
 
     }

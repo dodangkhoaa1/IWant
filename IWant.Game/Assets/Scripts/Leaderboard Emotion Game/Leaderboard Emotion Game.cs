@@ -58,32 +58,6 @@ public class LeaderboardEmotionGame: MonoBehaviour
         }
     }
 
-    //private void OnSubmitButtonClicked()//Bam nut
-    //{
-    //    string playerName = playerNameInput.text.Trim();
-    //    int bestScore = ScoreManagerEmotionGame.instance.GetBestScore();
-
-    //    if (string.IsNullOrEmpty(playerName))
-    //    {
-    //        Toast.Show("Please enter name before submitting!", 3f, ToastColor.Red, ToastPosition.BottomCenter);
-    //        return;
-    //    }
-
-    //    // Assuming member_id is available here
-    //    string userId = playerAuthenticate.PlayerId; // Replace with actual member_id
-    //    SubmitScoreWithMetadata(playerName, bestScore, userId);
-
-    //    // Call the method in PlayerLeaderboard to set the best score
-    //    playerLeaderboard.OnSubmitButtonClicked(userId);
-
-    //    // Call the method in PlayerLeaderboard to set the player name
-    //    playerLeaderboard.SetPlayerName(playerName);
-
-    //    // Clear the input field after successful submission
-    //    playerNameInput.text = string.Empty;
-
-    //    Toast.Show("Score sent successfully!", 3f, ToastColor.Green, ToastPosition.BottomCenter);
-    //}
     private void OnSubmitScoreClicked()//Auto gửi
     {
         int bestScore = ScoreManagerEmotionGame.instance.GetBestScore();

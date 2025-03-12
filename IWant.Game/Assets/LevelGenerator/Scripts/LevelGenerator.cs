@@ -1,4 +1,4 @@
-using Connect.Common;
+﻿using Connect.Common;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -72,7 +72,6 @@ namespace Connect.Generator
             }
         }
 
-
         #endregion
 
         #region BUTTON_FUNCTION
@@ -123,21 +122,53 @@ namespace Connect.Generator
 
             if (!Levels.ContainsKey(currentLevelName))
             {
-#if UNITY_EDITOR
-                currentLevelData = ScriptableObject.CreateInstance<LevelData>();
-                AssetDatabase.CreateAsset(currentLevelData, "Assets/Common/Prefabs/Levels/" +
-                    currentLevelName + ".asset");
-                AssetDatabase.SaveAssets();
-#endif
-                Levels[currentLevelName] = currentLevelData;
-                _allLevelList.Levels.Add(currentLevelData);
+//#if UNITY_EDITOR
+//                string assetPath = "Assets/Common/Prefabs/Levels/" + currentLevelName + ".asset";
+//                LevelData existingAsset = AssetDatabase.LoadAssetAtPath<LevelData>(assetPath);
+
+//                if (existingAsset == null)
+//                {
+//                    currentLevelData = ScriptableObject.CreateInstance<LevelData>();
+//                    AssetDatabase.CreateAsset(currentLevelData, assetPath);
+//                }
+//                else
+//                {
+//                    currentLevelData = existingAsset;
+//                }
+
+//                // Ensure data is always updated correctly
+//                currentLevelData.LevelName = currentLevelName;
+//                currentLevelData.Edges = new List<Edge>();
+
+//                EditorUtility.SetDirty(currentLevelData);
+//                AssetDatabase.SaveAssets();
+
+//                // Add to dictionary if not already present
+//                if (!Levels.ContainsKey(currentLevelName))
+//                {
+//                    Levels[currentLevelName] = currentLevelData;
+//                }
+
+//                // Add to level list if not already present
+//                if (!_allLevelList.Levels.Contains(currentLevelData))
+//                {
+//                    _allLevelList.Levels.Add(currentLevelData);
+//                    EditorUtility.SetDirty(_allLevelList);
+//                    AssetDatabase.SaveAssets();
+//                }
+//#endif
             }
 
             currentLevelData = Levels[currentLevelName];
             currentLevelData.LevelName = currentLevelName;
-            currentLevelData.Edges = new List<Edge>();
+            if (currentLevelData.Edges == null)
+            {
+                currentLevelData.Edges = new List<Edge>();
+            }
 
             GetComponent<GenerateMethod>().Generate();
+           // EditorUtility.SetDirty(currentLevelData);
+            //AssetDatabase.SaveAssets();
         }
 
         #endregion
@@ -168,22 +199,58 @@ namespace Connect.Generator
 
             if (!Levels.ContainsKey(currentLevelName))
             {
-#if UNITY_EDITOR
-                currentLevelData = ScriptableObject.CreateInstance<LevelData>();
-                AssetDatabase.CreateAsset(currentLevelData, "Assets/Common/Prefabs/Levels/" +
-                    currentLevelName + ".asset");
-                AssetDatabase.SaveAssets();
-#endif
-                Levels[currentLevelName] = currentLevelData;
-                _allLevelList.Levels.Add(currentLevelData);
+//#if UNITY_EDITOR
+//                string assetPath = "Assets/Common/Prefabs/Levels/" + currentLevelName + ".asset";
+//                LevelData existingAsset = AssetDatabase.LoadAssetAtPath<LevelData>(assetPath);
+
+//                if (existingAsset == null)
+//                {
+//                    currentLevelData = ScriptableObject.CreateInstance<LevelData>();
+//                    AssetDatabase.CreateAsset(currentLevelData, assetPath);
+//                }
+//                else
+//                {
+//                    currentLevelData = existingAsset;
+//                }
+
+//                // Ensure data is always updated correctly
+//                currentLevelData.LevelName = currentLevelName;
+//                currentLevelData.Edges = new List<Edge>();
+
+//                EditorUtility.SetDirty(currentLevelData);
+//                AssetDatabase.SaveAssets();
+
+//                // Add to dictionary if not already present
+//                if (!Levels.ContainsKey(currentLevelName))
+//                {
+//                    Levels[currentLevelName] = currentLevelData;
+//                }
+
+//                // Add to level list if not already present
+//                if (!_allLevelList.Levels.Contains(currentLevelData))
+//                {
+//                    _allLevelList.Levels.Add(currentLevelData);
+//                    EditorUtility.SetDirty(_allLevelList);
+//                    AssetDatabase.SaveAssets();
+//                }
+//                else
+//                {
+//                    Debug.LogError("_allLevelList is not assigned in LevelGenerator.");
+//                }
+//#endif
             }
 
             currentLevelData = Levels[currentLevelName];
             currentLevelData.LevelName = currentLevelName;
-            currentLevelData.Edges = new List<Edge>();
+            if (currentLevelData.Edges == null)
+            {
+                currentLevelData.Edges = new List<Edge>();
+            }
 
             yield return GetComponent<LevelGeneratorSingle>().Generate();
             currentLevelData.Edges = result.Edges;
+            //EditorUtility.SetDirty(currentLevelData);
+            //AssetDatabase.SaveAssets();
             RenderGrid(result._grid);
         }
 
@@ -194,7 +261,7 @@ namespace Connect.Generator
         #region NODE_RENDERING
 
         private List<Point> directions = new List<Point>()
-        { Point.up,Point.down,Point.left,Point.right};
+            { Point.up,Point.down,Point.left,Point.right};
 
         public void RenderGrid(Dictionary<Point, int> grid)
         {
@@ -229,7 +296,7 @@ namespace Connect.Generator
 
         private Point[] neighbourPoints = new Point[]
         {
-            Point.up,Point.left,Point.down, Point.right
+                Point.up,Point.left,Point.down, Point.right
         };
 
         public void RenderGrid(int[,] grid)

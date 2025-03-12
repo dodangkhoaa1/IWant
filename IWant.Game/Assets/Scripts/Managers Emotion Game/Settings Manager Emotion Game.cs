@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System;
 using System.Collections;
+using Connect.Core;
 
 public class SettingsManagerEmotionGame : MonoBehaviour
 {
@@ -14,8 +15,6 @@ public class SettingsManagerEmotionGame : MonoBehaviour
     [SerializeField] private Button iconClose;
     [SerializeField] private GameObject settingsPanel;
     [SerializeField] private Button replayButton;
-
-
 
     [Header(" Actions ")]
     public static Action<bool> onSFXValueChanged;
@@ -30,6 +29,7 @@ public class SettingsManagerEmotionGame : MonoBehaviour
     {
         LoadData(); // Chỉ load dữ liệu, chưa cho phép lưu
         iconClose.onClick.AddListener(CloseSettings);
+
         replayButton.onClick.AddListener(ReplayGame);
 
         // Gán sự kiện cho toggle
@@ -115,5 +115,9 @@ public class SettingsManagerEmotionGame : MonoBehaviour
     {
         SaveData(); // Lưu trạng thái trước khi reload
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene("MainMenus");
     }
 }

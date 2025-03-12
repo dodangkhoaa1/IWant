@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2978936675183547302}
   - component: {fileID: 396620889177777802}
   - component: {fileID: -4141029046020484797}
+  - component: {fileID: -1702489081577965740}
   m_Layer: 5
   m_Name: Leaderboard Member Container
   m_TagString: Untagged
@@ -149,6 +150,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3778a05ab24d92940938534fd095a9f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rankContainer: {fileID: 2947810584333670037}
+  rankText: {fileID: 873004947792917650}
+  playerNameText: {fileID: 8728109443342331565}
+  scoreText: {fileID: 2168322472500400175}
+--- !u!114 &-1702489081577965740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 377516297480822911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66be3a991391220448da2791d9de75ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rankContainer: {fileID: 2947810584333670037}
