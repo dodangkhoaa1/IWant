@@ -1,5 +1,7 @@
 ﻿using IWant.BusinessObject.Enitities;
 using IWant.Web.Models;
+using IWant.Web.Models.DTO;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
 
@@ -18,22 +20,30 @@ namespace IWant.Web.Service
 
         public async Task<Word> CreateWordAsync(Word word)
         {
-            using var form = new MultipartFormDataContent();
-            form.Add(new StringContent(word.VietnameseText), "VietnameseText");
-            if (!string.IsNullOrEmpty(word.EnglishText))
-                form.Add(new StringContent(word.EnglishText), "EnglishText");
-            form.Add(new StringContent(word.WordCategoryId.ToString()), "WordCategoryId");
-
+            WordDTO wordDTO = new()
+            {
+                VietnameseText = word.VietnameseText,
+                EnglishText = word.EnglishText,
+                CreatedAt = word.CreatedAt,
+                UpdatedAt = word.UpdatedAt,
+                ImagePath = word.ImagePath,
+                Status = word.Status,
+                WordCategoryId = word.WordCategoryId,
+                WordCategory = word.WordCategory,
+                Image = word.Image
+            };
             // Kiểm tra nếu có file ảnh
             if (word.ImageFile != null)
             {
-                var stream = word.ImageFile.OpenReadStream();
-                var fileContent = new StreamContent(stream);
-                fileContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue(word.ImageFile.ContentType);
-                form.Add(fileContent, "ImageFile", word.ImageFile.FileName);
+                using var memoryStream = new MemoryStream();
+                await word.ImageFile.CopyToAsync(memoryStream);
+                wordDTO.Image = memoryStream.ToArray();
             }
 
-            var response = await _httpClient.PostAsync(ApiBaseUrl, form);
+            var json = JsonSerializer.Serialize(wordDTO);
+            var content = new StringContent(json, Encoding.UTF8, new MediaTypeHeaderValue("application/json"));
+
+            var response = await _httpClient.PostAsync(ApiBaseUrl, content);
             response.EnsureSuccessStatusCode();
 
             var result = await response.Content.ReadAsStringAsync();

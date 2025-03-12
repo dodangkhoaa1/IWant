@@ -36,7 +36,7 @@ namespace IWant.API.Controllers
                 UpdatedAt = personalWord.UpdatedAt,
                 ImagePath = personalWord.ImagePath,
                 Status = personalWord.Status,
-                WordCategoryId = personalWord.WordCategoryId,
+                WordCategoryId = (int)personalWord.WordCategoryId,
                 WordCategory = personalWord.WordCategory,
                 Image = !string.IsNullOrEmpty(personalWord.ImagePath) && System.IO.File.Exists(Path.Combine("wwwroot", personalWord.ImagePath))
                     ? System.IO.File.ReadAllBytes(Path.Combine("wwwroot", personalWord.ImagePath))

@@ -13,7 +13,8 @@ namespace IWant.Web.Controllers
         {
             _wordService = wordService;
         }
-
+        [Route("Word")]
+        [Route("Word/Index")]
         public async Task<IActionResult> Index()
         {
             var words = await _wordService.GetWordsAsync();
@@ -37,7 +38,7 @@ namespace IWant.Web.Controllers
                 word.ImagePath = createdWord.ImagePath;
             }
 
-            return RedirectToAction("Index"); 
+            return RedirectToAction("Index");
         }
 
 

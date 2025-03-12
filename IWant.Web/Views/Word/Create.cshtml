@@ -45,7 +45,10 @@
                     <option value="">-- Chọn danh mục --</option>
                     @foreach (var category in categories)
                     {
-                        <option value="@category.Id">@category.EnglishName</option>
+                        if (category.Id != 1)
+                        {
+                             <option value="@category.Id">@category.EnglishName</option>
+                        }
                     }
                 </select>
             </div>
