@@ -24,4 +24,8 @@
 	  <Folder Include="wwwroot\images\word\food\" />
 	</ItemGroup>
 
+	<ItemGroup>
+		<Content Remove="appsettings.json" />
+	</ItemGroup>
+
 </Project>
