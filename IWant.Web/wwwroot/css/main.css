@@ -852,13 +852,17 @@ h6 {
 --------------------------------------------------------------*/
 .minigame {
     margin-top: 40px;
+    padding-top:30px;
     padding-bottom: 30px;
+    background-color: #FEDA15;
 }
 
     .minigame .minigame-item {
         padding: 40px;
         background: #fff;
         height: 100%;
+        border-radius: 20px;
+        box-shadow: 0 2px 4px 2px black;
     }
 
         .minigame .minigame-item .icon {
@@ -1025,6 +1029,7 @@ h6 {
     justify-content: center;
     padding: 20px;
     color: white;
+    border-top: 2px dashed black;
 }
 
 .about-content {
