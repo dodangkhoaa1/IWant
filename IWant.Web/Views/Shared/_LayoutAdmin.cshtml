@@ -33,7 +33,7 @@
         .sidebar {
             background: #FFFFFF;
             padding-top: 20px;
-            font-family: 'Arbutus Slab', serif;
+            font-family: 'Athiti', sans-serif;
             top: 0;
             bottom: 0;
             margin: 20px 0px 20px 20px;
@@ -67,22 +67,21 @@
 
         .list-group-item {
             background-color: rgba(255, 255, 255, 0.1);
-            color: #000000;
+            color: purple;
+            font-weight: bold;
             border: none;
-            font-family: 'Athiti', sans-serif;
             font-size: 14px;
         }
 
             .list-group-item a {
                 text-decoration: none;
                 color: #010101;
-                font-family: 'Athiti', sans-serif;
             }
 
             .list-group-item:hover {
                 text-decoration: none;
                 background-color: #f4f4f4;
-                color: #000000;
+                color: purple;
                 border-radius: 0 10px 10px 0;
             }
 
@@ -152,10 +151,12 @@
             .dropdown a {
                 padding: 12px 15px;
                 text-decoration: none;
-                color: black;
                 display: flex;
                 align-items: center;
                 gap: 10px;
+                color: purple;
+                font-weight: bold;
+                border: none;
                 font-size: 14px;
             }
 
@@ -163,6 +164,9 @@
             display: block !important;
         }
 
+        .text-muted {
+            font-size: 1.03rem;
+        }
     </style>
 </head>
 
@@ -178,26 +182,26 @@
                     <div class="list-group">
                         <h6 class="text-muted">DASHBOARD</h6>
                         <a asp-action="Statistic" asp-controller="Admin" class="list-group-item d-flex align-items-center">
-                            <i class="fa-solid fa-chart-line"></i>Statistic
+                            <i class="fa-solid fa-chart-line"></i>STATISTIC
                         </a>
                         <h6 class="text-muted mt-3">MANAGE</h6>
 
                         <!-- Additional links for Shop, initially hidden -->
 
                         <a asp-controller="Room" asp-action="ChatIndex" class="list-group-item d-flex align-items-center">
-                            <i class="fa-brands fa-rocketchat"></i>Chat With Member
+                            <i class="fa-brands fa-rocketchat"></i>CHAT WITH MEMBER
                         </a>
                         <a asp-controller="Blog" asp-action="Index" class="list-group-item d-flex align-items-center">
-                            <i class="fa-solid fa-blog"></i>Blogs
+                            <i class="fa-solid fa-blog"></i>BLOGS
                         </a>
                         <a asp-controller="Account" asp-action="Index" class="list-group-item d-flex align-items-center">
-                            <i class="fa-solid fa-users"></i>Accounts
+                            <i class="fa-solid fa-users"></i>ACCOUNTS
                         </a>
                         <a asp-controller="Comment" asp-action="Index" class="list-group-item d-flex align-items-center">
-                            <i class="fa-regular fa-comments"></i>Comments
+                            <i class="fa-regular fa-comments"></i>COMMENTS
                         </a>
                         <a asp-controller="Game" asp-action="Index" class="list-group-item d-flex align-items-center">
-                            <i class="fa-solid fa-video"></i>Video Games
+                            <i class="fa-solid fa-video"></i>VIDEO GAMES
                         </a>
                         @* <a asp-controller="Auth" asp-action="ManageCustomers" class="list-group-item d-flex align-items-center">
                             <i class="fa-solid fa-shield-halved"></i>Privacy & Police
@@ -226,19 +230,19 @@
                             <img src="@imageUrl" alt="User Avatar" class="rounded-circle border border-secondary avatar-layout" id="avatar">
                             <div class="dropdown" id="dropdown">
                                 <a asp-action="UpdateProfile" asp-controller="Profile" class="list-group-item d-flex align-items-center">
-                                    <i class="fa-regular fa-user"></i> My Profile
+                                    <i class="fa-regular fa-user"></i> MY PROFILE
                                 </a>
                                 <a asp-action="ChangePassword" asp-controller="Profile" class="list-group-item d-flex align-items-center">
-                                    <i class="fa-solid fa-lock"></i> Change Password
+                                    <i class="fa-solid fa-lock"></i> CHANGE PASSWORD
                                 </a>
                                 <a asp-action="SignOut" asp-controller="Identity" class="list-group-item d-flex align-items-center">
-                                    <i class="fa-solid fa-right-from-bracket"></i> Sign out
+                                    <i class="fa-solid fa-right-from-bracket"></i> SIGN OUT
                                 </a>
                             </div>
                         </div>
                     </div>
                 </nav>
-                <div style="min-height: 88vh; margin-bottom:20px" class="content">
+                <div style="min-height: 90vh" class="content">
                     @RenderBody()
                 </div>
             </div>

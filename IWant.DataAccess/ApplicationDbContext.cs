@@ -97,6 +97,29 @@ public partial class ApplicationDbContext : IdentityDbContext<User>
             },
             new User
             {
+                Id = "15ccf7a4-8f9f-4127-b046-69723542fc06",
+                FullName = "Nguyễn Huỳnh Như",
+                ImageUrl = "http://localhost:5130/images/avatar/default-avatar.png",
+                ImageLocalPath = "default-avatar.png",
+                PhoneNumber = "0888408052",
+                Gender = false,
+                Birthday = DateOnly.Parse("2003-11-24"),
+                Status = true,
+                UserName = "nhathmce170171@fpt.edu.vn",
+                NormalizedUserName = "NHATHMCE170171@FPT.EDU.VN",
+                Email = "nhathmce170171@fpt.edu.vn",
+                NormalizedEmail = "NHATHMCE170171@FPT.EDU.VN",
+                EmailConfirmed = true,
+                PasswordHash = "AQAAAAIAAYagAAAAEGr/htC0131/1iKNmo0AiuzyeRytHJQHIlsbvYWIBvnsI+YxSX4LkDwooyxR+8P55g==",
+                SecurityStamp = "4ROV5G3THUAAZ5C5NDWOBZ76P4VKU6RY",
+                ConcurrencyStamp = "bd591428-5d71-49ee-abd2-c1740ff5f70c",
+                PhoneNumberConfirmed = false,
+                TwoFactorEnabled = false,
+                LockoutEnabled = true,
+                AccessFailedCount = 0
+            },
+            new User
+            {
                 Id = "6b7f56a9-4fd5-47b7-8454-0aa5a7ab5012",
                 FullName = "Đỗ Đăng Khoa",
                 ImageUrl = "http://localhost:5130/images/avatar/default-avatar.png",
@@ -110,9 +133,9 @@ public partial class ApplicationDbContext : IdentityDbContext<User>
                 Email = "ddkhoaa1@gmail.com",
                 NormalizedEmail = "DDKHOAA1@GMAIL.COM",
                 EmailConfirmed = true,
-                PasswordHash = "AQAAAAIAAYagAAAAEFQdX/kgMdnRNxkiz08sS25fZ8X7nVeW0J1FD+NAct6FHfkleCYGZ3nGLFx08yj9sg==",
-                SecurityStamp = "NL2EDELTGI4XD4IAZJAM2UDPVUDSUZSM",
-                ConcurrencyStamp = "bad5ee40-cb79-4c90-b117-e5afb3a8ddf8",
+                PasswordHash = "AQAAAAIAAYagAAAAEGr/htC0131/1iKNmo0AiuzyeRytHJQHIlsbvYWIBvnsI+YxSX4LkDwooyxR+8P55g==",
+                SecurityStamp = "ZBIKDBKDV6SC53SMC5UX6ASTZB3G55FE",
+                ConcurrencyStamp = "4209a34d-673a-423b-bf3b-f9e180f4a012",
                 PhoneNumberConfirmed = false,
                 TwoFactorEnabled = false,
                 LockoutEnabled = true,
@@ -120,16 +143,22 @@ public partial class ApplicationDbContext : IdentityDbContext<User>
             }
             );
 
-        builder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>
-        {
-            UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
-            RoleId = "d19bb620-77b5-414e-865a-1894fbcbb689"
-        },
-        new IdentityUserRole<string>
-        {
-            UserId = "6b7f56a9-4fd5-47b7-8454-0aa5a7ab5012",
-            RoleId = "fbd6a6c8-27eb-4171-bb75-50e97adffebb"
-        }
+        builder.Entity<IdentityUserRole<string>>().HasData(
+            new IdentityUserRole<string>
+            {
+                UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
+                RoleId = "d19bb620-77b5-414e-865a-1894fbcbb689"
+            },
+            new IdentityUserRole<string>
+            {
+                UserId = "15ccf7a4-8f9f-4127-b046-69723542fc06",
+                RoleId = "fbd6a6c8-27eb-4171-bb75-50e97adffebb"
+            },
+            new IdentityUserRole<string>
+            {
+                UserId = "6b7f56a9-4fd5-47b7-8454-0aa5a7ab5012",
+                RoleId = "fbd6a6c8-27eb-4171-bb75-50e97adffebb"
+            }
         );
 
         //Word Category
