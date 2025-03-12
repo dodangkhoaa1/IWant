@@ -257,6 +257,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4619191921208865932, guid: ac9e493c06d948d4ebc770f182b8f2d9, type: 3}
+      propertyPath: m_TagString
+      value: SettingsManagement
+      objectReference: {fileID: 0}
     - target: {fileID: 5417253360345709332, guid: ac9e493c06d948d4ebc770f182b8f2d9, type: 3}
       propertyPath: sfxSlider
       value: 
@@ -344,6 +348,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e5d2a55e81cbdb24593c7000b33ba369, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &364869758 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4005899677301146810, guid: ac9e493c06d948d4ebc770f182b8f2d9, type: 3}
+  m_PrefabInstance: {fileID: 364869753}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7471e8dd6876f4343bad4cab0c4a4f8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &406759392
@@ -435,14 +450,14 @@ PrefabInstance:
     - target: {fileID: 199076598703735741, guid: 7677fb0244a780d4cb9e50e794e9548d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 364869756}
+      objectReference: {fileID: 364869758}
     - target: {fileID: 199076598703735741, guid: 7677fb0244a780d4cb9e50e794e9548d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OpenSoundLanguageSetting
+      value: ShowDialog
       objectReference: {fileID: 0}
     - target: {fileID: 199076598703735741, guid: 7677fb0244a780d4cb9e50e794e9548d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: SettingsManagement, Assembly-CSharp
+      value: SettingsUnlocker, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2080483036828674897, guid: 7677fb0244a780d4cb9e50e794e9548d, type: 3}
       propertyPath: m_Sprite
@@ -794,7 +809,7 @@ GameObject:
   - component: {fileID: 682513479}
   m_Layer: 5
   m_Name: Canvas
-  m_TagString: Untagged
+  m_TagString: Canvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1169,14 +1184,14 @@ MonoBehaviour:
   nextButton: {fileID: 125431741}
   closeButton: {fileID: 1263492527}
   englishSprites:
-  - {fileID: 21300000, guid: b6036ff4cb79f7d4da1f484277cb2611, type: 3}
-  - {fileID: 21300000, guid: c26ce71aa5ab1464fa2e8388dd25d84f, type: 3}
-  - {fileID: 21300000, guid: 67392df9f2d7ccb48b8ad0f35b2a3730, type: 3}
-  - {fileID: 21300000, guid: e83c5a3be501a764bb7ddccc4baa4227, type: 3}
-  - {fileID: 21300000, guid: bf67e9f08cad3374ea5dbfbfdb504a3b, type: 3}
-  - {fileID: 21300000, guid: 6d3125b12f1edc14aa0343cf16546811, type: 3}
-  - {fileID: 21300000, guid: 68202212b6ff72741925ddc60466f040, type: 3}
-  - {fileID: 21300000, guid: ef950664f4067d8489b90caedd9a3649, type: 3}
+  - {fileID: 21300000, guid: 44055de2375e09b428077913aba468c0, type: 3}
+  - {fileID: 21300000, guid: d17858659af1fca4ab4152514d15c4c6, type: 3}
+  - {fileID: 21300000, guid: a472fb48985bc2645a0abfac8949dd9b, type: 3}
+  - {fileID: 21300000, guid: bcda434ca81bc4f408f5021b1dff888b, type: 3}
+  - {fileID: 21300000, guid: f646510c10d117a438fafcea623a12d1, type: 3}
+  - {fileID: 21300000, guid: 6209e38621b8fc746a48bf6688c91eaf, type: 3}
+  - {fileID: 21300000, guid: 4d4e3bd7ca5b59e498d689e7991fddef, type: 3}
+  - {fileID: 21300000, guid: 319979dbe2d87e642abd36ac55718852, type: 3}
   vietnameseSprites:
   - {fileID: 21300000, guid: 758f8f49db3c28e40ae8ce8be7ac9f96, type: 3}
   - {fileID: 21300000, guid: d52cdac54ebe9774e9f6a846e5343f91, type: 3}
@@ -1286,6 +1301,14 @@ PrefabInstance:
     - target: {fileID: 5964724455924623000, guid: 149cdc2d576074c44b4a799bcfe0b8ae, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9177619120099120989, guid: 149cdc2d576074c44b4a799bcfe0b8ae, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1080
+      objectReference: {fileID: 0}
+    - target: {fileID: 9177619120099120989, guid: 149cdc2d576074c44b4a799bcfe0b8ae, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 1080
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

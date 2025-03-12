@@ -1,6 +1,7 @@
 ﻿using EasyUI.Toast;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -294,5 +295,16 @@ public class PhraseBuild : MonoBehaviour
                 break;
             }
         }
+    }
+    public Transform ContainsWord(string wordText)
+    {
+        foreach (Transform child in phraseContainer)
+        {
+            if (child.GetComponentInChildren<TextMeshProUGUI>().text == wordText)
+            {
+                return child;
+            }
+        }
+        return null;
     }
 }

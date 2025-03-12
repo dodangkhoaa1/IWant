@@ -132,6 +132,7 @@
     <Compile Include="Assets\Scripts\AACApp\DTOs\UserResponseDTO.cs" />
     <Compile Include="Assets\Scripts\AACApp\Utility\Convert.cs" />
     <Compile Include="Assets\Scripts\Managers\Gameover Manager.cs" />
+    <Compile Include="Assets\Scripts\AACApp\Management\SettingsUnlocker.cs" />
     <Compile Include="Assets\Scripts\Level Map\Level Button.cs" />
     <Compile Include="Assets\LeanTween\Framework\LeanAudio.cs" />
     <Compile Include="Assets\LevelGenerator\Scripts\LevelGenerator.cs" />

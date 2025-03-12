@@ -1,13 +1,15 @@
 ﻿public enum SceneName
 {
     Null, 
-    MainMenu, 
     SignInScene, 
-    GameAAC, 
+    MainMenu,
+    MainAAC,
+    AACScene, 
     MainColoring, 
     CategorySelection, 
     PictureSelection,
-    ColoringScene
+    ColoringScene,
+
 }
 
 public enum Gender

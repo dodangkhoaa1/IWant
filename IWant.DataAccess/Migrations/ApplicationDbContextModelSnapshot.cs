@@ -798,10 +798,15 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 20,
+                            CreatedAt = new DateTime(2025, 3, 11, 20, 38, 59, 48, DateTimeKind.Local).AddTicks(3722),
+                            EnglishText = "Go",
+                            ImagePath = "images/word/actions/Go.png",
                             CreatedAt = new DateTime(2025, 3, 12, 13, 59, 43, 623, DateTimeKind.Local).AddTicks(274),
                             EnglishText = "Walk",
                             ImagePath = "images/word/actions/Walk.png",
                             Status = true,
+                            UpdatedAt = new DateTime(2025, 3, 11, 20, 38, 59, 48, DateTimeKind.Local).AddTicks(3723),
+                            VietnameseText = "Đi",
                             UpdatedAt = new DateTime(2025, 3, 12, 13, 59, 43, 623, DateTimeKind.Local).AddTicks(275),
                             VietnameseText = "Đi Bộ",
                             WordCategoryId = 2

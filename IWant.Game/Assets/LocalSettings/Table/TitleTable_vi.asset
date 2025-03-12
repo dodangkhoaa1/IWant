@@ -110,6 +110,10 @@ MonoBehaviour:
     m_Localized: "B\u1EE9c Tranh"
     m_Metadata:
       m_Items: []
+  - m_Id: 25825497329848320
+    m_Localized: "T\u1EA1o t\u1EEB m\u1EDBi"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

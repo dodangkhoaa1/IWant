@@ -10,4 +10,5 @@ public class SuggestWordData : ScriptableObject
     public Sprite groupWordSprite;
     public string VietnameseText;
     public string EnglishText;
+    public int nextCategoryId;
 }

@@ -85,7 +85,7 @@ public class TextToSpeech : MonoBehaviour
             ""show_original_response"": false,
             ""rate"": -10, 
             ""pitch"": 15,
-            ""volume"": 0,
+            ""volume"": 100,
             ""sampling_rate"": 0,
             ""providers"": [ ""{PrefsKey.GetVoiceByLanguageAndGender}"" ],
             ""language"": ""{PrefsKey.LANGUAGE}"",
@@ -162,7 +162,7 @@ public class TextToSpeech : MonoBehaviour
             AudioManagement.instance.PlaySFX(clip);
             Debug.Log("Audio is now playing!");
             //yield return new WaitForSeconds(clip.length);
-            yield return new WaitForSecondsRealtime(clip.length); // Use WaitForSecondsRealtime to avoid delays
+            yield return new WaitForSecondsRealtime(clip.length * 0.35f); // Use WaitForSecondsRealtime to avoid delays
 
         }
         else
