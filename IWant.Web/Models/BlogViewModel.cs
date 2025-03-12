@@ -40,6 +40,7 @@ namespace IWant.Web.Models
         public double AverageRating { get; set; } = 0;
         public int CountRate { get; set; } = 0;
 
+        public string? UserId { get; set; }
         public User? User { get; set; }
 
         public CommentViewModel? Comment { get; set; } = new CommentViewModel();

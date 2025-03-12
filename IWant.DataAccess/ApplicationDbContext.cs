@@ -161,6 +161,211 @@ public partial class ApplicationDbContext : IdentityDbContext<User>
             }
         );
 
+        //Blogs
+        builder.Entity<Blog>().HasData(
+     new Blog
+     {
+         Id = 1,
+         Title = "Bí Quyết Trò Chuyện Cởi Mở Với Con – Hiểu Để Gần Hơn",
+         Content = @"<p style=""text-align: justify; ""><strong>Bí Quyết Trò Chuyện Cởi Mở Với Con – Hiểu Để Gần Hơn</strong></p>
+
+                    <p style=""text-align: justify;"">Cha mẹ nào cũng muốn con cái chia sẻ, tâm sự mọi chuyện. Nhưng không phải lúc nào trẻ cũng sẵn sàng mở lòng. Làm sao để con cảm thấy thoải mái khi trò chuyện, tránh xa khoảng cách thế hệ và thực sự kết nối với cha mẹ? Hãy cùng tìm hiểu cách giao tiếp cởi mở với con một cách tự nhiên nhất!</p>
+
+                    <p style=""text-align: justify;""><strong>Vì sao giao tiếp cởi mở với con lại quan trọng?</strong></p>
+
+                    <p style=""text-align: justify;"">Trẻ nhỏ, đặc biệt là lứa tuổi dậy thì, rất cần một người lắng nghe và thấu hiểu. Khi cha mẹ tạo ra không gian an toàn, trẻ sẽ dễ dàng chia sẻ suy nghĩ, cảm xúc của mình hơn. Điều này không chỉ giúp gắn kết tình cảm gia đình mà còn giúp trẻ tự tin hơn trong cuộc sống.</p>
+
+                    <p style=""text-align: justify;""><strong>Một số lợi ích của việc trò chuyện cởi mở với con:</strong></p>
+
+                    <ul>
+                        <li style=""text-align: justify;"">Giúp trẻ cảm thấy được yêu thương và tôn trọng.</li>
+                        <li style=""text-align: justify;"">Giúp cha mẹ hiểu rõ những vấn đề mà con đang gặp phải.</li>
+                        <li style=""text-align: justify;"">Tạo nền tảng cho sự phát triển tâm lý lành mạnh.</li>
+                        <li style=""text-align: justify;"">Giúp trẻ học cách diễn đạt suy nghĩ và cảm xúc một cách rõ ràng.</li>
+                    </ul>
+
+                    <p style=""text-align: justify;""><strong>Cách nói chuyện cởi mở với con</strong></p>
+
+                    <p style=""text-align: justify;""><strong>Chọn thời điểm phù hợp</strong></p>
+
+                    <p style=""text-align: justify;"">Hãy trò chuyện với con vào lúc cả hai đều thoải mái. Đừng ép con nói chuyện khi con đang mệt mỏi, căng thẳng hoặc bị phân tâm bởi điện thoại, TV.</p>
+
+                    <p style=""text-align: justify;""><strong>Lắng nghe thay vì phán xét</strong></p>
+
+                    <p style=""text-align: justify;"">Nhiều bậc cha mẹ có xu hướng đưa ra lời khuyên hoặc phán xét ngay khi con nói. Tuy nhiên, trẻ cần cảm giác được lắng nghe hơn là bị chỉ trích. Thay vì nói “Con không nên làm vậy!”, hãy thử hỏi “Con nghĩ sao về điều đó?” để khuyến khích con chia sẻ.</p>
+
+                    <p style=""text-align: justify;""><strong>Đặt câu hỏi mở</strong></p>
+
+                    <p style=""text-align: justify;"">Tránh những câu hỏi “Có” hoặc “Không” vì chúng dễ làm cuộc trò chuyện đi vào ngõ cụt. Thay vào đó, hãy đặt câu hỏi mở để kích thích con suy nghĩ và diễn đạt nhiều hơn, ví dụ:</p>
+
+                    <ul>
+                        <li style=""text-align: justify;"">Hôm nay ở trường có chuyện gì thú vị không?</li>
+                        <li style=""text-align: justify;"">Con cảm thấy thế nào về điều đó?</li>
+                        <li style=""text-align: justify;"">Nếu được làm lại, con sẽ làm khác đi như thế nào?</li>
+                    </ul>
+
+                    <p style=""text-align: justify;""><strong>Tạo không gian thoải mái</strong></p>
+
+                    <p style=""text-align: justify;"">Không phải lúc nào cũng cần ngồi nghiêm túc để nói chuyện. Những lúc cùng con nấu ăn, đi dạo hay trên đường đi học cũng là cơ hội tốt để bắt đầu cuộc trò chuyện.</p>
+
+                    <p style=""text-align: justify;""><strong>Thể hiện sự đồng cảm</strong></p>
+
+                    <p style=""text-align: justify;"">Khi con gặp vấn đề, hãy đặt mình vào vị trí của con. Thay vì nói ""Chuyện này không có gì to tát"", hãy thử nói ""Mẹ hiểu tại sao con cảm thấy như vậy"". Điều này giúp con cảm nhận được sự thấu hiểu từ cha mẹ.</p>
+
+                    <p style=""text-align: justify;""><strong>Những điều cần tránh khi trò chuyện với con</strong></p>
+
+                    <ul>
+                        <li style=""text-align: justify;""><strong>Không áp đặt suy nghĩ:</strong> Tránh những câu như “Con phải làm thế này mới đúng!” vì trẻ cần có không gian để tự quyết định.</li>
+                        <li style=""text-align: justify;""><strong>Không so sánh con với người khác:</strong> Câu nói “Sao con không giỏi như bạn A?” chỉ khiến trẻ tự ti và xa cách cha mẹ hơn.</li>
+                        <li style=""text-align: justify;""><strong>Không chỉ trích hoặc quát mắng:</strong> Khi trẻ mắc lỗi, thay vì trách mắng, hãy giúp con hiểu vấn đề và tìm hướng giải quyết.</li>
+                        <li style=""text-align: justify;""><strong>Không đặt câu hỏi quá dồn dập:</strong> Điều này có thể làm con cảm thấy như đang bị tra khảo thay vì được tâm sự.</li>
+                    </ul>
+
+                    <p style=""text-align: justify;""><strong>Kết luận</strong></p>
+
+                    <p style=""text-align: justify;"">Trò chuyện với con không phải là một nhiệm vụ khó khăn, quan trọng là cha mẹ biết cách lắng nghe, thấu hiểu và tôn trọng con. Khi cha mẹ thực sự quan tâm và đồng hành, con sẽ tự nhiên mở lòng, giúp mối quan hệ gia đình ngày càng gắn kết hơn.</p>",
+         CreatedAt = new DateTime(2025, 3, 10, 12, 30, 42),
+         UpdatedAt = new DateTime(2025, 3, 10, 12, 30, 42),
+         ImageUrl = "http://localhost:5130/images/blog/1.svg",
+         ImageLocalPath = "blog\\1.svg",
+         Status = true,
+         ViewCount = 1,
+         UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
+         CitedImage = "Sưu tầm"
+     }
+);
+
+        builder.Entity<Blog>().HasData(
+            new Blog
+            {
+                Id = 2,
+                Title = "Trẻ Nghiện Mạng Xã Hội: Nguy Cơ Rối Loạn Tâm Trí Và Giải Pháp",
+                Content = @"<p style=""text-align: justify;""><strong>Trẻ Nghiện Mạng Xã Hội: Nguy Cơ Rối Loạn Tâm Trí Và Giải Pháp</strong></p>
+                    <p style=""text-align: justify;"">Ngày nay, mạng xã hội đã trở thành một phần không thể thiếu trong cuộc sống, đặc biệt là đối với giới trẻ. Tuy nhiên, việc sử dụng mạng xã hội quá mức có thể gây ra nhiều tác động tiêu cực đến tâm lý và sự phát triển của trẻ em, thậm chí làm gia tăng nguy cơ rối loạn tâm trí.</p>
+                    
+                    <p style=""text-align: justify;""><strong>1. Trẻ em nghiện mạng xã hội: Thực trạng đáng lo ngại</strong></p>
+                    <p style=""text-align: justify;"">Với sự phát triển của công nghệ, trẻ em ngày càng tiếp cận sớm với điện thoại, máy tính bảng và các nền tảng mạng xã hội như Facebook, TikTok, Instagram...</p>
+
+                    <p style=""text-align: justify;""><strong>2. Tác hại của việc nghiện mạng xã hội</strong></p>
+                    <ul>
+                        <li style=""text-align: justify;""><strong>Rối loạn tâm lý:</strong> Việc tiếp xúc với quá nhiều nội dung tiêu cực...</li>
+                        <li style=""text-align: justify;""><strong>Rối loạn giấc ngủ:</strong> Trẻ thường xuyên sử dụng điện thoại...</li>
+                        <li style=""text-align: justify;""><strong>Suy giảm khả năng tập trung:</strong> Sử dụng mạng xã hội quá mức...</li>
+                    </ul>
+                    
+                    <p style=""text-align: justify;""><strong>3. Nguyên nhân khiến trẻ nghiện mạng xã hội</strong></p>
+                    <p style=""text-align: justify;"">Có nhiều yếu tố dẫn đến tình trạng này, bao gồm...</p>
+
+                    <p style=""text-align: justify;""><strong>4. Cách giúp trẻ sử dụng mạng xã hội một cách lành mạnh</strong></p>
+                    <ul>
+                        <li style=""text-align: justify;""><strong>Đặt giới hạn thời gian sử dụng:</strong> Thiết lập quy tắc rõ ràng...</li>
+                        <li style=""text-align: justify;""><strong>Giám sát nội dung trẻ tiếp cận:</strong> Sử dụng các công cụ kiểm soát...</li>
+                        <li style=""text-align: justify;""><strong>Trở thành tấm gương tốt:</strong> Cha mẹ cũng nên hạn chế sử dụng điện thoại...</li>
+                    </ul>
+
+                    <p style=""text-align: justify;""><strong>Kết luận</strong></p>
+                    <p style=""text-align: justify;"">Mạng xã hội mang lại nhiều lợi ích nhưng cũng tiềm ẩn nhiều rủi ro...</p>",
+                CreatedAt = new DateTime(2025, 3, 22, 12, 35, 48),
+                UpdatedAt = new DateTime(2025, 3, 22, 12, 35, 48),
+                ImageUrl = "http://localhost:5130/images/blog/2.svg",
+                ImageLocalPath = "blog\\2.svg",
+                Status = true,
+                ViewCount = 1,
+                UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
+                CitedImage = "Sưu tầm"
+            }
+        );
+
+        builder.Entity<Blog>().HasData(
+            new Blog
+            {
+                Id = 3,
+                Title = "Phương pháp AAC – Hỗ trợ giao tiếp cho trẻ tự kỷ",
+                Content = @"<p style=""text-align: justify;""><strong>Phương pháp AAC – Hỗ trợ giao tiếp cho trẻ tự kỷ</strong></p>
+                    <p style=""text-align: justify;"">Phương pháp AAC (Augmentative and Alternative Communication) là một hệ thống giao tiếp bổ trợ và thay thế giúp những người gặp khó khăn trong giao tiếp bằng lời nói, đặc biệt là trẻ tự kỷ...</p>
+
+                    <p style=""text-align: justify;""><strong>1. AAC là gì?</strong></p>
+                    <p style=""text-align: justify;"">AAC bao gồm nhiều phương pháp khác nhau nhằm hỗ trợ hoặc thay thế ngôn ngữ nói...</p>
+
+                    <p style=""text-align: justify;""><strong>2. Vì sao AAC quan trọng đối với trẻ tự kỷ?</strong></p>
+                    <ul>
+                        <li style=""text-align: justify;""><strong>Giúp trẻ thể hiện nhu cầu:</strong> Hạn chế căng thẳng...</li>
+                        <li style=""text-align: justify;""><strong>Phát triển kỹ năng giao tiếp:</strong> Hỗ trợ trẻ học cách tương tác...</li>
+                    </ul>
+
+                    <p style=""text-align: justify;""><strong>3. Các phương pháp AAC phổ biến</strong></p>
+                    <ul>
+                        <li style=""text-align: justify;""><strong>PECS:</strong> Hệ thống giao tiếp bằng tranh ảnh...</li>
+                        <li style=""text-align: justify;""><strong>Ứng dụng hỗ trợ giao tiếp:</strong> Một số ứng dụng trên điện thoại...</li>
+                    </ul>
+
+                    <p style=""text-align: justify;""><strong>4. Khi nào nên áp dụng AAC?</strong></p>
+                    <p style=""text-align: justify;"">AAC có thể được áp dụng cho trẻ tự kỷ ngay từ khi phát hiện trẻ có dấu hiệu chậm nói...</p>
+
+                    <p style=""text-align: justify;""><strong>5. Lưu ý khi sử dụng AAC</strong></p>
+                    <ul>
+                        <li style=""text-align: justify;""><strong>Chọn phương pháp phù hợp:</strong> Mỗi trẻ có khả năng khác nhau...</li>
+                        <li style=""text-align: justify;""><strong>Kiên nhẫn và luyện tập:</strong> Cha mẹ và giáo viên cần hướng dẫn...</li>
+                    </ul>
+
+                    <p style=""text-align: justify;""><strong>Kết luận</strong></p>
+                    <p style=""text-align: justify;"">Phương pháp AAC là một công cụ hỗ trợ hiệu quả giúp trẻ tự kỷ cải thiện kỹ năng giao tiếp...</p>",
+                CreatedAt = new DateTime(2025, 3, 28, 12, 38, 23),
+                UpdatedAt = new DateTime(2025, 3, 28, 12, 38, 23),
+                ImageUrl = "http://localhost:5130/images/blog/3.svg",
+                ImageLocalPath = "blog\\3.svg",
+                Status = true,
+                ViewCount = 1,
+                UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
+                CitedImage = "Sưu tầm"
+            }
+        );
+
+        builder.Entity<Blog>().HasData(
+            new Blog
+            {
+                Id = 4,
+                Title = "Phát Hiện Sớm Trẻ Tự Kỷ – Chìa Khóa Giúp Con Hòa Nhập Cuộc Sống",
+                Content = @"<p style=""text-align: justify;""><strong>Phát Hiện Sớm Trẻ Tự Kỷ – Chìa Khóa Giúp Con Hòa Nhập Cuộc Sống</strong></p>
+                    <p style=""text-align: justify;"">Tự kỷ không phải là một căn bệnh, mà là một dạng rối loạn phát triển ảnh hưởng đến khả năng giao tiếp...</p>
+
+                    <p style=""text-align: justify;""><strong>1. Dấu hiệu nhận biết trẻ tự kỷ</strong></p>
+                    <ul>
+                        <li style=""text-align: justify;""><strong>Hạn chế giao tiếp bằng mắt:</strong> Trẻ ít hoặc không duy trì giao tiếp bằng mắt khi trò chuyện.</li>
+                        <li style=""text-align: justify;""><strong>Không phản ứng khi được gọi tên:</strong> Nhiều trẻ không quay lại...</li>
+                    </ul>
+
+                    <p style=""text-align: justify;""><strong>2. Tại sao cần phát hiện và can thiệp sớm?</strong></p>
+                    <ul>
+                        <li style=""text-align: justify;"">Cải thiện khả năng ngôn ngữ và giao tiếp.</li>
+                        <li style=""text-align: justify;"">Giảm thiểu các hành vi tiêu cực...</li>
+                    </ul>
+
+                    <p style=""text-align: justify;""><strong>3. Những phương pháp can thiệp hiệu quả</strong></p>
+                    <ul>
+                        <li style=""text-align: justify;""><strong>Liệu pháp ngôn ngữ:</strong> Giúp trẻ cải thiện khả năng giao tiếp...</li>
+                        <li style=""text-align: justify;""><strong>Liệu pháp hành vi (ABA):</strong> Dạy trẻ cách phản ứng phù hợp...</li>
+                    </ul>
+
+                    <p style=""text-align: justify;""><strong>4. Vai trò của gia đình trong việc hỗ trợ trẻ tự kỷ</strong></p>
+                    <ul>
+                        <li style=""text-align: justify;""><strong>Kiên nhẫn và thấu hiểu:</strong> Mỗi trẻ tự kỷ đều có thế mạnh riêng...</li>
+                        <li style=""text-align: justify;""><strong>Tạo môi trường giao tiếp tích cực:</strong> Thường xuyên trò chuyện...</li>
+                    </ul>
+
+                    <p style=""text-align: justify;""><strong>Kết luận</strong></p>
+                    <p style=""text-align: justify;"">Trẻ tự kỷ có thể phát triển và hòa nhập xã hội nếu được phát hiện sớm và can thiệp đúng cách...</p>",
+                CreatedAt = new DateTime(2025, 3, 29, 12, 42, 05),
+                UpdatedAt = new DateTime(2025, 3, 29, 12, 42, 05),
+                ImageUrl = "http://localhost:5130/images/blog/4.svg",
+                ImageLocalPath = "blog\\4.svg",
+                Status = true,
+                ViewCount = 0,
+                UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
+                CitedImage = "Sưu tầm"
+            }
+        );
+
         //Word Category
         builder.Entity<WordCategory>().HasData(
             new WordCategory() { Id = 1, VietnameseName = "Từ Cá Nhân", EnglishName = "Personal Words", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/wordCategories/Personal.png", Status = true },

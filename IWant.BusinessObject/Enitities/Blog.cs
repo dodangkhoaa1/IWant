@@ -19,6 +19,7 @@ namespace IWant.BusinessObject.Enitities
         public bool? Status { get; set; }
         public int ViewCount { get; set; } = 0;
 
+        public string UserId { get; set; }
         public User User { get; set; }
         public List<Comment> Comments { get; set; } = new List<Comment>();
         public List<Rate> Rates { get; set; } = new List<Rate>();
