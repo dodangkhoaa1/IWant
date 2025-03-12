@@ -213,7 +213,7 @@ GameObject:
   - component: {fileID: 67080101}
   m_Layer: 5
   m_Name: Canvas
-  m_TagString: Untagged
+  m_TagString: Canvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -338,7 +338,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.00030517578}
+  m_AnchoredPosition: {x: 0, y: -0.00024414062}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &146296975
@@ -1743,9 +1743,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1508355390}
-        m_TargetAssemblyTypeName: SettingsManagement, Assembly-CSharp
-        m_MethodName: OpenSoundLanguageSetting
+      - m_Target: {fileID: 1508355391}
+        m_TargetAssemblyTypeName: SettingsUnlocker, Assembly-CSharp
+        m_MethodName: ShowDialog
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1849,6 +1849,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4619191921208865932, guid: ac9e493c06d948d4ebc770f182b8f2d9, type: 3}
+      propertyPath: m_TagString
+      value: SettingsManagement
+      objectReference: {fileID: 0}
     - target: {fileID: 5417253360345709332, guid: ac9e493c06d948d4ebc770f182b8f2d9, type: 3}
       propertyPath: sfxSlider
       value: 
@@ -1913,6 +1917,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a37fef6316efc404d81da928162f750c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1508355391 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4005899677301146810, guid: ac9e493c06d948d4ebc770f182b8f2d9, type: 3}
+  m_PrefabInstance: {fileID: 1508355388}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7471e8dd6876f4343bad4cab0c4a4f8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1508355392 stripped

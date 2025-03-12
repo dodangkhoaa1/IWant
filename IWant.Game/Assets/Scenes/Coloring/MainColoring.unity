@@ -298,6 +298,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4619191921208865932, guid: ac9e493c06d948d4ebc770f182b8f2d9, type: 3}
+      propertyPath: m_TagString
+      value: SettingsManagement
+      objectReference: {fileID: 0}
     - target: {fileID: 5417253360345709332, guid: ac9e493c06d948d4ebc770f182b8f2d9, type: 3}
       propertyPath: sfxSlider
       value: 
@@ -385,6 +389,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e5d2a55e81cbdb24593c7000b33ba369, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &134400753 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4005899677301146810, guid: ac9e493c06d948d4ebc770f182b8f2d9, type: 3}
+  m_PrefabInstance: {fileID: 134400748}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7471e8dd6876f4343bad4cab0c4a4f8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &279447616
@@ -1031,7 +1046,7 @@ GameObject:
   - component: {fileID: 682513479}
   m_Layer: 5
   m_Name: Canvas
-  m_TagString: Untagged
+  m_TagString: Canvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2279,14 +2294,14 @@ PrefabInstance:
     - target: {fileID: 199076598703735741, guid: 7677fb0244a780d4cb9e50e794e9548d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 134400751}
+      objectReference: {fileID: 134400753}
     - target: {fileID: 199076598703735741, guid: 7677fb0244a780d4cb9e50e794e9548d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OpenSoundLanguageSetting
+      value: ShowDialog
       objectReference: {fileID: 0}
     - target: {fileID: 199076598703735741, guid: 7677fb0244a780d4cb9e50e794e9548d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: SettingsManagement, Assembly-CSharp
+      value: SettingsUnlocker, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3448395722435488111, guid: 7677fb0244a780d4cb9e50e794e9548d, type: 3}
       propertyPath: m_Pivot.x
