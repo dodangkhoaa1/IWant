@@ -2,115 +2,311 @@
 
 @{
     ViewData["Title"] = "Manage Blog";
-    if(User.IsInRole("Admin")){
+    if (User.IsInRole("Admin"))
+    {
         Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
-    } else {
+    }
+    else
+    {
         Layout = "~/Views/Shared/_Layout.cshtml";
     }
-
     bool? isWaiting;
 }
 
-
 <style>
-    table tbody tr td {
-        min-height: 150px;
+    .container-blog {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 20px;
+        background: #fff;
+        margin-top: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
 
-    .truncate-content {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-line-clamp: 3; 
-        -webkit-box-orient: vertical;
-        white-space: normal;
+    .transactions-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 16px;
     }
+
+    .transactions-header-left {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+
+        .transactions-header-left h2 {
+            margin: 0;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #e67e22;
+        }
+
+    .transactions-header-right {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .btn-filter, .btn-create {
+        display: inline-block;
+        border: 1px solid #FEDA15;
+        padding: 8px 16px;
+        font-size: 0.9rem;
+        color: #000000;
+        border-radius: 4px;
+        text-decoration: none;
+        cursor: pointer;
+        transition: background 0.3s, color 0.3s;
+    }
+
+    .btn-filter {
+        background: transparent;
+        color: #000000;
+    }
+
+        .btn-filter:hover {
+            background: #FEDA15;
+            color: #fff;
+        }
+
+    .btn-create {
+        background-color: #FEDA15;
+        color: #000000;
+    }
+
+        .btn-create:hover {
+            background-color: #FEDA15;
+            color: #fff;
+        }
+
+    .table-container {
+        width: 100%;
+        height: 1100px;
+        overflow: hidden;
+    }
+
+    .table-fixed {
+        table-layout: fixed;
+        width: 100%;
+        border-collapse: collapse;
+        background-color: #fff;
+    }
+
+        .table-fixed thead {
+            background-color: #EEEEEE;
+        }
+
+            .table-fixed thead th {
+                text-align: left;
+                padding: 12px;
+                font-size: 0.9rem;
+                color: #6c757d;
+                border-bottom: 4px solid #f1c40f;
+                font-weight: 600;
+            }
+
+                .table-fixed thead th:nth-child(2) {
+                    width: 20%;
+                }
+
+        .table-fixed tbody tr {
+            border-bottom: 1px solid #dee2e6;
+            height: 100px;
+        }
+
+            .table-fixed tbody tr:hover {
+                background-color: #f6f6f6;
+            }
+
+        .table-fixed td {
+            padding: 12px;
+            font-size: 0.9rem;
+            color: #333;
+            vertical-align: middle;
+            word-wrap: break-word;
+            overflow: hidden;
+        }
+
+    .content-cell {
+        height: 50px;
+        overflow: hidden;
+        width: 25%;
+    }
+
+    th.sortable:hover {
+        cursor: pointer;
+        text-decoration: underline;
+    }
+
+    .badge {
+        display: inline-block;
+        padding: 0.35em 0.65em;
+        font-size: 0.75rem;
+        font-weight: 600;
+        border-radius: 0.375rem;
+        text-transform: capitalize;
+    }
+        /* Đổi màu cho trạng thái Waiting */
+        .badge.bg-waiting {
+            background-color: #6f42c1;
+            color: #fff;
+        }
+
+    .img-thumbnail {
+        border-radius: 6px;
+    }
+
+    .btn-sm {
+        padding: 4px 8px;
+        font-size: 0.8rem;
+        margin: 2px 0;
+    }
+
+    .pagination {
+        display: flex;
+        justify-content: center;
+        margin-top: 16px;
+        gap: 4px;
+    }
+
+        .pagination a {
+            display: inline-block;
+            padding: 6px 12px;
+            background: #fff;
+            color: #000000;
+            border: 1px solid #FEDA15;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: background 0.2s;
+        }
+
+            .pagination a:hover {
+                background: #FEDA15;
+                color: #000000;
+            }
 </style>
 
-<div class="container mt-4">
-    <div class="card shadow-lg border-0 rounded-3">
-        <div class="card-header bg-primary text-white text-center">
-            <h2>Blogs List</h2>
+<div class="@(User.IsInRole("Member") == true ? "container" : "")">
+    <div class="transactions-header">
+        <div class="transactions-header-left">
+            <h2>Blog List</h2>
         </div>
-        <div class="text-center mt-3 ">
-            <a asp-action="Create" class="btn btn-primary">Create</a>
+        <div class="transactions-header-right">
+            <button class="btn-filter" onclick="sortTable(0)">Sort by Title</button>
+            <a asp-action="Create" class="btn-create">+ Create</a>
         </div>
-        <div class="card-body p-4">
-            <table class="table">
-                <thead class="table-dark">
+    </div>
+    <div class="table-container">
+        <table class="table-fixed">
+            <thead>
+                <tr>
+                    <th class="sortable" onclick="sortTable(0)">Title</th>
+                    <th>Content</th>
+                    <th>Views</th>
+                    <th>Created At</th>
+                    <th>Updated At</th>
+                    <th>Status</th>
+                    <th>Image</th>
+                    <th style="width: 200px" class="text-center">Action</th>
+                </tr>
+            </thead>
+            <tbody id="blogTableBody">
+                @if (Model.Count() == 0)
+                {
                     <tr>
-                        <th>Title</th>
-                        <th>Content</th>
-                        <th>Views</th>
-                        <th>Created At</th>
-                        <th>Updated At</th>
-                        <th>Status</th>
-                        <th>Image</th>
-                        <th class="text-center">Action</th>
+                        <td colspan="8" class="text-center">No blog found</td>
                     </tr>
-                </thead>
-                <tbody>
-                    @if (Model.Count() == 0)
-                    {
-                        <tr>
-                            <td colspan="7" class="text-center">No blog found</td>
-                        </tr>
-                    }
-                    @foreach (var blog in Model)
-                    {
-                        <tr>
-                            <td>@blog.Title</td>
-                            <td class="truncate-content">@Html.Raw(blog.Content)</td>
-                            <td>@blog.ViewCount</td>
-                            <td>@blog.CreatedAt.ToString("dd/MM/yyyy HH:mm")</td>
-                            <td>@blog.UpdatedAt?.ToString("dd/MM/yyyy HH:mm")</td>
-                            <td>
-                                <span class="badge @(blog.Status == true ? "bg-success" : blog.Status == false ? "bg-danger" :  "bg-primary")">
-                                    @(blog.Status == true ? "Show" : blog.Status == false ? "Hide" : "Waiting")
-                                </span>
-                            </td>
-                            <td>
-                                <img src="@blog.ImageUrl" alt="@blog.Title" class="img-thumbnail" style="max-width: 100px;" />
-                            </td>
-                            <td class="text-center">
-                                @if(User.IsInRole("Member") && blog.Status != true && blog.Status != false){
-                                    <a asp-action="Edit" asp-route-id="@blog.Id" class="btn btn-warning btn-sm">Edit</a>
-                                }
-                                @if(User.IsInRole("Admin")){
-                                    @if (blog.Status == true)
-                                    {
-                                        <form asp-action="DeleteConfirmed" asp-route-id="@blog.Id" method="post" class="d-inline">
-                                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure to hide this blog?');">Hide</button>
-                                        </form>
-                                        <a asp-action="BlogDetail" asp-route-id="@blog.Id" class="btn btn-primary btn-sm">View Blog</a>
-                                    }
-                                    else if (blog.Status == false)
-                                    {
-                                        <form asp-action="DeleteConfirmed" asp-route-id="@blog.Id" method="post" class="d-inline">
-                                            <button type="submit" class="btn btn-success btn-sm" onclick="return confirm('Are you sure to show this blog?');">Show</button>
-                                        </form>
-                                    }
-                                    else
-                                    {
-                                        <form asp-action="AcceptBlog" asp-route-id="@blog.Id" method="post" class="d-inline">
-                                            <button type="submit" class="btn btn-success btn-sm" onclick="return confirm('Are you sure to accept this blog?');">Accept</button>
-                                        </form>
-                                        <form asp-action="RejectBlog" asp-route-id="@blog.Id" method="post" class="d-inline">
-                                            <button type="button" class="btn btn-danger btn-sm" onclick="openRejectModal(@blog.Id)">Reject</button>
-                                        </form>
-                                    }
-                                } else if(blog.Status == true) {
+                }
+                @* Hiển thị theo ngày tạo mới nhất (mặc định) *@
+                @foreach (var blog in Model.OrderByDescending(b => b.CreatedAt))
+                {
+                    <tr>
+                        <td>@blog.Title</td>
+                        <td class="content-cell">@Html.Raw(blog.Content)</td>
+                        <td>@blog.ViewCount</td>
+                        <td>@blog.CreatedAt.ToString("dd/MM/yyyy HH:mm")</td>
+                        <td>@blog.UpdatedAt?.ToString("dd/MM/yyyy HH:mm")</td>
+                        <td>
+                            <span class="badge @(blog.Status == true ? "bg-success" : blog.Status == false ? "bg-danger" : "bg-waiting")">
+                                @(blog.Status == true ? "Show" : blog.Status == false ? "Hide" : "Waiting")
+                            </span>
+                        </td>
+                        <td>
+                            <img src="@blog.ImageUrl" alt="@blog.Title" class="img-thumbnail" style="max-width: 80px;" />
+                        </td>
+                        <td class="text-center">
+                            <a asp-action="Details" asp-route-id="@blog.Id" class="btn btn-success btn-sm">Details</a>
+                            @if (User.IsInRole("Member") && blog.Status != true && blog.Status != false)
+                            {
+                                <a asp-action="Edit" asp-route-id="@blog.Id" class="btn btn-warning btn-sm">Edit</a>
+                            }
+                            @if (User.IsInRole("Admin"))
+                            {
+                                @if (blog.Status == true)
+                                {
+                                    <form asp-action="DeleteConfirmed" asp-route-id="@blog.Id" method="post" class="d-inline">
+                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure to hide this blog?');">Hide</button>
+                                    </form>
                                     <a asp-action="BlogDetail" asp-route-id="@blog.Id" class="btn btn-primary btn-sm">View Blog</a>
                                 }
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-            
+                                else if (blog.Status == false)
+                                {
+                                    <form asp-action="DeleteConfirmed" asp-route-id="@blog.Id" method="post" class="d-inline">
+                                        <button type="submit" class="btn btn-success btn-sm" onclick="return confirm('Are you sure to show this blog?');">Show</button>
+                                    </form>
+                                }
+                                else
+                                {
+                                    <form asp-action="AcceptBlog" asp-route-id="@blog.Id" method="post" class="d-inline">
+                                        <button type="submit" class="btn btn-success btn-sm" onclick="return confirm('Are you sure to accept this blog?');">Accept</button>
+                                    </form>
+                                    <form asp-action="RejectBlog" asp-route-id="@blog.Id" method="post" class="d-inline">
+                                        <button type="button" class="btn btn-danger btn-sm" onclick="openRejectModal(@blog.Id)">Reject</button>
+                                    </form>
+                                }
+                            }
+                            else if (blog.Status == true)
+                            {
+                                <a asp-action="BlogDetail" asp-route-id="@blog.Id" class="btn btn-primary btn-sm">View Blog</a>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="pagination" id="pagination"></div>
+</div>
+
+<div class="modal fade" id="filterModal" tabindex="-1" aria-labelledby="filterModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="filterModalLabel">Filter Blogs</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="filterTitle" class="form-label">Title</label>
+                    <input type="text" id="filterTitle" class="form-control" placeholder="Enter title keyword">
+                </div>
+                <div class="mb-3">
+                    <label for="filterDate" class="form-label">Created Date</label>
+                    <input type="date" id="filterDate" class="form-control">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="clearFilter()">Clear</button>
+                <button type="button" class="btn btn-primary" onclick="applyFilter()">Apply Filter</button>
+            </div>
         </div>
     </div>
 </div>
+
 <div class="modal fade" id="rejectModal" tabindex="-1" aria-labelledby="rejectModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -132,39 +328,193 @@
 </div>
 
 <script>
+    var currentPage = 1; // Global currentPage
+
+    function sortTable(columnIndex) {
+        var table = document.getElementById("blogTableBody");
+        // Reset hiển thị cho tất cả các dòng trước khi sắp xếp
+        Array.from(table.rows).forEach(function (row) {
+            row.style.display = "";
+        });
+        var switching = true;
+        while (switching) {
+            switching = false;
+            var rows = table.rows;
+            for (var i = 0; i < rows.length - 1; i++) {
+                var shouldSwitch = false;
+                var x = rows[i].getElementsByTagName("TD")[columnIndex];
+                var y = rows[i + 1].getElementsByTagName("TD")[columnIndex];
+                if (x.innerText.toLowerCase() > y.innerText.toLowerCase()) {
+                    shouldSwitch = true;
+                    break;
+                }
+            }
+            if (shouldSwitch) {
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                switching = true;
+            }
+        }
+        // Sau khi sắp xếp, gọi lại phân trang (giữ nguyên currentPage nếu có thể)
+        paginateTable();
+    }
+    function paginateTable() {
+        var table = document.getElementById("blogTableBody");
+        var allRows = Array.from(table.rows);
+        var visibleRows = allRows.filter(function (row) {
+            return row.style.display !== "none";
+        });
+        var itemsPerPage = 10;
+        var totalPages = Math.ceil(visibleRows.length / itemsPerPage);
+        if (currentPage > totalPages) {
+            currentPage = totalPages;
+        }
+        var pagination = document.getElementById("pagination");
+        function renderPagination() {
+            pagination.innerHTML = "";
+            var prevLink = document.createElement("a");
+            prevLink.href = "#";
+            prevLink.innerText = "Prev";
+            prevLink.onclick = function (e) {
+                e.preventDefault();
+                if (currentPage > 1) {
+                    currentPage--;
+                    showPage(currentPage);
+                    renderPagination();
+                }
+            };
+            pagination.appendChild(prevLink);
+            for (var i = 1; i <= totalPages; i++) {
+                var link = document.createElement("a");
+                link.href = "#";
+                link.innerText = i;
+                link.style.fontWeight = (i === currentPage ? "bold" : "normal");
+                link.onclick = (function (page) {
+                    return function (e) {
+                        e.preventDefault();
+                        currentPage = page;
+                        showPage(page);
+                        renderPagination();
+                    };
+                })(i);
+                pagination.appendChild(link);
+            }
+            var nextLink = document.createElement("a");
+            nextLink.href = "#";
+            nextLink.innerText = "Next";
+            nextLink.onclick = function (e) {
+                e.preventDefault();
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    showPage(currentPage);
+                    renderPagination();
+                }
+            };
+            pagination.appendChild(nextLink);
+        }
+        function showPage(page) {
+            var start = (page - 1) * itemsPerPage;
+            var end = start + itemsPerPage;
+            visibleRows.forEach(function (row, index) {
+                row.style.display = (index >= start && index < end) ? "" : "none";
+            });
+        }
+        renderPagination();
+        showPage(currentPage);
+        truncateContentTo20Words();
+    }
+    function truncateContentTo20Words() {
+        var contentCells = document.querySelectorAll('.content-cell');
+        contentCells.forEach(function (cell) {
+            var text = cell.innerText.trim();
+            var words = text.split(/\s+/);
+            if (words.length > 20) {
+                cell.innerText = words.slice(0, 20).join(' ') + ' ...';
+            }
+        });
+    }
+    function openFilterModal() {
+        var modal = new bootstrap.Modal(document.getElementById("filterModal"));
+        modal.show();
+    }
+    function applyFilter() {
+        var filterTitle = document.getElementById("filterTitle").value.toLowerCase();
+        var filterDate = document.getElementById("filterDate").value;
+        var table = document.getElementById("blogTableBody");
+        var rows = Array.from(table.rows);
+        rows.forEach(function (row) {
+            var titleText = row.cells[0].innerText.toLowerCase();
+            var dateText = row.cells[3].innerText.trim();
+            var matchTitle = titleText.indexOf(filterTitle) !== -1;
+            var matchDate = true;
+            if (filterDate) {
+                var filterDateObj = new Date(filterDate);
+                var parts = dateText.split(" ");
+                if (parts.length > 0) {
+                    var dateParts = parts[0].split("/");
+                    if (dateParts.length === 3) {
+                        var day = parseInt(dateParts[0], 10);
+                        var month = parseInt(dateParts[1], 10) - 1;
+                        var year = parseInt(dateParts[2], 10);
+                        var rowDateObj = new Date(year, month, day);
+                        matchDate = rowDateObj.toDateString() === filterDateObj.toDateString();
+                    }
+                }
+            }
+            if (matchTitle && matchDate) {
+                row.style.display = "";
+            } else {
+                row.style.display = "none";
+            }
+        });
+        currentPage = 1;
+        paginateTable();
+        var modalEl = document.getElementById("filterModal");
+        var modalInstance = bootstrap.Modal.getInstance(modalEl);
+        modalInstance.hide();
+    }
+    function clearFilter() {
+        document.getElementById("filterTitle").value = "";
+        document.getElementById("filterDate").value = "";
+        var table = document.getElementById("blogTableBody");
+        var rows = Array.from(table.rows);
+        rows.forEach(function (row) {
+            row.style.display = "";
+        });
+        currentPage = 1;
+        paginateTable();
+        var modalEl = document.getElementById("filterModal");
+        var modalInstance = bootstrap.Modal.getInstance(modalEl);
+        modalInstance.hide();
+    }
+    document.addEventListener("DOMContentLoaded", function () {
+        paginateTable();
+    });
     function openRejectModal(blogId) {
         document.getElementById("rejectBlogId").value = blogId;
         document.getElementById("rejectReason").value = "";
         var modal = new bootstrap.Modal(document.getElementById("rejectModal"));
         modal.show();
     }
-
     function submitRejectForm() {
         var blogId = document.getElementById("rejectBlogId").value;
         var reason = document.getElementById("rejectReason").value.trim();
-
         if (reason === "") {
             alert("Please enter a reason for rejection.");
             return;
         }
-
-        // Create a hidden form to submit
         var form = document.createElement("form");
         form.method = "POST";
         form.action = "/Blog/RejectBlog";
-
         var inputId = document.createElement("input");
         inputId.type = "hidden";
         inputId.name = "id";
         inputId.value = blogId;
         form.appendChild(inputId);
-
         var inputReason = document.createElement("input");
         inputReason.type = "hidden";
         inputReason.name = "reason";
         inputReason.value = reason;
         form.appendChild(inputReason);
-
         document.body.appendChild(form);
         form.submit();
     }

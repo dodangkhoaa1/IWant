@@ -4,6 +4,7 @@ using IWant.BusinessObject.Enitities;
 using IWant.DataAccess;
 using IWant.Web.Models;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 
 namespace IWant.Web.Controllers
 {
@@ -26,6 +27,7 @@ namespace IWant.Web.Controllers
         }
 
         // GET: Game
+        [Authorize(Roles = "Admin")]
         [Route("Game")]
         [Route("Game/Index")]
         public async Task<IActionResult> Index()
@@ -36,6 +38,7 @@ namespace IWant.Web.Controllers
         }
 
         // GET: Game/Details/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -56,6 +59,7 @@ namespace IWant.Web.Controllers
         }
 
         // GET: Game/Create
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create(int? id)
         {
             if (id == null)
@@ -73,6 +77,7 @@ namespace IWant.Web.Controllers
         }
 
         // POST: Game/Create
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(GameViewModel model)
@@ -95,6 +100,7 @@ namespace IWant.Web.Controllers
         }
 
         // GET: Game/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -148,6 +154,7 @@ namespace IWant.Web.Controllers
 
         // GET: Game/Delete/5
         [Route("Game/Delete/{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete([FromRoute] int? id)
         {
             if (id == null)

@@ -3,6 +3,11 @@
 @{
     ViewData["Title"] = "Home Page";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var blogs = Model.Blogs;
+    var games = Model.Games;
+
+    var newestBlog = blogs.OrderByDescending(b => b.CreatedAt).Take(3).ToList();
 }
 <link rel="stylesheet" href="~/css/main.css" />
 
@@ -51,9 +56,9 @@
                 <div class="col-md-8" data-aos="zoom-in" data-aos-delay="100">
                     <div class="video-wrapper">
                         <iframe width="90%" height="315" src="https://www.youtube.com/embed/FuVLmA2b9Z0"
-                                title="YouTube video player" frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen></iframe>
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
                     </div>
                 </div>
                 <div class="col-md-4 d-flex flex-column justify-content-center text-center">
@@ -86,97 +91,43 @@
                 <h2>MINI GAME</h2>
             </div>
             <div class="row gy-4">
-                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                    <div class="minigame-item position-relative">
-                        <div class="d-flex justify-content-center">
-                            <img src="images/CardTalk_1.png" alt="Mountain City" width="120" height="120">
+                @if(games.Count() != 0){
+                    @foreach (var game in games)
+                    {
+                        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                            <div class="minigame-item position-relative">
+                                <div class="d-flex justify-content-center">
+                                    <img src="images/@(game.Name).png" alt="Mountain City" width="120" height="120">
+                                </div>
+                                <h3>@(game.Name == "Tower Build" ? $"{game.Name} (Comming Soon)" : game.Name)</h3>
+                                <p>
+                                    @game.Description
+                                </p>
+                                <a asp-action="GameDetails" asp-controller="Game" class="readmore stretched-link">
+                                    Learn more <i class="fa-solid fa-arrow-right"></i>
+                                </a>
+                            </div>
                         </div>
-                        <h3>Nesciunt Mete</h3>
-                        <p>
-                            Provident nihil minus qui consequatur non omnis maiores. Eos accusantium minus dolores iure perferendis
-                            tempore et consequatur.
-                        </p>
-                        <a href="minigame-details.html" class="readmore stretched-link">
-                            Learn more <i class="fa-solid fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                    <div class="minigame-item position-relative">
-                        <div class="d-flex justify-content-center">
-                            <img src="images/CardTalk_2.png" alt="Arrow Water" width="120" height="120">
+                    }
+                } else {
+                    for(int i = 0; i <6; i++){
+                        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                            <div class="minigame-item position-relative">
+                                <div class="d-flex justify-content-center">
+                                    <img src="images/AAC.png" alt="Arrow Water" width="120" height="120">
+                                </div>
+                                <h3>Eosle Commodi</h3>
+                                <p>
+                                    Ut autem aut autem non a. Sint sint sit facilis nam iusto sint. Libero corrupti neque eum hic non ut
+                                    nesciunt dolorem.
+                                </p>
+                                <a href="minigame-details.html" class="readmore stretched-link">
+                                    Learn more <i class="fa-solid fa-arrow-right"></i>
+                                </a>
+                            </div>
                         </div>
-                        <h3>Eosle Commodi</h3>
-                        <p>
-                            Ut autem aut autem non a. Sint sint sit facilis nam iusto sint. Libero corrupti neque eum hic non ut
-                            nesciunt dolorem.
-                        </p>
-                        <a href="minigame-details.html" class="readmore stretched-link">
-                            Learn more <i class="fa-solid fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-                    <div class="minigame-item position-relative">
-                        <div class="d-flex justify-content-center">
-                            <img src="images/CardTalk_3.png" alt="Compass" width="120" height="120">
-                        </div>
-                        <h3>Ledo Markt</h3>
-                        <p>
-                            Ut excepturi voluptatem nisi sed. Quidem fuga consequatur. Minus ea aut. Vel qui id voluptas adipisci
-                            eos earum corrupti.
-                        </p>
-                        <a href="minigame-details.html" class="readmore stretched-link">
-                            Learn more <i class="fa-solid fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
-                    <div class="minigame-item position-relative">
-                        <div class="d-flex justify-content-center">
-
-                            <img src="images/CardTalk_4.png" alt="Trowel" width="120" height="120">
-                        </div>
-                        <h3>Asperiores Commodit</h3>
-                        <p>
-                            Non et temporibus minus omnis sed dolor esse consequatur. Cupiditate sed error ea fuga sit provident
-                            adipisci neque.
-                        </p>
-                        <a href="minigame-details.html" class="readmore stretched-link">
-                            Learn more <i class="fa-solid fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
-                    <div class="minigame-item position-relative">
-                        <div class="d-flex justify-content-center">
-                            <img src="images/CardTalk_5.png" alt="Helmet" width="120" height="120">
-                        </div>
-                        <h3>Velit Doloremque</h3>
-                        <p>
-                            Cumque et suscipit saepe. Est maiores autem enim facilis ut aut ipsam corporis aut. Sed animi at autem
-                            alias eius labore.
-                        </p>
-                        <a href="minigame-details.html" class="readmore stretched-link">
-                            Learn more <i class="fa-solid fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
-                    <div class="minigame-item position-relative">
-                        <div class="d-flex justify-content-center">
-                            <img src="images/CardTalk_6.png" alt="Arrow Water" width="120" height="120">
-                        </div>
-                        <h3 class="d-flex align-content-center">Dolori Architecto</h3>
-                        <p>
-                            Hic molestias ea quibusdam eos. Fugiat enim doloremque aut neque non et debitis iure. Corrupti
-                            recusandae ducimus enim.
-                        </p>
-                        <a href="minigame-details.html" class="readmore stretched-link">
-                            Learn more <i class="fa-solid fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
+                    }
+                }
             </div>
         </div>
     </section>
@@ -185,32 +136,38 @@
     <section id="recent-blog-posts" class="recent-blog-posts">
         <div class="container" data-aos="fade-up">
             <div class=" section-header text-center">
-                <h2>RECENT BLOG</h2>
+                <h2>NEWEST BLOG</h2>
             </div>
             <div class="row gy-5">
-                <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                    <div class="post-item position-relative h-100">
-                        <div class="post-img position-relative overflow-hidden">
-                            <img src="images/banner1.jpg" class="img-fluid" alt="">
-                        </div>
-                        <div class="post-content d-flex flex-column">
-                            <h3 class="post-title">Eum ad dolor et. Autem aut fugiat debitis</h3>
-                            <div class="meta d-flex align-items-center">
-                                <div class="d-flex align-items-center">
-                                    <i class="fa-solid fa-person"></i> <span class="ps-2">Julia Parker</span>
+                @if (newestBlog.Count() != 0)
+                {
+                    foreach (var blog in newestBlog)
+                    {
+                        <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                            <div class="post-item position-relative h-100">
+                                <div style="height: 250px; width:350px;" class="position-relative overflow-hidden">
+                                    <img style="width: 100%; height: 100%; object-fit: contain; " src="@blog.ImageUrl" class="img-fluid" alt="@blog.Title">
+                                </div>
+                                <div class=" d-flex flex-column">
+                                    <h3 style="height:90px" class="post-title">@blog.Title</h3>
+                                    <div class="meta d-flex align-items-center">
+                                        <div class="d-flex align-items-center">
+                                            <i class="fas fa-calendar-alt"></i> <span class="ps-2">@blog.CreatedAt.ToString("dd/mm/yyyy")</span>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <a asp-controller="Blog" asp-action="BlogDetails" asp-route-id="@blog.Id" class="btn-readmore-blog">
+                                        Read More
+                                        <i class="fa-solid fa-arrow-right"></i>
+                                    </a>
                                 </div>
                             </div>
-                            <hr>
-                            <a class="btn-readmore-blog">
-                                Read More
-                                <i class="fa-solid fa-arrow-right"></i>
-                            </a>
                         </div>
-                    </div>
-                </div>
+                    }
+                }
                 <!-- End post item -->
 
-                <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                @* <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
                     <div class="post-item position-relative h-100">
                         <div class="post-img position-relative overflow-hidden">
                             <img src="images/banner1.jpg" class="img-fluid" alt="">
@@ -229,32 +186,9 @@
                             </a>
                         </div>
                     </div>
-                </div>
+                </div> *@
                 <!-- End post item -->
-
-                <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-                    <div class="post-item position-relative h-100">
-                        <div class="post-img position-relative overflow-hidden">
-                            <img src="images/banner1.jpg" class="img-fluid" alt="">
-                        </div>
-                        <div class="post-content d-flex flex-column">
-                            <h3 class="post-title">Quia assumenda est et veritati tirana ploder</h3>
-                            <div class="meta d-flex align-items-center">
-                                <div class="d-flex align-items-center">
-                                    <i class="fa-solid fa-person"></i> <span class="ps-2">Lisa Hunter</span>
-                                </div>
-                            </div>
-                            <hr>
-                            <a class="btn-readmore-blog">
-                                Read More
-                                <i class="fa-solid fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div><!-- End post item -->
-
             </div>
-
         </div>
     </section>
     <!-- End Recent Blog Posts Section -->

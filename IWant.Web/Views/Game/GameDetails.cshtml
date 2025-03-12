@@ -73,6 +73,16 @@
         text-align: left;
     }
 
+        .game-info img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+
+        .game-info h3 {
+            margin: auto 0;
+        }
+
     .game-info-label-container {
         display: flex;
         margin-bottom: 10px;
@@ -124,19 +134,28 @@
     <div class="section-wrapper">
         <div class="confetti-container"></div>
 
-        @if(Model.Count() != 0) {
-            foreach(var game in Model){
+        @if (Model.Count() != 0)
+        {
+            foreach (var game in Model)
+            {
                 <div class="sectiongame">
                     <div class="video-wrapper">
                         <iframe src="@game.VideoUrl?.Replace("watch?v=", "embed/")" allowfullscreen></iframe>
                     </div>
                     <div class="game-info">
-                        <h3 class="game-title">@game.Name</h3>
+                        <div class="d-flex">
+                            <img src="~/images/@(game.Name).png" alt="@game.Name" />
+                            <h3 class="game-title ms-1">
+                                @(game.Name == "Tower Build" ? $"{game.Name} (Comming Soon)" : game.Name)
+                            </h3>
+                        </div>
                         <p class="game-description">@game.Description</p>
                     </div>
                 </div>
             }
-        } else {
+        }
+        else
+        {
             <div class="sectiongame">
                 <div class="video-wrapper">
                     <iframe src="https://www.youtube.com/embed/example2" allowfullscreen></iframe>
@@ -187,16 +206,7 @@
                 </div>
             </div>
         }
-        <div class="sectiongame">
-            <div class="video-wrapper">
-                <iframe src="https://www.youtube.com/embed/example6" allowfullscreen></iframe>
-            </div>
-            <div class="game-info">
-                <h3 class="game-title">My Talking Angela 2</h3>
-                <p class="game-description">This is the description for My Talking Angela 2. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            </div>
-        </div>
-        
+
 
     </div>
     <img src="~/images/banner.jpg" alt="Banner" class="round-image" />

@@ -32,6 +32,7 @@ namespace IWant.Web.Models
        
         public IFormFile? Image { get; set; }
         public string? ImageLocalPath { get; set; }
+        public string? CitedImage { get; set; }
 
         public bool? Status { get; set; }
         public int ViewCount { get; set; } = 0;

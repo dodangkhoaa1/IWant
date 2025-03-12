@@ -59,12 +59,16 @@
                             </div>
                             <img id="imgPreview" src="#" alt="Image Preview" style="max-height: 100%; max-width: 100%; display: none;" />
                         </div>
-
                         <div class="mt-3 text-center">
                             <button type="button" class="btn btn-success" id="chooseFileButton">Choose File</button>
                             <input asp-for="Image" id="fileInput" asp-for="Image" type="file" style="display: none;" />
                             <input asp-for="ImageUrl" hidden />
                             <span asp-validation-for="Image" class="text-danger"></span>
+                        </div>
+                        <div class="cited-img">
+                            <label asp-for="CitedImage" for="Title" class="form-label fw-bold"></label>
+                            <input type="text" asp-for="CitedImage" class="form-control" placeholder="Enter Cited Image" required />
+                            <span asp-validation-for="CitedImage" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="col-md-8">
@@ -102,7 +106,7 @@
             </form>
 
             <div class="mt-4 position-relative" style="height: 100px; overflow: hidden;">
-                <img id="scrolling-logo" src="~/images/logo-1.png" alt="Logo" style="position: absolute; top: 50%; transform: translateY(-50%); left: 100%; height: 80px;" />
+                <img id="scrolling-logo" src="~/images/logo-1.png" alt="Logo" style="position: absolute; top: 50%; transform: translateY(-50%); left: 90%; height: 80px;" />
             </div>
         </div>
     </div>
@@ -150,18 +154,6 @@
                     $('#uploadPlaceholder').show();
                 }
             });
-
-
-            function animateLogo() {
-                var $logo = $('#scrolling-logo');
-                var containerWidth = $logo.parent().width();
-                var logoWidth = $logo.width();
-                $logo.animate({ left: -logoWidth }, 10000, 'linear', function () {
-                    $logo.css('left', containerWidth);
-                    animateLogo();
-                });
-            }
-            animateLogo();
         });
     </script>
 }

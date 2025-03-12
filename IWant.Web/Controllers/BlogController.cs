@@ -124,6 +124,7 @@ namespace IWant.Web.Controllers
                 UpdatedAt = DateTime.Now,
                 ImageUrl = imageUrl,
                 ImageLocalPath = imageLocalPath ?? "blog/default.png",
+                CitedImage = model.CitedImage,
                 Status = model.Status,
                 User = user
             };
@@ -317,6 +318,18 @@ namespace IWant.Web.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        public async Task<IActionResult> Details([FromRoute] int id)
+        {
+            var blogs = await _context.Blogs.Include(b => b.User).FirstOrDefaultAsync(b => b.Id == id);
+            if (blogs == null)
+            {
+                return NotFound();
+            }
+
+            var blogViewModels = _mapper.Map<Blog, BlogViewModel>(blogs);
+            
+            return View(blogViewModels);
+        }
 
         public async Task<IActionResult> BlogDetail([FromRoute] int id)
         {
@@ -372,6 +385,7 @@ namespace IWant.Web.Controllers
                     CreatedAt = blog.CreatedAt,
                     User = blog.User,
                     ImageUrl = blog.ImageUrl,
+                    CitedImage = blog.CitedImage,
                     Comments = commentViewModels,
                     UserRating = userRating,
                     AverageRating = (int)Math.Round(averageRating, MidpointRounding.AwayFromZero),

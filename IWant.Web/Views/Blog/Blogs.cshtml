@@ -73,12 +73,24 @@
     }
 
     .card{
-        height:100%;
+        height:400px;
     }
 
-        .card-title{
-            height:85px;
+        .card img{
+            padding-bottom:0;
+            border-bottom:1px solid black;
+            object-fit:contain;
+            width:100%;
+            height:250px;
         }
+
+        .card-title{
+            height:100px;
+        }
+
+    .remote-title{
+        height: 50px;
+    }
 
     .main-article:hover h1 {
         color: #ff6600;
@@ -256,8 +268,8 @@
         {
             <div class="row main-article position-relative">
                 <a asp-action="BlogDetail" asp-controller="Blog" asp-route-id="@topBlog.Id" class="stretched-link"></a>
-                <div class="col-md-6">
-                    <img src="@topBlog.ImageUrl" alt="@topBlog.Title">
+                <div style="max-height:320px;" class="col-md-6">
+                    <img style="width:100%;height:100% ; object-fit:contain" src="@topBlog.ImageUrl" alt="@topBlog.Title">
                 </div>
                 <div class="col-md-6">
                     <h1>@topBlog.Title</h1>
@@ -283,9 +295,10 @@
                         <div class="col-md-4">
                             <div class="card position-relative">
                                 <a asp-action="BlogDetail" asp-controller="Blog" asp-route-id="@blogItem.Id" class="stretched-link"></a>
-                                <img style="width: 100%; height:250px" src="@blogItem.ImageUrl" alt="@blogItem.Title">
+                                <img style="width: 100%; object-fit: contain" src="@blogItem.ImageUrl" alt="@blogItem.Title">
                                 <div class="card-body">
-                                    <h5 class="card-title">@blogItem.Title</h5>
+                                    <h3 class="remote-title mt-2" style="font-size:1rem;font-weight:bold;">
+                                        @blogItem.Title</h3>
                                     <p class="meta-info">
                                         <i class="fas fa-calendar-alt"></i> @blogItem.CreatedAt.ToString("dd/MM/yyyy") | <i class="fas fa-eye"></i> @blogItem.ViewCount
                                     </p>
@@ -335,23 +348,18 @@
                     foreach (var blogItem in Model)
                     {
                         <div class="col-md-4">
-                            <div class="card mt-4">
-                                <img style="width: 100%; height:200px" src="@blogItem.ImageUrl" alt="@blogItem.Title">
+                            <div class="card position-relative">
+                                <a asp-action="BlogDetail" asp-controller="Blog" asp-route-id="@blogItem.Id" class="stretched-link"></a>
+                                <img style="width: 100%; object-fit: contain" src="@blogItem.ImageUrl" alt="@blogItem.Title">
                                 <div class="card-body">
                                     <h3 class="remote-title mt-2" style="font-size:1rem;font-weight:bold;">
                                         @blogItem.Title
                                     </h3>
-
                                     <p class="meta-info">
-                                        <i class="fas fa-calendar-alt"></i> @blogItem.CreatedAt.ToString("dd/MM/yyyy") | <i class="fa-solid fa-user"></i> @blogItem.User.FullName
+                                        <i class="fas fa-calendar-alt"></i> @blogItem.CreatedAt.ToString("dd/MM/yyyy") | <i class="fas fa-eye"></i> @blogItem.ViewCount
                                     </p>
-                                    <a asp-action="BlogDetail" asp-controller="Blog" asp-route-id="@blogItem.Id" class="read-more">
-                                        Read more
-                                    </a>
                                 </div>
-
                             </div>
-
                         </div>
                     }
                 }

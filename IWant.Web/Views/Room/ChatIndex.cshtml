@@ -139,6 +139,10 @@
             max-width: 120px;
         }
 
+            .sidebar .profile div a:hover{
+                color:black;
+            }
+
     .main-content {
         flex: 1;
         display: flex;
@@ -328,10 +332,10 @@
 
     .chat-body {
         width: 100%;
-        height: 400px; /* Hoặc auto nếu muốn tự động co dãn */
-        overflow-y: auto; /* Đảm bảo không có thanh cuộn ngang */
+        height: 400px;
+        overflow-y: auto; 
         overflow-x: hidden;
-        white-space: normal; /* Để tin nhắn xuống dòng nếu quá dài */
+        white-space: normal; 
         word-wrap: break-word;
     }
 
@@ -382,7 +386,7 @@
             <div class="profile">
                 <div>
                     <img src="#" class="user-avatar" data-bind="attr: { src:  myAvatar() }" />
-                    <a data-bind="text: myName"></a>
+                    <a data-bind="text: myName"> </a>
                     <p class="role"> (@roleMember)</p>
                 </div>
             </div>

@@ -31,14 +31,15 @@ namespace IWant.Web.Controllers
                     Id = x.Id,
                     Name = x.Name,
                     Description = x.Description,
-                    VideoUrl = x.VideoUrl
+                    VideoUrl = x.VideoUrl,
                 }).ToList(),
                 Blogs = blogs.Select(x => new BlogViewModel
                 {
                     Id = x.Id,
                     Title = x.Title,
                     Content = x.Content,
-                    ImageUrl = x.ImageUrl
+                    ImageUrl = x.ImageUrl,
+                    CreatedAt = x.CreatedAt
                 }).ToList()
             };
             return View(homeViewModel);

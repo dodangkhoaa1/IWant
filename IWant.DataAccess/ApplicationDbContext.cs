@@ -68,38 +68,69 @@ public partial class ApplicationDbContext : IdentityDbContext<User>
 
         builder.Entity<User>(entity =>
         {
-            entity.ToTable("AspNetUsers"); 
+            entity.ToTable("AspNetUsers");
         });
 
-        builder.Entity<User>().HasData(new User
-        {
-            Id = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
-            FullName = "Hồ Minh Nhật",
-            ImageUrl = "http://localhost:5130/images/avatar/default-avatar.png",
-            ImageLocalPath = "default-avatar.png",
-            PhoneNumber = "0888408052",
-            Gender = true,
-            Birthday = DateOnly.Parse("2003-11-24"),
-            Status = true,
-            UserName = "nhathm2411@gmail.com",
-            NormalizedUserName = "NHATHM2411@GMAIL.COM",
-            Email = "nhathm2411@gmail.com",
-            NormalizedEmail = "NHATHM2411@GMAIL.COM",
-            EmailConfirmed = true,
-            PasswordHash = "AQAAAAIAAYagAAAAEJbJ5Wbc5Ukymbc73mgTlipOMojxe5yqV9bB5aymAnvaiaoaNOdfqdNTi++md7JOUQ==",
-            SecurityStamp = "4ROV5G3THUAAZ5C5NDWOBZ76P4VKU6RY",
-            ConcurrencyStamp = "bd591428-5d71-49ee-abd2-c1740ff5f70c",
-            PhoneNumberConfirmed = false,
-            TwoFactorEnabled = false,
-            LockoutEnabled = true,
-            AccessFailedCount = 0
-        });
+        builder.Entity<User>().HasData(
+            new User
+            {
+                Id = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
+                FullName = "Hồ Minh Nhật",
+                ImageUrl = "http://localhost:5130/images/avatar/default-avatar.png",
+                ImageLocalPath = "default-avatar.png",
+                PhoneNumber = "0888408052",
+                Gender = true,
+                Birthday = DateOnly.Parse("2003-11-24"),
+                Status = true,
+                UserName = "nhathm2411@gmail.com",
+                NormalizedUserName = "NHATHM2411@GMAIL.COM",
+                Email = "nhathm2411@gmail.com",
+                NormalizedEmail = "NHATHM2411@GMAIL.COM",
+                EmailConfirmed = true,
+                PasswordHash = "AQAAAAIAAYagAAAAEJbJ5Wbc5Ukymbc73mgTlipOMojxe5yqV9bB5aymAnvaiaoaNOdfqdNTi++md7JOUQ==",
+                SecurityStamp = "4ROV5G3THUAAZ5C5NDWOBZ76P4VKU6RY",
+                ConcurrencyStamp = "bd591428-5d71-49ee-abd2-c1740ff5f70c",
+                PhoneNumberConfirmed = false,
+                TwoFactorEnabled = false,
+                LockoutEnabled = true,
+                AccessFailedCount = 0
+            },
+            new User
+            {
+                Id = "6b7f56a9-4fd5-47b7-8454-0aa5a7ab5012",
+                FullName = "Đỗ Đăng Khoa",
+                ImageUrl = "http://localhost:5130/images/avatar/default-avatar.png",
+                ImageLocalPath = "default-avatar.png",
+                PhoneNumber = "0784419071",
+                Gender = true,
+                Birthday = DateOnly.Parse("2003-07-16"),
+                Status = true,
+                UserName = "ddkhoaa1@gmail.com",
+                NormalizedUserName = "DDKHOAA1@GMAIL.COM",
+                Email = "ddkhoaa1@gmail.com",
+                NormalizedEmail = "DDKHOAA1@GMAIL.COM",
+                EmailConfirmed = true,
+                PasswordHash = "AQAAAAIAAYagAAAAEFQdX/kgMdnRNxkiz08sS25fZ8X7nVeW0J1FD+NAct6FHfkleCYGZ3nGLFx08yj9sg==",
+                SecurityStamp = "NL2EDELTGI4XD4IAZJAM2UDPVUDSUZSM",
+                ConcurrencyStamp = "bad5ee40-cb79-4c90-b117-e5afb3a8ddf8",
+                PhoneNumberConfirmed = false,
+                TwoFactorEnabled = false,
+                LockoutEnabled = true,
+                AccessFailedCount = 0
+            }
+            );
 
         builder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>
         {
             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
             RoleId = "d19bb620-77b5-414e-865a-1894fbcbb689"
-        });
+        },
+        new IdentityUserRole<string>
+        {
+            UserId = "6b7f56a9-4fd5-47b7-8454-0aa5a7ab5012",
+            RoleId = "fbd6a6c8-27eb-4171-bb75-50e97adffebb"
+        }
+        );
 
         //Word Category
         builder.Entity<WordCategory>().HasData(
@@ -209,15 +240,15 @@ public partial class ApplicationDbContext : IdentityDbContext<User>
 
         //color
         builder.Entity<Word>().HasData(
-            new Word() { Id = 67, VietnameseText = "Màu đen", EnglishText = "Black",WordCategoryId = 6, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/color/Black.png", Status = true },
-            new Word() { Id = 68, VietnameseText = "Màu xanh dương", EnglishText = "Blue",WordCategoryId = 6, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/color/Blue.png", Status = true },
-            new Word() { Id = 69, VietnameseText = "Màu xanh lá", EnglishText = "Green",WordCategoryId = 6, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/color/Green.png", Status = true },
-            new Word() { Id = 70, VietnameseText = "Màu cam", EnglishText = "Orange",WordCategoryId = 6, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/color/Orange.png", Status = true },
-            new Word() { Id = 71, VietnameseText = "Màu hồng", EnglishText = "Pink",WordCategoryId = 6, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/color/Pink.png", Status = true },
-            new Word() { Id = 72, VietnameseText = "Màu đỏ", EnglishText = "Red",WordCategoryId = 6, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/color/Red.png", Status = true },
-            new Word() { Id = 73, VietnameseText = "Màu tím", EnglishText = "Violet",WordCategoryId = 6, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/color/Violet.png", Status = true },
-            new Word() { Id = 74, VietnameseText = "Màu trắng", EnglishText = "White",WordCategoryId = 6, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/color/White.png", Status = true },
-            new Word() { Id = 75, VietnameseText = "Màu vàng", EnglishText = "Yellow",WordCategoryId = 6, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/color/Yellow.png", Status = true }
+            new Word() { Id = 67, VietnameseText = "Màu đen", EnglishText = "Black", WordCategoryId = 6, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/color/Black.png", Status = true },
+            new Word() { Id = 68, VietnameseText = "Màu xanh dương", EnglishText = "Blue", WordCategoryId = 6, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/color/Blue.png", Status = true },
+            new Word() { Id = 69, VietnameseText = "Màu xanh lá", EnglishText = "Green", WordCategoryId = 6, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/color/Green.png", Status = true },
+            new Word() { Id = 70, VietnameseText = "Màu cam", EnglishText = "Orange", WordCategoryId = 6, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/color/Orange.png", Status = true },
+            new Word() { Id = 71, VietnameseText = "Màu hồng", EnglishText = "Pink", WordCategoryId = 6, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/color/Pink.png", Status = true },
+            new Word() { Id = 72, VietnameseText = "Màu đỏ", EnglishText = "Red", WordCategoryId = 6, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/color/Red.png", Status = true },
+            new Word() { Id = 73, VietnameseText = "Màu tím", EnglishText = "Violet", WordCategoryId = 6, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/color/Violet.png", Status = true },
+            new Word() { Id = 74, VietnameseText = "Màu trắng", EnglishText = "White", WordCategoryId = 6, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/color/White.png", Status = true },
+            new Word() { Id = 75, VietnameseText = "Màu vàng", EnglishText = "Yellow", WordCategoryId = 6, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/color/Yellow.png", Status = true }
         );
 
         // feeling
@@ -349,24 +380,24 @@ public partial class ApplicationDbContext : IdentityDbContext<User>
 
         // relations
         builder.Entity<Word>().HasData(
-            new Word() { Id = 176, VietnameseText = "Ở trên", EnglishText = "Above",WordCategoryId = 14, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/relations/Above.png", Status = true },
-            new Word() { Id = 177, VietnameseText = "Phía sau", EnglishText = "Behind",WordCategoryId = 14, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/relations/Behind.png", Status = true },
-            new Word() { Id = 178, VietnameseText = "Ở dưới", EnglishText = "Below",WordCategoryId = 14, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/relations/Below.png", Status = true },
-            new Word() { Id = 179, VietnameseText = "Ít", EnglishText = "Few",WordCategoryId = 14, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/relations/Few.png", Status = true },
-            new Word() { Id = 180, VietnameseText = "Nặng", EnglishText = "Heavy",WordCategoryId = 14, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/relations/Heavy.png", Status = true },
-            new Word() { Id = 181, VietnameseText = "Cao", EnglishText = "High",WordCategoryId = 14, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/relations/High.png", Status = true },
-            new Word() { Id = 182, VietnameseText = "Phía trước", EnglishText = "In front",WordCategoryId = 14, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/relations/In front.png", Status = true },
-            new Word() { Id = 183, VietnameseText = "Ở trong", EnglishText = "Inside",WordCategoryId = 14, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/relations/Inside.png", Status = true },
-            new Word() { Id = 184, VietnameseText = "Lớn", EnglishText = "Large",WordCategoryId = 14, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/relations/Large.png", Status = true },
-            new Word() { Id = 185, VietnameseText = "Nhẹ", EnglishText = "Light",WordCategoryId = 14, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/relations/Light.png", Status = true },
-            new Word() { Id = 186, VietnameseText = "Dài", EnglishText = "Long",WordCategoryId = 14, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/relations/Long.png", Status = true },
-            new Word() { Id = 187, VietnameseText = "Thấp", EnglishText = "Low",WordCategoryId = 14, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/relations/Low.png", Status = true },
-            new Word() { Id = 188, VietnameseText = "Nhiều", EnglishText = "Many",WordCategoryId = 14, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/relations/Many.png", Status = true },
-            new Word() { Id = 189, VietnameseText = "Bên ngoài", EnglishText = "Outside",WordCategoryId = 14, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/relations/Outside.png", Status = true },
-            new Word() { Id = 190, VietnameseText = "Ngắn", EnglishText = "Short",WordCategoryId = 14, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/relations/Short.png", Status = true },
-            new Word() { Id = 191, VietnameseText = "Nhỏ", EnglishText = "Small",WordCategoryId = 14, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/relations/Small.png", Status = true },
-            new Word() { Id = 192, VietnameseText = "Dày", EnglishText = "Thick",WordCategoryId = 14, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/relations/Thick.png", Status = true },
-            new Word() { Id = 193, VietnameseText = "Mỏng", EnglishText = "Thin",WordCategoryId = 14, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/relations/Thin.png", Status = true }
+            new Word() { Id = 176, VietnameseText = "Ở trên", EnglishText = "Above", WordCategoryId = 14, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/relations/Above.png", Status = true },
+            new Word() { Id = 177, VietnameseText = "Phía sau", EnglishText = "Behind", WordCategoryId = 14, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/relations/Behind.png", Status = true },
+            new Word() { Id = 178, VietnameseText = "Ở dưới", EnglishText = "Below", WordCategoryId = 14, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/relations/Below.png", Status = true },
+            new Word() { Id = 179, VietnameseText = "Ít", EnglishText = "Few", WordCategoryId = 14, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/relations/Few.png", Status = true },
+            new Word() { Id = 180, VietnameseText = "Nặng", EnglishText = "Heavy", WordCategoryId = 14, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/relations/Heavy.png", Status = true },
+            new Word() { Id = 181, VietnameseText = "Cao", EnglishText = "High", WordCategoryId = 14, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/relations/High.png", Status = true },
+            new Word() { Id = 182, VietnameseText = "Phía trước", EnglishText = "In front", WordCategoryId = 14, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/relations/In front.png", Status = true },
+            new Word() { Id = 183, VietnameseText = "Ở trong", EnglishText = "Inside", WordCategoryId = 14, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/relations/Inside.png", Status = true },
+            new Word() { Id = 184, VietnameseText = "Lớn", EnglishText = "Large", WordCategoryId = 14, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/relations/Large.png", Status = true },
+            new Word() { Id = 185, VietnameseText = "Nhẹ", EnglishText = "Light", WordCategoryId = 14, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/relations/Light.png", Status = true },
+            new Word() { Id = 186, VietnameseText = "Dài", EnglishText = "Long", WordCategoryId = 14, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/relations/Long.png", Status = true },
+            new Word() { Id = 187, VietnameseText = "Thấp", EnglishText = "Low", WordCategoryId = 14, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/relations/Low.png", Status = true },
+            new Word() { Id = 188, VietnameseText = "Nhiều", EnglishText = "Many", WordCategoryId = 14, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/relations/Many.png", Status = true },
+            new Word() { Id = 189, VietnameseText = "Bên ngoài", EnglishText = "Outside", WordCategoryId = 14, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/relations/Outside.png", Status = true },
+            new Word() { Id = 190, VietnameseText = "Ngắn", EnglishText = "Short", WordCategoryId = 14, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/relations/Short.png", Status = true },
+            new Word() { Id = 191, VietnameseText = "Nhỏ", EnglishText = "Small", WordCategoryId = 14, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/relations/Small.png", Status = true },
+            new Word() { Id = 192, VietnameseText = "Dày", EnglishText = "Thick", WordCategoryId = 14, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/relations/Thick.png", Status = true },
+            new Word() { Id = 193, VietnameseText = "Mỏng", EnglishText = "Thin", WordCategoryId = 14, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/relations/Thin.png", Status = true }
         );
 
         // time
@@ -428,7 +459,8 @@ public partial class ApplicationDbContext : IdentityDbContext<User>
             new Game() { Id = 2, Name = "Coloring", Description = "Duis arcu risus, mattis sed est ac, molestie malesuada metus. Fusce vel ante nisl. Morbi consequat augue libero. Fusce nisi nisi, lobortis vel pellentesque eu, mattis eget dui. Cras cursus ornare nibh, in varius nibh egestas id. Sed sed massa at mauris aliquam consequat. Praesent porta eu arcu quis scelerisque.", VideoUrl = "https://www.youtube.com/watch?v=ynJ_nraLqU4" },
             new Game() { Id = 3, Name = "AAC", Description = "Duis arcu risus, mattis sed est ac, molestie malesuada metus. Fusce vel ante nisl. Morbi consequat augue libero. Fusce nisi nisi, lobortis vel pellentesque eu, mattis eget dui. Cras cursus ornare nibh, in varius nibh egestas id. Sed sed massa at mauris aliquam consequat. Praesent porta eu arcu quis scelerisque.", VideoUrl = "https://www.youtube.com/watch?v=ynJ_nraLqU4" },
             new Game() { Id = 4, Name = "Emotion Selection", Description = "Duis arcu risus, mattis sed est ac, molestie malesuada metus. Fusce vel ante nisl. Morbi consequat augue libero. Fusce nisi nisi, lobortis vel pellentesque eu, mattis eget dui. Cras cursus ornare nibh, in varius nibh egestas id. Sed sed massa at mauris aliquam consequat. Praesent porta eu arcu quis scelerisque.", VideoUrl = "https://www.youtube.com/watch?v=ynJ_nraLqU4" },
-            new Game() { Id = 5, Name = "Fruit Drop", Description = "Duis arcu risus, mattis sed est ac, molestie malesuada metus. Fusce vel ante nisl. Morbi consequat augue libero. Fusce nisi nisi, lobortis vel pellentesque eu, mattis eget dui. Cras cursus ornare nibh, in varius nibh egestas id. Sed sed massa at mauris aliquam consequat. Praesent porta eu arcu quis scelerisque.", VideoUrl = "https://www.youtube.com/watch?v=ynJ_nraLqU4" }
+            new Game() { Id = 5, Name = "Fruit Drop", Description = "Duis arcu risus, mattis sed est ac, molestie malesuada metus. Fusce vel ante nisl. Morbi consequat augue libero. Fusce nisi nisi, lobortis vel pellentesque eu, mattis eget dui. Cras cursus ornare nibh, in varius nibh egestas id. Sed sed massa at mauris aliquam consequat. Praesent porta eu arcu quis scelerisque.", VideoUrl = "https://www.youtube.com/watch?v=ynJ_nraLqU4" },
+            new Game() { Id = 6, Name = "Tower Build", Description = "Duis arcu risus, mattis sed est ac, molestie malesuada metus. Fusce vel ante nisl. Morbi consequat augue libero. Fusce nisi nisi, lobortis vel pellentesque eu, mattis eget dui. Cras cursus ornare nibh, in varius nibh egestas id. Sed sed massa at mauris aliquam consequat. Praesent porta eu arcu quis scelerisque. (Comming Soon!)", VideoUrl = "https://www.youtube.com/watch?v=ynJ_nraLqU4" }
         );
     }
 

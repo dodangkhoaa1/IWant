@@ -1,57 +1,149 @@
 ﻿@model IEnumerable<GameViewModel>
-
 @{
-    ViewData["Title"] = "Manage View Game";
+    ViewData["Title"] = "Manage Video Game";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
+<style>
+    .manage-game-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 20px;
+        background: #fff;
+        margin-top: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
 
-<h1>Manage View Game</h1>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                Game Name
-            </th>
-            <th>
-                Description
-            </th>
-            <th>
-                Video Game Url
-            </th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @item.Name
-                </td>
-                <td>
-                    @item.Description
-                </td>
-                <td>
-                    @{
-                        var embedUrl = item.VideoUrl?.Replace("watch?v=", "embed/");
-                    }
-                    <iframe style="width:300px;height:150px;margin:0 auto; display:block" src="@embedUrl"
-                            title="YouTube video player" frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen></iframe>
-                </td>
-                <td>
-                    @if (item.VideoUrl == "")
-                    {
-                        <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.Id">Details</a>
-                        <a class="btn btn-success" asp-action="Create" asp-route-id="@item.Id">Create</a>
-                    } else if(item.VideoUrl != ""){
-                        <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.Id">Details</a>
-                        <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                    }
-                </td>
-            </tr>
+    .manage-game-title {
+        margin: 0;
+        font-size: 1.8rem;
+        font-weight: 800;
+        color: #e67e22;
+        margin-bottom: 10px;
+    }
+
+    .table-fixed tbody tr {
+        border-bottom: 1px solid #dee2e6;
+        height: 100px;
+    }
+
+    .manage-game-table-wrapper {
+        background-color: #fff;
+        overflow-x: auto;
+    }
+
+    .manage-game-table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        background-color: #fff;
+    }
+
+    .manage-game-thead tr {
+        background-color: #e9ecef;
+        color: #333;
+    }
+
+    .manage-game-thead th {
+        text-align: left;
+        padding: 12px;
+        font-size: 0.9rem;
+        color: #6c757d;
+        border-bottom: 4px solid #FEDA15;
+        font-weight: 600;
+    }
+
+    .manage-game-tbody td {
+        padding: 12px;
+        border-bottom: 1px solid #dee2e6;
+        vertical-align: middle;
+    }
+
+    .manage-game-tbody tr:hover {
+        background-color: #f6f6f6;
+    }
+
+    .manage-game-video {
+        width: 300px;
+        height: 150px;
+        display: block;
+        margin: 0 auto;
+        border: none;
+    }
+
+    .btn-details,
+    .btn-create,
+    .btn-edit,
+    .btn-delete {
+        width: 80px;
+        height: 40px;
+        border: 2px solid #FEDA15;
+        color: #000;
+        background-color: #fff;
+        text-align: center;
+        display: inline-block;
+        line-height: 36px;
+        margin: 2px;
+        border-radius: 10px;
+        text-decoration: none;
+        font-size: 0.9rem;
+    }
+
+        .btn-details:hover,
+        .btn-create:hover,
+        .btn-edit:hover,
+        .btn-delete:hover {
+            background-color: #FEDA15;
+            text-decoration: none;
+            color: #000;
         }
-    </tbody>
-</table>
+</style>
+<div class="">
+    <h1 class="manage-game-title">Manage Video Game</h1>
+    <div class="manage-game-table-wrapper">
+        <table class="manage-game-table">
+            <thead class="manage-game-thead">
+                <tr>
+                    <th>Game Name</th>
+                    <th style="width:765px">Description</th>
+                    <th>Video Game Url</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody class="manage-game-tbody">
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>@item.Description</td>
+                        <td>
+                            @{
+                                var embedUrl = item.VideoUrl?.Replace("watch?v=", "embed/");
+                            }
+                            <iframe class="manage-game-video"
+                                    src="@embedUrl"
+                                    title="YouTube video player"
+                                    frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen>
+                            </iframe>
+                        </td>
+                        <td>
+                            @if (string.IsNullOrWhiteSpace(item.VideoUrl))
+                            {
+                                <a class="btn-details" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                                <a class="btn-create" asp-action="Create" asp-route-id="@item.Id">Create</a>
+                            }
+                            else
+                            {
+                                <a class="btn-details" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                                <a class="btn-edit" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                                <a class="btn-delete" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
