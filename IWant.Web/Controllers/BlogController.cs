@@ -67,11 +67,11 @@ namespace IWant.Web.Controllers
             
             if (User.IsInRole("Admin"))
             {
-                blogs = await _context.Blogs.ToListAsync();
+                blogs = await _context.Blogs.Include(b => b.User).ToListAsync();
                 blogViewModels = _mapper.Map<List<Blog>, List<BlogViewModel>>(blogs);
                 return View(blogViewModels);
             }
-            blogs = await _context.Blogs.Where(b=>b.User.Id == user.Id).ToListAsync();
+            blogs = await _context.Blogs.Include(b => b.User).Where(b=>b.User.Id == user.Id).ToListAsync();
             blogViewModels = _mapper.Map<List<Blog>, List<BlogViewModel>>(blogs);
             return View(blogViewModels);
         }

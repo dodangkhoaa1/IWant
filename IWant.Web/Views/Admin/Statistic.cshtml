@@ -1,7 +1,16 @@
-﻿
+﻿@model StatisticViewModel
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
+    var blogCount = Model.TotalBlog;
+    var accountCount = Model.TotalAccount;
+    var rateCount = Model.TotalRate;
+    var commentCount = Model.TotalComment;
+
+    var newestBlog = Model.NewestBlog;
+
+    var mostWatchBlog = Model.MostWatchBlog;
 }
 
 <head>
@@ -20,7 +29,7 @@
             border: none;
             border-radius: 10px;
             padding: 20px;
-            height: 230px;
+            height: 290px;
             width: 100%;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
             text-align: left;
@@ -163,6 +172,7 @@
             }
 
         .info-card {
+            height:300px !important;
             background: #fff;
             border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -212,11 +222,16 @@
             background: #fff;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            height: 370px;
         }
 
+            .blog nav, .score nav {
+                bottom: 0;
+                left: 20px;
+            }
+
         .row.mt-4.container.custom {
-            margin-left: 0;
-            padding-left: 15px;
+            margin: auto;
         }
 
         .avt img {
@@ -239,9 +254,9 @@
                 <div class="card-custom d-flex justify-content-between align-items-center">
                     <div>
                         <div class="card-title">Blog</div>
-                        <div class="card-value">350,897</div>
+                        <div class="card-value">@blogCount</div>
                     </div>
-                    <div class="card-icon" style="background: linear-gradient(to bottom right, #ff7e5f, #feb47b);">
+                    <div class="card-icon" style="background: linear-gradient(to bottom right, #feb47b, #ff7e5f);">
                         <i class="fa-solid fa-blog"></i>
                     </div>
                 </div>
@@ -251,9 +266,9 @@
                 <div class="card-custom d-flex justify-content-between align-items-center">
                     <div>
                         <div class="card-title">User</div>
-                        <div class="card-value">2,356</div>
+                        <div class="card-value">@accountCount</div>
                     </div>
-                    <div class="card-icon" style="background: linear-gradient(to bottom right, #f97316, #facc15);">
+                    <div class="card-icon" style="background: linear-gradient(to bottom right, #16A34A, #22C55E );">
                         <i class="fa-solid fa-user"></i>
                     </div>
                 </div>
@@ -262,11 +277,11 @@
             <div class="col-md-3">
                 <div class="card-custom d-flex justify-content-between align-items-center">
                     <div>
-                        <div class="card-title">Game</div>
-                        <div class="card-value">924</div>
+                        <div class="card-title">Comment</div>
+                        <div class="card-value">@commentCount</div>
                     </div>
-                    <div class="card-icon" style="background: linear-gradient(to bottom right, #10b981, #34d399);">
-                        <i class="fa-solid fa-gamepad"></i>
+                    <div class="card-icon" style="background: linear-gradient(to bottom right, #2563EB, #3B82F6 );">
+                        <i class="fa-regular fa-comments"></i>
                     </div>
                 </div>
             </div>
@@ -274,11 +289,11 @@
             <div class="col-md-3">
                 <div class="card-custom d-flex justify-content-between align-items-center">
                     <div>
-                        <div class="card-title">Game</div>
-                        <div class="card-value">924</div>
+                        <div class="card-title">Rate</div>
+                        <div class="card-value">@rateCount</div>
                     </div>
-                    <div class="card-icon" style="background: linear-gradient(to bottom right, #3b82f6, #60a5fa);">
-                        <i class="fa-solid fa-gamepad"></i>
+                    <div class="card-icon" style="background: linear-gradient(to bottom right, #DC2626, #EF4444 );">
+                        <i style="color:yellow" class="fa-regular fa-star"></i>
                     </div>
 
                 </div>
@@ -286,9 +301,9 @@
         </div>
 
         <div class="row mt-4">
-            <div class="col-md-8">
+            <div style="margin: auto 0" class="col-md-8">
                 <div class="chart-container">
-                    <h5>Visit and Sales Statistics</h5>
+                    <h5>Blog, Account, Comment Statistic</h5>
                     <canvas id="salesChart" style="height:450px;"></canvas>
                 </div>
             </div>
@@ -296,7 +311,7 @@
 
                 <div class="info-card p-3">
                     <div class="card-header-area">
-                        <h6>Traffic Distribution</h6>
+                        <h6>Game Access Statistics</h6>
                         <div class="card-subtext">
                         </div>
                     </div>
@@ -306,123 +321,162 @@
                 </div>
 
                 <div class="top-selling-products">
-                    <div class="card-custom1 mt-3">
-                        <h5>The New Blog</h5>
-                        <div class="product-item mt-3">
-                            <img src="~/images/banner.jpg" alt="Banner" />
-                            <div>
-                                <h6>Nội dung blog mới</h6>
-                            </div>
-                        </div>
-                        <div class="product-item">
+                    <div style="height:90%" class="card-custom1 mt-3">
+                        <h5>The Newest Blogs</h5>
+                        @if (newestBlog.Count() != 0)
+                        {
+                            foreach (var blog in newestBlog)
+                            {
+                                <div class="product-item position-relative">
+                                    <a asp-action="BlogDetail" asp-controller="Blog" asp-route-id="@blog.Id" class="stretched-link"></a>
+                                    <img src="@blog.ImageUrl" alt="@blog.Title" />
+                                    <div class="d-flex justify-content-between">
+                                        <h6 style="font-size:12px">@blog.Title</h6>
+                                    </div>
+                                </div>
+                            }
+                        }
+                        @* <div class="product-item">
                             <img src="~/images/banner1.jpg" alt="Banner" />
                             <div>
                                 <h6>Nội dung blog hot</h6>
                             </div>
-                        </div>
+                            </div>*@
                     </div>
+                </div>
+            </div>
+        </div>
 
+
+
+        <!-- Bảng Blog được yêu thích nhất và phân trang JS -->
+        <div class="row mt-4 container custom">
+            <div class="col-md-6">
+                <div class="blog position-relative">
+                    <h5>The most watched</h5>
+                    <table class="table align-middle mt-3" data-table="watched">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Title blog</th>
+                                <th>Watched</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (mostWatchBlog.Count() != 0)
+                            {
+                                foreach (var blog in mostWatchBlog)
+                                {
+                                    <tr style="height:65px">
+                                        <td>@blog.Id</td>
+                                        <td>@blog.Title</td>
+                                        <td style="text-align:center">@blog.ViewCount</td>
+                                        <td><span class="badge @(blog.Status == true ? "bg-success" : "bg-danger")">@(blog.Status == true ? "Show" : "Hide")</span></td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                    <nav class="position-absolute">
+                        <ul class="pagination" data-pagination="watched"></ul>
+                    </nav>
                 </div>
             </div>
 
-        </div>
-    </div>
-
-    <!-- Bảng Blog được yêu thích nhất và phân trang JS -->
-    <div class="row mt-4 container custom">
-        <div class="col-md-6">
-            <div class="blog">
-                <h5>The most watched</h5>
-                <table class="table align-middle mt-3" data-table="watched">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Title blog</th>
-                            <th>Watched</th>
-                            <th>Trạng thái</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>1</td><td>Cách làm blog hiệu quả</td><td>2000</td><td><span class="badge bg-success">Công khai</span></td></tr>
-                        <tr><td>2</td><td>Tuyển tập bài blog công nghệ</td><td>1800</td><td><span class="badge bg-success">Công khai</span></td></tr>
-                        <tr><td>3</td><td>Hành trình du lịch qua blog</td><td>1500</td><td><span class="badge bg-success">Công khai</span></td></tr>
-                        <tr><td>4</td><td>Bí quyết SEO cho blog</td><td>1200</td><td><span class="badge bg-success">Công khai</span></td></tr>
-                        <tr><td>5</td><td>Top tips cho blog mới</td><td>1100</td><td><span class="badge bg-success">Công khai</span></td></tr>
-                        <tr><td>6</td><td>Hướng dẫn viết blog chuyên nghiệp</td><td>1400</td><td><span class="badge bg-success">Công khai</span></td></tr>
-                    </tbody>
-                </table>
-                <nav>
-                    <ul class="pagination" data-pagination="watched"></ul>
-                </nav>
-            </div>
-        </div>
-
-        <!-- The most score -->
-        <div class="col-md-6 ">
-            <div class="score ">
-                <h5>The most score</h5>
-                <table class="table align-middle mt-3" data-table="score">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Score</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>AAAAA</td><td>2000</td></tr>
-                        <tr><td>BBB</td><td>1800</td></tr>
-                        <tr><td>CCCC</td><td>1500</td></tr>
-                        <tr><td>DDDD</td><td>1200</td></tr>
-                        <tr><td>EEEE</td><td>1100</td></tr>
-                        <tr><td>FFFF</td><td>1000</td></tr>
-                    </tbody>
-                </table>
-                <nav>
-                    <ul class="pagination" data-pagination="score"></ul>
-                </nav>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="container mt-4">
-        <div class="row mt-4">
-            <div class="col-md-8">
-                <div class="chart-container">
-                    <h5>Visit and Sales Statistics</h5>
-                    <canvas id="lineChart" style="height:450px;"></canvas>
+            <!-- The most score -->
+            <div class="col-md-6 ">
+                <div class="score position-relative">
+                    <h5>The most score</h5>
+                    <table class="table align-middle mt-3" data-table="score">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Score</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="height:65px"><td>AAAAA</td><td>2000</td></tr>
+                            <tr style="height:65px"><td>BBB</td><td>1800</td></tr>
+                            <tr style="height:65px"><td>CCCC</td><td>1500</td></tr>
+                            <tr style="height:65px"><td>DDDD</td><td>1200</td></tr>
+                            <tr style="height:65px"><td>EEEE</td><td>1100</td></tr>
+                            <tr style="height:65px"><td>FFFF</td><td>1000</td></tr>
+                        </tbody>
+                    </table>
+                    <nav class="position-absolute">
+                        <ul class="pagination" data-pagination="score"></ul>
+                    </nav>
                 </div>
             </div>
-            <div class="col-md-4 d-flex flex-column gap-3">
+        </div>
 
-                <div class="info-card p-3">
-                    <div class="card-header-area">
-                        <h6>Comment</h6>
-                        <div class="card-subtext"></div>
-                        <div class="avt mt-3 d-flex align-items-center gap-3">
-                            <img src="~/images/avatar/9c15ce64-52df-4cd0-b451-595cea90d9c9.jpg" alt="Banner" />
-                            <div class="text-comment">
-                                <h6 class="mb-1 ">User</h6>
-                                <h6 class="mb-0 text-muted">Content</h6>
+
+        <div class="container mt-4">
+            <div class="row mt-4">
+                <div class="col-md-8">
+                    <div class="chart-container">
+                        <h5>Visit and Sales Statistics</h5>
+                        <canvas id="lineChart" style="height:450px;"></canvas>
+                    </div>
+                </div>
+                <div class="col-md-4 d-flex flex-column gap-3">
+
+                    <div class="info-card p-3">
+                        <div class="card-header-area">
+                            <h6>Comment</h6>
+                            <div class="card-subtext"></div>
+                            <div class="avt mt-3 d-flex align-items-center gap-3">
+                                <img src="~/images/avatar/9c15ce64-52df-4cd0-b451-595cea90d9c9.jpg" alt="Banner" />
+                                <div class="text-comment">
+                                    <h6 class="mb-1 ">User</h6>
+                                    <h6 class="mb-0 text-muted">Content</h6>
+                                </div>
+                            </div>
+                            <div class="avt mt-3 d-flex align-items-center gap-3">
+                                <img src="~/images/avatar/9c15ce64-52df-4cd0-b451-595cea90d9c9.jpg" alt="Banner" />
+                                <div class="text-comment">
+                                    <h6 class="mb-1 ">User</h6>
+                                    <h6 class="mb-0 text-muted">Content</h6>
+                                </div>
+                            </div>
+                            <div class="avt mt-3 d-flex align-items-center gap-3">
+                                <img src="~/images/avatar/9c15ce64-52df-4cd0-b451-595cea90d9c9.jpg" alt="Banner" />
+                                <div class="text-comment">
+                                    <h6 class="mb-1 ">User</h6>
+                                    <h6 class="mb-0 text-muted">Content</h6>
+                                </div>
                             </div>
                         </div>
+
+
                     </div>
 
+                    <div class="top-selling-products">
+                        <div class="card-custom1 mt-3">
+                            <h5>Game</h5>
+                            <table class="table align-middle mt-3" data-table="game">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>AAAAA</td>
+                                    <tr><td>BBB</td>
+                                    <tr><td>CCCC</td>
+                                    <tr><td>DDDD</td>
+                                    <tr><td>EEEE</td>
+                                    <tr><td>FFFF</td>
+                                </tbody>
+                            </table>
+                            <nav class="position-absolute">
+                                <ul class="pagination" data-pagination="game"></ul>
+                            </nav>
 
-                </div>
-
-                <div class="top-selling-products">
-                    <div class="card-custom1 mt-3">
-                        <h5>Game</h5>
-                        <div class="product-item mt-3">
-                            <img src="~/images/banner.jpg" alt="Banner" />
-                            <div>
-                                <h6>Name</h6>
-                            </div>
                         </div>
 
                     </div>
-
                 </div>
             </div>
         </div>
@@ -532,6 +586,7 @@
 
                 setupPagination("watched", "watched");
                 setupPagination("score", "score");
+                setupPagination("game", "game");
             });
         </script>
 

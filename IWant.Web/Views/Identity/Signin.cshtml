@@ -14,45 +14,11 @@
 <link rel="stylesheet" href="~/css/reponsive.css" />
 <link rel="stylesheet" href="~/css/site.css" />
 
-<div class="login-container d-flex justify-content-center align-items-center">
-    <div class="confetti-container"></div>
-    <div class="card login-card">
-        <div class="row g-0">
-            <div class="image  d-flex align-items-center">
-                <img src="/images/signInBG.svg" alt="Sign In Illustration" class="img-fluid rounded-start login-card-img" />
 
-            </div>
-            <div class="form d-flex form-signin flex-column justify-content-center p-4">
-                <form asp-action="SignIn" method="post">
-                    <h1 class="text-center mb-4">Sign In</h1>
-                    <div class="mb-3">
-                        <input type="text" asp-for="Username" placeholder="Username" class="custom-input" />
-                    </div>
-                    <div class="mb-3 position-relative">
-                        <input type="password" asp-for="Password" id="passwordInput" placeholder="Password" class="custom-input" />
-                        <span class="password-toggle " id="togglePassword">
-                            <i class="fa-regular fa-eye"></i>
-                        </span>
-                    </div>
-                    <div class="text-end mb-3">
-                        <a asp-action="ForgotPassword" style="font-size: 14px; color: #9B30FF; font-weight:400;">Forgot password</a>
-                    </div>
-                    <div class="text-center mb-3">
-                        <button type="submit" class="btn btn-warning w-100">Sign In</button>
-                    </div>
-                    <p class="text-center">Don’t have an account? <a asp-action="Signup" style="color: #9B30FF; font-weight:400; font-size: 14px">Sign Up</a></p>
-                </form>
-                <div class="text-end endMascot" style="display: flex; justify-content: flex-end;">
-                    <img src="~/images/mascot-1.png" style="width: 30%;" />
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 <style>
     .login-container {
         padding: 40px;
-        height: 110vh;
+        height: 85vh;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -70,7 +36,6 @@
         overflow: hidden;
         z-index: 2;
         flex-grow: 1;
-        margin-top: 60px;
     }
 
         .login-card .image,
@@ -145,6 +110,44 @@
     }
 
 </style>
+
+
+<div class="login-container d-flex justify-content-center align-items-center">
+    <div class="confetti-container"></div>
+    <div class="card login-card">
+        <div class="row g-0">
+            <div class="image  d-flex align-items-center">
+                <img src="/images/signInBG.svg" alt="Sign In Illustration" class="img-fluid rounded-start login-card-img" />
+
+            </div>
+            <div class="form d-flex form-signin flex-column justify-content-center p-4">
+                <form asp-action="SignIn" method="post">
+                    <h1 class="text-center mb-4">Sign In</h1>
+                    <div class="mb-3">
+                        <input type="text" asp-for="Username" placeholder="Username" class="custom-input" />
+                    </div>
+                    <div class="mb-3 position-relative">
+                        <input type="password" asp-for="Password" id="passwordInput" placeholder="Password" class="custom-input" />
+                        <span class="password-toggle " id="togglePassword">
+                            <i class="fa-regular fa-eye"></i>
+                        </span>
+                    </div>
+                    <div class="text-end mb-3">
+                        <a asp-action="ForgotPassword" style="font-size: 14px; color: #9B30FF; font-weight:400;">Forgot password</a>
+                    </div>
+                    <div class="text-center mb-3">
+                        <button type="submit" class="btn btn-warning w-100">Sign In</button>
+                    </div>
+                    <p class="text-center">Don’t have an account? <a asp-action="Signup" style="color: #9B30FF; font-weight:400; font-size: 14px">Sign Up</a></p>
+                </form>
+                <div class="text-end endMascot" style="display: flex; justify-content: flex-end;">
+                    <img src="~/images/mascot-1.png" style="width: 30%;" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 
 <script>
