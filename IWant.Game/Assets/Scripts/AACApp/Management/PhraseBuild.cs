@@ -23,6 +23,9 @@ public class PhraseBuild : MonoBehaviour
     [SerializeField] private Button deleteBtn; // Button to delete the last button
     [SerializeField] private Button playBtn; // Button to play the sequence of buttons
 
+    [Header("Scroll View")]
+    [SerializeField] ScrollRect phraseScrollRect;
+
     private Dictionary<int, Vector2> buttonInitialPositions = new Dictionary<int, Vector2>(); // Stores initial positions of buttons
     private bool isSwapping = false; // Cờ kiểm soát đổi chỗ
     private GameObject currentSwapTarget = null; // Track the current swap target
@@ -80,7 +83,9 @@ public class PhraseBuild : MonoBehaviour
         }
 
         StartCoroutine(UpdateUIToolBarButtons());
-        UpdateButtonPositions();
+        //UpdateButtonPositions();
+        ScrollToLastButton();
+
     }
 
     /// <summary>
@@ -310,5 +315,22 @@ public class PhraseBuild : MonoBehaviour
             }
         }
         return null;
+    }
+    /// <summary>
+    /// Scroll to the last button in the phraseScrollView.
+    /// </summary>
+    private void ScrollToLastButton()
+    {
+        if (phraseContainer.childCount == 0) return;
+
+        RectTransform contentRectTransform = phraseScrollRect.content;
+        RectTransform viewportRectTransform = phraseScrollRect.viewport;
+
+        int viewportPadding = 50;
+        float contentWidth = contentRectTransform.rect.width;
+        float viewportWidth = viewportRectTransform.rect.width;
+
+        if (contentWidth > viewportWidth - viewportPadding * 2) 
+            contentRectTransform.anchoredPosition = new Vector2(-contentRectTransform.rect.width/2, contentRectTransform.anchoredPosition.y);
     }
 }

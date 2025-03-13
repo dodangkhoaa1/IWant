@@ -2012,6 +2012,7 @@ MonoBehaviour:
   aacButtonContainer: {fileID: 146296974}
   deleteBtn: {fileID: 2079650879}
   playBtn: {fileID: 598915732}
+  phraseScrollRect: {fileID: 1756949130}
 --- !u!1 &1756949128
 GameObject:
   m_ObjectHideFlags: 0
