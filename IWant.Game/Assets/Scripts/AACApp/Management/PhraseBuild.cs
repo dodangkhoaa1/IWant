@@ -162,7 +162,11 @@ public class PhraseBuild : MonoBehaviour
     /// </summary>
     private Vector2 CalculateButtonPosition(int index)
     {
-        return new Vector2(175 + index * (350 + 50), -200);
+        int widthOfButton = 300;
+        int paddingLeft = 150;
+        int spacing = 10;
+
+        return new Vector2(paddingLeft + index * (widthOfButton + spacing), -200);
     }
 
     /// <summary>
