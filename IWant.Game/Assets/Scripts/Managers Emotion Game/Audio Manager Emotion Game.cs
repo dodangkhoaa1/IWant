@@ -5,6 +5,7 @@ public class AudioManagerEmotionGame : MonoBehaviour
 {
     public static AudioManagerEmotionGame instance;
     [Header(" Elements ")]
+    [SerializeField] private AudioSource clickButtonSource;
     [SerializeField] private AudioSource bgmSource;  // AudioSource cho nhạc nền
     [SerializeField] private AudioSource gameOverSource;  // AudioSource cho nhạc Game Over
 
@@ -73,6 +74,10 @@ public class AudioManagerEmotionGame : MonoBehaviour
             {
                 source.mute = !sfxActive;
             }
+        }
+        if (clickButtonSource != null)
+        {
+            clickButtonSource.mute = !sfxActive;
         }
     }
     public void PlayBackgroundMusic()

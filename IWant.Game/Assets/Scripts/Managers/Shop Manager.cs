@@ -1,7 +1,8 @@
-using System;
+﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections;
 public class ShopManager : MonoBehaviour
 {
     [Header(" Elements ")]
@@ -10,6 +11,8 @@ public class ShopManager : MonoBehaviour
     [SerializeField] private GameObject purchaseButton;
     [SerializeField] private TextMeshProUGUI skinLabelText;
     [SerializeField] private TextMeshProUGUI skinPriceText;
+
+    [SerializeField] private ScrollRect scrollRect;
 
     [Header(" Data ")]
     [SerializeField] private SkinDataSO[] skinDataSOs;
@@ -71,6 +74,37 @@ public class ShopManager : MonoBehaviour
 
     }
 
+    private void MoveSelectedItemToCenter(int selectedIndex)
+    {
+        StartCoroutine(MoveToCenterCoroutine(selectedIndex));
+    }
+
+    private IEnumerator MoveToCenterCoroutine(int selectedIndex)
+    {
+        yield return new WaitForEndOfFrame(); // Chờ 1 frame để UI cập nhật
+
+        RectTransform selectedItem = (RectTransform)skinButtonsParent.GetChild(selectedIndex);
+        RectTransform contentRect = scrollRect.content;
+        RectTransform viewportRect = scrollRect.viewport;
+
+        float viewportWidth = viewportRect.rect.width;
+        float contentWidth = contentRect.rect.width;
+
+        // 🟢 Lấy vị trí X của item trong Content
+        float itemPosX = selectedItem.anchoredPosition.x;
+
+        // 🟢 Tính toán vị trí trung tâm cần cuộn đến
+        float targetX = itemPosX - viewportWidth / 2 + selectedItem.rect.width / 2;
+
+        // 🟢 Chuyển đổi thành giá trị `horizontalNormalizedPosition`
+        float normalizedPosition = Mathf.Clamp01(targetX / (contentWidth - viewportWidth));
+
+        // 🟢 Gán giá trị cuộn cho ScrollRect
+        scrollRect.horizontalNormalizedPosition = normalizedPosition;
+
+    }
+
+
 
     private void SkinButtonClickedCallback(int skinButtonIndex, bool shouldSaveLastSkin = true)
     {
@@ -89,20 +123,22 @@ public class ShopManager : MonoBehaviour
                 currentSkinbutton.Unselect();
             }
         }
+
         if (IsSkinUnlocked(skinButtonIndex))
         {
             onSkinSelected?.Invoke(skinDataSOs[skinButtonIndex]);
 
             if (shouldSaveLastSkin)
-
                 SaveLastSelectedSkin();
         }
 
         ManagePurchaseButtonVisibility(skinButtonIndex);
-
         UpdateSkinLabel(skinButtonIndex);
+
+        // 🟢 Di chuyển item vào giữa màn hình
+        MoveSelectedItemToCenter(skinButtonIndex);
     }
-    
+
     private void UpdateSkinLabel(int skinButtonIndex)
     {
         skinLabelText.text = skinDataSOs[skinButtonIndex].GetName();

@@ -3373,6 +3373,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a14e3f691ab7ad34b85a61b75ec9481c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clickButtonSource: {fileID: 2218166887337640297}
   bgmSource: {fileID: 3599210314411650296}
   gameOverSource: {fileID: 2218166887337640297}
   backgroundMusic: {fileID: 8300000, guid: 46c7a681ea78ddf47bffdd66bbc71828, type: 3}

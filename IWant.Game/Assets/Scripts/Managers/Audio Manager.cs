@@ -3,10 +3,11 @@
 public class AudioManager : MonoBehaviour
 {
     [Header(" Elements ")]
+    [SerializeField] private AudioSource buttonClickSource;
     [SerializeField] private AudioSource mergeSource;
     [SerializeField] private AudioSource bgmSource;  // AudioSource cho nhạc nền
     [SerializeField] private AudioSource gameOverSource;  // AudioSource cho nhạc Game Over
-
+    [SerializeField] private AudioSource boomSource; 
     [Header(" Sounds ")]
     [SerializeField] private AudioClip[] mergeClips;
     [SerializeField] private AudioClip backgroundMusic;  // AudioClip nhạc nền
@@ -78,6 +79,14 @@ public class AudioManager : MonoBehaviour
         if (mergeSource != null)
         {
             mergeSource.mute = !sfxActive;
+        }
+        if (buttonClickSource != null)
+        {
+            buttonClickSource.mute = !sfxActive;
+        }
+        if (boomSource != null)
+        {
+            boomSource.mute = !sfxActive;
         }
     }
 }

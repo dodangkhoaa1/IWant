@@ -6,11 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/DotGame/MainMenus.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
-  - enabled: 1
-    path: Assets/Scenes/DotGame/Gameplay.unity
-    guid: be92e2c0f2f1d3448b23dd19330ffb0a
+    path: Assets/Scenes/FruitDropGame/FruitDrop.unity
+    guid: d4bdd3c54fb908541957587cb9d1c74c
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 7ce4537969d852444a9b4e145f12214a, type: 2}
     com.unity.localization.settings: {fileID: 11400000, guid: 65fc21662af7e4441843914a8dba39a0, type: 2}
