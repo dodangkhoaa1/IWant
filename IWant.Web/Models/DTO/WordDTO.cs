@@ -1,8 +1,6 @@
 ﻿using IWant.BusinessObject.Enitities;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
 
-namespace IWant.API.Data.DTOs
+namespace IWant.Web.Models.DTO
 {
     public class WordDTO
     {

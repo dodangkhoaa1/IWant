@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/AACApp/SignInScene.unity
+    path: Assets/Scenes/SignInScene.unity
     guid: 3d5993b26a984b646abed8593d5b2fd2
   - enabled: 1
     path: Assets/Scenes/AACApp/MainMenu.unity

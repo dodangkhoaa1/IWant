@@ -92,35 +92,42 @@ namespace IWant.API.Controllers
         // POST: api/Words
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Word>> PostWord([FromForm] Word word)
+        public async Task<ActionResult<Word>> PostWord(WordDTO word)
         {
-            if (word.ImageFile != null)
+            if (word.Image != null)
             {
-                var category = await _context.WordCategories.FindAsync(word.WordCategoryId);
+                var category = await _context.WordCategories.FirstOrDefaultAsync(c => c.Id == word.WordCategoryId);
                 if (category == null)
                 {
                     return BadRequest("Invalid WordCategoryId");
                 }
 
                 string categoryFolder = category.EnglishName.ToLower();
-                string uniqueFileName = $"{Guid.NewGuid()}{Path.GetExtension(word.ImageFile.FileName)}";
+                string uniqueFileName = $"{Guid.NewGuid()}.png";
                 string savePath = Path.Combine("wwwroot", "images", "word", categoryFolder, uniqueFileName);
                 string relativePath = Path.Combine("images", "word", categoryFolder, uniqueFileName).Replace("\\", "/");
 
-                Directory.CreateDirectory(Path.GetDirectoryName(savePath));
+                // Save the image to the specified path
+                await System.IO.File.WriteAllBytesAsync(savePath, word.Image);
 
-                using (var stream = new FileStream(savePath, FileMode.Create))
-                {
-                    await word.ImageFile.CopyToAsync(stream);
-                }
-
-                word.ImagePath = "/" + relativePath; 
+                word.ImagePath = "/" + relativePath;
             }
 
-            _context.Words.Add(word);
+            Word wordToAdd = new()
+            {
+                VietnameseText = word.VietnameseText,
+                EnglishText = word.EnglishText,
+                CreatedAt = word.CreatedAt,
+                UpdatedAt = word.UpdatedAt,
+                ImagePath = word.ImagePath,
+                Status = word.Status,
+                WordCategoryId = word.WordCategoryId
+            };
+
+            _context.Words.Add(wordToAdd);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetWord", new { id = word.Id }, word);
+            return CreatedAtAction("GetWord", new { id = wordToAdd.Id }, wordToAdd);
         }
 
 
