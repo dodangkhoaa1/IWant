@@ -1,11 +1,33 @@
 ﻿@model List<GameViewModel>
 @{
-    ViewData["Title"] = "GameDetails";
+    ViewData["Title"] = "Game Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<link href="https://fonts.googleapis.com/css2?family=Athiti:wght@300;400;600&display=swap" rel="stylesheet">
+
+
 <link rel="stylesheet" href="~/css/reponsive.css" />
 <style>
+
+
+
+
+    body, h3, p, span,
+    .manage-game-title,
+    .manage-game-thead th,
+    .manage-game-tbody td,
+    .btn-details,
+    .btn-create,
+    .btn-edit,
+    .btn-delete,
+    .game-title,
+    .game-description {
+        font-family: 'Athiti', sans-serif !important;
+    }
+
+
+
     .game-container {
         background-color: #FEDA15;
         position: relative;
@@ -50,14 +72,14 @@
         text-align: center;
         background: transparent;
         /* Chiều cao cố định cho mỗi card */
-        height: 420px;
+        height: 450px;
         background-color: white;
         border-radius: 15px;
     }
     /* Video */
     .video-wrapper {
         width: 101%;
-        height: 55%;
+        height: 50%;
         margin: 0 auto;
         overflow: hidden;
     }
@@ -70,13 +92,12 @@
 
     .game-info {
         padding: 15px;
-        text-align: left;
+        text-align: justify;
     }
 
         .game-info img {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
+            width: 75px;
+            height: 75px;
         }
 
         .game-info h3 {
@@ -126,10 +147,50 @@
         object-fit: cover;
         margin-bottom: 50px;
     }
+
+    .coming-soon-text {
+        color: #28a745 !important;
+        font-weight: 700;
+        font-size: 24px
+    }
+
+    .game-header {
+        text-align: center;
+        margin: 30px 0;
+    }
+
+        .game-header h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-top: 60px;
+        }
+
+        .game-header p {
+            font-size: 1rem;
+            color: #364d59;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+            .game-header p::after {
+                content: "";
+                display: block;
+                width: 50%;
+                height: 1px;
+                justify-content: center;
+                background-color: #364d59;
+                margin: 10px auto;
+            }
 </style>
+
+
 
 <div class="game-container">
     <!-- Banner ảnh bự -->
+    <div class="game-header">
+        <h1>APPLICATION GAME INTRODUCTION</h1>
+        <p>Introduction video game and details</p>
+    </div>
 
     <div class="section-wrapper">
         <div class="confetti-container"></div>
@@ -146,7 +207,14 @@
                         <div class="d-flex">
                             <img src="~/images/@(game.Name).png" alt="@game.Name" />
                             <h3 class="game-title ms-1">
-                                @(game.Name == "Tower Build" ? $"{game.Name} (Comming Soon)" : game.Name)
+                                @if (game.Name == "Tower Build")
+                                {
+                                    @game.Name <span class="coming-soon-text">(Coming Soon)</span>
+                                }
+                                else
+                                {
+                                    @game.Name
+                                }
                             </h3>
                         </div>
                         <p class="game-description">@game.Description</p>

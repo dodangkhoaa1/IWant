@@ -7,46 +7,45 @@
     var blogs = Model.Blogs;
     var games = Model.Games;
 
-    var newestBlog = blogs.OrderByDescending(b => b.CreatedAt).Take(3).ToList();
+    var newestBlog = blogs.OrderByDescending(b => b.CreatedAt).Take(6).ToList();
 }
 <link rel="stylesheet" href="~/css/main.css" />
 
-<section id="banner">
-    <div id="banner_carousel" class="carousel slide " data-bs-ride="carousel" data-bs-interval="1500">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <div class="row align-items-center">
-                    <div class="col-md-4 banner-text text-center">
-                        <h1>Welcome to I WANT</h1>
-                        <p>Group02</p>
-                    </div>
-                    <div class="col-md-8 position-relative">
-                        <div class="overlay"></div>
-                        <img src="~/images/banner.jpg" class="custom-img" alt="Slide Image">
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="row align-items-center">
-                    <div class="col-md-4 banner-text text-center">
-                        <h1>Another Slide</h1>
-                        <p>Description for second slide</p>
-                    </div>
-                    <div class="col-md-8 position-relative">
-                        <div class="overlay"></div>
-                        <img src="~/images/banner1.jpg" class="custom-img" alt="Slide Image">
-                    </div>
+<section id="banner" class="banner">
+
+    <div class="info d-flex align-items-center">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6 text-center">
+                    <h2 data-aos="fade-down">Welcome to <span>Group10</span></h2>
+                    <p data-aos="fade-up">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+
+                        laboris nisi ut aliquip ex ea commodo consequat.
+                    </p>
+
                 </div>
             </div>
         </div>
-        <!-- Nút điều hướng -->
-        <button class="carousel-control-prev custom-arrow" type="button" data-bs-target="#banner_carousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon"></span>
-        </button>
-        <button class="carousel-control-next custom-arrow" type="button" data-bs-target="#banner_carousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon"></span>
-        </button>
     </div>
+
+    <div id="hero-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+
+        <div class="carousel-item active" style="background-image: url('/images/banner.jpg');">
+        </div>
+        <div class="carousel-item" style="background-image: url('/images/banner1.jpg')"></div>
+
+        <a class="carousel-control-prev" href="#hero-carousel" role="button" data-bs-slide="prev">
+            <i class="fas fa-chevron-left" aria-hidden="true"></i>
+        </a>
+
+        <a class="carousel-control-next" href="#hero-carousel" role="button" data-bs-slide="next">
+            <i class="fas fa-chevron-right" aria-hidden="true"></i>
+        </a>
+
+
+    </div>
+
 </section>
 
 <main id="main">
@@ -56,9 +55,9 @@
                 <div class="col-md-8" data-aos="zoom-in" data-aos-delay="100">
                     <div class="video-wrapper">
                         <iframe width="90%" height="315" src="https://www.youtube.com/embed/FuVLmA2b9Z0"
-                        title="YouTube video player" frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen></iframe>
+                                title="YouTube video player" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
                     </div>
                 </div>
                 <div class="col-md-4 d-flex flex-column justify-content-center text-center">
@@ -91,7 +90,8 @@
                 <h2>MINI GAME</h2>
             </div>
             <div class="row gy-4">
-                @if(games.Count() != 0){
+                @if (games.Count() != 0)
+                {
                     @foreach (var game in games)
                     {
                         <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
@@ -99,7 +99,7 @@
                                 <div class="d-flex justify-content-center">
                                     <img src="images/@(game.Name).png" alt="Mountain City" width="120" height="120">
                                 </div>
-                                <h3>@(game.Name == "Tower Build" ? $"{game.Name} (Comming Soon)" : game.Name)</h3>
+                                <h3>@(game.Name == "Tower Build" ? $"{game.Name} (Coming Soon)" : game.Name)</h3>
                                 <p>
                                     @game.Description
                                 </p>
@@ -109,8 +109,11 @@
                             </div>
                         </div>
                     }
-                } else {
-                    for(int i = 0; i <6; i++){
+                }
+                else
+                {
+                    for (int i = 0; i < 6; i++)
+                    {
                         <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
                             <div class="minigame-item position-relative">
                                 <div class="d-flex justify-content-center">

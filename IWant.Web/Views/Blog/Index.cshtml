@@ -238,7 +238,6 @@
                         <td colspan="8" class="text-center">No blog found</td>
                     </tr>
                 }
-                @* Hiển thị theo ngày tạo mới nhất (mặc định) *@
                 @foreach (var blog in Model.OrderByDescending(b => b.CreatedAt))
                 {
                     <tr>

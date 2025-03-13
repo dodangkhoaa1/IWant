@@ -11,6 +11,19 @@
     var newestBlog = Model.NewestBlog;
 
     var mostWatchBlog = Model.MostWatchBlog;
+
+    var games = Model.Games;
+
+    var activeUsers = Model.ActiveUsers;
+    //Bar Chart
+    var blogCountByMonth = Model.BlogCountByMonth;
+    var userCountByMonth = Model.UserCountByMonth;
+    var commentCountByMonth = Model.CommentCountByMonth;
+    //Line Chart
+    var blogLineChart = Model.BlogLineChart;
+    var commentLineChart = Model.CommentLineChart;
+    var rateLineChart = Model.RateLineChart;
+    var totalLineChart = Model.TotalLineChart;
 }
 
 <head>
@@ -172,7 +185,7 @@
             }
 
         .info-card {
-            height:300px !important;
+            height: 300px !important;
             background: #fff;
             border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -225,9 +238,9 @@
             height: 370px;
         }
 
-            .blog nav, .score nav {
+            .blog nav, .score nav, game nav {
                 bottom: 0;
-                left: 20px;
+                right: 20px;
             }
 
         .row.mt-4.container.custom {
@@ -303,7 +316,7 @@
         <div class="row mt-4">
             <div style="margin: auto 0" class="col-md-8">
                 <div class="chart-container">
-                    <h5>Blog, Account, Comment Statistic</h5>
+                    <h5>Blog, Account, Comment Created In @DateTime.Now.Year</h5>
                     <canvas id="salesChart" style="height:450px;"></canvas>
                 </div>
             </div>
@@ -357,10 +370,9 @@
                     <table class="table align-middle mt-3" data-table="watched">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>Author</th>
                                 <th>Title blog</th>
                                 <th>Watched</th>
-                                <th>Status</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -369,10 +381,9 @@
                                 foreach (var blog in mostWatchBlog)
                                 {
                                     <tr style="height:65px">
-                                        <td>@blog.Id</td>
-                                        <td>@blog.Title</td>
-                                        <td style="text-align:center">@blog.ViewCount</td>
-                                        <td><span class="badge @(blog.Status == true ? "bg-success" : "bg-danger")">@(blog.Status == true ? "Show" : "Hide")</span></td>
+                                        <td width="20%">@blog.User.FullName</td>
+                                        <td width="70%">@blog.Title</td>
+                                        <td width="10%" style="text-align:center">@blog.ViewCount</td>
                                     </tr>
                                 }
                             }
@@ -414,7 +425,7 @@
 
         <div class="container mt-4">
             <div class="row mt-4">
-                <div class="col-md-8">
+                <div style="margin:auto 0" class="col-md-8">
                     <div class="chart-container">
                         <h5>Visit and Sales Statistics</h5>
                         <canvas id="lineChart" style="height:450px;"></canvas>
@@ -422,60 +433,62 @@
                 </div>
                 <div class="col-md-4 d-flex flex-column gap-3">
 
-                    <div class="info-card p-3">
+                    <div style="height: 260px !important" class="info-card p-3">
                         <div class="card-header-area">
-                            <h6>Comment</h6>
+                            <h6>Active Users</h6>
                             <div class="card-subtext"></div>
-                            <div class="avt mt-3 d-flex align-items-center gap-3">
-                                <img src="~/images/avatar/9c15ce64-52df-4cd0-b451-595cea90d9c9.jpg" alt="Banner" />
+                            @if (activeUsers.Count() != 0)
+                            {
+                                foreach (var user in activeUsers)
+                                {
+                                    <div class="avt mt-3 d-flex align-items-center">
+                                        <img style="border-radius:10px; width:50px; height:50px; border-radius: 50%; object-fit:cover" src="@user.ImageUrl" alt="Avatar" />
+                                        <div class="text-comment flex-grow-1">
+                                            <h6 class="mb-1 ">@user.FullName</h6>
+                                            <div class="d-flex justify-content-between">
+                                                <h6 class="mb-0 text-warning">Blog: @user.Blogs.Count()</h6>
+                                                <h6 class="mb-0 text-success">Comment: @user.Comments.Count()</h6>
+                                                <h6 class="mb-0 text-danger">Rate: @user.Rates.Count()</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                            @* <div class="avt mt-3 d-flex align-items-center">
+                                <img style="border-radius:10px; width:50px; height:50px; border-radius: 50%" src="~/images/avatar/9c15ce64-52df-4cd0-b451-595cea90d9c9.jpg" alt="Banner" />
                                 <div class="text-comment">
                                     <h6 class="mb-1 ">User</h6>
-                                    <h6 class="mb-0 text-muted">Content</h6>
+                                    <div class="d-flex">
+                                        <h6 class="mb-0 text-muted pe-1">Blog:100</h6>
+                                        <h6 class="mb-0 text-muted pe-1">Comment:100</h6>
+                                        <h6 class="mb-0 text-muted pe-1">Rate:100</h6>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="avt mt-3 d-flex align-items-center gap-3">
-                                <img src="~/images/avatar/9c15ce64-52df-4cd0-b451-595cea90d9c9.jpg" alt="Banner" />
-                                <div class="text-comment">
-                                    <h6 class="mb-1 ">User</h6>
-                                    <h6 class="mb-0 text-muted">Content</h6>
-                                </div>
-                            </div>
-                            <div class="avt mt-3 d-flex align-items-center gap-3">
-                                <img src="~/images/avatar/9c15ce64-52df-4cd0-b451-595cea90d9c9.jpg" alt="Banner" />
-                                <div class="text-comment">
-                                    <h6 class="mb-1 ">User</h6>
-                                    <h6 class="mb-0 text-muted">Content</h6>
-                                </div>
-                            </div>
+                            </div> *@
                         </div>
 
 
                     </div>
 
                     <div class="top-selling-products">
-                        <div class="card-custom1 mt-3">
-                            <h5>Game</h5>
+                        <div style="height: 360px" class="card-custom1 mt-3 position-relative game">
+                            <h5>Games</h5>
                             <table class="table align-middle mt-3" data-table="game">
-                                <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr><td>AAAAA</td>
-                                    <tr><td>BBB</td>
-                                    <tr><td>CCCC</td>
-                                    <tr><td>DDDD</td>
-                                    <tr><td>EEEE</td>
-                                    <tr><td>FFFF</td>
-                                </tbody>
+                                @if (games.Count() != 0)
+                                {
+                                    foreach (var game in games)
+                                    {
+                                        <tr style="height:65px">
+                                            <td><img src="~/images/@(game.Name).png" alt="@game.Name" /></td>
+                                            <td width="100%">@(game.Name == "Tower Build" ? $"{game.Name} (Coming soon)" : game.Name)</td>
+                                        </tr>
+                                    }
+                                }
                             </table>
-                            <nav class="position-absolute">
+                            <nav style="right:20px" class="position-absolute">
                                 <ul class="pagination" data-pagination="game"></ul>
                             </nav>
-
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -487,22 +500,32 @@
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script>
             const ctx1 = document.getElementById('salesChart').getContext('2d');
+            //Bar Chart
+            const blogCountByMonthData = @Html.Raw(Json.Serialize(blogCountByMonth));
+            const userCountByMonthData = @Html.Raw(Json.Serialize(userCountByMonth));
+            const commentCountByMonthData = @Html.Raw(Json.Serialize(commentCountByMonth));
+            //Line Chart
+            const blogLineChartData = @Html.Raw(Json.Serialize(blogLineChart));
+            const commentLineChartData = @Html.Raw(Json.Serialize(commentLineChart));
+            const rateLineChartData = @Html.Raw(Json.Serialize(rateLineChart));
+            const totalLineChartData = @Html.Raw(Json.Serialize(totalLineChart));
+
             new Chart(ctx1, {
                 type: 'bar',
                 data: {
-                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug','Sep','Oct','Nov','Dec'],
                     datasets: [{
-                        label: 'CTR',
+                        label: 'Blog',
                         backgroundColor: 'rgba(255, 99, 132, 0.5)',
-                        data: [12, 19, 3, 5, 2, 3, 10, 7]
+                        data: blogCountByMonthData
                     }, {
-                        label: 'UV',
+                        label: 'Account',
                         backgroundColor: 'rgba(54, 162, 235, 0.5)',
-                        data: [22, 10, 15, 8, 5, 6, 13, 9]
+                        data: userCountByMonthData
                     }, {
-                        label: 'LV',
+                        label: 'Comment',
                         backgroundColor: 'rgba(75, 192, 192, 0.5)',
-                        data: [8, 12, 7, 14, 9, 15, 5, 12]
+                        data: commentCountByMonthData
                     }]
                 }
             });
@@ -519,28 +542,72 @@
                 }
             });
 
+            // Lấy danh sách 30 ngày gần nhất
+            function getLast30Days() {
+                const result = [];
+                const today = new Date();
+                for (let i = 29; i >= 0; i--) {
+                    let date = new Date();
+                    date.setDate(today.getDate() - i);
+                    result.push(`${date.getDate()}/${date.getMonth() + 1}`); 
+                }
+                return result;
+            }
+
             const ctx3 = document.getElementById('lineChart').getContext('2d');
             new Chart(ctx3, {
                 type: 'line',
                 data: {
-                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
-                    datasets: [{
-                        label: 'Sales Growth',
-                        borderColor: '#ff6384',
-                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                        data: [10, 15, 8, 12, 20, 18, 25, 30],
-                        fill: true
-                    }]
+                    labels: getLast30Days(),
+                    datasets: [
+                        {
+                            label: 'Blog',
+                            borderColor: '#ff6384',
+                            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                            data: blogLineChartData,
+                            fill: true
+                        },
+                        {
+                            label: 'Comment',
+                            borderColor: '#36a2eb',
+                            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                            data: commentLineChartData,
+                            fill: true
+                        },
+                        {
+                            label: 'Rate',
+                            borderColor: '#4bc0c0',
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            data: rateLineChartData,
+                            fill: true
+                        },
+                        {
+                            label: 'Total',
+                            borderColor: '#ff9f40',
+                            backgroundColor: 'rgba(255, 159, 64, 0.2)',
+                            data: totalLineChartData,
+                            fill: true
+                        }
+                    ]
                 },
                 options: {
                     responsive: true,
                     scales: {
+                        x: {
+                            ticks: {
+                                maxRotation: 45,
+                                minRotation: 45
+                            }
+                        },
                         y: {
                             beginAtZero: true
                         }
                     }
                 }
             });
+
+
+
 
 
             document.addEventListener("DOMContentLoaded", function () {

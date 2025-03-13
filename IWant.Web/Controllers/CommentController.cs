@@ -75,7 +75,6 @@ namespace IWant.Web.Controllers
             if (user == null)
             {
                 return Unauthorized();
-                return Unauthorized();
             }
 
             var blog = await _context.Blogs.FindAsync(BlogId);
@@ -90,6 +89,7 @@ namespace IWant.Web.Controllers
             if (existingRating != null)
             {
                 existingRating.RatingStar = Rating;
+                existingRating.UpdatedAt = DateTime.Now;
                 _context.Rates.Update(existingRating);
                 TempData["success"] = "Update Rating Blog successful!";
             }
@@ -99,7 +99,8 @@ namespace IWant.Web.Controllers
                 {
                     Blog = blog,
                     User = user,
-                    RatingStar = Rating
+                    RatingStar = Rating,
+                    CreatedAt = DateTime.Now
                 };
                 await _context.Rates.AddAsync(newRating);
                 TempData["success"] = "Rating Blog successful!";
