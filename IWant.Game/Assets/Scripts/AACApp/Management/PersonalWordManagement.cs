@@ -189,7 +189,6 @@ public class PersonalWordManagement : MonoBehaviour
     private IEnumerator CreatePersonalWord()
     {
         Texture2D texture = displaySelectedImage.sprite.texture;
-        Toast.Show($"Format: {texture.format}", ToastColor.Red, ToastPosition.BottomCenter);
         
         PersonalWordDTO newWord = new PersonalWordDTO
         {
@@ -211,7 +210,7 @@ public class PersonalWordManagement : MonoBehaviour
 
         if (request.result == UnityWebRequest.Result.Success)
         {
-            //Toast.Show("Personal word created successfully", ToastColor.Green, ToastPosition.BottomCenter);
+            Toast.Show("Personal word created successfully", ToastColor.Green, ToastPosition.BottomCenter);
             StartCoroutine(Initialize());
             createPersonalPanel.gameObject.SetActive(false);
         }
