@@ -1,4 +1,4 @@
-using EasyUI.Toast;
+﻿using EasyUI.Toast;
 using Newtonsoft.Json;
 using System.Collections;
 using System.Collections.Generic;
@@ -119,11 +119,7 @@ public class PersonalWordManagement : MonoBehaviour
 
     private void OnChoosePhotoFromLibraryBtnClicked()
     {
-        if (Application.platform == RuntimePlatform.WindowsEditor || Application.platform == RuntimePlatform.WindowsPlayer)
-        {
-            PickImageFromFileExplorer();
-        }
-        else if (Application.platform == RuntimePlatform.Android)
+        if (Application.platform == RuntimePlatform.Android)
         {
             if (!Permission.HasUserAuthorizedPermission(Permission.ExternalStorageRead))
             {
@@ -134,6 +130,11 @@ public class PersonalWordManagement : MonoBehaviour
                 PickImageFromGallery();
             }
         }
+        //else if (Application.platform == RuntimePlatform.WindowsEditor || Application.platform == RuntimePlatform.WindowsPlayer)
+        //{
+        //    PickImageFromFileExplorer();
+        //}
+
     }
 
     private void PickImageFromGallery()
@@ -142,14 +143,14 @@ public class PersonalWordManagement : MonoBehaviour
         {
             if (path != null)
             {
-                Texture2D texture = NativeGallery.LoadImageAtPath(path, -1);
+                Texture2D texture = NativeGallery.LoadImageAtPath(imagePath: path, markTextureNonReadable: false);
                 if (texture != null)
                 {
                     displaySelectedImage.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
                 }
                 else
                 {
-                    Debug.LogError("Couldn't load texture from " + path);
+                    Toast.Show("Couldn't load texture from " + path, ToastColor.Red, ToastPosition.BottomCenter);
                 }
             }
         }, "Select an image", "image/*");
@@ -158,19 +159,21 @@ public class PersonalWordManagement : MonoBehaviour
         {
             Permission.RequestUserPermission(Permission.ExternalStorageRead);
         }
+
+
     }
 
-    private void PickImageFromFileExplorer()
-    {
-        string path = UnityEditor.EditorUtility.OpenFilePanel("Select an image", "", "png,jpg,jpeg");
-        if (!string.IsNullOrEmpty(path))
-        {
-            byte[] fileData = System.IO.File.ReadAllBytes(path);
-            Texture2D texture = new Texture2D(2, 2);
-            texture.LoadImage(fileData);
-            displaySelectedImage.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
-        }
-    }
+    //private void PickImageFromFileExplorer()
+    //{
+    //    string path = UnityEditor.EditorUtility.OpenFilePanel("Select an image", "", "png,jpg,jpeg");
+    //    if (!string.IsNullOrEmpty(path))
+    //    {
+    //        byte[] fileData = System.IO.File.ReadAllBytes(path);
+    //        Texture2D texture = new Texture2D(2, 2);
+    //        texture.LoadImage(fileData);
+    //        displaySelectedImage.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+    //    }
+    //}
 
     private void OnCreatePersonalBtnClicked()
     {
@@ -185,12 +188,15 @@ public class PersonalWordManagement : MonoBehaviour
 
     private IEnumerator CreatePersonalWord()
     {
+        Texture2D texture = displaySelectedImage.sprite.texture;
+        Toast.Show($"Format: {texture.format}", ToastColor.Red, ToastPosition.BottomCenter);
+        
         PersonalWordDTO newWord = new PersonalWordDTO
         {
             EnglishText = englishText.text,
             VietnameseText = vietnameseText.text,
             UserId = DBManager.User.UserId,
-            Image = displaySelectedImage.sprite.texture.EncodeToPNG()
+            Image = texture.EncodeToPNG()
         };
 
         string jsonData = JsonConvert.SerializeObject(newWord);
@@ -202,9 +208,10 @@ public class PersonalWordManagement : MonoBehaviour
 
         yield return request.SendWebRequest();
 
+
         if (request.result == UnityWebRequest.Result.Success)
         {
-            Toast.Show("Personal word created successfully", ToastColor.Green, ToastPosition.BottomCenter);
+            //Toast.Show("Personal word created successfully", ToastColor.Green, ToastPosition.BottomCenter);
             StartCoroutine(Initialize());
             createPersonalPanel.gameObject.SetActive(false);
         }

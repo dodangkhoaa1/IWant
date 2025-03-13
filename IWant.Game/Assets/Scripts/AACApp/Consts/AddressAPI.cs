@@ -1,6 +1,8 @@
 ﻿public static class AddressAPI
 {
-    public static readonly string BASE_URL = "http://localhost:5000";
+    //public static readonly string BASE_URL = "http://localhost:5000";
+    public static readonly string BASE_URL = "https://iwantapiservice.azurewebsites.net";
+
     public static readonly string USER_URL = BASE_URL + "/api/users";
     public static readonly string WORD_URL = BASE_URL + "/api/words";
     public static readonly string PERSONAL_WORD_URL = BASE_URL + "/api/PersonalWords";

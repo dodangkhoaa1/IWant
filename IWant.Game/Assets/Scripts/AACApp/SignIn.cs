@@ -26,7 +26,6 @@ public class SignIn : MonoBehaviour
     // Allow to initiate the sign-in process
     public void CallSignIn()
     {
-
         StartCoroutine(SignInMethod());
     }
 
