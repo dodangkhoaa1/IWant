@@ -52,15 +52,20 @@ namespace IWant.API.Controllers
             User? userInDB = await _context.Users
                 .FirstOrDefaultAsync(p => p.UserName == signinRequestDto.UserName);
 
+            if (userInDB == null)
+            {
+                return NotFound();
+            }
+
             return Ok(new SigninResponseDTO()
             {
                 UserId = userInDB.Id,
-                FullName = userInDB.FullName,
-                Email = userInDB.Email,
+                FullName = userInDB.FullName ?? string.Empty,
+                Email = userInDB.Email ?? string.Empty,
                 Gender = userInDB.Gender,
-                ChildName = userInDB.ChildName,
-                ChildNickName = userInDB.ChildNickName,
-                ChildGender = userInDB.ChildGender,
+                ChildName = userInDB.ChildName ?? string.Empty,
+                ChildNickName = userInDB.ChildNickName ?? string.Empty,
+                ChildGender = userInDB.ChildGender ?? true,
                 Status = userInDB.Status
             });
         }

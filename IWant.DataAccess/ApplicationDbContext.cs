@@ -93,7 +93,8 @@ public partial class ApplicationDbContext : IdentityDbContext<User>
                 PhoneNumberConfirmed = false,
                 TwoFactorEnabled = false,
                 LockoutEnabled = true,
-                AccessFailedCount = 0
+                AccessFailedCount = 0,
+                CreatedAt = new DateTime(1999, 1, 1)
             },
             new User
             {
@@ -116,7 +117,8 @@ public partial class ApplicationDbContext : IdentityDbContext<User>
                 PhoneNumberConfirmed = false,
                 TwoFactorEnabled = false,
                 LockoutEnabled = true,
-                AccessFailedCount = 0
+                AccessFailedCount = 0,
+                CreatedAt = new DateTime(1999, 1, 1)
             },
             new User
             {
@@ -139,9 +141,9 @@ public partial class ApplicationDbContext : IdentityDbContext<User>
                 PhoneNumberConfirmed = false,
                 TwoFactorEnabled = false,
                 LockoutEnabled = true,
-                AccessFailedCount = 0
-            }
-            );
+                AccessFailedCount = 0,
+                CreatedAt = new DateTime(1999, 1, 1)
+            });
 
         builder.Entity<IdentityUserRole<string>>().HasData(
             new IdentityUserRole<string>
@@ -926,18 +928,18 @@ public partial class ApplicationDbContext : IdentityDbContext<User>
 
         // fruit
         builder.Entity<Word>().HasData(
-            new Word() { Id = 112, VietnameseText = "Táo", EnglishText = "Apple", WordCategoryId = 9, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/fruit/Apple.png", Status = true },
-            new Word() { Id = 113, VietnameseText = "Bơ", EnglishText = "Avocado", WordCategoryId = 9, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/fruit/Avocado.png", Status = true },
-            new Word() { Id = 114, VietnameseText = "Chuối", EnglishText = "Banana", WordCategoryId = 9, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/fruit/Banana.png", Status = true },
-            new Word() { Id = 115, VietnameseText = "Thanh long", EnglishText = "Dragon Fruit", WordCategoryId = 9, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/fruit/Dragon Fruit.png", Status = true },
-            new Word() { Id = 116, VietnameseText = "Nho", EnglishText = "Grape", WordCategoryId = 9, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/fruit/Grape.png", Status = true },
-            new Word() { Id = 117, VietnameseText = "Ổi", EnglishText = "Guava", WordCategoryId = 9, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/fruit/Guava.png", Status = true },
-            new Word() { Id = 118, VietnameseText = "Kiwi", EnglishText = "Kiwi", WordCategoryId = 9, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/fruit/Kiwi.png", Status = true },
-            new Word() { Id = 119, VietnameseText = "Cam", EnglishText = "Orange", WordCategoryId = 9, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/fruit/Orange.png", Status = true },
-            new Word() { Id = 120, VietnameseText = "Đào", EnglishText = "Peach", WordCategoryId = 9, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/fruit/Peace.png", Status = true },
-            new Word() { Id = 121, VietnameseText = "Dứa", EnglishText = "Pineapple", WordCategoryId = 9, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/fruit/Pineapple.png", Status = true },
-            new Word() { Id = 122, VietnameseText = "Dâu tây", EnglishText = "Strawberry", WordCategoryId = 9, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/fruit/Strawberry.png", Status = true },
-            new Word() { Id = 123, VietnameseText = "Dưa hấu", EnglishText = "Watermelon", WordCategoryId = 9, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/fruit/Watermelon.png", Status = true }
+            new Word() { Id = 112, VietnameseText = "Táo", EnglishText = "Apple", WordCategoryId = 9, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/fruits/Apple.png", Status = true },
+            new Word() { Id = 113, VietnameseText = "Bơ", EnglishText = "Avocado", WordCategoryId = 9, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/fruits/Avocado.png", Status = true },
+            new Word() { Id = 114, VietnameseText = "Chuối", EnglishText = "Banana", WordCategoryId = 9, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/fruits/Banana.png", Status = true },
+            new Word() { Id = 115, VietnameseText = "Thanh long", EnglishText = "Dragon Fruit", WordCategoryId = 9, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/fruits/Dragon Fruit.png", Status = true },
+            new Word() { Id = 116, VietnameseText = "Nho", EnglishText = "Grape", WordCategoryId = 9, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/fruits/Grape.png", Status = true },
+            new Word() { Id = 117, VietnameseText = "Ổi", EnglishText = "Guava", WordCategoryId = 9, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/fruits/Guava.png", Status = true },
+            new Word() { Id = 118, VietnameseText = "Kiwi", EnglishText = "Kiwi", WordCategoryId = 9, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/fruits/Kiwi.png", Status = true },
+            new Word() { Id = 119, VietnameseText = "Cam", EnglishText = "Orange", WordCategoryId = 9, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/fruits/Orange.png", Status = true },
+            new Word() { Id = 120, VietnameseText = "Đào", EnglishText = "Peach", WordCategoryId = 9, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/fruits/Peace.png", Status = true },
+            new Word() { Id = 121, VietnameseText = "Dứa", EnglishText = "Pineapple", WordCategoryId = 9, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/fruits/Pineapple.png", Status = true },
+            new Word() { Id = 122, VietnameseText = "Dâu tây", EnglishText = "Strawberry", WordCategoryId = 9, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/fruits/Strawberry.png", Status = true },
+            new Word() { Id = 123, VietnameseText = "Dưa hấu", EnglishText = "Watermelon", WordCategoryId = 9, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/fruits/Watermelon.png", Status = true }
         );
 
         // number
@@ -1038,7 +1040,7 @@ public partial class ApplicationDbContext : IdentityDbContext<User>
             new Word() { Id = 197, VietnameseText = "Ban đêm", EnglishText = "Night", WordCategoryId = 15, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/time/Night.png", Status = true },
             new Word() { Id = 198, VietnameseText = "Một giờ", EnglishText = "One Hour", WordCategoryId = 15, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/time/One Hour.png", Status = true },
             new Word() { Id = 199, VietnameseText = "Mười phút", EnglishText = "Ten Minutes", WordCategoryId = 15, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/time/Ten Minutes.png", Status = true },
-            new Word() { Id = 200, VietnameseText = "Ba mươi phút", EnglishText = "Thirty Minutes", WordCategoryId = 15, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/time/Thidy Minutes.png", Status = true },
+            new Word() { Id = 200, VietnameseText = "Ba mươi phút", EnglishText = "Thirty Minutes", WordCategoryId = 15, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/time/Thirdty Minutes.png", Status = true },
             new Word() { Id = 201, VietnameseText = "Hôm nay", EnglishText = "Today", WordCategoryId = 15, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/time/Today.png", Status = true },
             new Word() { Id = 202, VietnameseText = "Ngày mai", EnglishText = "Tomorrow", WordCategoryId = 15, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/time/Tomorrow.png", Status = true },
             new Word() { Id = 203, VietnameseText = "Hôm qua", EnglishText = "Yesterday", WordCategoryId = 15, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/time/Yesterday.png", Status = true }
@@ -1082,6 +1084,9 @@ public partial class ApplicationDbContext : IdentityDbContext<User>
             new Word() { Id = 229, VietnameseText = "Xin lỗi", EnglishText = "Sorry", WordCategoryId = 18, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/want/Sorry.png", Status = true },
             new Word() { Id = 230, VietnameseText = "Cảm ơn", EnglishText = "Thank you", WordCategoryId = 18, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/want/Thank you.png", Status = true },
             new Word() { Id = 231, VietnameseText = "Có", EnglishText = "Yes", WordCategoryId = 18, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/want/Yes.png", Status = true }
+        );
+        builder.Entity<Word>().HasData(
+            new Word() { Id = 232, VietnameseText = "Xoài", EnglishText = "Mango", WordCategoryId = 9, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, ImagePath = "images/word/fruits/Mango.png", Status = true }
         );
 
         builder.Entity<Game>().HasData(
