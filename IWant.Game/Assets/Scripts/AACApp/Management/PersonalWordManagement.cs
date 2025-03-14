@@ -79,19 +79,22 @@ public class PersonalWordManagement : MonoBehaviour
             newTTSBtn.GetComponentInChildren<TextMeshProUGUI>().text = PrefsKey.LANGUAGE == PrefsKey.VIETNAM_CODE ? word.VietnameseText : word.EnglishText;
             //set display name for game object
             newTTSBtn.name = word.EnglishText;
-            // Convert byte array to sprite
-            if (word.Image != null && word.Image.Length > 0)
+
+            //Convert Image to sprite
+            if (word.ImagePath != null)
             {
-                Sprite sprite = Convert.ConvertBytesToSprite(word.Image);
-                if (sprite != null)
+                StartCoroutine(Convert.LoadImage(word.ImagePath, (sprite) =>
                 {
-                    Image childImage = newTTSBtn.transform.Find("Image").GetComponent<Image>();
-                    childImage.sprite = sprite;
-                }
-                else
-                {
-                    Debug.LogWarning($"Failed to convert image for word: {word.EnglishText}");
-                }
+                    if (sprite != null)
+                    {
+                        Image childImage = newTTSBtn.transform.Find("Image").GetComponent<Image>();
+                        childImage.sprite = sprite;
+                    }
+                    else
+                    {
+                        Debug.LogWarning($"Failed to convert image for word: {word.EnglishText}");
+                    }
+                }));
             }
 
             // Add delete button event

@@ -33,9 +33,6 @@ namespace IWant.API.Controllers
                 UpdatedAt = category.UpdatedAt,
                 ImagePath = category.ImagePath,
                 Status = category.Status,
-                Image = !string.IsNullOrEmpty(category.ImagePath) && System.IO.File.Exists(Path.Combine("wwwroot", category.ImagePath))
-                    ? System.IO.File.ReadAllBytes(Path.Combine("wwwroot", category.ImagePath))
-                    : null
             }).ToList();
 
             return Ok(categoryDtos);

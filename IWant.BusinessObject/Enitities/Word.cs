@@ -19,8 +19,6 @@ namespace IWant.BusinessObject.Enitities
         [MaxLength(length: 255)]
         public string? ImagePath { get; set; }
         [NotMapped]
-        public byte[]? Image { get; set; }
-        [NotMapped]
         public IFormFile? ImageFile { get; set; }
         public bool Status { get; set; } = true;
         public int WordCategoryId { get; set; }

@@ -36,9 +36,10 @@ namespace IWant.API.Controllers
                 Status = word.Status,
                 WordCategoryId = word.WordCategoryId,
                 WordCategory = word.WordCategory,
-                Image = !string.IsNullOrEmpty(word.ImagePath) && System.IO.File.Exists(Path.Combine("wwwroot", word.ImagePath))
-                    ? System.IO.File.ReadAllBytes(Path.Combine("wwwroot", word.ImagePath))
-                    : null
+                //Image = !string.IsNullOrEmpty(word.ImagePath) && System.IO.File.Exists(Path.Combine("wwwroot", word.ImagePath))
+                //    ? System.IO.File.ReadAllBytes(Path.Combine("wwwroot", word.ImagePath))
+                //    : null
+                Image = null
             }).ToList();
 
             return Ok(wordDtos);
