@@ -13,7 +13,7 @@ public class ColoringGuideManager : MonoBehaviour
 
     [Header("Guideline Pictures")]
     [SerializeField] private Sprite[] englishSprites;
-    [SerializeField] private Sprite[] vietnameseSprites;
+    //[SerializeField] private Sprite[] vietnameseSprites;
 
     [Header("Display")]
     [SerializeField] private GameObject darkPanel;
@@ -23,10 +23,11 @@ public class ColoringGuideManager : MonoBehaviour
     [Header("Mascot")]
     [SerializeField] private Animator mascotAnimator;
 
+    private string animationParam = "isVertical";
+
     private int currentIndex = 0;
     private Sprite[] currentSprites;
 
-    private string animationParam = "isVertical";
 
     private void Start()
     {
@@ -41,7 +42,8 @@ public class ColoringGuideManager : MonoBehaviour
 
     public void SetLanguage()
     {
-        currentSprites = PrefsKey.LANGUAGE == PrefsKey.ENGLISH_CODE ? englishSprites : vietnameseSprites;
+        //currentSprites = PrefsKey.LANGUAGE == PrefsKey.ENGLISH_CODE ? englishSprites : vietnameseSprites;
+        currentSprites = englishSprites;
         currentIndex = 0;
         UpdateGuide();
     }
@@ -66,13 +68,18 @@ public class ColoringGuideManager : MonoBehaviour
 
     private void UpdateGuide()
     {
+        bool isVertical = currentIndex <= 3;
+        if (mascotAnimator != null)
+        {
+            mascotAnimator.SetBool(animationParam, isVertical);
+        }
+
         displayImage.sprite = currentSprites[currentIndex];
         pagenumber.text = $"{currentIndex + 1}/{currentSprites.Length}";
         previousButton.gameObject.SetActive(currentIndex > 0);
         nextButton.gameObject.SetActive(currentIndex < currentSprites.Length - 1);
 
-        bool isVertical = currentIndex < 3; // từ hình 4 trở lên là hình nằm ngang
-        mascotAnimator.SetBool(animationParam, isVertical);
+
     }
     public void OnClickCloseClicked()
     {

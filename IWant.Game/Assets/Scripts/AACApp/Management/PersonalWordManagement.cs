@@ -216,12 +216,19 @@ public class PersonalWordManagement : MonoBehaviour
             Toast.Show("Personal word created successfully", ToastColor.Green, ToastPosition.BottomCenter);
             StartCoroutine(Initialize());
             createPersonalPanel.gameObject.SetActive(false);
+            ClearFields();
         }
         else
         {
             Debug.LogError("Failed to create personal word: " + request.error);
             Toast.Show("Failed to create personal word", ToastColor.Red, ToastPosition.BottomCenter);
         }
+    }
+    private void ClearFields()
+    {
+        englishText.text = string.Empty;
+        vietnameseText.text = string.Empty;
+        displaySelectedImage.sprite = null;
     }
 }
 
