@@ -3961,6 +3961,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5291235969347628943}
+  - component: {fileID: 5291235969347628944}
   m_Layer: 0
   m_Name: --- AUDIO ---
   m_TagString: Untagged
@@ -6353,6 +6354,23 @@ Transform:
   - {fileID: 2369358074190880823}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5291235969347628944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3068720159085113103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a14e3f691ab7ad34b85a61b75ec9481c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickButtonSource: {fileID: 2218166887337640297}
+  bgmSource: {fileID: 3599210314411650296}
+  gameOverSource: {fileID: 2218166887337640297}
+  backgroundMusic: {fileID: 8300000, guid: 46c7a681ea78ddf47bffdd66bbc71828, type: 3}
+  gameOverMusic: {fileID: 8300000, guid: 6efa32f992379614ba34c5d00303d6b1, type: 3}
 --- !u!114 &5298416729260462288
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6829,7 +6847,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &5625319737229973636
 GameObject:
   m_ObjectHideFlags: 0

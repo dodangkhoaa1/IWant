@@ -2,6 +2,7 @@
 
 public class AudioManager : MonoBehaviour
 {
+    public static AudioManager instance;
     [Header(" Elements ")]
     [SerializeField] private AudioSource buttonClickSource;
     [SerializeField] private AudioSource mergeSource;
@@ -15,6 +16,19 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
+        // Kiểm tra xem đã có instance chưa
+        if (instance == null)
+        {
+            instance = this; // Gán instance hiện tại
+        }
+        else
+        {
+            Destroy(gameObject); // Nếu đã có một instance, xóa object mới để tránh trùng lặp
+            return;
+        }
+
+        DontDestroyOnLoad(gameObject);
+
         MergeManager.onMergeProcess += MergeProcessedCallBack;
         SettingsManager.onSFXValueChanged += SFXValueChangedCallback;
         SettingsManager.onBGMValueChanged += BGMValueChangedCallback;

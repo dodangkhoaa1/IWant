@@ -48,6 +48,14 @@ public class AudioManagerDotGame : MonoBehaviour
     {
         PlayBackgroundMusic();
         BGMValueChangedCallback(PlayerPrefs.GetInt("bgmActiveKey", 1) == 1);
+
+        // Check if nodeSource exists, if not create it
+        if (nodeSource == null)
+        {
+            nodeSource = gameObject.AddComponent<AudioSource>();
+            nodeSource.clip = nodeClips;
+            nodeSource.playOnAwake = false;
+        }
     }
 
     //node

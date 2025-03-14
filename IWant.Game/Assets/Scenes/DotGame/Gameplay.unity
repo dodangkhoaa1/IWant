@@ -5038,7 +5038,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!223 &7101303687890112938
 Canvas:
   m_ObjectHideFlags: 0
@@ -6138,6 +6138,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6384711617238063045}
+  - component: {fileID: 9123494551002984056}
   m_Layer: 0
   m_Name: --- AUDIO ---
   m_TagString: Untagged
@@ -6145,6 +6146,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &9123494551002984056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9123494551002984055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15317ef5a57247743a6c39c469c5c6f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonClickSource: {fileID: 5160589528809078449}
+  nodeSource: {fileID: 493638335}
+  bgmSource: {fileID: 7213610930727571441}
+  nodeClips: {fileID: 8300000, guid: ea8dac7bd4caf404d829bd01a366f077, type: 3}
+  backgroundMusic: {fileID: 8300000, guid: c25f2bb42df4e8c4c9ab31f3433cfd71, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
