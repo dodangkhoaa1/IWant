@@ -1,6 +1,7 @@
 ﻿using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Connect.Core
@@ -170,6 +171,11 @@ namespace Connect.Core
         public void CloseSettingsPanel()
         {
             settingsPanel.SetActive(false);
+        }
+
+        public void QuitGameButtonCallBack()
+        {
+            SceneManager.LoadScene(SceneName.MainMenu.ToString());
         }
     }
 }

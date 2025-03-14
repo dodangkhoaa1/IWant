@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AudioManagerEmotionGame : MonoBehaviour
 {
@@ -42,6 +43,24 @@ public class AudioManagerEmotionGame : MonoBehaviour
         SettingsManagerEmotionGame.onSFXValueChanged -= SFXValueChangedCallback;
         // Xóa tất cả SFX đã đăng ký khi AudioManager bị hủy
         sfxSources.Clear();
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == SceneName.MainMenu.ToString())
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void Start()

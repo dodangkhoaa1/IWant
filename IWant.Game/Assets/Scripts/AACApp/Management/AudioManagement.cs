@@ -39,7 +39,9 @@ public class AudioManagement : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == "FruitDrop")
+        if (scene.name == SceneName.FruitDrop.ToString() ||
+            scene.name == SceneName.EmotionGame.ToString() ||
+            scene.name == SceneName.MainMenus.ToString())
         {
             Destroy(gameObject);
         }

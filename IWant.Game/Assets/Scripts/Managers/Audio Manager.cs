@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
@@ -39,6 +40,24 @@ public class AudioManager : MonoBehaviour
         MergeManager.onMergeProcess -= MergeProcessedCallBack;
         SettingsManager.onSFXValueChanged -= SFXValueChangedCallback;
         SettingsManager.onBGMValueChanged -= BGMValueChangedCallback;
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == SceneName.MainMenu.ToString())
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void Start()

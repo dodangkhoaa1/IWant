@@ -19,6 +19,7 @@ public class UIManagerEmotionGame : MonoBehaviour
 
     private void Awake()
     {
+        Screen.orientation = ScreenOrientation.LandscapeLeft;
         GameManagerEmotionGame.onGameStateChanged += GameStateChangedCallback;
         UIManagerEmotionGame.onGameReplay += SetGame; // Lắng nghe sự kiện replay
 
@@ -160,6 +161,6 @@ public class UIManagerEmotionGame : MonoBehaviour
     }
     public void QuitGameButtonCallBack()
     {
-        SceneManager.LoadScene("????");
+        SceneManager.LoadScene(SceneName.MainMenu.ToString());
     }
 }

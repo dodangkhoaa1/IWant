@@ -14,6 +14,7 @@ Library: D:\fpt\SP25\SEP\MainProject\IWant\IWant.Game\Temp\BurstOutput\tempburst
 --assembly-defines=Unity.RenderPipelines.Core.Runtime;
 --assembly-defines=Unity.ResourceManager;
 --assembly-defines=Unity.ScriptableBuildPipeline;
+--assembly-defines=Connect.Common;
 --assembly-defines=Unity.InternalAPIEngineBridge.013;
 --assembly-defines=Unity.RenderPipelines.Universal.Config.Runtime;
 --assembly-defines=Unity.VisualScripting.Flow;
@@ -128,6 +129,7 @@ Library: D:\fpt\SP25\SEP\MainProject\IWant\IWant.Game\Temp\BurstOutput\tempburst
 --assembly-defines=Unity.RenderPipelines.Core.Runtime;
 --assembly-defines=Unity.ResourceManager;
 --assembly-defines=Unity.ScriptableBuildPipeline;
+--assembly-defines=Connect.Common;
 --assembly-defines=Unity.InternalAPIEngineBridge.013;
 --assembly-defines=Unity.RenderPipelines.Universal.Config.Runtime;
 --assembly-defines=Unity.VisualScripting.Flow;

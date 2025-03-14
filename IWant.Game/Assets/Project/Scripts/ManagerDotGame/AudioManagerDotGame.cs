@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AudioManagerDotGame : MonoBehaviour
 {
@@ -32,6 +33,24 @@ public class AudioManagerDotGame : MonoBehaviour
         GameplayManagerDotGame.onNodeClicked += ConnectNodeCallback;
         SettingsManagerEmotionGame.onSFXValueChanged += SFXValueChangedCallback;
         SettingsManagerEmotionGame.onBGMValueChanged += BGMValueChangedCallback;
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == SceneName.MainMenu.ToString())
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnDestroy()

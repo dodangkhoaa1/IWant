@@ -9,6 +9,10 @@
     CategorySelection, 
     PictureSelection,
     ColoringScene,
+    EmotionGame,
+    FruitDrop,
+    MainMenus, //Dot Connection
+
 
 }
 
