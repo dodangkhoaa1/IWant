@@ -30,7 +30,6 @@ namespace IWant.Web.Service
                 Status = word.Status,
                 WordCategoryId = word.WordCategoryId,
                 WordCategory = word.WordCategory,
-                Image = word.Image
             };
             // Kiểm tra nếu có file ảnh
             if (word.ImageFile != null)

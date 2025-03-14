@@ -64,7 +64,7 @@ public class AACWordSpawner : MonoBehaviour
             foreach (int wordId in suggestWord.aacWordsId)
             {
                 WordDTO word = words.Find(w => w.Id == wordId);
-                if (word == null || phraseBuild.ContainsWord(word.EnglishText)==null)
+                if (word == null || phraseBuild.ContainsWord(word.EnglishText) == null)
                 {
                     allWordsExist = false;
                     break;
@@ -160,23 +160,30 @@ public class AACWordSpawner : MonoBehaviour
                 newTTSBtn.GetComponentInChildren<TextMeshProUGUI>().text = PrefsKey.LANGUAGE == PrefsKey.VIETNAM_CODE ? word.VietnameseText : word.EnglishText;
                 //set display name for game object
                 newTTSBtn.name = word.EnglishText;
-                // Convert byte array to sprite
-                if (word.Image != null && word.Image.Length > 0)
+
+
+                //Convert Image to sprite
+                if (word.ImagePath != null)
                 {
-                    Sprite sprite = Convert.ConvertBytesToSprite(word.Image);
-                    if (sprite != null)
+                    StartCoroutine(Convert.LoadImage(word.ImagePath, (sprite) =>
                     {
-                        Image childImage = newTTSBtn.transform.Find("Image").GetComponent<Image>();
-                        childImage.sprite = sprite;
-                    }
-                    else
-                    {
-                        Debug.LogWarning($"Failed to convert image for word: {word.EnglishText}");
-                    }
+                        if (sprite != null)
+                        {
+                            if (newTTSBtn != null)
+                            {
+                                Image childImage = newTTSBtn.transform.Find("Image").GetComponent<Image>();
+                                childImage.sprite = sprite;
+                            }
+                        }
+                        else
+                        {
+                            Debug.LogWarning($"Failed to convert image for word: {word.EnglishText}");
+                        }
+                    }));
                 }
 
                 // Check if the word is already in the phrase build
-                if (phraseBuild.ContainsWord(word.EnglishText)!= null)
+                if (phraseBuild.ContainsWord(word.EnglishText) != null)
                 {
                     newTTSBtn.interactable = false;
                 }
@@ -211,19 +218,21 @@ public class AACWordSpawner : MonoBehaviour
                 newTTSBtn.GetComponentInChildren<TextMeshProUGUI>().text = PrefsKey.LANGUAGE == PrefsKey.VIETNAM_CODE ? category.VietnameseName : category.EnglishName;
                 //set display name for game object
                 newTTSBtn.name = category.EnglishName;
-                // Convert byte array to sprite
-                if (category.Image != null && category.Image.Length > 0)
+
+                if (category.ImagePath != null)
                 {
-                    Sprite sprite = Convert.ConvertBytesToSprite(category.Image);
-                    if (sprite != null)
+                    StartCoroutine(Convert.LoadImage(category.ImagePath, (sprite) =>
                     {
-                        Image childImage = newTTSBtn.transform.Find("Image").GetComponent<Image>();
-                        childImage.sprite = sprite;
-                    }
-                    else
-                    {
-                        Debug.LogWarning($"Failed to convert image for word: {category.EnglishName}");
-                    }
+                        if (sprite != null)
+                        {
+                            Image childImage = newTTSBtn.transform.Find("Image").GetComponent<Image>();
+                            childImage.sprite = sprite;
+                        }
+                        else
+                        {
+                            Debug.LogWarning($"Failed to convert image for word: {category.EnglishName}");
+                        }
+                    }));
                 }
 
                 // Tìm nút danh mục tương ứng trong categoryContainer
@@ -312,20 +321,21 @@ public class AACWordSpawner : MonoBehaviour
             {
                 Button newTTSBtn = Instantiate(categoryButtonPrefab, categoryContainer.transform, false);
                 newTTSBtn.GetComponentInChildren<TextMeshProUGUI>().text = PrefsKey.LANGUAGE == PrefsKey.VIETNAM_CODE ? category.VietnameseName : category.EnglishName;
-                // Convert byte array to sprite
-                if (category.Image != null && category.Image.Length > 0)
-                {
 
-                    Sprite sprite = Convert.ConvertBytesToSprite(category.Image);
-                    if (sprite != null)
+                if (category.ImagePath != null)
+                {
+                    StartCoroutine(Convert.LoadImage(category.ImagePath, (sprite) =>
                     {
-                        Image childImage = newTTSBtn.transform.Find("Image").GetComponent<Image>();
-                        childImage.sprite = sprite;
-                    }
-                    else
-                    {
-                        Debug.LogWarning($"Failed to convert image for word: {category.EnglishName}");
-                    }
+                        if (sprite != null)
+                        {
+                            Image childImage = newTTSBtn.transform.Find("Image").GetComponent<Image>();
+                            childImage.sprite = sprite;
+                        }
+                        else
+                        {
+                            Debug.LogWarning($"Failed to convert image for word: {category.EnglishName}");
+                        }
+                    }));
                 }
 
                 newTTSBtn.GetComponent<Button>().onClick.AddListener(() =>
@@ -411,27 +421,39 @@ public class AACWordSpawner : MonoBehaviour
                 foreach (int wordId in suggestWord.aacWordsId)
                 {
                     WordDTO word = words.Find(w => w.Id == wordId);
+
+                    // Remove the word button from phraseContainer if it already exists
+                    Transform exitedWord = phraseBuild.ContainsWord(word.EnglishText);
+                    if (exitedWord != null)
+                    {
+                        StartCoroutine(phraseBuild.RemoveFromList(exitedWord.gameObject));
+
+                        Debug.Log($"Removed {exitedWord.name}");
+                    }
+
                     if (word != null)
                     {
-                        Sprite sprite = Convert.ConvertBytesToSprite(word.Image);
                         GameObject wordButtonInstance = Instantiate(wordButtonPrefab.gameObject, phraseBuildGO.transform);
                         wordButtonInstance.name = word.EnglishText;
-
-                        Image childImage = wordButtonInstance.transform.Find("Image").GetComponent<Image>();
-                        childImage.sprite = sprite;
-
                         wordButtonInstance.GetComponentInChildren<TextMeshProUGUI>().text = PrefsKey.LANGUAGE == PrefsKey.ENGLISH_CODE ? word.EnglishText : word.VietnameseText;
 
-                        // Remove the word button from phraseContainer if it already exists
-                        Transform exitedWord = phraseBuild.ContainsWord(word.EnglishText);
-                        if (exitedWord != null)
+                        //Convert Image to sprite
+                        if (word.ImagePath != null)
                         {
-                            StartCoroutine(phraseBuild.RemoveFromList(exitedWord.gameObject));
-
-                            Debug.Log($"Removed {exitedWord.name}");
+                            StartCoroutine(Convert.LoadImage(word.ImagePath, (sprite) =>
+                            {
+                                if (sprite != null)
+                                {
+                                    Image childImage = wordButtonInstance.transform.Find("Image").GetComponent<Image>();
+                                    childImage.sprite = sprite;
+                                    phraseBuild.AddToList(wordButtonInstance);
+                                }
+                                else
+                                {
+                                    Debug.LogWarning($"Failed to convert image for word: {word.EnglishText}");
+                                }
+                            }));
                         }
-
-                        phraseBuild.AddToList(wordButtonInstance);
 
                         // Disable the original button in the suggestion list
                         newSuggestBtn.interactable = false;
