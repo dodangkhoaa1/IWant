@@ -221,41 +221,52 @@ namespace IWant.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Signin(SigninViewModel model)
         {
-            if (ModelState.IsValid)
+            /*if (ModelState.IsValid)
+             * 
+            {*/
+
+            var user = await _userManager.FindByEmailAsync(model.Username);
+
+            if (user == null)
             {
-                var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, model.RememberMe, false);
-                var user = await _userManager.FindByEmailAsync(model.Username);
-                if (!result.Succeeded)
+                TempData["error"] = "Username does not exist.";
+                return View(model);
+            }
+
+            var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, model.RememberMe, false);
+            
+
+            if (!result.Succeeded)
+            {
+                if (result.IsLockedOut || (user != null && user.Status == false))
                 {
-                    if (result.IsLockedOut || (user != null && user.Status == false))
-                    {
-                        TempData["error"] = "Account is locked out.";
-                        Console.WriteLine("Sign-in failed: Account is locked out.");
-                    }
-                    else if (result.IsNotAllowed)
-                    {
-                        TempData["error"] = "Not allowed (e.g., email not confirmed).";
-                        Console.WriteLine("Sign-in failed: Not allowed (e.g., email not confirmed).");
-                    }
-                    else if (result.RequiresTwoFactor)
-                    {
-                        ModelState.AddModelError("Login", "Two-factor authentication is required.");
-                        Console.WriteLine("Sign-in failed: Requires two-factor authentication.");
-                        return RedirectToAction("MFACheck");
-                    }
-                    else
-                    {
-                        TempData["error"] = "Invalid credentials.";
-                        Console.WriteLine("Sign-in failed: Invalid credentials.");
-                    }
+                    TempData["error"] = "Account is locked out.";
+                    Console.WriteLine("Sign-in failed: Account is locked out.");
+                }
+                else if (result.IsNotAllowed)
+                {
+                    TempData["error"] = "Not allowed (e.g., email not confirmed).";
+                    Console.WriteLine("Sign-in failed: Not allowed (e.g., email not confirmed).");
+                }
+                else if (result.RequiresTwoFactor)
+                {
+                    ModelState.AddModelError("Login", "Two-factor authentication is required.");
+                    Console.WriteLine("Sign-in failed: Requires two-factor authentication.");
+                    return RedirectToAction("MFACheck");
                 }
                 else
                 {
-                    Console.WriteLine("Sign-in successful.");
-                    TempData["success"] = "Sign-in successfull!";
-                    return RedirectToAction("Index", "Home");
+                    TempData["error"] = "Invalid credentials.";
+                    Console.WriteLine("Sign-in failed: Invalid credentials.");
                 }
             }
+            else
+            {
+                Console.WriteLine("Sign-in successful.");
+                TempData["success"] = "Sign-in successfull!";
+                return RedirectToAction("Index", "Home");
+            }
+            /*}*/
             return View(model);
         }
 
@@ -270,22 +281,24 @@ namespace IWant.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> ForgotPassword(ForgotPasswordViewModel model)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == model.Email);
-            if (user == null)
+            if (ModelState.IsValid)
             {
-                TempData["error"] = "Email not exist!";
-                return View(model);
-            }
-            Random random = new Random();
+                var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == model.Email);
+                if (user == null)
+                {
+                    TempData["error"] = "Email not exist!";
+                    return View(model);
+                }
+                Random random = new Random();
 
-            var codeOTP = random.Next(1000, 9999).ToString();
-            model.Otp = codeOTP;
+                var codeOTP = random.Next(1000, 9999).ToString();
+                model.Otp = codeOTP;
 
-            await emailSender.SendEmailAsync(
-                "nhathmce170171@fpt.edu.vn",
-                user.Email,
-                "\"I Want\" Recover Password Verification",
-                $@"
+                await emailSender.SendEmailAsync(
+                    "nhathmce170171@fpt.edu.vn",
+                    user.Email,
+                    "\"I Want\" Recover Password Verification",
+                    $@"
                     <html>
                     <head>
                         <style>
@@ -335,13 +348,15 @@ namespace IWant.Web.Controllers
                         </div>
                     </body>
                     </html>"
-                );
+                    );
 
-            TempData["success"] = $"The OTP was sent to {user.FullName}'s mail!";
-            TempData["Otp"] = model.Otp;
-            TempData["email"] = model.Email;
+                TempData["success"] = $"The OTP was sent to {user.FullName}'s mail!";
+                TempData["Otp"] = model.Otp;
+                TempData["email"] = model.Email;
 
-            return RedirectToAction("VerifyOtp", new ForgotPasswordViewModel { Email = model.Email, Otp = model.Otp });
+                return RedirectToAction("VerifyOtp", new ForgotPasswordViewModel { Email = model.Email, Otp = model.Otp });
+            }
+            return View();
         }
 
         // Allow to display the OTP verification page

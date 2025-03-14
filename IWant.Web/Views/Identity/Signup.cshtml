@@ -15,6 +15,12 @@
         align-items: center;
     }
 
+    .text-danger {
+        display: block;
+        color: red;
+        font-size: 14px;
+    }
+
     .signup-card {
         display: flex;
         border-radius: 10px;
@@ -61,19 +67,28 @@
                 <div class="row">
                     <div class="col-md-6">
                         <p class="text" style="color: #9B30FF; text-decoration: none;">*Member Information</p>
-                        <input type="text" asp-for="FullName" placeholder="Full Name" class="custom-input" />
+                        <input type="text" asp-for="FullName" placeholder="Full Name" id="FullName" class="custom-input" />
+                        <span asp-validation-for="FullName" class="text-danger"></span>
                         <input type="email" asp-for="Email" placeholder="Email" class="custom-input" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
                         <label>Birthday mm/dd/yyyy</label>
-                        <input type="date" asp-for="Birthday" class="custom-input" />
-                        <label>Gender</label>
-                        <select asp-for="Gender" class="custom-input">
-                            <option value="true">Male</option>
-                            <option value="false">Female</option>
-                            <option value="">Other</option>
-                        </select>
-                        <input type="text" asp-for="PhoneNumber" placeholder="Phone" class="custom-input" />
+                        <input type="date" asp-for="Birthday" class="custom-input" min="1925-01-01" value="1925-01-01"/>
+                        <span asp-validation-for="Birthday" class="text-danger"></span>
+                        <div>
+                            <label asp-for="Gender"></label>
+                            <select asp-for="Gender" class="custom-input">
+                                <option value="true">Male</option>
+                                <option value="false">Female</option>
+                                <option value="">Other</option>
+                            </select>
+                        </div>
+                        <span asp-validation-for="Gender" class="text-danger"></span>
+                        <input type="text" asp-for="PhoneNumber" placeholder="Phone" id="PhoneNumber" class="custom-input" />
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                         <input type="password" asp-for="Password" placeholder="Password" class="custom-input" />
-                        <input type="password" asp-for="ConfirmPassword" placeholder="Re-Password" class="custom-input" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                        <input type="password" asp-for="ConfirmPassword" placeholder="Re-Password" id="ConfirmPassword" class="custom-input" />
+                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                     </div>
                     <div class="col-md-6">
                         <p class="text" style="color: #9B30FF; text-decoration: none;">*Child Information (optional)</p>
@@ -110,61 +125,66 @@
 </div>
 
 @* button disable and checkbox privacy *@
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const checkbox = document.getElementById("terms");
-        const submitButton = document.querySelector("button[type='submit']");
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    @* <script src="~/js/validate/signupvalidate.js" defer></script> *@
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const checkbox = document.getElementById("terms");
+            const submitButton = document.querySelector("button[type='submit']");
 
-        submitButton.disabled = true;
-        submitButton.style.backgroundColor = "#ddd";
-        submitButton.style.color = "#888";
-        submitButton.style.cursor = "not-allowed";
+            submitButton.disabled = true;
+            submitButton.style.backgroundColor = "#ddd";
+            submitButton.style.color = "#888";
+            submitButton.style.cursor = "not-allowed";
 
-        checkbox.addEventListener("change", function () {
-            if (checkbox.checked) {
-                submitButton.disabled = false;
-                submitButton.style.backgroundColor = "#FEDA15";
-                submitButton.style.color = "#fff";
-                submitButton.style.cursor = "pointer";
-            } else {
-                submitButton.disabled = true;
-                submitButton.style.backgroundColor = "#ddd";
-                submitButton.style.color = "#888";
-                submitButton.style.cursor = "not-allowed";
-            }
+            checkbox.addEventListener("change", function () {
+                if (checkbox.checked) {
+                    submitButton.disabled = false;
+                    submitButton.style.backgroundColor = "#FEDA15";
+                    submitButton.style.color = "#fff";
+                    submitButton.style.cursor = "pointer";
+                } else {
+                    submitButton.disabled = true;
+                    submitButton.style.backgroundColor = "#ddd";
+                    submitButton.style.color = "#888";
+                    submitButton.style.cursor = "not-allowed";
+                }
+            });
         });
-    });
-</script>
+    </script>
 
 
-@* confetti background animation *@
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const confettiContainer = document.querySelector('.confetti-container');
+    @* confetti background animation *@
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const confettiContainer = document.querySelector('.confetti-container');
 
-        function createConfetti() {
-            const confetti = document.createElement('div');
-            confetti.classList.add('confetti');
-            confetti.style.left = Math.random() * 100 + 'vw';
-            confetti.style.backgroundColor = getRandomColor();
-            confetti.style.animationDuration = Math.random() * 2 + 3 + 's';
-            confetti.style.width = Math.random() * 5 + 2 + 'px';
-            confetti.style.height = Math.random() * 25 + 15 + 'px';
+            function createConfetti() {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.backgroundColor = getRandomColor();
+                confetti.style.animationDuration = Math.random() * 2 + 3 + 's';
+                confetti.style.width = Math.random() * 5 + 2 + 'px';
+                confetti.style.height = Math.random() * 25 + 15 + 'px';
 
-            confettiContainer.appendChild(confetti);
+                confettiContainer.appendChild(confetti);
 
-            setTimeout(() => confetti.remove(), 5000);
-        }
+                setTimeout(() => confetti.remove(), 5000);
+            }
 
-        function getRandomColor() {
-            const colors = [
-                '#FFD700', '#FF4500', '#1E90FF', '#32CD32', '#FF69B4', '#8A2BE2',
-                '#FF6347', '#00FA9A', '#9400D3', '#FF7F50', '#00CED1', '#FFB6C1',
-                '#4B0082', '#ADFF2F'
-            ];
-            return colors[Math.floor(Math.random() * colors.length)];
-        }
+            function getRandomColor() {
+                const colors = [
+                    '#FFD700', '#FF4500', '#1E90FF', '#32CD32', '#FF69B4', '#8A2BE2',
+                    '#FF6347', '#00FA9A', '#9400D3', '#FF7F50', '#00CED1', '#FFB6C1',
+                    '#4B0082', '#ADFF2F'
+                ];
+                return colors[Math.floor(Math.random() * colors.length)];
+            }
 
-        setInterval(createConfetti, 200);
-    });
-</script>
+            setInterval(createConfetti, 200);
+        });
+    </script>
+
+}

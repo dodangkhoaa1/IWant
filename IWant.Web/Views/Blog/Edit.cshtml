@@ -47,7 +47,7 @@
                         <div id="uploadBox" class="upload-box">
                             <img id="imgPreview" src="@Model.ImageUrl" alt="Image Preview" style="max-height: 100%; max-width: 100%;" />
                         </div>
-                        <div class="mt-3 text-center">
+                        <div class="mt-3 d-grid text-center">
                             <button type="button" class="btn btn-success" id="chooseFileButton">Choose Image</button>
                             <input asp-for="Image" id="fileInput" type="file" style="display: none;" required/>
                             <input asp-for="ImageUrl" id="imageUrlInput" hidden />
@@ -56,19 +56,19 @@
                         </div>
                         <div class="cited-img">
                             <label asp-for="CitedImage" for="Title" class="form-label fw-bold"></label>
-                            <input type="text" asp-for="CitedImage" class="form-control" placeholder="Enter Cited Image" required />
+                            <input type="text" asp-for="CitedImage" class="form-control" placeholder="Enter Cited Image" />
                             <span asp-validation-for="CitedImage" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="col-md-8">
                         <div class="mb-3">
                             <label for="Title" class="form-label fw-bold">Blog Title</label>
-                            <input type="text" asp-for="Title" class="form-control" required />
+                            <input type="text" asp-for="Title" class="form-control" />
                             <span asp-validation-for="Title" class="text-danger"></span>
                         </div>
                         <div class="mb-3 content">
                             <label for="Content" class="form-label fw-bold">Content</label>
-                            <textarea asp-for="Content" class="form-control summernote" required></textarea>
+                            <textarea asp-for="Content" class="form-control summernote"></textarea>
                             <span asp-validation-for="Content" class="text-danger"></span>
                         </div>
                         <input type="hidden" asp-for="Status" class="form-control" />
@@ -86,13 +86,20 @@
 </div>
 
 @section Scripts {
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <partial name="_ValidationScriptsPartial" />
+
+    <!-- Summernote -->
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote-lite.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote-lite.min.js"></script>
+
     <script>
         $(document).ready(function () {
+            const allowedExtensions = ['png', 'jpg', 'jpeg', 'gif'];
+            const maxSize = 5 * 1024 * 1024; // 5MB
+
+            // Khởi tạo Summernote
             $('.summernote').summernote({
-                height: 200,
+                height: 300,
                 placeholder: 'Write content here...',
                 toolbar: [
                     ['style', ['bold', 'italic', 'underline', 'clear']],
@@ -101,35 +108,79 @@
                     ['color', ['color']],
                     ['para', ['ul', 'ol', 'paragraph']],
                     ['view', ['codeview']]
-                ]
+                ],
+                callbacks: {
+                    onChange: function (contents) {
+                        $("textarea.summernote").val(contents).trigger('change'); // Cập nhật giá trị cho ASP.NET validation
+                    }
+                }
             });
 
+            // Mở hộp thoại chọn file khi bấm nút
             $('#chooseFileButton').click(function () {
                 $('#fileInput').click();
             });
 
+            // Xử lý khi chọn ảnh
             $('#fileInput').change(function () {
                 const file = this.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = function (e) {
-                        $('#imgPreview').attr('src', e.target.result).show();
-                        $('#imageUrlInput').val(e.target.result);
-                    }
-                    reader.readAsDataURL(file);
+                const errorSpan = $("#fileInput").closest('.mt-3').find('.text-danger');
+
+                if (!file) {
+                    errorSpan.text("Image is required!").show();
+                    return;
                 }
+
+                const fileName = file.name.toLowerCase();
+                const fileSize = file.size;
+                const fileExtension = fileName.split('.').pop();
+
+                if (!allowedExtensions.includes(fileExtension)) {
+                    errorSpan.text("Invalid file format! Only PNG, JPG, JPEG, GIF are allowed.").show();
+                    this.value = ''; // Xóa file input
+                    return;
+                }
+
+                if (fileSize > maxSize) {
+                    errorSpan.text("File size must be less than 5MB!").show();
+                    this.value = ''; // Xóa file input
+                    return;
+                }
+
+                errorSpan.text(""); // Xóa lỗi nếu hợp lệ
+
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#uploadPlaceholder').hide();
+                    $('#imgPreview').attr('src', e.target.result).show();
+                }
+                reader.readAsDataURL(file);
             });
 
-            function animateLogo() {
-                var $logo = $('#scrolling-logo');
-                var containerWidth = $logo.parent().width();
-                var logoWidth = $logo.width();
-                $logo.animate({ left: -logoWidth }, 10000, 'linear', function () {
-                    $logo.css('left', containerWidth);
-                    animateLogo();
-                });
-            }
-            animateLogo();
+            // Bắt sự kiện khi form submit
+            $("form").on("submit", function (e) {
+                let isValid = true;
+
+                // Kiểm tra nội dung Summernote
+                let content = $('.summernote').summernote('code').trim();
+                if (content === "" || content === "<p><br></p>" || content === "<br>") {
+                    e.preventDefault();
+                    $(".summernote").val("");
+                    $(".summernote").closest('.mb-3').find('.text-danger').text("Content is required!").show();
+                    isValid = false;
+                }
+
+                // Kiểm tra hình ảnh có được chọn không
+                if ($('#fileInput').get(0).files.length === 0) {
+                    e.preventDefault();
+                    $("#fileInput").closest('.mt-3').find('.text-danger').text("Image is required!").show();
+                    isValid = false;
+                }
+
+                return isValid; // Chỉ submit nếu hợp lệ
+            });
+
         });
     </script>
+
 }

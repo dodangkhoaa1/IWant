@@ -87,6 +87,7 @@ namespace IWant.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(BlogViewModel model)
         {
+
             var user = _context.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
             if (user == null)
             {

@@ -5,18 +5,32 @@
 }
 
 <style>
+    /* Header giống design Manage Accounts */
     .comment-header {
-        background-color: #fff !important;
-        color: #e67e22 !important;
-        text-align: left !important;
-        border-bottom: none !important;
+        text-align: center;
+        margin: 30px 0;
     }
 
         .comment-header h2 {
-            margin: 0;
-            font-size: 1.8rem;
-            font-weight: 800;
+            font-size: 3rem;
+            font-weight: bold;
         }
+
+        .comment-header p {
+            font-size: 1rem;
+            color: #364d59;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+            .comment-header p::after {
+                content: "";
+                display: block;
+                width: 50%;
+                height: 1px;
+                background-color: #364d59;
+                margin: 10px auto;
+            }
 
     .comment-table thead th {
         background-color: #e9ecef !important;
@@ -25,22 +39,22 @@
         font-size: 0.9rem;
         font-weight: 600;
     }
-    
+
     .comment-table tbody tr {
-        height: 80px;
+        height: 90px;
     }
 
         .comment-table tbody tr td {
-            height: 80px;
+            height: 90px;
             vertical-align: middle;
         }
 
             .comment-table tbody tr td.title-column {
-                width: 30%;
+                width: 50%;
             }
 
             .comment-table tbody tr td.image-column {
-                width: 30%;
+                width: 40%;
             }
 
             .comment-table tbody tr td.comments-column {
@@ -64,21 +78,20 @@
         white-space: normal;
     }
 
-    .comment-body .comment-table tbody tr td a.comment-btn {
-        background-color: #fff !important;
-        color: #000 !important;
-        border: 2px solid #FEDA15 !important;
-    }
-
-    .comment-container {
-        max-width: 1400px;
-        margin: 0 auto;
-        padding: 20px;
-        background: #fff;
-        margin-top: 20px;
-        border-radius: 8px;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    }
+    /* Xóa CSS custom của nút View Comment */
+    /*
+            .comment-btn {
+                background-color: #fff !important;
+                color: #000 !important;
+                border: 2px solid #FEDA15 !important;
+                padding: 3px 6px;
+                font-size: 0.75rem;
+            }
+            .comment-btn:hover {
+                background-color: #FAF0E6 !important;
+                color: #000000 !important;
+            }
+            */
 
     .table-wrapper {
         height: 900px;
@@ -89,6 +102,7 @@
         width: 100%;
         table-layout: fixed;
     }
+
     /* Căn giữa pagination */
     .pagination {
         display: flex;
@@ -108,22 +122,25 @@
             border-radius: 4px;
             text-decoration: none;
             font-size: 0.9rem;
+            transition: background 0.3s, color 0.3s;
         }
 
             .pagination a.page-btn:hover {
-                background-color: #f9f9f9;
+                background-color: #FAF0E6;
+                color: #000;
             }
 
             .pagination span.page-btn.active {
-                background-color: #FEDA15;
+                background-color: transparent;
                 color: #000;
                 font-weight: bold;
             }
 </style>
 
-<div class="">
-    <div class="comment-header bg-primary text-white">
+<div class="comment-container">
+    <div class="comment-header">
         <h2>Comments List</h2>
+        <p></p>
     </div>
     <div class="comment-body">
         <!-- Bọc bảng trong wrapper có chiều cao cố định -->
@@ -150,12 +167,15 @@
                         <tr>
                             <td class="title-column">@blog.Title</td>
                             <td class="image-column">
-                                <img src="@blog.ImageUrl" alt="@blog.Title" class="img-thumbnail" style="max-width: 100px; max-height:80px;" />
+                                <img src="@blog.ImageUrl" alt="@blog.Title" class="img-thumbnail" style="max-width: 130px; max-height:90px;" />
                             </td>
                             <td class="comments-column">@blog.Comments?.Count()</td>
                             <td class="rates-column">@blog.Rates?.Count()</td>
                             <td class="action-column">
-                                <a asp-controller="Blog" asp-action="BlogDetail" asp-route-id="@blog.Id" class="btn btn-primary btn-sm comment-btn">View Comment</a>
+                                <!-- Sử dụng button primary mặc định của Bootstrap -->
+                                <a asp-controller="Blog" asp-action="BlogDetail" asp-route-id="@blog.Id" class="btn btn-primary btn-sm">
+                                    View Comment
+                                </a>
                             </td>
                         </tr>
                     }
@@ -184,7 +204,6 @@
                 }
             });
             updatePagination();
-            document.querySelector(".comment-container").scrollIntoView({ behavior: "smooth" });
         }
 
         function updatePagination() {

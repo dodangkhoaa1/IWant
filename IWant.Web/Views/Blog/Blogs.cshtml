@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="~/css/responsive.css" />
 <link rel="stylesheet" href="~/css/site.css" />
 <link rel="stylesheet" href="~/css/main.css" />
-
+<link href="https://fonts.googleapis.com/css2?family=Athiti:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
     /* Thiết lập chung */
@@ -19,6 +19,12 @@
         font-family: Arial, sans-serif;
         background-color: #f8f9fa;
         padding: 20px 0;
+    }
+
+    h1, h2, h3, h4, h5, h6,
+    p, a, span, div, button,
+    .meta-info, .read-more, .blog-header p, .card-title {
+        font-family: 'Athiti', sans-serif !important;
     }
 
     .main-article {
@@ -72,23 +78,23 @@
         transition: color 0.3s ease;
     }
 
-    .card{
-        height:400px;
+    .card {
+        height: 400px;
     }
 
-        .card img{
-            padding-bottom:0;
-            border-bottom:1px solid black;
-            object-fit:contain;
-            width:100%;
-            height:250px;
+        .card img {
+            padding-bottom: 0;
+            border-bottom: 1px solid black;
+            object-fit: contain;
+            width: 100%;
+            height: 250px;
         }
 
-        .card-title{
-            height:100px;
-        }
+    .card-title {
+        height: 100px;
+    }
 
-    .remote-title{
+    .remote-title {
         height: 50px;
     }
 
@@ -130,38 +136,28 @@
     }
 
     /* Pagination */
-    .pagination-container {
+    .pagination {
         display: flex;
         justify-content: center;
-        margin-top: 20px;
+        margin-top: 16px;
+        gap: 4px;
     }
 
-        .pagination-container button {
+        .pagination a {
             display: inline-block;
-            padding: 8px 14px;
-            font-size: 0.9rem;
-            font-weight: bold;
-            color: #333;
-            background-color: transparent;
-            border: 2px solid rgba(226, 157, 82, 0.8);
-            border-radius: 5px;
-            transition: background-color 0.3s ease-in-out;
+            padding: 6px 12px;
+            background: #fff;
+            color: #000000;
+            border: 1px solid #FEDA15;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: background 0.2s;
         }
 
-            .pagination-container button:hover {
-                background: #e5c90d;
-                color: #000;
-            }
-
-            .pagination-container button.active {
-                background: rgba(226, 157, 82, 0.8);
-                border-color: #FEDA15;
-                color: #fff;
-            }
-
-            .pagination-container button:disabled {
-                opacity: 0.5;
-                cursor: default;
+            .pagination a:hover {
+                background: #FAF0E6;
+                color: #000000;
             }
 
     /* Nút đọc thêm */
@@ -223,10 +219,20 @@
 
         .blog-header p {
             font-size: 1rem;
-            color: #BEBEBE;
+            color: #364d59;
             position: relative;
             padding-bottom: 15px;
         }
+
+            .blog-header p::after {
+                content: "";
+                display: block;
+                width: 50%;
+                height: 1px;
+                justify-content: center;
+                background-color: #364d59;
+                margin: 10px auto;
+            }
 
             .blog-header p::after {
                 content: "";
@@ -261,8 +267,8 @@
 <div class="blog-container">
     <div class="container">
         <div class="blog-header">
-            <h1>BLOGS</h1>
-            <p>Blog Highest Rating!</p>
+            <h1>Blogs</h1>
+            <p>Blogs Highest Rating!</p>
         </div>
         @if (topBlog != null)
         {
@@ -298,7 +304,8 @@
                                 <img style="width: 100%; object-fit: contain" src="@blogItem.ImageUrl" alt="@blogItem.Title">
                                 <div class="card-body">
                                     <h3 class="remote-title mt-2" style="font-size:1rem;font-weight:bold;">
-                                        @blogItem.Title</h3>
+                                        @blogItem.Title
+                                    </h3>
                                     <p class="meta-info">
                                         <i class="fas fa-calendar-alt"></i> @blogItem.CreatedAt.ToString("dd/MM/yyyy") | <i class="fas fa-eye"></i> @blogItem.ViewCount
                                     </p>
@@ -386,102 +393,132 @@
                     </div>
                 </div> *@
             </div>
-            <nav id="mostSeePagination" class="pagination-container"></nav>
+            <div class="pagination" id="pagination"></div>
         </div>
 
     </div>
 </div>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var container = document.getElementById('mostSeeContainer');
-        var items = container.querySelectorAll('.col-md-4'); // Lấy đúng các bài viết
-        var paginationContainer = document.getElementById('mostSeePagination');
-        var itemsPerPage = 6;
-        var currentPage = 1;
+    var currentPage = 1; // Số trang hiện tại
+
+    // Hàm phân trang cho danh sách blog (hiển thị mỗi trang 6 bài)
+    function paginateBlogs() {
+        var container = document.getElementById("mostSeeContainer");
+        // Lấy tất cả các phần tử con (mỗi bài blog là 1 div col-md-4)
+        var items = Array.from(container.children);
+        var itemsPerPage = 6; // Mỗi trang hiển thị 6 bài
         var totalPages = Math.ceil(items.length / itemsPerPage);
-
-        function showPage(page) {
-            currentPage = page;
-            items.forEach((item, index) => {
-                item.style.display = (index >= (page - 1) * itemsPerPage && index < page * itemsPerPage) ? 'block' : 'none';
-            });
-
-            renderPagination();
+        if (currentPage > totalPages) {
+            currentPage = totalPages;
         }
+        var pagination = document.getElementById("pagination");
 
         function renderPagination() {
-            paginationContainer.innerHTML = '';
-            if (totalPages <= 1) return;
-
-            var prev = document.createElement('button');
-            prev.innerText = 'Previous';
-            prev.disabled = currentPage === 1;
-            prev.addEventListener('click', () => showPage(currentPage - 1));
-            paginationContainer.appendChild(prev);
-
-            for (let i = 1; i <= totalPages; i++) {
-                let btn = document.createElement('button');
-                btn.innerText = i;
-                btn.classList.toggle('active', i === currentPage);
-                btn.addEventListener('click', () => showPage(i));
-                paginationContainer.appendChild(btn);
+            pagination.innerHTML = "";
+            // Nút Prev
+            var prevLink = document.createElement("a");
+            prevLink.href = "#";
+            prevLink.innerText = "Prev";
+            prevLink.onclick = function (e) {
+                e.preventDefault();
+                if (currentPage > 1) {
+                    currentPage--;
+                    showPage(currentPage);
+                    renderPagination();
+                }
+            };
+            pagination.appendChild(prevLink);
+            // Số trang
+            for (var i = 1; i <= totalPages; i++) {
+                var link = document.createElement("a");
+                link.href = "#";
+                link.innerText = i;
+                link.style.fontWeight = (i === currentPage ? "bold" : "normal");
+                link.onclick = (function (page) {
+                    return function (e) {
+                        e.preventDefault();
+                        currentPage = page;
+                        showPage(page);
+                        renderPagination();
+                    };
+                })(i);
+                pagination.appendChild(link);
             }
-
-            var next = document.createElement('button');
-            next.innerText = 'Next';
-            next.disabled = currentPage === totalPages;
-            next.addEventListener('click', () => showPage(currentPage + 1));
-            paginationContainer.appendChild(next);
+            // Nút Next
+            var nextLink = document.createElement("a");
+            nextLink.href = "#";
+            nextLink.innerText = "Next";
+            nextLink.onclick = function (e) {
+                e.preventDefault();
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    showPage(currentPage);
+                    renderPagination();
+                }
+            };
+            pagination.appendChild(nextLink);
         }
 
-        showPage(1);
-    });
+        function showPage(page) {
+            var start = (page - 1) * itemsPerPage;
+            var end = start + itemsPerPage;
+            items.forEach(function (item, index) {
+                item.style.display = (index >= start && index < end) ? "" : "none";
+            });
+        }
 
-
-
+        renderPagination();
+        showPage(currentPage);
+    }
 
     document.addEventListener("DOMContentLoaded", function () {
+        // Gọi hàm phân trang khi trang load
+        paginateBlogs();
+
+        // Nếu có slider cho phần Most Watched, bạn có thể giữ code slider cũ
         let slider = document.querySelector(".most-watched-slider");
-        let dots = document.querySelectorAll(".slider-dots .dot");
-        let currentIndex = 0;
-        let totalSlides = dots.length;
-        let autoSlideInterval;
+        if (slider) {
+            let dots = document.querySelectorAll(".slider-dots .dot");
+            let currentIndex = 0;
+            let totalSlides = dots.length;
+            let autoSlideInterval;
 
-        function showSlide(index) {
-            currentIndex = index;
-            let translateX = -index * 100 + "%";
-            slider.style.transform = "translateX(" + translateX + ")";
+            function showSlide(index) {
+                currentIndex = index;
+                let translateX = -index * 100 + "%";
+                slider.style.transform = "translateX(" + translateX + ")";
 
-            dots.forEach((dot, i) => {
-                dot.classList.toggle("active", i === index);
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle("active", i === index);
+                });
+
+                restartAutoSlide();
+            }
+
+            function changeSlide(index) {
+                showSlide(index);
+            }
+
+            function nextSlide() {
+                let nextIndex = (currentIndex + 1) % totalSlides;
+                showSlide(nextIndex);
+            }
+
+            // Gán sự kiện click cho từng dot
+            dots.forEach((dot, index) => {
+                dot.addEventListener("click", function () {
+                    changeSlide(index);
+                });
             });
 
-            restartAutoSlide();
+            function restartAutoSlide() {
+                clearInterval(autoSlideInterval);
+                autoSlideInterval = setInterval(nextSlide, 3000); // Auto slide mỗi 3 giây
+            }
+
+            restartAutoSlide(); // Bắt đầu auto-slide khi load trang
         }
-
-        function changeSlide(index) {
-            showSlide(index);
-        }
-
-        function nextSlide() {
-            let nextIndex = (currentIndex + 1) % totalSlides;
-            showSlide(nextIndex);
-        }
-
-        // Gán sự kiện click cho từng dot
-        dots.forEach((dot, index) => {
-            dot.addEventListener("click", function () {
-                changeSlide(index);
-            });
-        });
-
-        function restartAutoSlide() {
-            clearInterval(autoSlideInterval);
-            autoSlideInterval = setInterval(nextSlide, 3000); // Auto slide mỗi 3 giây
-        }
-
-        restartAutoSlide(); // Bắt đầu auto-slide khi load trang
     });
-
 </script>
+

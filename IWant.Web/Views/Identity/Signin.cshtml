@@ -1,4 +1,4 @@
-﻿@using IWant.BusinessObject.Enitities
+﻿﻿@using IWant.BusinessObject.Enitities
 @using IWant.Web.Models
 @using Microsoft.AspNetCore.Identity
 @model SigninViewModel
@@ -125,9 +125,11 @@
                     <h1 class="text-center mb-4">Sign In</h1>
                     <div class="mb-3">
                         <input type="text" asp-for="Username" placeholder="Username" class="custom-input" />
+                        <span asp-validation-for="Username" class="text-danger"></span>
                     </div>
                     <div class="mb-3 position-relative">
                         <input type="password" asp-for="Password" id="passwordInput" placeholder="Password" class="custom-input" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
                         <span class="password-toggle " id="togglePassword">
                             <i class="fa-regular fa-eye"></i>
                         </span>
@@ -149,51 +151,54 @@
 </div>
 
 
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    @* <script src="~/js/validate/signinvalidate.js"></script> *@
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const confettiContainer = document.querySelector('.confetti-container');
 
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const confettiContainer = document.querySelector('.confetti-container');
+            function createConfetti() {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.backgroundColor = getRandomColor();
+                confetti.style.animationDuration = Math.random() * 2 + 3 + 's';
+                confetti.style.width = Math.random() * 5 + 2 + 'px';
+                confetti.style.height = Math.random() * 25 + 15 + 'px';
 
-        function createConfetti() {
-            const confetti = document.createElement('div');
-            confetti.classList.add('confetti');
-            confetti.style.left = Math.random() * 100 + 'vw';
-            confetti.style.backgroundColor = getRandomColor();
-            confetti.style.animationDuration = Math.random() * 2 + 3 + 's';
-            confetti.style.width = Math.random() * 5 + 2 + 'px';
-            confetti.style.height = Math.random() * 25 + 15 + 'px';
+                confettiContainer.appendChild(confetti);
 
-            confettiContainer.appendChild(confetti);
+                setTimeout(() => confetti.remove(), 5000);
+            }
 
-            setTimeout(() => confetti.remove(), 5000);
-        }
+            function getRandomColor() {
+                const colors = [
+                    '#FFD700', '#FF4500', '#1E90FF', '#32CD32', '#FF69B4', '#8A2BE2',
+                    '#FF6347', '#00FA9A', '#9400D3', '#FF7F50', '#00CED1', '#FFB6C1',
+                    '#4B0082', '#ADFF2F'
+                ];
+                return colors[Math.floor(Math.random() * colors.length)];
+            }
 
-        function getRandomColor() {
-            const colors = [
-                '#FFD700', '#FF4500', '#1E90FF', '#32CD32', '#FF69B4', '#8A2BE2',
-                '#FF6347', '#00FA9A', '#9400D3', '#FF7F50', '#00CED1', '#FFB6C1',
-                '#4B0082', '#ADFF2F'
-            ];
-            return colors[Math.floor(Math.random() * colors.length)];
-        }
+            setInterval(createConfetti, 200);
+        });
+    </script>
 
-        setInterval(createConfetti, 200);
-    });
-</script>
+    <script>
+        document.getElementById('togglePassword').addEventListener('click', function () {
+            const passwordInput = document.getElementById('passwordInput');
+            const icon = this.querySelector('i');
 
-<script>
-    document.getElementById('togglePassword').addEventListener('click', function () {
-        const passwordInput = document.getElementById('passwordInput');
-        const icon = this.querySelector('i');
-
-        if (passwordInput.type === 'password') {
-            passwordInput.type = 'text';
-            icon.classList.remove('fa-eye');
-            icon.classList.add('fa-eye-slash');
-        } else {
-            passwordInput.type = 'password';
-            icon.classList.remove('fa-eye-slash');
-            icon.classList.add('fa-eye');
-        }
-    });
-</script>
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        });
+    </script>
+}

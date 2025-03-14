@@ -24,6 +24,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\images\blog\" />
+    <Folder Include="wwwroot\js\validate\" />
     <Folder Include="wwwroot\uploads\" />
   </ItemGroup>
 

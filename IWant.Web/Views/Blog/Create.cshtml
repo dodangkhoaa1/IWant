@@ -25,6 +25,13 @@
         transition: background-color 0.2s ease;
     }
 
+    .custom-error {
+        display: block;
+        font-size: 14px;
+        margin-top: 5px;
+    }
+
+
     .btn {
         background-color: rgba(226, 157, 82, 0.8);
     }
@@ -59,37 +66,29 @@
                             </div>
                             <img id="imgPreview" src="#" alt="Image Preview" style="max-height: 100%; max-width: 100%; display: none;" />
                         </div>
-                        <div class="mt-3 text-center">
-                            <button type="button" class="btn btn-success" id="chooseFileButton">Choose File</button>
-                            <input asp-for="Image" id="fileInput" asp-for="Image" type="file" style="display: none;" />
-                            <input asp-for="ImageUrl" hidden />
+                        <div class="mt-3 d-grid text-center">
                             <span asp-validation-for="Image" class="text-danger"></span>
+                            <button type="button" class="btn btn-success" id="chooseFileButton">Choose File</button>
+                            <input asp-for="Image" id="fileInput" type="file" style="display: none;" required/>
+                            <input asp-for="ImageUrl" hidden />
                         </div>
                         <div class="cited-img">
                             <label asp-for="CitedImage" for="Title" class="form-label fw-bold"></label>
-                            <input type="text" asp-for="CitedImage" class="form-control" placeholder="Enter Cited Image" required />
+                            <input type="text" asp-for="CitedImage" class="form-control" placeholder="Enter Cited Image"  />
                             <span asp-validation-for="CitedImage" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="col-md-8">
                         <div class="mb-3">
                             <label for="Title" class="form-label fw-bold">Blog Title</label>
-                            <input type="text" asp-for="Title" class="form-control" placeholder="Enter Blog Title" required />
+                            <input type="text" asp-for="Title" class="form-control" placeholder="Enter Blog Title"  />
                             <span asp-validation-for="Title" class="text-danger"></span>
                         </div>
                         <div class="mb-3 content">
                             <label for="Content" class="form-label fw-bold">Content</label>
-                            <textarea asp-for="Content" class="form-control summernote" placeholder="Type something..." required></textarea>
+                            <textarea asp-for="Content" class="form-control summernote" placeholder="Type something..." ></textarea>
                             <span asp-validation-for="Content" class="text-danger"></span>
                         </div>
-                        @* <div class="mb-3">
-                            <label for="Status" class="form-label fw-bold">Status</label>
-                            <select asp-for="Status" class="form-select">
-                                <option value="true">Published</option>
-                                <option value="false">Draft</option>
-                            </select>
-                            <span asp-validation-for="Status" class="text-danger"></span>
-                        </div> *@
                         @if (User.IsInRole("Admin"))
                         {
                             <input type="hidden" asp-for="Status" class="form-control" value="true" />
@@ -113,14 +112,20 @@
 </div>
 
 @section Scripts {
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <partial name="_ValidationScriptsPartial" />
+
+    <!-- Summernote -->
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote-lite.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote-lite.min.js"></script>
+
     <script>
         $(document).ready(function () {
+            const allowedExtensions = ['png', 'jpg', 'jpeg', 'gif'];
+            const maxSize = 5 * 1024 * 1024; // 5MB
 
+            // Khởi tạo Summernote
             $('.summernote').summernote({
-                height: 200,
+                height: 300,
                 placeholder: 'Write content here...',
                 toolbar: [
                     ['style', ['bold', 'italic', 'underline', 'clear']],
@@ -129,31 +134,79 @@
                     ['color', ['color']],
                     ['para', ['ul', 'ol', 'paragraph']],
                     ['view', ['codeview']]
-                ]
+                ],
+                callbacks: {
+                    onChange: function (contents) {
+                        $("textarea.summernote").val(contents).trigger('change'); // Cập nhật giá trị cho ASP.NET validation
+                    }
+                }
             });
 
-
+            // Mở hộp thoại chọn file khi bấm nút
             $('#chooseFileButton').click(function () {
                 $('#fileInput').click();
             });
 
-
+            // Xử lý khi chọn ảnh
             $('#fileInput').change(function () {
                 const file = this.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = function (e) {
+                const errorSpan = $("#fileInput").closest('.mt-3').find('.text-danger');
 
-                        $('#uploadPlaceholder').hide();
-                        $('#imgPreview').attr('src', e.target.result).show();
-                    }
-                    reader.readAsDataURL(file);
-                } else {
-
-                    $('#imgPreview').hide();
-                    $('#uploadPlaceholder').show();
+                if (!file) {
+                    errorSpan.text("Image is required!").show();
+                    return;
                 }
+
+                const fileName = file.name.toLowerCase();
+                const fileSize = file.size;
+                const fileExtension = fileName.split('.').pop();
+
+                if (!allowedExtensions.includes(fileExtension)) {
+                    errorSpan.text("Invalid file format! Only PNG, JPG, JPEG, GIF are allowed.").show();
+                    this.value = ''; // Xóa file input
+                    return;
+                }
+
+                if (fileSize > maxSize) {
+                    errorSpan.text("File size must be less than 5MB!").show();
+                    this.value = ''; // Xóa file input
+                    return;
+                }
+
+                errorSpan.text(""); // Xóa lỗi nếu hợp lệ
+
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#uploadPlaceholder').hide();
+                    $('#imgPreview').attr('src', e.target.result).show();
+                }
+                reader.readAsDataURL(file);
             });
+
+            // Bắt sự kiện khi form submit
+            $("form").on("submit", function (e) {
+                let isValid = true;
+
+                // Kiểm tra nội dung Summernote
+                let content = $('.summernote').summernote('code').trim();
+                if (content === "" || content === "<p><br></p>" || content === "<br>") {
+                    e.preventDefault();
+                    $(".summernote").val("");
+                    $(".summernote").closest('.mb-3').find('.text-danger').text("Content is required!").show();
+                    isValid = false;
+                }
+
+                // Kiểm tra hình ảnh có được chọn không
+                if ($('#fileInput').get(0).files.length === 0) {
+                    e.preventDefault();
+                    $("#fileInput").closest('.mt-3').find('.text-danger').text("Image is required!").show();
+                    isValid = false;
+                }
+
+                return isValid; // Chỉ submit nếu hợp lệ
+            });
+
         });
     </script>
 }
+

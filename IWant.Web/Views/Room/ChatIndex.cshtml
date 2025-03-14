@@ -1,5 +1,6 @@
 ﻿@using IWant.DataAccess
 @{
+    ViewData["Title"] = "Chat";
     Layout = "~/Views/Shared/_Layout.cshtml";
 
     var roomName = User.Identity.Name;
@@ -11,10 +12,8 @@
     <link rel="stylesheet" href="~/css/main.css" />
     <link rel="stylesheet" href="~/css/responsive.css" />
     <link rel="stylesheet" href="~/css/site.css" />
-
 }
 
-<!-- Add/Update your styles here -->
 <style>
     .app {
         display: flex;
@@ -38,7 +37,7 @@
     .main-content .chat-input .actions i {
         margin: auto 0;
         padding: 0 5px;
-        color: rgba(226, 157, 82, 0.8);
+        color: #E89073;
         cursor: pointer;
     }
 
@@ -54,7 +53,7 @@
         align-items: center;
         justify-content: space-between;
         padding: 1rem;
-        background-color: #FFFFFF;
+        background-color: #E89073;
         border-bottom: 1px solid #ccc;
     }
 
@@ -104,7 +103,6 @@
             border-bottom: 1px solid #e2e2e2;
         }
 
-
             .sidebar .rooms li a:hover,
             .sidebar .rooms li a.active {
                 background-color: #F0F8FF;
@@ -139,8 +137,8 @@
             max-width: 120px;
         }
 
-            .sidebar .profile div a:hover{
-                color:black;
+            .sidebar .profile div a:hover {
+                color: black;
             }
 
     .main-content {
@@ -156,7 +154,7 @@
             justify-content: space-between;
             padding: 1rem;
             border-bottom: 1px solid #ccc;
-            background-color: #fff;
+            background-color: transparent;
         }
 
             .main-content .header h5 {
@@ -193,7 +191,7 @@
         }
 
         .chat-message.ismine .message-content {
-            background-color: rgba(226, 157, 82, 0.8);
+            background-color: #E89073;
             border-radius: 10px 10px 0 10px;
             border: 1px solid #FEDA15;
             color: #000;
@@ -217,7 +215,7 @@
     .timestamp {
         font-size: 12px;
         color: gray;
-        margin-bottom: 2px; /* Cách dòng tin nhắn */
+        margin-bottom: 2px;
         align-self: flex-start;
     }
 
@@ -231,12 +229,9 @@
         align-self: flex-end;
     }
 
-
     .chat-message.isother {
         justify-content: flex-start;
     }
-
-
 
     .message-avatar {
         width: 35px;
@@ -250,8 +245,6 @@
         font-weight: bold;
         margin-right: 0.5rem;
     }
-
-
 
     .chat-input {
         display: flex;
@@ -274,8 +267,6 @@
             margin-left: 0.5rem;
         }
 
-
-
     .modal-footer .btn-primary {
         background-color: #FEDA15;
         border-color: #FEDA15;
@@ -283,7 +274,6 @@
         border-radius: 4px;
         transition: background-color 0.3s;
     }
-
 
     .modal-footer .btn-secondary {
         background-color: #e0e0e0;
@@ -293,23 +283,33 @@
     }
 
     .sidebar .header #create-room {
-        display: inline-flex;
+        display: flex;
         align-items: center;
         justify-content: center;
         width: 30px;
         height: 30px;
-        background-color: #E8E8E8;
+        background-color: #FFE4B5;
         color: #000;
         border-radius: 50%;
         text-decoration: none;
         transition: background-color 0.3s;
     }
 
-        .sidebar .header #create-room:hover {
-            background-color: #CCCCCC;
+        .sidebar .header #create-room i {
+            font-size: 16px;
+            line-height: 1; /* Đảm bảo icon không bị lệch */
+            text-align: center;
+            opacity: 1 !important;
+            display: flex !important;
+            visibility: visible !important;
+            color: #000000;
         }
 
 
+
+        .sidebar .header #create-room:hover {
+            background-color: #EFA895;
+        }
 
     .modal-footer .btn-danger {
         background-color: #f44336;
@@ -318,7 +318,6 @@
         border-radius: 4px;
         transition: background-color 0.3s;
     }
-
 
     .room-actions button {
         background-color: transparent;
@@ -333,9 +332,9 @@
     .chat-body {
         width: 100%;
         height: 400px;
-        overflow-y: auto; 
+        overflow-y: auto;
         overflow-x: hidden;
-        white-space: normal; 
+        white-space: normal;
         word-wrap: break-word;
     }
 
@@ -344,29 +343,60 @@
         margin-right: 2px;
     }
 
+    .game-header {
+        text-align: center;
+        margin: 30px 0;
+    }
+
+        .game-header h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-top: 40px;
+        }
+
+        .game-header p {
+            font-size: 1rem;
+            color: #364d59;
+            position: relative;
+        }
+
+
+
+    .modal-content {
+        margin-top: 100px; /* Dịch xuống */
+        display: block; /* Nếu đang bị ẩn */
+    }
+
+    .game-header p::after {
+        content: "";
+        display: block;
+        width: 50%;
+        height: 1px;
+        justify-content: center;
+        background-color: #364d59;
+        margin: 10px auto;
+    }
 </style>
 
-<!-- Your original code below (unchanged HTML/Razor) -->
-<div class="alert alert-warning alert-dismissible d-none"
-     id="errorAlert" role="alert">
+<div class="alert alert-warning alert-dismissible d-none" id="errorAlert" role="alert">
     <span data-bind="text:serverInfoMessage"></span>
     <button type="button" class="close" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
 
-<div class="d-flex flex-column justify-content-center align-items-center vh-100"
-     data-bind="css: isLoading() ? 'd-flex' : 'd-none'">
+<div class="d-flex flex-column justify-content-center align-items-center vh-100" data-bind="css: isLoading() ? 'd-flex' : 'd-none'">
     <div class="spinner-border text-primary" role="status">
         <span class="sr-only">Loading...</span>
     </div>
 </div>
 
 <div class="container chat" style="min-height:600px;">
-
-
+    <div class="game-header">
+        <h1>Chat</h1>
+        <p></p>
+    </div>
     <input id="userId" type="hidden" value="" />
-
     <div class="app">
         <div class="sidebar">
             <div class="header">
@@ -386,18 +416,14 @@
             <div class="profile">
                 <div>
                     <img src="#" class="user-avatar" data-bind="attr: { src:  myAvatar() }" />
-                    <a data-bind="text: myName"> </a>
+                    <a data-bind="html: myName() + '&nbsp;'"></a>
                     <p class="role"> (@roleMember)</p>
                 </div>
             </div>
         </div>
-
         <div class="main-content" data-bind="visible: joinedRoom().length == 0">
-            <span class="m-auto">
-                Chat with admin!
-            </span>
+            <span class="m-auto">Supporting Chat</span>
         </div>
-
         <div class="main-content" data-bind="visible: joinedRoom().length > 0">
             <div class="header">
                 <h4 class="join" id="joinedRoom" data-bind="text: joinedRoom()">Lobby</h4>
@@ -413,19 +439,15 @@
             <div class="chat-body">
                 <ul class="list-unstyled" data-bind="foreach: chatMessages">
                     <li>
-                        <div class="chat-message d-flex"
-                             data-bind="css: $data.isMine() === true ? 'ismine' : 'isother'">
+                        <div class="chat-message d-flex" data-bind="css: $data.isMine() === true ? 'ismine' : 'isother'">
                             <div class="left-side d-flex">
-                                <img style="max-width: 100ps;" class="message-avatar"
-                                     data-bind="attr: { src:  $data.avatar() }" />
+                                <img style="max-width: 100ps;" class="message-avatar" data-bind="attr: { src:  $data.avatar() }" />
                             </div>
-
                             <div class="message-wrapper">
                                 <span class="timestamp">
                                     <i class="fa-regular fa-clock"></i>
                                     <span data-bind="text: $data.timestamp"></span>
                                 </span>
-
                                 <div class="message-content d-flex flex-column">
                                     <span class="content" data-bind="html: $data.content"></span>
                                 </div>
@@ -435,18 +457,14 @@
                 </ul>
             </div>
             <div class="chat-input">
-                <input id="chat-message" type="text" value=""
-                       data-bind="value: message, valueUpdate: 'afterkeydown', event: { keypress: onEnter}"
-                       placeholder="What's on your mind?" />
-
+                <input id="chat-message" type="text" value="" data-bind="value: message, valueUpdate: 'afterkeydown', event: { keypress: onEnter}" placeholder="" />
                 <div class="actions d-flex align-content-center">
                     <form method="post" asp-action="Upload" asp-controller="Upload" enctype="multipart/form-data" id="uploadForm">
                         <label for="UploadedFile" class="custom-file-upload">
                             <i class="fa-regular fa-image"></i>
                         </label>
                         <input type="hidden" name="RoomId" data-bind="value: joinedRoomId()" />
-                        <input type="file" id="UploadedFile" name="File" accept=".jpg,.jpeg,.png"
-                               data-bind="event: {change: uploadFiles}" />
+                        <input type="file" id="UploadedFile" name="File" accept=".jpg,.jpeg,.png" data-bind="event: {change: uploadFiles}" />
                     </form>
                     <i class="fa-regular fa-paper-plane" id="btn-send-message" data-bind="click: sendNewMessage"></i>
                 </div>
@@ -470,7 +488,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" data-bind="click: createRoom">Create</button>
+                <button type="button" class="btn btn-primary" data-bind="click: createRoom">Create</button>
             </div>
         </div>
     </div>
@@ -481,8 +499,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Rename Room</h5>
-                <button type="button" class="close" data-bs-dismiss="modal"
-                        aria-label="Close">
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -490,15 +507,8 @@
                 <input type="text" class="form-control" id="newRoomName" data-bind="value: $root.joinedRoom()" />
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary"
-                        data-bs-dismiss="modal">
-                    Close
-                </button>
-                <button type="button" class="btn btn-primary"
-                        data-bs-dismiss="modal"
-                        data-bind="click: editRoom">
-                    Update
-                </button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" data-bind="click: editRoom">Update</button>
             </div>
         </div>
     </div>
@@ -509,8 +519,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Delete Room</h5>
-                <button type="button" class="close" data-bs-dismiss="modal"
-                        aria-label="Close">
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -518,15 +527,8 @@
                 <p>Are you sure you want to delete this Chat Room?</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary"
-                        data-bs-dismiss="modal">
-                    Close
-                </button>
-                <button type="button" class="btn btn-danger"
-                        data-bs-dismiss="modal"
-                        data-bind="click: deleteRoom">
-                    Delete
-                </button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" data-bind="click: deleteRoom">Delete</button>
             </div>
         </div>
     </div>

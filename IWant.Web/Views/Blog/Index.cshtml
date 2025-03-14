@@ -13,12 +13,13 @@
     bool? isWaiting;
 }
 
-@if(User.IsInRole("Member")){
+@if (User.IsInRole("Member"))
+{
     <style>
         .body {
             padding-top: 70px !important;
             height: 70vh;
-            padding-bottom:30px;
+            padding-bottom: 30px;
             background-color: #FEDA15;
         }
 
@@ -39,69 +40,35 @@
 }
 
 <style>
-    
-
-    .transactions-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 16px;
-    }
-
-    .transactions-header-left {
-        display: flex;
-        align-items: center;
-        gap: 20px;
-    }
-
-        .transactions-header-left h2 {
-            margin: 0;
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: #e67e22;
-        }
-
     .transactions-header-right {
         display: flex;
         align-items: center;
         gap: 10px;
+        justify-content: flex-end;
+        margin-bottom: 20px;
     }
 
     .btn-filter, .btn-create {
         display: inline-block;
-        border: 1px solid #FEDA15;
+        border: 2px solid #FEDA15;
         padding: 8px 16px;
         font-size: 0.9rem;
         color: #000000;
+        background-color: transparent;
         border-radius: 4px;
         text-decoration: none;
         cursor: pointer;
         transition: background 0.3s, color 0.3s;
     }
 
-    .btn-filter {
-        background: transparent;
-        color: #000000;
-    }
-
-        .btn-filter:hover {
+        .btn-filter:hover, .btn-create:hover {
             background: #FEDA15;
-            color: #fff;
-        }
-
-    .btn-create {
-        background-color: #FEDA15;
-        color: #000000;
-    }
-
-        .btn-create:hover {
-            background-color: #FEDA15;
-            color: #fff;
+            color: #000000;
         }
 
     .table-container {
         width: 100%;
-        height: 100%;
+        height: 1400px;
         overflow: hidden;
     }
 
@@ -166,7 +133,7 @@
         border-radius: 0.375rem;
         text-transform: capitalize;
     }
-        /* Đổi màu cho trạng thái Waiting */
+
         .badge.bg-waiting {
             background-color: #6f42c1;
             color: #fff;
@@ -202,30 +169,57 @@
         }
 
             .pagination a:hover {
-                background: #FEDA15;
+                background: #FAF0E6;
                 color: #000000;
+            }
+
+    .game-header {
+        text-align: center;
+        margin: 30px 0;
+    }
+
+        .game-header h1 {
+            font-size: 3rem;
+            font-weight: bold;
+        }
+
+        .game-header p {
+            font-size: 1rem;
+            color: #364d59;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+            .game-header p::after {
+                content: "";
+                display: block;
+                width: 50%;
+                height: 1px;
+                justify-content: center;
+                background-color: #364d59;
+                margin: 10px auto;
             }
 </style>
 
 <div class="@(User.IsInRole("Member") == true ? "container-blog" : "")">
-    <div class="transactions-header">
-        <div class="transactions-header-left">
-            <h2>Blog List</h2>
-        </div>
-        <div class="transactions-header-right">
-            <button class="btn-filter" onclick="sortTable(0)">Sort by Title</button>
-            <a asp-action="Create" class="btn-create">+ Create</a>
-        </div>
+    <div class="game-header">
+        <h1>Blogs</h1>
+        <p></p>
+    </div>
+    <div class="transactions-header-right">
+        <!-- Lưu ý: Chuyển cột sắp xếp sang index 1 (cột Title) -->
+        <button class="btn-filter" onclick="sortTable(1)">Sort by Title</button>
+        <a asp-action="Create" class="btn-create">+ Create</a>
     </div>
     <div class="table-container">
         <table class="table-fixed">
             <thead>
                 <tr>
                     <th>Author</th>
-                    <th class="sortable" onclick="sortTable(0)">Title</th>
+                    <th class="sortable" onclick="sortTable(1)">Title</th>
                     <th>Content</th>
                     <th>Views</th>
-                    <th>Created At</th>
+                    <th>Date</th>
                     <th>Status</th>
                     <th>Image</th>
                     <th style="width: 200px" class="text-center">Action</th>
@@ -344,33 +338,35 @@
 </div>
 
 <script>
-    var currentPage = 1; // Global currentPage
-
+    var currentPage = 1;
+    var sortToggle = false;
+    var originalRows = [];
+    document.addEventListener("DOMContentLoaded", function () {
+        var blogTableBody = document.getElementById("blogTableBody");
+        originalRows = Array.from(blogTableBody.rows);
+        paginateTable();
+    });
     function sortTable(columnIndex) {
         var table = document.getElementById("blogTableBody");
-        // Reset hiển thị cho tất cả các dòng trước khi sắp xếp
-        Array.from(table.rows).forEach(function (row) {
-            row.style.display = "";
-        });
-        var switching = true;
-        while (switching) {
-            switching = false;
-            var rows = table.rows;
-            for (var i = 0; i < rows.length - 1; i++) {
-                var shouldSwitch = false;
-                var x = rows[i].getElementsByTagName("TD")[columnIndex];
-                var y = rows[i + 1].getElementsByTagName("TD")[columnIndex];
-                if (x.innerText.toLowerCase() > y.innerText.toLowerCase()) {
-                    shouldSwitch = true;
-                    break;
-                }
-            }
-            if (shouldSwitch) {
-                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-                switching = true;
-            }
+        if (!sortToggle) {
+            var rows = Array.from(table.rows);
+            rows.sort(function (a, b) {
+                var textA = a.getElementsByTagName("TD")[columnIndex].innerText.toLowerCase();
+                var textB = b.getElementsByTagName("TD")[columnIndex].innerText.toLowerCase();
+                return textA.localeCompare(textB);
+            });
+            table.innerHTML = "";
+            rows.forEach(function (row) {
+                table.appendChild(row);
+            });
+            sortToggle = true;
+        } else {
+            table.innerHTML = "";
+            originalRows.forEach(function (row) {
+                table.appendChild(row);
+            });
+            sortToggle = false;
         }
-        // Sau khi sắp xếp, gọi lại phân trang (giữ nguyên currentPage nếu có thể)
         paginateTable();
     }
     function paginateTable() {
@@ -443,8 +439,8 @@
         contentCells.forEach(function (cell) {
             var text = cell.innerText.trim();
             var words = text.split(/\s+/);
-            if (words.length > 20) {
-                cell.innerText = words.slice(0, 20).join(' ') + ' ...';
+            if (words.length > 15) {
+                cell.innerText = words.slice(0, 15).join(' ') + ' ...';
             }
         });
     }

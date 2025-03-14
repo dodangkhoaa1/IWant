@@ -32,20 +32,55 @@
     .card-body {
         padding-bottom: 30px;
     }
+
+    .status-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+
+    .preview-btn {
+        background-color: #007bff;
+        color: white;
+        border: 2px solid #007bff;
+        padding: 5px 10px;
+        font-size: 16px;
+        border-radius: 5px;
+        font-weight: bold;
+        white-space: nowrap;
+    }
+
+    .status-label {
+        display: flex;
+        align-items: center;
+        font-size: 1.3rem;
+        gap: 8px;
+    }
 </style>
 
 <div class="container">
     <div class="card shadow-lg border-0 rounded-3">
-        <div class="card-header text-center d-flex justify-content-between" style="background-color: rgba(226, 157, 82, 0.8);">
+        <div class="card-header text-center d-flex justify-content-between" style="background-color: #198754">
             <a style="font-size:20px" class="text-white" asp-action="Index"><i class="fa-solid fa-arrow-left"></i></a>
-            <h4 class="text-white m-0">Details Blog</h4>
+            <h3 class="text-white m-0">Blog Details</h3>
             <div></div>
         </div>
         <div class="card-body p-4 pb-3">
-            
+            <div class="row align-items-center" style="margin-bottom: 20px">
+                <div class="col-4">
+                    <button class="preview-btn" disabled>Preview Mode</button>
+                </div>
+                <div class="col-8 d-flex align-items-center gap-2">
+                    <label class="form-label fw-bold" style="margin-bottom: 0px !important">Status</label>
+                    <label class="badge @(Model.Status == true ? "bg-success" : Model.Status == false ? "bg-danger" : "bg-waiting")" style="font-size: 1.3rem; !important">
+                        @(Model.Status == true ? "Show" : Model.Status == false ? "Hide" : "Waiting")
+                    </label>
+                </div>
+            </div>
             <div class="row">
-                <h2>Preview Blog</h2>
                 <div class="col-md-4 mb-3">
+
                     <div class="mb-4">
                         <label for="Title" class="form-label fw-bold">Author</label>
                         <input type="text" asp-for="User.FullName" class="form-control" readonly />
@@ -59,16 +94,14 @@
                         <input asp-for="ImageLocalPath" hidden />
                     </div>
                     <div class="cited-img">
-                        <label asp-for="CitedImage" for="Title" class="form-label fw-bold"></label>
+                        <label asp-for="CitedImage" for="Title" class="form-label fw-bold">Cited Image</label>
                         <input type="text" asp-for="CitedImage" class="form-control" placeholder="Enter Cited Image" readonly />
                     </div>
                 </div>
                 <div class="col-md-8">
                     <div class="mb-3">
                         <label for="Title" class="form-label fw-bold">Blog Title</label>
-                        <label class="badge @(Model.Status == true ? "bg-success" : Model.Status == false ? "bg-danger" : "bg-waiting")">
-                            @(Model.Status == true ? "Show" : Model.Status == false ? "Hide" : "Waiting")
-                        </label>
+
                         <input type="text" asp-for="Title" class="form-control" readonly />
                     </div>
                     <div class="mb-3 content">
