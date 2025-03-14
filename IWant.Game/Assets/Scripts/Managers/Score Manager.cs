@@ -8,8 +8,6 @@
 
         [Header(" Elements ")]
         [SerializeField] private TextMeshProUGUI gameScoreText;
-        [SerializeField] private TextMeshProUGUI menuBestScoreText;
-
         [Header(" Settings ")]
         [SerializeField] private float scoreMultiplier;
         private int score, bestScore;
@@ -43,8 +41,6 @@
         {
             UpdateScoreText();
 
-            UpdateBestScoreText();
-
 
         }
 
@@ -56,6 +52,10 @@
         {
             return bestScore;
         }
+    public int GetScore()
+    {
+        return score;
+    }
         private void GameStateChangedCallback(GameState gameState)
         {
             switch (gameState)
@@ -77,14 +77,8 @@
         private void UpdateScoreText()
         {
             gameScoreText.text = score.ToString();
-
-            menuBestScoreText.text = bestScore.ToString();
         }
 
-        private void UpdateBestScoreText()
-        {
-            menuBestScoreText.text = bestScore.ToString();
-        }
 
         private void CalculateBestScore()
         {

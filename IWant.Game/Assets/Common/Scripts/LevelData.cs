@@ -6,13 +6,14 @@ namespace Connect.Common
     public class LevelData : ScriptableObject
     {
         public string LevelName;//tên level
-        public List<Edge> Edges; // đại diện cho các kết nối hoặc đường đi trong level.
+
+        [SerializeField] public List<Edge> Edges = new List<Edge>();
 
     }
     [System.Serializable]
     public class Edge //làm cho nó có thể được Unity serializable để có thể lưu và tải.
     {
-        public List<Vector2Int> Points; //Một danh sách các Vector2Int đại diện cho các điểm trong không gian 2D.
+        [SerializeField] public List<Vector2Int> Points; //Một danh sách các Vector2Int đại diện cho các điểm trong không gian 2D.
         public Vector2Int StartPoint
         {
             get

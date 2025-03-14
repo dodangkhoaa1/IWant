@@ -2,11 +2,13 @@
 
 public class AudioManager : MonoBehaviour
 {
+    public static AudioManager instance;
     [Header(" Elements ")]
+    [SerializeField] private AudioSource buttonClickSource;
     [SerializeField] private AudioSource mergeSource;
     [SerializeField] private AudioSource bgmSource;  // AudioSource cho nhạc nền
     [SerializeField] private AudioSource gameOverSource;  // AudioSource cho nhạc Game Over
-
+    [SerializeField] private AudioSource boomSource; 
     [Header(" Sounds ")]
     [SerializeField] private AudioClip[] mergeClips;
     [SerializeField] private AudioClip backgroundMusic;  // AudioClip nhạc nền
@@ -14,6 +16,19 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
+        // Kiểm tra xem đã có instance chưa
+        if (instance == null)
+        {
+            instance = this; // Gán instance hiện tại
+        }
+        else
+        {
+            Destroy(gameObject); // Nếu đã có một instance, xóa object mới để tránh trùng lặp
+            return;
+        }
+
+        DontDestroyOnLoad(gameObject);
+
         MergeManager.onMergeProcess += MergeProcessedCallBack;
         SettingsManager.onSFXValueChanged += SFXValueChangedCallback;
         SettingsManager.onBGMValueChanged += BGMValueChangedCallback;
@@ -78,6 +93,14 @@ public class AudioManager : MonoBehaviour
         if (mergeSource != null)
         {
             mergeSource.mute = !sfxActive;
+        }
+        if (buttonClickSource != null)
+        {
+            buttonClickSource.mute = !sfxActive;
+        }
+        if (boomSource != null)
+        {
+            boomSource.mute = !sfxActive;
         }
     }
 }

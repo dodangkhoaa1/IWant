@@ -1,3 +1,5 @@
+﻿using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -21,23 +23,27 @@ namespace Connect.Core
 
         private void OnEnable()
         {
-            MainMenuManager.Instance.LevelOpened += LevelOpened;
+            UIManagerDotGame.instance.LevelOpened += LevelOpened;
         }
 
         private void OnDisable()
         {
-            MainMenuManager.Instance.LevelOpened -= LevelOpened;
+            UIManagerDotGame.instance.LevelOpened -= LevelOpened;
         }
-
+        private IEnumerator DelayedAction(Action action)
+        {
+            yield return new WaitForSeconds(.5f);
+            action.Invoke();
+        }
         private void LevelOpened()
         {
             string gameObjectName = gameObject.name;
             string[] parts = gameObjectName.Split('_');
             _levelText.text = parts[parts.Length - 1];
             currentLevel = int.Parse(_levelText.text);
-            isLevelUnlocked = GameManager.Instance.IsLevelUnlocked(currentLevel);
+            isLevelUnlocked = GameManagerDotGame.Instance.IsLevelUnlocked(currentLevel);
 
-            _image.color = isLevelUnlocked ? MainMenuManager.Instance.CurrentColor : _inactiveColor;
+            _image.color = isLevelUnlocked ? UIManagerDotGame.instance.CurrentColor : _inactiveColor;
         }
 
         private void Clicked()
@@ -45,8 +51,12 @@ namespace Connect.Core
             if (!isLevelUnlocked)
                 return;
 
-            GameManager.Instance.CurrentLevel = currentLevel;
-            GameManager.Instance.GoToGameplay();
+            StartCoroutine(DelayedAction(() =>
+            {
+                GameManagerDotGame.Instance.CurrentLevel = currentLevel;
+                GameManagerDotGame.Instance.GoToGameplay();
+                PlayerPrefs.SetInt("CurrentLevel", currentLevel);
+            }));
         }
     }
 }
