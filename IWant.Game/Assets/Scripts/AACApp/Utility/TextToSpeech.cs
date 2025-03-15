@@ -17,10 +17,13 @@ public class TextToSpeech : MonoBehaviour
     [SerializeField] private SceneName sceneName;
 
     private TextMeshProUGUI textMeshProUGUI;
+    private APIKeyLoader _APIKeyLoader;
 
     private void Start()
     {
         textMeshProUGUI = GetComponentInChildren<TextMeshProUGUI>();
+        _APIKeyLoader = gameObject.AddComponent<APIKeyLoader>();
+
     }
 
     // Allow to call text to speech functionality
@@ -99,7 +102,7 @@ public class TextToSpeech : MonoBehaviour
         yield return ApiService.Instance.PostCoroutine(
             AddressAPI.TEXT_TO_SPEECH_URL,
             jsonData,
-            AddressAPI.TEXT_TO_SPEECH_API_KEY,
+            _APIKeyLoader.GetApiKey(),
             (response) =>
             {
                 string audioUrl = ExtractAudioUrl(response);
