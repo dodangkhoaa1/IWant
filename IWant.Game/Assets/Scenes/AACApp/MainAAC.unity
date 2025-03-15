@@ -312,9 +312,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1274501037967761648, guid: ac9e493c06d948d4ebc770f182b8f2d9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1047639194}
-    - targetCorrespondingSourceObject: {fileID: 1274501037967761648, guid: ac9e493c06d948d4ebc770f182b8f2d9, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1706267661}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac9e493c06d948d4ebc770f182b8f2d9, type: 3}
 --- !u!4 &134400749 stripped
@@ -1602,66 +1599,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1706267660
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1706267661}
-  - component: {fileID: 1706267662}
-  m_Layer: 0
-  m_Name: GuidelineManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1706267661
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1706267660}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.6800951, y: -0.42953578, z: 0.049085356}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 134400749}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1706267662
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1706267660}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc2cabed0158cd749b99722120ec1bbe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  previousButton: {fileID: 0}
-  nextButton: {fileID: 0}
-  closeButton: {fileID: 0}
-  englishSprites:
-  - {fileID: 21300000, guid: b6036ff4cb79f7d4da1f484277cb2611, type: 3}
-  - {fileID: 21300000, guid: c26ce71aa5ab1464fa2e8388dd25d84f, type: 3}
-  - {fileID: 21300000, guid: 67392df9f2d7ccb48b8ad0f35b2a3730, type: 3}
-  - {fileID: 21300000, guid: e83c5a3be501a764bb7ddccc4baa4227, type: 3}
-  - {fileID: 21300000, guid: bf67e9f08cad3374ea5dbfbfdb504a3b, type: 3}
-  - {fileID: 21300000, guid: 6d3125b12f1edc14aa0343cf16546811, type: 3}
-  - {fileID: 21300000, guid: 68202212b6ff72741925ddc60466f040, type: 3}
-  - {fileID: 21300000, guid: ef950664f4067d8489b90caedd9a3649, type: 3}
-  darkPanel: {fileID: 0}
-  displayImage: {fileID: 0}
-  pagenumber: {fileID: 0}
-  mascotAnimator: {fileID: 0}
 --- !u!1001 &6860943792310480792
 PrefabInstance:
   m_ObjectHideFlags: 0

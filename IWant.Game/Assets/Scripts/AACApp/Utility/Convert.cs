@@ -28,7 +28,7 @@ public static class Convert
         return Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
     }
 
-    public static IEnumerator LoadImage(string imagePath, System.Action<Sprite> callback)
+    public static IEnumerator LoadImage(string imagePath, System.Action<Sprite> callback, float delayTime = 0.1f)
     {
         using (UnityWebRequest request = UnityWebRequestTexture.GetTexture(AddressAPI.BASE_URL + $"/{imagePath}"))
         {
@@ -39,14 +39,13 @@ public static class Convert
                 Texture2D texture = DownloadHandlerTexture.GetContent(request);
                 Sprite sprite = ConvertToSprite(texture);
 
-                float delay = Random.Range(0.3f, 0.5f);
+                float delay = delayTime;
                 yield return new WaitForSeconds(delay);
                 callback(sprite);
             }
             else
             {
                 Debug.LogError("Failed to load image: " + request.error);
-                callback?.Invoke(null);
             }
         }
     }

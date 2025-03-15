@@ -1,4 +1,5 @@
 ﻿using EasyUI.Toast;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -56,7 +57,7 @@ public class PhraseBuild : MonoBehaviour
     /// <summary>
     /// Allow to add a button to the phrase container.
     /// </summary>
-    public void AddToList(GameObject wordButton)
+    public void AddToList(GameObject wordButton, Action<GameObject> updateImage = null)
     {
         if (phraseContainer.childCount >= MAX_BUTTON_COUNT)
         {
@@ -82,10 +83,11 @@ public class PhraseBuild : MonoBehaviour
             sourceButton.interactable = false;
         }
 
-        StartCoroutine(UpdateUIToolBarButtons());
-        //UpdateButtonPositions();
-        ScrollToLastButton();
+        // Call the updateImage method to get the image from API and update the wordButtonInstance
+        updateImage?.Invoke(wordButtonInstance);
 
+        StartCoroutine(UpdateUIToolBarButtons());
+        ScrollToLastButton();
     }
 
     /// <summary>

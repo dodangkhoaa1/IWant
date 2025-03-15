@@ -10,6 +10,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 using System.Globalization;
+using EasyUI.Toast;
 
 public class TextToSpeech : MonoBehaviour
 {
@@ -39,6 +40,7 @@ public class TextToSpeech : MonoBehaviour
             else
             {
                 Debug.Log($"File not found. Downloading and saving: {filePath}");
+
                 StartCoroutine(SendTextToSpeechRequest(inputText, filePath));
             }
         }
@@ -65,6 +67,7 @@ public class TextToSpeech : MonoBehaviour
             else
             {
                 Debug.Log($"File not found. Downloading and saving: {filePath}");
+
                 yield return StartCoroutine(SendTextToSpeechRequest(inputText, filePath));
             }
         }
@@ -144,6 +147,7 @@ public class TextToSpeech : MonoBehaviour
                 {
                     Debug.Log("Audio downloaded successfully. Saving to file...");
                     File.WriteAllBytes(filePath, audioRequest.downloadHandler.data);
+
                     StartCoroutine(PlayAudioAndWaitThenContinue(filePath));
                 }
             },
@@ -162,7 +166,7 @@ public class TextToSpeech : MonoBehaviour
             AudioManagement.instance.PlaySFX(clip);
             Debug.Log("Audio is now playing!");
             //yield return new WaitForSeconds(clip.length);
-            yield return new WaitForSecondsRealtime(clip.length * 0.35f); // Use WaitForSecondsRealtime to avoid delays
+            yield return new WaitForSecondsRealtime(clip.length - 0.75f); // Use WaitForSecondsRealtime to avoid delays
 
         }
         else
@@ -251,4 +255,72 @@ public class TextToSpeech : MonoBehaviour
         if (sceneName != SceneName.Null)
             SceneManager.LoadScene(sceneName.ToString()); // Replace with the scene you want to load
     }
+
+    // New method to download all audio for words and categories
+    //public IEnumerator DownloadAllAudio(List<WordDTO> words, List<WordCategoryDTO> categories)
+    //{
+
+    //    foreach (var word in words)
+    //    {
+    //        yield return StartCoroutine(DownloadAudioForWord(word.EnglishText, PrefsKey.ENGLISH_CODE, AddressAPI.MALE_EN_US));
+    //        yield return StartCoroutine(DownloadAudioForWord(word.EnglishText, PrefsKey.ENGLISH_CODE, AddressAPI.FEMALE_EN_US));
+    //        yield return StartCoroutine(DownloadAudioForWord(word.VietnameseText, PrefsKey.VIETNAM_CODE, AddressAPI.MALE_VI_VN));
+    //        yield return StartCoroutine(DownloadAudioForWord(word.VietnameseText, PrefsKey.VIETNAM_CODE, AddressAPI.FEMALE_VI_VN));
+    //    }
+
+    //    foreach (var category in categories)
+    //    {
+    //        yield return StartCoroutine(DownloadAudioForWord(category.EnglishName, PrefsKey.ENGLISH_CODE, AddressAPI.MALE_EN_US));
+    //        yield return StartCoroutine(DownloadAudioForWord(category.EnglishName, PrefsKey.ENGLISH_CODE, AddressAPI.FEMALE_EN_US));
+    //        yield return StartCoroutine(DownloadAudioForWord(category.VietnameseName, PrefsKey.VIETNAM_CODE, AddressAPI.MALE_VI_VN));
+    //        yield return StartCoroutine(DownloadAudioForWord(category.VietnameseName, PrefsKey.VIETNAM_CODE, AddressAPI.FEMALE_VI_VN));
+    //    }
+    //}
+
+    //private IEnumerator DownloadAudioForWord(string text, string language, string gender)
+    //{
+    //    string fileName = GetUniqueFileName(text, gender);
+    //    string filePath = Path.Combine(Application.persistentDataPath, fileName + ".wav");
+
+    //    if (!File.Exists(filePath))
+    //    {
+    //        string jsonData = $@"
+    //        {{
+    //            ""response_as_dict"": true,
+    //            ""attributes_as_list"": false,
+    //            ""show_base_64"": false,
+    //            ""show_original_response"": false,
+    //            ""rate"": -10, 
+    //            ""pitch"": 15,
+    //            ""volume"": 100,
+    //            ""sampling_rate"": 0,
+    //            ""providers"": [ ""{gender}"" ],
+    //            ""language"": ""{language}"",
+    //            ""text"": ""{text}"",
+    //            ""audio_format"": ""wav""
+    //        }}";
+
+    //        yield return ApiService.Instance.PostCoroutine(
+    //            AddressAPI.TEXT_TO_SPEECH_URL,
+    //            jsonData,
+    //            AddressAPI.TEXT_TO_SPEECH_API_KEY,
+    //            (response) =>
+    //            {
+    //                string audioUrl = ExtractAudioUrl(response);
+    //                if (!string.IsNullOrEmpty(audioUrl))
+    //                {
+    //                    StartCoroutine(DownloadAndSaveAudio(audioUrl, filePath));
+    //                }
+    //                else
+    //                {
+    //                    Debug.LogError("Audio URL is missing or could not be parsed.");
+    //                }
+    //            },
+    //            (error) =>
+    //            {
+    //                Debug.LogError($"Error: {error}");
+    //            }
+    //        );
+    //    }
+    //}
 }

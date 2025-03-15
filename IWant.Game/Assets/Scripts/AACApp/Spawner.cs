@@ -85,6 +85,8 @@ public class AACWordSpawner : MonoBehaviour
         yield return StartCoroutine(LoadWordsFromAPI());
         yield return StartCoroutine(LoadPersonalWordsFromAPI());
         yield return StartCoroutine(SpawnWordCategories());
+
+        //StartCoroutine(textToSpeech.DownloadAllAudio(words, wordCategories));
         CreateSuggestionButtons();
         //yield return StartCoroutine(SpawnAllCatetgories());
         //yield return StartCoroutine(SpawnPersonalWords());
@@ -161,8 +163,7 @@ public class AACWordSpawner : MonoBehaviour
                 //set display name for game object
                 newTTSBtn.name = word.EnglishText;
 
-
-                //Convert Image to sprite
+                // Convert Image to sprite
                 if (word.ImagePath != null)
                 {
                     StartCoroutine(Convert.LoadImage(word.ImagePath, (sprite) =>
@@ -179,7 +180,7 @@ public class AACWordSpawner : MonoBehaviour
                         {
                             Debug.LogWarning($"Failed to convert image for word: {word.EnglishText}");
                         }
-                    }));
+                    }, 0f));
                 }
 
                 // Check if the word is already in the phrase build
@@ -190,7 +191,25 @@ public class AACWordSpawner : MonoBehaviour
 
                 newTTSBtn.GetComponent<Button>().onClick.AddListener(() =>
                 {
-                    phraseBuild.AddToList(newTTSBtn.gameObject);
+                    phraseBuild.AddToList(newTTSBtn.gameObject, (instance) => {
+                        //Convert Image to sprite
+                        if (word.ImagePath != null)
+                        {
+                            StartCoroutine(Convert.LoadImage(word.ImagePath, (sprite) =>
+                            {
+                                if (sprite != null)
+                                {
+                                    Image childImage = instance.transform.Find("Image").GetComponent<Image>();
+                                    childImage.sprite = sprite;
+
+                                }
+                                else
+                                {
+                                    Debug.LogWarning($"Failed to convert image for word: {word.EnglishText}");
+                                }
+                            }));
+                        }
+                    });
                 });
             }
         }
@@ -423,7 +442,8 @@ public class AACWordSpawner : MonoBehaviour
                     WordDTO word = words.Find(w => w.Id == wordId);
 
                     // Remove the word button from phraseContainer if it already exists
-                    Transform exitedWord = phraseBuild.ContainsWord(word.EnglishText);
+                    string textToCheck = PrefsKey.LANGUAGE == PrefsKey.ENGLISH_CODE ? word.EnglishText : word.VietnameseText;
+                    Transform exitedWord = phraseBuild.ContainsWord(textToCheck);
                     if (exitedWord != null)
                     {
                         StartCoroutine(phraseBuild.RemoveFromList(exitedWord.gameObject));
@@ -433,27 +453,29 @@ public class AACWordSpawner : MonoBehaviour
 
                     if (word != null)
                     {
-                        GameObject wordButtonInstance = Instantiate(wordButtonPrefab.gameObject, phraseBuildGO.transform);
+                        GameObject wordButtonInstance = Instantiate(wordButtonPrefab.gameObject);
                         wordButtonInstance.name = word.EnglishText;
                         wordButtonInstance.GetComponentInChildren<TextMeshProUGUI>().text = PrefsKey.LANGUAGE == PrefsKey.ENGLISH_CODE ? word.EnglishText : word.VietnameseText;
-
-                        //Convert Image to sprite
-                        if (word.ImagePath != null)
-                        {
-                            StartCoroutine(Convert.LoadImage(word.ImagePath, (sprite) =>
+                        phraseBuild.AddToList(wordButtonInstance, (instance) => {
+                            //Convert Image to sprite
+                            if (word.ImagePath != null)
                             {
-                                if (sprite != null)
+                                StartCoroutine(Convert.LoadImage(word.ImagePath, (sprite) =>
                                 {
-                                    Image childImage = wordButtonInstance.transform.Find("Image").GetComponent<Image>();
-                                    childImage.sprite = sprite;
-                                    phraseBuild.AddToList(wordButtonInstance);
-                                }
-                                else
-                                {
-                                    Debug.LogWarning($"Failed to convert image for word: {word.EnglishText}");
-                                }
-                            }));
-                        }
+                                    if (sprite != null)
+                                    {
+                                        Image childImage = instance.transform.Find("Image").GetComponent<Image>();
+                                        childImage.sprite = sprite;
+
+                                    }
+                                    else
+                                    {
+                                        Debug.LogWarning($"Failed to convert image for word: {word.EnglishText}");
+                                    }
+                                }));
+                            }
+                        });
+                        
 
                         // Disable the original button in the suggestion list
                         newSuggestBtn.interactable = false;
@@ -476,4 +498,5 @@ public class AACWordSpawner : MonoBehaviour
             });
         }
     }
+
 }
