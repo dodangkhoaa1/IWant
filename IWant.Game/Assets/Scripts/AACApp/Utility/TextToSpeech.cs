@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
@@ -26,31 +25,25 @@ public class TextToSpeech : MonoBehaviour
 
     }
 
+    private string GetStreamingAssetsPath(string fileName)
+    {
+        //return "file://" + Path.Combine(Application.streamingAssetsPath, fileName + ".wav");
+#if UNITY_ANDROID
+        return Path.Combine(Application.streamingAssetsPath, fileName + ".wav"); // Không cần file:// trên Android
+#else
+        return "file://" + Path.Combine(Application.streamingAssetsPath, fileName + ".wav");
+#endif
+    }
+
+    private string GetPersistentDataPath(string fileName)
+    {
+        return Path.Combine(Application.persistentDataPath, fileName + ".wav");
+    }
+
     // Allow to call text to speech functionality
     public void CallTextToSpeech()
     {
-        string inputText = textMeshProUGUI.text;
-        if (!string.IsNullOrEmpty(inputText))
-        {
-            string fileName = GetUniqueFileName(inputText, PrefsKey.GetVoiceByLanguageAndGender);
-            string filePath = Path.Combine(Application.persistentDataPath, fileName + ".wav");
-
-            if (File.Exists(filePath))
-            {
-                Debug.Log($"File exists: {filePath}. Playing from local storage.");
-                StartCoroutine(PlayAudioAndWaitThenContinue(filePath));
-            }
-            else
-            {
-                Debug.Log($"File not found. Downloading and saving: {filePath}");
-
-                StartCoroutine(SendTextToSpeechRequest(inputText, filePath));
-            }
-        }
-        else
-        {
-            Debug.LogWarning("Input text is empty.");
-        }
+        StartCoroutine(CallTextToSpeechCoroutine());
     }
 
     // Allow to call text to speech functionality as a coroutine
@@ -60,18 +53,47 @@ public class TextToSpeech : MonoBehaviour
         if (!string.IsNullOrEmpty(inputText))
         {
             string fileName = GetUniqueFileName(inputText, PrefsKey.GetVoiceByLanguageAndGender);
-            string filePath = Path.Combine(Application.persistentDataPath, fileName + ".wav");
+            string streamingFilePath = GetStreamingAssetsPath(fileName);
+            string persistentFilePath = GetPersistentDataPath(fileName);
 
-            if (File.Exists(filePath))
+            bool fileExistsInStreamingAssets = false;
+
+#if UNITY_ANDROID && !UNITY_EDITOR
+        // Kiểm tra file trong StreamingAssets bằng UnityWebRequest
+        using (UnityWebRequest request = UnityWebRequest.Head(streamingFilePath))
+        {
+            yield return request.SendWebRequest();
+            if (request.result == UnityWebRequest.Result.Success)
             {
-                Debug.Log($"File exists: {filePath}. Playing from local storage.");
-                yield return StartCoroutine(PlayAudioAndWaitThenContinue(filePath));
+                fileExistsInStreamingAssets = true;
+            }
+        }
+#else
+            fileExistsInStreamingAssets = File.Exists(streamingFilePath);
+#endif
+
+            if (fileExistsInStreamingAssets)
+            {
+                Debug.Log($"✅ Playing from StreamingAssets: {streamingFilePath}");
+                yield return StartCoroutine(PlayAudioAndWaitThenContinue(streamingFilePath));
+            }
+            // Khi xuất xóa cái này
+            // else
+            // {
+            //     Debug.Log($"📥 File not found. Downloading and saving to: {streamingFilePath}");
+            //     yield return StartCoroutine(SendTextToSpeechRequest(inputText, streamingFilePath));
+            // }
+
+            // Khi xuất thì mở cmt này 
+            else if (File.Exists(persistentFilePath))
+            {
+                Debug.Log($"✅ Playing from PersistentDataPath: {persistentFilePath}");
+                yield return StartCoroutine(PlayAudioAndWaitThenContinue(persistentFilePath));
             }
             else
             {
-                Debug.Log($"File not found. Downloading and saving: {filePath}");
-
-                yield return StartCoroutine(SendTextToSpeechRequest(inputText, filePath));
+                Debug.Log($"📥 File not found. Downloading and saving to: {persistentFilePath}");
+                yield return StartCoroutine(SendTextToSpeechRequest(inputText, persistentFilePath));
             }
         }
         else
@@ -151,6 +173,7 @@ public class TextToSpeech : MonoBehaviour
                     Debug.Log("Audio downloaded successfully. Saving to file...");
                     File.WriteAllBytes(filePath, audioRequest.downloadHandler.data);
 
+                    //mở cmt khi muốn export
                     StartCoroutine(PlayAudioAndWaitThenContinue(filePath));
                 }
             },
@@ -168,7 +191,6 @@ public class TextToSpeech : MonoBehaviour
         {
             AudioManagement.instance.PlaySFX(clip);
             Debug.Log("Audio is now playing!");
-            //yield return new WaitForSeconds(clip.length);
             yield return new WaitForSecondsRealtime(clip.length - 0.75f); // Use WaitForSecondsRealtime to avoid delays
 
         }
@@ -225,19 +247,14 @@ public class TextToSpeech : MonoBehaviour
     // Allow to play the audio and wait until it finishes before continuing
     private IEnumerator PlayAudioAndWaitThenContinue(string filePath)
     {
-        // Play the audio from the file
         yield return StartCoroutine(PlayAudioFromFile(filePath));
-
-        // Continue with the next action (e.g., changing scene, etc.)
-        Debug.Log("Audio finished playing. Continuing with next action...");
-        // Call the method to transition scene or perform another action
         TransitionToNextScene();
     }
 
     // Allow to play audio from file
     private IEnumerator PlayAudioFromFile(string filePath)
     {
-        using (UnityWebRequest audioRequest = UnityWebRequestMultimedia.GetAudioClip($"file://{filePath}", AudioType.WAV))
+        using (UnityWebRequest audioRequest = UnityWebRequestMultimedia.GetAudioClip($"{filePath}", AudioType.WAV))
         {
             yield return audioRequest.SendWebRequest();
 
@@ -259,7 +276,7 @@ public class TextToSpeech : MonoBehaviour
             SceneManager.LoadScene(sceneName.ToString()); // Replace with the scene you want to load
     }
 
-    // New method to download all audio for words and categories
+    //// New method to download all audio for words and categories
     //public IEnumerator DownloadAllAudio(List<WordDTO> words, List<WordCategoryDTO> categories)
     //{
 
@@ -283,7 +300,8 @@ public class TextToSpeech : MonoBehaviour
     //private IEnumerator DownloadAudioForWord(string text, string language, string gender)
     //{
     //    string fileName = GetUniqueFileName(text, gender);
-    //    string filePath = Path.Combine(Application.persistentDataPath, fileName + ".wav");
+    //    //string filePath = Path.Combine(Application.persistentDataPath, fileName + ".wav");
+    //    string filePath = GetStreamingAssetsPath(fileName);
 
     //    if (!File.Exists(filePath))
     //    {
@@ -306,7 +324,7 @@ public class TextToSpeech : MonoBehaviour
     //        yield return ApiService.Instance.PostCoroutine(
     //            AddressAPI.TEXT_TO_SPEECH_URL,
     //            jsonData,
-    //            AddressAPI.TEXT_TO_SPEECH_API_KEY,
+    //            _APIKeyLoader.GetApiKey(),
     //            (response) =>
     //            {
     //                string audioUrl = ExtractAudioUrl(response);
@@ -324,6 +342,8 @@ public class TextToSpeech : MonoBehaviour
     //                Debug.LogError($"Error: {error}");
     //            }
     //        );
+    //    }else{
+    //        Debug.Log("File Exist!");
     //    }
     //}
 }

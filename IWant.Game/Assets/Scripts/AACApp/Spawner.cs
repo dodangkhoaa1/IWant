@@ -35,8 +35,8 @@ public class AACWordSpawner : MonoBehaviour
     private List<WordDTO> personalWords;
     private List<WordDTO> words;
     private List<WordCategoryDTO> wordCategories;
-    private string userId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974";
 
+    //[SerializeField] TextToSpeech toSpeech;
     private void Awake()
     {
         Screen.orientation = ScreenOrientation.Portrait;
@@ -48,6 +48,7 @@ public class AACWordSpawner : MonoBehaviour
         phraseBuild = phraseBuildGO.GetComponent<PhraseBuild>();
 
         StartCoroutine(InitializeLocalization());
+        
     }
 
     private void Update()
@@ -86,10 +87,10 @@ public class AACWordSpawner : MonoBehaviour
         yield return StartCoroutine(LoadPersonalWordsFromAPI());
         yield return StartCoroutine(SpawnWordCategories());
 
-        //StartCoroutine(textToSpeech.DownloadAllAudio(words, wordCategories));
+        // Download all audio for words and categories
+        //yield return StartCoroutine(toSpeech.DownloadAllAudio(words, wordCategories));
+
         CreateSuggestionButtons();
-        //yield return StartCoroutine(SpawnAllCatetgories());
-        //yield return StartCoroutine(SpawnPersonalWords());
     }
 
     // Allow to spawn personal words for a specific user
@@ -101,7 +102,7 @@ public class AACWordSpawner : MonoBehaviour
     // Load personal words from API
     private IEnumerator LoadPersonalWordsFromAPI()
     {
-        UnityWebRequest request = new UnityWebRequest(AddressAPI.PERSONAL_WORD_URL + "?userId=" + userId, "GET");
+        UnityWebRequest request = new UnityWebRequest(AddressAPI.PERSONAL_WORD_URL + "?userId=" + DBManager.User.UserId, "GET");
         request.downloadHandler = new DownloadHandlerBuffer();
         yield return request.SendWebRequest();
 

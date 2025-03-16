@@ -310,19 +310,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2574885609959750696}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2692622020017366697}
-        m_TargetAssemblyTypeName: TextToSpeech, Assembly-CSharp
-        m_MethodName: CallTextToSpeech
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &7756065978047894334
 GameObject:
   m_ObjectHideFlags: 0
