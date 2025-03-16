@@ -10,7 +10,7 @@ public class PlayerLeaderboardEmotionGame : MonoBehaviour
     {
 
     }
-    public void SetBestScoreToLeaderboard(string userId)
+    public void SetBestScoreToLeaderboard()
     {
         if (LeaderboardEmotionGame.instance == null)
         {
@@ -21,10 +21,10 @@ public class PlayerLeaderboardEmotionGame : MonoBehaviour
         string playerId = playerAuthenticate.PlayerId;
         int bestScore = ScoreManagerEmotionGame.instance.GetBestScore();
 
-        Debug.Log($"📢 Đang cập nhật điểm cao nhất: {bestScore} cho PlayerID: {playerId}, UserID: {userId}");
+        Debug.Log($"📢 Đang cập nhật điểm cao nhất: {bestScore} cho PlayerID: {playerId}");
 
         // Gửi điểm kèm metadata
-        LeaderboardEmotionGame.instance.SubmitScoreWithMetadata(playerId, bestScore, userId);
+        LeaderboardEmotionGame.instance.SubmitScoreWithMetadata(playerId, bestScore);
     }
 
     public void SetPlayerName(string playerName)

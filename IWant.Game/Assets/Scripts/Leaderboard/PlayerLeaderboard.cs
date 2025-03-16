@@ -24,7 +24,7 @@ public class PlayerLeaderboard : MonoBehaviour
         Debug.Log($"📢 Đang cập nhật điểm cao nhất: {bestScore} cho PlayerID: {playerId}, UserID: {userId}");
 
         // Gửi điểm kèm metadata
-        Leaderboard.instance.SubmitScoreWithMetadata(playerId, bestScore, userId);
+        Leaderboard.instance.SubmitScoreWithMetadata(playerId, bestScore);
     }
 
     public void SetPlayerName(string playerName)

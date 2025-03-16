@@ -12,7 +12,7 @@ public class PlayerLeaderboardDotGame : MonoBehaviour
     {
 
     }
-    public void SetBestScoreToLeaderboard(string userId)
+    public void SetBestScoreToLeaderboard()
     {
         if (LeaderboardDotGame.instance == null)
         {
@@ -23,10 +23,10 @@ public class PlayerLeaderboardDotGame : MonoBehaviour
         string playerId = playerAuthenticate.PlayerId;
         int bestScore = ScoreMangerDotGame.instance.GetScore();
 
-        Debug.Log($"📢 Đang cập nhật điểm cao nhất: {bestScore} cho PlayerID: {playerId}, UserID: {userId}");
+        Debug.Log($"📢 Đang cập nhật điểm cao nhất: {bestScore} cho PlayerID: {playerId}");
 
         // Gửi điểm kèm metadata
-        LeaderboardDotGame.instance.SubmitScoreWithMetadata(playerId, bestScore, userId);
+        LeaderboardDotGame.instance.SubmitScoreWithMetadata(playerId, bestScore);
     }
 
     public void SetPlayerName(string playerName)

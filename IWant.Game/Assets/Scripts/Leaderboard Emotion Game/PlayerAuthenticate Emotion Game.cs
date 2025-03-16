@@ -17,7 +17,7 @@ public class PlayerAuthenticateEmotionGame : MonoBehaviour
     {
         bool isDone = false;
 
-        LootLockerSDKManager.StartGuestSession((response) =>
+        LootLockerSDKManager.StartGuestSession(DBManager.User.UserId,(response) =>
         {
             if (response.success)
             {

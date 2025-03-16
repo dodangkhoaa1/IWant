@@ -1,10 +1,9 @@
 ﻿using LootLocker.Requests;
 using System.Collections;
 using UnityEngine;
-using TMPro;
 using System;
-using System.Net.NetworkInformation;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 public class Leaderboard : MonoBehaviour
 {
@@ -62,7 +61,7 @@ public class Leaderboard : MonoBehaviour
 
         // Assuming member_id is available here
         string userId = playerAuthenticate.PlayerId; // Replace with actual member_id
-        SubmitScore(userId, bestScore);
+        SubmitScoreWithMetadata(userId, bestScore);
 
         // Call the method in PlayerLeaderboard to set the best score
         playerLeaderboard.SetBestScoreToLeaderboard(userId);
@@ -95,17 +94,17 @@ public class Leaderboard : MonoBehaviour
         yield return new WaitUntil(() => done);
     }
 
-    public void SubmitScoreWithMetadata(string memberId, int score, string userId)
+    public void SubmitScoreWithMetadata(string memberId, int score)
     {
-        StartCoroutine(SubmitScoreWithMetadataCoroutine(memberId, score, userId));
+        StartCoroutine(SubmitScoreWithMetadataCoroutine(memberId, score));
     }
 
-    private IEnumerator SubmitScoreWithMetadataCoroutine(string memberId, int score, string userId)
+    private IEnumerator SubmitScoreWithMetadataCoroutine(string memberId, int score)
     {
         bool done = false;
 
         // Chuyển metadata thành JSON dùng JsonUtility
-        string metadataJson = JsonUtility.ToJson(new Metadata(userId));
+        string metadataJson = JsonUtility.ToJson(DBManager.User);
 
         LootLockerSDKManager.SubmitScore(memberId, score, leaderboardKey, metadataJson, (response) =>
         {
@@ -244,11 +243,25 @@ public class Leaderboard : MonoBehaviour
             }
         }
 
+        foreach (var member in top5)
+        {
+            UserResponseDTO user = JsonConvert.DeserializeObject<UserResponseDTO>(member.metadata);
+            if (user != null)
+            {
+                member.player.name = DBManager.GetDisplayName(user);
+            }
+        }
+
         onLeaderboardFetched?.Invoke(top5.ToArray());
 
         // Nếu currentPlayer có trong top5 thì gọi luôn sự kiện hiển thị
         if (currentPlayer != null)
         {
+            UserResponseDTO currentUser = JsonConvert.DeserializeObject<UserResponseDTO>(currentPlayer.metadata);
+            if (currentUser != null)
+            {
+                currentPlayer.player.name = DBManager.GetDisplayName(currentUser);
+            }
             onCurrentPlayerFetched?.Invoke(currentPlayer);
         }
     }

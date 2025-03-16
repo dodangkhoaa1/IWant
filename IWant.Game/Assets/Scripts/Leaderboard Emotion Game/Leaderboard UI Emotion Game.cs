@@ -131,10 +131,16 @@ public class LeaderboardUIEmotionGame : MonoBehaviour
 
     private string GetPlayerName(LootLockerLeaderboardMember member)
     {
-        string playerName = "Player_" + member.member_id;
+        string playerName = "Anonymous";
 
         if ((member.player.name.Length > 0))
+        {
             playerName = member.player.name;
+        }
+        else
+        {
+            Debug.LogError("Player Name is null");
+        }
 
         return playerName;
     }

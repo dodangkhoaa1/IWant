@@ -75,15 +75,14 @@ public class SignIn : MonoBehaviour
                             Debug.Log("User data saved to PlayerPrefs: " + userJson);
 
                             // Xử lý đăng nhập thành công
-                            string[] wordInName = response.FullName.Trim().Split(" ");
+                            string[] wordInName = DBManager.GetDisplayName(DBManager.User).Trim().Split(" ");
                             string lastName = wordInName[wordInName.Length - 1];
-                            DBManager.fullName = lastName;
-                            DBManager.gender = response.Gender == true ? Gender.Male : Gender.Female;
+                            DBManager.lastname = lastName;
 
-                            Debug.Log($"The gender of {DBManager.fullName} is {DBManager.gender.ToString()}");
+                            Debug.Log($"The gender of {DBManager.lastname} is {DBManager.gender.ToString()}");
                             toastString = PrefsKey.LANGUAGE == PrefsKey.ENGLISH_CODE
-                                ? $"User login successful. Welcome, {response.FullName}!"
-                                : $"Đăng nhập thành công. Chào mừng, {response.FullName}!";
+                                ? $"Sign In Successfully!"
+                                : $"Đăng Nhập Thành Công!";
 
                             Toast.Show(toastString, 1.5f, ToastColor.Green, ToastPosition.BottomCenter);
                             SceneManager.LoadScene(sceneToLoad.ToString());
@@ -91,8 +90,8 @@ public class SignIn : MonoBehaviour
                         else
                         {
                             toastString = PrefsKey.LANGUAGE == PrefsKey.ENGLISH_CODE
-                                ? $"Sign in fail! The user {response.FullName} was not available!"
-                                : $"Đăng nhập thất bại! Tài khoản {response.FullName} đã hết hạn! Vui lòng thử lại với tài khoản khác!";
+                                ? $"Sign In Fail!"
+                                : $"Đăng Nhập Thất Bại";
 
                             Toast.Show(toastString, 1.5f, ToastColor.Red, ToastPosition.BottomCenter);
                         }

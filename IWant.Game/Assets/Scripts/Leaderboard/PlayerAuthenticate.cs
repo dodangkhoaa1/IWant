@@ -14,7 +14,7 @@ public class PlayerAuthenticate : MonoBehaviour
     {
         bool done = false;
 
-        LootLockerSDKManager.StartGuestSession( (response) =>
+        LootLockerSDKManager.StartGuestSession(DBManager.User.UserId, (response) =>
         {
             if (response.success)
             {

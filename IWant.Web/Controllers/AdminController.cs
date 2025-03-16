@@ -45,9 +45,9 @@ namespace IWant.Web.Controllers
                                                     .ToList();
 
             List<int> userCountsByMonth = Enumerable.Range(1, 12)
-                                                    .Select(month => _context.Users
-                                                    .Count(b => b.CreatedAt.Year == year && b.CreatedAt.Month == month))
-                                                    .ToList();
+                                                   .Select(month => _context.Users
+                                                   .Count(b => b.CreatedAt.HasValue && b.CreatedAt.Value.Year == year && b.CreatedAt.Value.Month == month))
+                                                   .ToList();
 
             List<int> commentCountsByMonth = Enumerable.Range(1, 12)
                                                     .Select(month => _context.Comments

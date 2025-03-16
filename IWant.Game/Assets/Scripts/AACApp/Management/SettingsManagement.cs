@@ -78,15 +78,15 @@ public class SettingsManagement : MonoBehaviour
     {
         // Clear user data from DBManager
         DBManager.USER_DATA = null;
-        DBManager.fullName = string.Empty;
+        DBManager.lastname = string.Empty;
         DBManager.gender = Gender.Female;
 
         PlayerPrefs.DeleteAll();
 
         // Show sign out success message
         toastString = PrefsKey.LANGUAGE == PrefsKey.ENGLISH_CODE
-            ? "You have been signed out successfully."
-            : "Bạn đã đăng xuất thành công.";
+            ? "Sign Out Successfully!"
+            : "Đăng Xuất Thành Công!";
         Toast.Show(toastString, 1.5f, ToastColor.Green, ToastPosition.BottomCenter);
 
         // Load the sign-in scene

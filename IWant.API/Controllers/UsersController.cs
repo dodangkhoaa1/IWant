@@ -51,8 +51,8 @@ namespace IWant.API.Controllers
 
             User? userInDB = await _context.Users
                 .FirstOrDefaultAsync(p => p.UserName == signinRequestDto.UserName);
-
-            if (userInDB == null)
+            string adminId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974";
+            if (userInDB == null || userInDB.Status != true || userInDB.Id == adminId)
             {
                 return NotFound();
             }

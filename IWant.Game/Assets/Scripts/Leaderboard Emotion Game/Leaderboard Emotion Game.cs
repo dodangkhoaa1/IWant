@@ -8,6 +8,7 @@ using Unity.VisualScripting;
 using UnityEngine.SocialPlatforms.Impl;
 using EasyUI.Toast;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 public class LeaderboardEmotionGame: MonoBehaviour
 {
@@ -68,7 +69,7 @@ public class LeaderboardEmotionGame: MonoBehaviour
         SubmitScore(userId, bestScore);
 
         // Call the method in PlayerLeaderboard to set the best score
-        playerLeaderboard.SetBestScoreToLeaderboard(userId);
+        playerLeaderboard.SetBestScoreToLeaderboard();
 
 
     }
@@ -98,17 +99,17 @@ public class LeaderboardEmotionGame: MonoBehaviour
         yield return new WaitUntil(() => done);
     }
 
-    public void SubmitScoreWithMetadata(string memberId, int score, string userId)
+    public void SubmitScoreWithMetadata(string memberId, int score)
     {
-        StartCoroutine(SubmitScoreWithMetadataCoroutine(memberId, score, userId));
+        StartCoroutine(SubmitScoreWithMetadataCoroutine(memberId, score));
     }
 
-    private IEnumerator SubmitScoreWithMetadataCoroutine(string memberId, int score, string userId)
+    private IEnumerator SubmitScoreWithMetadataCoroutine(string memberId, int score)
     {
         bool done = false;
 
         // Chuyển metadata thành JSON dùng JsonUtility
-        string metadataJson = JsonUtility.ToJson(new Metadata(userId));
+        string metadataJson = JsonUtility.ToJson(DBManager.User);
 
         LootLockerSDKManager.SubmitScore(memberId, score, leaderboardKey, metadataJson, (response) =>
         {
@@ -247,13 +248,30 @@ public class LeaderboardEmotionGame: MonoBehaviour
             }
         }
 
+        // Update the display name to use User.FullName from metadata
+        foreach (var member in top5)
+        {
+            UserResponseDTO user = JsonConvert.DeserializeObject<UserResponseDTO>(member.metadata);
+            if (user != null)
+            {
+                member.player.name = DBManager.GetDisplayName(user);
+            }
+        }
+
         onLeaderboardFetched?.Invoke(top5.ToArray());
 
         // Nếu currentPlayer có trong top5 thì gọi luôn sự kiện hiển thị
         if (currentPlayer != null)
         {
+            UserResponseDTO currentUser = JsonConvert.DeserializeObject<UserResponseDTO>(currentPlayer.metadata);
+            if (currentUser != null)
+            {
+                currentPlayer.player.name = DBManager.GetDisplayName(currentUser);
+            }
             onCurrentPlayerFetched?.Invoke(currentPlayer);
         }
+
+
     }
 
 }

@@ -1,6 +1,5 @@
 ﻿using LootLocker.Requests;
 using System.Collections;
-using System.ComponentModel;
 using UnityEngine;
 
 public class LeaderboardUI : MonoBehaviour
@@ -131,10 +130,16 @@ public class LeaderboardUI : MonoBehaviour
 
     private string GetPlayerName(LootLockerLeaderboardMember member)
     {
-        string playerName = "Player_" + member.member_id;
+        string playerName = "Anonymous";
 
         if ((member.player.name.Length > 0))
+        {
             playerName = member.player.name;
+        }
+        else
+        {
+            Debug.LogError("Player Name is null");
+        }
 
         return playerName;
     }
