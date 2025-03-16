@@ -340,6 +340,7 @@ namespace IWant.Web.Controllers
                                            .Include(b => b.Rates)
                                            .ThenInclude(c => c.User)
                                            .FirstOrDefaultAsync(b => b.Id == id);
+
             if (blog == null)
             {
                 return NotFound();
@@ -378,6 +379,13 @@ namespace IWant.Web.Controllers
 
                 var commentViewModels = _mapper.Map<List<Comment>, List<CommentViewModel>>(blog.Comments);
 
+                var relatedBlogs = await _context.Blogs.Where(b => b.Id != id && b.Status == true)
+                                                       .OrderBy(x => Guid.NewGuid())
+                                                       .Take(4)
+                                                       .ToListAsync();
+
+                ViewBag.RelatedBlogs = relatedBlogs;
+
                 var model = new BlogViewModel
                 {
                     Id = blog.Id,
@@ -393,11 +401,12 @@ namespace IWant.Web.Controllers
                     CountRate = countRates.Count()
                 };
 
+                 /*ViewBag.RelatedBlogs = relatedBlogViewModels;*/
+
                 return View(model);
             }
 
             return NotFound();
         }
-
     }
 }

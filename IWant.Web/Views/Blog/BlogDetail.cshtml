@@ -7,6 +7,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<link href="https://fonts.googleapis.com/css2?family=Athiti:wght@300;400;600&display=swap" rel="stylesheet">
+
 
 <head>
     <style>
@@ -66,7 +68,7 @@
         }
 
         .star {
-            font-size: 24px;
+            font-size: 36px;
             cursor: pointer;
             color: #ccc;
             transition: color 0.3s;
@@ -108,28 +110,7 @@
         .rating-blog i {
             color: gold;
         }
-        /* Slider */
-        .related-container {
-            position: relative;
-            max-width: 100%;
-            overflow: hidden;
-            padding: 0; /* loại bỏ padding để slider chiếm toàn bộ chiều rộng */
-        }
 
-        .related-posts {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-        }
-
-        .post {
-            flex: 0 0 100%;
-            background: #f9f9f9;
-            padding: 20px; /* dùng padding đồng đều */
-            border-radius: 5px;
-            box-sizing: border-box;
-            margin: 0; /* không có margin giữa các slide */
-            width: 100%;
-        }
 
         .cited {
             font-size: 1rem;
@@ -157,24 +138,7 @@
                     border-radius: 5px;
                 }
 
-        .slider-dots {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 10px;
-        }
 
-            .slider-dots .dot {
-                width: 10px;
-                height: 10px;
-                border-radius: 50%;
-                background: #ccc;
-                cursor: pointer;
-            }
-
-                .slider-dots .dot.active {
-                    background: #FEDA15;
-                }
         /* Content styles ngoài slider */
         .content-wrapper {
             text-align: center;
@@ -211,6 +175,133 @@
             object-fit: cover;
             margin-right: 10px;
         }
+
+        .comment-form {
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .fixed-textarea {
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            font-size: 14px;
+            width: 100%;
+            height: 80px;
+            resize: none;
+        }
+
+        .btn-primary {
+            background: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+            .btn-primary:hover {
+                background: #0056b3;
+            }
+
+        .text-end {
+            text-align: right;
+        }
+
+        body, h1, h2, h3, h4, h5, h6, p, a, span, button, input, textarea, label, div, strong, em {
+            font-family: 'Athiti', sans-serif;
+        }
+
+        .related-container {
+            position: relative;
+            overflow: hidden;
+            width: 1200px;
+            margin: auto;
+        }
+
+        .related-posts {
+            display: flex;
+            transition: transform 0.3s ease-in-out;
+            gap: 1px
+        }
+
+        .post {
+            flex: 0 0 calc(100%);
+            box-sizing: border-box;
+        }
+
+        .limited-text {
+            font-size: 16px;
+            color: #555;
+            height: 110px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+        }
+
+
+        .card {
+            position: relative;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+           /*  .card:hover {
+                transform: translateY(-5px);
+            } */
+
+            .card img {
+                width: 100%;
+                height: 350px;
+                object-fit: cover;
+                border-top-left-radius: 8px;
+                border-top-right-radius: 8px;
+            }
+
+        .card-body {
+            padding: 15px;
+        }
+
+        .remote-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #000000;
+            margin-bottom: 8px;
+        }
+
+        .meta-info i {
+            font-size: 0.85rem;
+            color: #ff5733;
+        }
+
+        .slider-dots {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            background-color: gray;
+            display: inline-block;
+            margin: 0 5px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+            .dot.active {
+                background-color: black;
+            }
+
     </style>
 </head>
 
@@ -248,14 +339,38 @@
                 </p>
             </div>
             <img src="@Model.ImageUrl" alt="Article Illustration" class="img-fluid article-image">
-            <p class="cited">@Model.CitedImage</p>
+            <p class="cited">Source: @Model.CitedImage</p>
         </div>
 
-        <h4 class="mt-4">Comments</h4>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <form asp-action="RatingBlog" asp-controller="Comment" method="post">
+                <input type="hidden" name="BlogId" value="@Model.Id" />
+
+                <div class="d-flex justify-content-end align-items-center">
+                    <label class="form-label fw-bold me-2 mb-0" style="padding-bottom: 0.8rem; font-size:1.4rem !important">Rating for Blog</label>
+                    <div class="rating">
+                        <span class="star" data-value="1">&#9733;</span>
+                        <span class="star" data-value="2">&#9733;</span>
+                        <span class="star" data-value="3">&#9733;</span>
+                        <span class="star" data-value="4">&#9733;</span>
+                        <span class="star" data-value="5">&#9733;</span>
+                        <input type="hidden" id="ratingValue" name="Rating" value="@Model.UserRating">
+                    </div>
+                </div>
+            </form>
+        }
+        else
+        {
+
+        }
+
+
+        <h6 class="mt-4 fw-bold blog-title">Feedback</h6>
         @{
             if (Model.Comments.Count == 0)
             {
-                <p style="color: gray; font-style: italic;">No Comment in this blog!</p>
+                <p style="color: gray; font-style: italic;">No Feedback in this blog!</p>
             }
             else
             {
@@ -263,27 +378,26 @@
                 {
                     @if (User.IsInRole("Admin"))
                     {
-                        <div style="display: flex; align-items: center; padding: 10px; border-bottom: 1px solid #ddd;">
+                        <div style="display: flex; align-items: center; padding: 10px; border-bottom: 1px solid #ddd; margin-bottom:20px">
                             <img src="@comment.User.ImageUrl" alt="Avatar"
                                  style="width: 40px; height: 40px; border-radius: 50%; margin-right: 10px; object-fit: cover;">
                             <div style="flex-grow: 1;">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <strong style="color: #007bff;">@comment.User.FullName</strong>
-                                    <p class="fw-bold mb-0 @(comment.Status ? "text-success" : "text-danger")">@(comment.Status ? "Active" : "Banned")</p>
+                                    @if (!comment.Status)
+                                    {
+                                        <p class="fw-bold mb-0 text-danger">Banned</p>
+                                    }
                                 </div>
-                                @if (comment.Status == true)
-                                {
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <p class="mb-0 text-dark">@comment.Content</p>
-                                        <a asp-action="BanComment" asp-controller="Comment" asp-route-id="@comment.Id" class="btn btn-danger btn-sm">Ban Comment</a>
-                                    </div>
-                                }
-                                else
-                                {
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <p class="mb-0 text-dark">@comment.Content</p>
-                                    </div>
-                                }
+
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <p class="mb-0 text-dark">@comment.Content</p>
+                                    @if (comment.Status)
+                                    {
+                                        <a asp-action="BanComment" asp-controller="Comment" asp-route-id="@comment.Id"
+                                           class="btn btn-danger btn-sm" style="font-size: 1.2rem;">Ban</a>
+                                    }
+                                </div>
                             </div>
                         </div>
 
@@ -292,7 +406,7 @@
                     {
                         @if (comment.Status == true)
                         {
-                            <div style="display: flex; align-items: center; padding: 10px; border-bottom: 1px solid #ddd;">
+                            <div style="display: flex; align-items: center; padding: 10px; border-bottom: 1px solid #ddd; margin-bottom:20px">
                                 <img src="@comment.User.ImageUrl" alt="Avatar"
                                      style="width: 40px; height: 40px; border-radius: 50%; margin-right: 10px;object-fit:cover">
                                 <div>
@@ -308,138 +422,116 @@
 
         @if (User.Identity.IsAuthenticated)
         {
-            <form asp-action="RatingBlog" asp-controller="Comment" method="post">
+            <form asp-action="CreateComment" asp-controller="Comment" method="post" class="comment-form">
                 <input type="hidden" name="BlogId" value="@Model.Id" />
-                <div class="rating">
-                    <span class="star" data-value="1">&#9733;</span>
-                    <span class="star" data-value="2">&#9733;</span>
-                    <span class="star" data-value="3">&#9733;</span>
-                    <span class="star" data-value="4">&#9733;</span>
-                    <span class="star" data-value="5">&#9733;</span>
-                    <input type="hidden" id="ratingValue" name="Rating" value="@Model.UserRating">
-                </div>
-            </form>
-
-            <form asp-action="CreateComment" asp-controller="Comment" method="post"
-                  style="margin-top: 20px; padding: 15px; border: 1px solid #ddd; border-radius: 5px; background: #f9f9f9;">
-                <input type="hidden" name="BlogId" value="@Model.Id" />
-
-                <div style="margin-bottom: 10px;">
-                    <label style="font-weight: bold;">Comment Blog</label>
-                    <input type="text" name="Content" class="form-control" required
-                           style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Feedback</label>
+                    <textarea name="Content" class="form-control fixed-textarea" rows="3" required></textarea>
                 </div>
 
-                <button type="submit"
-                        style="background: #007bff; color: white; padding: 8px 15px; border: none; border-radius: 4px; cursor: pointer;">
-                    Send
-                </button>
+                <div class="text-end">
+                    <button type="submit" class="btn btn-primary">Feedback</button>
+                </div>
             </form>
         }
         else
         {
-            <p style="color: red; font-weight: bold;">Sign in to comment</p>
+            <p style="color: red; font-weight: bold;">Sign in to feedback</p>
         }
 
-        <h4 class="mt-4">Related Posts</h4>
+        <h6 class="mt-lg-4 fw-bold blog-title">Related Posts</h6>
         <div class="related-container">
-            <div class="related-posts">
-                <!-- Post 1 -->
-                <div class="post">
-                    <div class="post-content">
-                        <div class="image-col">
-                            <img src="~/images/banner.jpg" alt="Post 1">
-                        </div>
-                        <div class="text-col">
-                            <h5>Title 1</h5>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                    </div>
+            <div class="slider-wrapper">
+                <div class="related-posts">
+                    @if (ViewBag.RelatedBlogs != null && ViewBag.RelatedBlogs.Count > 0)
+                    {
+                        int count = 0;
+                        foreach (var blogItem in ViewBag.RelatedBlogs)
+                        {
+                            if (count >= 4) break;
+                            count++;
+                            <div class="post">
+                                <div class="card position-relative">
+                                    <a asp-action="BlogDetail" asp-controller="Blog" asp-route-id="@blogItem.Id" class="stretched-link"></a>
+                                    <div class="d-flex">
+                                        <img style="width: 50%;" src="@blogItem.ImageUrl" alt="@blogItem.Title">
+                                        <div class="card-body d-flex flex-column justify-content-between">
+                                            <h3 class="remote-title" style="font-size:1.5rem;font-weight:bold;height:50px">
+                                                @blogItem.Title
+                                            </h3>
+                                            <hr />
+                                            <div class="limited-text">
+                                                @Html.Raw(blogItem.Content)
+                                            </div>
+                                            <hr />
+                                            <p class="meta-info">
+                                                <i class="fas fa-calendar-alt"></i> @blogItem.CreatedAt.ToString("dd/MM/yyyy")
+                                                | <i class="fas fa-eye"></i> @blogItem.ViewCount
+                                            </p>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <p>No related posts here!</p>
+                    }
                 </div>
-                <!-- Post 2 -->
-                <div class="post">
-                    <div class="post-content">
-                        <div class="image-col">
-                            <img src="~/images/banner.jpg" alt="Post 2">
-                        </div>
-                        <div class="text-col">
-                            <h5>Title 2</h5>
-                            <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Post 3 -->
-                <div class="post">
-                    <div class="post-content">
-                        <div class="image-col">
-                            <img src="~/images/banner.jpg" alt="Post 3">
-                        </div>
-                        <div class="text-col">
-                            <h5>Title 3</h5>
-                            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Post 4 -->
-                <div class="post">
-                    <div class="post-content">
-                        <div class="image-col">
-                            <img src="~/images/banner.jpg" alt="Post 4">
-                        </div>
-                        <div class="text-col">
-                            <h5>Title 4</h5>
-                            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse.</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Thêm bài viết khác nếu cần -->
+                <div class="slider-dots"></div>
             </div>
-            <div class="slider-dots"></div>
         </div>
+
     </div>
+
 
     <script>
         let currentIndex = 0;
         const postContainer = document.querySelector(".related-posts");
-        const totalPosts = document.querySelectorAll(".post").length;
-
+        const posts = document.querySelectorAll(".post");
+        const totalPosts = posts.length;
+        const postsPerView = 1;
+        const sliderDotsContainer = document.querySelector(".slider-dots");
         function updateSlider() {
-            const containerWidth = document.querySelector('.related-container').clientWidth;
-            postContainer.style.transform = `translateX(-${currentIndex * containerWidth}px)`;
+            const postWidth = document.querySelector(".post").clientWidth;
+            postContainer.style.transform = `translateX(-${currentIndex * 1201 * postsPerView}px)`;
             updateDots();
         }
 
         function updateDots() {
-            const dots = document.querySelectorAll('.slider-dots .dot');
-            dots.forEach((dot, index) => {
-                dot.classList.toggle('active', index === currentIndex);
+            document.querySelectorAll(".slider-dots .dot").forEach((dot, index) => {
+                dot.classList.toggle("active", index === currentIndex);
             });
         }
-
         function createDots() {
-            const sliderDotsContainer = document.querySelector('.slider-dots');
-            for (let i = 0; i < totalPosts; i++) {
-                const dot = document.createElement('div');
-                dot.classList.add('dot');
-                if (i === 0) dot.classList.add('active');
-                dot.addEventListener('click', () => {
+            sliderDotsContainer.innerHTML = "";
+            const totalDots = Math.ceil(totalPosts / postsPerView);
+            for (let i = 0; i < totalDots; i++) {
+                const dot = document.createElement("div");
+                dot.classList.add("dot");
+                if (i === 0) dot.classList.add("active");
+                dot.addEventListener("click", () => {
                     currentIndex = i;
                     updateSlider();
                 });
                 sliderDotsContainer.appendChild(dot);
             }
         }
-
         function autoSlide() {
-            currentIndex = (currentIndex + 1) % totalPosts;
+            currentIndex = (currentIndex + 1) % Math.ceil(totalPosts / postsPerView);
             updateSlider();
         }
-
         window.addEventListener("resize", updateSlider);
         createDots();
         updateSlider();
         setInterval(autoSlide, 5000);
     </script>
+
+
+
+
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -516,7 +608,7 @@
             ratingText.textContent = `${averageRating} / 5`; // Cập nhật lại số sao
         });
 
-                });
+                                                                });
     </script>
 
 </body>

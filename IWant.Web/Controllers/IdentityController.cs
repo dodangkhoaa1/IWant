@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Rewrite;
 using Microsoft.EntityFrameworkCore;
 using NuGet.Protocol.Plugins;
+using System.Drawing;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -281,8 +282,8 @@ namespace IWant.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> ForgotPassword(ForgotPasswordViewModel model)
         {
-            if (ModelState.IsValid)
-            {
+            /*if (ModelState.IsValid)
+            {*/
                 var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == model.Email);
                 if (user == null)
                 {
@@ -354,14 +355,14 @@ namespace IWant.Web.Controllers
                 TempData["Otp"] = model.Otp;
                 TempData["email"] = model.Email;
 
-                return RedirectToAction("VerifyOtp", new ForgotPasswordViewModel { Email = model.Email, Otp = model.Otp });
-            }
-            return View();
+                return RedirectToAction("VerifyOtp");
+            /*}
+            return View();*/
         }
 
-        // Allow to display the OTP verification page
+        // Allow to display the OTP verification page   
         [HttpGet]
-        public async Task<IActionResult> VerifyOtp(ForgotPasswordViewModel model)
+        public async Task<IActionResult> VerifyOtp()
         {
             TempData.Keep("email");
             return View();
@@ -371,8 +372,8 @@ namespace IWant.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> VerifyOtp(string otp)
         {
-            var email = TempData["email"].ToString();
-            var otpCode = TempData["Otp"].ToString();
+            var email = TempData["email"]?.ToString();
+            var otpCode = TempData["Otp"]?.ToString();
             if (otp == otpCode)
             {
                 TempData["email"] = email;
@@ -384,6 +385,97 @@ namespace IWant.Web.Controllers
             TempData.Keep("Otp");
             return View();
         }
+
+        [HttpPost]
+        public async Task<IActionResult> ResendOtp()
+        {
+            var email = TempData["email"]?.ToString();
+            if (string.IsNullOrEmpty(email))
+            {
+                TempData["error"] = "Session expired! Please request a new OTP.";
+                return RedirectToAction("ForgotPassword");
+            }
+
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
+            if (user == null)
+            {
+                TempData["error"] = "Email not exist!";
+                return RedirectToAction("ForgotPassword");
+            }
+
+            Random random = new Random();
+
+            var codeOTP = random.Next(1000, 9999).ToString();
+            TempData["Otp"] = codeOTP;
+
+            await emailSender.SendEmailAsync(
+                    "nhathmce170171@fpt.edu.vn",
+                    user.Email,
+                    "\"I Want\" Recover Password Verification",
+                    $@"
+                    <html>
+                    <head>
+                        <style>
+                            body {{
+                                font-family: Arial, sans-serif;
+                                color: #333;
+                                line-height: 1.5;
+                            }}
+                            .verification-box {{
+                                text-align: center;
+                                padding: 20px;
+                                background-color: #f5f5f5;
+                                border-radius: 8px;
+                            }}
+                            .verification-box img {{
+                                width: 300px;
+                                height: 90px;
+                            }}
+                            .otp-code {{
+                                font-size: 30px;
+                                font-weight: bold;
+                                color: #a3745e;
+                                margin-top: 20px;
+                            }}
+                            .resend-button {{
+                                display: inline-block;
+                                margin-top: 20px;
+                                padding: 10px 20px;
+                                background-color: #007bff;
+                                color: white;
+                                border: none;
+                                border-radius: 5px;
+                                text-decoration: none;
+                                font-size: 16px;
+                            }}
+                            .resend-button:hover {{
+                                background-color: #0056b3;
+                            }}
+                        </style>
+                    </head>
+                    <body>
+                        <div class='verification-box'>
+                            <h2>RESET PASSWORD OTP VERIFICATION</h2>
+                            <p>A verification email has been sent to your email <strong>{user.FullName}</strong>.</p>
+                            <p>Please check your email and verify the OTP code to recover your password.</p>
+                            <p class='otp-code'>OTP: {codeOTP}</p>
+                        </div>
+                    </body>
+                    </html>"
+                    );
+
+            TempData["success"] = "A new OTP has been sent to your email.";
+            TempData.Keep("email");
+            return RedirectToAction("VerifyOtp");
+        }
+
+        [HttpPost]
+        public IActionResult ExpireOtp()
+        {
+            TempData.Remove("Otp");
+            return Json(new { success = true });
+        }
+
 
         // Allow to display the reset password page
         [HttpGet]
@@ -405,8 +497,8 @@ namespace IWant.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> ResetPassword(ResetPasswordViewModel model)
         {
-            if (ModelState.IsValid)
-            {
+            /*if (ModelState.IsValid)
+            {*/
                 var emailTemp = TempData["email"];
                 var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == emailTemp);
                 if (user == null)
@@ -436,8 +528,8 @@ namespace IWant.Web.Controllers
                     TempData.Keep("email");
                     return View(model);
                 }
-            }
-            return View(model);
+            /*}
+            return View(model);*/
         }
 
         // Allow to display the access denied page

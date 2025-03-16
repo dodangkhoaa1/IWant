@@ -56,10 +56,10 @@ namespace IWant.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateProfile(UpdateProfileViewModel model)
         {
-            if (!ModelState.IsValid)
+            /*if (!ModelState.IsValid)
             {
                 return View(model);
-            }
+            }*/
 
             var user = await _context.Users.FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
             if (user == null)
@@ -145,26 +145,34 @@ namespace IWant.Web.Controllers
                 TempData["error"] = "Account not found!";
                 return RedirectToAction("Signin", "Identity");
             }
+
             var passwordHasher = new PasswordHasher<User>();
+
+            // Check Current Password
             if (passwordHasher.VerifyHashedPassword(user, user.PasswordHash, model.CurrentPassword) == PasswordVerificationResult.Failed)
             {
                 TempData["error"] = "Current password is incorrect!";
                 return View(model);
             }
-            var tempNewPasswordHash = passwordHasher.HashPassword(user, model.NewPassword);
-            if (tempNewPasswordHash == user.PasswordHash)
+
+            // Check New Password with Current Password
+            if (passwordHasher.VerifyHashedPassword(user, user.PasswordHash, model.NewPassword) == PasswordVerificationResult.Success)
             {
                 TempData["error"] = "New password must be different from the current password!";
                 return View(model);
             }
+
+            // Check New Password with Confirm Password
             if (model.NewPassword != model.ConfirmPassword)
             {
                 TempData["error"] = "New password and confirm password do not match!";
                 return View(model);
             }
-            var newPasswordHash = passwordHasher.HashPassword(user, model.NewPassword);
-            user.PasswordHash = newPasswordHash;
+
+            // Update Password
+            user.PasswordHash = passwordHasher.HashPassword(user, model.NewPassword);
             user.UpdatedAt = DateTime.Now;
+
             try
             {
                 _context.Users.Update(user);
@@ -178,5 +186,6 @@ namespace IWant.Web.Controllers
                 return View(model);
             }
         }
+
     }
 }

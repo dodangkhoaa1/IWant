@@ -10,7 +10,7 @@
 
 <div class="d-flex verify-container" style="display: flex; justify-content: center; align-items: center; padding: 40px; height: 100vh;;background-color: #FEDA15;">
     <div class="confetti-container"></div>
-    <div class="verify-card" style="display: flex; border-radius: 10px; background-color: #fff; height: auto; align-items: center; overflow: hidden; z-index: 2; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); padding: 20px;">
+    <div class="verify-card" style="flex-direction:column; justify-content: center;align-items: center; height: 100vh;display: flex; border-radius: 10px; background-color: #fff; height: auto; align-items: center; overflow: hidden; z-index: 2; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); padding: 20px;">
         <form asp-action="VerifyOtp" method="post" style="text-align: center; display: flex; flex-direction: column; align-items: center; width: 100%;" id="otpForm">
             <h1 style="font-size: 32px; margin-top: 20px;">Enter Verification OTP</h1>
             <p style="margin-bottom: 10px; color: #555; font-size: 14px; margin-bottom: 40px;">
@@ -27,7 +27,11 @@
                 <input type="tel" maxlength="1" class="otp-input" style="width: 50px; height: 50px; font-size: 24px; text-align: center; border: 1px solid #ddd; border-radius: 5px;" />
             </div>
             <button type="submit" id="verifyOtpButton" style="width: 70%; padding: 10px; margin-bottom: 10px; background-color: #FEDA15; border: none; border-radius: 10px; color: #fff; font-size: 16px; font-weight: 400; cursor: pointer;" class="btn btn-primary">Verify OTP</button>
-            <button type="button" id="requestOtpButton" disabled style="width: 70%; padding: 10px; margin-top: 10px; background-color: #ddd; border: none; border-radius: 10px; color: #888; font-size: 16px; font-weight: 400; cursor: not-allowed;">Request new OTP</button>
+        </form>
+        <form style="width:100%; text-align:center" asp-action="ResendOtp" asp-controller="Identity" method="post">
+            <button type="submit" id="requestOtpButton" disabled style="width: 70%; padding: 10px; margin-top: 10px; background-color: #ddd; border: none; border-radius: 10px; color: #888; font-size: 16px; font-weight: 400; cursor: not-allowed; width:60%;">
+                Request new OTP
+            </button>
         </form>
     </div>
 </div>
@@ -110,27 +114,35 @@
     let verifyOtpButton = document.getElementById("verifyOtpButton");
     let timeLeft = 120;
 
-    function startCountdown() {
+        function startCountdown() {
         const countdown = setInterval(() => {
             let minutes = Math.floor(timeLeft / 60);
             let seconds = timeLeft % 60;
             seconds = seconds < 10 ? "0" + seconds : seconds;
             timerElement.textContent = `${minutes}:${seconds}`;
+
             if (timeLeft <= 0) {
                 clearInterval(countdown);
                 timerElement.textContent = "Expired";
+
                 requestOtpButton.disabled = false;
                 requestOtpButton.style.backgroundColor = "#FEDA15";
                 requestOtpButton.style.color = "#fff";
                 requestOtpButton.style.cursor = "pointer";
+
                 verifyOtpButton.disabled = true;
                 verifyOtpButton.style.backgroundColor = "#ddd";
                 verifyOtpButton.style.color = "#888";
                 verifyOtpButton.style.cursor = "not-allowed";
+
+                fetch('/Identity/ExpireOtp', { method: 'POST' })
+                    .then(response => response.json())
+                    .then(data => console.log("OTP expired:", data));
             }
             timeLeft--;
         }, 1000);
     }
+
 
     startCountdown();
 
