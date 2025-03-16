@@ -9,7 +9,7 @@ public class ScoreManagerEmotionGame : MonoBehaviour
 
     [Header("UI Elements")]
     [SerializeField] private TextMeshProUGUI gameScoreText;
-    [SerializeField] private TextMeshProUGUI menuBestScoreText;
+    //[SerializeField] private TextMeshProUGUI menuBestScoreText;
     [SerializeField] private TextMeshProUGUI gameOverScoreText;
     [SerializeField] private int baseScore = 2000;
     private int score, bestScore;
@@ -37,7 +37,7 @@ public class ScoreManagerEmotionGame : MonoBehaviour
     {
         levelStartTime = Time.time;
         UpdateScoreText();
-        UpdateBestScoreText();
+        //UpdateBestScoreText();
     }
 
     private void GameStateChangedCallback(GameState gameState)
@@ -46,7 +46,7 @@ public class ScoreManagerEmotionGame : MonoBehaviour
         {
             CalculateBestScore();
             // Sau khi tính điểm cao nhất, cập nhật lại UI điểm cao nhất:
-            UpdateBestScoreText();
+            //UpdateBestScoreText();
         }
     }
 
@@ -79,11 +79,11 @@ public class ScoreManagerEmotionGame : MonoBehaviour
             gameScoreText.text = score.ToString();
     }
 
-    private void UpdateBestScoreText()
-    {
-        if (menuBestScoreText != null)
-            menuBestScoreText.text = bestScore.ToString();
-    }
+    //private void UpdateBestScoreText()
+    //{
+    //    if (menuBestScoreText != null)
+    //        menuBestScoreText.text = bestScore.ToString();
+    //}
 
     private void CalculateBestScore()
     {

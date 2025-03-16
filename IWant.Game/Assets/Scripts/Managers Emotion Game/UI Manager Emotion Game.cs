@@ -99,8 +99,8 @@ public class UIManagerEmotionGame : MonoBehaviour
     }
     public void NextButtonCallBack()
     {
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        //SceneManager.LoadScene(0);
     }
     //Setting
     public void SettingsButtonCallBack()

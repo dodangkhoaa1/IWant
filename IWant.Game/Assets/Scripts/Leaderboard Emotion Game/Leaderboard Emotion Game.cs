@@ -66,7 +66,7 @@ public class LeaderboardEmotionGame: MonoBehaviour
 
         // Assuming member_id is available here
         string userId = playerAuthenticate.PlayerId; // Replace with actual member_id
-        SubmitScore(userId, bestScore);
+        SubmitScoreWithMetadata(userId, bestScore);
 
         // Call the method in PlayerLeaderboard to set the best score
         playerLeaderboard.SetBestScoreToLeaderboard();
