@@ -78,7 +78,27 @@ namespace IWant.Web.Service
 
         public async Task<Word> UpdateWordAsync(Word word)
         {
-            var json = JsonSerializer.Serialize(word);
+            WordDTO wordDTO = new()
+            {
+                Id = word.Id,
+                VietnameseText = word.VietnameseText,
+                EnglishText = word.EnglishText,
+                CreatedAt = word.CreatedAt,
+                UpdatedAt = word.UpdatedAt,
+                ImagePath = word.ImagePath,
+                Status = word.Status,
+                WordCategoryId = word.WordCategoryId,
+                WordCategory = word.WordCategory,
+            };
+            // Kiểm tra nếu có file ảnh
+            if (word.ImageFile != null)
+            {
+                using var memoryStream = new MemoryStream();
+                await word.ImageFile.CopyToAsync(memoryStream);
+                wordDTO.Image = memoryStream.ToArray();
+            }
+
+            var json = JsonSerializer.Serialize(wordDTO);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
             var response = await _httpClient.PutAsync($"{ApiBaseUrl}/{word.Id}", content);

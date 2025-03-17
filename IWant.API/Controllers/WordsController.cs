@@ -25,31 +25,14 @@ namespace IWant.API.Controllers
                 .Include(w => w.WordCategory) // Include related WordCategory if needed
                 .ToListAsync();
 
-            var wordDtos = words.Select(word => new WordDTO
-            {
-                Id = word.Id,
-                VietnameseText = word.VietnameseText,
-                EnglishText = word.EnglishText,
-                CreatedAt = word.CreatedAt,
-                UpdatedAt = word.UpdatedAt,
-                ImagePath = word.ImagePath,
-                Status = word.Status,
-                WordCategoryId = word.WordCategoryId,
-                WordCategory = word.WordCategory,
-                //Image = !string.IsNullOrEmpty(word.ImagePath) && System.IO.File.Exists(Path.Combine("wwwroot", word.ImagePath))
-                //    ? System.IO.File.ReadAllBytes(Path.Combine("wwwroot", word.ImagePath))
-                //    : null
-                Image = null
-            }).ToList();
-
-            return Ok(wordDtos);
+            return Ok(words);
         }
 
         // GET: api/Words/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Word>> GetWord(int id)
         {
-            var word = await _context.Words.FindAsync(id);
+            var word = await _context.Words.Include(w => w.WordCategory).FirstOrDefaultAsync(w => w.Id == id);
 
             if (word == null)
             {
@@ -62,14 +45,45 @@ namespace IWant.API.Controllers
         // PUT: api/Words/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutWord(int id, Word word)
+        public async Task<IActionResult> PutWord(int id, WordDTO word)
         {
             if (id != word.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(word).State = EntityState.Modified;
+            var existingWord = await _context.Words.FindAsync(id);
+            if (existingWord == null)
+            {
+                return NotFound();
+            }
+
+            if (word.Image != null)
+            {
+                var category = await _context.WordCategories.FirstOrDefaultAsync(c => c.Id == word.WordCategoryId);
+                if (category == null)
+                {
+                    return BadRequest("Invalid WordCategoryId");
+                }
+
+                string categoryFolder = category.EnglishName.ToLower();
+                string uniqueFileName = $"{Guid.NewGuid()}.png";
+                string savePath = Path.Combine("wwwroot", "images", "word", categoryFolder, uniqueFileName);
+                string relativePath = Path.Combine("images", "word", categoryFolder, uniqueFileName).Replace("\\", "/");
+
+                // Save the new image to the specified path
+                await System.IO.File.WriteAllBytesAsync(savePath, word.Image);
+
+                existingWord.ImagePath = "/" + relativePath;
+            }
+
+            existingWord.VietnameseText = word.VietnameseText;
+            existingWord.EnglishText = word.EnglishText;
+            existingWord.UpdatedAt = word.UpdatedAt;
+            existingWord.Status = word.Status;
+            existingWord.WordCategoryId = word.WordCategoryId;
+
+            _context.Entry(existingWord).State = EntityState.Modified;
 
             try
             {
@@ -87,7 +101,8 @@ namespace IWant.API.Controllers
                 }
             }
 
-            return NoContent();
+            var updatedWord = await _context.Words.Include(w => w.WordCategory).FirstOrDefaultAsync(w => w.Id == id);
+            return Ok(updatedWord);
         }
 
         // POST: api/Words
