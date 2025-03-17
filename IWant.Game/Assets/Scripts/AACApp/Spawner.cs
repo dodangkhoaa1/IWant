@@ -30,6 +30,9 @@ public class AACWordSpawner : MonoBehaviour
     [Header("Scroll View")]
     [SerializeField] ScrollRect categoryScrollRect;
 
+    [Header("Loading Management")]
+    public LoadingManagement loadingManagement;
+
     private PhraseBuild phraseBuild;
     private Button currentCategoryButton;
     private List<WordDTO> personalWords;
@@ -83,9 +86,11 @@ public class AACWordSpawner : MonoBehaviour
     // Allow to initialize localization settings and spawn word categories and personal words
     private IEnumerator InitializeLocalization()
     {
+        loadingManagement.EnableLoadingPanel();
         yield return StartCoroutine(LoadWordsFromAPI());
         yield return StartCoroutine(LoadPersonalWordsFromAPI());
         yield return StartCoroutine(SpawnWordCategories());
+        loadingManagement.DisableLoadingPanel();
 
         // Download all audio for words and categories
         //yield return StartCoroutine(toSpeech.DownloadAllAudio(words, wordCategories));

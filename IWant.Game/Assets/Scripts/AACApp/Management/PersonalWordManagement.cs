@@ -23,6 +23,9 @@ public class PersonalWordManagement : MonoBehaviour
     [SerializeField] Button createPersonalBtn;
     [SerializeField] GameObject createPersonalPanel;
 
+    [Header("Loading Management")]
+    public LoadingManagement loadingManagement;
+
     private List<WordDTO> personalWords;
 
     private void Start()
@@ -34,8 +37,10 @@ public class PersonalWordManagement : MonoBehaviour
 
     private IEnumerator Initialize()
     {
+        loadingManagement.EnableLoadingPanel();
         yield return StartCoroutine(LoadPersonalWordsFromAPI());
         SpawnPersonalWords();
+        loadingManagement.DisableLoadingPanel();
     }
 
     private IEnumerator LoadPersonalWordsFromAPI()
@@ -107,6 +112,7 @@ public class PersonalWordManagement : MonoBehaviour
 
     private IEnumerator DeleteWord(int wordId, GameObject wordButton)
     {
+        loadingManagement.EnableLoadingPanel();
         UnityWebRequest request = UnityWebRequest.Delete(AddressAPI.PERSONAL_WORD_URL + "/" + wordId);
         yield return request.SendWebRequest();
 
@@ -120,6 +126,8 @@ public class PersonalWordManagement : MonoBehaviour
             Debug.LogError("Failed to delete word: " + request.error);
             Toast.Show("Delete Word Fail!", ToastColor.Red, ToastPosition.BottomCenter);
         }
+        loadingManagement.DisableLoadingPanel();
+
     }
 
     private void OnChoosePhotoFromLibraryBtnClicked()
@@ -194,6 +202,7 @@ public class PersonalWordManagement : MonoBehaviour
 
     private IEnumerator CreatePersonalWord()
     {
+        loadingManagement.EnableLoadingPanel();
         Texture2D texture = displaySelectedImage.sprite.texture;
 
         PersonalWordDTO newWord = new PersonalWordDTO
@@ -228,6 +237,8 @@ public class PersonalWordManagement : MonoBehaviour
             string toastStr = PrefsKey.LANGUAGE == PrefsKey.ENGLISH_CODE ? "Create Word Fail" : "Tạo Từ Thất Bại!";
             Toast.Show(toastStr, ToastColor.Red, ToastPosition.BottomCenter);
         }
+        loadingManagement.DisableLoadingPanel();
+
     }
     private void ClearFields()
     {

@@ -3066,6 +3066,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1445813193
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1445813194}
+  - component: {fileID: 1445813195}
+  m_Layer: 0
+  m_Name: LoadingManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1445813194
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1445813193}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 905778196}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1445813195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1445813193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7159d646799ed164083f137d27fed85d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loadingPanelPrefab: {fileID: 8682496374704083392, guid: 1c8b3683542f9cb48994cc9ea4d4657d, type: 3}
 --- !u!1 &1480049351
 GameObject:
   m_ObjectHideFlags: 0
@@ -3481,7 +3526,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 320, y: -62.500004}
+  m_AnchoredPosition: {x: 320, y: -62.5}
   m_SizeDelta: {x: 640, y: 125.00001}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1534045007
@@ -3672,6 +3717,7 @@ MonoBehaviour:
   vietnameseText: {fileID: 1518040784}
   createPersonalBtn: {fileID: 153702215}
   createPersonalPanel: {fileID: 1384479934}
+  loadingManagement: {fileID: 1445813195}
 --- !u!1001 &1699543739
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3858,6 +3904,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1274501037967761648, guid: ac9e493c06d948d4ebc770f182b8f2d9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1255621657}
+    - targetCorrespondingSourceObject: {fileID: 1274501037967761648, guid: ac9e493c06d948d4ebc770f182b8f2d9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1445813194}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac9e493c06d948d4ebc770f182b8f2d9, type: 3}
 --- !u!114 &1699543740 stripped

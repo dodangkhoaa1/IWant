@@ -161,6 +161,7 @@
     <Compile Include="Assets\Scripts\AACApp\Consts\LayerNames.cs" />
     <Compile Include="Assets\Project\Scripts\LeaderboardDotGame\LeaderboardUIDotGame.cs" />
     <Compile Include="Assets\LeanTween\Testing\FollowingTests.cs" />
+    <Compile Include="Assets\Scripts\AACApp\Management\LoadingManagement.cs" />
     <Compile Include="Assets\Scripts\AACApp\DTOs\WordDTO.cs" />
     <Compile Include="Assets\Scripts\AACApp\Consts\SceneName.cs" />
     <Compile Include="Assets\Scripts\PuzzleSlotEmotionGame.cs" />
@@ -277,6 +278,7 @@
     <None Include="Assets\LeanTween\License.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
+    <None Include="Assets\AddressableAssetsData\link.xml" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
