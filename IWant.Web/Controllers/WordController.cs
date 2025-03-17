@@ -41,6 +41,18 @@ namespace IWant.Web.Controllers
             return RedirectToAction("Index");
         }
 
+        public async Task<IActionResult> Delete(int id)
+        {
+            var result = await _wordService.DeleteWordAsync(id);
+            if (result)
+            {
+                return RedirectToAction("Index");
+            }
+            return View("Error");
+        }
+
+
+
 
     }
 }

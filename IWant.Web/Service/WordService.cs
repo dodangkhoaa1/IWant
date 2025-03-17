@@ -1,6 +1,7 @@
 ﻿using IWant.BusinessObject.Enitities;
 using IWant.Web.Models;
 using IWant.Web.Models.DTO;
+using System.Net;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
@@ -49,17 +50,12 @@ namespace IWant.Web.Service
             return JsonSerializer.Deserialize<Word>(result, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
         }
 
-
-
-
-
-        public async Task<Word> DeleteWordAsync(int id)
+        public async Task<bool> DeleteWordAsync(int id)
         {
             var response = await _httpClient.DeleteAsync($"{ApiBaseUrl}/{id}");
             response.EnsureSuccessStatusCode();
 
-            var result = await response.Content.ReadAsStringAsync();
-            return JsonSerializer.Deserialize<Word>(result, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+            return response.StatusCode == HttpStatusCode.OK;
         }
 
         public async Task<Word> GetWordByIdAsync(int id)

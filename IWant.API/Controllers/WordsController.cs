@@ -144,10 +144,19 @@ namespace IWant.API.Controllers
                 return NotFound();
             }
 
+            if (!string.IsNullOrEmpty(word.ImagePath))
+            {
+                var imagePath = Path.Combine("wwwroot", word.ImagePath.TrimStart('/'));
+                if (System.IO.File.Exists(imagePath))
+                {
+                    System.IO.File.Delete(imagePath);
+                }
+            }
+
             _context.Words.Remove(word);
             await _context.SaveChangesAsync();
 
-            return NoContent();
+            return Ok();
         }
 
         private bool WordExists(int id)
