@@ -59,15 +59,20 @@ public class TextToSpeech : MonoBehaviour
             bool fileExistsInStreamingAssets = false;
 
 #if UNITY_ANDROID && !UNITY_EDITOR
-        // Kiểm tra file trong StreamingAssets bằng UnityWebRequest
-        using (UnityWebRequest request = UnityWebRequest.Head(streamingFilePath))
-        {
-            yield return request.SendWebRequest();
-            if (request.result == UnityWebRequest.Result.Success)
+            // Kiểm tra file trong StreamingAssets bằng UnityWebRequest
+            using (UnityWebRequest request = UnityWebRequest.Get(streamingFilePath))
             {
-                fileExistsInStreamingAssets = true;
+                yield return request.SendWebRequest();
+                if (request.result == UnityWebRequest.Result.Success)
+                {
+                    fileExistsInStreamingAssets = true;
+                    Toast.Show("Exist Audio", ToastColor.Green, ToastPosition.BottomCenter);
+                }
+                else
+                {
+                    Toast.Show("Not Exist Audio", ToastColor.Green, ToastPosition.BottomCenter);
+                }
             }
-        }
 #else
             fileExistsInStreamingAssets = File.Exists(streamingFilePath);
 #endif
