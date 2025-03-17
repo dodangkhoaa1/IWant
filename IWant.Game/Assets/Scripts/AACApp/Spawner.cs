@@ -48,7 +48,7 @@ public class AACWordSpawner : MonoBehaviour
         phraseBuild = phraseBuildGO.GetComponent<PhraseBuild>();
 
         StartCoroutine(InitializeLocalization());
-        
+
     }
 
     private void Update()
@@ -96,6 +96,11 @@ public class AACWordSpawner : MonoBehaviour
     // Allow to spawn personal words for a specific user
     public void SpawnPersonalWords()
     {
+        if (personalWords.Count == 0)
+        {
+            string toastStr = PrefsKey.LANGUAGE == PrefsKey.ENGLISH_CODE ? "List Is Empty!" : "Danh Sách Trống!";
+            Toast.Show(toastStr, ToastColor.Yellow, ToastPosition.BottomCenter);
+        }
         SpawnWords(personalWords, 1);
     }
 
@@ -113,7 +118,7 @@ public class AACWordSpawner : MonoBehaviour
 
             if (personalWords.Count == 0)
             {
-                Toast.Show("There no personal word", Color.yellow, ToastPosition.BottomCenter);
+                //Toast.Show("Personal Word List Is Empty!", Color.yellow, ToastPosition.BottomCenter);
                 yield return null;
             }
         }
@@ -192,7 +197,8 @@ public class AACWordSpawner : MonoBehaviour
 
                 newTTSBtn.GetComponent<Button>().onClick.AddListener(() =>
                 {
-                    phraseBuild.AddToList(newTTSBtn.gameObject, (instance) => {
+                    phraseBuild.AddToList(newTTSBtn.gameObject, (instance) =>
+                    {
                         //Convert Image to sprite
                         if (word.ImagePath != null)
                         {
@@ -245,8 +251,11 @@ public class AACWordSpawner : MonoBehaviour
                     {
                         if (sprite != null)
                         {
-                            Image childImage = newTTSBtn.transform.Find("Image").GetComponent<Image>();
-                            childImage.sprite = sprite;
+                            if (newTTSBtn != null)
+                            {
+                                Image childImage = newTTSBtn.transform.Find("Image").GetComponent<Image>();
+                                childImage.sprite = sprite;
+                            }
                         }
                         else
                         {
@@ -457,7 +466,8 @@ public class AACWordSpawner : MonoBehaviour
                         GameObject wordButtonInstance = Instantiate(wordButtonPrefab.gameObject);
                         wordButtonInstance.name = word.EnglishText;
                         wordButtonInstance.GetComponentInChildren<TextMeshProUGUI>().text = PrefsKey.LANGUAGE == PrefsKey.ENGLISH_CODE ? word.EnglishText : word.VietnameseText;
-                        phraseBuild.AddToList(wordButtonInstance, (instance) => {
+                        phraseBuild.AddToList(wordButtonInstance, (instance) =>
+                        {
                             //Convert Image to sprite
                             if (word.ImagePath != null)
                             {
@@ -476,7 +486,7 @@ public class AACWordSpawner : MonoBehaviour
                                 }));
                             }
                         });
-                        
+
 
                         // Disable the original button in the suggestion list
                         newSuggestBtn.interactable = false;

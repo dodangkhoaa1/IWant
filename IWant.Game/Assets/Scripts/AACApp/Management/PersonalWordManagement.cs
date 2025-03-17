@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Android;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PersonalWordManagement : MonoBehaviour
@@ -50,7 +51,8 @@ public class PersonalWordManagement : MonoBehaviour
 
             if (personalWords.Count == 0)
             {
-                Toast.Show("There no personal word", ToastColor.Yellow, ToastPosition.BottomCenter);
+                string toastStr = PrefsKey.LANGUAGE == PrefsKey.ENGLISH_CODE ? "List Is Empty!" : "Danh Sách Trống!";
+                Toast.Show(toastStr, ToastColor.Yellow, ToastPosition.BottomCenter);
                 yield return null;
             }
         }
@@ -111,12 +113,12 @@ public class PersonalWordManagement : MonoBehaviour
         if (request.result == UnityWebRequest.Result.Success)
         {
             Destroy(wordButton);
-            Toast.Show("Word deleted successfully", ToastColor.Green, ToastPosition.BottomCenter);
+            Toast.Show("Delete Word Successfully!", ToastColor.Green, ToastPosition.BottomCenter);
         }
         else
         {
             Debug.LogError("Failed to delete word: " + request.error);
-            Toast.Show("Failed to delete word", ToastColor.Red, ToastPosition.BottomCenter);
+            Toast.Show("Delete Word Fail!", ToastColor.Red, ToastPosition.BottomCenter);
         }
     }
 
@@ -153,7 +155,7 @@ public class PersonalWordManagement : MonoBehaviour
                 }
                 else
                 {
-                    Toast.Show("Couldn't load texture from " + path, ToastColor.Red, ToastPosition.BottomCenter);
+                    Toast.Show("Load Image Fail!", ToastColor.Red, ToastPosition.BottomCenter);
                 }
             }
         }, "Select an image", "image/*");
@@ -182,7 +184,8 @@ public class PersonalWordManagement : MonoBehaviour
     {
         if (displaySelectedImage.sprite == null || string.IsNullOrEmpty(englishText.text) || string.IsNullOrEmpty(vietnameseText.text))
         {
-            Toast.Show("Please fill in all fields and select an image.", ToastColor.Red, ToastPosition.BottomCenter);
+            string toastStr = PrefsKey.LANGUAGE == PrefsKey.ENGLISH_CODE ? "All fields are required!" : "Tất cả các trường là bắt buộc!";
+            Toast.Show(toastStr, ToastColor.Red, ToastPosition.BottomCenter);
             return;
         }
 
@@ -192,7 +195,7 @@ public class PersonalWordManagement : MonoBehaviour
     private IEnumerator CreatePersonalWord()
     {
         Texture2D texture = displaySelectedImage.sprite.texture;
-        
+
         PersonalWordDTO newWord = new PersonalWordDTO
         {
             EnglishText = englishText.text,
@@ -213,7 +216,8 @@ public class PersonalWordManagement : MonoBehaviour
 
         if (request.result == UnityWebRequest.Result.Success)
         {
-            Toast.Show("Personal word created successfully", ToastColor.Green, ToastPosition.BottomCenter);
+            string toastStr = PrefsKey.LANGUAGE == PrefsKey.ENGLISH_CODE ? "Create Word Successfully" : "Tạo Từ Thành Công!";
+            Toast.Show(toastStr, ToastColor.Green, ToastPosition.BottomCenter);
             StartCoroutine(Initialize());
             createPersonalPanel.gameObject.SetActive(false);
             ClearFields();
@@ -221,7 +225,8 @@ public class PersonalWordManagement : MonoBehaviour
         else
         {
             Debug.LogError("Failed to create personal word: " + request.error);
-            Toast.Show("Failed to create personal word", ToastColor.Red, ToastPosition.BottomCenter);
+            string toastStr = PrefsKey.LANGUAGE == PrefsKey.ENGLISH_CODE ? "Create Word Fail" : "Tạo Từ Thất Bại!";
+            Toast.Show(toastStr, ToastColor.Red, ToastPosition.BottomCenter);
         }
     }
     private void ClearFields()

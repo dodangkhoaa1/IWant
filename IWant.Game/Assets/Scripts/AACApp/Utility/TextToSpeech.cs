@@ -27,12 +27,7 @@ public class TextToSpeech : MonoBehaviour
 
     private string GetStreamingAssetsPath(string fileName)
     {
-        //return "file://" + Path.Combine(Application.streamingAssetsPath, fileName + ".wav");
-#if UNITY_ANDROID
         return Path.Combine(Application.streamingAssetsPath, fileName + ".wav"); // Không cần file:// trên Android
-#else
-        return "file://" + Path.Combine(Application.streamingAssetsPath, fileName + ".wav");
-#endif
     }
 
     private string GetPersistentDataPath(string fileName)
@@ -66,11 +61,11 @@ public class TextToSpeech : MonoBehaviour
                 if (request.result == UnityWebRequest.Result.Success)
                 {
                     fileExistsInStreamingAssets = true;
-                    Toast.Show("Exist Audio", ToastColor.Green, ToastPosition.BottomCenter);
+                    //Toast.Show("Exist Audio", ToastColor.Green, ToastPosition.BottomCenter);
                 }
                 else
                 {
-                    Toast.Show("Not Exist Audio", ToastColor.Green, ToastPosition.BottomCenter);
+                    //Toast.Show("Not Exist Audio", ToastColor.Green, ToastPosition.BottomCenter);
                 }
             }
 #else
@@ -259,7 +254,17 @@ public class TextToSpeech : MonoBehaviour
     // Allow to play audio from file
     private IEnumerator PlayAudioFromFile(string filePath)
     {
-        using (UnityWebRequest audioRequest = UnityWebRequestMultimedia.GetAudioClip($"{filePath}", AudioType.WAV))
+        string audioPath;
+        if (filePath.StartsWith(Application.persistentDataPath))
+        {
+            audioPath = $"file://{filePath}";
+        }
+        else
+        {
+            audioPath = $"{filePath}";
+        }
+
+        using (UnityWebRequest audioRequest = UnityWebRequestMultimedia.GetAudioClip(audioPath, AudioType.WAV))
         {
             yield return audioRequest.SendWebRequest();
 

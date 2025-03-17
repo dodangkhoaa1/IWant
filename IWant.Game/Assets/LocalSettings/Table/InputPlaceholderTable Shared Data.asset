@@ -16,7 +16,7 @@ MonoBehaviour:
   m_TableCollectionNameGuidString: 6b294ccc441e81f44b953a78ac2f4dd7
   m_Entries:
   - m_Id: 5985161216
-    m_Key: Username
+    m_Key: Email
     m_Metadata:
       m_Items: []
   - m_Id: 82124361728

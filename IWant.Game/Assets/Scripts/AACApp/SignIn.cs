@@ -35,7 +35,7 @@ public class SignIn : MonoBehaviour
         if (string.IsNullOrEmpty(usernameField.text) || string.IsNullOrEmpty(passwordField.text))
         {
             Debug.LogWarning("FullName or Password field is empty.");
-            toastString = PrefsKey.LANGUAGE == PrefsKey.ENGLISH_CODE ? "Please fill in both FullName and password." : "Vui lòng điền cả Tên đăng nhập và Mật khẩu";
+            toastString = PrefsKey.LANGUAGE == PrefsKey.ENGLISH_CODE ? "Email and Password Is Required!" : "Email Và Mật khẩu Là Bắt Buộc!";
             Toast.Show(toastString, 1.5f, ToastColor.Red, ToastPosition.BottomCenter);
             yield break;
         }
@@ -120,7 +120,9 @@ public class SignIn : MonoBehaviour
             onError: error =>
             {
                 Debug.LogWarning($"Login request error: {error}");
-                toastString = PrefsKey.LANGUAGE == PrefsKey.ENGLISH_CODE ? "Login failed. Please check your internet connection or try again later." : "Đăng nhập thất bại. Vui lòng kiểm tra kết nối mạng và thử lại.";
+                toastString = PrefsKey.LANGUAGE == PrefsKey.ENGLISH_CODE
+                ? "Login failed. Please check your internet connection or try again later."
+                : "Đăng nhập thất bại. Vui lòng kiểm tra kết nối mạng và thử lại.";
                 Toast.Show(toastString, 1.5f, ToastColor.Red, ToastPosition.BottomCenter);
             }
         );
@@ -143,7 +145,7 @@ public class SignIn : MonoBehaviour
         Debug.Log("Game is exiting...");
         Application.Quit();
     }
-    
 
-    
+
+
 }

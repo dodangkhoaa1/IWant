@@ -4738,7 +4738,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4322817721357559248, guid: 33a4e379c6e048f4c88f8c542d0422d0, type: 3}
       propertyPath: m_Name
-      value: UsernameField
+      value: EmailField
+      objectReference: {fileID: 0}
+    - target: {fileID: 4770248804901280336, guid: 33a4e379c6e048f4c88f8c542d0422d0, type: 3}
+      propertyPath: m_text
+      value: Email
       objectReference: {fileID: 0}
     - target: {fileID: 4770248804901280336, guid: 33a4e379c6e048f4c88f8c542d0422d0, type: 3}
       propertyPath: m_Enabled
@@ -4848,7 +4852,8 @@ PrefabInstance:
       propertyPath: m_Text
       value: 
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7304892157019913104, guid: 33a4e379c6e048f4c88f8c542d0422d0, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
