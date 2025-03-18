@@ -56,15 +56,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 6209e38621b8fc746a48bf6688c91eaf, type: 3}
   - {fileID: 21300000, guid: 4d4e3bd7ca5b59e498d689e7991fddef, type: 3}
   - {fileID: 21300000, guid: 319979dbe2d87e642abd36ac55718852, type: 3}
-  vietnameseSprites:
-  - {fileID: 21300000, guid: 758f8f49db3c28e40ae8ce8be7ac9f96, type: 3}
-  - {fileID: 21300000, guid: d52cdac54ebe9774e9f6a846e5343f91, type: 3}
-  - {fileID: 21300000, guid: 26e472fcc428f3e49920ac54abd5805f, type: 3}
-  - {fileID: 21300000, guid: 8178503eb4320b9489ccad3d881d1ebf, type: 3}
-  - {fileID: 21300000, guid: 7d68d3e2dca8abc40b04075dcaad574a, type: 3}
-  - {fileID: 21300000, guid: c0e419ce6e24be1448d9008a3b2a7a01, type: 3}
-  - {fileID: 21300000, guid: 781fecc13ae8dd74ab4d9f76861fda5b, type: 3}
-  - {fileID: 21300000, guid: cce6b6d86f3f2b84a87563b06c70b662, type: 3}
   darkPanel: {fileID: 0}
   displayImage: {fileID: 0}
   pagenumber: {fileID: 0}
@@ -104,6 +95,7 @@ Transform:
   - {fileID: 5704723276762000770}
   - {fileID: 4786692813616346143}
   - {fileID: 7647265232762882053}
+  - {fileID: 799421386755952987}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3277662036000008386
@@ -358,3 +350,49 @@ MonoBehaviour:
   musicOff: {fileID: 21300000, guid: 7576085404611a64ca803614bb229fc3, type: 3}
   sfxOn: {fileID: 21300000, guid: 29287e0f601453349a55be1efb84d33a, type: 3}
   sfxOff: {fileID: 21300000, guid: 63f95fc034605e64c9812ac25f6ef1ea, type: 3}
+--- !u!1 &5005301389687574914
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 799421386755952987}
+  - component: {fileID: 8162976679999103840}
+  m_Layer: 0
+  m_Name: Adjust Brightness
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &799421386755952987
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5005301389687574914}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3.2404144, y: -0.54619145, z: -183.19336}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1274501037967761648}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8162976679999103840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5005301389687574914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52e61dee9dc3cbf41bc5da856459f59b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  brightnessPanelPrefab: {fileID: 6015008090932095814, guid: 3f6d144d2ec747f4db8533eaf9296c59, type: 3}
+  brightnessSlider: {fileID: 0}

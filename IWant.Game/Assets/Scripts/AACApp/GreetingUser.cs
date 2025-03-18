@@ -5,11 +5,22 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Localization;
+using UnityEngine.SceneManagement;
 
 public class GreetingUser : MonoBehaviour
 {
     [SerializeField] private LocalizedString localGreeting;
     [SerializeField] private TextMeshProUGUI textGreeting;
+    private void Awake()
+    {
+        // Check if the user is logged in
+        if (!DBManager.LoggedIn)
+        {
+            // If not logged in, load the SignIn scene
+            SceneManager.LoadScene(SceneName.SignInScene.ToString());
+            return;
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +32,8 @@ public class GreetingUser : MonoBehaviour
     {
         if (DBManager.User == null || string.IsNullOrEmpty(DBManager.User.FullName))
         {
-            Debug.LogError("User or User's FullName is null or empty.");
+            Debug.Log("User or User's FullName is null or empty.");
+            SceneManager.LoadScene(SceneName.SignInScene.ToString());
             return;
         }
 

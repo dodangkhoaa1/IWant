@@ -13,8 +13,11 @@ public class SignIn : MonoBehaviour
     [SerializeField] private SceneName sceneToLoad = SceneName.MainMenu;
     [SerializeField] private TMP_InputField usernameField;
     [SerializeField] private TMP_InputField passwordField;
+    [SerializeField] private Button submitButton;
 
-    public Button submitButton;
+    [Header("Loading")]
+    [SerializeField] private LoadingManagement loadingManagement;
+
     private string toastString;
 
     // Allow to set the screen orientation to portrait mode
@@ -32,11 +35,14 @@ public class SignIn : MonoBehaviour
     // Allow to handle the sign-in process asynchronously
     IEnumerator SignInMethod()
     {
+        loadingManagement.EnableLoadingPanel(); 
+
         if (string.IsNullOrEmpty(usernameField.text) || string.IsNullOrEmpty(passwordField.text))
         {
             Debug.LogWarning("FullName or Password field is empty.");
             toastString = PrefsKey.LANGUAGE == PrefsKey.ENGLISH_CODE ? "Email and Password Is Required!" : "Email Và Mật khẩu Là Bắt Buộc!";
             Toast.Show(toastString, 1.5f, ToastColor.Red, ToastPosition.BottomCenter);
+            loadingManagement.DisableLoadingPanel();
             yield break;
         }
 
@@ -115,6 +121,10 @@ public class SignIn : MonoBehaviour
 
                     Toast.Show(toastString, 1.5f, ToastColor.Red, ToastPosition.BottomCenter);
                 }
+                finally
+                {
+                    loadingManagement.DisableLoadingPanel();
+                }
             },
 
             onError: error =>
@@ -124,6 +134,7 @@ public class SignIn : MonoBehaviour
                 ? "Login failed. Please check your internet connection or try again later."
                 : "Đăng nhập thất bại. Vui lòng kiểm tra kết nối mạng và thử lại.";
                 Toast.Show(toastString, 1.5f, ToastColor.Red, ToastPosition.BottomCenter);
+                loadingManagement.DisableLoadingPanel();
             }
         );
     }
@@ -145,7 +156,4 @@ public class SignIn : MonoBehaviour
         Debug.Log("Game is exiting...");
         Application.Quit();
     }
-
-
-
 }

@@ -11,6 +11,7 @@ public class SettingsManagement : MonoBehaviour
     [SerializeField] private Transform soundLanguageSetting;
     [SerializeField] private Transform soundSetting;
     [SerializeField] private Transform languageSetting;
+    [SerializeField] private Transform brightnessSetting;
 
     private string toastString;
     [HideInInspector]
@@ -91,5 +92,23 @@ public class SettingsManagement : MonoBehaviour
 
         // Load the sign-in scene
         SceneManager.LoadScene(SceneName.SignInScene.ToString());
+    }
+
+    public void OpenBrightnessSetting()
+    {
+        if (brightnessSetting == null)
+        {
+            Debug.LogWarning("Brightness setting panel is not assigned.");
+            return;
+        }
+
+        if (soundLanguageSetting.gameObject.activeSelf)
+        {
+            soundLanguageSetting.gameObject.SetActive(false);
+        }
+
+        panelStack.Push(brightnessSetting);
+
+        brightnessSetting.gameObject.SetActive(true);
     }
 }

@@ -549,6 +549,68 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _highScoreText: {fileID: 7586270813787007510}
+--- !u!1001 &428493634
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 711011531}
+    m_Modifications:
+    - target: {fileID: 5050477044967979411, guid: 7a568d9166aec15449b4da2e8e7a46ab, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.2404144
+      objectReference: {fileID: 0}
+    - target: {fileID: 5050477044967979411, guid: 7a568d9166aec15449b4da2e8e7a46ab, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.54619145
+      objectReference: {fileID: 0}
+    - target: {fileID: 5050477044967979411, guid: 7a568d9166aec15449b4da2e8e7a46ab, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -183.19336
+      objectReference: {fileID: 0}
+    - target: {fileID: 5050477044967979411, guid: 7a568d9166aec15449b4da2e8e7a46ab, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5050477044967979411, guid: 7a568d9166aec15449b4da2e8e7a46ab, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5050477044967979411, guid: 7a568d9166aec15449b4da2e8e7a46ab, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5050477044967979411, guid: 7a568d9166aec15449b4da2e8e7a46ab, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5050477044967979411, guid: 7a568d9166aec15449b4da2e8e7a46ab, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5050477044967979411, guid: 7a568d9166aec15449b4da2e8e7a46ab, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5050477044967979411, guid: 7a568d9166aec15449b4da2e8e7a46ab, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8347483904454294170, guid: 7a568d9166aec15449b4da2e8e7a46ab, type: 3}
+      propertyPath: m_Name
+      value: Adjust Brightness
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7a568d9166aec15449b4da2e8e7a46ab, type: 3}
+--- !u!4 &428493635 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5050477044967979411, guid: 7a568d9166aec15449b4da2e8e7a46ab, type: 3}
+  m_PrefabInstance: {fileID: 428493634}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &471680276
 GameObject:
   m_ObjectHideFlags: 0
@@ -1047,6 +1109,7 @@ Transform:
   - {fileID: 1742002229}
   - {fileID: 401705067}
   - {fileID: 4770086692907138607}
+  - {fileID: 428493635}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &790667445
@@ -3713,7 +3776,7 @@ GameObject:
   - component: {fileID: 4577334635479854596}
   m_Layer: 5
   m_Name: Main Canvas
-  m_TagString: Untagged
+  m_TagString: Canvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

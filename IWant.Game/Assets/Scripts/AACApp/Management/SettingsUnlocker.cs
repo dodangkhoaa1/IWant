@@ -20,7 +20,7 @@ public class SettingsUnlocker : MonoBehaviour
     private Button[] numberButtons;   // 4 nút số
     private SettingsManagement settingsManagement; // Settings Panel
 
-    void Start()
+    void Awake()
     {
         GameObject canvas = GameObject.FindGameObjectWithTag("Canvas");
         if (canvas != null)

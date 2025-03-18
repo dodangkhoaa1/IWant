@@ -213,6 +213,7 @@
     <Compile Include="Assets\Scripts\DeadlineDisplay.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathBezier.cs" />
     <Compile Include="Assets\LeanTween\Testing\Testing240.cs" />
+    <Compile Include="Assets\Scripts\AACApp\Management\BrightnessManagement.cs" />
     <Compile Include="Assets\Tabsil\Scripts\Utilities\MenuItems.cs" />
     <Compile Include="Assets\LeanTween\Testing\Scripts\LeanPool.cs" />
     <Compile Include="Assets\Toast UI\Scripts\ToastUI.cs" />

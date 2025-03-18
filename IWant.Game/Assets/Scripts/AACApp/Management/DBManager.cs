@@ -37,7 +37,7 @@ public static class DBManager
         get => PlayerPrefs.GetString(USER_DATA_STRING, null);
     }
 
-    public static bool LoggedIn { get => lastname != null; }
+    public static bool LoggedIn { get => USER_DATA != null; }
 
     public static void LogOut()
     {
