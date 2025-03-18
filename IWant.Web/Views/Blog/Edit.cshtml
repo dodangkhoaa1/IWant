@@ -49,9 +49,9 @@
                         </div>
                         <div class="mt-3 d-grid text-center">
                             <button type="button" class="btn btn-success" id="chooseFileButton">Choose Image</button>
-                            <input asp-for="Image" id="fileInput" type="file" style="display: none;" required/>
+                            <input asp-for="Image" id="fileInput" type="file" style="display: none;" required />
                             <input asp-for="ImageUrl" id="imageUrlInput" hidden />
-                            <input asp-for="ImageLocalPath" hidden />   
+                            <input asp-for="ImageLocalPath" hidden />
                             <span asp-validation-for="Image" class="text-danger"></span>
                         </div>
                         <div class="cited-img">
@@ -171,11 +171,11 @@
                 }
 
                 // Kiểm tra hình ảnh có được chọn không
-                if ($('#fileInput').get(0).files.length === 0) {
-                    e.preventDefault();
-                    $("#fileInput").closest('.mt-3').find('.text-danger').text("Image is required!").show();
-                    isValid = false;
-                }
+                // if ($('#fileInput').get(0).files.length === 0) {
+                //     e.preventDefault();
+                //     $("#fileInput").closest('.mt-3').find('.text-danger').text("Image is required!").show();
+                //     isValid = false;
+                // }
 
                 return isValid; // Chỉ submit nếu hợp lệ
             });

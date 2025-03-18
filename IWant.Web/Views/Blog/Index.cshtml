@@ -18,7 +18,7 @@
     <style>
         .body {
             padding-top: 70px !important;
-            height: 70vh;
+            min-height: 70vh;
             padding-bottom: 30px;
             background-color: #FEDA15;
         }
@@ -45,7 +45,7 @@
         align-items: center;
         gap: 10px;
         justify-content: flex-end;
-        margin-bottom: 20px;
+        margin-bottom:10px;
     }
 
     .btn-filter, .btn-create {
@@ -68,7 +68,7 @@
 
     .table-container {
         width: 100%;
-        height: 1400px;
+        height: 590px;
         overflow: hidden;
     }
 
@@ -175,7 +175,6 @@
 
     .game-header {
         text-align: center;
-        margin: 30px 0;
     }
 
         .game-header h1 {
@@ -187,7 +186,7 @@
             font-size: 1rem;
             color: #364d59;
             position: relative;
-            padding-bottom: 15px;
+            margin:0;
         }
 
             .game-header p::after {
@@ -199,6 +198,42 @@
                 background-color: #364d59;
                 margin: 10px auto;
             }
+
+
+
+
+
+    #pagination {
+        margin-top: 10px;
+        text-align: center;
+    }
+
+        #pagination button {
+            padding: 5px 10px;
+            margin: 2px;
+            border: 1px solid #ccc;
+            background-color: white;
+            cursor: pointer;
+        }
+
+            #pagination button.active {
+                background-color: #FEDA15;
+                color: white;
+            }
+
+    /* .btn-filter {
+        margin: 5px;
+        padding: 8px 12px;
+        border: none;
+        background-color: #17a2b8;
+        color: white;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+        .btn-filter:hover {
+            background-color: #138496;
+        } */
 </style>
 
 <div class="@(User.IsInRole("Member") == true ? "container-blog" : "")">
@@ -207,22 +242,21 @@
         <p></p>
     </div>
     <div class="transactions-header-right">
-        <!-- Lưu ý: Chuyển cột sắp xếp sang index 1 (cột Title) -->
         <button class="btn-filter" onclick="sortTable(1)">Sort by Title</button>
-        <a asp-action="Create" class="btn-create">+ Create</a>
+        <a asp-action="Create" class="btn-create">@(User.IsInRole("Admin") ? "+ Create" : "+ Submit")</a>
     </div>
     <div class="table-container">
         <table class="table-fixed">
             <thead>
                 <tr>
-                    <th>Author</th>
-                    <th class="sortable" onclick="sortTable(1)">Title</th>
-                    <th>Content</th>
-                    <th>Views</th>
-                    <th>Date</th>
-                    <th>Status</th>
-                    <th>Image</th>
-                    <th style="width: 200px" class="text-center">Action</th>
+                    <th style="width:12%">Author</th>
+                    <th style="width:18%" class="sortable" onclick="sortTable(1)">Title</th>
+                    <th style="width:20%">Content</th>
+                    <th style="width:5%">Views</th>
+                    <th style="width:12%">Date</th>
+                    <th style="width:6%">Status</th>
+                    <th style="width:8%">Image</th>
+                    <th style="width:19%" class="text-center">Action</th>
                 </tr>
             </thead>
             <tbody id="blogTableBody">
@@ -234,7 +268,7 @@
                 }
                 @foreach (var blog in Model.OrderByDescending(b => b.CreatedAt))
                 {
-                    <tr>
+                    <tr style="height:105px">
                         <td>@blog.User.FullName</td>
                         <td>@blog.Title</td>
                         <td class="content-cell">@Html.Raw(blog.Content)</td>
@@ -249,33 +283,33 @@
                             <img src="@blog.ImageUrl" alt="@blog.Title" class="img-thumbnail" style="max-width: 80px;" />
                         </td>
                         <td class="text-center">
-                            <a asp-action="Details" asp-route-id="@blog.Id" class="btn btn-success btn-sm">Details</a>
                             @if (User.IsInRole("Member") && blog.Status != true && blog.Status != false)
                             {
-                                <a asp-action="Edit" asp-route-id="@blog.Id" class="btn btn-warning btn-sm">Edit</a>
+                                <a style="width:72px" asp-action="Edit" asp-route-id="@blog.Id" class="btn btn-warning btn-sm">Edit</a>
                             }
                             @if (User.IsInRole("Admin"))
                             {
+                                <a style="width:72px" asp-action="Details" asp-route-id="@blog.Id" class="btn btn-success btn-sm">Details</a>
                                 @if (blog.Status == true)
                                 {
                                     <form asp-action="DeleteConfirmed" asp-route-id="@blog.Id" method="post" class="d-inline">
-                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure to hide this blog?');">Hide</button>
+                                        <button style="width:72px" type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure to hide this blog?');">Hide</button>
                                     </form>
-                                    <a asp-action="BlogDetail" asp-route-id="@blog.Id" class="btn btn-primary btn-sm">View Blog</a>
+                                    <a style="width:72px" asp-action="BlogDetail" asp-route-id="@blog.Id" class="btn btn-primary btn-sm">View Blog</a>
                                 }
                                 else if (blog.Status == false)
                                 {
                                     <form asp-action="DeleteConfirmed" asp-route-id="@blog.Id" method="post" class="d-inline">
-                                        <button type="submit" class="btn btn-success btn-sm" onclick="return confirm('Are you sure to show this blog?');">Show</button>
+                                        <button style="width:72px" type="submit" class="btn btn-success btn-sm" onclick="return confirm('Are you sure to show this blog?');">Show</button>
                                     </form>
                                 }
                                 else
                                 {
                                     <form asp-action="AcceptBlog" asp-route-id="@blog.Id" method="post" class="d-inline">
-                                        <button type="submit" class="btn btn-success btn-sm" onclick="return confirm('Are you sure to accept this blog?');">Accept</button>
+                                        <button style="background-color: #6f42c1; color:white; width:72px" type="submit" class="btn btn-sm" onclick="return confirm('Are you sure to accept this blog?');">Accept</button>
                                     </form>
                                     <form asp-action="RejectBlog" asp-route-id="@blog.Id" method="post" class="d-inline">
-                                        <button type="button" class="btn btn-danger btn-sm" onclick="openRejectModal(@blog.Id)">Reject</button>
+                                        <button style="width:72px" type="button" class="btn btn-danger btn-sm" onclick="openRejectModal(@blog.Id)">Reject</button>
                                     </form>
                                 }
                             }
@@ -338,102 +372,44 @@
 </div>
 
 <script>
-    var currentPage = 1;
-    var sortToggle = false;
-    var originalRows = [];
-    document.addEventListener("DOMContentLoaded", function () {
-        var blogTableBody = document.getElementById("blogTableBody");
-        originalRows = Array.from(blogTableBody.rows);
-        paginateTable();
-    });
-    function sortTable(columnIndex) {
-        var table = document.getElementById("blogTableBody");
-        if (!sortToggle) {
-            var rows = Array.from(table.rows);
-            rows.sort(function (a, b) {
-                var textA = a.getElementsByTagName("TD")[columnIndex].innerText.toLowerCase();
-                var textB = b.getElementsByTagName("TD")[columnIndex].innerText.toLowerCase();
-                return textA.localeCompare(textB);
-            });
-            table.innerHTML = "";
-            rows.forEach(function (row) {
-                table.appendChild(row);
-            });
-            sortToggle = true;
-        } else {
-            table.innerHTML = "";
-            originalRows.forEach(function (row) {
-                table.appendChild(row);
-            });
-            sortToggle = false;
-        }
-        paginateTable();
-    }
-    function paginateTable() {
-        var table = document.getElementById("blogTableBody");
-        var allRows = Array.from(table.rows);
-        var visibleRows = allRows.filter(function (row) {
-            return row.style.display !== "none";
-        });
-        var itemsPerPage = 10;
-        var totalPages = Math.ceil(visibleRows.length / itemsPerPage);
-        if (currentPage > totalPages) {
-            currentPage = totalPages;
-        }
-        var pagination = document.getElementById("pagination");
-        function renderPagination() {
-            pagination.innerHTML = "";
-            var prevLink = document.createElement("a");
-            prevLink.href = "#";
-            prevLink.innerText = "Prev";
-            prevLink.onclick = function (e) {
-                e.preventDefault();
-                if (currentPage > 1) {
-                    currentPage--;
-                    showPage(currentPage);
-                    renderPagination();
-                }
-            };
-            pagination.appendChild(prevLink);
-            for (var i = 1; i <= totalPages; i++) {
-                var link = document.createElement("a");
-                link.href = "#";
-                link.innerText = i;
-                link.style.fontWeight = (i === currentPage ? "bold" : "normal");
-                link.onclick = (function (page) {
-                    return function (e) {
-                        e.preventDefault();
-                        currentPage = page;
-                        showPage(page);
-                        renderPagination();
-                    };
-                })(i);
-                pagination.appendChild(link);
-            }
-            var nextLink = document.createElement("a");
-            nextLink.href = "#";
-            nextLink.innerText = "Next";
-            nextLink.onclick = function (e) {
-                e.preventDefault();
-                if (currentPage < totalPages) {
-                    currentPage++;
-                    showPage(currentPage);
-                    renderPagination();
-                }
-            };
-            pagination.appendChild(nextLink);
-        }
+        document.addEventListener("DOMContentLoaded", function () {
+        const rowsPerPage = 5; 
+        const tableBody = document.getElementById("blogTableBody");
+        const paginationContainer = document.getElementById("pagination");
+        const rows = Array.from(tableBody.getElementsByTagName("tr")); 
+
+        let currentPage = 1;
+        let totalPages = Math.ceil(rows.length / rowsPerPage);
+
         function showPage(page) {
-            var start = (page - 1) * itemsPerPage;
-            var end = start + itemsPerPage;
-            visibleRows.forEach(function (row, index) {
-                row.style.display = (index >= start && index < end) ? "" : "none";
+            let start = (page - 1) * rowsPerPage;
+            let end = start + rowsPerPage;
+
+            rows.forEach((row, index) => {
+                row.style.display = index >= start && index < end ? "" : "none";
             });
+
+            updatePagination();
         }
-        renderPagination();
-        showPage(currentPage);
+
+        function updatePagination() {
+            paginationContainer.innerHTML = "";
+
+            for (let i = 1; i <= totalPages; i++) {
+                let btn = document.createElement("button");
+                btn.innerText = i;
+                btn.className = "page-btn " + (i === currentPage ? "active" : "");
+                btn.addEventListener("click", function () {
+                    currentPage = i;
+                    showPage(currentPage);
+                });
+                paginationContainer.appendChild(btn);
+            }
+        }
         truncateContentTo20Words();
-    }
+        showPage(currentPage);
+    });
+
     function truncateContentTo20Words() {
         var contentCells = document.querySelectorAll('.content-cell');
         contentCells.forEach(function (cell) {
@@ -444,10 +420,12 @@
             }
         });
     }
+
     function openFilterModal() {
         var modal = new bootstrap.Modal(document.getElementById("filterModal"));
         modal.show();
     }
+
     function applyFilter() {
         var filterTitle = document.getElementById("filterTitle").value.toLowerCase();
         var filterDate = document.getElementById("filterDate").value;
@@ -484,6 +462,7 @@
         var modalInstance = bootstrap.Modal.getInstance(modalEl);
         modalInstance.hide();
     }
+
     function clearFilter() {
         document.getElementById("filterTitle").value = "";
         document.getElementById("filterDate").value = "";
@@ -498,15 +477,18 @@
         var modalInstance = bootstrap.Modal.getInstance(modalEl);
         modalInstance.hide();
     }
+
     document.addEventListener("DOMContentLoaded", function () {
         paginateTable();
     });
+
     function openRejectModal(blogId) {
         document.getElementById("rejectBlogId").value = blogId;
         document.getElementById("rejectReason").value = "";
         var modal = new bootstrap.Modal(document.getElementById("rejectModal"));
         modal.show();
     }
+
     function submitRejectForm() {
         var blogId = document.getElementById("rejectBlogId").value;
         var reason = document.getElementById("rejectReason").value.trim();

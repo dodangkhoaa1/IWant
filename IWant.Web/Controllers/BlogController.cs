@@ -105,6 +105,15 @@ namespace IWant.Web.Controllers
 
             if (model.Image != null && model.Image.Length > 0)
             {
+                if (!string.IsNullOrEmpty(model.ImageLocalPath))
+                {
+                    var oldFilePath = Path.Combine(Directory.GetCurrentDirectory(), model.ImageLocalPath);
+                    if (System.IO.File.Exists(oldFilePath))
+                    {
+                        System.IO.File.Delete(oldFilePath);
+                    }
+                }
+
                 string tempFileName = Guid.NewGuid() + Path.GetExtension(model.Image.FileName);
                 string tempFilePath = Path.Combine(defaultFolder, tempFileName);
 
@@ -147,7 +156,7 @@ namespace IWant.Web.Controllers
                 await _context.SaveChangesAsync();
             }
 
-            TempData["success"] = "Create Blog successfull!";
+            TempData["success"] = "Create Blog successfully.";
 
             return RedirectToAction("Index");
         }
@@ -183,6 +192,7 @@ namespace IWant.Web.Controllers
             blog.Content = model.Content;
             blog.Status = model.Status;
             blog.UpdatedAt = DateTime.Now;
+            blog.CitedImage = model.CitedImage;
 
             if (model.Image != null)
             {
@@ -210,7 +220,7 @@ namespace IWant.Web.Controllers
             _context.Blogs.Update(blog);
             await _context.SaveChangesAsync();
 
-            TempData["success"] = "Update Blog Successfull!";
+            TempData["success"] = "Update Blog successfully.";
 
             return RedirectToAction("Index");
             /*}
@@ -240,7 +250,7 @@ namespace IWant.Web.Controllers
             _context.Blogs.Update(blog);
             await _context.SaveChangesAsync();
 
-            TempData["success"] = blog.Status == true ? "Show Blog successfull!" : "Hide Blog Successfull!";
+            TempData["success"] = blog.Status == true ? "Show Blog successfully." : "Hide Blog successfully.";
 
             return RedirectToAction(nameof(Index));
         }
@@ -271,7 +281,7 @@ namespace IWant.Web.Controllers
 
             await emailSender.SendEmailAsync("nhathmce170171@fpt.edu.vn", blog.User.Email, subject, message);
 
-            TempData["success"] = "Accept Blog Successful!";
+            TempData["success"] = "Accept Blog successfully.";
 
             return RedirectToAction(nameof(Index));
         }
@@ -314,7 +324,7 @@ namespace IWant.Web.Controllers
 
             await emailSender.SendEmailAsync("nhathmce170171@fpt.edu.vn", blog.User.Email, subject, message);
 
-            TempData["success"] = "Reject Blog Successful!";
+            TempData["success"] = "Reject Blog successfully.";
 
             return RedirectToAction(nameof(Index));
         }
@@ -400,8 +410,6 @@ namespace IWant.Web.Controllers
                     AverageRating = (int)Math.Round(averageRating, MidpointRounding.AwayFromZero),
                     CountRate = countRates.Count()
                 };
-
-                 /*ViewBag.RelatedBlogs = relatedBlogViewModels;*/
 
                 return View(model);
             }

@@ -6,7 +6,7 @@
 @inject SignInManager<User> signInManager
 
 @{
-    ViewData["Title"] = "Signin";
+    ViewData["Title"] = "Sign In";
     Layout = "~/Views/Shared/_Layout.cshtml";
     var providers = await signInManager.GetExternalAuthenticationSchemesAsync();
 }

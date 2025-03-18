@@ -140,6 +140,30 @@ public partial class ApplicationDbContext : IdentityDbContext<User>
                 TwoFactorEnabled = false,
                 LockoutEnabled = true,
                 AccessFailedCount = 0
+            },
+            //User Test
+            new User 
+            {
+                Id = "6b7f56a9-4fd5-47b7-8454-0aa5a7ab5019",
+                FullName = "Nguyễn Tester",
+                ImageUrl = "http://localhost:5130/images/avatar/default-avatar.png",
+                ImageLocalPath = "default-avatar.png",
+                PhoneNumber = "0784419071",
+                Gender = true,
+                Birthday = DateOnly.Parse("2003-07-16"),
+                Status = true,
+                UserName = "test@gmail.com",
+                NormalizedUserName = "TEST@GMAIL.COM",
+                Email = "test@gmail.com",
+                NormalizedEmail = "TEST@GMAIL.COM",
+                EmailConfirmed = true,
+                PasswordHash = "AQAAAAIAAYagAAAAEGr/htC0131/1iKNmo0AiuzyeRytHJQHIlsbvYWIBvnsI+YxSX4LkDwooyxR+8P55g==",
+                SecurityStamp = Guid.NewGuid().ToString(),
+                ConcurrencyStamp = Guid.NewGuid().ToString(),
+                PhoneNumberConfirmed = false,
+                TwoFactorEnabled = false,
+                LockoutEnabled = true,
+                AccessFailedCount = 0
             }
             );
 
@@ -157,6 +181,11 @@ public partial class ApplicationDbContext : IdentityDbContext<User>
             new IdentityUserRole<string>
             {
                 UserId = "6b7f56a9-4fd5-47b7-8454-0aa5a7ab5012",
+                RoleId = "fbd6a6c8-27eb-4171-bb75-50e97adffebb"
+            },
+            new IdentityUserRole<string>
+            {
+                UserId = "6b7f56a9-4fd5-47b7-8454-0aa5a7ab5019",
                 RoleId = "fbd6a6c8-27eb-4171-bb75-50e97adffebb"
             }
         );

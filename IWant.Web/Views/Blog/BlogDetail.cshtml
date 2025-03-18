@@ -3,7 +3,7 @@
 
 
 @{
-    ViewData["Title"] = "Blog Detail";
+    ViewData["Title"] = "Blog Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -68,7 +68,7 @@
         }
 
         .star {
-            font-size: 36px;
+            font-size: 25px;
             cursor: pointer;
             color: #ccc;
             transition: color 0.3s;
@@ -178,20 +178,31 @@
 
         .comment-form {
             margin-top: 20px;
-            padding: 20px;
             border: 1px solid #ddd;
-            border-radius: 8px;
+            border-radius: 10px;
             background: #ffffff;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0px 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .comment-view {
+            max-height: 500px;
+            overflow: auto;
+        }
+
+        .comment-create {
+            border-top: 1px dashed #ddd;
+        }
+
+        .create-comment {
+            margin: 20px !important;
         }
 
         .fixed-textarea {
-            border-radius: 6px;
+            border-radius: 6px 0 0 6px;
             border: 1px solid #ccc;
             padding: 10px;
             font-size: 14px;
             width: 100%;
-            height: 80px;
             resize: none;
         }
 
@@ -255,9 +266,9 @@
             transition: transform 0.3s ease-in-out;
         }
 
-           /*  .card:hover {
-                transform: translateY(-5px);
-            } */
+            /*  .card:hover {
+                                        transform: translateY(-5px);
+                                    } */
 
             .card img {
                 width: 100%;
@@ -302,6 +313,27 @@
                 background-color: black;
             }
 
+
+        /* .feedback-form {
+                            margin-top: 20px;
+                            padding: 20px;
+                            border-top: 1px solid black;
+                            background: #ffffff;
+                            height:130px
+                        }
+
+                        .feedback-create {
+                            bottom:0;
+                            left:0;
+                            right:0;
+                        }
+
+                        .feedback-content{
+                            padding:20px;
+                            max-height:1000px;
+                            overflow: auto;
+                        } */
+
     </style>
 </head>
 
@@ -342,101 +374,137 @@
             <p class="cited">Source: @Model.CitedImage</p>
         </div>
 
-        @if (User.Identity.IsAuthenticated)
-        {
-            <form asp-action="RatingBlog" asp-controller="Comment" method="post">
-                <input type="hidden" name="BlogId" value="@Model.Id" />
 
-                <div class="d-flex justify-content-end align-items-center">
-                    <label class="form-label fw-bold me-2 mb-0" style="padding-bottom: 0.8rem; font-size:1.4rem !important">Rating for Blog</label>
-                    <div class="rating">
-                        <span class="star" data-value="1">&#9733;</span>
-                        <span class="star" data-value="2">&#9733;</span>
-                        <span class="star" data-value="3">&#9733;</span>
-                        <span class="star" data-value="4">&#9733;</span>
-                        <span class="star" data-value="5">&#9733;</span>
-                        <input type="hidden" id="ratingValue" name="Rating" value="@Model.UserRating">
-                    </div>
+        <h6 id="Comments" class="mt-4 fw-bold blog-title">Feedback</h6>
+
+        @if (Model.Comments.Count == 0)
+        {
+            <div class="comment-form feedback-content">
+                <div class="comment-view">
+                    <p style="color: gray; font-style: italic; text-align:center; align-content:center">No Feedback in this blog!</p>
                 </div>
-            </form>
+            </div>
+            <div class="comment-create">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <form asp-action="RatingBlog" asp-controller="Comment" method="post">
+                        <input type="hidden" name="BlogId" value="@Model.Id" />
+
+                        <div class="d-flex justify-content-end align-items-center">
+                            <label class="form-label fw-bold me-2 mb-0" style="padding-bottom: 0.8rem; font-size:1rem !important">Rating for Blog</label>
+                            <div class="rating">
+                                <span class="star" data-value="1">&#9733;</span>
+                                <span class="star" data-value="2">&#9733;</span>
+                                <span class="star" data-value="3">&#9733;</span>
+                                <span class="star" data-value="4">&#9733;</span>
+                                <span class="star" data-value="5">&#9733;</span>
+                                <input type="hidden" id="ratingValue" name="Rating" value="@Model.UserRating">
+                            </div>
+                        </div>
+                    </form>
+                    <form asp-action="CreateComment" asp-controller="Comment" method="post" class="create-comment d-flex">
+                        <input type="hidden" name="BlogId" value="@Model.Id" />
+                        <div style="width:95%" class="mb-3">
+                            <label class="form-label fw-bold">Feedback</label>
+                            <input name="Content" class="form-control fixed-textarea" rows="3" required></input>
+                        </div>
+
+                        <div style="margin-top:31px;" class="text-end">
+                            <button style="border-radius:0 8px 8px 0" type="submit" class="btn btn-primary">Send</button>
+                        </div>
+                    </form>
+                }
+                else
+                {
+                    <p style="color: red; font-weight: bold;">Sign in to feedback</p>
+                }
+            </div>
         }
         else
         {
-
-        }
-
-
-        <h6 class="mt-4 fw-bold blog-title">Feedback</h6>
-        @{
-            if (Model.Comments.Count == 0)
-            {
-                <p style="color: gray; font-style: italic;">No Feedback in this blog!</p>
-            }
-            else
-            {
-                foreach (var comment in Model.Comments)
-                {
-                    @if (User.IsInRole("Admin"))
+            <div class="comment-form feedback-content">
+                <div class="comment-view">
+                    @foreach (var comment in Model.Comments)
                     {
-                        <div style="display: flex; align-items: center; padding: 10px; border-bottom: 1px solid #ddd; margin-bottom:20px">
-                            <img src="@comment.User.ImageUrl" alt="Avatar"
-                                 style="width: 40px; height: 40px; border-radius: 50%; margin-right: 10px; object-fit: cover;">
-                            <div style="flex-grow: 1;">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <strong style="color: #007bff;">@comment.User.FullName</strong>
-                                    @if (!comment.Status)
-                                    {
-                                        <p class="fw-bold mb-0 text-danger">Banned</p>
-                                    }
-                                </div>
-
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <p class="mb-0 text-dark">@comment.Content</p>
-                                    @if (comment.Status)
-                                    {
-                                        <a asp-action="BanComment" asp-controller="Comment" asp-route-id="@comment.Id"
-                                           class="btn btn-danger btn-sm" style="font-size: 1.2rem;">Ban</a>
-                                    }
-                                </div>
-                            </div>
-                        </div>
-
-                    }
-                    else
-                    {
-                        @if (comment.Status == true)
+                        @if (User.IsInRole("Admin"))
                         {
-                            <div style="display: flex; align-items: center; padding: 10px; border-bottom: 1px solid #ddd; margin-bottom:20px">
-                                <img src="@comment.User.ImageUrl" alt="Avatar"
-                                     style="width: 40px; height: 40px; border-radius: 50%; margin-right: 10px;object-fit:cover">
-                                <div>
-                                    <strong style="color: #007bff;">@comment.User.FullName</strong>
-                                    <p style="margin: 5px 0; color: #333;">@comment.Content</p>
+                            <div>
+                                <div style="display: flex; align-items: center; padding: 10px 30px; border-bottom: 1px solid #ddd">
+                                    <img src="@comment.User.ImageUrl" alt="Avatar"
+                                         style="width: 40px; height: 40px; border-radius: 50%; margin-right: 10px; object-fit: cover;">
+                                    <div style="flex-grow: 1;">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <strong style="color: #007bff;">@comment.User.FullName <span style="color:gray">@comment.CreatedAt?.ToString("dd/MM/yyyy HH:mm")</span></strong>
+                                            @if (!comment.Status)
+                                            {
+                                                <p class="fw-bold mb-0 text-danger">Banned</p>
+                                            }
+                                        </div>
+
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <p style="font-size:18px" class="mb-0 text-dark">@comment.Content</p>
+                                            @if (comment.Status)
+                                            {
+                                                <a asp-action="BanComment" asp-controller="Comment" asp-route-id="@comment.Id"
+                                                   class="btn btn-danger btn-sm" style="font-size: 1.2rem;">Ban</a>
+                                            }
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         }
+                        else
+                        {
+                            @if (comment.Status == true)
+                            {
+                                <div style="display: flex; align-items: center; padding: 10px; border-bottom: 1px solid #ddd; margin-bottom:20px">
+                                    <img src="@comment.User.ImageUrl" alt="Avatar"
+                                         style="width: 40px; height: 40px; border-radius: 50%; margin-right: 10px;object-fit:cover">
+                                    <div>
+                                        <strong style="color: #007bff;">@comment.User.FullName</strong>
+                                        <p style="margin: 5px 0; color: #333;">@comment.Content</p>
+                                    </div>
+                                </div>
+                            }
+                        }
                     }
-                }
-            }
-        }
-
-        @if (User.Identity.IsAuthenticated)
-        {
-            <form asp-action="CreateComment" asp-controller="Comment" method="post" class="comment-form">
-                <input type="hidden" name="BlogId" value="@Model.Id" />
-                <div class="mb-3">
-                    <label class="form-label fw-bold">Feedback</label>
-                    <textarea name="Content" class="form-control fixed-textarea" rows="3" required></textarea>
                 </div>
 
-                <div class="text-end">
-                    <button type="submit" class="btn btn-primary">Feedback</button>
+                <div class="comment-create position-relative">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <form style="right:20px; top:5px" class="position-absolute" asp-action="RatingBlog" asp-controller="Comment" method="post">
+                            <input type="hidden" name="BlogId" value="@Model.Id" />
+                            <div class="d-flex justify-content-end align-items-center">
+                                @* <label class="form-label fw-bold me-2 mb-0" style="padding-bottom: 0.8rem; font-size:1.4rem !important">Rating for Blog</label> *@
+                                <div class="rating">
+                                    <span class="star" data-value="1">&#9733;</span>
+                                    <span class="star" data-value="2">&#9733;</span>
+                                    <span class="star" data-value="3">&#9733;</span>
+                                    <span class="star" data-value="4">&#9733;</span>
+                                    <span class="star" data-value="5">&#9733;</span>
+                                    <input type="hidden" id="ratingValue" name="Rating" value="@Model.UserRating">
+                                </div>
+                            </div>
+                        </form>
+                        <form style="margin:0 20px" asp-action="CreateComment" asp-controller="Comment" method="post" class="create-comment d-flex">
+                            <input type="hidden" name="BlogId" value="@Model.Id" />
+                            <div style="width:95%" class="mb-3">
+                                <label class="form-label fw-bold">Feedback</label>
+                                <input name="Content" class="form-control fixed-textarea" rows="3" required></input>
+                            </div>
+
+                            <div style="margin-top:31px;" class="text-end">
+                                <button style="border-radius:0 8px 8px 0" type="submit" class="btn btn-primary">Send</button>
+                            </div>
+                        </form>
+                    }
+                    else
+                    {
+                        <p style="color: red; font-weight: bold;">Sign in to feedback</p>
+                    }
                 </div>
-            </form>
-        }
-        else
-        {
-            <p style="color: red; font-weight: bold;">Sign in to feedback</p>
+            </div>
         }
 
         <h6 class="mt-lg-4 fw-bold blog-title">Related Posts</h6>
@@ -608,7 +676,38 @@
             ratingText.textContent = `${averageRating} / 5`; // Cập nhật lại số sao
         });
 
-                                                                });
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            if (window.location.hash === "#Comments") {
+                setTimeout(() => {
+                    const element = document.getElementById("Comments");
+                    if (element) {
+                        const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+                        const offset = window.innerHeight / 2;
+                        const extraOffset = 50;
+                        window.scrollTo({ top: elementPosition - offset - extraOffset, behavior: "smooth" });
+                    }
+                }, 100);
+            }
+        });
+        document.querySelectorAll("a[href='#Comments']").forEach(link => {
+            link.addEventListener("click", function (event) {
+                event.preventDefault();
+                history.pushState(null, null, "#Comments");
+                setTimeout(() => {
+                    const element = document.getElementById("Comments");
+                    if (element) {
+                        const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+                        const offset = window.innerHeight / 2;
+                        const extraOffset = 50;
+
+                        window.scrollTo({ top: elementPosition - offset - extraOffset, behavior: "smooth" });
+                    }
+                }, 100);
+            });
+        });
     </script>
 
 </body>

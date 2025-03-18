@@ -1,6 +1,6 @@
 ﻿@model StatisticViewModel
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Statistic";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 
     var blogCount = Model.TotalBlog;
@@ -24,6 +24,16 @@
     var commentLineChart = Model.CommentLineChart;
     var rateLineChart = Model.RateLineChart;
     var totalLineChart = Model.TotalLineChart;
+    //Leaderboard
+    var FruitDropList = Model.FruitDropLists;
+    var DotConnectionList = Model.DotConnectionLists;
+    var EmotionSelectionList = Model.EmotionSelectionLists;
+
+    var CountUserFruitDrop = FruitDropList.Count();
+    var CountUserDotConnection = DotConnectionList.Count();
+    var CountUserEmotionSelection = EmotionSelectionList.Count();
+
+    var TotalUserPlayGame = CountUserFruitDrop + CountUserDotConnection + CountUserEmotionSelection;
 }
 
 <head>
@@ -229,7 +239,7 @@
             font-size: 0.8rem;
         }
 
-        .blog, .score {
+        .blog, .fruitdrop-score, .dotconnection-score, .emotionselection-score {
             width: 100%;
             padding: 20px;
             background: #fff;
@@ -238,7 +248,7 @@
             height: 370px;
         }
 
-            .blog nav, .score nav, game nav {
+            .blog nav, .fruitdrop-score nav, .dotconnection-score nav, .emotionselection-score nav, game nav {
                 bottom: 0;
                 right: 20px;
             }
@@ -364,7 +374,7 @@
 
         <!-- Bảng Blog được yêu thích nhất và phân trang JS -->
         <div class="row mt-4 container custom">
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <div class="blog position-relative">
                     <h5>The most watched</h5>
                     <table class="table align-middle mt-3" data-table="watched">
@@ -394,29 +404,93 @@
                     </nav>
                 </div>
             </div>
-
-            <!-- The most score -->
-            <div class="col-md-6 ">
-                <div class="score position-relative">
-                    <h5>The most score</h5>
-                    <table class="table align-middle mt-3" data-table="score">
+        </div>
+        <!-- The most score for game-->
+        <div class="row mt-4 container custom">
+            <h2 style="text-align:center" class="mb-3">Leader Board</h2>
+            <div class="col-md-4">
+                <div class="fruitdrop-score position-relative">
+                    <h5>Fruit Drop Score</h5>
+                    <table class="table align-middle mt-3" data-table="fruitdrop-score">
                         <thead>
                             <tr>
-                                <th>Name</th>
+                                <th style="width:80%">Full Name</th>
                                 <th>Score</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr style="height:65px"><td>AAAAA</td><td>2000</td></tr>
-                            <tr style="height:65px"><td>BBB</td><td>1800</td></tr>
-                            <tr style="height:65px"><td>CCCC</td><td>1500</td></tr>
-                            <tr style="height:65px"><td>DDDD</td><td>1200</td></tr>
-                            <tr style="height:65px"><td>EEEE</td><td>1100</td></tr>
-                            <tr style="height:65px"><td>FFFF</td><td>1000</td></tr>
+                            @if (FruitDropList.Count() != null)
+                            {
+                                foreach (var user in FruitDropList)
+                                {
+                                    <tr style="height:65px">
+                                        <td>@user.User.FullName</td>
+                                        <td>@user.Score</td>
+                                    </tr>
+                                }
+                            }
                         </tbody>
                     </table>
                     <nav class="position-absolute">
-                        <ul class="pagination" data-pagination="score"></ul>
+                        <ul class="pagination" data-pagination="fruitdrop-score"></ul>
+                    </nav>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="dotconnection-score position-relative">
+                    <h5>Dot Connection Score</h5>
+                    <table class="table align-middle mt-3" data-table="dotconnection-score">
+                        <thead>
+                            <tr>
+                                <th>Full Name</th>
+                                <th>Score</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (DotConnectionList.Count() != null)
+                            {
+                                foreach (var user in DotConnectionList)
+                                {
+                                    <tr style="height:65px">
+                                        <td>@user.User.FullName</td>
+                                        <td>@user.Score</td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                    <nav class="position-absolute">
+                        <ul class="pagination" data-pagination="dotconnection-score"></ul>
+                    </nav>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="emotionselection-score position-relative">
+                    <h5>Emotion Selection Score</h5>
+                    <table class="table align-middle mt-3" data-table="emotionselection-score">
+                        <thead>
+                            <tr>
+                                <th>Full Name</th>
+                                <th>Score</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (EmotionSelectionList.Count() != null)
+                            {
+                                foreach (var user in EmotionSelectionList)
+                                {
+                                    <tr style="height:65px">
+                                        <td>@user.User.FullName</td>
+                                        <td>@user.Score</td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                    <nav class="position-absolute">
+                        <ul class="pagination" data-pagination="emotionselection-score"></ul>
                     </nav>
                 </div>
             </div>
@@ -509,6 +583,10 @@
             const commentLineChartData = @Html.Raw(Json.Serialize(commentLineChart));
             const rateLineChartData = @Html.Raw(Json.Serialize(rateLineChart));
             const totalLineChartData = @Html.Raw(Json.Serialize(totalLineChart));
+            //Pie Chart
+            const FruitDropData = @Html.Raw(Json.Serialize(CountUserFruitDrop));
+            const DotConnectionData = @Html.Raw(Json.Serialize(CountUserDotConnection));
+            const EmotionSelectionData = @Html.Raw(Json.Serialize(CountUserEmotionSelection));
 
             new Chart(ctx1, {
                 type: 'bar',
@@ -534,9 +612,9 @@
             var trafficChart = new Chart(ctxTraffic, {
                 type: 'pie',
                 data: {
-                    labels: ["Direct", "Referral", "Social Media"],
+                    labels: ["Fruit Drop", "Dot Connection", "Emotion Selection"],
                     datasets: [{
-                        data: [40, 35, 25],
+                        data: [FruitDropData, DotConnectionData, EmotionSelectionData],
                         backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"]
                     }]
                 }
@@ -549,7 +627,7 @@
                 for (let i = 29; i >= 0; i--) {
                     let date = new Date();
                     date.setDate(today.getDate() - i);
-                    result.push(`${date.getDate()}/${date.getMonth() + 1}`); 
+                    result.push(`${date.getDate()}/${date.getMonth() + 1}`);
                 }
                 return result;
             }
@@ -652,7 +730,9 @@
                 }
 
                 setupPagination("watched", "watched");
-                setupPagination("score", "score");
+                setupPagination("fruitdrop-score", "fruitdrop-score");
+                setupPagination("dotconnection-score", "dotconnection-score");
+                setupPagination("emotionselection-score", "emotionselection-score");
                 setupPagination("game", "game");
             });
         </script>

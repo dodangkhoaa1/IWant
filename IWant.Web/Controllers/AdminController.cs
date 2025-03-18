@@ -2,6 +2,7 @@
 using IWant.BusinessObject.Enitities;
 using IWant.DataAccess;
 using IWant.Web.Models;
+using IWant.Web.Service;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -13,11 +14,13 @@ namespace IWant.Web.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly IMapper _mapper;
+        private readonly ILeaderboardService _leaderboard;
 
-        public AdminController(ApplicationDbContext context, IMapper mapper)
+        public AdminController(ApplicationDbContext context, IMapper mapper, ILeaderboardService leaderboard)
         {
             _context = context;
             _mapper = mapper;
+            _leaderboard = leaderboard;
         }
 
         public IActionResult Statistic()
@@ -76,11 +79,60 @@ namespace IWant.Web.Controllers
                 .Select(d => _context.Comments.Count(c => c.CreatedAt.Date == d.Date))
                 .ToList();
 
-            // Tính tổng số lượng của Blog + Rate + Comment cho từng ngày
+            // Sum of Blog + Rate + Comment each day
             List<int> totalLineChart = blogLineChart
                 .Select((count, index) => count + rateLineChart[index] + commentLineChart[index])
                 .ToList();
 
+            //Leader Board
+            var leaderboard = _leaderboard.GetLeaderboardsAsync().Result;
+
+            var fruitDrops = leaderboard.FruitDrops.OrderByDescending(x => x.score).ToList();
+            var dotConnections = leaderboard.DotConnections.OrderByDescending(x => x.score).ToList();
+            var emotionSelections = leaderboard.EmotionSelections.OrderByDescending(x => x.score).ToList();
+
+            List<LeaderboardViewModel> fruitDropLists = new List<LeaderboardViewModel>();
+            List<LeaderboardViewModel> dotConnectionLists = new List<LeaderboardViewModel>();
+            List<LeaderboardViewModel> emotionSelectionLists = new List<LeaderboardViewModel>();
+
+            foreach (var item in fruitDrops)
+            {
+                var user = _context.Users.FirstOrDefault(u => u.Id == item.GetUserId());
+                if(user != null)
+                {
+                    fruitDropLists.Add(new LeaderboardViewModel
+                    {
+                        User = user,
+                        Score = item.score
+                    });
+                } 
+            }
+
+            foreach (var item in dotConnections)
+            {
+                var user = _context.Users.FirstOrDefault(u => u.Id == item.GetUserId());
+                if (user != null)
+                {
+                    dotConnectionLists.Add(new LeaderboardViewModel
+                    {
+                        User = user,
+                        Score = item.score
+                    });
+                }
+            }
+
+            foreach (var item in emotionSelections)
+            {
+                var user = _context.Users.FirstOrDefault(u => u.Id == item.GetUserId());
+                if (user != null)
+                {
+                    emotionSelectionLists.Add(new LeaderboardViewModel
+                    {
+                        User = user,
+                        Score = item.score
+                    });
+                }
+            }
 
             var model = new StatisticViewModel
             {
@@ -104,7 +156,11 @@ namespace IWant.Web.Controllers
                 BlogLineChart = blogLineChart,
                 RateLineChart = rateLineChart,
                 CommentLineChart = commentLineChart,
-                TotalLineChart = totalLineChart
+                TotalLineChart = totalLineChart,
+                //LeaderBoard
+                FruitDropLists = fruitDropLists,
+                DotConnectionLists = dotConnectionLists,
+                EmotionSelectionLists = emotionSelectionLists
             };
             return View(model);
         }

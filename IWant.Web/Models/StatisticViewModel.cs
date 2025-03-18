@@ -1,4 +1,5 @@
 ﻿using IWant.BusinessObject.Enitities;
+using IWant.Web.Controllers;
 
 namespace IWant.Web.Models
 {
@@ -12,15 +13,21 @@ namespace IWant.Web.Models
         public List<Blog> MostWatchBlog { set; get; } = new List<Blog>();
         public List<Game> Games { get; set; } = new List<Game>();
         public List<User> ActiveUsers { get; set; } = new List<User>();
+
         //BarChart
         public List<int>? BlogCountByMonth { get; set; }
         public List<int>? UserCountByMonth { get; set; }
         public List<int>? CommentCountByMonth { get; set; }
+
         //LineChart
         public List<int>? BlogLineChart { get; set; }
         public List<int>? RateLineChart { get; set; }
         public List<int>? CommentLineChart { get; set; }
         public List<int>? TotalLineChart { get; set; }
 
+        //Leaderboard
+        public List<LeaderboardViewModel> FruitDropLists { get; set; } = new List<LeaderboardViewModel>();
+        public List<LeaderboardViewModel> DotConnectionLists { get; set; } = new List<LeaderboardViewModel>();
+        public List<LeaderboardViewModel> EmotionSelectionLists { get; set; } = new List<LeaderboardViewModel>();
     }
 }

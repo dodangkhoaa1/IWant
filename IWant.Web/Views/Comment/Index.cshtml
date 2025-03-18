@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<IWant.Web.Models.BlogViewModel>
 @{
-    ViewData["Title"] = "Comment Manage";
+    ViewData["Title"] = "Manage Feedback";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
@@ -8,7 +8,6 @@
     /* Header giống design Manage Accounts */
     .comment-header {
         text-align: center;
-        margin: 30px 0;
     }
 
         .comment-header h2 {
@@ -20,7 +19,6 @@
             font-size: 1rem;
             color: #364d59;
             position: relative;
-            padding-bottom: 15px;
         }
 
             .comment-header p::after {
@@ -49,26 +47,6 @@
             vertical-align: middle;
         }
 
-            .comment-table tbody tr td.title-column {
-                width: 50%;
-            }
-
-            .comment-table tbody tr td.image-column {
-                width: 40%;
-            }
-
-            .comment-table tbody tr td.comments-column {
-                width: 15%;
-            }
-
-            .comment-table tbody tr td.rates-column {
-                width: 15%;
-            }
-
-            .comment-table tbody tr td.action-column {
-                width: 15%;
-            }
-
     .truncate-content {
         overflow: hidden;
         text-overflow: ellipsis;
@@ -80,21 +58,21 @@
 
     /* Xóa CSS custom của nút View Comment */
     /*
-            .comment-btn {
-                background-color: #fff !important;
-                color: #000 !important;
-                border: 2px solid #FEDA15 !important;
-                padding: 3px 6px;
-                font-size: 0.75rem;
-            }
-            .comment-btn:hover {
-                background-color: #FAF0E6 !important;
-                color: #000000 !important;
-            }
-            */
+                .comment-btn {
+                    background-color: #fff !important;
+                    color: #000 !important;
+                    border: 2px solid #FEDA15 !important;
+                    padding: 3px 6px;
+                    font-size: 0.75rem;
+                }
+                .comment-btn:hover {
+                    background-color: #FAF0E6 !important;
+                    color: #000000 !important;
+                }
+                */
 
     .table-wrapper {
-        height: 900px;
+        height: 620px;
         overflow: hidden;
     }
 
@@ -135,11 +113,30 @@
                 color: #000;
                 font-weight: bold;
             }
+
+
+    #pagination {
+        margin-top: 10px;
+        text-align: center;
+    }
+
+        #pagination button {
+            padding: 5px 10px;
+            margin: 2px;
+            border: 1px solid #ccc;
+            background-color: white;
+            cursor: pointer;
+        }
+
+            #pagination button.active {
+                background-color: #FEDA15;
+                color: white;
+            }
 </style>
 
 <div class="comment-container">
     <div class="comment-header">
-        <h2>Comments List</h2>
+        <h2>Feedbacks List</h2>
         <p></p>
     </div>
     <div class="comment-body">
@@ -148,114 +145,79 @@
             <table class="table comment-table">
                 <thead class="table-dark">
                     <tr>
-                        <th class="title-column">Title</th>
-                        <th class="image-column">Image</th>
-                        <th class="comments-column">Comments</th>
-                        <th class="rates-column">Rates</th>
-                        <th class="action-column">Action</th>
+                        <th style="width:40%">Title</th>
+                        <th style="width:15%">Image</th>
+                        <th style="width:15%">Comments</th>
+                        <th style="width:15%">Rates</th>
+                        <th style="width:15%">Action</th>
                     </tr>
                 </thead>
-                <tbody>
-                    @if (!Model.Any())
+                <tbody id="blogTableBody">
+                    @if (Model.Count() == 0)
                     {
-                        <tr>
-                            <td colspan="5" class="text-center">No comment found!</td>
-                        </tr>
                     }
-                    @foreach (var blog in Model)
+                    else
                     {
-                        <tr>
-                            <td class="title-column">@blog.Title</td>
-                            <td class="image-column">
-                                <img src="@blog.ImageUrl" alt="@blog.Title" class="img-thumbnail" style="max-width: 130px; max-height:90px;" />
-                            </td>
-                            <td class="comments-column">@blog.Comments?.Count()</td>
-                            <td class="rates-column">@blog.Rates?.Count()</td>
-                            <td class="action-column">
-                                <!-- Sử dụng button primary mặc định của Bootstrap -->
-                                <a asp-controller="Blog" asp-action="BlogDetail" asp-route-id="@blog.Id" class="btn btn-primary btn-sm">
-                                    View Comment
-                                </a>
-                            </td>
-                        </tr>
+                        foreach (var blog in Model)
+                        {
+                            <tr style="height:110px">
+                                <td>@blog.Title</td>
+                                <td>
+                                    <img src="@blog.ImageUrl" alt="@blog.Title" class="img-thumbnail" style="max-width: 130px; max-height:90px;" />
+                                </td>
+                                <td>@blog.Comments?.Count()</td>
+                                <td>@blog.Rates?.Count()</td>
+                                <td>
+                                    <!-- Sử dụng button primary mặc định của Bootstrap -->
+                                    <a asp-controller="Blog" asp-action="BlogDetail" asp-route-id="@blog.Id" class="btn btn-primary btn-sm" asp-fragment="Comments">
+                                        View Comment
+                                    </a>
+                                </td>
+                            </tr>
+                        }
                     }
                 </tbody>
             </table>
         </div>
-        <div class="pagination"></div>
+        <div class="pagination" id="pagination"></div>
     </div>
 </div>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        var tableBody = document.querySelector(".comment-table tbody");
-        var rows = tableBody.querySelectorAll("tr");
-        var rowsPerPage = 10;
-        var currentPage = 1;
-        var totalPages = Math.ceil(rows.length / rowsPerPage);
-        var paginationContainer = document.querySelector(".pagination");
+     document.addEventListener("DOMContentLoaded", function () {
+        const rowsPerPage = 5;
+        const tableBody = document.getElementById("blogTableBody");
+        const paginationContainer = document.getElementById("pagination");
+        const rows = Array.from(tableBody.getElementsByTagName("tr")); 
+
+        let currentPage = 1;
+        let totalPages = Math.ceil(rows.length / rowsPerPage);
 
         function showPage(page) {
-            currentPage = page;
-            rows.forEach(function (row, index) {
-                row.style.display = "none";
-                if (index >= (page - 1) * rowsPerPage && index < page * rowsPerPage) {
-                    row.style.display = "";
-                }
+            let start = (page - 1) * rowsPerPage;
+            let end = start + rowsPerPage;
+
+            rows.forEach((row, index) => {
+                row.style.display = index >= start && index < end ? "" : "none";
             });
+
             updatePagination();
         }
 
         function updatePagination() {
             paginationContainer.innerHTML = "";
-            var prevBtn = document.createElement("a");
-            prevBtn.href = "#";
-            prevBtn.className = "page-btn";
-            prevBtn.textContent = "Previous";
-            prevBtn.addEventListener("click", function (e) {
-                e.preventDefault();
-                if (currentPage > 1) {
-                    showPage(currentPage - 1);
-                }
-            });
-            paginationContainer.appendChild(prevBtn);
 
-            for (var i = 1; i <= totalPages; i++) {
-                if (i === currentPage) {
-                    var span = document.createElement("span");
-                    span.className = "page-btn active";
-                    span.textContent = i;
-                    paginationContainer.appendChild(span);
-                } else {
-                    var pageLink = document.createElement("a");
-                    pageLink.href = "#";
-                    pageLink.className = "page-btn";
-                    pageLink.textContent = i;
-                    pageLink.addEventListener("click", (function (page) {
-                        return function (e) {
-                            e.preventDefault();
-                            showPage(page);
-                        };
-                    })(i));
-                    paginationContainer.appendChild(pageLink);
-                }
+            for (let i = 1; i <= totalPages; i++) {
+                let btn = document.createElement("button");
+                btn.innerText = i;
+                btn.className = "page-btn " + (i === currentPage ? "active" : "");
+                btn.addEventListener("click", function () {
+                    currentPage = i;
+                    showPage(currentPage);
+                });
+                paginationContainer.appendChild(btn);
             }
-
-            var nextBtn = document.createElement("a");
-            nextBtn.href = "#";
-            nextBtn.className = "page-btn";
-            nextBtn.textContent = "Next";
-            nextBtn.addEventListener("click", function (e) {
-                e.preventDefault();
-                if (currentPage < totalPages) {
-                    showPage(currentPage + 1);
-                }
-            });
-            paginationContainer.appendChild(nextBtn);
         }
-
-        if (rows.length > 0) {
-            showPage(1);
-        }
+        showPage(currentPage);
     });
 </script>

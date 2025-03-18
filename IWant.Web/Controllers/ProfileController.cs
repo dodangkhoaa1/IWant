@@ -64,7 +64,7 @@ namespace IWant.Web.Controllers
             var user = await _context.Users.FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
             if (user == null)
             {
-                TempData["error"] = "Account not found!";
+                TempData["error"] = "Please Sign in to continue.";
                 return RedirectToAction("Signin", "Identity");
             }
 
@@ -113,12 +113,12 @@ namespace IWant.Web.Controllers
                 _context.Users.Update(user);
                 await _context.SaveChangesAsync();
 
-                TempData["success"] = "Profile updated successfully.";
+                TempData["success"] = "Update Profile successfully.";
                 return RedirectToAction("Index", "Home");
             }
             catch (Exception)
             {
-                TempData["error"] = "Failed to update profile!";
+                TempData["error"] = "Failed to update profile.";
                 return View(model);
             }
         }
@@ -130,6 +130,7 @@ namespace IWant.Web.Controllers
             var user = await _context.Users.FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
             if (user == null || user.Status == false)
             {
+                TempData["error"] = "Please Sign in to continue.";
                 return RedirectToAction("Signin", "Identity");
             }
             return View();
@@ -151,21 +152,21 @@ namespace IWant.Web.Controllers
             // Check Current Password
             if (passwordHasher.VerifyHashedPassword(user, user.PasswordHash, model.CurrentPassword) == PasswordVerificationResult.Failed)
             {
-                TempData["error"] = "Current password is incorrect!";
+                TempData["error"] = "Current password is incorrect.";
                 return View(model);
             }
 
             // Check New Password with Current Password
             if (passwordHasher.VerifyHashedPassword(user, user.PasswordHash, model.NewPassword) == PasswordVerificationResult.Success)
             {
-                TempData["error"] = "New password must be different from the current password!";
+                TempData["error"] = "New password must be different from the current password.";
                 return View(model);
             }
 
             // Check New Password with Confirm Password
             if (model.NewPassword != model.ConfirmPassword)
             {
-                TempData["error"] = "New password and confirm password do not match!";
+                TempData["error"] = "New password and confirm password do not match.";
                 return View(model);
             }
 
@@ -177,12 +178,12 @@ namespace IWant.Web.Controllers
             {
                 _context.Users.Update(user);
                 await _context.SaveChangesAsync();
-                TempData["success"] = "Password changed successfully.";
+                TempData["success"] = "Change Password successfully.";
                 return RedirectToAction("Index", "Home");
             }
             catch (Exception)
             {
-                TempData["error"] = "Failed to change password!";
+                TempData["error"] = "Failed to change password.";
                 return View(model);
             }
         }

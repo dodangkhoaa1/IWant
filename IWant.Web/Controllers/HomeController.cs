@@ -57,24 +57,6 @@ namespace IWant.Web.Controllers
             return View();
         }
 
-        // Allow to display the Member page for authorized users with Member role
-        [Authorize]
-        [Authorize(Roles = "Member")]
-        /*[Authorize(Policy = "MemberDep")]*/
-        public IActionResult Member()
-        {
-            return View();
-        }
-
-        // Allow to display the Admin page for authorized users with Admin role
-        [Authorize]
-        [Authorize(Roles = "Admin")]
-        /*[Authorize(Policy = "AdminDep")]*/
-        public IActionResult Admin()
-        {
-            return View();
-        }
-
         // Allow to display the Error page
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

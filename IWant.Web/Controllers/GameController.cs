@@ -73,6 +73,7 @@ namespace IWant.Web.Controllers
                 return NotFound();
             }
             var gameViewModel = _mapper.Map<GameViewModel>(game);
+
             return View(gameViewModel);
         }
 
@@ -93,7 +94,7 @@ namespace IWant.Web.Controllers
                 _context.Update(game);
                 await _context.SaveChangesAsync();
 
-                TempData["success"] = "Create Video Url successful!";
+                TempData["success"] = "Create Video Url successfully.";
                 return RedirectToAction("Index");
             }
             return View(model);
@@ -146,7 +147,7 @@ namespace IWant.Web.Controllers
                         throw;
                     }
                 }
-                TempData["success"] = "Edit Video Url successful!";
+                TempData["success"] = "Edit Video Url successfully.";
                 RedirectToAction("Index");
             }
             return View(model);
@@ -172,7 +173,7 @@ namespace IWant.Web.Controllers
             _context.Update(game);
             await _context.SaveChangesAsync();
 
-            TempData["success"] = "Delete Video Url successful!";
+            TempData["success"] = "Delete Video Url successfully.";
             return RedirectToAction("Index");
         }
 
