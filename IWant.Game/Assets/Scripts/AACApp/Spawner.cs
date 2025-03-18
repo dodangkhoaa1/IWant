@@ -33,6 +33,9 @@ public class AACWordSpawner : MonoBehaviour
     [Header("Loading Management")]
     public LoadingManagement loadingManagement;
 
+    [Header("Move To All Category")]
+    [SerializeField] Button moveToAllCateBtn;
+
     private PhraseBuild phraseBuild;
     private Button currentCategoryButton;
     private List<WordDTO> personalWords;
@@ -52,11 +55,21 @@ public class AACWordSpawner : MonoBehaviour
 
         StartCoroutine(InitializeLocalization());
 
+        moveToAllCateBtn.onClick.AddListener(() =>
+        {
+            Button allCategoryButton = categoryContainer.transform.GetChild(1).GetComponent<Button>();
+            if (allCategoryButton != null)
+            {
+                allCategoryButton.onClick.Invoke();
+            }
+        });
     }
 
     private void Update()
     {
         CheckAndDisableSuggestionButtons();
+        UpdateMoveToTopButton(0.3f);
+
     }
 
     private void CheckAndDisableSuggestionButtons()
@@ -515,4 +528,52 @@ public class AACWordSpawner : MonoBehaviour
         }
     }
 
+    private void UpdateMoveToTopButton(float secondToFade = 0.5f)
+    {
+        float xPosition = categoryScrollRect.content.anchoredPosition.x;
+        if (xPosition <= -800)
+        {
+            StartCoroutine(FadeInButton(moveToAllCateBtn, secondToFade));
+        }
+        else
+        {
+            StartCoroutine(FadeOutButton(moveToAllCateBtn, secondToFade));
+        }
+    }
+
+    private IEnumerator FadeInButton(Button button, float secondToFade)
+    {
+        button.gameObject.SetActive(true);
+        Image buttonImage = button.GetComponent<Image>();
+        Color buttonColor = buttonImage.color;
+        float alpha = buttonColor.a;
+
+        while (alpha < 1f)
+        {
+            alpha += Time.deltaTime / secondToFade; // 0.5 seconds to fade in
+            buttonColor.a = Mathf.Clamp01(alpha);
+            buttonImage.color = buttonColor;
+            yield return null;
+        }
+
+        button.interactable = true;
+    }
+
+    private IEnumerator FadeOutButton(Button button, float secondToFade)
+    {
+        Image buttonImage = button.GetComponent<Image>();
+        Color buttonColor = buttonImage.color;
+        float alpha = buttonColor.a;
+
+        while (alpha > 0f)
+        {
+            alpha -= Time.deltaTime / secondToFade; // 0.5 seconds to fade out
+            buttonColor.a = Mathf.Clamp01(alpha);
+            buttonImage.color = buttonColor;
+            yield return null;
+        }
+
+        button.gameObject.SetActive(false);
+        button.interactable = false;
+    }
 }
