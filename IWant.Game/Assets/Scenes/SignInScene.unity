@@ -4189,7 +4189,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneToLoad: 2
-  usernameField: {fileID: 5227962522573413322}
+  emailField: {fileID: 5227962522573413322}
   passwordField: {fileID: 1848746641}
   submitButton: {fileID: 771227134}
   loadingManagement: {fileID: 141436474}

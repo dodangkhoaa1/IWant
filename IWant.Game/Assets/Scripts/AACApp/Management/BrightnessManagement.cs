@@ -36,10 +36,6 @@ public class BrightnessManagement : MonoBehaviour
             {
                 color.a = 0; // 0 = brightest, 0.7 = darkest
                 brightnessPanel.color = color;
-                string toastStr = PrefsKey.LANGUAGE == PrefsKey.ENGLISH_CODE
-                    ? "Full brightness is required to color!"
-                    : "Độ sáng cao nhất là bắt buộc để tô màu!";
-                Toast.Show(toastStr, 1.5f, ToastColor.Green, ToastPosition.BottomCenter);
             }
             else
             {

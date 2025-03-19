@@ -11,7 +11,7 @@ using UnityEngine.UI;
 public class SignIn : MonoBehaviour
 {
     [SerializeField] private SceneName sceneToLoad = SceneName.MainMenu;
-    [SerializeField] private TMP_InputField usernameField;
+    [SerializeField] private TMP_InputField emailField;
     [SerializeField] private TMP_InputField passwordField;
     [SerializeField] private Button submitButton;
 
@@ -35,9 +35,9 @@ public class SignIn : MonoBehaviour
     // Allow to handle the sign-in process asynchronously
     IEnumerator SignInMethod()
     {
-        loadingManagement.EnableLoadingPanel(); 
+        loadingManagement.EnableLoadingPanel();
 
-        if (string.IsNullOrEmpty(usernameField.text) || string.IsNullOrEmpty(passwordField.text))
+        if (string.IsNullOrEmpty(emailField.text) || string.IsNullOrEmpty(passwordField.text))
         {
             Debug.LogWarning("FullName or Password field is empty.");
             toastString = PrefsKey.LANGUAGE == PrefsKey.ENGLISH_CODE ? "Email and Password Is Required!" : "Email Và Mật khẩu Là Bắt Buộc!";
@@ -46,10 +46,17 @@ public class SignIn : MonoBehaviour
             yield break;
         }
 
+        string errorString = VerifyInputs();
+        if (errorString != "") {
+            Toast.Show(errorString, 1.5f, ToastColor.Red, ToastPosition.BottomCenter);
+            loadingManagement.DisableLoadingPanel();
+            yield break;
+        }
+
         // Prepare JSON payload
         SignInRequestDto data = new SignInRequestDto
         {
-            UserName = usernameField.text,
+            UserName = emailField.text,
             PasswordHash = passwordField.text
         };
 
@@ -96,8 +103,8 @@ public class SignIn : MonoBehaviour
                         else
                         {
                             toastString = PrefsKey.LANGUAGE == PrefsKey.ENGLISH_CODE
-                                ? $"Sign In Fail!"
-                                : $"Đăng Nhập Thất Bại";
+                                ? $"Sign In Fail! Email or Password is Invalid!"
+                                : $"Đăng Nhập Thất Bại! Email hoặc Mật Khẩu không hợp lệ!";
 
                             Toast.Show(toastString, 1.5f, ToastColor.Red, ToastPosition.BottomCenter);
                         }
@@ -129,20 +136,41 @@ public class SignIn : MonoBehaviour
 
             onError: error =>
             {
-                Debug.LogWarning($"Login request error: {error}");
-                toastString = PrefsKey.LANGUAGE == PrefsKey.ENGLISH_CODE
-                ? "Login failed. Please check your internet connection or try again later."
-                : "Đăng nhập thất bại. Vui lòng kiểm tra kết nối mạng và thử lại.";
-                Toast.Show(toastString, 1.5f, ToastColor.Red, ToastPosition.BottomCenter);
-                loadingManagement.DisableLoadingPanel();
+                if (error.Contains("404"))
+                {
+                    toastString = PrefsKey.LANGUAGE == PrefsKey.ENGLISH_CODE
+                    ? "Sign In failed. Email or Password is Invalid!"
+                    : "Đăng nhập thất bại. Email hoặc Mật Khẩu không hợp lệ!";
+                }
+                else
+                {
+                    Debug.LogWarning($"Login request error: {error}");
+                    toastString = PrefsKey.LANGUAGE == PrefsKey.ENGLISH_CODE
+                    ? "Sign In failed. Please check your internet connection!"
+                    : "Đăng nhập thất bại. Vui lòng kiểm tra kết nối mạng!";
+                }
+                    Toast.Show(toastString, 1.5f, ToastColor.Red, ToastPosition.BottomCenter);
+                    loadingManagement.DisableLoadingPanel();
             }
         );
     }
 
     // Allow to verify the input fields and enable/disable the submit button
-    public void VerifyInputs()
+    public string VerifyInputs()
     {
-        submitButton.interactable = (usernameField.text.Length >= 8 && passwordField.text.Length >= 8);
+        string errorStr = "";
+
+        if (emailField.text.Length < 8 || !emailField.text.Contains("@"))
+        {
+            errorStr = PrefsKey.LANGUAGE == PrefsKey.ENGLISH_CODE ? "Email is incorrect format!" : "Email không đúng định dạng!";
+            return errorStr;
+        }
+        else if (passwordField.text.Length < 8)
+        {
+            errorStr = PrefsKey.LANGUAGE == PrefsKey.ENGLISH_CODE ? "Password must be at least 8 characters!" : "Mật khẩu phải có ít nhất 8 ký tự!";
+            return errorStr;
+        }
+        return errorStr;
     }
     private void Start()
     {
