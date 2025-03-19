@@ -5,64 +5,94 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h1>Word Details</h1>
+<style>
+    .upload-box {
+        background-color: lightgoldenrodyellow;
+        border: 2px dashed #28a745;
+        border-radius: 8px;
+        height: 96%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: mediumpurple;
+        transition: background-color 0.2s ease;
+    }
 
-<div>
-    <h4>Word</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            Vietnamese Text
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.VietnameseText)
-        </dd>
-        <dt class="col-sm-2">
-            English Text
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.EnglishText)
-        </dd>
-        <dt class="col-sm-2">
-            Created At
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.CreatedAt)
-        </dd>
-        <dt class="col-sm-2">
-            Updated At
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.UpdatedAt)
-        </dd>
-        <dt class="col-sm-2">
-            Image
-        </dt>
-        <dd class="col-sm-10">
-            @if (!string.IsNullOrEmpty(Model.ImagePath))
-            {
-                <img src="@Model.ImagePath" alt="Word Image" style="max-width: 200px; max-height: 200px;" />
-            }
-            else
-            {
-                <span>No image available</span>
-            }
-        </dd>
-        <dt class="col-sm-2">
-            Status
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Status)
-        </dd>
-        <dt class="col-sm-2">
-            Word Category
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.WordCategory.EnglishName)
-        </dd>
-    </dl>
+    .btn {
+        background-color: mediumpurple;
+    }
+
+    .upload-box i {
+        font-size: 2rem;
+    }
+
+    .upload-box p {
+        margin: 8px 0 0;
+    }
+
+    .card-body {
+        padding-bottom: 30px;
+        height: 75vh;
+    }
+</style>
+
+<div class="container mt-4">
+    <div class="card shadow-lg border-0 rounded-3">
+        <div class="card-header text-center d-flex justify-content-between" style="background-color: mediumpurple">
+            <a style="font-size:20px" class="text-white" asp-action="Index"><i class="fa-solid fa-arrow-left"></i></a>
+            <h3 class="text-white m-0">Word Details</h3>
+            <div></div>
+        </div>
+        <div style="padding: 100px 30px;" class="card-body">
+            <div class="row">
+                <div class="col-md-4">
+                    <div id="uploadBox" class="upload-box">
+                        <img id="imgPreview" src="@Model.ImagePath" alt="Image Preview" style="max-height: 100%; max-width: 100%;" />
+                    </div>
+                </div>
+                <div style="margin:auto 0" class="col-md-8">
+                    <div class="mb-3">
+                        <label asp-for="WordCategory.EnglishName" class="form-label fw-bold">Category</label>
+                        <input asp-for="WordCategory.EnglishName" class="form-control" readonly />
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="EnglishText" class="form-label fw-bold">English Text</label>
+                        <input asp-for="EnglishText" class="form-control" readonly />
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="VietnameseText" class="form-label fw-bold">Vietnamese Text</label>
+                        <input asp-for="VietnameseText" class="form-control" readonly />
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="CreatedAt" class="form-label fw-bold">Created At</label>
+                        <input asp-for="CreatedAt" class="form-control" readonly />
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="UpdatedAt" class="form-label fw-bold">Updated At</label>
+                        <input asp-for="UpdatedAt" class="form-control" readonly />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+
+            $('#fileInput').change(function () {
+                const file = this.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        $('#imgPreview').attr('src', e.target.result).show();
+                        $('#imageUrlInput').val(e.target.result);
+                    }
+                    reader.readAsDataURL(file);
+                }
+            });
+        });
+    </script>
+}

@@ -63,7 +63,7 @@
     <div class="signup-card">
         <div style="flex: 1; display: flex; flex-direction: column; justify-content: space-between; margin: 20px;">
             <h1 style="font-size: 32px; text-align: center;">Sign Up</h1>
-            <form asp-controller="Identity" asp-action="Signup" method="post" class="w-100">
+            <form id="myForm" asp-controller="Identity" asp-action="Signup" method="post" class="w-100">
                 <div class="row">
                     <div class="col-md-6">
                         <p class="text" style="color: #9B30FF; text-decoration: none;">*Member Information</p>
@@ -127,7 +127,6 @@
 @* button disable and checkbox privacy *@
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
-    @* <script src="~/js/validate/signupvalidate.js" defer></script> *@
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const checkbox = document.getElementById("terms");
@@ -153,7 +152,7 @@
             });
         });
     </script>
-
+    
 
     @* confetti background animation *@
     <script>

@@ -1,4 +1,6 @@
-﻿namespace IWant.Web.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace IWant.Web.Models
 {
     public class GameViewModel
     {

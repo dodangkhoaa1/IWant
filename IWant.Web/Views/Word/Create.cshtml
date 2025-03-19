@@ -12,49 +12,152 @@
         : new List<WordCategory>();
 }
 
-<h1>Create</h1>
+<style>
+    .upload-box {
+        border: 2px dashed #28a745;
+        border-radius: 8px;
+        height: 400px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: mediumpurple;
+        transition: background-color 0.2s ease;
+    }
 
-<h4>Word</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create" enctype="multipart/form-data">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="VietnameseText" class="control-label"></label>
-                <input asp-for="VietnameseText" class="form-control" />
-                <span asp-validation-for="VietnameseText" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="EnglishText" class="control-label"></label>
-                <input asp-for="EnglishText" class="form-control" />
-                <span asp-validation-for="EnglishText" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label class="control-label">Image</label>
-                <input asp-for="ImageFile" type="file" name="ImageFile" class="form-control" accept="image/*" />
-            </div>
-            <div class="form-group">
-                <label asp-for="WordCategory" class="control-label"></label>
-                <select asp-for="WordCategoryId" class="form-control">
-                    <option value="">-- Select Category --</option>
-                    @foreach (var category in categories)
-                    {
-                        if (category.Id != 1)
-                        {
-                            <option value="@category.Id">@category.EnglishName</option>
-                        }
-                    }
-                </select>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+    .btn {
+        background-color: mediumpurple;
+    }
+
+    .upload-box i {
+        font-size: 2rem;
+    }
+
+    .upload-box p {
+        margin: 8px 0 0;
+    }
+
+    .card-body {
+        padding-bottom: 30px;
+        height: 75vh;
+    }
+</style>
+
+<div class="container mt-4">
+    <div class="card shadow-lg border-0 rounded-3">
+        <div class="card-header text-center" style="background-color: mediumpurple;">
+            <h4 class="text-white m-0">Create New Word</h4>
+        </div>
+        <div class="card-body p-4 pb-3">
+            <form asp-action="Create" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <div id="uploadBox" class="upload-box">
+                            <div id="uploadPlaceholder" class="text-center">
+                                <i class="fas fa-upload"></i>
+                                <p>Drag files to upload</p>
+                            </div>
+                            <img id="imgPreview" src="#" alt="Image Preview" style="max-height: 100%; max-width: 100%; display: none;" />
+                        </div>
+                        <div class="mt-3 d-grid text-center">
+                            <span asp-validation-for="ImageFile" class="text-danger"></span>
+                            <button type="button" class="btn btn-success" id="chooseFileButton">Choose File</button>
+                            <input asp-for="ImageFile" id="fileInput" type="file" style="display: none;" accept="image/*" required />
+                        </div>
+                    </div>
+                    <div style="margin:auto 0" class="col-md-8">
+                        <div class="mb-3">
+                            <label asp-for="VietnameseText" class="form-label fw-bold">Vietnamese Text</label>
+                            <input asp-for="VietnameseText" class="form-control" placeholder="Enter Vietnamese word" />
+                            <span asp-validation-for="VietnameseText" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="EnglishText" class="form-label fw-bold">English Text</label>
+                            <input asp-for="EnglishText" class="form-control" placeholder="Enter English word" />
+                            <span asp-validation-for="EnglishText" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="WordCategoryId" class="form-label fw-bold">Category</label>
+                            <select id="category-select" asp-for="WordCategoryId" class="form-control">
+                                <option value="">-- Select Category --</option>
+                                @foreach (var category in categories)
+                                {
+                                    if (category.Id != 1)
+                                    {
+                                        <option value="@category.Id">@category.EnglishName</option>
+                                    }
+                                }
+                            </select>
+                            <span asp-validation-for="WordCategoryId" class="text-danger"></span>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-success px-4">Create</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        $(document).ready(function () {
+            const allowedExtensions = ['png', 'jpg', 'jpeg', 'gif'];
+            const maxSize = 5 * 1024 * 1024; // 5MB
 
+            $('#chooseFileButton').click(function () {
+                $('#fileInput').click();
+            });
+
+            $('#fileInput').change(function () {
+                const file = this.files[0];
+                const errorSpan = $("#fileInput").closest('.mt-3').find('.text-danger');
+
+                if (!file) {
+                    errorSpan.text("Image is required!").show();
+                    return;
+                }
+
+                const fileName = file.name.toLowerCase();
+                const fileSize = file.size;
+                const fileExtension = fileName.split('.').pop();
+
+                if (!allowedExtensions.includes(fileExtension)) {
+                    errorSpan.text("Invalid file format! Only PNG, JPG, JPEG, GIF are allowed.").show();
+                    this.value = ''; // Xóa file input
+                    return;
+                }
+
+                if (fileSize > maxSize) {
+                    errorSpan.text("File size must be less than 5MB!").show();
+                    this.value = ''; // Xóa file input
+                    return;
+                }
+
+                errorSpan.text("");
+
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#uploadPlaceholder').hide();
+                    $('#imgPreview').attr('src', e.target.result).show();
+                }
+                reader.readAsDataURL(file);
+            });
+
+            $("form").on("submit", function (e) {
+                let isValid = true;
+
+                if ($('#fileInput').get(0).files.length === 0) {
+                    e.preventDefault();
+                    $("#fileInput").closest('.mt-3').find('.text-danger').text("Image is required!").show();
+                    isValid = false;
+                }
+
+                return isValid; 
+            });
+        });
+    </script>
+}

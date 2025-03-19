@@ -19,7 +19,6 @@ namespace IWant.BusinessObject.Enitities
         [Required]
         [MaxLength(length: 450)]
         public string Description { get; set; }
-        [Required]
         [MaxLength(length: 255)]
         public string? VideoUrl { get; set; }
     }

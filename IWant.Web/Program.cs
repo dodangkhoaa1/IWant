@@ -35,12 +35,6 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.ExpireTimeSpan = TimeSpan.FromHours(10);
 });
 
-builder.Services.AddAuthentication().AddFacebook(options =>
-{
-    options.AppId = builder.Configuration["FacebookAppId"];
-    options.AppSecret = builder.Configuration["FacebookAppSecret"];
-});
-
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
 {

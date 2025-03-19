@@ -102,7 +102,7 @@ namespace IWant.Web.Controllers
             }
 
             TempData["success"] = "Update Word successfully!";
-            return RedirectToAction(nameof(Edit), new { id = word.Id });
+            return RedirectToAction(nameof(Index));
         }
     }
 }
