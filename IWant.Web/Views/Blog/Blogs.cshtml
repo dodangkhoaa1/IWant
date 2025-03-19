@@ -214,7 +214,6 @@
         .blog-header h1 {
             font-size: 3rem;
             font-weight: bold;
-            margin-top: 60px;
         }
 
         .blog-header p {
@@ -267,8 +266,11 @@
 <div class="blog-container">
     <div class="container">
         <div class="blog-header">
-            <h1>Blogs</h1>
-            <p>Blogs Highest Rating!</p>
+            <h1>List of Blogs</h1>
+            <div class="section-header">
+                <h3>Highest Rate</h3>
+                <div class="line"></div>
+            </div>
         </div>
         @if (topBlog != null)
         {
@@ -354,7 +356,7 @@
                 {
                     foreach (var blogItem in Model)
                     {
-                        <div class="col-md-4">
+                        <div class="col-md-4 mb-4">
                             <div class="card position-relative">
                                 <a asp-action="BlogDetail" asp-controller="Blog" asp-route-id="@blogItem.Id" class="stretched-link"></a>
                                 <img style="width: 100%; object-fit: contain" src="@blogItem.ImageUrl" alt="@blogItem.Title">

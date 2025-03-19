@@ -279,7 +279,7 @@
                         <div class="card-title">Blog</div>
                         <div class="card-value">@blogCount</div>
                     </div>
-                    <div class="card-icon" style="background: linear-gradient(to bottom right, #feb47b, #ff7e5f);">
+                    <div class="card-icon" style="background: linear-gradient(to bottom right, #FFD29D , #FF6700 );">
                         <i class="fa-solid fa-blog"></i>
                     </div>
                 </div>
@@ -291,7 +291,7 @@
                         <div class="card-title">User</div>
                         <div class="card-value">@accountCount</div>
                     </div>
-                    <div class="card-icon" style="background: linear-gradient(to bottom right, #16A34A, #22C55E );">
+                    <div class="card-icon" style="background: linear-gradient(to bottom right, #A8FFC5, #00A63D );">
                         <i class="fa-solid fa-user"></i>
                     </div>
                 </div>
@@ -303,7 +303,7 @@
                         <div class="card-title">Comment</div>
                         <div class="card-value">@commentCount</div>
                     </div>
-                    <div class="card-icon" style="background: linear-gradient(to bottom right, #2563EB, #3B82F6 );">
+                    <div class="card-icon" style="background: linear-gradient(to bottom right, #B8E0FF, #1E5EFF );">
                         <i class="fa-regular fa-comments"></i>
                     </div>
                 </div>
@@ -315,8 +315,8 @@
                         <div class="card-title">Rate</div>
                         <div class="card-value">@rateCount</div>
                     </div>
-                    <div class="card-icon" style="background: linear-gradient(to bottom right, #DC2626, #EF4444 );">
-                        <i style="color:yellow" class="fa-regular fa-star"></i>
+                    <div class="card-icon" style="background: linear-gradient(to bottom right, #FFC7C7 , #E10000  );">
+                        <i class="fa-regular fa-star"></i>
                     </div>
 
                 </div>
@@ -326,7 +326,7 @@
         <div class="row mt-4">
             <div style="margin: auto 0" class="col-md-8">
                 <div class="chart-container">
-                    <h5>Blog, Account, Comment Created In @DateTime.Now.Year</h5>
+                    <h5>Statistic System In @DateTime.Now.Year</h5>
                     <canvas id="salesChart" style="height:450px;"></canvas>
                 </div>
             </div>
@@ -374,10 +374,10 @@
 
         <!-- Bảng Blog được yêu thích nhất và phân trang JS -->
         <div class="row mt-4 container custom">
+            <h2 style="text-align:center" class="mb-3">Most watched</h2>
             <div class="col-md-12">
                 <div class="blog position-relative">
-                    <h5>The most watched</h5>
-                    <table class="table align-middle mt-3" data-table="watched">
+                    <table class="table align-middle mt-3 table-striped" data-table="watched">
                         <thead>
                             <tr>
                                 <th>Author</th>
@@ -411,7 +411,7 @@
             <div class="col-md-4">
                 <div class="fruitdrop-score position-relative">
                     <h5>Fruit Drop Score</h5>
-                    <table class="table align-middle mt-3" data-table="fruitdrop-score">
+                    <table class="table align-middle mt-3 table-striped" data-table="fruitdrop-score">
                         <thead>
                             <tr>
                                 <th style="width:80%">Full Name</th>
@@ -440,7 +440,7 @@
             <div class="col-md-4">
                 <div class="dotconnection-score position-relative">
                     <h5>Dot Connection Score</h5>
-                    <table class="table align-middle mt-3" data-table="dotconnection-score">
+                    <table class="table align-middle mt-3 table-striped" data-table="dotconnection-score">
                         <thead>
                             <tr>
                                 <th>Full Name</th>
@@ -469,7 +469,7 @@
             <div class="col-md-4">
                 <div class="emotionselection-score position-relative">
                     <h5>Emotion Selection Score</h5>
-                    <table class="table align-middle mt-3" data-table="emotionselection-score">
+                    <table class="table align-middle mt-3 table-striped" data-table="emotionselection-score">
                         <thead>
                             <tr>
                                 <th>Full Name</th>
