@@ -2220,6 +2220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0429e9c73ab1e22468ba5445e4e2e42e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  emotionAskPanel: {fileID: 1240767164}
 --- !u!1 &865595266
 GameObject:
   m_ObjectHideFlags: 0
@@ -3168,7 +3169,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1240767165
 RectTransform:
   m_ObjectHideFlags: 0
