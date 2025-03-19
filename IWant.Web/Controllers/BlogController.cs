@@ -209,7 +209,7 @@ namespace IWant.Web.Controllers
 
             TempData["success"] = "Create Blog successfully.";
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Blog", new { filterType = "all" });
         }
 
         // Allow to display the edit blog page
@@ -273,7 +273,7 @@ namespace IWant.Web.Controllers
 
             TempData["success"] = "Update Blog successfully.";
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Blog", new { filterType = "all" });
             /*}
             return View(model);*/
         }
@@ -303,7 +303,7 @@ namespace IWant.Web.Controllers
 
             TempData["success"] = blog.Status == true ? "Show Blog successfully." : "Hide Blog successfully.";
 
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index", "Blog", new { filterType = "all" });
         }
 
         [HttpPost]
@@ -334,7 +334,7 @@ namespace IWant.Web.Controllers
 
             TempData["success"] = "Accept Blog successfully.";
 
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index", "Blog", new { filterType = "all" });
         }
 
         [HttpPost]
@@ -377,7 +377,7 @@ namespace IWant.Web.Controllers
 
             TempData["success"] = "Reject Blog successfully.";
 
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index", "Blog", new { filterType = "all" });
         }
 
         public async Task<IActionResult> Details([FromRoute] int id)
