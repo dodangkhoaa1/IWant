@@ -8,7 +8,7 @@ namespace IWant.Web.Service
         Task<Word> GetWordByIdAsync(int id);
         Task<Word> CreateWordAsync(Word word);
         Task<Word> UpdateWordAsync(Word word);
-        Task<Word> DeleteWordAsync(int id);
+        Task<bool> DeleteWordAsync(int id);
 
         Task<List<WordCategory>> GetCategorysAsync();
         Task<WordCategory> GetWordCategoryByIdAsync(int id);

@@ -1,21 +1,25 @@
 ﻿using LootLocker.Requests;
 using System.Collections;
 using UnityEngine;
-using TMPro;
 using System;
-using System.Net.NetworkInformation;
+using System.Collections.Generic;
+using Newtonsoft.Json;
 
 public class Leaderboard : MonoBehaviour
 {
     public static Leaderboard instance;
 
     [Header(" Elements ")]
-    [SerializeField] private TextMeshProUGUI leaderboardText;
+    //[SerializeField] private TMP_InputField playerNameInput; // Ô nhập tên
+    //[SerializeField] private Button submitButton;
+    [SerializeField] private PlayerLeaderboard playerLeaderboard;
+    [SerializeField] private PlayerAuthenticate playerAuthenticate;
 
     [Header("Leaderboard Settings")]
-    [SerializeField] private string leaderboardKey = "30044";
+    [SerializeField] public string leaderboardKey;
 
     public static Action<LootLockerLeaderboardMember[]> onLeaderboardFetched;
+    public static Action<LootLockerLeaderboardMember> onCurrentPlayerFetched;
 
     private Coroutine autoRefreshCoroutine;
 
@@ -34,19 +38,36 @@ public class Leaderboard : MonoBehaviour
 
     void Start()
     {
-        FetchScores(); // Tự động tải bảng xếp hạng khi game bắt đầu
+        OnSubmitScoreClicked();
+        FetchScores();
         autoRefreshCoroutine = StartCoroutine(AutoRefreshLeaderboard());
+        //submitButton.onClick.AddListener(OnSubmitButtonClicked);
     }
 
     IEnumerator AutoRefreshLeaderboard()
     {
         while (true)
         {
-            yield return new WaitForSeconds(1);
-            FetchScores(); // Cập nhật mỗi 10 giây
+            yield return new WaitForSeconds(2.5f);
+            FetchScores();
+            OnSubmitScoreClicked();
         }
     }
 
+    private void OnSubmitScoreClicked()//Auto gửi
+    {
+        int bestScore = ScoreManager.instance.GetBestScore();
+
+
+        // Assuming member_id is available here
+        string userId = playerAuthenticate.PlayerId; // Replace with actual member_id
+        SubmitScoreWithMetadata(userId, bestScore);
+
+        // Call the method in PlayerLeaderboard to set the best score
+        playerLeaderboard.SetBestScoreToLeaderboard(userId);
+
+
+    }
     public void SubmitScore(string memberId, int score)
     {
         StartCoroutine(SubmitScoreCoroutine(memberId, score));
@@ -55,14 +76,12 @@ public class Leaderboard : MonoBehaviour
     IEnumerator SubmitScoreCoroutine(string memberId, int score)
     {
         bool done = false;
-        string metadataJson = "{\"character\":\"warrior\",\"level\":5}"; // JSON metadata
-        LootLockerSDKManager.SubmitScore(memberId, score, leaderboardKey, metadataJson, (response) =>
+
+        LootLockerSDKManager.SubmitScore(memberId, score, leaderboardKey, (response) =>
         {
             if (response.success)
             {
                 Debug.Log($"✅ Score {score} submitted successfully for {memberId}");
-
-                // Cập nhật ngay lập tức
                 FetchScoresImmediately();
             }
             else
@@ -75,6 +94,48 @@ public class Leaderboard : MonoBehaviour
         yield return new WaitUntil(() => done);
     }
 
+    public void SubmitScoreWithMetadata(string memberId, int score)
+    {
+        StartCoroutine(SubmitScoreWithMetadataCoroutine(memberId, score));
+    }
+
+    private IEnumerator SubmitScoreWithMetadataCoroutine(string memberId, int score)
+    {
+        bool done = false;
+
+        // Chuyển metadata thành JSON dùng JsonUtility
+        string metadataJson = JsonUtility.ToJson(DBManager.User);
+
+        LootLockerSDKManager.SubmitScore(memberId, score, leaderboardKey, metadataJson, (response) =>
+        {
+            if (response.success)
+            {
+                Debug.Log($"✅ Score {score} submitted successfully for {memberId} with metadata: {metadataJson}");
+
+                // Cập nhật ngay leaderboard
+                FetchScoresImmediately();
+            }
+            else
+            {
+                Debug.LogError($"❌ Failed to submit score for {memberId}. Error: " + response.errorData);
+            }
+            done = true;
+        });
+
+        yield return new WaitUntil(() => done);
+    }
+
+    [System.Serializable]
+    public class Metadata
+    {
+        public string userId;
+
+        public Metadata(string userId)
+        {
+            this.userId = userId;
+        }
+    }
+
     public void FetchScoresImmediately()
     {
         if (autoRefreshCoroutine != null)
@@ -85,7 +146,7 @@ public class Leaderboard : MonoBehaviour
 
         if (gameObject.activeInHierarchy)
         {
-            FetchScores(); // Cập nhật ngay lập tức
+            FetchScores();
             if (autoRefreshCoroutine == null)
             {
                 autoRefreshCoroutine = StartCoroutine(AutoRefreshLeaderboard());
@@ -103,43 +164,105 @@ public class Leaderboard : MonoBehaviour
         StartCoroutine(FetchScoresCoroutine());
     }
 
+    //IEnumerator FetchScoresCoroutine()
+    //{
+    //    bool done = false;
+    //    LootLockerSDKManager.GetScoreList(leaderboardKey, 10, (response) =>
+    //    {
+    //        if (response.success)
+    //        {
+    //            LootLockerLeaderboardMember[] members = response.items;
+    //            ProcessScores(members);
+    //            //onLeaderboardFetched?.Invoke(members);
+    //            done = true;
+    //        }
+    //        else
+    //        {
+    //            Debug.LogError("❌ Failed to fetch leaderboard scores!");
+    //        }
+    //    });
+
+    //    yield return new WaitUntil(() => done);
+    //}
     IEnumerator FetchScoresCoroutine()
     {
-        bool done = false;
-        LootLockerSDKManager.GetScoreList(leaderboardKey, 10, (response) =>
+        int? cursor = null;
+        List<LootLockerLeaderboardMember> allScores = new List<LootLockerLeaderboardMember>();
+
+        do
         {
-            if (response.success)
+            bool done = false; // Đặt ở đây để reset cho mỗi lần gọi API
+
+            LootLockerSDKManager.GetScoreList(leaderboardKey, 50, cursor ?? 0, (response) =>
             {
-                LootLockerLeaderboardMember[] members = response.items;
+                if (response.success)
+                {
+                    allScores.AddRange(response.items); // Thêm điểm số vào danh sách
 
-                onLeaderboardFetched?.Invoke(members);
+                    if (response.pagination != null)
+                        cursor = response.pagination.next_cursor; // Lấy cursor tiếp theo
+                    else
+                        cursor = null; // Nếu không có pagination, dừng lặp
 
-                //// Hiển thị danh sách người chơi
-                //leaderboardText.text = "🏆 Leaderboard 🏆\n";
-                //for (int i = 0; i < members.Length; i++)
-                //{
-                //    string playerName = GetPlayerName(members[i]);
-                //    leaderboardText.text += $"{i + 1}. {playerName} - {members[i].score} pts\n";
-                //}
+                }
+                else
+                {
+                    Debug.LogError("❌ Failed to fetch leaderboard scores!");
+                    cursor = null; // Dừng lặp nếu lỗi xảy ra
+                }
 
-                done = true;
-            }
-            else
-            {
-                Debug.LogError("❌ Failed to fetch leaderboard scores!");
-            }
-        });
+                done = true; // Đánh dấu đã xong
+            });
 
-        yield return new WaitUntil(() => done);
+            yield return new WaitUntil(() => done);
+
+        } while (cursor.HasValue && cursor != 0); // Kiểm tra cursor hợp lệ
+
+        // Gọi hàm xử lý điểm số sau khi lấy hết
+        ProcessScores(allScores.ToArray());
     }
 
-    private string GetPlayerName(LootLockerLeaderboardMember member)
+
+
+
+    private void ProcessScores(LootLockerLeaderboardMember[] members)
     {
-        string playerName = $"Player_{member.member_id}";
+        List<LootLockerLeaderboardMember> top5 = new List<LootLockerLeaderboardMember>();
+        LootLockerLeaderboardMember currentPlayer = null;
 
-        if (!string.IsNullOrEmpty(member.player.name))
-            playerName = member.player.name;
+        for (int i = 0; i < members.Length; i++)
+        {
+            if (i < 5)
+            {
+                top5.Add(members[i]);
+            }
 
-        return playerName;
+            if (members[i].member_id == playerAuthenticate.PlayerId)
+            {
+                currentPlayer = members[i];
+            }
+        }
+
+        foreach (var member in top5)
+        {
+            UserResponseDTO user = JsonConvert.DeserializeObject<UserResponseDTO>(member.metadata);
+            if (user != null)
+            {
+                member.player.name = DBManager.GetDisplayName(user);
+            }
+        }
+
+        onLeaderboardFetched?.Invoke(top5.ToArray());
+
+        // Nếu currentPlayer có trong top5 thì gọi luôn sự kiện hiển thị
+        if (currentPlayer != null)
+        {
+            UserResponseDTO currentUser = JsonConvert.DeserializeObject<UserResponseDTO>(currentPlayer.metadata);
+            if (currentUser != null)
+            {
+                currentPlayer.player.name = DBManager.GetDisplayName(currentUser);
+            }
+            onCurrentPlayerFetched?.Invoke(currentPlayer);
+        }
     }
 }

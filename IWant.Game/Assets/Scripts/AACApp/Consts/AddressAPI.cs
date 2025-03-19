@@ -1,4 +1,6 @@
-﻿public static class AddressAPI
+﻿using System.Threading.Tasks;
+
+public static class AddressAPI
 {
     //public static readonly string BASE_URL = "http://localhost:5000";
     public static readonly string BASE_URL = "https://iwantapiservice.azurewebsites.net";
@@ -9,7 +11,7 @@
     public static readonly string WORD_CATEGORY_URL = BASE_URL + "/api/wordCategories";
 
     public static readonly string TEXT_TO_SPEECH_URL = "https://api.edenai.run/v2/audio/text_to_speech";
-    public static readonly string TEXT_TO_SPEECH_API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMTY0NTQ0MjAtMmIzMC00MDgxLThjNGYtMTkwZjRmOGRjODgxIiwidHlwZSI6ImFwaV90b2tlbiJ9.0Pde4P6T4eRr0IMI-iyhezGKiSk1e-9XvJTIwRGFOow"; // API Key
+    //public static readonly string TEXT_TO_SPEECH_API_KEY = ; // API Key
     public static readonly string MALE_VI_VN = "microsoft/vi-VN-NamMinhNeural";
     public static readonly string FEMALE_VI_VN = "microsoft/vi-VN-HoaiMyNeural";
 

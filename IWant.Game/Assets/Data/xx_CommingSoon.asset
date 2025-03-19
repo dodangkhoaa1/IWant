@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0741231db5c94b4695cd19307e6da63, type: 3}
   m_Name: xx_CommingSoon
   m_EditorClassIdentifier: 
-  name: Comming Soon
+  name: Ball
   price: 99999
   objectPrefabs:
-  - {fileID: 6354177348609496543, guid: 56e22c8437245b242a3b529d47305ae9, type: 3}
+  - {fileID: 3231349117300130763, guid: 37c87b50278f9ed40a8383ef9c4c49c7, type: 3}
   spawnablePrefabs:
-  - {fileID: 6354177348609496543, guid: 56e22c8437245b242a3b529d47305ae9, type: 3}
+  - {fileID: 3231349117300130763, guid: 37c87b50278f9ed40a8383ef9c4c49c7, type: 3}

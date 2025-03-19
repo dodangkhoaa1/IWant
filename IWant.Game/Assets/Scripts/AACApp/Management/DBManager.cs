@@ -3,14 +3,32 @@ using UnityEngine;
 
 public static class DBManager
 {
-    public static string fullName = "Default Name";
+    public static string lastname = "My Friend";
+
+    public static string GetDisplayName(UserResponseDTO UserInfo)
+    {
+        return !string.IsNullOrEmpty(UserInfo.ChildNickName) ? UserInfo.ChildNickName :
+               !string.IsNullOrEmpty(UserInfo.ChildName) ? UserInfo.ChildName : UserInfo.FullName;
+    }
+
     public static UserResponseDTO User
     {
-        set{}
+        set { }
         get => JsonConvert.DeserializeObject<UserResponseDTO>(USER_DATA);
     }
 
-    public static Gender gender;
+    public static Gender gender
+    {
+        set{}
+        get
+        {
+            UserResponseDTO UserInfo = User;
+            if (UserInfo == null){
+                return Gender.Male;
+            }
+            return UserInfo.ChildGender.HasValue ? (UserInfo.ChildGender.Value ? Gender.Male : Gender.Female) : (UserInfo.Gender.HasValue ? (UserInfo.Gender.Value ? Gender.Male : Gender.Female) : Gender.Female);
+        }
+    }
 
     private const string USER_DATA_STRING = "UserData";
     public static string USER_DATA
@@ -19,10 +37,10 @@ public static class DBManager
         get => PlayerPrefs.GetString(USER_DATA_STRING, null);
     }
 
-    public static bool LoggedIn { get => fullName != null; }
+    public static bool LoggedIn { get => USER_DATA != null; }
 
     public static void LogOut()
     {
-        fullName = null;
+        lastname = null;
     }
 }

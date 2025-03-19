@@ -38,9 +38,71 @@ namespace IWant.Web.Controllers
                 word.ImagePath = createdWord.ImagePath;
             }
 
+            TempData["success"] = "Create Word successfully!";
             return RedirectToAction("Index");
         }
 
+        public async Task<IActionResult> Delete(int id)
+        {
+            var result = await _wordService.DeleteWordAsync(id);
+            if (result)
+            {
+                TempData["success"] = "Delete Word successfully!";
+                return RedirectToAction("Index");
+            }
+            TempData["error"] = "Delete Word failed.";
+            return View("Error");
+        }
+        public async Task<IActionResult> Details(int id)
+        {
+            var word = await _wordService.GetWordByIdAsync(id);
+            if (word == null)
+            {
+                return NotFound();
+            }
 
+            string fullImagePath = "https://iwantapiservice.azurewebsites.net/" + word.ImagePath;
+            word.ImagePath = fullImagePath;
+
+            return View(word);
+        }
+        public async Task<IActionResult> Edit(int id)
+        {
+            var word = await _wordService.GetWordByIdAsync(id);
+            if (word == null)
+            {
+                return NotFound();
+            }
+
+            var categories = await _wordService.GetCategorysAsync();
+            TempData["WordCategories"] = JsonConvert.SerializeObject(categories);
+
+            string fullImagePath = "https://iwantapiservice.azurewebsites.net/" + word.ImagePath;
+            word.ImagePath = fullImagePath;
+
+            return View(word);
+        }
+
+        [HttpPost]
+        //[ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(Word word)
+        {
+            if (!ModelState.IsValid)
+            {
+                var categories = await _wordService.GetCategorysAsync();
+                TempData["WordCategories"] = JsonConvert.SerializeObject(categories);
+                return View(word);
+            }
+
+            var updatedWord = await _wordService.UpdateWordAsync(word);
+            if (updatedWord == null)
+            {
+                TempData["error"] = "Update Word failed.";
+                return View("Error");
+            }
+
+            TempData["success"] = "Update Word successfully!";
+            return RedirectToAction(nameof(Edit), new { id = word.Id });
+        }
     }
 }

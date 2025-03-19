@@ -14,7 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_TableCollectionName: WordTable
   m_TableCollectionNameGuidString: 6a926b13b6daeb440b53accbcd2d1484
-  m_Entries: []
+  m_Entries:
+  - m_Id: 25477881568055296
+    m_Key: LoadingKey
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -9,6 +9,7 @@ public class SettingsManager : MonoBehaviour
     [Header(" Elements ")]
     [SerializeField] private GameObject resetProgressPrompt;
     [SerializeField] private Slider pushMagnitudeSlider;
+
     [SerializeField] private Toggle sfxToggle;
     [SerializeField] private Toggle bgmToggle; // Toggle để bật/tắt nhạc nền
     [SerializeField] private Image[] iconSFX;
@@ -34,6 +35,10 @@ public class SettingsManager : MonoBehaviour
         LoadData();
         iconClose.onClick.AddListener(CloseSettings);
         replayButton.onClick.AddListener(ReplayGame);
+
+        // Gán sự kiện cho toggle
+        sfxToggle.onValueChanged.AddListener(ToggleSFXCallback);
+        bgmToggle.onValueChanged.AddListener(ToggleBGMCallback);
     }
 
     IEnumerator Start()
@@ -91,10 +96,28 @@ public class SettingsManager : MonoBehaviour
     private void LoadData()
     {
         pushMagnitudeSlider.value = PlayerPrefs.GetFloat(lastPushMagnitudeKey, 1);
-        sfxToggle.isOn = PlayerPrefs.GetInt(sfxActiveKey, 1) == 1;
-        bgmToggle.isOn = PlayerPrefs.GetInt(bgmActiveKey, 1) == 1; // Load trạng thái nhạc nền
+        // Tạm thời xóa sự kiện để tránh trigger khi gán giá trị
+        sfxToggle.onValueChanged.RemoveListener(ToggleSFXCallback);
+        bgmToggle.onValueChanged.RemoveListener(ToggleBGMCallback);
+
+        // Load trạng thái từ PlayerPrefs
+        int sfxValue = PlayerPrefs.GetInt(sfxActiveKey, 1);
+        int bgmValue = PlayerPrefs.GetInt(bgmActiveKey, 1);
+
+        Debug.Log($"[LoadData] SFX: {sfxValue}, BGM: {bgmValue}"); // Debug kiểm tra
+
+        sfxToggle.isOn = sfxValue == 1;
+        bgmToggle.isOn = bgmValue == 1;
+
+        // Cập nhật UI & gửi sự kiện
+        onSFXValueChanged?.Invoke(sfxToggle.isOn);
+        onBGMValueChanged?.Invoke(bgmToggle.isOn);
         UpdateIconSFX(sfxToggle.isOn);
         UpdateIconBGM(bgmToggle.isOn);
+
+        // Gán lại sự kiện sau khi load xong
+        sfxToggle.onValueChanged.AddListener(ToggleSFXCallback);
+        bgmToggle.onValueChanged.AddListener(ToggleBGMCallback);
     }
 
     private void SaveData()
@@ -103,29 +126,21 @@ public class SettingsManager : MonoBehaviour
 
         PlayerPrefs.SetFloat(lastPushMagnitudeKey, pushMagnitudeSlider.value);
         PlayerPrefs.SetInt(sfxActiveKey, sfxToggle.isOn ? 1 : 0);
-        PlayerPrefs.SetInt(bgmActiveKey, bgmToggle.isOn ? 1 : 0); // Lưu trạng thái nhạc nền
+        PlayerPrefs.SetInt(bgmActiveKey, bgmToggle.isOn ? 1 : 0);
+        // Lưu trạng thái nhạc nền
+        PlayerPrefs.Save();
     }
 
     private void UpdateIconSFX(bool sfxActive)
     {
-        foreach (var icon in iconSFX)
-            icon.gameObject.SetActive(false);
-
-        if (sfxActive)
-            iconSFX[0].gameObject.SetActive(true);
-        else
-            iconSFX[iconSFX.Length - 1].gameObject.SetActive(true);
+        foreach (var icon in iconSFX) icon.gameObject.SetActive(false);
+        iconSFX[sfxActive ? 0 : iconSFX.Length - 1].gameObject.SetActive(true);
     }
 
     private void UpdateIconBGM(bool bgmActive)
     {
-        foreach (var icon in iconBGM)
-            icon.gameObject.SetActive(false);
-
-        if (bgmActive)
-            iconBGM[0].gameObject.SetActive(true);
-        else
-            iconBGM[iconBGM.Length - 1].gameObject.SetActive(true);
+        foreach (var icon in iconBGM) icon.gameObject.SetActive(false);
+        iconBGM[bgmActive ? 0 : iconBGM.Length - 1].gameObject.SetActive(true);
     }
 
     private void CloseSettings()

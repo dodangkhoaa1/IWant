@@ -1,4 +1,5 @@
 ﻿using EasyUI.Toast;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -22,6 +23,9 @@ public class PhraseBuild : MonoBehaviour
     [SerializeField] private Transform aacButtonContainer; // Container for AAC buttons
     [SerializeField] private Button deleteBtn; // Button to delete the last button
     [SerializeField] private Button playBtn; // Button to play the sequence of buttons
+
+    [Header("Scroll View")]
+    [SerializeField] ScrollRect phraseScrollRect;
 
     private Dictionary<int, Vector2> buttonInitialPositions = new Dictionary<int, Vector2>(); // Stores initial positions of buttons
     private bool isSwapping = false; // Cờ kiểm soát đổi chỗ
@@ -53,7 +57,7 @@ public class PhraseBuild : MonoBehaviour
     /// <summary>
     /// Allow to add a button to the phrase container.
     /// </summary>
-    public void AddToList(GameObject wordButton)
+    public void AddToList(GameObject wordButton, Action<GameObject> updateImage = null)
     {
         if (phraseContainer.childCount >= MAX_BUTTON_COUNT)
         {
@@ -79,8 +83,11 @@ public class PhraseBuild : MonoBehaviour
             sourceButton.interactable = false;
         }
 
+        // Call the updateImage method to get the image from API and update the wordButtonInstance
+        updateImage?.Invoke(wordButtonInstance);
+
         StartCoroutine(UpdateUIToolBarButtons());
-        UpdateButtonPositions();
+        ScrollToLastButton();
     }
 
     /// <summary>
@@ -162,7 +169,11 @@ public class PhraseBuild : MonoBehaviour
     /// </summary>
     private Vector2 CalculateButtonPosition(int index)
     {
-        return new Vector2(175 + index * (350 + 50), -200);
+        int widthOfButton = 300;
+        int paddingLeft = 150;
+        int spacing = 10;
+
+        return new Vector2(paddingLeft + index * (widthOfButton + spacing), -200);
     }
 
     /// <summary>
@@ -306,5 +317,22 @@ public class PhraseBuild : MonoBehaviour
             }
         }
         return null;
+    }
+    /// <summary>
+    /// Scroll to the last button in the phraseScrollView.
+    /// </summary>
+    private void ScrollToLastButton()
+    {
+        if (phraseContainer.childCount == 0) return;
+
+        RectTransform contentRectTransform = phraseScrollRect.content;
+        RectTransform viewportRectTransform = phraseScrollRect.viewport;
+
+        int viewportPadding = 50;
+        float contentWidth = contentRectTransform.rect.width;
+        float viewportWidth = viewportRectTransform.rect.width;
+
+        if (contentWidth > viewportWidth - viewportPadding * 2) 
+            contentRectTransform.anchoredPosition = new Vector2(-contentRectTransform.rect.width/2, contentRectTransform.anchoredPosition.y);
     }
 }

@@ -15,6 +15,7 @@ namespace Connect.Core
 
         private Dictionary<Node, GameObject> ConnectedEdges;
 
+
         [HideInInspector] public int colorId;
 
         public bool IsWin
@@ -65,7 +66,7 @@ namespace Connect.Core
             colorId = colorIdForSpawnedNode;
             _point.SetActive(true);
             _point.GetComponent<SpriteRenderer>().color =
-                GameplayManager.Instance.NodeColors[colorId % GameplayManager.Instance.NodeColors.Count];
+                GameplayManagerDotGame.Instance.NodeColors[colorId % GameplayManagerDotGame.Instance.NodeColors.Count];
         }
 
         public void SetEdge(Vector2Int offset, Node node)
@@ -242,7 +243,7 @@ namespace Connect.Core
             GameObject connectedEdge = ConnectedEdges[connectedNode];
             connectedEdge.SetActive(true);
             connectedEdge.GetComponent<SpriteRenderer>().color =
-                GameplayManager.Instance.NodeColors[colorId % GameplayManager.Instance.NodeColors.Count];
+                GameplayManagerDotGame.Instance.NodeColors[colorId % GameplayManagerDotGame.Instance.NodeColors.Count];
         }
 
         private void RemoveEdge(Node node)
@@ -339,7 +340,7 @@ namespace Connect.Core
             {
                 _highLight.SetActive(true);
                 _highLight.GetComponent<SpriteRenderer>().color =
-                    GameplayManager.Instance.GetHighLightColor(colorId);
+                    GameplayManagerDotGame.Instance.GetHighLightColor(colorId);
             }
             else
             {
@@ -365,7 +366,7 @@ namespace Connect.Core
                 {
                     Vector2Int checkingPos = Pos2D + directionCheck[(i + j) % directionCheck.Count];
 
-                    if (GameplayManager.Instance._nodeGrid.TryGetValue(checkingPos, out Node result))
+                    if (GameplayManagerDotGame.Instance._nodeGrid.TryGetValue(checkingPos, out Node result))
                     {
                         if (resultNodes.Contains(result))
                         {

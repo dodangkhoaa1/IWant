@@ -1,6 +1,7 @@
 ﻿using IWant.BusinessObject.Enitities;
 using IWant.Web.Models;
 using IWant.Web.Models.DTO;
+using System.Net;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
@@ -30,7 +31,6 @@ namespace IWant.Web.Service
                 Status = word.Status,
                 WordCategoryId = word.WordCategoryId,
                 WordCategory = word.WordCategory,
-                Image = word.Image
             };
             // Kiểm tra nếu có file ảnh
             if (word.ImageFile != null)
@@ -50,17 +50,12 @@ namespace IWant.Web.Service
             return JsonSerializer.Deserialize<Word>(result, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
         }
 
-
-
-
-
-        public async Task<Word> DeleteWordAsync(int id)
+        public async Task<bool> DeleteWordAsync(int id)
         {
             var response = await _httpClient.DeleteAsync($"{ApiBaseUrl}/{id}");
             response.EnsureSuccessStatusCode();
 
-            var result = await response.Content.ReadAsStringAsync();
-            return JsonSerializer.Deserialize<Word>(result, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+            return response.StatusCode == HttpStatusCode.OK;
         }
 
         public async Task<Word> GetWordByIdAsync(int id)
@@ -83,7 +78,27 @@ namespace IWant.Web.Service
 
         public async Task<Word> UpdateWordAsync(Word word)
         {
-            var json = JsonSerializer.Serialize(word);
+            WordDTO wordDTO = new()
+            {
+                Id = word.Id,
+                VietnameseText = word.VietnameseText,
+                EnglishText = word.EnglishText,
+                CreatedAt = word.CreatedAt,
+                UpdatedAt = word.UpdatedAt,
+                ImagePath = word.ImagePath,
+                Status = word.Status,
+                WordCategoryId = word.WordCategoryId,
+                WordCategory = word.WordCategory,
+            };
+            // Kiểm tra nếu có file ảnh
+            if (word.ImageFile != null)
+            {
+                using var memoryStream = new MemoryStream();
+                await word.ImageFile.CopyToAsync(memoryStream);
+                wordDTO.Image = memoryStream.ToArray();
+            }
+
+            var json = JsonSerializer.Serialize(wordDTO);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
             var response = await _httpClient.PutAsync($"{ApiBaseUrl}/{word.Id}", content);

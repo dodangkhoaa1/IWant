@@ -10,6 +10,5 @@
         public DateTime UpdatedAt { get; set; } = DateTime.Now;
         public string? ImagePath { get; set; }
         public bool Status { get; set; } = true;
-        public byte[]? Image { get; set; }
     }
 }

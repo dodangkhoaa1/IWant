@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
 
     [Header(" Level Data ")]
     private LevelDataSO currentLevelData; // Lưu dữ liệu màn chơi hiện tại
+    private static LevelDataSO savedLevelData;
 
     [Header(" UI Elements ")]
     [SerializeField] private TextMeshProUGUI requiredScoreText;
@@ -58,7 +59,6 @@ public class GameManager : MonoBehaviour
         this.gameState = gameState;
         onGameStateChanged?.Invoke(gameState);  
     }
-
     public GameState GetGameState()
     {
         return gameState;
@@ -96,6 +96,6 @@ public class GameManager : MonoBehaviour
         if (requiredScoreText == null || currentLevelData == null) return;
 
         int requiredScore = currentLevelData.GetRequiredHighscore();
-        requiredScoreText.text = $"Bạn cần {requiredScore} điểm để qua màn!";
+        requiredScoreText.text = $"You need {requiredScore} points to pass the level!";
     }
 }

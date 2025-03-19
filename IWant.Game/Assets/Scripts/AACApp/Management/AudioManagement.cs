@@ -39,7 +39,9 @@ public class AudioManagement : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == "FruitDrop")
+        if (scene.name == SceneName.FruitDrop.ToString() ||
+            scene.name == SceneName.EmotionGame.ToString() ||
+            scene.name == SceneName.MainMenus.ToString())
         {
             Destroy(gameObject);
         }
@@ -55,5 +57,14 @@ public class AudioManagement : MonoBehaviour
     {
         sfxSource.clip = audioClip;
         sfxSource.Play();
+    }
+
+    public void PlayLibrarySound(AudioClip clip)
+    {
+        if (sfxSource && clip != null)
+        {
+            sfxSource.clip = clip;
+            sfxSource.PlayOneShot(clip);
+        }
     }
 }

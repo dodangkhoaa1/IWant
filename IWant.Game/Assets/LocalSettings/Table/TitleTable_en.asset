@@ -114,6 +114,22 @@ MonoBehaviour:
     m_Localized: Create new word
     m_Metadata:
       m_Items: []
+  - m_Id: 28419054523797504
+    m_Localized: Brightness
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28424900548907008
+    m_Localized: Background Music
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28425157387112448
+    m_Localized: Sound Effect
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28606635693723648
+    m_Localized: How do you feel today?
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

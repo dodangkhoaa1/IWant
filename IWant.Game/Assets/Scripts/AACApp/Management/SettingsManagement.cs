@@ -11,6 +11,7 @@ public class SettingsManagement : MonoBehaviour
     [SerializeField] private Transform soundLanguageSetting;
     [SerializeField] private Transform soundSetting;
     [SerializeField] private Transform languageSetting;
+    [SerializeField] private Transform brightnessSetting;
 
     private string toastString;
     [HideInInspector]
@@ -78,18 +79,36 @@ public class SettingsManagement : MonoBehaviour
     {
         // Clear user data from DBManager
         DBManager.USER_DATA = null;
-        DBManager.fullName = string.Empty;
+        DBManager.lastname = string.Empty;
         DBManager.gender = Gender.Female;
 
         PlayerPrefs.DeleteAll();
 
         // Show sign out success message
         toastString = PrefsKey.LANGUAGE == PrefsKey.ENGLISH_CODE
-            ? "You have been signed out successfully."
-            : "Bạn đã đăng xuất thành công.";
+            ? "Sign Out Successfully!"
+            : "Đăng Xuất Thành Công!";
         Toast.Show(toastString, 1.5f, ToastColor.Green, ToastPosition.BottomCenter);
 
         // Load the sign-in scene
         SceneManager.LoadScene(SceneName.SignInScene.ToString());
+    }
+
+    public void OpenBrightnessSetting()
+    {
+        if (brightnessSetting == null)
+        {
+            Debug.LogWarning("Brightness setting panel is not assigned.");
+            return;
+        }
+
+        if (soundLanguageSetting.gameObject.activeSelf)
+        {
+            soundLanguageSetting.gameObject.SetActive(false);
+        }
+
+        panelStack.Push(brightnessSetting);
+
+        brightnessSetting.gameObject.SetActive(true);
     }
 }

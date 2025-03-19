@@ -6,42 +6,27 @@ public class PlayerLeaderboard : MonoBehaviour
 {
     [Header(" Elements ")]
     [SerializeField] private PlayerAuthenticate playerAuthenticate;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-            SetBestScoreToLeaderboard();
+
     }
-
-    //private void SetRandomScore()
-    //{
-    //    string playerId = playerAuthenticate.PlayerId;
-    //    int score = Random.Range(0, 10000);
-
-    //    Leaderboard.instance.SubmitScore(playerId, score);
-    //}
-    private void SetBestScoreToLeaderboard()
+    public void SetBestScoreToLeaderboard(string userId)
     {
-        if (Leaderboard.instance == null)
+        if (LeaderboardEmotionGame.instance == null)
         {
             Debug.LogError("❌ Leaderboard instance is null!");
             return;
         }
 
         string playerId = playerAuthenticate.PlayerId;
-        int bestScore = ScoreManager.instance.GetBestScore(); // Lấy điểm cao nhất
+        int bestScore = ScoreManager.instance.GetBestScore();
 
-        Debug.Log($"📢 Đang cập nhật điểm cao nhất: {bestScore} cho PlayerID: {playerId}");
+        Debug.Log($"📢 Đang cập nhật điểm cao nhất: {bestScore} cho PlayerID: {playerId}, UserID: {userId}");
 
-        Leaderboard.instance.SubmitScore(playerId, bestScore);
+        // Gửi điểm kèm metadata
+        Leaderboard.instance.SubmitScoreWithMetadata(playerId, bestScore);
     }
+
     public void SetPlayerName(string playerName)
     {
         LootLockerSDKManager.SetPlayerName(playerName, (response) =>

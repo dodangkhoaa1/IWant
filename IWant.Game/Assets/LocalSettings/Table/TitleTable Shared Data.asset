@@ -111,6 +111,22 @@ MonoBehaviour:
     m_Key: CreateNewKey
     m_Metadata:
       m_Items: []
+  - m_Id: 28419054523797504
+    m_Key: BrightnessKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28424900548907008
+    m_Key: BackgroundMusicKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28425157387112448
+    m_Key: SFXKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28606635693723648
+    m_Key: AskKey
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
