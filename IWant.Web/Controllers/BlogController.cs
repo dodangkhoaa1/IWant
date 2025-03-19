@@ -50,13 +50,13 @@ namespace IWant.Web.Controllers
             return View(blogViewModels);
         }
 
-        [Route("Blog")]
-        [Route("Blog/Index")]
+        [HttpGet]
+        [Route("Blog/Index/{filterType?}")]
         [Authorize]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index( string filterType)
         {
             List<Blog> blogs;
-            List<BlogViewModel> blogViewModels;
+            List<BlogViewModel> blogViewModels = new List<BlogViewModel>();
 
             var user = await _context.Users.FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
             if (user == null || user.Status == false)
@@ -64,15 +64,66 @@ namespace IWant.Web.Controllers
                 TempData["error"] = "Your account was banned!";
                 return RedirectToAction("Signin", "Identity");
             }
-            
-            if (User.IsInRole("Admin"))
+
+            if(filterType == "show")
             {
-                blogs = await _context.Blogs.Include(b => b.User).ToListAsync();
-                blogViewModels = _mapper.Map<List<Blog>, List<BlogViewModel>>(blogs);
-                return View(blogViewModels);
+                if (User.IsInRole("Admin"))
+                {
+                    blogs = await _context.Blogs.Include(b => b.User).Where(b => b.Status == true).ToListAsync();
+                    blogViewModels = _mapper.Map<List<Blog>, List<BlogViewModel>>(blogs);
+                    return View(blogViewModels);
+                } else
+                {
+                    blogs = await _context.Blogs.Include(b => b.User).Where(b => b.User.Id == user.Id && b.Status == true).ToListAsync();
+                    blogViewModels = _mapper.Map<List<Blog>, List<BlogViewModel>>(blogs);
+                    return View(blogViewModels);
+                }
+            } 
+            else if (filterType == "hide")
+            {
+                if (User.IsInRole("Admin"))
+                {
+                    blogs = await _context.Blogs.Include(b => b.User).Where(b => b.Status == false).ToListAsync();
+                    blogViewModels = _mapper.Map<List<Blog>, List<BlogViewModel>>(blogs);
+                    return View(blogViewModels);
+                }
+                else
+                {
+                    blogs = await _context.Blogs.Include(b => b.User).Where(b => b.User.Id == user.Id && b.Status == false).ToListAsync();
+                    blogViewModels = _mapper.Map<List<Blog>, List<BlogViewModel>>(blogs);
+                    return View(blogViewModels);
+                }
+            } 
+            else if(filterType == "waiting")
+            {
+                if (User.IsInRole("Admin"))
+                {
+                    blogs = await _context.Blogs.Include(b => b.User).Where(b => b.Status == null).ToListAsync();
+                    blogViewModels = _mapper.Map<List<Blog>, List<BlogViewModel>>(blogs);
+                    return View(blogViewModels);
+                }
+                else
+                {
+                    blogs = await _context.Blogs.Include(b => b.User).Where(b => b.User.Id == user.Id && b.Status == null).ToListAsync();
+                    blogViewModels = _mapper.Map<List<Blog>, List<BlogViewModel>>(blogs);
+                    return View(blogViewModels);
+                }
+            } else if(filterType == "all")
+            {
+                if (User.IsInRole("Admin"))
+                {
+                    blogs = await _context.Blogs.Include(b => b.User).ToListAsync();
+                    blogViewModels = _mapper.Map<List<Blog>, List<BlogViewModel>>(blogs);
+                    return View(blogViewModels);
+                }
+                else
+                {
+                    blogs = await _context.Blogs.Include(b => b.User).Where(b => b.User.Id == user.Id).ToListAsync();
+                    blogViewModels = _mapper.Map<List<Blog>, List<BlogViewModel>>(blogs);
+                    return View(blogViewModels);
+                }
             }
-            blogs = await _context.Blogs.Include(b => b.User).Where(b=>b.User.Id == user.Id).ToListAsync();
-            blogViewModels = _mapper.Map<List<Blog>, List<BlogViewModel>>(blogs);
+
             return View(blogViewModels);
         }
 

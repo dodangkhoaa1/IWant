@@ -11,6 +11,10 @@
         Layout = "~/Views/Shared/_Layout.cshtml";
     }
     bool? isWaiting;
+
+    string filterWaiting = "Waiting";
+    string filterShow = "Show";
+    string filterHide = "Hide";
 }
 
 @if (User.IsInRole("Member"))
@@ -45,7 +49,7 @@
         align-items: center;
         gap: 10px;
         justify-content: flex-end;
-        margin-bottom:10px;
+        margin-bottom: 10px;
     }
 
     .btn-filter, .btn-create {
@@ -186,7 +190,7 @@
             font-size: 1rem;
             color: #364d59;
             position: relative;
-            margin:0;
+            margin: 0;
         }
 
             .game-header p::after {
@@ -222,18 +226,18 @@
             }
 
     /* .btn-filter {
-        margin: 5px;
-        padding: 8px 12px;
-        border: none;
-        background-color: #17a2b8;
-        color: white;
-        cursor: pointer;
-        border-radius: 5px;
-    }
+                    margin: 5px;
+                    padding: 8px 12px;
+                    border: none;
+                    background-color: #17a2b8;
+                    color: white;
+                    cursor: pointer;
+                    border-radius: 5px;
+                }
 
-        .btn-filter:hover {
-            background-color: #138496;
-        } */
+                    .btn-filter:hover {
+                        background-color: #138496;
+                    } */
 </style>
 
 <div class="@(User.IsInRole("Member") == true ? "container-blog" : "")">
@@ -241,16 +245,26 @@
         <h1>Blogs</h1>
         <p></p>
     </div>
-    <div class="transactions-header-right">
-        <button class="btn-filter" onclick="sortTable(1)">Sort by Title</button>
-        <a asp-action="Create" class="btn-create">@(User.IsInRole("Admin") ? "+ Create" : "+ Submit")</a>
+    <div class="transactions-header-right d-flex justify-content-between">
+
+        <div class="filter">
+            <a asp-action="Index" asp-controller="Blog" asp-route-filterType="all" class="btn-filter">All</a>
+            <a asp-action="Index" asp-controller="Blog" asp-route-filterType="show" class="btn-filter">Show</a>
+            <a asp-action="Index" asp-controller="Blog" asp-route-filterType="hide" class="btn-filter">Hide</a>
+            <a asp-action="Index" asp-controller="Blog" asp-route-filterType="waiting" class="btn-filter">Waiting</a>
+        </div>
+
+        <div class="sort">
+            <button class="btn-filter" onclick="sortByDate()">Sort by Date</button>
+            <a asp-action="Create" class="btn-create">@(User.IsInRole("Admin") ? "+ Create" : "+ Submit")</a>
+        </div>
     </div>
     <div class="table-container">
         <table class="table-fixed">
             <thead>
                 <tr>
                     <th style="width:12%">Author</th>
-                    <th style="width:18%" class="sortable" onclick="sortTable(1)">Title</th>
+                    <th style="width:18%">Title</th>
                     <th style="width:20%">Content</th>
                     <th style="width:5%">Views</th>
                     <th style="width:12%">Date</th>
@@ -360,7 +374,7 @@
             </div>
             <div class="modal-body">
                 <p>Please provide a reason for rejecting this blog:</p>
-                <textarea id="rejectReason" class="form-control" rows="3"></textarea>
+                <textarea id="rejectReason" class="form-control" rows="3" required></textarea>
                 <input type="hidden" id="rejectBlogId">
             </div>
             <div class="modal-footer">
@@ -371,145 +385,143 @@
     </div>
 </div>
 
-<script>
+
+@section Scripts {
+    <script defer>
         document.addEventListener("DOMContentLoaded", function () {
-        const rowsPerPage = 5; 
-        const tableBody = document.getElementById("blogTableBody");
-        const paginationContainer = document.getElementById("pagination");
-        const rows = Array.from(tableBody.getElementsByTagName("tr")); 
+            const rowsPerPage = 5;
+            const tableBody = document.getElementById("blogTableBody");
+            const paginationContainer = document.getElementById("pagination");
+            let rows = Array.from(tableBody.getElementsByTagName("tr"));
+            let currentPage = 1;
 
-        let currentPage = 1;
-        let totalPages = Math.ceil(rows.length / rowsPerPage);
+            function showPage(page) {
+                let start = (page - 1) * rowsPerPage;
+                let end = start + rowsPerPage;
 
-        function showPage(page) {
-            let start = (page - 1) * rowsPerPage;
-            let end = start + rowsPerPage;
-
-            rows.forEach((row, index) => {
-                row.style.display = index >= start && index < end ? "" : "none";
-            });
-
-            updatePagination();
-        }
-
-        function updatePagination() {
-            paginationContainer.innerHTML = "";
-
-            for (let i = 1; i <= totalPages; i++) {
-                let btn = document.createElement("button");
-                btn.innerText = i;
-                btn.className = "page-btn " + (i === currentPage ? "active" : "");
-                btn.addEventListener("click", function () {
-                    currentPage = i;
-                    showPage(currentPage);
+                rows.forEach((row, index) => {
+                    row.style.display = index >= start && index < end ? "" : "none";
                 });
-                paginationContainer.appendChild(btn);
+
+                updatePagination();
             }
-        }
-        truncateContentTo20Words();
-        showPage(currentPage);
-    });
 
-    function truncateContentTo20Words() {
-        var contentCells = document.querySelectorAll('.content-cell');
-        contentCells.forEach(function (cell) {
-            var text = cell.innerText.trim();
-            var words = text.split(/\s+/);
-            if (words.length > 15) {
-                cell.innerText = words.slice(0, 15).join(' ') + ' ...';
-            }
-        });
-    }
+            function updatePagination() {
+                paginationContainer.innerHTML = "";
+                let totalPages = Math.ceil(rows.length / rowsPerPage);
 
-    function openFilterModal() {
-        var modal = new bootstrap.Modal(document.getElementById("filterModal"));
-        modal.show();
-    }
-
-    function applyFilter() {
-        var filterTitle = document.getElementById("filterTitle").value.toLowerCase();
-        var filterDate = document.getElementById("filterDate").value;
-        var table = document.getElementById("blogTableBody");
-        var rows = Array.from(table.rows);
-        rows.forEach(function (row) {
-            var titleText = row.cells[0].innerText.toLowerCase();
-            var dateText = row.cells[3].innerText.trim();
-            var matchTitle = titleText.indexOf(filterTitle) !== -1;
-            var matchDate = true;
-            if (filterDate) {
-                var filterDateObj = new Date(filterDate);
-                var parts = dateText.split(" ");
-                if (parts.length > 0) {
-                    var dateParts = parts[0].split("/");
-                    if (dateParts.length === 3) {
-                        var day = parseInt(dateParts[0], 10);
-                        var month = parseInt(dateParts[1], 10) - 1;
-                        var year = parseInt(dateParts[2], 10);
-                        var rowDateObj = new Date(year, month, day);
-                        matchDate = rowDateObj.toDateString() === filterDateObj.toDateString();
-                    }
+                for (let i = 1; i <= totalPages; i++) {
+                    let btn = document.createElement("button");
+                    btn.innerText = i;
+                    btn.className = "page-btn " + (i === currentPage ? "active" : "");
+                    btn.addEventListener("click", function () {
+                        currentPage = i;
+                        showPage(currentPage);
+                    });
+                    paginationContainer.appendChild(btn);
                 }
             }
-            if (matchTitle && matchDate) {
-                row.style.display = "";
-            } else {
-                row.style.display = "none";
+
+            function truncateContentTo20Words() {
+                var contentCells = document.querySelectorAll('.content-cell');
+                contentCells.forEach(function (cell) {
+                    var text = cell.innerText.trim();
+                    var words = text.split(/\s+/);
+                    if (words.length > 15) {
+                        cell.innerText = words.slice(0, 15).join(' ') + ' ...';
+                    }
+                });
             }
+
+            truncateContentTo20Words();
+            showPage(currentPage);
         });
-        currentPage = 1;
-        paginateTable();
-        var modalEl = document.getElementById("filterModal");
-        var modalInstance = bootstrap.Modal.getInstance(modalEl);
-        modalInstance.hide();
-    }
 
-    function clearFilter() {
-        document.getElementById("filterTitle").value = "";
-        document.getElementById("filterDate").value = "";
-        var table = document.getElementById("blogTableBody");
-        var rows = Array.from(table.rows);
-        rows.forEach(function (row) {
-            row.style.display = "";
-        });
-        currentPage = 1;
-        paginateTable();
-        var modalEl = document.getElementById("filterModal");
-        var modalInstance = bootstrap.Modal.getInstance(modalEl);
-        modalInstance.hide();
-    }
+        let isSortedAsc = true;
 
-    document.addEventListener("DOMContentLoaded", function () {
-        paginateTable();
-    });
+        function sortByDate() {
+            const tableBody = document.getElementById("blogTableBody");
+            let rows = Array.from(tableBody.getElementsByTagName("tr"));
 
-    function openRejectModal(blogId) {
-        document.getElementById("rejectBlogId").value = blogId;
-        document.getElementById("rejectReason").value = "";
-        var modal = new bootstrap.Modal(document.getElementById("rejectModal"));
-        modal.show();
-    }
+            rows.sort((rowA, rowB) => {
+                let dateA = new Date(rowA.cells[4].innerText.split(" ")[0].split("/").reverse().join("-"));
+                let dateB = new Date(rowB.cells[4].innerText.split(" ")[0].split("/").reverse().join("-"));
 
-    function submitRejectForm() {
-        var blogId = document.getElementById("rejectBlogId").value;
-        var reason = document.getElementById("rejectReason").value.trim();
-        if (reason === "") {
-            alert("Please enter a reason for rejection.");
-            return;
+                return isSortedAsc ? dateA - dateB : dateB - dateA;
+            });
+
+            isSortedAsc = !isSortedAsc;
+            tableBody.innerHTML = "";
+            rows.forEach(row => tableBody.appendChild(row));
+
+            document.dispatchEvent(new Event("DOMContentLoaded"));
         }
-        var form = document.createElement("form");
-        form.method = "POST";
-        form.action = "/Blog/RejectBlog";
-        var inputId = document.createElement("input");
-        inputId.type = "hidden";
-        inputId.name = "id";
-        inputId.value = blogId;
-        form.appendChild(inputId);
-        var inputReason = document.createElement("input");
-        inputReason.type = "hidden";
-        inputReason.name = "reason";
-        inputReason.value = reason;
-        form.appendChild(inputReason);
-        document.body.appendChild(form);
-        form.submit();
-    }
-</script>
+
+            function openRejectModal(blogId) {
+            document.getElementById("rejectBlogId").value = blogId;
+            document.getElementById("rejectReason").value = "";
+            var modal = new bootstrap.Modal(document.getElementById("rejectModal"));
+            modal.show();
+        }
+
+        function submitRejectForm() {
+            var blogId = document.getElementById("rejectBlogId").value;
+            var reason = document.getElementById("rejectReason").value.trim();
+            if (reason === "") {
+                alert("Please enter a reason for rejection.");
+                return;
+            }
+            var form = document.createElement("form");
+            form.method = "POST";
+            form.action = "/Blog/RejectBlog";
+            var inputId = document.createElement("input");
+            inputId.type = "hidden";
+            inputId.name = "id";
+            inputId.value = blogId;
+            form.appendChild(inputId);
+            var inputReason = document.createElement("input");
+            inputReason.type = "hidden";
+            inputReason.name = "reason";
+            inputReason.value = reason;
+            form.appendChild(inputReason);
+            document.body.appendChild(form);
+            form.submit();
+        }
+
+
+        //         document.addEventListener("DOMContentLoaded", function () {
+        //     const buttons = document.querySelectorAll(".btn-filter");
+        //     const tableRows = document.querySelectorAll("#blogTableBody tr");
+        //     let activeFilter = "All";
+
+        //     function filterTable(status) {
+        //         tableRows.forEach(row => {
+        //             const statusCell = row.querySelector("td span.badge");
+        //             if (!statusCell) return;
+
+        //             const text = statusCell.textContent.trim();
+        //             if (status === "All" || text === status) {
+        //                 row.style.display = "";
+        //             } else {
+        //                 row.style.display = "none";
+        //             }
+        //         });
+        //     }
+
+        //     buttons.forEach(button => {
+        //         button.addEventListener("click", function () {
+        //             buttons.forEach(btn => btn.classList.remove("active"));
+        //             this.classList.add("active");
+        //             activeFilter = this.textContent.trim();
+        //             filterTable(activeFilter);
+
+        //         });
+        //     });
+
+        //     // Set default active button to 'All'
+        //     document.querySelector(".btn-filter").classList.add("active");
+        //     filterTable("All");
+        // });
+
+    </script>
+}
