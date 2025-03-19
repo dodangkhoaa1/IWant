@@ -4,20 +4,31 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EmotionManager : MonoBehaviour
 {
     public GameObject emotionAskPanel;
 
-
-    private List<Emotion> emotions;
+    [HideInInspector]
+    public List<Emotion> emotions;
     private const string LeaderboardKey = "30452";
-    private int timeToTry = 3;
     private bool isSessionStarted = false;
 
-    void Start()
+
+    void Awake()
     {
-        StartLootLockerSession();
+        if (SceneManager.GetActiveScene().name == SceneName.MainMenu.ToString())
+        {
+            StartLootLockerSessionAndExecute(() => LoadEmotionsAndExecute(() => CheckAndDisplayEmotionAskPanel()));
+        }
+    }
+
+    public List<Emotion> GetEmotions()
+    {
+        List<Emotion> loadedEmotions = null;
+        StartLootLockerSessionAndExecute(() => LoadEmotionsAndExecute(() => loadedEmotions = emotions));
+        return loadedEmotions;
     }
 
     private void CheckAndDisplayEmotionAskPanel()
@@ -30,10 +41,12 @@ public class EmotionManager : MonoBehaviour
         }
 
         bool hasTodayEmotion = emotions.Exists(e => e.Date.Date == DateTime.Today);
+        //bool hasTodayEmotion = false; //for test
         Debug.LogWarning($"Has Today Emotion: {hasTodayEmotion}");
         emotionAskPanel?.gameObject.SetActive(!hasTodayEmotion);
     }
-    private void StartLootLockerSession()
+
+    public void StartLootLockerSessionAndExecute(Action callback)
     {
         LootLockerSDKManager.StartGuestSession(DBManager.User.UserId, (response) =>
         {
@@ -41,11 +54,12 @@ public class EmotionManager : MonoBehaviour
             {
                 Debug.Log("✅ LootLocker session started successfully.");
                 isSessionStarted = true;
-                LoadEmotions();
+                callback?.Invoke();
             }
             else
             {
                 Debug.LogError("❌ Failed to start LootLocker session.");
+                StartLootLockerSessionAndExecute(callback);
             }
         });
     }
@@ -69,7 +83,7 @@ public class EmotionManager : MonoBehaviour
         SubmitScoreWithMetadata(emotions.Count, JsonConvert.SerializeObject(emotions));
     }
 
-    private void LoadEmotions()
+    public void LoadEmotionsAndExecute(Action callback)
     {
         if (!isSessionStarted)
         {
@@ -77,7 +91,6 @@ public class EmotionManager : MonoBehaviour
             return;
         }
 
-        if (timeToTry == 0) return;
         LootLockerSDKManager.GetScoreList(LeaderboardKey, 50, (response) =>
         {
             if (response.success)
@@ -101,13 +114,12 @@ public class EmotionManager : MonoBehaviour
                 {
                     Debug.LogWarning("No data found in leaderboard.");
                 }
-                CheckAndDisplayEmotionAskPanel();
+                callback?.Invoke();
             }
             else
             {
-                timeToTry--;
                 Debug.LogError("❌ Failed to load emotions from leaderboard.");
-                LoadEmotions();
+                LoadEmotionsAndExecute(callback);
             }
         });
     }
@@ -160,16 +172,6 @@ public class EmotionManager : MonoBehaviour
         Debug.Log("End List Emotion");
     }
 
-    public List<Emotion> GetEmotions()
-    {
-        if (!isSessionStarted)
-        {
-            Debug.LogError("❌ LootLocker session not started yet.");
-            return null;
-        }
-
-        return emotions;
-    }
 
     [Serializable]
     public class Emotion
