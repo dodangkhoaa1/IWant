@@ -58,4 +58,13 @@ public class AudioManagement : MonoBehaviour
         sfxSource.clip = audioClip;
         sfxSource.Play();
     }
+
+    public void PlayLibrarySound(AudioClip clip)
+    {
+        if (sfxSource && clip != null)
+        {
+            sfxSource.clip = clip;
+            sfxSource.PlayOneShot(clip);
+        }
+    }
 }

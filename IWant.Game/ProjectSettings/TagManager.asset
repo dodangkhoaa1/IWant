@@ -9,6 +9,7 @@ TagManager:
   - PictureToColor
   - SettingsManagement
   - Canvas
+  - Emotion Ask
   layers:
   - Default
   - TransparentFX

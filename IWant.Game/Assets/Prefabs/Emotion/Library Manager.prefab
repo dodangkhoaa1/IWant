@@ -1,0 +1,110 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8892906539460860868
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7044937266313676497}
+  - component: {fileID: 238631106155936812}
+  m_Layer: 0
+  m_Name: Library Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7044937266313676497
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8892906539460860868}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.952395, y: 1.4810611, z: -273.26233}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &238631106155936812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8892906539460860868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fc2b2c67c3a98c44aacb1296faf8955, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  contentPanel: {fileID: 0}
+  pieceSprites:
+  - {fileID: 21300000, guid: 2065acbbec606534c97bd404d7f9233e, type: 3}
+  - {fileID: 21300000, guid: 98b941fb0d1f7074b96eac8e505b44b7, type: 3}
+  - {fileID: 21300000, guid: cede790155c4e78438d8b2f6df65cba9, type: 3}
+  - {fileID: 21300000, guid: 0195f6cc36b41d7478e967e6c3f7850b, type: 3}
+  - {fileID: 21300000, guid: 7d2fed2b5a01b5b49b6a3c6f4f609518, type: 3}
+  - {fileID: 21300000, guid: 5de6a77d8561fab4e90582adcfb5ee83, type: 3}
+  - {fileID: 21300000, guid: 8dd54cf264fa4da46b7d6cdb50a70eb8, type: 3}
+  - {fileID: 21300000, guid: bc42a8d779567984c81abb67539f2fcf, type: 3}
+  - {fileID: 21300000, guid: 32169ff2995f1d54488d31f695343f57, type: 3}
+  - {fileID: 21300000, guid: 04db4f0e276da8f4887bd37ce30ac722, type: 3}
+  - {fileID: 21300000, guid: 3b7e128e7afa5d04c91f82bd1ac4ab1d, type: 3}
+  - {fileID: 21300000, guid: f185458987ae13b44bdaa95c2d91ad8a, type: 3}
+  - {fileID: 21300000, guid: 0a67639d6ef43d34dbdfbddfb3058ac4, type: 3}
+  - {fileID: 21300000, guid: 3ff42774a941dab489efbb1b042dd3d8, type: 3}
+  - {fileID: 21300000, guid: 483c606eec20f454a8e985714229391b, type: 3}
+  - {fileID: 21300000, guid: b707f138ebd88b74fa1cca89b0850950, type: 3}
+  - {fileID: 21300000, guid: 85545f4e95c110c42bf06f6970894b31, type: 3}
+  - {fileID: 21300000, guid: f41db71942fcb324cbb93fbe2e8da619, type: 3}
+  - {fileID: 21300000, guid: f5c04468bb1d8ac4ab127cf674c1b035, type: 3}
+  - {fileID: 21300000, guid: aaae772b2ae6e6b4ea2b2f7726f672fa, type: 3}
+  pieceNames:
+  - Angry
+  - Bored
+  - Cold
+  - 'Confused '
+  - 'Crying '
+  - 'Happy '
+  - 'Hot '
+  - 'Hungry '
+  - 'Jealous '
+  - 'Laughing '
+  - 'Lovely '
+  - 'Sad '
+  - 'Scared '
+  - 'Sick '
+  - 'Silly '
+  - 'Sleepy '
+  - 'Surprited '
+  - 'Thinking '
+  - 'Thirsty '
+  - Worried
+  pieceSounds:
+  - {fileID: 8300000, guid: e5097bee6c4931a48979b96b10152c53, type: 3}
+  - {fileID: 8300000, guid: d08d89ed60c46fd4dba888ca6453e360, type: 3}
+  - {fileID: 8300000, guid: 6960e7aa343a50c498b8538fd8599250, type: 3}
+  - {fileID: 8300000, guid: 876b667c5c5025d459305a200aee11dc, type: 3}
+  - {fileID: 8300000, guid: 8c8672de3a422d048b8f6a625c9e047c, type: 3}
+  - {fileID: 8300000, guid: dd884cb64442ef448a6188aa1713cc81, type: 3}
+  - {fileID: 8300000, guid: 9b086743fe3fb634dbac1f35e9340e9a, type: 3}
+  - {fileID: 8300000, guid: 1f3b1ac8e65441b4383f7dc2cb266f90, type: 3}
+  - {fileID: 8300000, guid: bbd2c00a08e6f4045b5ace5cb8d2a4b9, type: 3}
+  - {fileID: 8300000, guid: 035ced0b0a6d3b24995cf8e25c2c6951, type: 3}
+  - {fileID: 8300000, guid: 1c39af7a965e25e43a1abee8dc329ced, type: 3}
+  - {fileID: 8300000, guid: 5397caa3e00aa104db1df458aa7830ef, type: 3}
+  - {fileID: 8300000, guid: 32d541af2bc248e43affa2adc8427f68, type: 3}
+  - {fileID: 8300000, guid: 912770d568012da468faeb2c7dbbe014, type: 3}
+  - {fileID: 8300000, guid: 92941c74ff3d9aa47852400e178dc24a, type: 3}
+  - {fileID: 8300000, guid: 3966dd0d8aad00e428f3beba4e6c955d, type: 3}
+  - {fileID: 8300000, guid: df210e685065d2f4196a1f06de9c9869, type: 3}
+  - {fileID: 8300000, guid: 6045186854cb9d441ba9507b0d21091e, type: 3}
+  - {fileID: 8300000, guid: 5d4d8c35804d9514a8c41dbdd39c4b37, type: 3}
+  - {fileID: 8300000, guid: 3be9b0e5773e91f45a61f65dd95c8e91, type: 3}

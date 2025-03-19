@@ -121,5 +121,6 @@ public class AudioManager : MonoBehaviour
         {
             boomSource.mute = !sfxActive;
         }
+    
     }
 }

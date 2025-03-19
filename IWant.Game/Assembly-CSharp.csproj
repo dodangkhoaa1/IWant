@@ -102,6 +102,7 @@
     <Compile Include="Assets\Scripts\Coloring\Data\PictureData.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathSpline.cs" />
     <Compile Include="Assets\Scripts\Fruit.cs" />
+    <Compile Include="Assets\Scripts\AACApp\Management\EmotionManager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_DigitValidator.cs" />
     <Compile Include="Assets\Scripts\MergePushEffect.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
