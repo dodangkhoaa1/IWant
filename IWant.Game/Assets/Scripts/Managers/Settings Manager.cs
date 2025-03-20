@@ -8,7 +8,6 @@ public class SettingsManager : MonoBehaviour
 {
     [Header(" Elements ")]
     [SerializeField] private GameObject resetProgressPrompt;
-    [SerializeField] private Slider pushMagnitudeSlider;
 
     [SerializeField] private Toggle sfxToggle;
     [SerializeField] private Toggle bgmToggle; // Toggle để bật/tắt nhạc nền
@@ -20,12 +19,10 @@ public class SettingsManager : MonoBehaviour
     [SerializeField] private Button replayButton;
 
     [Header(" Actions ")]
-    public static Action<float> onPushMagnitudeChanged;
     public static Action<bool> onSFXValueChanged;
     public static Action<bool> onBGMValueChanged; // Sự kiện cho nhạc nền
 
     [Header(" Data ")]
-    private const string lastPushMagnitudeKey = "lastPushMagnitude";
     private const string sfxActiveKey = "sfxActiveKey";
     private const string bgmActiveKey = "bgmActiveKey"; // Key lưu trạng thái nhạc nền
     private bool canSave;
@@ -50,7 +47,6 @@ public class SettingsManager : MonoBehaviour
 
     private void Initialize()
     {
-        onPushMagnitudeChanged?.Invoke(pushMagnitudeSlider.value);
         onSFXValueChanged?.Invoke(sfxToggle.isOn);
         onBGMValueChanged?.Invoke(bgmToggle.isOn); // Gửi trạng thái nhạc nền
         UpdateIconSFX(sfxToggle.isOn);
@@ -72,13 +68,6 @@ public class SettingsManager : MonoBehaviour
     //    resetProgressPrompt.SetActive(false);
     //}
 
-    public void SliderValueChangedCallback()
-    {
-        onPushMagnitudeChanged?.Invoke(pushMagnitudeSlider.value);
-        if (canSave)
-            SaveData();
-    }
-
     public void ToggleSFXCallback(bool sfxActive)
     {
         onSFXValueChanged?.Invoke(sfxActive);
@@ -95,7 +84,6 @@ public class SettingsManager : MonoBehaviour
 
     private void LoadData()
     {
-        pushMagnitudeSlider.value = PlayerPrefs.GetFloat(lastPushMagnitudeKey, 1);
         // Tạm thời xóa sự kiện để tránh trigger khi gán giá trị
         sfxToggle.onValueChanged.RemoveListener(ToggleSFXCallback);
         bgmToggle.onValueChanged.RemoveListener(ToggleBGMCallback);
@@ -124,7 +112,6 @@ public class SettingsManager : MonoBehaviour
     {
         if (!canSave) return;
 
-        PlayerPrefs.SetFloat(lastPushMagnitudeKey, pushMagnitudeSlider.value);
         PlayerPrefs.SetInt(sfxActiveKey, sfxToggle.isOn ? 1 : 0);
         PlayerPrefs.SetInt(bgmActiveKey, bgmToggle.isOn ? 1 : 0);
         // Lưu trạng thái nhạc nền

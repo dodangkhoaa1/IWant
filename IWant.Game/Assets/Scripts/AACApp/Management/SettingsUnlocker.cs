@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using Connect.Core;
 
 public class SettingsUnlocker : MonoBehaviour
 {
@@ -19,6 +20,10 @@ public class SettingsUnlocker : MonoBehaviour
     private GameObject dialogPanel;
     private Button[] numberButtons;   // 4 nút số
     private SettingsManagement settingsManagement; // Settings Panel
+    //TT Games
+    private UIManagerDotGame dotUIManager;
+    private UIManagerEmotionGame emotionUIManager;
+    private UIManager uiManager;
 
     void Awake()
     {
@@ -48,12 +53,32 @@ public class SettingsUnlocker : MonoBehaviour
             }
             else
             {
-                Debug.LogError("GameObject with tag 'SettingsManagement' not found.");
+                Debug.Log("GameObject with tag 'SettingsManagement' not found.");
             }
-        }
-        else
-        {
-            Debug.LogError("Canvas with tag 'canvas' not found.");
+            //TT Games
+            if (settingsManagement == null)
+            {
+                GameObject UIManager = GameObject.FindGameObjectWithTag("UIManager");
+                if (UIManager != null)
+                {
+                    if (UIManager.TryGetComponent(out UIManagerDotGame dotUIManagerComponent))
+                    {
+                        dotUIManager = dotUIManagerComponent;
+                    }
+                    else if (UIManager.TryGetComponent(out UIManagerEmotionGame emotionUIManagerComponent))
+                    {
+                        emotionUIManager = emotionUIManagerComponent;
+                    }
+                    else if (UIManager.TryGetComponent(out UIManager uiManagerComponent))
+                    {
+                        uiManager = uiManagerComponent;
+                    }
+                }
+            }
+            else
+            {
+                Debug.Log("Canvas with tag 'canvas' not found.");
+            }
         }
     }
 
@@ -135,6 +160,9 @@ public class SettingsUnlocker : MonoBehaviour
     void OpenSettings()
     {
         dialogPanel.SetActive(false);
-        settingsManagement.OpenSoundLanguageSetting();
+        settingsManagement?.OpenSoundLanguageSetting();
+        uiManager?.SettingsButtonCallBack();
+        dotUIManager?.SettingsButtonCallBack();
+        emotionUIManager?.SettingsButtonCallBack();
     }
 }

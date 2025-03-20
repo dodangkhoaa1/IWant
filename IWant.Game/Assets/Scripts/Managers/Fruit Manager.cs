@@ -241,6 +241,13 @@ public class FruitManager : MonoBehaviour
             fruitsParent);
         fruitInstance.EnablePhysics();
     }
+    public void ClearFruits()
+    {
+        foreach (Transform child in fruitsParent)
+        {
+            Destroy(child.gameObject);
+        }
+    }
 #if UNITY_EDITOR
     private void OnDrawGizmos()
     {

@@ -90,10 +90,29 @@ public class UIManager : MonoBehaviour
         GameManager.instance.SetGameState();
         SetGame();
     }
-
-    public void BackMenuCallBack()
+    //back
+    public void OnBackLevelPanel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        // Reset lại trạng thái game
+        GameManager.instance.ResetGame();
+
+        // Hiển thị mapPanel thay vì menuPanel
+        mapPanel.SetActive(true);
+
+        // Ẩn các panel khác
+        menuPanel.SetActive(false);
+        gamePanel.SetActive(false);
+        gameoverPanel.SetActive(false);
+        settingsPanel.SetActive(false);
+        shopPanel.SetActive(false);
+    }
+    public void OnBackMenuPanel()
+    {
+        // Reset lại trạng thái game
+        GameManager.instance.ResetGame();
+        SetMenu();
+
+
     }
     //setting
     public void SettingsButtonCallBack()
@@ -132,12 +151,6 @@ public class UIManager : MonoBehaviour
         onMapOpened?.Invoke();
     }
     //replay 
-
-    public void ReplayLevel()
-    {
-        
-    }
-
     public void CloseMap()
     {
         mapPanel.SetActive(false);

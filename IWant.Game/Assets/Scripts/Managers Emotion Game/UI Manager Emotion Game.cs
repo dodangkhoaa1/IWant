@@ -7,12 +7,13 @@ using System.Collections;
 public class UIManagerEmotionGame : MonoBehaviour
 {
     [Header(" Elements ")]
-    [SerializeField] private GameObject menuPanel;       
-    [SerializeField] private GameObject gamePanel;       
+    [SerializeField] private GameObject menuPanel;
+    [SerializeField] private GameObject gamePanel;
     [SerializeField] private GameObject gameoverPanel;
     [SerializeField] private GameObject settingsPanel;
     [SerializeField] private GameObject pausedPanel;
     [SerializeField] private GameObject libraryPanel;
+    [SerializeField] private GameObject journalPanel;
 
     [Header(" Actions ")]
     public static Action onGameOpened;
@@ -38,7 +39,7 @@ public class UIManagerEmotionGame : MonoBehaviour
 
     void Update()
     {
-        
+
     }
 
     private void GameStateChangedCallback(GameState gameState)
@@ -64,6 +65,7 @@ public class UIManagerEmotionGame : MonoBehaviour
         settingsPanel.SetActive(false);
         pausedPanel.SetActive(false);
         libraryPanel.SetActive(false);
+        journalPanel.SetActive(false);
     }
     private void SetGame()
     {
@@ -73,7 +75,7 @@ public class UIManagerEmotionGame : MonoBehaviour
         settingsPanel.SetActive(false);
         pausedPanel.SetActive(false);
         libraryPanel.SetActive(false);
-
+        journalPanel.SetActive(false);
     }
     private void SetGameover()
     {
@@ -83,6 +85,7 @@ public class UIManagerEmotionGame : MonoBehaviour
         settingsPanel.SetActive(false);
         pausedPanel.SetActive(false);
         libraryPanel.SetActive(false);
+        journalPanel.SetActive(false);
     }
     private void SetLibrary()
     {
@@ -92,6 +95,17 @@ public class UIManagerEmotionGame : MonoBehaviour
         gameoverPanel.SetActive(false);
         settingsPanel.SetActive(false);
         pausedPanel.SetActive(false);
+        journalPanel.SetActive(false);
+    }
+    private void SetJournal()
+    {
+        journalPanel.SetActive(true);
+        menuPanel.SetActive(false);
+        gamePanel.SetActive(false);
+        gameoverPanel.SetActive(false);
+        settingsPanel.SetActive(false);
+        pausedPanel.SetActive(false);
+        libraryPanel.SetActive(false);
     }
     public void LevelButtonCallBack()
     {
@@ -125,7 +139,7 @@ public class UIManagerEmotionGame : MonoBehaviour
     {
         SetGame();
         GameManagerEmotionGame.instance.SetGameState();
-        LevelManagerEmotionGame.instance.LoadCurrentLevel(); 
+        LevelManagerEmotionGame.instance.LoadCurrentLevel();
     }
 
     public void ReplayGame()
@@ -153,11 +167,15 @@ public class UIManagerEmotionGame : MonoBehaviour
         Debug.Log("Game replayed successfully");
     }
 
-
     //Button Library
     public void LibraryButtonCallBack()
     {
         SetLibrary();
+    }
+    //Button Journal
+    public void JournalButtonCallBack()
+    {
+        SetJournal();
     }
     public void QuitGameButtonCallBack()
     {

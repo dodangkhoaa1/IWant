@@ -67,7 +67,7 @@ public class LeaderboardDotGame : MonoBehaviour
 
         // Assuming member_id is available here
         string playerId = playerAuthenticate.PlayerId; // Replace with actual member_id
-        SubmitScore(playerId, bestScore);
+        SubmitScoreWithMetadata(playerId, bestScore);
 
         // Call the method in PlayerLeaderboard to set the best score
         playerLeaderboard.SetBestScoreToLeaderboard();
@@ -110,7 +110,12 @@ public class LeaderboardDotGame : MonoBehaviour
         bool done = false;
 
         // Chuyển metadata thành JSON dùng JsonUtility
-        string metadataJson = JsonUtility.ToJson(DBManager.User);
+        string metadataJson = JsonConvert.SerializeObject(
+            new DotGameData(
+                DBManager.User, 
+                PlayerPrefs.GetInt("CurrentStage", 1), 
+                PlayerPrefs.GetInt("CurrentLevel", 1))
+            );
 
         LootLockerSDKManager.SubmitScore(memberId, score, leaderboardKey, metadataJson, (response) =>
         {
@@ -129,17 +134,6 @@ public class LeaderboardDotGame : MonoBehaviour
         });
 
         yield return new WaitUntil(() => done);
-    }
-
-    [System.Serializable]
-    public class Metadata
-    {
-        public string userId;
-
-        public Metadata(string userId)
-        {
-            this.userId = userId;
-        }
     }
 
     public void FetchScoresImmediately()
@@ -190,7 +184,7 @@ public class LeaderboardDotGame : MonoBehaviour
 
     //    yield return new WaitUntil(() => done);
     //}
-    IEnumerator FetchScoresCoroutine()
+    public IEnumerator FetchScoresCoroutine()
     {
         int? cursor = null;
         List<LootLockerLeaderboardMember> allScores = new List<LootLockerLeaderboardMember>();
@@ -252,7 +246,8 @@ public class LeaderboardDotGame : MonoBehaviour
         // Update the display name to use User.FullName from metadata
         foreach (var member in top5)
         {
-            UserResponseDTO user = JsonConvert.DeserializeObject<UserResponseDTO>(member.metadata);
+            DotGameData dotGameData = JsonConvert.DeserializeObject<DotGameData>(member.metadata);
+            UserResponseDTO user = dotGameData.User;
             if (user != null)
             {
                 member.player.name = DBManager.GetDisplayName(user);
@@ -264,12 +259,32 @@ public class LeaderboardDotGame : MonoBehaviour
         // Nếu currentPlayer có trong top5 thì gọi luôn sự kiện hiển thị
         if (currentPlayer != null)
         {
-            UserResponseDTO currentUser = JsonConvert.DeserializeObject<UserResponseDTO>(currentPlayer.metadata);
+            DotGameData currentdotGameData = JsonConvert.DeserializeObject<DotGameData>(currentPlayer.metadata);
+            UserResponseDTO currentUser = currentdotGameData.User;
             if (currentUser != null)
             {
                 currentPlayer.player.name = DBManager.GetDisplayName(currentUser);
+                PlayerPrefs.SetInt("CurrentStage", currentdotGameData.CurrentStage);
+                PlayerPrefs.SetInt("CurrentLevel", currentdotGameData.CurrentLevel);
+                PlayerPrefs.SetInt("HighScoreDotGame", currentdotGameData.CurrentLevel);//set diem lon nhat
+
             }
             onCurrentPlayerFetched?.Invoke(currentPlayer);
+        }
+    }
+
+    [Serializable]
+    public class DotGameData
+    {
+        public UserResponseDTO User { get; set; }
+        public int CurrentStage { get; set; }
+        public int CurrentLevel { get; set; }
+
+        public DotGameData(UserResponseDTO user, int currentStage, int currentLevel)
+        {
+            User = user;
+            CurrentStage = currentStage;
+            CurrentLevel = currentLevel;
         }
     }
 

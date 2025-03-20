@@ -1,6 +1,7 @@
 ﻿using Connect.Common;
 using EasyUI.Helpers;
 using EasyUI.Toast;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,7 +18,7 @@ namespace Connect.Core
             if (Instance == null)
             {
                 Instance = this;
-                Init();
+                StartCoroutine(Init());
                 DontDestroyOnLoad(gameObject);
                 return;
             }
@@ -27,8 +28,9 @@ namespace Connect.Core
             }
         }
 
-        private void Init()
+        private IEnumerator Init()
         {
+            yield return LeaderboardDotGame.instance.FetchScoresCoroutine();
             CurrentStage = PlayerPrefs.GetInt("CurrentStage", 1);
             CurrentLevel = PlayerPrefs.GetInt("CurrentLevel", 1);
 
@@ -180,26 +182,31 @@ namespace Connect.Core
         {
             if (CurrentLevel > 1)
             {
-                // Nếu đang ở level > 1, giảm level như bình thường
                 CurrentLevel--;
             }
             else
             {
                 Toast.Show("You are already at the first level of this stage.", 2f, ToastColor.Red, ToastPosition.BottomCenter);
+                return;
             }
+
+            // Lấy lại StageName từ PlayerPrefs để tránh bị mất khi load lại LevelPanel
+            StageName = PlayerPrefs.GetString("StageName", "Default Stage");
 
             // Lưu lại stage và level hiện tại
             PlayerPrefs.SetInt("CurrentStage", CurrentStage);
             PlayerPrefs.SetInt("CurrentLevel", CurrentLevel);
-            PlayerPrefs.SetString("StageName", StageName);
+            PlayerPrefs.SetString("StageName", StageName); // Đảm bảo lưu StageName
+            PlayerPrefs.Save();
 
-            Debug.Log($"Going to previous level. CurrentStage: {CurrentStage}, CurrentLevel: {CurrentLevel}");
+            Debug.Log($"Going to previous level. CurrentStage: {CurrentStage}, CurrentLevel: {CurrentLevel}, StageName: {StageName}");
 
-            // Update the title
-           
+            // Update UI để giữ lại Stage Name
+            UIManagerDotGame.instance.UpdateTitle(StageName, CurrentLevel);
 
             GoToGameplay();
         }
+
 
         public void GoToNextLevel()
         {
@@ -207,27 +214,32 @@ namespace Connect.Core
 
             if (IsLevelCompleted(CurrentStage, CurrentLevel))
             {
-                // Tăng level trước khi gọi UnlockLevel
                 if (CurrentLevel < 20)
                 {
                     CurrentLevel++;
                 }
                 else
                 {
-                    // Call GoToMainMenuAndActivateStagePanel when all levels are completed
                     GoToMainMenuAndActivateStagePanel();
                     return;
                 }
 
-                // Lưu vào PlayerPrefs
+                // Lấy lại StageName từ PlayerPrefs để tránh bị mất
+                StageName = PlayerPrefs.GetString("StageName", "Default Stage");
+
+                // Lưu lại StageName vào PlayerPrefs
                 PlayerPrefs.SetInt("CurrentStage", CurrentStage);
                 PlayerPrefs.SetInt("CurrentLevel", CurrentLevel);
+                PlayerPrefs.SetString("StageName", StageName);
                 PlayerPrefs.Save();
 
                 // Mở khóa level sau khi cập nhật stage & level
                 UnlockLevel();
 
-                Debug.Log($"Moving to next level. New CurrentStage: {CurrentStage}, New CurrentLevel: {CurrentLevel}");
+                Debug.Log($"Moving to next level. New CurrentStage: {CurrentStage}, New CurrentLevel: {CurrentLevel}, StageName: {StageName}");
+
+                // Update UI
+                UIManagerDotGame.instance.UpdateTitle(StageName, CurrentLevel);
 
                 GoToGameplay();
             }

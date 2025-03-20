@@ -9,10 +9,12 @@ public class AudioManagerDotGame : MonoBehaviour
     [Header(" Elements ")]
     [SerializeField] private AudioSource buttonClickSource;
     [SerializeField] private AudioSource nodeSource;
+    [SerializeField] private AudioSource nodeErrorSource;
     [SerializeField] private AudioSource bgmSource;  // AudioSource cho nhạc nền
 
     [Header(" Sounds ")]
     [SerializeField] private AudioClip nodeClips;
+    [SerializeField] private AudioClip nodeErrorClips;
     [SerializeField] private AudioClip backgroundMusic;  // AudioClip nhạc nền
 
     private static AudioManagerDotGame instance;
@@ -29,7 +31,7 @@ public class AudioManagerDotGame : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-
+        GameplayManagerDotGame.onNodeSolvedError += PlayNodeErrorSound;
         GameplayManagerDotGame.onNodeClicked += ConnectNodeCallback;
         SettingsManagerEmotionGame.onSFXValueChanged += SFXValueChangedCallback;
         SettingsManagerEmotionGame.onBGMValueChanged += BGMValueChangedCallback;
@@ -55,6 +57,7 @@ public class AudioManagerDotGame : MonoBehaviour
 
     private void OnDestroy()
     {
+        GameplayManagerDotGame.onNodeSolvedError -= PlayNodeErrorSound;
         GameplayManagerDotGame.onNodeClicked -= ConnectNodeCallback;
         SettingsManagerEmotionGame.onBGMValueChanged -= BGMValueChangedCallback;
         SettingsManagerEmotionGame.onSFXValueChanged -= SFXValueChangedCallback;
@@ -91,7 +94,15 @@ public class AudioManagerDotGame : MonoBehaviour
             nodeSource.Play();
         }
     }
-
+    //node error
+    public void PlayNodeErrorSound()
+    {
+        if (nodeErrorSource != null && nodeErrorClips != null)
+        {
+            nodeErrorSource.clip = nodeErrorClips;
+            nodeErrorSource.Play();
+        }
+    }
     //BGM
     public void BGMValueChangedCallback(bool bgmActive)
     {
@@ -136,6 +147,10 @@ public class AudioManagerDotGame : MonoBehaviour
         if (buttonClickSource != null)
         {
             buttonClickSource.mute = !sfxActive;
+        }
+        if (nodeErrorSource != null)
+        {
+            nodeErrorSource.mute = !sfxActive;
         }
     }
 }
