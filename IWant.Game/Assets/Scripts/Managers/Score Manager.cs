@@ -98,4 +98,9 @@
         {
             PlayerPrefs.SetInt(bestScoreKey, bestScore);
         }
+    public void ResetCurrentScore()
+    {
+        score = 0;
+        UpdateScoreText();
+    }
     }

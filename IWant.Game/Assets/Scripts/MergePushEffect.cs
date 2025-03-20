@@ -14,12 +14,10 @@ public class MergePushEffect : MonoBehaviour
     private void Awake()
     {
         MergeManager.onMergeProcess += MergeProcessedCallBack;
-        SettingsManager.onPushMagnitudeChanged += PushMagnitudeChangedCallback;
     }
     private void OnDestroy()
     {
         MergeManager.onMergeProcess -= MergeProcessedCallBack;
-        SettingsManager.onPushMagnitudeChanged -= PushMagnitudeChangedCallback;
     }
     private void MergeProcessedCallBack(FruitType fruitType, Vector2 mergePos)
     {
@@ -38,10 +36,7 @@ public class MergePushEffect : MonoBehaviour
             }
         }   
     }
-    private void PushMagnitudeChangedCallback(float newPushMagnitude)
-    {
-       pushMagnitude = Mathf.Lerp(minMaxPushMagnitude.x,minMaxPushMagnitude.y,newPushMagnitude  );
-    }
+
 #if UNITY_EDITOR
 
     private void OnDrawGizmos()

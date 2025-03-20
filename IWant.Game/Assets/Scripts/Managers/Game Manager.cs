@@ -90,7 +90,12 @@ public class GameManager : MonoBehaviour
     {
         return currentLevelData;
     }
-
+    public void ResetGame()
+    {
+        ScoreManager.instance.ResetCurrentScore(); // Reset điểm số nếu có
+        FruitManager.instance.ClearFruits(); // Reset trái cây
+        SetGameState(GameState.Game);
+    }
     private void UpdateRequiredScoreText()
     {
         if (requiredScoreText == null || currentLevelData == null) return;

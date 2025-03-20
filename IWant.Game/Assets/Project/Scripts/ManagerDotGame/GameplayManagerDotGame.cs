@@ -25,6 +25,7 @@ namespace Connect.Core
         [SerializeField] private GameObject settingsPanel;
         [Header(" Action ")]
         public static Action onNodeClicked;
+        public static Action onNodeSolvedError;
 
         private const string HighScoreDotGame = "HighScoreDotGame";
         private void Awake()
@@ -268,6 +269,7 @@ namespace Connect.Core
                 {
                     if (startNode.colorId != tempNode.colorId && tempNode.IsEndNode)
                     {
+                        onNodeSolvedError?.Invoke();
                         return;
                     }
 
