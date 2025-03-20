@@ -13,19 +13,15 @@ MonoBehaviour:
   m_Name: LootLockerConfig
   m_EditorClassIdentifier: 
   apiKey: dev_198b80b1aa6a405d89f3428dd6276e10
-<<<<<<< HEAD
   token: 
-=======
-  token: 9b1ea6e033ff2b61e09eff9628ec95cb495f79f9
->>>>>>> thanh
   adminToken: 
   refreshToken: 
   domainKey: 
   gameID: 0
   game_version: 1.0.0.0
-  sdk_version: 3.8.0
-  deviceID: 3a7ab561-6a39-4fbb-b679-3a83abd63391
-  playerULID: 01JNMEJ9CEC0BCTBPWTGATY0HB
+  sdk_version: 
+  deviceID: defaultPlayerId
+  playerULID: 
   url: https://api.lootlocker.com/v1
   adminUrl: https://api.lootlocker.com/admin
   playerUrl: https://api.lootlocker.com/player
