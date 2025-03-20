@@ -1737,6 +1737,53 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5050477044967979411, guid: 7a568d9166aec15449b4da2e8e7a46ab, type: 3}
   m_PrefabInstance: {fileID: 1627533173}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1657425136
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1657425137}
+  - component: {fileID: 1657425138}
+  m_Layer: 0
+  m_Name: UnclockerManagement
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1657425137
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1657425136}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3242281411735425224}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1657425138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1657425136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7471e8dd6876f4343bad4cab0c4a4f8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogPanelPrefab: {fileID: 5512860630682129278, guid: c55718a871d7ae24488a7f6693cf746a, type: 3}
+  inactiveColor: {r: 1, g: 0.59607846, b: 0, a: 1}
+  activeColor: {r: 0.2509804, g: 0.9647059, b: 0.16862746, a: 1}
 --- !u!1 &1814765104
 GameObject:
   m_ObjectHideFlags: 0
@@ -7007,6 +7054,7 @@ Transform:
   - {fileID: 1878616941}
   - {fileID: 940077807}
   - {fileID: 1627533174}
+  - {fileID: 1657425137}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!222 &3258426716172279587
@@ -9980,7 +10028,7 @@ GameObject:
   - component: {fileID: 1818346037365524362}
   m_Layer: 0
   m_Name: UIManager
-  m_TagString: Untagged
+  m_TagString: UIManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12321,9 +12369,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1818346037365524362}
-        m_TargetAssemblyTypeName: Connect.Core.UIManagerDotGame, Assembly-CSharp
-        m_MethodName: SettingsButtonCallBack
+      - m_Target: {fileID: 1657425138}
+        m_TargetAssemblyTypeName: SettingsUnlocker, Assembly-CSharp
+        m_MethodName: ShowDialog
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
