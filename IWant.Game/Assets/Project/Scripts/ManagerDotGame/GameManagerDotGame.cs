@@ -1,6 +1,7 @@
 ﻿using Connect.Common;
 using EasyUI.Helpers;
 using EasyUI.Toast;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,7 +18,7 @@ namespace Connect.Core
             if (Instance == null)
             {
                 Instance = this;
-                Init();
+                StartCoroutine(Init());
                 DontDestroyOnLoad(gameObject);
                 return;
             }
@@ -27,8 +28,9 @@ namespace Connect.Core
             }
         }
 
-        private void Init()
+        private IEnumerator Init()
         {
+            yield return LeaderboardDotGame.instance.FetchScoresCoroutine();
             CurrentStage = PlayerPrefs.GetInt("CurrentStage", 1);
             CurrentLevel = PlayerPrefs.GetInt("CurrentLevel", 1);
 
