@@ -266,7 +266,6 @@ public class LeaderboardDotGame : MonoBehaviour
                 currentPlayer.player.name = DBManager.GetDisplayName(currentUser);
                 PlayerPrefs.SetInt("CurrentStage", currentdotGameData.CurrentStage);
                 PlayerPrefs.SetInt("CurrentLevel", currentdotGameData.CurrentLevel);
-                PlayerPrefs.SetInt("HighScoreDotGame", currentdotGameData.CurrentLevel);//set diem lon nhat
 
             }
             onCurrentPlayerFetched?.Invoke(currentPlayer);
