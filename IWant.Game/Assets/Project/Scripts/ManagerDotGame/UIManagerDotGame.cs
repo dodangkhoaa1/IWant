@@ -15,6 +15,9 @@ namespace Connect.Core
         [SerializeField] private GameObject _levelPanel;
         [SerializeField] private GameObject settingsPanel;
 
+        [SerializeField] private TMP_Text[] stageTitleTexts;
+
+
         private void Awake()
         {
             if (instance == null)
@@ -82,7 +85,26 @@ namespace Connect.Core
 
             PlayerPrefs.DeleteKey("IsLevelPanelOpen");
         }
-
+        public void UpdateTitle(string stageName, int currentLevel)
+        {
+            int stageIndex = GameManagerDotGame.Instance.CurrentStage - 1; // Assuming stages are 1-based
+            if (stageIndex >= 0 && stageIndex < stageTitleTexts.Length)
+            {
+                TMP_Text titleText = stageTitleTexts[stageIndex];
+                if (titleText != null)
+                {
+                    titleText.text = $"{stageName} - Level {currentLevel}";
+                }
+                else
+                {
+                    Debug.LogWarning($"Title Text for stage {stageIndex + 1} is not assigned.");
+                }
+            }
+            else
+            {
+                Debug.LogWarning("Invalid stage index.");
+            }
+        }
         public void ClickedPlay()
         {
             _stagePanel.SetActive(true);
@@ -130,7 +152,11 @@ namespace Connect.Core
 
             _levelTitleText.text = stageName;
             _levelTitleImage.color = stageColor;
+
+            // Update the title
+            UpdateTitle(stageName, GameManagerDotGame.Instance.CurrentLevel);
         }
+
 
         public UnityAction LevelOpened;
 
