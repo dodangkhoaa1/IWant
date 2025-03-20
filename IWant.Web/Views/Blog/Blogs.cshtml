@@ -34,6 +34,7 @@
         transition: transform 0.3s ease, box-shadow 0.3s ease;
         padding: 20px;
         margin: auto;
+        box-shadow: 0px 2px 8px gray;
     }
 
         .main-article:hover {
@@ -47,14 +48,33 @@
             width: 100%;
             height: auto;
             object-fit: cover;
-            border-radius: 10px;
+            border: 1px solid #FEDA15;
+            border-radius:5px;
             display: block;
             margin: auto;
             transition: transform 0.3s ease;
         }
 
-        .main-article:hover img {
+        /* .main-article:hover img {
             transform: scale(1.05);
+        } */
+
+        .main-article i {
+            color: #FEDA15;
+        }
+
+        .main-article span {
+            font-size:16px;
+            color: #838893;
+        }
+
+    .most-watched i {
+            color: #FEDA15;
+        }
+
+    .most-watched span {
+            font-size: 16px;
+            color: #838893;
         }
 
     .main-news img,
@@ -95,7 +115,7 @@
     }
 
     .remote-title {
-        height: 50px;
+        height: 35px;
     }
 
     .main-article:hover h1 {
@@ -105,11 +125,11 @@
     .limited-text {
         font-size: 16px;
         color: #555;
-        max-height: 230px;
+        max-height: 190px;
         overflow: hidden;
         text-overflow: ellipsis;
         display: -webkit-box;
-        -webkit-line-clamp: 10;
+        -webkit-line-clamp: 5;
         -webkit-box-orient: vertical;
     }
 
@@ -119,6 +139,7 @@
         color: gray;
         display: flex;
         align-items: center;
+        justify-content: space-between;
         gap: 8px;
     }
 
@@ -208,7 +229,7 @@
     /* Blog header */
     .blog-header {
         text-align: center;
-        margin: 30px 0;
+        margin-bottom: 30px;
     }
 
         .blog-header h1 {
@@ -266,7 +287,7 @@
 <div class="blog-container">
     <div class="container">
         <div class="blog-header">
-            <h1>List of Blogs</h1>
+            <h1>LIST OF BLOGS</h1>
             <div class="section-header">
                 <h3>Highest Rate</h3>
                 <div class="line"></div>
@@ -277,10 +298,25 @@
             <div class="row main-article position-relative">
                 <a asp-action="BlogDetail" asp-controller="Blog" asp-route-id="@topBlog.Id" class="stretched-link"></a>
                 <div style="max-height:320px;" class="col-md-6">
-                    <img style="width:100%;height:100% ; object-fit:contain" src="@topBlog.ImageUrl" alt="@topBlog.Title">
+                    <img style="width:100%;height:100% ; object-fit:cover" src="@topBlog.ImageUrl" alt="@topBlog.Title">
                 </div>
                 <div class="col-md-6">
                     <h1>@topBlog.Title</h1>
+                    <div class="d-flex justify-content-between">
+                        <div class="d-flex align-items-center">
+                            <i class="fa-regular fa-user"></i>
+                            <span class="ps-2">@topBlog.User.FullName</span>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span class="ps-2">@topBlog.CreatedAt.ToString("dd/MM/yyyy")</span>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <i class="fa-regular fa-eye"></i>
+                            <span class="ps-2">@topBlog.ViewCount</span>
+                        </div>
+                    </div>
+                    <hr style="margin-top:0" />
                     <div class="limited-text">
                         @Html.Raw(topBlog.Content)
                     </div>
@@ -303,14 +339,25 @@
                         <div class="col-md-4">
                             <div class="card position-relative">
                                 <a asp-action="BlogDetail" asp-controller="Blog" asp-route-id="@blogItem.Id" class="stretched-link"></a>
-                                <img style="width: 100%; object-fit: contain" src="@blogItem.ImageUrl" alt="@blogItem.Title">
-                                <div class="card-body">
+                                <img style="width: 100%; object-fit: cover" src="@blogItem.ImageUrl" alt="@blogItem.Title">
+                                <div style="padding:0 20px">
                                     <h3 class="remote-title mt-2" style="font-size:1rem;font-weight:bold;">
                                         @blogItem.Title
                                     </h3>
-                                    <p class="meta-info">
-                                        <i class="fas fa-calendar-alt"></i> @blogItem.CreatedAt.ToString("dd/MM/yyyy") | <i class="fas fa-eye"></i> @blogItem.ViewCount
-                                    </p>
+                                    <div style="bottom: 10px; width:375px" class="d-flex justify-content-between position-absolute">
+                                        <div class="d-flex align-items-center">
+                                            <i class="fa-regular fa-user"></i>
+                                            <span class="ps-2">@blogItem.User.FullName</span>
+                                        </div>
+                                        <div class="d-flex align-items-center">
+                                            <i class="fas fa-calendar-alt"></i>
+                                            <span class="ps-2">@blogItem.CreatedAt.ToString("dd/MM/yyyy")</span>
+                                        </div>
+                                        <div class="d-flex align-items-center">
+                                            <i class="fa-regular fa-eye"></i>
+                                            <span class="ps-2">@blogItem.ViewCount</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -359,14 +406,25 @@
                         <div class="col-md-4 mb-4">
                             <div class="card position-relative">
                                 <a asp-action="BlogDetail" asp-controller="Blog" asp-route-id="@blogItem.Id" class="stretched-link"></a>
-                                <img style="width: 100%; object-fit: contain" src="@blogItem.ImageUrl" alt="@blogItem.Title">
-                                <div class="card-body">
+                                <img style="width: 100%; object-fit: cover" src="@blogItem.ImageUrl" alt="@blogItem.Title">
+                                <div style="padding:0 20px">
                                     <h3 class="remote-title mt-2" style="font-size:1rem;font-weight:bold;">
                                         @blogItem.Title
                                     </h3>
-                                    <p class="meta-info">
-                                        <i class="fas fa-calendar-alt"></i> @blogItem.CreatedAt.ToString("dd/MM/yyyy") | <i class="fas fa-eye"></i> @blogItem.ViewCount
-                                    </p>
+                                    <div style="bottom: 10px; width:375px" class="d-flex justify-content-between position-absolute">
+                                        <div class="d-flex align-items-center">
+                                            <i class="fa-regular fa-user"></i>
+                                            <span class="ps-2">@blogItem.User.FullName</span>
+                                        </div>
+                                        <div class="d-flex align-items-center">
+                                            <i class="fas fa-calendar-alt"></i>
+                                            <span class="ps-2">@blogItem.CreatedAt.ToString("dd/MM/yyyy")</span>
+                                        </div>
+                                        <div class="d-flex align-items-center">
+                                            <i class="fa-regular fa-eye"></i>
+                                            <span class="ps-2">@blogItem.ViewCount</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

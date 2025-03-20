@@ -72,7 +72,7 @@ namespace IWant.Web.Controllers
             chatRoomViewModel.Name = user.FullName;
 
             if (_context.ChatRooms.Any(r => r.Name == chatRoomViewModel.Name))
-                return BadRequest("Invalid room name or room already exists");
+                return BadRequest("Invalid room name or room already exists!");
 
             var chatRoom = new ChatRoom()
             {
@@ -95,7 +95,7 @@ namespace IWant.Web.Controllers
         public async Task<IActionResult> Edit([FromRoute] int id, [FromBody] ChatRoomViewModel chatRoomViewModel)
         {
             if (_context.ChatRooms.Any(r => r.Name == chatRoomViewModel.Name))
-                return BadRequest("Invalid room name or room already exists");
+                return BadRequest("Invalid room name or room already exists!");
 
             var room = await _context.ChatRooms.Include(r => r.Admin).Where(r => r.Id == id && r.Admin.UserName == User.Identity.Name).FirstOrDefaultAsync();
 

@@ -63,7 +63,7 @@ namespace IWant.Web.Controllers
             _context.Comments.Add(comment);
             await _context.SaveChangesAsync();
 
-            TempData["success"] = "Feedback successfully.";
+            TempData["success"] = "Feedback successfully!";
 
             return RedirectToAction("BlogDetail", "Blog", new { id = model.BlogId });
         }
@@ -92,7 +92,7 @@ namespace IWant.Web.Controllers
                 existingRating.RatingStar = Rating;
                 existingRating.UpdatedAt = DateTime.Now;
                 _context.Rates.Update(existingRating);
-                TempData["success"] = "Update Rating Blog successfully.";
+                TempData["success"] = "Update Rating Blog successfully!";
             }
             else
             {
@@ -104,7 +104,7 @@ namespace IWant.Web.Controllers
                     CreatedAt = DateTime.Now
                 };
                 await _context.Rates.AddAsync(newRating);
-                TempData["success"] = "Rating Blog successfully.";
+                TempData["success"] = "Rating Blog successfully!";
             }
 
             await _context.SaveChangesAsync();
@@ -116,7 +116,7 @@ namespace IWant.Web.Controllers
             var comment = await _context.Comments.Include(c=>c.Blog).FirstOrDefaultAsync(c => c.Id == id);
             if (comment == null)
             {
-                TempData["error"] = "Feedback not found";
+                TempData["error"] = "Feedback not found!";
                 return NotFound();
             }
 
@@ -125,7 +125,7 @@ namespace IWant.Web.Controllers
             _context.Comments.Update(comment);
             await _context.SaveChangesAsync();
 
-            TempData["success"] = "Ban Feedback successfully.";
+            TempData["success"] = "Ban Feedback successfully!";
             return RedirectToAction("BlogDetail", "Blog", new { id = comment.Blog.Id });
         }
     }

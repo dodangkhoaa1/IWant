@@ -9,6 +9,7 @@ namespace IWant.Web.Models
         [EmailAddress(ErrorMessage = "Invalid email format.")]
         public string Username { get; set; }
         [Required(ErrorMessage = "The Password field is required.")]
+        [MinLength(8, ErrorMessage = "Password must be at least 8 characters.")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
         public bool RememberMe { get; set; }

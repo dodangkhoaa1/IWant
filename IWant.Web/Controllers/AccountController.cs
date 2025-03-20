@@ -94,7 +94,7 @@ namespace IWant.Web.Controllers
 
 
                 await emailSender.SendEmailAsync("nhathmce170171@fpt.edu.vn",account.Email, "Your Account Has Been Banned!", emailBody);
-                TempData["success"] = "Ban Account successfully.";
+                TempData["success"] = "Ban Account successfully!";
             }
             else
             {
@@ -122,7 +122,7 @@ namespace IWant.Web.Controllers
 
 
                 await emailSender.SendEmailAsync("nhathmce170171@fpt.edu.vn", account.Email, "Your Account Has Been Reactivated!", emailBody);
-                TempData["success"] = "Reactive Account successfully.";
+                TempData["success"] = "Reactive Account successfully!";
             }
 
             _context.Users.Update(account);

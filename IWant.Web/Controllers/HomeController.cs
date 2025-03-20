@@ -22,7 +22,7 @@ namespace IWant.Web.Controllers
         public async Task<IActionResult> Index()
         {
             var games = await _context.Games.ToListAsync();
-            var blogs = await _context.Blogs.ToListAsync();
+            var blogs = await _context.Blogs.Include(b => b.User).ToListAsync();
 
             var homeViewModel = new HomeViewModel
             {
@@ -39,7 +39,8 @@ namespace IWant.Web.Controllers
                     Title = x.Title,
                     Content = x.Content,
                     ImageUrl = x.ImageUrl,
-                    CreatedAt = x.CreatedAt
+                    CreatedAt = x.CreatedAt,
+                    User = x.User
                 }).ToList()
             };
             return View(homeViewModel);

@@ -849,141 +849,204 @@ h6 {
 /*--------------------------------------------------------------
 # minigame Section
 --------------------------------------------------------------*/
+/* Section nền vàng */
+/* Các phần khác giữ nguyên */
 .minigame {
     margin-top: 40px;
-    padding-top: 30px;
-    padding-bottom: 30px;
+    height: 600px;
+    padding: 30px 0;
     background-color: #FEDA15;
 }
 
-    .minigame .minigame-item {
-        padding: 40px;
-        background: #fff;
-        height: 150px;
-        border-radius: 20px;
-        box-shadow: 0 2px 4px 2px black;
-    }
-
-        .minigame .minigame-item .icon {
-            width: 48px;
-            height: 48px;
-            position: relative;
-            margin-bottom: 50px;
-        }
-
-            .minigame .minigame-item .icon i {
-                color: var(--color-secondary);
-                font-size: 40px;
-                transition: ease-in-out 0.3s;
-                z-index: 2;
-                position: relative;
-                line-height: 1.8;
-            }
-
-
-
-        .minigame .minigame-item h3 {
-            color: var(--color-default);
-            font-weight: 700;
-            margin: 0 0 20px 0;
-            padding-bottom: 8px;
-            font-size: 22px;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center; /* Căn giữa theo chiều ngang */
-            justify-content: center; /* Căn giữa theo chiều dọc */
-            border-bottom: 4px solid #ebebed;
-            transition: 0.3s;
-        }
-
-        .minigame .minigame-item p {
-            line-height: 24px;
-            font-size: 14px;
-            height: 170px;
-            margin-bottom: 0;
-        }
-
-        .minigame .minigame-item .readmore {
-            margin-top: 15px;
-            display: inline-block;
-            color: var(--color-primary);
-        }
-
-
-
-
-
-/*--------------------------------------------------------------
-# Alt minigame Section
---------------------------------------------------------------*/
-.alt-minigame .img-bg {
-    background-size: cover;
-    background-position: center center;
-    min-height: 400px;
-}
-
-.minigame-item img {
-    display: block;
-    margin: 0 auto;
-}
-
-.alt-minigame h3 {
-    font-size: 28px;
-    font-weight: 700;
-    color: var(--color-secondary);
+.game-header h1 {
+    text-align: center;
     margin-bottom: 20px;
-    padding-bottom: 20px;
+    color: #000;
+}
+
+.minigame-item {
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 2px 4px 2px rgba(0,0,0,0.3);
     position: relative;
+    overflow: hidden;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: bounceBoth 3s ease-in-out infinite;
 }
 
-.minigame .minigame-item:hover h3 {
-    border-color: #ebebed !important;
+.img-wrapper {
+    width: 100%;
+    height:50%;
+    text-align: center;
 }
 
-
-
-.alt-minigame .icon-box {
-    margin-top: 50px;
-}
-
-    .alt-minigame .icon-box i {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-right: 25px;
-        font-size: 28px;
-        width: 56px;
-        height: 56px;
-        border-radius: 4px;
-        line-height: 0;
-        background-color: #FFFFFF;
-        transition: 0.3s;
+    .img-wrapper img {
+        display: inline-block;
+        width: 80%;
+        height: 150px;
+        margin-top: 2px;
+        object-fit: cover;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
     }
 
-    .alt-minigame .icon-box:hover i {
-        color: #fff;
-    }
+.card-content {
+    height: 50%;
+    padding: 15px 10px;
+    text-align: center;
+    flex: 1 1 auto;
+}
 
-    .alt-minigame .icon-box h4 {
-        font-weight: 700;
-        margin-bottom: 10px;
+    .card-content h3 {
         font-size: 18px;
+        font-weight: 700;
+        margin: 0 0 5px;
+        padding-bottom: 5px;
+        border-bottom: 2px solid #ebebed;
+        color: #000;
+        margin-top:25px;
     }
 
-        .alt-minigame .icon-box h4 a {
-            color: #000;
-            transition: 0.3s;
-        }
-
-    .alt-minigame .icon-box p {
-        line-height: 24px;
-        font-size: 14px;
-        margin-bottom: 0;
+    .card-content p {
+        font-size: 12px;
+        line-height: 14px;
+        margin: 5px 0 10px;
+        color: #333;
     }
 
+.btn-readmoregame {
+    font-size: 12px;
+    padding: 8px 14px;
+    text-decoration: none;
+    border-radius: 25px;
+    background: #FFFFFF;
+    color: #000000;
+    border: 2px solid #FEDA15;
+    display: inline-block;
+    margin-top: 5px;
+}
 
+    .btn-readmoregame i {
+        font-size: 8px;
+        margin-left: 3px;
+    }
 
+    .btn-readmoregame:hover {
+        background: #FAF0E6;
+        color: #000000;
+    }
+
+@keyframes bounceBoth {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(70px);
+    }
+}
+
+.row .col-2:nth-child(odd) .minigame-item {
+    animation: bounceBoth 5s ease-in-out infinite;
+}
+
+.row .col-2:nth-child(even) .minigame-item {
+    animation: bounceBoth 5s ease-in-out infinite;
+    animation-delay: 0.5s;
+}
+
+@media screen and (max-width: 768px) {
+    .col-2 {
+        width: 80%;
+        margin: 0 auto;
+        box-sizing: border-box;
+    }
+
+    .minigame-item {
+        animation: none !important;
+    }
+
+    .minigame-item {
+        height: 300px;
+        margin-bottom: 10px;
+        animation: none;
+    }
+
+    .minigame {
+        margin-top: 40px;
+        height: 2000px;
+        padding: 30px 0;
+        background-color: #FEDA15;
+    }
+
+    .img-wrapper img {
+        width: 80%;
+        height: 130px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .col-2 {
+        width: 80%;
+        margin: 0 auto;
+        box-sizing: border-box;
+    }
+
+    .minigame-item {
+        animation: none !important;
+    }
+
+    .minigame-item {
+        height: 320px;
+        margin-bottom: 10px;
+        animation: none;
+    }
+
+    .minigame {
+        margin-top: 40px;
+        height: 2200px;
+        padding: 30px 0;
+        background-color: #FEDA15;
+    }
+
+    .img-wrapper img {
+        width: 80%;
+        height: 130px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .col-2 {
+        width: 80%;
+        margin: 0 auto;
+        box-sizing: border-box;
+    }
+
+    .minigame-item {
+        animation: none !important;
+    }
+
+    .minigame-item {
+        height: 320px;
+        margin-bottom: 10px;
+        animation: none;
+    }
+
+    .minigame {
+        margin-top: 40px;
+        height: 2200px;
+        padding: 30px 0;
+        background-color: #FEDA15;
+    }
+
+    .img-wrapper img {
+        width: 80%;
+        height: 130px;
+    }
+}
 
 
 
@@ -1155,100 +1218,7 @@ h6 {
 
 
 
-/*--------------------------------------------------------------
-# minigame Cards Section
---------------------------------------------------------------*/
-.minigame-cards h3 {
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--color-secondary);
-}
 
-.minigame-cards p {
-    font-size: 15px;
-}
-
-.minigame-cards ul li {
-    display: flex;
-    align-items: center;
-    font-size: 14px;
-    padding-top: 10px;
-}
-
-    .minigame-cards ul li i {
-        font-size: 16px;
-        color: var(--color-primary);
-        margin-right: 6px;
-    }
-
-/*--------------------------------------------------------------
-# minigame Details Section
---------------------------------------------------------------*/
-.minigame-details .minigame-list {
-    padding: 10px 30px;
-    border: 1px solid #d5d7da;
-    margin-bottom: 20px;
-}
-
-    .minigame-details .minigame-list a {
-        display: block;
-        line-height: 1;
-        padding: 8px 0 8px 15px;
-        border-left: 3px solid #d9e3e8;
-        margin: 20px 0;
-        color: var(--color-secondary);
-        transition: 0.3s;
-    }
-
-        .minigame-details .minigame-list a.active {
-            font-weight: 700;
-            border-color: var(--color-primary);
-        }
-
-        .minigame-details .minigame-list a:hover {
-            border-color: var(--color-primary);
-        }
-
-.minigame-details .minigame-img {
-    margin-bottom: 20px;
-}
-
-.minigame-details h3 {
-    font-size: 28px;
-    font-weight: 700;
-}
-
-.minigame-details h4 {
-    font-size: 20px;
-    font-weight: 700;
-}
-
-
-.minigame-details p {
-    font-size: 15px;
-}
-
-.minigame-details ul {
-    list-style: none;
-    padding: 0;
-    font-size: 15px;
-}
-
-    .minigame-details ul li {
-        padding: 5px 0;
-        display: flex;
-        align-items: center;
-    }
-
-    .minigame-details ul i {
-        font-size: 20px;
-        margin-right: 8px;
-        color: var(--color-primary);
-    }
-
-/*--------------------------------------------------------------
-# Recent Blog Posts Section
---------------------------------------------------------------*/
 
 
 
@@ -1922,7 +1892,22 @@ h6 {
                     font-size: 14px;
                 }
 
+/* Các style cho khối ảnh */
+.post-img-wrapper {
+    height: 250px;
+    width: 350px;
+}
 
+.post-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Chiều cao cố định cho tiêu đề bài viết */
+
+@media (max-width: 768px) {
+}
 
 /*--------------------------------------------------------------
 # Footer
@@ -2303,160 +2288,6 @@ h6 {
         margin: 0;
     }
 
-/*--------------------------------------------------------------
-# minigame Section
---------------------------------------------------------------*/
-.minigame {
-    margin-top: 40px;
-    padding-bottom: 30px;
-}
-
-    .minigame .minigame-item {
-        padding: 40px;
-        background: #fff;
-        height: 100%;
-    }
-
-        .minigame .minigame-item .icon {
-            width: 48px;
-            height: 48px;
-            position: relative;
-            margin-bottom: 50px;
-        }
-
-            .minigame .minigame-item .icon i {
-                color: var(--color-secondary);
-                font-size: 40px;
-                transition: ease-in-out 0.3s;
-                z-index: 2;
-                position: relative;
-                line-height: 1.8;
-            }
-
-            .minigame .minigame-item .icon:before {
-                position: absolute;
-                content: "";
-                height: 100%;
-                width: 100%;
-                background: #f0f1f2;
-                border-radius: 50px;
-                z-index: 1;
-                top: 10px;
-                right: -15px;
-                transition: 0.3s;
-            }
-
-        .minigame .minigame-item h3 {
-            color: var(--color-default);
-            font-weight: 700;
-            margin: 0 0 20px 0;
-            padding-bottom: 8px;
-            font-size: 22px;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center; /* Căn giữa theo chiều ngang */
-            justify-content: center; /* Căn giữa theo chiều dọc */
-            border-bottom: 4px solid #ebebed;
-            transition: 0.3s;
-        }
-
-        .minigame .minigame-item p {
-            line-height: 24px;
-            font-size: 14px;
-            margin-bottom: 0;
-        }
-
-        .minigame .minigame-item .readmore {
-            margin-top: 15px;
-            display: inline-block;
-            color: var(--color-primary);
-        }
-
-        .minigame .minigame-item:hover .icon:before {
-            background: var(--color-primary);
-        }
-
-        .minigame .minigame-item:hover h3 {
-            border-color: var(--color-primary);
-        }
-
-
-/*--------------------------------------------------------------
-# Alt minigame Section
---------------------------------------------------------------*/
-.alt-minigame .img-bg {
-    background-size: cover;
-    background-position: center center;
-    min-height: 400px;
-}
-
-.minigame-item img {
-    display: block;
-    margin: 0 auto;
-}
-
-.alt-minigame h3 {
-    font-size: 28px;
-    font-weight: 700;
-    color: var(--color-secondary);
-    margin-bottom: 20px;
-    padding-bottom: 20px;
-    position: relative;
-}
-
-    .alt-minigame h3:after {
-        content: "";
-        position: absolute;
-        display: block;
-        width: 50px;
-        height: 3px;
-        background: var(--color-primary);
-        left: 0;
-        bottom: 0;
-    }
-
-.alt-minigame .icon-box {
-    margin-top: 50px;
-}
-
-    .alt-minigame .icon-box i {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-right: 25px;
-        font-size: 28px;
-        width: 56px;
-        height: 56px;
-        border-radius: 4px;
-        line-height: 0;
-        background-color: #FFFFFF;
-        transition: 0.3s;
-    }
-
-    .alt-minigame .icon-box:hover i {
-        color: #fff;
-    }
-
-    .alt-minigame .icon-box h4 {
-        font-weight: 700;
-        margin-bottom: 10px;
-        font-size: 18px;
-    }
-
-        .alt-minigame .icon-box h4 a {
-            color: #000;
-            transition: 0.3s;
-        }
-
-    .alt-minigame .icon-box p {
-        line-height: 24px;
-        font-size: 14px;
-        margin-bottom: 0;
-    }
-
-
-
 
 
 
@@ -2635,93 +2466,7 @@ h6 {
 /*--------------------------------------------------------------
 # minigame Cards Section
 --------------------------------------------------------------*/
-.minigame-cards h3 {
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--color-secondary);
-}
 
-.minigame-cards p {
-    font-size: 15px;
-}
-
-.minigame-cards ul li {
-    display: flex;
-    align-items: center;
-    font-size: 14px;
-    padding-top: 10px;
-}
-
-    .minigame-cards ul li i {
-        font-size: 16px;
-        color: var(--color-primary);
-        margin-right: 6px;
-    }
-
-/*--------------------------------------------------------------
-# minigame Details Section
---------------------------------------------------------------*/
-.minigame-details .minigame-list {
-    padding: 10px 30px;
-    border: 1px solid #d5d7da;
-    margin-bottom: 20px;
-}
-
-    .minigame-details .minigame-list a {
-        display: block;
-        line-height: 1;
-        padding: 8px 0 8px 15px;
-        border-left: 3px solid #d9e3e8;
-        margin: 20px 0;
-        color: var(--color-secondary);
-        transition: 0.3s;
-    }
-
-        .minigame-details .minigame-list a.active {
-            font-weight: 700;
-            border-color: var(--color-primary);
-        }
-
-        .minigame-details .minigame-list a:hover {
-            border-color: var(--color-primary);
-        }
-
-.minigame-details .minigame-img {
-    margin-bottom: 20px;
-}
-
-.minigame-details h3 {
-    font-size: 28px;
-    font-weight: 700;
-}
-
-.minigame-details h4 {
-    font-size: 20px;
-    font-weight: 700;
-}
-
-
-.minigame-details p {
-    font-size: 15px;
-}
-
-.minigame-details ul {
-    list-style: none;
-    padding: 0;
-    font-size: 15px;
-}
-
-    .minigame-details ul li {
-        padding: 5px 0;
-        display: flex;
-        align-items: center;
-    }
-
-    .minigame-details ul i {
-        font-size: 20px;
-        margin-right: 8px;
-        color: var(--color-primary);
-    }
 
 /*--------------------------------------------------------------
 # Recent Blog Posts Section
@@ -2790,7 +2535,7 @@ h6 {
 
 .recent-blog-posts .post-item .meta i {
     font-size: 16px;
-    color: #ff5733;
+    color: #FEDA15;
 }
 
 .recent-blog-posts .post-item .meta span {
@@ -2908,7 +2653,7 @@ h6 {
     }
 
     .recent-blog-posts .post-item .meta span {
-        font-size: 12px;
+        font-size: 14px;
         color: #838893;
     }
 
@@ -2924,7 +2669,7 @@ h6 {
 @media (max-width: 767px) {
     .recent-blog-posts .col-xl-4 {
         width: 80%;
-        height: 60vh;
+        height: 500px;
     }
 
     .recent-blog-posts .post-item .meta span {
@@ -2955,20 +2700,57 @@ h6 {
 /*--------------------------------------------------------------
 # Game Introduction
 --------------------------------------------------------------*/
-.text-intro {
-    margin-bottom: 40px;
+/***** CÁC STYLES CƠ BẢN *****/
+.alt-intro {
+    /* Bỏ height cố định nếu không muốn bó hẹp chiều cao */
+    padding-top: 40px;
+    /* height: 500px; */
 }
 
-.alt-intro {
-    padding-top: 40px;
-    height: 500px;
+.game-header {
+    text-align: center;
 }
+
+    .game-header h1 {
+        font-size: 2.6rem;
+        font-weight: bold;
+        margin-top: 10px;
+    }
+
+    .game-header p {
+        font-size: 1rem;
+        color: #364d59;
+        position: relative;
+        padding-bottom: 15px;
+    }
+
+        .game-header p::after {
+            content: "";
+            display: block;
+            width: 50%;
+            height: 1px;
+            justify-content: center;
+            background-color: #364d59;
+            margin: 10px auto;
+        }
 
 .text-content1 {
-    padding-bottom: 90px;
+    padding-bottom: 40px;
 }
 
-.btn-downloads, .btn-start-now {
+.video-wrapper {
+    text-align: center; /* Canh giữa iframe nếu cần */
+}
+
+    /* Video mặc định trên màn hình lớn */
+    .video-wrapper iframe {
+        width: 80%; /* Cho chiếm hết chiều ngang cột col-md-8 */
+        height: 450px; /* Chiều cao cố định cho màn hình rộng (tùy chỉnh) */
+        display: block;
+        margin: 0 auto; /* Canh giữa */
+    }
+
+.btn-downloads {
     width: 48%;
     min-width: 180px;
     height: 50px;
@@ -2978,129 +2760,50 @@ h6 {
     border: 2px solid #FEDA15;
     border-radius: 30px;
     background-color: transparent;
-    color: #000000;
+    color: #000;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
     transition: all 0.3s ease;
-    margin: 10px; /* Tạo khoảng cách giữa hai nút */
+    margin: 10px;
 }
 
-
-
-    .btn-downloads:hover, .btn-start-now:hover {
+    .btn-downloads:hover {
         background: #FAF0E6;
         box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
-        color: #000000;
+        color: #000;
         transform: translateY(-2px);
     }
 
-    .btn-downloads:active, .btn-start-now:active {
-        transform: translateY(1px);
-        box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
-    }
+/***** RESPONSIVE BREAKPOINTS *****/
 
-.alt-intro .icon-box i {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 15px;
-    font-size: 28px;
-    width: auto;
-    height: auto;
-    border-radius: none;
-    line-height: 0;
-    transition: 0.3s;
-    background: none;
-    box-shadow: none;
-}
-
-.text-content1 {
-    flex: 1; /* Chiếm không gian còn lại để căn giữa nội dung */
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start; /* Căn giữa theo chiều dọc */
-    padding-bottom: 90px;
-}
-
-.button-group {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-}
-
-.home-intro {
-    max-width: 500px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start; /* Căn giữa theo chiều dọc */
-    text-align: center;
-}
-
-@media (min-width: 992px) {
-    .button-group {
-        justify-content: center;
-    }
-
-    .btn-downloads, .btn-start-now {
-        width: 48%;
-        min-width: 180px;
-        height: 50px;
-    }
-}
-
-@media (max-width: 991px) {
+/* 
+   Khi màn hình <768px: 
+   - xếp chồng video & nội dung 
+   - video chiếm 100% chiều rộng, chiều cao có thể giảm cho mobile
+*/
+@media (max-width: 767px) {
     .row.justify-content-around {
         flex-direction: column;
         align-items: center;
     }
 
-    .col-md-8 {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-    }
-
+    .col-md-8,
     .col-md-4 {
         width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
+        max-width: 100%;
     }
 
     .video-wrapper iframe {
-        width: 80%;
-        height: 250px;
-    }
-
-    .button-group {
-        display: flex;
-        justify-content: center;
-        gap: 10px;
-        flex-wrap: nowrap;
-        width: 100%;
-    }
-
-    .btn-downloads, .btn-start-now {
-        width: 40%;
-        min-width: 120px;
-        height: 45px;
-        font-size: 14px;
+        width: 100% !important;
+        height: 250px; /* Chiều cao gọn hơn cho mobile */
     }
 }
 
-
-@media (max-width: 767px) {
-    .button-group {
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
-    }
-
-    .btn-downloads, .btn-start-now {
+/* Có thể tinh chỉnh thêm cho <600px hoặc <480px nếu muốn nút hoặc text nhỏ hơn */
+@media (max-width: 600px) {
+    .btn-downloads {
         width: 60%;
         min-width: auto;
         height: 45px;
@@ -3109,13 +2812,18 @@ h6 {
 }
 
 @media (max-width: 480px) {
-    .btn-downloads, .btn-start-now {
+    .btn-downloads {
         width: 60%;
         font-size: 13px;
         height: 40px;
         padding: 10px 20px;
     }
 }
+
+
+
+
+
 
 /*--------------------------------------------------------------
 # Blog
@@ -3407,5 +3115,329 @@ h6 {
 
     .profile-img {
         margin: 0 auto 10px;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .background-containerAAC,
+    .background-containerEmotion,
+    .background-containerDot,
+    .background-containerFruit,
+    .background-containerColor,
+    .background-containerTower {
+        /* Giữ background trọn vẹn container */
+        background-size: cover;
+        background-size: 100% 800px !important;
+        height: 900px !important;
+    }
+
+    .text-overlayleft,
+    .text-overlaydot,
+    .text-overlayfruit {
+        position: absolute;
+        max-width: 50% !important;
+        top: 130px !important;
+        font-size: clamp(12px, 3vw, 20px);
+        height: 690px !important;
+        transform: none;
+        margin: 10px auto;
+        text-align: center;
+    }
+
+    .text-overlayright {
+        position: absolute;
+        max-width: 55% !important;
+        top: 130px !important;
+        font-size: clamp(12px, 3vw, 20px);
+        height: 690px !important;
+        transform: none;
+        margin: 10px auto;
+        text-align: center;
+    }
+
+
+
+    .text-overlaytower {
+        position: absolute;
+        max-width: 55% !important;
+        top: 170px !important;
+        font-size: clamp(12px, 3vw, 20px);
+        height: 700px !important;
+        transform: none;
+        margin: 10px auto;
+        text-align: center; /* Nếu muốn căn giữa nội dung */
+    }
+
+
+
+    .text-overlaycolor {
+        position: absolute;
+        max-width: 50% !important;
+        right: 0px !important;
+        top: 180px !important;
+        height: 750px !important;
+    }
+}
+/* --- Cho màn hình từ 768px trở xuống --- */
+@media only screen and (max-width: 768px) {
+    .background-containerAAC,
+    .background-containerEmotion,
+    .background-containerDot,
+    .background-containerFruit,
+    .background-containerColor,
+    .background-containerTower {
+        /* Giữ background trọn vẹn container */
+        background-size: cover;
+        background-size: 100% 850px !important;
+        height: 950px !important;
+    }
+
+    .text-overlayleft,
+    .text-overlayright,
+    .text-overlaydot,
+    .text-overlayfruit {
+        /* Chuyển vị trí từ absolute sang relative để nội dung được xếp theo luồng tự nhiên */
+        position: absolute;
+        max-width: 60% !important;
+        top: 110px !important;
+        font-size: clamp(12px, 3vw, 20px);
+        height: 690px !important;
+        transform: none;
+        margin: 10px auto;
+        text-align: center; /* Nếu muốn căn giữa nội dung */
+    }
+
+
+    .text-overlaytower {
+        /* Chuyển vị trí từ absolute sang relative để nội dung được xếp theo luồng tự nhiên */
+        position: absolute;
+        max-width: 65% !important;
+        top: 140px !important;
+        font-size: clamp(12px, 3vw, 20px);
+        height: 700px !important;
+        transform: none;
+        margin: 10px auto;
+        text-align: center; /* Nếu muốn căn giữa nội dung */
+    }
+
+        .text-overlaytower h3 {
+            font-size: 38px;
+            font-weight: 600;
+            color: #ff7f00;
+        }
+
+    .text-overlaycolor {
+        position: absolute;
+        max-width: 60% !important;
+        right: 0px !important;
+        top: 170px !important;
+        height: 750px !important;
+    }
+}
+
+/* --- Cho màn hình từ 600px trở xuống --- */
+@media only screen and (max-width: 600px) {
+    .background-containerAAC,
+    .background-containerEmotion,
+    .background-containerDot,
+    .background-containerFruit,
+    .background-containerColor {
+        /* Giữ background trọn vẹn container */
+        background-size: cover;
+        background-size: 100% 950px !important;
+        height: 1100px !important;
+    }
+
+    .background-containerTower {
+        /* Giữ background trọn vẹn container */
+        background-size: cover;
+        background-size: 100% 980px !important;
+        height: 1100px !important;
+    }
+
+    .text-overlayleft,
+    .text-overlaydot {
+        /* Chuyển vị trí từ absolute sang relative để nội dung được xếp theo luồng tự nhiên */
+        position: absolute;
+        max-width: 70% !important;
+        top: 110px !important;
+        font-size: clamp(12px, 3vw, 20px);
+        height: 850px !important;
+        transform: none;
+        margin: 10px auto;
+        left: 5% !important;
+        text-align: center; /* Nếu muốn căn giữa nội dung */
+    }
+
+    .text-overlayright {
+        position: absolute;
+        max-width: 70% !important;
+        top: 120px !important;
+        right: 20px !important;
+        font-size: clamp(12px, 3vw, 20px);
+        height: 850px !important;
+        transform: none;
+        margin: 10px auto;
+        text-align: center; /* Nếu muốn căn giữa nội dung */
+    }
+
+    .text-overlayfruit {
+        position: absolute;
+        max-width: 70% !important;
+        top: 110px !important;
+        font-size: clamp(12px, 3vw, 20px);
+        height: 850px !important;
+        transform: none;
+        right: 0px !important;
+        margin: 10px auto;
+        text-align: center; /* Nếu muốn căn giữa nội dung */
+    }
+
+
+    .text-overlaytower {
+        /* Chuyển vị trí từ absolute sang relative để nội dung được xếp theo luồng tự nhiên */
+        position: absolute;
+        max-width: 70% !important;
+        top: 170px !important;
+        font-size: clamp(12px, 3vw, 20px);
+        height: 900px !important;
+        left: 0px !important;
+        transform: none;
+        margin: 10px auto;
+        text-align: center; /* Nếu muốn căn giữa nội dung */
+    }
+
+
+        .text-overlaytower h3,
+        .text-overlaycolor h3, .text-overlayfruit h3,
+        .text-overlaydot h3, .text-overlayright h3, .text-overlayleft h3 {
+            font-size: 32px !important;
+            line-height: 1.6;
+        }
+
+        .text-overlaytower p,
+        .text-overlaycolor p, .text-overlayfruit p,
+        .text-overlaydot p, .text-overlayright p, .text-overlayleft p {
+            font-size: 13.5px !important;
+            line-height: 1.6;
+        }
+
+        .text-overlaytower li,
+        .text-overlaycolor li, .text-overlayfruit li,
+        .text-overlaydot li, .text-overlayright li, .text-overlayleft li {
+            font-size: 13.5px !important;
+            line-height: 1.6;
+        }
+
+    .text-overlaycolor {
+        position: absolute;
+        max-width: 62% !important;
+        right: 0px !important;
+        top: 170px !important;
+        height: 900px !important;
+    }
+}
+
+/* --- Cho màn hình từ 320px trở xuống --- */
+@media only screen and (max-width: 320px) {
+    .background-containerAAC,
+    .background-containerAAC,
+    .background-containerEmotion,
+    .background-containerDot,
+    .background-containerFruit,
+    .background-containerColor {
+        /* Giữ background trọn vẹn container */
+        background-size: cover;
+        background-size: 100% 950px !important;
+        height: 1100px !important;
+    }
+
+    .background-containerTower {
+        /* Giữ background trọn vẹn container */
+        background-size: cover;
+        background-size: 100% 980px !important;
+        height: 1100px !important;
+    }
+
+    .text-overlayleft,
+    .text-overlaydot {
+        /* Chuyển vị trí từ absolute sang relative để nội dung được xếp theo luồng tự nhiên */
+        position: absolute;
+        max-width: 70% !important;
+        top: 110px !important;
+        font-size: clamp(12px, 3vw, 20px);
+        height: 850px !important;
+        transform: none;
+        margin: 10px auto;
+        left: 5% !important;
+        text-align: center; /* Nếu muốn căn giữa nội dung */
+    }
+
+    .text-overlayright {
+        position: absolute;
+        max-width: 70% !important;
+        top: 120px !important;
+        right: 20px !important;
+        font-size: clamp(12px, 3vw, 20px);
+        height: 850px !important;
+        transform: none;
+        margin: 10px auto;
+        text-align: center; /* Nếu muốn căn giữa nội dung */
+    }
+
+    .text-overlayfruit {
+        position: absolute;
+        max-width: 70% !important;
+        top: 110px !important;
+        font-size: clamp(12px, 3vw, 20px);
+        height: 850px !important;
+        transform: none;
+        right: 0px !important;
+        margin: 10px auto;
+        text-align: center; /* Nếu muốn căn giữa nội dung */
+    }
+
+
+    .text-overlaytower {
+        /* Chuyển vị trí từ absolute sang relative để nội dung được xếp theo luồng tự nhiên */
+        position: absolute;
+        max-width: 70% !important;
+        top: 140px !important;
+        font-size: clamp(12px, 3vw, 20px);
+        height: 900px !important;
+        left: 0px !important;
+        transform: none;
+        margin: 10px auto;
+        text-align: center; /* Nếu muốn căn giữa nội dung */
+    }
+
+
+        .text-overlaytower h3,
+        .text-overlaycolor h3, .text-overlayfruit h3,
+        .text-overlaydot h3, .text-overlayright h3, .text-overlayleft h3 {
+            font-size: 32px !important;
+            line-height: 1.6;
+        }
+
+        .text-overlaytower p,
+        .text-overlaycolor p, .text-overlayfruit p,
+        .text-overlaydot p, .text-overlayright p, .text-overlayleft p {
+            font-size: 13.5px !important;
+            line-height: 1.6;
+        }
+
+        .text-overlaytower li,
+        .text-overlaycolor li, .text-overlayfruit li,
+        .text-overlaydot li, .text-overlayright li, .text-overlayleft li {
+            font-size: 13.5px !important;
+            line-height: 1.6;
+        }
+
+    .text-overlaycolor {
+        position: absolute;
+        max-width: 65% !important;
+        right: 0px !important;
+        top: 170px !important;
+        height: 900px !important;
     }
 }

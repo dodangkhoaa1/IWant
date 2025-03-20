@@ -93,7 +93,7 @@
 </style>
 <div class="manage-game-container">
     <div class="game-header">
-        <h1>List of Games</h1>
+        <h1>LIST OF GAMES</h1>
         <p></p>
     </div>
     <div class="manage-game-table-wrapper">
@@ -128,14 +128,14 @@
                             <div class="action-buttons">
                                 @if (string.IsNullOrWhiteSpace(item.VideoUrl))
                                 {
-                                    <a class="btn btn-success btn-xs" asp-action="Details" asp-route-id="@item.Id">Details</a>
-                                    <a class="btn btn-primary btn-xs" asp-action="Create" asp-route-id="@item.Id">Create</a>
+                                    <a style="width:80px" class="btn btn-success btn-xs" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                                    <a style="width:80px" class="btn btn-primary btn-xs" asp-action="Create" asp-route-id="@item.Id">Create</a>
                                 }
                                 else
                                 {
-                                    <a class="btn btn-success btn-xs" asp-action="Details" asp-route-id="@item.Id">Details</a>
-                                    <a class="btn btn-danger btn-xs" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                                    <a class="btn btn-warning btn-xs " asp-action="Edit" asp-route-id="@item.Id" style="color:#FFFFFF;">Edit</a>
+                                    <a style="width:80px" class="btn btn-success btn-xs" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                                    <a style="width:80px" class="btn btn-danger btn-xs" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                                    <a style="width:80px" class="btn btn-warning btn-xs " asp-action="Edit" asp-route-id="@item.Id" style="color:#FFFFFF;">Edit</a>
 
                                 }
                             </div>

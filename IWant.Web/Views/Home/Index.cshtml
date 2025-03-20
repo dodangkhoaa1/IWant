@@ -1,7 +1,7 @@
 ﻿@model HomeViewModel
 
 @{
-    ViewData["Title"] = "Home";
+    ViewData["Title"] = "Home Page";
     Layout = "~/Views/Shared/_Layout.cshtml";
 
     var blogs = Model.Blogs;
@@ -50,27 +50,34 @@
     <section id="alt-intro" class="alt-intro container">
         <div data-aos="fade-up">
             <div class="row justify-content-around gy-4">
+                <!-- Cột video -->
                 <div class="col-md-7" data-aos="zoom-in" data-aos-delay="100">
                     <div class="video-wrapper">
-                        <iframe width="90%" height="400" src="https://www.youtube.com/embed/xNcVDCIS8LE?si=mBqhXXSGzafZuNs6"
-                                title="YouTube video player" frameborder="0"
+                        <iframe src="https://www.youtube.com/embed/xNcVDCIS8LE?si=QBwIK9SoqZCW5FZj"
+                                title="YouTube video player"
+                                frameborder="0"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen></iframe>
+                                allowfullscreen>
+                        </iframe>
                     </div>
                 </div>
+                <!-- Cột nội dung -->
                 <div class="col-md-5 home-intro d-flex flex-column justify-content-center text-center">
                     <div class="game-header">
                         <h1>GAME INTRODUCTION</h1>
                         <p></p>
                     </div>
-
                     <div class="text-content1">
                         <div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="100">
                             <div>
-                                <p>I Want: Game application to support autism children using AAC method (IW) is an integrated system with a forum website and a game application. IW is suitable for children and adults with severe speech or language issues who need to find an alternative way to communicate besides talking</p>
+                                <p style="text-align:justify">
+                                    I Want: Game application to support autism children using AAC method (IW)
+                                    is an integrated system with a forum website and a game application. IW is
+                                    suitable for children and adults with severe speech or language issues
+                                    who need to find an alternative way to communicate besides talking.
+                                </p>
                             </div>
                         </div>
-
                         <div class="d-flex justify-content-center button-group mt-3">
                             <button class="btn-downloads">
                                 <i class="fa-solid fa-download"></i> Downloads
@@ -82,6 +89,9 @@
         </div>
     </section>
 
+
+
+
     <!-- ======= Introdution mini game ======= -->
     <section id="minigame" class="minigame section-bg">
         <div class="container" data-aos="fade-up">
@@ -89,54 +99,27 @@
                 <h1>GAME INTRODUCTION</h1>
                 <p></p>
             </div>
-            <div class="row gy-4">
-                @if (games.Count() != 0)
-                {
-                    @foreach (var game in games)
-                    {
-                        <div class="col-lg-4 col-md-6" data-aos-delay="100">
-                            <div class="minigame-item position-relative">
-                                <div class="d-flex justify-content-center">
-                                    <img src="images/@(game.Name).png" alt="Mountain City" width="120" height="120">
-                                </div>
-                                <h3>@(game.Name == "Tower Build" ? $"{game.Name} (Comming Soon)" : game.Name)</h3>
-                                <p>
-                                    @game.Description
-                                </p>
-                                <a asp-controller="Home" asp-action="AboutUs" class="btn-readmore">
-                                    Read More
-                                    <i class="fa-solid fa-arrow-right"></i>
+            <div class="row justify-content-center align-items-center">
+                @foreach(var game in games){
+                    <div class="col-2">
+                        <div class="minigame-item">
+                            <div class="img-wrapper">
+                                <img src="@("/images/" + game.Name+ ".png")" alt="AAC">
+                            </div>
+                            <div class="card-content">
+                                <h3>@game.Name</h3>
+                                <a asp-action="GameDetails" asp-controller="Game"
+                                   asp-fragment="@(game.Name == "AAC" ? "AAC-section" : game.Name == "Coloring" ? "Color-section" : game.Name == "Emotion Selection" ? "Emotion-section" : game.Name == "Fruit Drop" ? "Fruit-section" : game.Name == "Dot Connection" ? "Dot-section" : "Tower")"
+                                   class="btn-readmoregame">
+                                    Read More <i class="fa-solid fa-arrow-right"></i>
                                 </a>
                             </div>
                         </div>
-                    }
-                }
-                else
-                {
-                    for (int i = 0; i < 6; i++)
-                    {
-                        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                            <div class="minigame-item position-relative">
-                                <div class="d-flex justify-content-center">
-                                    <img src="images/AAC.png" alt="Arrow Water" width="120" height="120">
-                                </div>
-                                <h3>Eosle Commodi</h3>
-                                <p>
-                                    Ut autem aut autem non a. Sint sint sit facilis nam iusto sint. Libero corrupti neque eum hic non ut
-                                    nesciunt dolorem.
-                                </p>
-                                <a href="minigame-details.html" class="btn-readmore">
-                                    Read More
-                                    <i class="fa-solid fa-arrow-right"></i>
-                                </a>
-                            </div>
-                        </div>
-                    }
+                    </div>
                 }
             </div>
         </div>
     </section>
-
 
     <!-- ======= Blog Posts Section ======= -->
     <section id="recent-blog-posts" class="recent-blog-posts">
@@ -152,18 +135,29 @@
                     {
                         <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
                             <div class="post-item position-relative h-100">
-                                <div style="height: 250px; width:350px;" class="position-relative overflow-hidden">
-                                    <img style="width: 100%; height: 100%; object-fit: contain; " src="@blog.ImageUrl" class="img-fluid" alt="@blog.Title">
+                                <div class="post-img-wrapper position-relative overflow-hidden">
+                                    <img src="@blog.ImageUrl" class="img-fluid post-img" alt="@blog.Title">
                                 </div>
-                                <div class=" d-flex flex-column">
-                                    <h3 style="height:90px" class="post-title">@blog.Title</h3>
-                                    <div class="meta d-flex align-items-center">
+                                <div class="d-flex flex-column">
+                                    <h3 class="post-title">@blog.Title</h3>
+                                    <div class="meta d-flex justify-content-between mt-2">
                                         <div class="d-flex align-items-center">
-                                            <i class="fas fa-calendar-alt"></i> <span class="ps-2">@blog.CreatedAt.ToString("dd/mm/yyyy")</span>
+                                            <i class="fa-regular fa-user"></i>
+                                            <span class="ps-2">@blog.User.FullName</span>
+                                        </div>
+                                        |
+                                        <div class="d-flex align-items-center">
+                                            <i class="fas fa-calendar-alt"></i>
+                                            <span class="ps-2">@blog.CreatedAt.ToString("dd/MM/yyyy")</span>
+                                        </div>
+                                        |
+                                        <div class="d-flex align-items-center">
+                                            <i class="fa-regular fa-eye"></i>
+                                            <span class="ps-2">@blog.ViewCount</span>
                                         </div>
                                     </div>
                                     <hr>
-                                    <a asp-controller="Blog" asp-action="BlogDetails" asp-route-id="@blog.Id" class="btn-readmore-blog">
+                                    <a asp-controller="Blog" asp-action="BlogDetail" asp-route-id="@blog.Id" class="btn-readmore-blog">
                                         Read More
                                         <i class="fa-solid fa-arrow-right"></i>
                                     </a>
@@ -172,32 +166,10 @@
                         </div>
                     }
                 }
-                <!-- End post item -->
-
-                @* <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                    <div class="post-item position-relative h-100">
-                        <div class="post-img position-relative overflow-hidden">
-                            <img src="images/banner1.jpg" class="img-fluid" alt="">
-                        </div>
-                        <div class="post-content d-flex flex-column">
-                            <h3 class="post-title">Et repellendus molestiae qui est sed omnis</h3>
-                            <div class="meta d-flex align-items-center">
-                                <div class="d-flex align-items-center">
-                                    <i class="fa-solid fa-person"></i> <span class="ps-2">Mario Douglas</span>
-                                </div>
-                            </div>
-                            <hr>
-                            <a class="btn-readmore-blog">
-                                Read More
-                                <i class="fa-solid fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div> *@
-                <!-- End post item -->
             </div>
         </div>
     </section>
+
     <!-- End Recent Blog Posts Section -->
 
     <section class="about container">
@@ -224,3 +196,5 @@
     <script src="~/js/chat.js"></script>
     <script src="~/js/main.js"></script>
 }
+
+

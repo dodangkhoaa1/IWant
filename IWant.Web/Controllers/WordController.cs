@@ -97,7 +97,7 @@ namespace IWant.Web.Controllers
             var updatedWord = await _wordService.UpdateWordAsync(word);
             if (updatedWord == null)
             {
-                TempData["error"] = "Update Word failed.";
+                TempData["error"] = "Update Word failed!";
                 return View("Error");
             }
 

@@ -207,7 +207,7 @@ namespace IWant.Web.Controllers
                 await _context.SaveChangesAsync();
             }
 
-            TempData["success"] = "Create Blog successfully.";
+            TempData["success"] = "Create Blog successfully!";
 
             return RedirectToAction("Index", "Blog", new { filterType = "all" });
         }
@@ -271,7 +271,7 @@ namespace IWant.Web.Controllers
             _context.Blogs.Update(blog);
             await _context.SaveChangesAsync();
 
-            TempData["success"] = "Update Blog successfully.";
+            TempData["success"] = "Update Blog successfully!";
 
             return RedirectToAction("Index", "Blog", new { filterType = "all" });
             /*}
@@ -301,7 +301,7 @@ namespace IWant.Web.Controllers
             _context.Blogs.Update(blog);
             await _context.SaveChangesAsync();
 
-            TempData["success"] = blog.Status == true ? "Show Blog successfully." : "Hide Blog successfully.";
+            TempData["success"] = blog.Status == true ? "Show Blog successfully!" : "Hide Blog successfully!";
 
             return RedirectToAction("Index", "Blog", new { filterType = "all" });
         }
@@ -332,7 +332,7 @@ namespace IWant.Web.Controllers
 
             await emailSender.SendEmailAsync("nhathmce170171@fpt.edu.vn", blog.User.Email, subject, message);
 
-            TempData["success"] = "Accept Blog successfully.";
+            TempData["success"] = "Accept Blog successfully!";
 
             return RedirectToAction("Index", "Blog", new { filterType = "all" });
         }
@@ -375,7 +375,7 @@ namespace IWant.Web.Controllers
 
             await emailSender.SendEmailAsync("nhathmce170171@fpt.edu.vn", blog.User.Email, subject, message);
 
-            TempData["success"] = "Reject Blog successfully.";
+            TempData["success"] = "Reject Blog successfully!";
 
             return RedirectToAction("Index", "Blog", new { filterType = "all" });
         }
@@ -440,7 +440,8 @@ namespace IWant.Web.Controllers
 
                 var commentViewModels = _mapper.Map<List<Comment>, List<CommentViewModel>>(blog.Comments);
 
-                var relatedBlogs = await _context.Blogs.Where(b => b.Id != id && b.Status == true)
+                var relatedBlogs = await _context.Blogs.Include(b => b.User)
+                                                       .Where(b => b.Id != id && b.Status == true)
                                                        .OrderBy(x => Guid.NewGuid())
                                                        .Take(4)
                                                        .ToListAsync();

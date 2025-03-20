@@ -8,9 +8,8 @@
 
 
 <link rel="stylesheet" href="~/css/reponsive.css" />
+<link rel="stylesheet" href="~/css/main.css" />
 <style>
-
-
 
 
     body, h3, p, span,
@@ -26,23 +25,15 @@
         font-family: 'Athiti', sans-serif !important;
     }
 
-
-
     .game-container {
         background-color: #FEDA15;
         position: relative;
         width: 100%;
-        min-height: 100vh;
+        height: auto;
         margin: 0;
         padding: 0;
         overflow: hidden;
         z-index: 2;
-    }
-    /* Banner ảnh bự ở trên cùng */
-    .banner-image {
-        width: 100%;
-        height: auto;
-        display: block;
     }
 
     .confetti-container {
@@ -54,7 +45,7 @@
         overflow: hidden;
         z-index: -1;
     }
-    /* Container chứa các card */
+
     .section-wrapper {
         display: flex;
         flex-wrap: wrap;
@@ -64,19 +55,18 @@
         gap: 20px;
         justify-content: space-between;
     }
-    /* Mỗi card */
+
     .sectiongame {
         border-radius: 10px;
         overflow: hidden;
         width: calc(33.333% - 20px);
         text-align: center;
         background: transparent;
-        /* Chiều cao cố định cho mỗi card */
         height: 450px;
         background-color: white;
         border-radius: 15px;
     }
-    /* Video */
+
     .video-wrapper {
         width: 101%;
         height: 50%;
@@ -151,7 +141,7 @@
     .coming-soon-text {
         color: #28a745 !important;
         font-weight: 700;
-        font-size: 24px
+        font-size: 24px;
     }
 
     .game-header {
@@ -181,8 +171,357 @@
                 background-color: #364d59;
                 margin: 10px auto;
             }
-</style>
 
+    .background-containerAAC {
+        position: relative;
+        background-image: url('/images/AACGameBanner.png');
+        background-size: 100% 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        margin: 0 auto;
+        width: 100%;
+        height: 700px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        color: white;
+    }
+
+    .background-containerEmotion {
+        position: relative;
+        background-image: url('/images/EmotionGameBanner.png');
+        background-size: 100% 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        margin: 0 auto;
+        width: 100%;
+        height: 700px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        color: white;
+    }
+
+    .background-containerDot {
+        position: relative;
+        background-image: url('/images/DotGameBanner.png');
+        background-size: 100% 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        margin: 0 auto;
+        width: 100%;
+        height: 700px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        color: white;
+    }
+
+    .background-containerFruit {
+        position: relative;
+        background-image: url('/images/FruitGameBanner.png');
+        background-size: 100% 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        margin: 0 auto;
+        width: 100%;
+        height: 700px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        color: white;
+    }
+
+    .background-containerColor {
+        position: relative;
+        background-image: url('/images/ColoringGameBanner.png');
+        background-size: 100% 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        margin: 0 auto;
+        width: 100%;
+        height: 700px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        color: white;
+    }
+
+    .background-containerTower {
+        position: relative;
+        background-image: url('/images/TowerGameBanner.png');
+        background-size: 100% 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        margin: 0 auto;
+        width: 100%;
+        height: 700px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        color: white;
+    }
+
+    /* Các lớp text-overlay chung */
+    .text-overlayleft,
+    .text-overlaydot,
+    .text-overlaycolor,
+    .text-overlayright,
+    .text-overlaytower,
+    .text-overlayfruit {
+        position: absolute;
+        z-index: 2;
+        max-width: 50%;
+        padding: 40px;
+        height: 500px;
+        color: #000000;
+        border-radius: 10px;
+        text-align: justify;
+        font-size: 16px;
+        overflow: hidden;
+    }
+
+    .game-desaac {
+        font-size: 24px;
+        font-weight: bold;
+        color: #dc4a6c;
+        margin-left: 20px;
+    }
+
+    .game-destow {
+        font-size: 24px;
+        font-weight: bold;
+        color: #ff7f00;
+        margin-left: 20px;
+    }
+
+    .game-desemo {
+        font-size: 24px;
+        font-weight: bold;
+        color: #1c6708 !important;
+        margin-left: 20px;
+    }
+    /* Lớp bọc ngoài cho nội dung text-overlay */
+    .text-overlay-wrapper {
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        box-sizing: border-box;
+    }
+
+    /* Vị trí cụ thể cho từng text-overlay */
+    .text-overlayleft {
+        top: 100px;
+        left: 10%;
+    }
+
+    .text-overlaydot {
+        top: 100px;
+        left: 2%;
+    }
+
+    .text-overlaycolor {
+        top: 180px;
+        right: 50px;
+    }
+
+    .text-overlayright {
+        top: 150px;
+        right: 50px;
+    }
+
+    .text-overlaytower {
+        top: 130px;
+        left: 10%;
+    }
+
+    .text-overlayfruit {
+        top: 150px;
+        right: 50px;
+    }
+
+    /* Cấu hình chữ trong text-overlayleft */
+    .text-overlayleft h3 {
+        font-size: 40px;
+        font-weight: 600;
+        color: #dc4a6c;
+    }
+
+    .text-overlayleft h4 {
+        font-size: 20px;
+        font-weight: 600;
+        color: #dc4a6c;
+    }
+
+    .text-overlayleft p {
+        font-size: 16px;
+        line-height: 1.3;
+    }
+
+    .text-overlayleft ul {
+        list-style: none;
+        padding-left: 0;
+    }
+
+    .text-overlayleft li {
+        font-size: 1rem;
+        padding-left: 20px;
+    }
+
+    /* Cấu hình chữ trong text-overlaydot */
+    .text-overlaydot h3 {
+        font-size: 40px;
+        font-weight: 600;
+        color: #dc4a6c;
+    }
+
+    .text-overlaydot h4 {
+        font-size: 20px;
+        font-weight: 600;
+        color: #dc4a6c;
+    }
+
+    .text-overlaydot p {
+        font-size: 16px;
+        line-height: 1.3;
+    }
+
+    .text-overlaydot ul {
+        list-style: none;
+        padding-left: 0;
+    }
+
+    .text-overlaydot li {
+        font-size: 1rem;
+        padding-left: 20px;
+    }
+
+    /* Cấu hình chữ trong text-overlaycolor */
+    .text-overlaycolor h3 {
+        font-size: 40px;
+        font-weight: 600;
+        color: #ff7f00;
+    }
+
+    .text-overlaycolor h4 {
+        font-size: 20px;
+        font-weight: 600;
+        color: #ff7f00;
+    }
+
+    .text-overlaycolor p {
+        font-size: 16px;
+        line-height: 1.3;
+    }
+
+    .text-overlaycolor ul {
+        list-style: none;
+        padding-left: 0;
+    }
+
+    .text-overlaycolor li {
+        font-size: 1rem;
+        padding-left: 20px;
+    }
+
+    /* Cấu hình chữ trong text-overlayright */
+    .text-overlayright h3 {
+        font-size: 40px;
+        font-weight: 600;
+        color: #1c6708;
+    }
+
+    .text-overlayright h4 {
+        font-size: 20px;
+        font-weight: 600;
+        color: #1c6708;
+    }
+
+    .text-overlayright p {
+        font-size: 16px;
+        line-height: 1.3;
+    }
+
+    .text-overlayright ul {
+        list-style: none;
+        padding-left: 0;
+    }
+
+    .text-overlayright li {
+        font-size: 1rem;
+        padding-left: 20px;
+    }
+
+    /* Cấu hình chữ trong text-overlaytower */
+    .text-overlaytower h3 {
+        font-size: 40px;
+        font-weight: 600;
+        color: #ff7f00;
+    }
+
+    .text-overlaytower h4 {
+        font-size: 20px;
+        font-weight: 600;
+        color: #ff7f00;
+    }
+
+    .text-overlaytower p {
+        font-size: 16px;
+        line-height: 1.3;
+    }
+
+    .text-overlaytower ul {
+        list-style: none;
+        padding-left: 0;
+    }
+
+    .text-overlaytower li {
+        font-size: 1rem;
+        padding-left: 20px;
+    }
+
+    /* Cấu hình chữ trong text-overlayfruit */
+    .text-overlayfruit h3 {
+        font-size: 40px;
+        font-weight: 600;
+        color: #1c6708;
+    }
+
+    .text-overlayfruit h4 {
+        font-size: 20px;
+        font-weight: 600;
+        color: #1c6708;
+    }
+
+    .text-overlayfruit p {
+        font-size: 16px;
+        color: #fff;
+        line-height: 1.3;
+    }
+
+    .text-overlayfruit ul {
+        list-style: none;
+        padding-left: 0;
+    }
+
+    .text-overlayfruit li {
+        font-size: 1rem;
+        color: #fff;
+        padding-left: 20px;
+    }
+
+    h3 .coming-soon {
+        color: forestgreen;
+        font-size: 28px;
+    }
+
+</style>
 
 
 <div class="game-container">
@@ -277,7 +616,148 @@
 
 
     </div>
-    <img src="~/images/banner.jpg" alt="Banner" class="round-image" />
+    <div id="AAC-section" class="background-containerAAC mb-5">
+        <div class="text-overlayleft">
+            <h3>AAC</h3>
+            <p>
+                AAC Game is an educational game designed to help children and adults with speech or communication difficulties express themselves in a fun and interactive way.
+                Players can select word cards with colorful images, arrange them into complete sentences, and hear the system read them aloud — making communication easier and more exciting!
+            </p>
+            <h4>Key Features:</h4>
+            <ul>
+                <li>Bright and friendly image-based word library</li>
+                <li>Helpful sentence suggestions for beginners</li>
+                <li>Add and manage personal words to make it your own</li>
+                <li>Practice communication through creative, playful sentence building</li>
+            </ul>
+            <p class=" game-desaac">
+                Pick your words, build your sentence, and let the game help you speak with confidence!
+            </p>
+
+        </div>
+    </div>
+    <div id="Emotion-section" class="background-containerEmotion mb-5">
+        <div class="text-overlayright">
+            <h3>Emotion Selection</h3>
+            <p>
+                Emotion Selection is a fun and educational game designed to help players, especially children, recognize and understand different emotions.
+            </p>
+            <h4>Key Features</h4>
+            <ul>
+                <li>Bright, colorful interface designed for young users.</li>
+                <li>Rich collection of emotion icons and relatable scenarios.</li>
+                <li>Simple and intuitive gameplay: just drag and drop the same emotion with its shadow.</li>
+                <li>Instant feedback to help players learn and improve.</li>
+                <li>Score tracking at the end of each session.</li>
+                <li>Leaderboard to inspire friendly competition and motivation.</li>
+                <li>Encourages emotional intelligence and communication skills development.</li>
+            </ul>
+            <p class=" game-desemo">
+                Let’s play, learn, and explore emotions together!
+            </p>
+
+        </div>
+    </div>
+    <div id="Dot-section" class="background-containerDot mb-5">
+        <div class="text-overlaydot">
+            <h3>
+                Dot Connection
+            </h3>
+            <p>
+                Dot Connection is a fun and brain-training puzzle game that helps improve concentration and problem-solving skills.
+                Your goal is to connect dots of the same color and complete the board without overlapping lines, all before time runs out!
+            </p>
+            <h4>How to Play</h4>
+            <ul>
+                <li>Choose your desired difficulty level.</li>
+                <li>Pick the level you want to play.</li>
+                <li>Find dots of the same color on the grid.</li>
+                <li>Draw lines to connect matching dots without crossing other lines.</li>
+                <li>Complete all connections to get score.</li>
+                <li>Finish levels to unlock new challenges and see your name on the leaderboard!</li>
+            </ul>
+            <p class=" game-desaac">
+                Sharpen your mind and reflexes — start connecting the dots now!
+            </p>
+
+
+        </div>
+    </div>
+    <div id="Fruit-section" class="background-containerFruit mb-5">
+        <div class="text-overlayfruit">
+            <h3>Fruit Drop</h3>
+            <p>
+                Fruit Drop is a fun and addictive merging game where players drop fruits and combine two identical fruits to create bigger ones!
+                The more you merge, the higher your score — and you might even discover surprising fruit evolutions along the way!
+            </p>
+            <h4>Key Features</h4>
+            <ul>
+                <li>Colorful and vibrant fruit designs that make the game visually appealing.</li>
+                <li>Easy to play: drop fruits and merge identical ones.</li>
+                <li>Chain reactions and combo merges for big rewards.</li>
+                <li>Progressive difficulty that challenges your strategy and timing.</li>
+                <li>Real-time scoring with satisfying animations and sounds.</li>
+                <li>Leaderboard to track top players and encourage competition.</li>
+                <li>Perfect for all ages to relax, have fun, and sharpen thinking skills.</li>
+            </ul>
+            <p class="game-desemo">
+                Drop, merge, and see how big your fruits can grow!
+            </p>
+
+
+        </div>
+    </div>
+    <div id="Color-section" class="background-containerColor mb-5">
+        <div class="text-overlaycolor">
+            <div class="text-overlay-wrapper">
+                <h3>Coloring</h3>
+                <p>
+                    Coloring Game is a creative and relaxing activity where players can choose pictures and color them with a variety of brushes and colors.
+                    It’s designed to spark creativity, improve focus, and bring joy to both kids and adults as they turn simple line art into colorful masterpieces.
+                </p>
+                <h4>Key Features</h4>
+                <ul>
+                    <li>Rich library of cute and diverse coloring pictures to choose from.</li>
+                    <li>Multiple brush sizes and brush types for detailed coloring.</li>
+                    <li>Wide color palette to let creativity flow freely.</li>
+                    <li>Option to export finished pictures with watermark from the "I Want" app.</li>
+                    <li>Simple, user-friendly interface for all ages.</li>
+                    <li>Encourages relaxation, focus, and artistic exploration.</li>
+                </ul>
+                <p class=" game-destow">
+                    Pick a picture, color it your way, and turn ideas into vibrant art!
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div id="AAC-Tower" class="background-containerTower mb-5">
+        <div class="text-overlaytower">
+            <div class="text-overlay-wrapper">
+                <h3>Tower Build <span class="coming-soon">(Coming Soon)</span></h3>
+
+                <p>
+                    Tower Build is an exciting and addictive stacking game where players challenge themselves to build the highest tower they can. Precision, timing, and focus are the keys to success!
+                </p>
+                <h4>How to Play</h4>
+                <ul>
+                    <li>Your mission is to build the tallest tower possible by stacking blocks on top.</li>
+                    <li>Tap/click to drop each block precisely onto the previous one.</li>
+
+                    <li>The more precise your placement, the more stable your tower becomes.</li>
+                    <li>Each slight miss will make the next block smaller and more challenging.</li>
+                    <li>Keep balancing and stacking until your tower collapses!</li>
+                    <li>Try to reach the highest score and name on the leaderboard.</li>
+                </ul>
+                <p class=" game-destow">
+                    Stay tuned, coming soon!
+                </p>
+            </div>
+
+
+        </div>
+    </div>
+
 </div>
 
 <script>

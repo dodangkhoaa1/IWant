@@ -94,7 +94,7 @@ namespace IWant.Web.Controllers
                 _context.Update(game);
                 await _context.SaveChangesAsync();
 
-                TempData["success"] = "Create Video Url successfully.";
+                TempData["success"] = "Create Video Url successfully!";
                 return RedirectToAction("Index");
             }
             return View(model);
@@ -147,7 +147,7 @@ namespace IWant.Web.Controllers
                         throw;
                     }
                 }
-                TempData["success"] = "Edit Video Url successfully.";
+                TempData["success"] = "Edit Video Url successfully!";
                 RedirectToAction("Index");
             }
             return View(model);
@@ -173,7 +173,7 @@ namespace IWant.Web.Controllers
             _context.Update(game);
             await _context.SaveChangesAsync();
 
-            TempData["success"] = "Delete Video Url successfully.";
+            TempData["success"] = "Delete Video Url successfully!";
             return RedirectToAction("Index");
         }
 

@@ -168,7 +168,7 @@ namespace IWant.Web.Controllers
                             await emailSender.SendEmailAsync("nhathmce170171@fpt.edu.vn", user.Email, "Confirm your email address", emailBody);
 
                             TempData["ConfirmationEmail"] = user.FullName;
-                            TempData["success"] = "Sign Up successfully.";
+                            TempData["success"] = "Sign Up successfully!";
                             return RedirectToAction("ConfirmEmailPage");
                         }
                         else
@@ -183,7 +183,7 @@ namespace IWant.Web.Controllers
                 }
                 else
                 {
-                    TempData["error"] = "Account already exists";
+                    TempData["error"] = "Account already exists!";
                     return View(model);
                 }
             }
@@ -206,7 +206,7 @@ namespace IWant.Web.Controllers
             var result = await _userManager.ConfirmEmailAsync(user, token);
             if (result.Succeeded)
             {
-                TempData["success"] = "Confirm Email successfully.";
+                TempData["success"] = "Confirm Email successfully!";
                 return RedirectToAction("Signin");
             }
             return new NotFoundResult();
@@ -231,7 +231,7 @@ namespace IWant.Web.Controllers
 
             if (user == null)
             {
-                TempData["error"] = "Username does not exist.";
+                TempData["error"] = "Username does not exist!";
                 return View(model);
             }
 
@@ -242,30 +242,30 @@ namespace IWant.Web.Controllers
             {
                 if (result.IsLockedOut || (user != null && user.Status == false))
                 {
-                    TempData["error"] = "Account has been banned.";
-                    Console.WriteLine("Sign-in failed: Account is locked out.");
+                    TempData["error"] = "Account has been banned!";
+                    Console.WriteLine("Sign-in failed: Account is locked out!");
                 }
                 else if (result.IsNotAllowed)
                 {
-                    TempData["error"] = "Not allowed (e.g., email not confirmed).";
-                    Console.WriteLine("Sign-in failed: Not allowed (e.g., email not confirmed).");
+                    TempData["error"] = "Not allowed (e.g., email not confirmed)!";
+                    Console.WriteLine("Sign-in failed: Not allowed (e.g., email not confirmed)!");
                 }
                 else if (result.RequiresTwoFactor)
                 {
-                    ModelState.AddModelError("Login", "Two-factor authentication is required.");
-                    Console.WriteLine("Sign-in failed: Requires two-factor authentication.");
+                    ModelState.AddModelError("Login", "Two-factor authentication is required!");
+                    Console.WriteLine("Sign-in failed: Requires two-factor authentication!");
                     return RedirectToAction("MFACheck");
                 }
                 else
                 {
-                    TempData["error"] = "Invalid credentials.";
-                    Console.WriteLine("Sign-in failed: Invalid credentials.");
+                    TempData["error"] = "Invalid credentials!";
+                    Console.WriteLine("Sign-in failed: Invalid credentials!");
                 }
             }
             else
             {
-                Console.WriteLine("Sign-in successful.");
-                TempData["success"] = "Sign In successfully.";
+                Console.WriteLine("Sign-in successful!");
+                TempData["success"] = "Sign In successfully!";
                 return RedirectToAction("Index", "Home");
             }
             /*}*/
@@ -288,7 +288,7 @@ namespace IWant.Web.Controllers
                 var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == model.Email);
                 if (user == null)
                 {
-                    TempData["error"] = "Email does not exist.";
+                    TempData["error"] = "Email does not exist!";
                     return View(model);
                 }
                 Random random = new Random();
@@ -393,14 +393,14 @@ namespace IWant.Web.Controllers
             var email = TempData["email"]?.ToString();
             if (string.IsNullOrEmpty(email))
             {
-                TempData["error"] = "Session expired! Please request a new OTP.";
+                TempData["error"] = "Session expired! Please request a new OTP!";
                 return RedirectToAction("ForgotPassword");
             }
 
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
             if (user == null)
             {
-                TempData["error"] = "Session expired! Please request a new OTP.";
+                TempData["error"] = "Session expired! Please request a new OTP!";
                 return RedirectToAction("ForgotPassword");
             }
 
@@ -465,7 +465,7 @@ namespace IWant.Web.Controllers
                     </html>"
                     );
 
-            TempData["success"] = $"New OTP has been sent to {user.FullName}'s email.";
+            TempData["success"] = $"New OTP has been sent to {user.FullName}'s email!";
             TempData.Keep("email");
             return RedirectToAction("VerifyOtp");
         }
@@ -487,7 +487,7 @@ namespace IWant.Web.Controllers
             if (user == null)
             {
                 TempData.Keep("email");
-                TempData["error"] = "Email does not exist.";
+                TempData["error"] = "Email does not exist!";
                 return RedirectToAction("ForgotPassword");
             }
             TempData["email"] = emailTemp;
@@ -504,7 +504,7 @@ namespace IWant.Web.Controllers
                 var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == emailTemp);
                 if (user == null)
                 {
-                    TempData["error"] = "Email does not exist.";
+                    TempData["error"] = "Email does not exist!";
                     TempData.Keep("email");
                     return View(model);
                 }
@@ -520,12 +520,12 @@ namespace IWant.Web.Controllers
                 {
                     _context.Users.Update(user);
                     await _context.SaveChangesAsync();
-                    TempData["success"] = "Reset Password successfully.";
+                    TempData["success"] = "Reset Password successfully!";
                     return RedirectToAction("Signin");
                 }
                 catch (Exception)
                 {
-                    TempData["error"] = "Failed to reset password.";
+                    TempData["error"] = "Failed to reset password!";
                     TempData.Keep("email");
                     return View(model);
                 }
@@ -544,7 +544,7 @@ namespace IWant.Web.Controllers
         {
             await _signInManager.SignOutAsync();
 
-            TempData["success"] = "Sign Out successfully.";
+            TempData["success"] = "Sign Out successfully!";
             return RedirectToAction("Signin");
         }
     }

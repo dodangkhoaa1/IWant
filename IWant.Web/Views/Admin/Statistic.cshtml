@@ -25,9 +25,9 @@
     var rateLineChart = Model.RateLineChart;
     var totalLineChart = Model.TotalLineChart;
     //Leaderboard
-    var FruitDropList = Model.FruitDropLists;
-    var DotConnectionList = Model.DotConnectionLists;
-    var EmotionSelectionList = Model.EmotionSelectionLists;
+    var FruitDropList = Model.FruitDropLists.Take(5);
+    var DotConnectionList = Model.DotConnectionLists.Take(5);
+    var EmotionSelectionList = Model.EmotionSelectionLists.Take(5);
 
     var CountUserFruitDrop = FruitDropList.Count();
     var CountUserDotConnection = DotConnectionList.Count();
@@ -39,231 +39,230 @@
 <head>
     <style>
         .card-custom {
-            background: #fff;
-            border: none;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-            text-align: left;
+        background: #fff;
+        border: none;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        text-align: left;
         }
 
         .card-custom1 {
-            background: #fff;
-            border: none;
-            border-radius: 10px;
-            padding: 20px;
-            height: 290px;
-            width: 100%;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-            text-align: left;
+        background: #fff;
+        border: none;
+        border-radius: 10px;
+        padding: 20px;
+        height: 290px;
+        width: 100%;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        text-align: left;
         }
 
         .chart-wrapper {
-            display: block;
-            box-sizing: border-box;
-            height: 230px;
+        display: block;
+        box-sizing: border-box;
+        height: 230px;
         }
 
         .card-title {
-            font-size: 0.9rem;
-            font-weight: bold;
-            color: #6b7280;
-            text-transform: uppercase;
+        font-size: 0.9rem;
+        font-weight: bold;
+        color: #6b7280;
+        text-transform: uppercase;
         }
 
         .card-value {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #111827;
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: #111827;
         }
 
         .card-subtext {
-            font-size: 0.9rem;
-            color: #10b981;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
+        font-size: 0.9rem;
+        color: #10b981;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
         }
 
         .card-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(to bottom right, #ff7e5f, #feb47b);
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(to bottom right, #ff7e5f, #feb47b);
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-            .card-icon i {
-                font-size: 24px;
-                color: white;
-            }
+        .card-icon i {
+        font-size: 24px;
+        color: white;
+        }
 
 
 
 
         .recent-orders table thead th {
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            color: #6b7280;
+        text-transform: uppercase;
+        font-size: 0.8rem;
+        color: #6b7280;
         }
 
         .recent-orders table tbody tr td {
-            vertical-align: middle;
+        vertical-align: middle;
         }
 
         .top-selling-products img {
-            width: 60px;
-            margin-right: 10px;
-            border-radius: 8px;
+        width: 60px;
+        margin-right: 10px;
+        border-radius: 8px;
         }
 
         .top-selling-products .product-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
         }
 
-            .top-selling-products .product-item h6 {
-                font-size: 0.95rem;
-                margin: 0;
-            }
+        .top-selling-products .product-item h6 {
+        font-size: 0.95rem;
+        margin: 0;
+        }
 
-            .top-selling-products .product-item span {
-                font-size: 0.85rem;
-                color: #6b7280;
-            }
+        .top-selling-products .product-item span {
+        font-size: 0.85rem;
+        color: #6b7280;
+        }
 
 
         .campaign-container,
         .chart-container {
-            height: 550px;
-            padding: 20px;
-            background: #fff;
-            border-radius: 10px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-            display: flex;
-            flex-direction: column;
+        height: 550px;
+        padding: 20px;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
         }
 
         .campaign-container {
-            justify-content: space-between;
+        justify-content: space-between;
         }
 
         .chart-container {
-            justify-content: flex-start;
-            align-items: center;
+        justify-content: flex-start;
+        align-items: center;
         }
 
-            .chart-container h5 {
-                margin-bottom: 20px;
-                font-size: 1.25rem;
-                color: #333;
-            }
+        .chart-container h5 {
+        margin-bottom: 20px;
+        font-size: 1.25rem;
+        color: #333;
+        }
 
-            .chart-container canvas {
-                width: 100%;
-                max-height: 450px;
-            }
+        .chart-container canvas {
+        width: 100%;
+        max-height: 450px;
+        }
 
 
         .chart-container,
         .campaign-container {
-            height: 550px;
-            padding: 20px;
-            background: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        height: 550px;
+        padding: 20px;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
         .combined-container {
-            height: 450px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
+        height: 450px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
         }
 
-            .combined-container > .chart-container,
-            .combined-container > .campaign-container {
-                flex: 1;
-                padding: 20px;
-                background: #fff;
-                border-radius: 10px;
-                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            }
+        .combined-container > .chart-container,
+        .combined-container > .campaign-container {
+        flex: 1;
+        padding: 20px;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
 
         .info-card {
-            height: 300px !important;
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            height: 300px;
+        height: 300px !important;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 300px;
         }
 
         .card-header-area {
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 10px;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
         }
 
-            .card-header-area h6 {
-                margin: 0;
-                font-weight: 600;
-                color: #333;
-            }
+        .card-header-area h6 {
+        margin: 0;
+        font-weight: 600;
+        color: #333;
+        }
 
         .card-subtext {
-            margin-top: 5px;
-            font-size: 1.1rem;
-            font-weight: 500;
-            color: #555;
+        margin-top: 5px;
+        font-size: 1.1rem;
+        font-weight: 500;
+        color: #555;
         }
 
-            .card-subtext small {
-                font-size: 0.85rem;
-            }
+        .card-subtext small {
+        font-size: 0.85rem;
+        }
 
         .chart-wrapper {
-            flex: 1; /* chart takes the remaining vertical space */
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        flex: 1; /* chart takes the remaining vertical space */
+        display: flex;
+        align-items: center;
+        justify-content: center;
         }
 
         .legend-row .badge {
-            font-size: 0.8rem;
+        font-size: 0.8rem;
         }
 
         .blog, .fruitdrop-score, .dotconnection-score, .emotionselection-score {
-            width: 100%;
-            padding: 20px;
-            background: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            height: 370px;
+        width: 100%;
+        padding: 20px;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
-            .blog nav, .fruitdrop-score nav, .dotconnection-score nav, .emotionselection-score nav, game nav {
-                bottom: 0;
-                right: 20px;
-            }
+        .blog nav, .fruitdrop-score nav, .dotconnection-score nav, .emotionselection-score nav, game nav {
+        bottom: 0;
+        right: 20px;
+        }
 
         .row.mt-4.container.custom {
-            margin: auto;
+        margin: auto;
         }
 
         .avt img {
-            width: 70px;
-            height: 50px;
+        width: 70px;
+        height: 50px;
         }
 
         .text-comment {
-            margin-left: 20px;
+        margin-left: 20px;
         }
 
     </style>
@@ -271,7 +270,8 @@
 
 <body>
 
-    <div class="container mt-4">
+    <div class="container">
+        <h1 class="mb-3" style="text-align:center; font-weight: bold">STATISTIC</h1>
         <div class="row g-3">
             <div class="col-md-3">
                 <div class="card-custom d-flex justify-content-between align-items-center">
@@ -318,7 +318,6 @@
                     <div class="card-icon" style="background: linear-gradient(to bottom right, #FFC7C7 , #E10000  );">
                         <i class="fa-regular fa-star"></i>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -377,9 +376,10 @@
             <h2 style="text-align:center" class="mb-3">Most watched</h2>
             <div class="col-md-12">
                 <div class="blog position-relative">
-                    <table class="table align-middle mt-3 table-striped" data-table="watched">
+                    <table class="table align-middle mt-3 table-striped">
                         <thead>
                             <tr>
+                                <th>No</th>
                                 <th>Author</th>
                                 <th>Title blog</th>
                                 <th>Watched</th>
@@ -388,120 +388,87 @@
                         <tbody>
                             @if (mostWatchBlog.Count() != 0)
                             {
+                                int i = 1;
                                 foreach (var blog in mostWatchBlog)
                                 {
                                     <tr style="height:65px">
-                                        <td width="20%">@blog.User.FullName</td>
+                                        <td width="5%">@i</td>
+                                        <td width="15%">@blog.User.FullName</td>
                                         <td width="70%">@blog.Title</td>
                                         <td width="10%" style="text-align:center">@blog.ViewCount</td>
                                     </tr>
+                                    i++;
                                 }
                             }
                         </tbody>
                     </table>
-                    <nav class="position-absolute">
-                        <ul class="pagination" data-pagination="watched"></ul>
-                    </nav>
                 </div>
             </div>
         </div>
         <!-- The most score for game-->
         <div class="row mt-4 container custom">
             <h2 style="text-align:center" class="mb-3">Leader Board</h2>
-            <div class="col-md-4">
-                <div class="fruitdrop-score position-relative">
-                    <h5>Fruit Drop Score</h5>
-                    <table class="table align-middle mt-3 table-striped" data-table="fruitdrop-score">
-                        <thead>
-                            <tr>
-                                <th style="width:80%">Full Name</th>
-                                <th>Score</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @if (FruitDropList.Count() != null)
-                            {
-                                foreach (var user in FruitDropList)
-                                {
-                                    <tr style="height:65px">
-                                        <td>@user.User.FullName</td>
-                                        <td>@user.Score</td>
-                                    </tr>
-                                }
-                            }
-                        </tbody>
-                    </table>
-                    <nav class="position-absolute">
-                        <ul class="pagination" data-pagination="fruitdrop-score"></ul>
-                    </nav>
-                </div>
-            </div>
 
-            <div class="col-md-4">
-                <div class="dotconnection-score position-relative">
-                    <h5>Dot Connection Score</h5>
-                    <table class="table align-middle mt-3 table-striped" data-table="dotconnection-score">
-                        <thead>
-                            <tr>
-                                <th>Full Name</th>
-                                <th>Score</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @if (DotConnectionList.Count() != null)
-                            {
-                                foreach (var user in DotConnectionList)
-                                {
-                                    <tr style="height:65px">
-                                        <td>@user.User.FullName</td>
-                                        <td>@user.Score</td>
-                                    </tr>
-                                }
-                            }
-                        </tbody>
-                    </table>
-                    <nav class="position-absolute">
-                        <ul class="pagination" data-pagination="dotconnection-score"></ul>
-                    </nav>
-                </div>
-            </div>
+            @{
+                var leaderboards = new List<(string Title, List<LeaderboardViewModel> DataList, string TableAttr)>
+            {
+            ("Fruit Drop Score", FruitDropList.ToList(), "fruitdrop"),
+            ("Dot Connection Score", DotConnectionList.ToList(), "dotconnection"),
+            ("Emotion Selection Score", EmotionSelectionList.ToList(), "emotionselection")
+            };
+            }
 
-            <div class="col-md-4">
-                <div class="emotionselection-score position-relative">
-                    <h5>Emotion Selection Score</h5>
-                    <table class="table align-middle mt-3 table-striped" data-table="emotionselection-score">
-                        <thead>
-                            <tr>
-                                <th>Full Name</th>
-                                <th>Score</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @if (EmotionSelectionList.Count() != null)
-                            {
-                                foreach (var user in EmotionSelectionList)
+            @foreach (var leaderboard in leaderboards)
+            {
+                <div class="col-md-4">
+                    <div class="@($"{leaderboard.TableAttr}-score") position-relative">
+                        <h5>@leaderboard.Title</h5>
+                        <table class="table align-middle mt-3 table-striped" data-table="@leaderboard.TableAttr">
+                            <thead>
+                                <tr>
+                                    <th width="5%">No</th>
+                                    <th width="90%">Full Name</th>
+                                    <th width="5%">Score</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for (int i = 0; i < 5; i++)
                                 {
-                                    <tr style="height:65px">
-                                        <td>@user.User.FullName</td>
-                                        <td>@user.Score</td>
-                                    </tr>
+                                    if (i < leaderboard.DataList.Count)
+                                    {
+                                        var user = leaderboard.DataList[i];
+                                        <tr style="height:65px">
+                                            <td>@(i + 1)</td>
+                                            <td>@user.User.FullName</td>
+                                            <td>@user.Score</td>
+                                        </tr>
+                                    }
+                                    else
+                                    {
+                                        <tr style="height:65px">
+                                            <td>@(i + 1)</td>
+                                            <td>-</td>
+                                            <td>0</td>
+                                        </tr>
+                                    }
                                 }
-                            }
-                        </tbody>
-                    </table>
-                    <nav class="position-absolute">
-                        <ul class="pagination" data-pagination="emotionselection-score"></ul>
-                    </nav>
+                            </tbody>
+                        </table>
+                        <nav class="position-absolute">
+                            <ul class="pagination" data-pagination="@leaderboard.TableAttr"></ul>
+                        </nav>
+                    </div>
                 </div>
-            </div>
+            }
         </div>
+
 
 
         <div class="container mt-4">
             <div class="row mt-4">
                 <div style="margin:auto 0" class="col-md-8">
                     <div class="chart-container">
-                        <h5>Visit and Sales Statistics</h5>
+                        <h5>System Statistics in 30 Days</h5>
                         <canvas id="lineChart" style="height:450px;"></canvas>
                     </div>
                 </div>
@@ -583,6 +550,12 @@
             const commentLineChartData = @Html.Raw(Json.Serialize(commentLineChart));
             const rateLineChartData = @Html.Raw(Json.Serialize(rateLineChart));
             const totalLineChartData = @Html.Raw(Json.Serialize(totalLineChart));
+            //Temp Data for Line Chart
+            const array1 = [53, 49, 53, 48, 54, 59, 43, 56, 44, 51, 57, 52, 41, 44, 52, 49, 50, 48, 50, 58, 55, 58, 47, 44, 50, 47, 54, 46, 45, 55];
+            const array2 = [33, 43, 36, 47, 32, 36, 49, 46, 49, 30, 40, 33, 48, 30, 30, 49, 48, 42, 38, 47, 40, 41, 46, 48, 44, 42, 35, 36, 49, 42];
+            const array3 = [22, 39, 22, 23, 27, 32, 20, 32, 34, 34, 33, 30, 21, 30, 31, 38, 34, 36, 20, 31, 24, 36, 35, 28, 38, 28, 33, 34, 20, 38];
+            const array4 = [108, 131, 111, 118, 113, 127, 112, 134, 127, 115, 130, 115, 110, 104, 113, 136, 132, 126, 108, 136, 119, 135, 128, 120, 132, 117, 122, 116, 114, 135];
+
             //Pie Chart
             const FruitDropData = @Html.Raw(Json.Serialize(CountUserFruitDrop));
             const DotConnectionData = @Html.Raw(Json.Serialize(CountUserDotConnection));
@@ -728,11 +701,6 @@
                     renderPagination();
                     displayRows(1);
                 }
-
-                setupPagination("watched", "watched");
-                setupPagination("fruitdrop-score", "fruitdrop-score");
-                setupPagination("dotconnection-score", "dotconnection-score");
-                setupPagination("emotionselection-score", "emotionselection-score");
                 setupPagination("game", "game");
             });
         </script>
