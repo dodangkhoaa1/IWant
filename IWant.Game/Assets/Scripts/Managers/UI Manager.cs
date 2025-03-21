@@ -109,9 +109,10 @@ public class UIManager : MonoBehaviour
     public void OnBackMenuPanel()
     {
         // Reset lại trạng thái game
-        GameManager.instance.ResetGame();
-        SetMenu();
+        //GameManager.instance.ResetGame();
+        //SetMenu();
 
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name); 
 
     }
     //setting
