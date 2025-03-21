@@ -184,4 +184,15 @@ public class SignIn : MonoBehaviour
         Debug.Log("Game is exiting...");
         Application.Quit();
     }
+    public void OpenSignUpPage()
+    {
+        Application.OpenURL("https://iwantweb.azurewebsites.net/Identity/Signup");
+    }
+
+    public void OpenForgotPasswordPage()
+    {
+        Application.OpenURL("https://iwantweb.azurewebsites.net/Identity/ForgotPassword");
+    }
+
+
 }
