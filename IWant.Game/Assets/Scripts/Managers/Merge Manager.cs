@@ -56,17 +56,12 @@ public class MergeManager : MonoBehaviour
         sender.Merge();
         otherFruit.Merge();
 
-        StartCoroutine(DelayedDestroy(sender.gameObject));
-        StartCoroutine(DelayedDestroy(otherFruit.gameObject));
+        Destroy(sender.gameObject);
+        Destroy(otherFruit.gameObject);
 
         StartCoroutine(ResetLastSenderCoroutine());
 
         onMergeProcess?.Invoke(mergeFruitType, fruitSpawnPos);
-    }
-    private IEnumerator DelayedDestroy(GameObject obj)
-    {
-        yield return new WaitForEndOfFrame();
-        Destroy(obj);
     }
     IEnumerator ResetLastSenderCoroutine()
     {

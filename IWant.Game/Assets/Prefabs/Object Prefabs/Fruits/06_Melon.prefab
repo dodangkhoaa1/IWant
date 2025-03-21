@@ -98,22 +98,21 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4971814121256214393, guid: 22fa08c3ff73cd346b6e331dba858d42, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6066253749944149382}
+      addedObject: {fileID: 8937037489667650365}
   m_SourcePrefab: {fileID: 100100000, guid: 22fa08c3ff73cd346b6e331dba858d42, type: 3}
 --- !u!1 &7438692127298038768 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4971814121256214393, guid: 22fa08c3ff73cd346b6e331dba858d42, type: 3}
   m_PrefabInstance: {fileID: 2577437267826537609}
   m_PrefabAsset: {fileID: 0}
---- !u!60 &6066253749944149382
-PolygonCollider2D:
+--- !u!58 &8937037489667650365
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7438692127298038768}
   m_Enabled: 1
-  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -137,71 +136,7 @@ PolygonCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.29417932, y: 0.2089817}
-      - {x: 0.25307, y: 0.2544817}
-      - {x: 0.19393085, y: 0.2959007}
-      - {x: 0.13716596, y: 0.32279658}
-      - {x: 0.08568435, y: 0.33635068}
-      - {x: 0.08154593, y: 0.35902458}
-      - {x: 0.12219544, y: 0.37767178}
-      - {x: 0.13030505, y: 0.39054275}
-      - {x: 0.12958336, y: 0.40192783}
-      - {x: 0.12328035, y: 0.41041327}
-      - {x: 0.11732292, y: 0.42178214}
-      - {x: 0.106744215, y: 0.42734036}
-      - {x: 0.09980053, y: 0.42617023}
-      - {x: 0.07929977, y: 0.41616046}
-      - {x: 0.05500797, y: 0.40871003}
-      - {x: 0.04288203, y: 0.40463585}
-      - {x: 0.01469801, y: 0.39745927}
-      - {x: 0.011365622, y: 0.3444805}
-      - {x: -0.022135397, y: 0.3435757}
-      - {x: -0.07622597, y: 0.33845136}
-      - {x: -0.112575114, y: 0.330004}
-      - {x: -0.15242626, y: 0.31664848}
-      - {x: -0.18467149, y: 0.3002401}
-      - {x: -0.21604624, y: 0.28150243}
-      - {x: -0.23372757, y: 0.26724797}
-      - {x: -0.25370625, y: 0.24930358}
-      - {x: -0.28222933, y: 0.21584263}
-      - {x: -0.3128301, y: 0.1684554}
-      - {x: -0.33034757, y: 0.12770502}
-      - {x: -0.3410286, y: 0.08532574}
-      - {x: -0.34842527, y: 0.036933143}
-      - {x: -0.34887064, y: -0.029488487}
-      - {x: -0.33550617, y: -0.09902305}
-      - {x: -0.31111932, y: -0.15903269}
-      - {x: -0.2821548, y: -0.20025608}
-      - {x: -0.25223988, y: -0.23494725}
-      - {x: -0.21021144, y: -0.26694012}
-      - {x: -0.16964975, y: -0.2874321}
-      - {x: -0.11222749, y: -0.30800825}
-      - {x: -0.04083664, y: -0.31831467}
-      - {x: 0.01603917, y: -0.31809947}
-      - {x: 0.10366409, y: -0.3069954}
-      - {x: 0.16204917, y: -0.29034677}
-      - {x: 0.2254428, y: -0.25791493}
-      - {x: 0.25348482, y: -0.23668778}
-      - {x: 0.27944502, y: -0.21050745}
-      - {x: 0.30317974, y: -0.17960723}
-      - {x: 0.32477003, y: -0.14156155}
-      - {x: 0.34828573, y: -0.06754372}
-      - {x: 0.3520501, y: -0.065136425}
-      - {x: 0.35545978, y: 0.012725756}
-      - {x: 0.3453839, y: 0.10648231}
-      - {x: 0.32021248, y: 0.17088795}
-  m_UseDelaunayMesh: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.021988958}
+  serializedVersion: 2
+  m_Radius: 0.31792036
