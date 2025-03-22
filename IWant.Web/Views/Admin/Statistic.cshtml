@@ -351,19 +351,13 @@
                             {
                                 <div class="product-item position-relative">
                                     <a asp-action="BlogDetail" asp-controller="Blog" asp-route-id="@blog.Id" class="stretched-link"></a>
-                                    <img src="@blog.ImageUrl" alt="@blog.Title" />
+                                    <img src="@blog.ImageUrl" alt="Newest Blog" />
                                     <div class="d-flex justify-content-between">
                                         <h6 style="font-size:12px">@blog.Title</h6>
                                     </div>
                                 </div>
                             }
                         }
-                        @* <div class="product-item">
-                            <img src="~/images/banner1.jpg" alt="Banner" />
-                            <div>
-                                <h6>Nội dung blog hot</h6>
-                            </div>
-                            </div>*@
                     </div>
                 </div>
             </div>
@@ -495,20 +489,7 @@
                                     </div>
                                 }
                             }
-                            @* <div class="avt mt-3 d-flex align-items-center">
-                                <img style="border-radius:10px; width:50px; height:50px; border-radius: 50%" src="~/images/avatar/9c15ce64-52df-4cd0-b451-595cea90d9c9.jpg" alt="Banner" />
-                                <div class="text-comment">
-                                    <h6 class="mb-1 ">User</h6>
-                                    <div class="d-flex">
-                                        <h6 class="mb-0 text-muted pe-1">Blog:100</h6>
-                                        <h6 class="mb-0 text-muted pe-1">Comment:100</h6>
-                                        <h6 class="mb-0 text-muted pe-1">Rate:100</h6>
-                                    </div>
-                                </div>
-                            </div> *@
                         </div>
-
-
                     </div>
 
                     <div class="top-selling-products">
@@ -520,7 +501,7 @@
                                     foreach (var game in games)
                                     {
                                         <tr style="height:65px">
-                                            <td><img src="~/images/@(game.Name).png" alt="@game.Name" /></td>
+                                            <td><img src="/images/@(game.Name).png" alt="Game Image" /></td>
                                             <td width="100%">@(game.Name == "Tower Build" ? $"{game.Name} (Coming soon)" : game.Name)</td>
                                         </tr>
                                     }

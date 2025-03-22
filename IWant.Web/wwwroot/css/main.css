@@ -1,14 +1,14 @@
 /**
-* Template Name: UpConstruction - v1.3.0
-* Template URL: https://bootstrapmade.com/upconstruction-bootstrap-construction-website-template/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
+    * Template Name: UpConstruction - v1.3.0
+    * Template URL: https://bootstrapmade.com/upconstruction-bootstrap-construction-website-template/
+    * Author: BootstrapMade.com
+    * License: https://bootstrapmade.com/license/
+    */
 
 /*--------------------------------------------------------------
-# Set main reusable colors and fonts using CSS variables
-# Learn more about CSS variables at https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties
---------------------------------------------------------------*/
+    # Set main reusable colors and fonts using CSS variables
+    # Learn more about CSS variables at https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties
+    --------------------------------------------------------------*/
 /* Fonts */
 :root {
     --font-default: "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -29,8 +29,8 @@
 }
 
 /*--------------------------------------------------------------
-# General
---------------------------------------------------------------*/
+    # General
+    --------------------------------------------------------------*/
 body {
     font-family: var(--font-default);
     color: var(--color-default);
@@ -161,8 +161,8 @@ h6 {
     }
     /* Đảm bảo icon trong identity-item hiển thị */
     /*.identity-item i {
-            display: none !important;
-        }*/
+                display: none !important;
+            }*/
 
     .name {
         display: none !important;
@@ -178,8 +178,21 @@ h6 {
         margin-bottom: 0 !important;
     }
 
+    .blog-con {
+        bottom: 10px;
+        width: 375px
+    }
+
     .navbar .container-fluid {
         position: relative;
+    }
+
+    #togglerAvatar {
+        display: none !important;
+    }
+    /* Khi menu mở, thêm lớp menu-open để hiển thị avatar */
+    body.menu-open #togglerAvatar {
+        display: block !important;
     }
 
     .identity-container {
@@ -200,24 +213,6 @@ h6 {
         transform: translateY(-30%);
         z-index: 10001; /* đảm bảo nằm trên các phần tử khác */
     }
-
-
-    .btn-close {
-        width: 280px;
-        height: 60px;
-        border: 3px solid #FEDA15;
-        border-radius: 45px;
-        transition: all 0.3s;
-        cursor: pointer;
-        color: #000000 !important;
-        background: white;
-        font-size: 1.2em;
-        font-weight: 550;
-        margin-left: 30px;
-        margin-top: 20px;
-    }
-
-
 
     .name {
         display: flex;
@@ -342,8 +337,7 @@ h6 {
         height: 100vh;
         background: #ffffff;
         color: black;
-        padding-top: 60px;
-        box-shadow: -5px 0 10px rgba(0, 0, 0, 0.3);
+        padding-top: 65px;
         transform: translateX(100%);
         transition: transform 0.3s ease-in-out;
         z-index: 9999 !important;
@@ -445,11 +439,28 @@ h6 {
         }
 }
 
+.btn-close {
+    justify-content:center;
+    width: 25vw;
+    height: 2vh;
+    border: 3px solid #FEDA15;
+    border-radius: 45px;
+    transition: all 0.3s;
+    cursor: pointer;
+    color: #000000 !important;
+    background: white;
+    font-size: 1.2em;
+    font-weight: 550;
+    margin-left: 30px;
+    margin-top: 20px;
+}
+
+
 @media (max-width: 600px) {
     .btn-close {
-        width: 220px;
-        height: 50px;
-        font-size: 1em;
+        justify-content: center;
+        width: 25vw;
+        height: 2vh;
     }
 
     .name {
@@ -475,7 +486,7 @@ h6 {
     }
 
     .navbar-collapse {
-        width: 70%;
+        width: 60%;
     }
 
     .list-group-item {
@@ -485,8 +496,9 @@ h6 {
 
 @media (max-width: 320px) {
     .btn-close {
-        width: 180px;
-        height: 45px;
+        justify-content: center;
+        width: 25vw;
+        height: 2vh;
         font-size: 0.9em;
     }
 
@@ -513,7 +525,7 @@ h6 {
     }
 
     .navbar-collapse {
-        width: 70%;
+        width: 60%;
     }
 
     .list-group-item {
@@ -524,8 +536,8 @@ h6 {
 
 
 /*--------------------------------------------------------------
-# Scroll top button
---------------------------------------------------------------*/
+    # Scroll top button
+    --------------------------------------------------------------*/
 .scroll-top {
     position: fixed;
     visibility: hidden;
@@ -557,8 +569,8 @@ h6 {
     }
 
 /*--------------------------------------------------------------
-# Preloader
---------------------------------------------------------------*/
+    # Preloader
+    --------------------------------------------------------------*/
 #preloader {
     position: fixed;
     inset: 0;
@@ -604,19 +616,19 @@ h6 {
 
 
 /*--------------------------------------------------------------
-# Desktop Navigation
---------------------------------------------------------------*/
+    # Desktop Navigation
+    --------------------------------------------------------------*/
 /**
-* Template Name: UpConstruction - v1.3.0
-* Template URL: https://bootstrapmade.com/upconstruction-bootstrap-construction-website-template/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
+    * Template Name: UpConstruction - v1.3.0
+    * Template URL: https://bootstrapmade.com/upconstruction-bootstrap-construction-website-template/
+    * Author: BootstrapMade.com
+    * License: https://bootstrapmade.com/license/
+    */
 
 /*--------------------------------------------------------------
-# Set main reusable colors and fonts using CSS variables
-# Learn more about CSS variables at https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties
---------------------------------------------------------------*/
+    # Set main reusable colors and fonts using CSS variables
+    # Learn more about CSS variables at https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties
+    --------------------------------------------------------------*/
 /* Fonts */
 :root {
     --font-default: "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -637,8 +649,8 @@ h6 {
 }
 
 /*--------------------------------------------------------------
-# General
---------------------------------------------------------------*/
+    # General
+    --------------------------------------------------------------*/
 body {
     font-family: var(--font-default);
     color: var(--color-default);
@@ -669,8 +681,8 @@ h6 {
 
 
 /*--------------------------------------------------------------
-# Scroll top button
---------------------------------------------------------------*/
+    # Scroll top button
+    --------------------------------------------------------------*/
 .scroll-top {
     position: fixed;
     visibility: hidden;
@@ -702,8 +714,8 @@ h6 {
     }
 
 /*--------------------------------------------------------------
-# Preloader
---------------------------------------------------------------*/
+    # Preloader
+    --------------------------------------------------------------*/
 #preloader {
     position: fixed;
     inset: 0;
@@ -749,20 +761,20 @@ h6 {
 
 
 /*--------------------------------------------------------------
-# Desktop Navigation
---------------------------------------------------------------*/
+    # Desktop Navigation
+    --------------------------------------------------------------*/
 
 
 
 
 /*--------------------------------------------------------------
-# Mobile Navigation
---------------------------------------------------------------*/
+    # Mobile Navigation
+    --------------------------------------------------------------*/
 
 
 /*--------------------------------------------------------------
-# Get Started Section
---------------------------------------------------------------*/
+    # Get Started Section
+    --------------------------------------------------------------*/
 .get-started .content {
     padding: 30px 0;
 }
@@ -814,8 +826,8 @@ h6 {
 }
 
 /*--------------------------------------------------------------
-# Constructions Section
---------------------------------------------------------------*/
+    # Constructions Section
+    --------------------------------------------------------------*/
 .constructions .card-item {
     border: 1px solid rgba(82, 86, 94, 0.2);
     background: #fff;
@@ -847,8 +859,8 @@ h6 {
     }
 
 /*--------------------------------------------------------------
-# minigame Section
---------------------------------------------------------------*/
+    # minigame Section
+    --------------------------------------------------------------*/
 /* Section nền vàng */
 /* Các phần khác giữ nguyên */
 .minigame {
@@ -879,7 +891,7 @@ h6 {
 
 .img-wrapper {
     width: 100%;
-    height:50%;
+    height: 50%;
     text-align: center;
 }
 
@@ -907,7 +919,7 @@ h6 {
         padding-bottom: 5px;
         border-bottom: 2px solid #ebebed;
         color: #000;
-        margin-top:25px;
+        margin-top: 25px;
     }
 
     .card-content p {
@@ -970,21 +982,25 @@ h6 {
     }
 
     .minigame-item {
-        height: 300px;
+        height: 420px;
         margin-bottom: 10px;
         animation: none;
     }
 
+    .card-content h3 {
+        margin-top: 80px !important;
+    }
+
     .minigame {
         margin-top: 40px;
-        height: 2000px;
+        height: 2800px;
         padding: 30px 0;
         background-color: #FEDA15;
     }
 
     .img-wrapper img {
-        width: 80%;
-        height: 130px;
+        width: 85%;
+        height: 280px;
     }
 }
 
@@ -1000,21 +1016,21 @@ h6 {
     }
 
     .minigame-item {
-        height: 320px;
+        height: 420px;
         margin-bottom: 10px;
         animation: none;
     }
 
     .minigame {
         margin-top: 40px;
-        height: 2200px;
+        height: 2800px;
         padding: 30px 0;
         background-color: #FEDA15;
     }
 
     .img-wrapper img {
-        width: 80%;
-        height: 130px;
+        width: 85%;
+        height: 280px;
     }
 }
 
@@ -1037,7 +1053,7 @@ h6 {
 
     .minigame {
         margin-top: 40px;
-        height: 2200px;
+        height: 2800px;
         padding: 30px 0;
         background-color: #FEDA15;
     }
@@ -1052,8 +1068,8 @@ h6 {
 
 
 /*--------------------------------------------------------------
-# Our Team Section
---------------------------------------------------------------*/
+    # Our Team Section
+    --------------------------------------------------------------*/
 /* Section chính */
 /* Thiết lập phần About chiếm toàn bộ màn hình */
 
@@ -1223,8 +1239,8 @@ h6 {
 
 
 /*--------------------------------------------------------------
-# Banner Section
---------------------------------------------------------------*/
+    # Banner Section
+    --------------------------------------------------------------*/
 .banner {
     overflow-x: hidden;
     padding: 0;
@@ -1427,8 +1443,8 @@ h6 {
 
 
 /*--------------------------------------------------------------
-# Game Introduction
---------------------------------------------------------------*/
+    # Game Introduction
+    --------------------------------------------------------------*/
 .text-intro {
     margin-bottom: 40px;
 }
@@ -1584,8 +1600,8 @@ h6 {
 
 
 /*--------------------------------------------------------------
-# Privacy trang privacy.html
---------------------------------------------------------------*/
+    # Privacy trang privacy.html
+    --------------------------------------------------------------*/
 .privacy .privacy-details {
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
     padding: 30px;
@@ -1737,8 +1753,8 @@ h6 {
             }
 
 /*--------------------------------------------------------------
-# Blog Sidebar
---------------------------------------------------------------*/
+    # Blog Sidebar
+    --------------------------------------------------------------*/
 .blog .sidebar {
     padding: 30px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
@@ -1910,8 +1926,8 @@ h6 {
 }
 
 /*--------------------------------------------------------------
-# Footer
---------------------------------------------------------------*/
+    # Footer
+    --------------------------------------------------------------*/
 .footer {
     background: #fff;
     padding: 20px 0;
@@ -2198,13 +2214,13 @@ h6 {
 }
 
 /*--------------------------------------------------------------
-# Mobile Navigation
---------------------------------------------------------------*/
+    # Mobile Navigation
+    --------------------------------------------------------------*/
 
 
 /*--------------------------------------------------------------
-# Get Started Section
---------------------------------------------------------------*/
+    # Get Started Section
+    --------------------------------------------------------------*/
 .get-started .content {
     padding: 30px 0;
 }
@@ -2256,8 +2272,8 @@ h6 {
 }
 
 /*--------------------------------------------------------------
-# Constructions Section
---------------------------------------------------------------*/
+    # Constructions Section
+    --------------------------------------------------------------*/
 .constructions .card-item {
     border: 1px solid rgba(82, 86, 94, 0.2);
     background: #fff;
@@ -2293,8 +2309,8 @@ h6 {
 
 
 /*--------------------------------------------------------------
-# Our Team Section
---------------------------------------------------------------*/
+    # Our Team Section
+    --------------------------------------------------------------*/
 /* Section chính */
 /* Thiết lập phần About chiếm toàn bộ màn hình */
 
@@ -2464,13 +2480,13 @@ h6 {
 
 
 /*--------------------------------------------------------------
-# minigame Cards Section
---------------------------------------------------------------*/
+    # minigame Cards Section
+    --------------------------------------------------------------*/
 
 
 /*--------------------------------------------------------------
-# Recent Blog Posts Section
---------------------------------------------------------------*/
+    # Recent Blog Posts Section
+    --------------------------------------------------------------*/
 .recent-blog-posts {
     transition: 0.3s;
     padding-top: 40px;
@@ -2698,8 +2714,8 @@ h6 {
 
 
 /*--------------------------------------------------------------
-# Game Introduction
---------------------------------------------------------------*/
+    # Game Introduction
+    --------------------------------------------------------------*/
 /***** CÁC STYLES CƠ BẢN *****/
 .alt-intro {
     /* Bỏ height cố định nếu không muốn bó hẹp chiều cao */
@@ -2779,10 +2795,10 @@ h6 {
 /***** RESPONSIVE BREAKPOINTS *****/
 
 /* 
-   Khi màn hình <768px: 
-   - xếp chồng video & nội dung 
-   - video chiếm 100% chiều rộng, chiều cao có thể giảm cho mobile
-*/
+    Khi màn hình <768px: 
+    - xếp chồng video & nội dung 
+    - video chiếm 100% chiều rộng, chiều cao có thể giảm cho mobile
+    */
 @media (max-width: 767px) {
     .row.justify-content-around {
         flex-direction: column;
@@ -2826,13 +2842,13 @@ h6 {
 
 
 /*--------------------------------------------------------------
-# Blog
---------------------------------------------------------------*/
+    # Blog
+    --------------------------------------------------------------*/
 
 
 /*--------------------------------------------------------------
-# Footer
---------------------------------------------------------------*/
+    # Footer
+    --------------------------------------------------------------*/
 .footer {
     background: #fff;
     padding: 20px 0;

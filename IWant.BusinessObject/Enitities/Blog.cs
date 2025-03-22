@@ -13,8 +13,8 @@ namespace IWant.BusinessObject.Enitities
         public string Content { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
-        public string ImageUrl { get; set; }
-        public string ImageLocalPath { get; set; }
+        public string? ImageUrl { get; set; }
+        public string? ImageLocalPath { get; set; }
         public string? CitedImage { get; set; }
         public bool? Status { get; set; }
         public int ViewCount { get; set; } = 0;

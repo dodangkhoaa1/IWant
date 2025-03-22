@@ -8,7 +8,7 @@
 
     var mostWatch = Model.OrderByDescending(b => b.ViewCount).Take(3).ToList();
 }
-<link rel="stylesheet" href="~/css/responsive.css" />
+<link rel="stylesheet" href="~/css/reponsive.css" />
 <link rel="stylesheet" href="~/css/site.css" />
 <link rel="stylesheet" href="~/css/main.css" />
 <link href="https://fonts.googleapis.com/css2?family=Athiti:wght@300;400;600&display=swap" rel="stylesheet">
@@ -49,33 +49,33 @@
             height: auto;
             object-fit: cover;
             border: 1px solid #FEDA15;
-            border-radius:5px;
+            border-radius: 5px;
             display: block;
             margin: auto;
             transition: transform 0.3s ease;
         }
 
         /* .main-article:hover img {
-            transform: scale(1.05);
-        } */
+                transform: scale(1.05);
+            } */
 
         .main-article i {
             color: #FEDA15;
         }
 
         .main-article span {
-            font-size:16px;
+            font-size: 16px;
             color: #838893;
         }
 
     .most-watched i {
-            color: #FEDA15;
-        }
+        color: #FEDA15;
+    }
 
     .most-watched span {
-            font-size: 16px;
-            color: #838893;
-        }
+        font-size: 16px;
+        color: #838893;
+    }
 
     .main-news img,
     .sidebar-blog img {
@@ -226,6 +226,10 @@
             background-color: #BEBEBE;
         }
 
+    .blog-con {
+        bottom: 10px;
+        width: 375px
+    }
     /* Blog header */
     .blog-header {
         text-align: center;
@@ -298,7 +302,7 @@
             <div class="row main-article position-relative">
                 <a asp-action="BlogDetail" asp-controller="Blog" asp-route-id="@topBlog.Id" class="stretched-link"></a>
                 <div style="max-height:320px;" class="col-md-6">
-                    <img style="width:100%;height:100% ; object-fit:cover" src="@topBlog.ImageUrl" alt="@topBlog.Title">
+                    <img style="width:100%;height:100% ; object-fit:cover" src="@topBlog.ImageUrl" alt="Top Blog">
                 </div>
                 <div class="col-md-6">
                     <h1>@topBlog.Title</h1>
@@ -339,12 +343,12 @@
                         <div class="col-md-4">
                             <div class="card position-relative">
                                 <a asp-action="BlogDetail" asp-controller="Blog" asp-route-id="@blogItem.Id" class="stretched-link"></a>
-                                <img style="width: 100%; object-fit: cover" src="@blogItem.ImageUrl" alt="@blogItem.Title">
+                                <img style="width: 100%; object-fit: cover" src="@blogItem.ImageUrl" alt="Most Watch Blog">
                                 <div style="padding:0 20px">
                                     <h3 class="remote-title mt-2" style="font-size:1rem;font-weight:bold;">
                                         @blogItem.Title
                                     </h3>
-                                    <div style="bottom: 10px; width:375px" class="d-flex justify-content-between position-absolute">
+                                    <div class="d-flex justify-content-between position-absolute blog-con">
                                         <div class="d-flex align-items-center">
                                             <i class="fa-regular fa-user"></i>
                                             <span class="ps-2">@blogItem.User.FullName</span>
@@ -406,12 +410,12 @@
                         <div class="col-md-4 mb-4">
                             <div class="card position-relative">
                                 <a asp-action="BlogDetail" asp-controller="Blog" asp-route-id="@blogItem.Id" class="stretched-link"></a>
-                                <img style="width: 100%; object-fit: cover" src="@blogItem.ImageUrl" alt="@blogItem.Title">
+                                <img style="width: 100%; object-fit: cover" src="@blogItem.ImageUrl" alt="Blog Image">
                                 <div style="padding:0 20px">
                                     <h3 class="remote-title mt-2" style="font-size:1rem;font-weight:bold;">
                                         @blogItem.Title
                                     </h3>
-                                    <div style="bottom: 10px; width:375px" class="d-flex justify-content-between position-absolute">
+                                    <div class="d-flex blog-con justify-content-between position-absolute">
                                         <div class="d-flex align-items-center">
                                             <i class="fa-regular fa-user"></i>
                                             <span class="ps-2">@blogItem.User.FullName</span>

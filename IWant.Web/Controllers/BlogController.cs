@@ -138,7 +138,6 @@ namespace IWant.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(BlogViewModel model)
         {
-
             var user = _context.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
             if (user == null)
             {
@@ -154,65 +153,73 @@ namespace IWant.Web.Controllers
             string imageUrl = "";
             string imageLocalPath = null;
 
-            if (model.Image != null && model.Image.Length > 0)
-            {
-                if (!string.IsNullOrEmpty(model.ImageLocalPath))
-                {
-                    var oldFilePath = Path.Combine(Directory.GetCurrentDirectory(), model.ImageLocalPath);
-                    if (System.IO.File.Exists(oldFilePath))
-                    {
-                        System.IO.File.Delete(oldFilePath);
-                    }
-                }
-
-                string tempFileName = Guid.NewGuid() + Path.GetExtension(model.Image.FileName);
-                string tempFilePath = Path.Combine(defaultFolder, tempFileName);
-
-                using (var stream = new FileStream(tempFilePath, FileMode.Create))
-                {
-                    await model.Image.CopyToAsync(stream);
-                }
-
-                imageUrl = $"{Request.Scheme}://{Request.Host}/images/blog/{tempFileName}";
-                imageLocalPath = Path.Combine("images", "blog", tempFileName);
-            }
-
+            // Tạo mới blog trước để lấy Id
             var blog = new Blog()
             {
                 Title = model.Title,
                 Content = model.Content,
                 CreatedAt = DateTime.Now,
                 UpdatedAt = DateTime.Now,
-                ImageUrl = imageUrl,
-                ImageLocalPath = imageLocalPath ?? "blog/default.png",
                 CitedImage = model.CitedImage,
                 Status = model.Status,
                 User = user
             };
 
             _context.Blogs.Add(blog);
-            await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync(); // Lưu trước để có ID
 
             if (model.Image != null && model.Image.Length > 0)
             {
-                string newFileName = blog.Id + Path.GetExtension(model.Image.FileName);
+                // Xóa file cũ nếu tồn tại
+                if (!string.IsNullOrEmpty(model.ImageLocalPath))
+                {
+                    string oldFilePath = Path.Combine(Directory.GetCurrentDirectory(), model.ImageLocalPath);
+                    if (System.IO.File.Exists(oldFilePath))
+                    {
+                        System.IO.File.Delete(oldFilePath);
+                    }
+                }
+
+                string fileExtension = Path.GetExtension(model.Image.FileName);
+                string newFileName = blog.Id + fileExtension; // Đổi tên file ngay từ đầu
                 string newFilePath = Path.Combine(defaultFolder, newFileName);
 
-                System.IO.File.Move(Path.Combine(defaultFolder, Path.GetFileName(imageLocalPath)), newFilePath);
+                try
+                {
+                    using (var stream = new FileStream(newFilePath, FileMode.Create))
+                    {
+                        await model.Image.CopyToAsync(stream);
+                    }
 
-                blog.ImageUrl = $"{Request.Scheme}://{Request.Host}/images/blog/{newFileName}";
-                blog.ImageLocalPath = Path.Combine("blog", newFileName);
-
-                _context.Blogs.Update(blog);
-                await _context.SaveChangesAsync();
+                    imageUrl = $"/images/blog/{newFileName}";
+                    imageLocalPath = Path.Combine("wwwroot", "images", "blog", newFileName);
+                }
+                catch (Exception ex)
+                {
+                    // Log lỗi, tránh lưu blog nếu ảnh bị lỗi
+                    _context.Blogs.Remove(blog);
+                    await _context.SaveChangesAsync();
+                    TempData["error"] = "Failed to upload image!";
+                    return RedirectToAction("Index", "Blog", new { filterType = "all" });
+                }
+            }
+            else
+            {
+                imageLocalPath = Path.Combine("wwwroot", "images", "blog", "default.png");
+                imageUrl = "/images/blog/default.png";
             }
 
-            TempData["success"] = "Create Blog successfully!";
+            // Cập nhật đường dẫn ảnh vào blog
+            blog.ImageUrl = imageUrl;
+            blog.ImageLocalPath = imageLocalPath;
 
+            _context.Blogs.Update(blog);
+            await _context.SaveChangesAsync();
+
+            TempData["success"] = "Create Blog successfully!";
             return RedirectToAction("Index", "Blog", new { filterType = "all" });
         }
 
-        // Allow to display the edit blog page
         [Authorize]
         public IActionResult Edit(int id)
         {
@@ -226,13 +233,11 @@ namespace IWant.Web.Controllers
             return View(blogViewModel);
         }
 
-        // Allow to edit an existing blog
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(BlogViewModel model)
         {
-            /*if (ModelState.IsValid)
-            {*/
             var blog = await _context.Blogs.FindAsync(model.Id);
             if (blog == null)
             {
@@ -264,8 +269,8 @@ namespace IWant.Web.Controllers
                     await model.Image.CopyToAsync(fileStream);
                 }
 
-                blog.ImageUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}/images/blog/{fileName}";
-                blog.ImageLocalPath = Path.Combine("blog", fileName);
+                blog.ImageUrl = $"/images/blog/{fileName}";
+                blog.ImageLocalPath = Path.Combine("wwwroot", "images", "blog", fileName);
             }
 
             _context.Blogs.Update(blog);
@@ -274,37 +279,8 @@ namespace IWant.Web.Controllers
             TempData["success"] = "Update Blog successfully!";
 
             return RedirectToAction("Index", "Blog", new { filterType = "all" });
-            /*}
-            return View(model);*/
         }
 
-        // Allow to delete a blog
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var blog = await _context.Blogs.FindAsync(id);
-            if (blog == null)
-            {
-                return NotFound();
-            }
-
-            if (blog.Status == true)
-            {
-                blog.Status = false;
-            }
-            else
-            {
-                blog.Status = true;
-            }
-
-            _context.Blogs.Update(blog);
-            await _context.SaveChangesAsync();
-
-            TempData["success"] = blog.Status == true ? "Show Blog successfully!" : "Hide Blog successfully!";
-
-            return RedirectToAction("Index", "Blog", new { filterType = "all" });
-        }
 
         [HttpPost]
         public async Task<IActionResult> AcceptBlog(int id)

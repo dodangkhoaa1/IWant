@@ -1,339 +1,309 @@
 ﻿@using IWant.DataAccess
 @model BlogViewModel;
 
-
 @{
     ViewData["Title"] = "Blog Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<link rel="stylesheet" href="~/css/reponsive.css" />
+<link rel="stylesheet" href="~/css/site.css" />
+<link rel="stylesheet" href="~/css/main.css" />
 <link href="https://fonts.googleapis.com/css2?family=Athiti:wght@300;400;600&display=swap" rel="stylesheet">
-
 
 <head>
     <style>
         body {
-        background-color: #FFFFFF;
-        color: #000;
+            background-color: #FFFFFF;
+            color: #000;
         }
 
         .blog-container {
-        margin: auto;
-        padding: 20px;
-        margin-top: 30px;
-        background: #FFFFFF;
-        border-radius: 8px;
+            margin: auto;
+            padding: 20px;
+            margin-top: 30px;
+            background: #FFFFFF;
+            border-radius: 8px;
         }
 
         .blog-part {
-        padding-left: 150px;
-        padding-right: 150px;
+            padding-left: 150px;
+            padding-right: 150px;
         }
 
         .blog-title {
-        font-size: 2.5rem;
-        font-weight: 550;
-        text-align: center;
-        color: black;
-        position: relative;
-        margin-bottom: 20px;
+            font-size: 2.5rem;
+            font-weight: 550;
+            text-align: center;
+            color: black;
+            position: relative;
+            margin-bottom: 20px;
         }
 
-        .blog-title::after {
-        content: "";
-        position: absolute;
-        bottom: -5px;
-        left: 50%;
-        width: 500px;
-        height: 1px;
-        background-color: gray;
-        transform: translateX(-50%);
-        }
+            .blog-title::after {
+                content: "";
+                position: absolute;
+                bottom: -5px;
+                left: 50%;
+                width: 500px;
+                height: 1px;
+                background-color: gray;
+                transform: translateX(-50%);
+            }
 
         .blog-meta {
-        font-size: 1rem;
-        color: gray;
-        padding-top: 1rem;
-        text-align: right;
+            font-size: 1rem;
+            color: gray;
+            padding-top: 1rem;
+            text-align: right;
         }
 
         .rating-blog {
-        text-align: right;
-        margin-bottom: 10px;
+            text-align: right;
+            margin-bottom: 10px;
         }
 
         .rating {
-        text-align: right;
-        margin-bottom: 10px;
+            text-align: right;
+            margin-bottom: 10px;
         }
 
         .star {
-        font-size: 30px;
-        cursor: pointer;
-        color: #ccc;
-        transition: color 0.3s;
+            font-size: 30px;
+            cursor: pointer;
+            color: #ccc;
+            transition: color 0.3s;
         }
 
-        .star.active,
-        .star:hover {
-        color: gold;
-        }
+            .star.active,
+            .star:hover {
+                color: gold;
+            }
 
         .author-section {
-        display: flex;
-        justify-content: space-between;
-        margin-left: 150px;
-        margin-right: 150px;
-        align-items: center;
+            display: flex;
+            justify-content: space-between;
+            margin-left: 5vw;
+            margin-right: 5vw;
+            align-items: center;
         }
 
         .author-info {
-        display: flex;
-        align-items: center;
+            display: flex;
+            align-items: center;
         }
 
         .author-name {
-        font-weight: 500;
-        margin-left: 10px; /* Giúp tạo khoảng cách giữa avatar và tên */
+            font-weight: 500;
+            margin-left: 10px;
         }
 
-
         .author-avatar {
-        width: 50px;
-        height: 50px;
-        margin-top: 10px;
-        border-radius: 50%;
-        object-fit: cover;
-        margin-right: 10px;
+            width: 50px;
+            height: 50px;
+            margin-top: 10px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 10px;
         }
 
         .rating-blog i {
-        color: gold;
+            color: gold;
         }
-
 
         .cited {
-        font-size: 1rem;
-        text-align: center;
-        color: gray;
-        position: relative;
-        margin-bottom: 20px;
-        margin-top: 10px;
+            font-size: 1rem;
+            text-align: center;
+            color: gray;
+            position: relative;
+            margin-bottom: 20px;
+            margin-top: 10px;
         }
-        /* Layout của card: 2 cột (sử dụng flexbox) */
+
         .post-content {
-        display: flex;
-        flex-wrap: wrap;
+            display: flex;
+            flex-wrap: wrap;
         }
 
-        .post-content .image-col,
-        .post-content .text-col {
-        flex: 1 1 50%;
-        padding: 10px;
-        }
+            .post-content .image-col,
+            .post-content .text-col {
+                flex: 1 1 50%;
+                padding: 10px;
+            }
 
-        .post-content .image-col img {
-        width: 100%;
-        height: auto;
-        border-radius: 5px;
-        }
+                .post-content .image-col img {
+                    width: 100%;
+                    height: auto;
+                    border-radius: 5px;
+                }
 
-
-        /* Content styles ngoài slider */
         .content-wrapper {
-        text-align: center;
-        margin-top: 20px;
+            text-align: center;
+            margin-top: 20px;
         }
 
         .article-image {
-        width: 100%;
-        height: auto;
-        display: block;
-        padding: 20px auto;
+            width: 100%;
+            height: auto;
+            display: block;
+            padding: 20px auto;
         }
 
-
         .article-text {
-        font-size: 1.1rem;
-        line-height: 1.6;
-        margin-top: 15px;
-        color: #333;
-        text-align: justify;
-        padding: 0 10px;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-top: 15px;
+            color: #333;
+            text-align: justify;
+            padding: 0 10px;
         }
 
         .comment {
-        display: flex;
-        align-items: center;
-        margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
         }
 
         .comment-avatar {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        object-fit: cover;
-        margin-right: 10px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 10px;
         }
 
         .comment-form {
-        margin-top: 20px;
-        border: 1px solid #ddd;
-        border-radius: 10px;
-        background: #ffffff;
-        box-shadow: 0px 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background: #ffffff;
+            box-shadow: 0px 0 10px rgba(0, 0, 0, 0.1);
         }
 
         .comment-view {
-        max-height: 500px;
-        overflow: auto;
+            max-height: 500px;
+            overflow: auto;
         }
 
         .comment-create {
-        border-top: 1px dashed #ddd;
+            border-top: 1px dashed #ddd;
         }
 
         .create-comment {
-        margin: 20px !important;
+            margin: 20px !important;
         }
 
         .fixed-textarea {
-        border-radius: 6px 0 0 6px;
-        border: 1px solid #ccc;
-        padding: 10px;
-        font-size: 14px;
-        width: 100%;
-        resize: none;
+            border-radius: 6px 0 0 6px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            font-size: 14px;
+            width: 100%;
+            resize: none;
         }
 
         .btn-primary {
-        background: #007bff;
-        color: white;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 6px;
-        cursor: pointer;
-        transition: background 0.3s;
+            background: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s;
         }
 
-        .btn-primary:hover {
-        background: #0056b3;
-        }
+            .btn-primary:hover {
+                background: #0056b3;
+            }
 
         .text-end {
-        text-align: right;
+            text-align: right;
         }
 
         body, h1, h2, h3, h4, h5, h6, p, a, span, button, input, textarea, label, div, strong, em {
-        font-family: 'Athiti', sans-serif;
+            font-family: 'Athiti', sans-serif;
         }
 
         .related-container {
-        position: relative;
-        overflow: hidden;
-        width: 1200px;
-        margin: auto;
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            max-width: 1200px;
+            margin: auto;
         }
 
         .related-posts {
-        display: flex;
-        transition: transform 0.3s ease-in-out;
-        gap: 1px
+            display: flex;
+            transition: transform 0.3s ease-in-out;
+            gap: 1px;
         }
 
         .post {
-        flex: 0 0 calc(100%);
-        box-sizing: border-box;
+            flex: 0 0 100%;
+            box-sizing: border-box;
         }
 
         .limited-text {
-        font-size: 16px;
-        color: #555;
-        height: 110px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-line-clamp: 4;
-        -webkit-box-orient: vertical;
+            font-size: 15px;
+            color: #555;
+            height: 110px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
         }
-
 
         .card {
-        position: relative;
-        background: white;
-        border-radius: 8px;
-        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease-in-out;
+            position: relative;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease-in-out;
         }
 
-        /*  .card:hover {
-        transform: translateY(-5px);
-        } */
-
-        .card img {
-        width: 100%;
-        height: 350px;
-        object-fit: cover;
-        border-top-left-radius: 8px;
-        border-top-right-radius: 8px;
-        }
+            .card img {
+                width: 100%;
+                height: 350px;
+                object-fit: cover;
+                border-top-left-radius: 8px;
+                border-top-right-radius: 8px;
+            }
 
         .card-body {
-        padding: 15px;
+            padding: 15px;
         }
 
         .remote-title {
-        font-size: 1.5rem;
-        font-weight: bold;
-        color: #000000;
-        margin-bottom: 8px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #000;
+            height: 50px;
+            margin-bottom: 8px;
         }
 
         .meta-info i {
-        font-size: 0.85rem;
-        color: #FEDA15;
+            font-size: 0.85rem;
+            color: #FEDA15;
         }
 
         .slider-dots {
-        text-align: center;
-        margin-top: 15px;
+            text-align: center;
+            margin-top: 15px;
         }
 
         .dot {
-        width: 10px;
-        height: 10px;
-        background-color: gray;
-        display: inline-block;
-        margin: 0 5px;
-        border-radius: 50%;
-        cursor: pointer;
+            width: 10px;
+            height: 10px;
+            background-color: gray;
+            display: inline-block;
+            margin: 0 5px;
+            border-radius: 50%;
+            cursor: pointer;
         }
 
-        .dot.active {
-        background-color: black;
-        }
-
-
-        /* .feedback-form {
-        margin-top: 20px;
-        padding: 20px;
-        border-top: 1px solid black;
-        background: #ffffff;
-        height:130px
-        }
-
-        .feedback-create {
-        bottom:0;
-        left:0;
-        right:0;
-        }
-
-        .feedback-content{
-        padding:20px;
-        max-height:1000px;
-        overflow: auto;
-        } */
-
+            .dot.active {
+                background-color: black;
+            }
     </style>
 </head>
 
@@ -353,11 +323,8 @@
                     }
                 }
                 <span style="font-weight: bold; color: gray;">@Model.AverageRating</span>
-                @* <p>@Model.CountRate</p> *@
             </div>
-
             <h1 class="blog-title">@Model.Title</h1>
-
             <div class="author-section">
                 <div class="author-info">
                     <img src="@Model.User.ImageUrl" alt="Author Avatar" class="author-avatar">
@@ -377,9 +344,10 @@
         {
             <form asp-action="RatingBlog" asp-controller="Comment" method="post">
                 <input type="hidden" name="BlogId" value="@Model.Id" />
-
                 <div class="d-flex justify-content-end align-items-center">
-                    <label class="form-label fw-bold me-2 mb-0" style="padding-bottom: 0.8rem; font-size:30px !important">Rating for Blog</label>
+                    <label class="form-label fw-bold me-2 mb-0" style="padding-bottom: 0.8rem; font-size:30px!important">
+                        Rating for Blog
+                    </label>
                     <div class="rating">
                         <span class="star" data-value="1">&#9733;</span>
                         <span class="star" data-value="2">&#9733;</span>
@@ -391,15 +359,14 @@
                 </div>
             </form>
         }
-
-
         <h6 id="Comments" class="mt-4 fw-bold blog-title">Feedback</h6>
-
         @if (Model.Comments.Count == 0)
         {
             <div class="comment-form feedback-content">
                 <div class="comment-view">
-                    <p style="color: gray; font-style: italic; text-align:center; align-content:center;margin:20px 0">No Feedback in this blog!</p>
+                    <p style="color: gray; font-style: italic; text-align:center; margin:20px 0">
+                        No Feedback in this blog!
+                    </p>
                 </div>
                 <div class="comment-create">
                     @if (User.Identity.IsAuthenticated)
@@ -408,21 +375,23 @@
                             <input type="hidden" name="BlogId" value="@Model.Id" />
                             <div style="width:95%" class="mb-3">
                                 <label class="form-label fw-bold">Feedback</label>
-                                <input name="Content" class="form-control fixed-textarea" rows="3" required></input>
+                                <input name="Content" class="form-control fixed-textarea" rows="3" required />
                             </div>
-
-                            <div style="margin-top:31px;" class="text-end">
-                                <button style="border-radius:0 8px 8px 0" type="submit" class="btn btn-primary">Send</button>
+                            <div class="mb-3">
+                                <button style="border-radius:0 8px 8px 0" type="submit" class="btn btn-primary">
+                                    Send
+                                </button>
                             </div>
                         </form>
                     }
                     else
                     {
-                        <p style="color: red; font-weight: bold; text-align:center; margin:10px 0"><a style="color:blue" asp-action="Signin" asp-controller="Identity">"Sign in"</a> to feedback</p>
+                        <p style="color: red; font-weight: bold; text-align:center; margin:10px 0">
+                            <a style="color:blue" asp-action="Signin" asp-controller="Identity">"Sign in"</a> to feedback
+                        </p>
                     }
                 </div>
             </div>
-            
         }
         else
         {
@@ -430,21 +399,25 @@
                 <div class="comment-view">
                     @foreach (var comment in Model.Comments)
                     {
-                        @if (User.IsInRole("Admin"))
+                        if (User.IsInRole("Admin"))
                         {
                             <div>
                                 <div style="display: flex; align-items: center; padding: 10px 30px; border-bottom: 1px solid #ddd">
-                                    <img src="@comment.User.ImageUrl" alt="Avatar"
-                                         style="width: 40px; height: 40px; border-radius: 50%; margin-right: 10px; object-fit: cover;">
+                                    <img src="@comment.User.ImageUrl" alt="Feedback Avatar"
+                                         style="width: 40px; height: 40px; border-radius: 50%; margin-right: 10px; object-fit: cover;" />
                                     <div style="flex-grow: 1;">
                                         <div class="d-flex justify-content-between align-items-center">
-                                            <strong style="color: #007bff;">@comment.User.FullName <span style="color:gray">@comment.CreatedAt?.ToString("dd/MM/yyyy HH:mm")</span></strong>
+                                            <strong style="color: #007bff;">
+                                                @comment.User.FullName
+                                                <span style="color:gray">
+                                                    @comment.CreatedAt?.ToString("dd/MM/yyyy HH:mm")
+                                                </span>
+                                            </strong>
                                             @if (!comment.Status)
                                             {
                                                 <p class="fw-bold mb-0 text-danger">Banned</p>
                                             }
                                         </div>
-
                                         <div class="d-flex justify-content-between align-items-center">
                                             <p style="font-size:18px" class="mb-0 text-dark">@comment.Content</p>
                                             @if (comment.Status)
@@ -459,11 +432,11 @@
                         }
                         else
                         {
-                            @if (comment.Status == true)
+                            if (comment.Status == true)
                             {
                                 <div style="display: flex; align-items: center; padding: 10px; border-bottom: 1px solid #ddd; margin-bottom:20px">
-                                    <img src="@comment.User.ImageUrl" alt="Avatar"
-                                         style="width: 40px; height: 40px; border-radius: 50%; margin-right: 10px;object-fit:cover">
+                                    <img src="@comment.User.ImageUrl" alt="Feedback Avatar"
+                                         style="width: 40px; height: 40px; border-radius: 50%; margin-right: 10px; object-fit:cover" />
                                     <div>
                                         <strong style="color: #007bff;">@comment.User.FullName</strong>
                                         <p style="margin: 5px 0; color: #333;">@comment.Content</p>
@@ -473,7 +446,6 @@
                         }
                     }
                 </div>
-
                 <div class="comment-create position-relative">
                     @if (User.Identity.IsAuthenticated)
                     {
@@ -481,22 +453,24 @@
                             <input type="hidden" name="BlogId" value="@Model.Id" />
                             <div style="width:95%" class="mb-3">
                                 <label class="form-label fw-bold">Feedback</label>
-                                <input name="Content" class="form-control fixed-textarea" rows="3" required></input>
+                                <input name="Content" class="form-control fixed-textarea" rows="3" required />
                             </div>
-
                             <div style="margin-top:31px;" class="text-end">
-                                <button style="border-radius:0 8px 8px 0" type="submit" class="btn btn-primary">Send</button>
+                                <button style="border-radius:0 8px 8px 0" type="submit" class="btn btn-primary">
+                                    Send
+                                </button>
                             </div>
                         </form>
                     }
                     else
                     {
-                        <p style="color: red; font-weight: bold; text-align:center; margin:10px 0"><a style="color:blue" asp-action="Signin" asp-controller="Identity">"Sign in"</a> to feedback</p>
+                        <p style="color: red; font-weight: bold; text-align:center; margin:10px 0">
+                            <a style="color:blue" asp-action="Signin" asp-controller="Identity">"Sign in"</a> to feedback
+                        </p>
                     }
                 </div>
             </div>
         }
-
         <h6 class="mt-lg-4 fw-bold blog-title">Related Posts</h6>
         <div class="related-container">
             <div class="slider-wrapper">
@@ -512,9 +486,9 @@
                                 <div class="card position-relative">
                                     <a asp-action="BlogDetail" asp-controller="Blog" asp-route-id="@blogItem.Id" class="stretched-link"></a>
                                     <div class="d-flex">
-                                        <img style="width: 50%;" src="@blogItem.ImageUrl" alt="@blogItem.Title">
+                                        <img style="width: 50%;" src="@blogItem.ImageUrl" alt="Blog Image">
                                         <div class="card-body d-flex flex-column justify-content-between">
-                                            <h3 class="remote-title" style="font-size:1.5rem;font-weight:bold;height:50px">
+                                            <h3 class="remote-title">
                                                 @blogItem.Title
                                             </h3>
                                             <hr />
@@ -523,10 +497,11 @@
                                             </div>
                                             <hr />
                                             <p class="meta-info">
-                                                <i class="fa-regular fa-user"></i> @blogItem.User.FullName | <i class="fas fa-calendar-alt"></i> @blogItem.CreatedAt.ToString("dd/MM/yyyy") | <i class="fas fa-eye"></i> @blogItem.ViewCount
+                                                <i class="fa-regular fa-user"></i> @blogItem.User.FullName |
+                                                <i class="fas fa-calendar-alt"></i> @blogItem.CreatedAt.ToString("dd/MM/yyyy") |
+                                                <i class="fas fa-eye"></i> @blogItem.ViewCount
                                             </p>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
@@ -540,9 +515,7 @@
                 <div class="slider-dots"></div>
             </div>
         </div>
-
     </div>
-
 
     <script>
         let currentIndex = 0;
@@ -551,9 +524,10 @@
         const totalPosts = posts.length;
         const postsPerView = 1;
         const sliderDotsContainer = document.querySelector(".slider-dots");
+
         function updateSlider() {
             const postWidth = document.querySelector(".post").clientWidth;
-            postContainer.style.transform = `translateX(-${currentIndex * 1201 * postsPerView}px)`;
+            postContainer.style.transform = `translateX(-${currentIndex * postWidth * postsPerView}px)`;
             updateDots();
         }
 
@@ -562,6 +536,7 @@
                 dot.classList.toggle("active", index === currentIndex);
             });
         }
+
         function createDots() {
             sliderDotsContainer.innerHTML = "";
             const totalDots = Math.ceil(totalPosts / postsPerView);
@@ -576,19 +551,17 @@
                 sliderDotsContainer.appendChild(dot);
             }
         }
+
         function autoSlide() {
             currentIndex = (currentIndex + 1) % Math.ceil(totalPosts / postsPerView);
             updateSlider();
         }
+
         window.addEventListener("resize", updateSlider);
         createDots();
         updateSlider();
         setInterval(autoSlide, 5000);
     </script>
-
-
-
-
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -611,11 +584,9 @@
                     highlightStars(selectedRating);
                     submitRating(selectedRating);
                 });
-
                 star.addEventListener("mouseover", function () {
                     highlightStars(parseInt(this.getAttribute("data-value")));
                 });
-
                 star.addEventListener("mouseout", function () {
                     highlightStars(selectedRating);
                 });
@@ -623,7 +594,6 @@
 
             function submitRating(value) {
                 const blogId = document.querySelector("input[name='BlogId']").value;
-
                 fetch("/Comment/RatingBlog", {
                     method: "POST",
                     headers: {
@@ -632,39 +602,39 @@
                     },
                     body: `BlogId=${blogId}&Rating=${value}`
                 })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            alert("Rating submitted successfully!");
-                        } else {
-                            alert("Error submitting rating.");
-                        }
-                    })
-                    .catch(error => console.error("Error:", error));
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert("Rating submitted successfully!");
+                    } else {
+                        alert("Error submitting rating.");
+                    }
+                })
+                .catch(error => console.error("Error:", error));
             }
         });
     </script>
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            const averageRating = parseInt("@Model.AverageRating"); // Lấy số sao trung bình từ Razor
+            const averageRating = parseInt("@Model.AverageRating");
             const ratingContainer = document.getElementById("averageRating");
             const ratingText = document.getElementById("averageRatingText");
-
-            ratingContainer.innerHTML = ""; // Xóa nội dung cũ
-
-            for (let i = 1; i <= 5; i++) {
-                const star = document.createElement("i");
-                star.classList.add("fa-star", "fa-solid"); // Mặc định là sao sáng
-                if (i > averageRating) {
-                    star.classList.replace("fa-solid", "fa-regular"); // Nếu lớn hơn thì thành sao rỗng
+            if (ratingContainer) {
+                ratingContainer.innerHTML = "";
+                for (let i = 1; i <= 5; i++) {
+                    const star = document.createElement("i");
+                    star.classList.add("fa-star", "fa-solid");
+                    if (i > averageRating) {
+                        star.classList.replace("fa-solid", "fa-regular");
+                    }
+                    ratingContainer.appendChild(star);
                 }
-                ratingContainer.appendChild(star);
+                if (ratingText) {
+                    ratingText.textContent = `${averageRating} / 5`;
+                }
             }
-
-            ratingText.textContent = `${averageRating} / 5`; // Cập nhật lại số sao
         });
-
     </script>
 
     <script>
@@ -691,12 +661,10 @@
                         const elementPosition = element.getBoundingClientRect().top + window.scrollY;
                         const offset = window.innerHeight / 2;
                         const extraOffset = 50;
-
                         window.scrollTo({ top: elementPosition - offset - extraOffset, behavior: "smooth" });
                     }
                 }, 100);
             });
         });
     </script>
-
 </body>

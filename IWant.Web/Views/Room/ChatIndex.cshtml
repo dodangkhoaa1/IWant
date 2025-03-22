@@ -13,7 +13,7 @@
         roleMember = "Member";
     }
     <link rel="stylesheet" href="~/css/main.css" />
-    <link rel="stylesheet" href="~/css/responsive.css" />
+    <link rel="stylesheet" href="~/css/reponsive.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 
     bool roomIsExist = false;
@@ -39,6 +39,7 @@
         flex-direction: column;
         position: relative;
         border-right: 2px solid #ccc;
+        width:20vw;
     }
 
     .main-content .chat-input .actions i {
@@ -141,7 +142,7 @@
             color: #000000;
             overflow: hidden;
             text-overflow: ellipsis;
-            max-width: 120px;
+            max-width: 150px;
         }
 
             .sidebar .profile div a:hover {
@@ -423,7 +424,7 @@
             <div class="profile">
                 <div>
                     <img src="#" class="user-avatar" data-bind="attr: { src:  myAvatar() }" />
-                    <a data-bind="html: myName() + '&nbsp;'"></a>
+                    <a class="myName" data-bind="html: myName() + '&nbsp;'"></a>
                     <p class="role"> (@roleMember)</p>
                 </div>
             </div>
@@ -448,7 +449,7 @@
                     <li>
                         <div class="chat-message d-flex" data-bind="css: $data.isMine() === true ? 'ismine' : 'isother'">
                             <div class="left-side d-flex">
-                                <img style="max-width: 100ps;" class="message-avatar" data-bind="attr: { src:  $data.avatar() }" />
+                                <img style="max-width: 100px;" class="message-avatar" data-bind="attr: { src:  $data.avatar() }" />
                             </div>
                             <div class="message-wrapper">
                                 <span class="timestamp">

@@ -56,11 +56,6 @@ namespace IWant.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateProfile(UpdateProfileViewModel model)
         {
-            /*if (!ModelState.IsValid)
-            {
-                return View(model);
-            }*/
-
             var user = await _context.Users.FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
             if (user == null)
             {
@@ -81,7 +76,9 @@ namespace IWant.Web.Controllers
 
             if (model.Image != null && model.Image.Length > 0)
             {
-                if (!string.IsNullOrEmpty(user.ImageLocalPath))
+                string defaultAvatar = "default-avatar.png";
+
+                if (!string.IsNullOrEmpty(user.ImageLocalPath) && !user.ImageLocalPath.Contains(defaultAvatar))
                 {
                     var oldFilePath = Path.Combine("wwwroot", "images", user.ImageLocalPath);
                     if (System.IO.File.Exists(oldFilePath))
@@ -90,6 +87,7 @@ namespace IWant.Web.Controllers
                     }
                 }
 
+                // Lưu avatar mới
                 string avatarFolder = Path.Combine("wwwroot", "images", "avatar");
                 if (!Directory.Exists(avatarFolder))
                 {
@@ -122,6 +120,7 @@ namespace IWant.Web.Controllers
                 return View(model);
             }
         }
+
 
         // Allow to display the change password page
         [HttpGet]

@@ -12,7 +12,7 @@
 @if (loggedIn)
 {
     var user = await UserManager.GetUserAsync(User);
-    var imageUrl = user?.ImageUrl ?? "/images/default-avatar.png";
+    var imageUrl = user?.ImageUrl ?? "~/images/default-avatar.png";
 
 
     <li class="nav-item">
@@ -36,14 +36,15 @@
                        class="list-group-item d-flex align-items-center identity-item">
                         <i class="fa-solid fa-headset"></i> SUPPORTING CHAT
                     </a>
-                    <a asp-controller ="Blog" asp-action="Index" asp-route-filterType="all"
+                    <a asp-controller="Blog" asp-action="Index" asp-route-filterType="all"
                        class="list-group-item d-flex align-items-center identity-item">
                         <i class="fa-solid fa-blog fa-fw"></i> HISTORY BLOG
                     </a>
                     <a asp-action="SignOut" asp-controller="Identity"
                        class="list-group-item d-flex align-items-center identity-item">
-                        <i class="fa-solid fa-right-from-bracket fa-fw"></i> SIGN OUT
+                        <i class="fa-solid fa-person-walking-arrow-loop-left"></i> SIGN OUT
                     </a>
+                    <a class="btn btn-warning btn-close" id="closeMenuBtn">CLOSE</a>
                 }
                 else if (User.IsInRole("Admin"))
                 {
@@ -56,8 +57,9 @@
                     </a>
                     <a asp-action="SignOut" asp-controller="Identity"
                        class="list-group-item d-flex align-items-center identity-item">
-                        <i class="fa-solid fa-right-from-bracket"></i> SIGN OUT
+                        <i class="fa-solid fa-person-walking-arrow-loop-left"></i> SIGN OUT
                     </a>
+                    <a style="margin:0 auto;" class="btn btn-warning btn-close" id="closeMenuBtn">CLOSE</a>
                 }
             </div>
         </div>
@@ -70,7 +72,7 @@ else
 
         <a style="font-weight:bold" asp-controller="Identity" asp-action="Signin"
            class=" d-flex align-items-center identity-item">
-            <i style="display:none" class="fa-solid fa-right-to-bracket"></i>
+            <i style="display:none" class="fa-solid fa-person-walking-arrow-right"></i>
             SIGN IN
         </a>
     </li>
@@ -81,5 +83,9 @@ else
             <i style="display:none" class="fa-solid fa-user-plus"></i>
             SIGN UP
         </a>
+        
+    </li>
+    <li class="nav-item nav-link text-dark">
+        <button style="margin:0 auto" class="btn btn-warning btn-close" id="closeMenuBtn">CLOSE</button>
     </li>
 }
