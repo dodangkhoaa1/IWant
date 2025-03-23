@@ -21,7 +21,7 @@ public class PictureManagement : MonoBehaviour
     // Allow to set the screen orientation to landscape right
     private void SetLandscapeOrientation()
     {
-        Screen.orientation = ScreenOrientation.LandscapeRight;
+        Screen.orientation = ScreenOrientation.LandscapeLeft;
     }
 
     // Allow to spawn the selected picture in the picture container

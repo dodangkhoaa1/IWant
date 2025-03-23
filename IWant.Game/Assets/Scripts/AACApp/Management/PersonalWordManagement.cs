@@ -137,6 +137,7 @@ public class PersonalWordManagement : MonoBehaviour
             if (!Permission.HasUserAuthorizedPermission(Permission.ExternalStorageRead))
             {
                 Permission.RequestUserPermission(Permission.ExternalStorageRead);
+                StartCoroutine(CheckPermissionAndPickImage());
             }
             else
             {
@@ -147,11 +148,20 @@ public class PersonalWordManagement : MonoBehaviour
         //{
         //    PickImageFromFileExplorer();
         //}
+    }
 
+    private IEnumerator CheckPermissionAndPickImage()
+    {
+        while (!Permission.HasUserAuthorizedPermission(Permission.ExternalStorageRead))
+        {
+            yield return null;
+        }
+        PickImageFromGallery();
     }
 
     private void PickImageFromGallery()
     {
+
         NativeGallery.Permission permission = NativeGallery.GetImageFromGallery((path) =>
         {
             if (path != null)

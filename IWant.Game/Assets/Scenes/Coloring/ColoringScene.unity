@@ -1999,7 +1999,7 @@ MonoBehaviour:
   brushSizeManager: {fileID: 179807309}
   brushColor: {r: 1, g: 1, b: 1, a: 1}
   brushSize: 0.0003333333
-  brushMaterial: {fileID: 2100000, guid: 1b7cc003e8904d04da6347e10e3faae9, type: 2}
+  brushMaterial: {fileID: -876546973899608171, guid: 69b6fb19c1ec8054c9025fe5e9b2d121, type: 3}
   undoObjects: []
   undoButton: {fileID: 778600143}
   redoObjects: []
