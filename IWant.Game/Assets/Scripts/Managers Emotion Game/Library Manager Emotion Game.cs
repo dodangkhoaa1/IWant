@@ -104,7 +104,7 @@ public class LibraryManagerEmotionGame : MonoBehaviour
             imageComponent.sprite = pieceSprites[i];
 
             RectTransform imageRect = newImageObj.GetComponent<RectTransform>();
-            imageRect.sizeDelta = new Vector2(300, 300); // Kích thước ảnh
+            imageRect.sizeDelta = new Vector2(250, 250); // Kích thước ảnh
 
             // Thêm sự kiện bấm vào ảnh để phát âm thanh
             Button button = newImageObj.GetComponent<Button>();
@@ -130,14 +130,14 @@ public class LibraryManagerEmotionGame : MonoBehaviour
 
             TextMeshProUGUI textComponent = textObj.GetComponent<TextMeshProUGUI>();
             textComponent.text = pieceNames[i];
-            textComponent.fontSize = 60;
+            textComponent.fontSize = 30;
             textComponent.color = Color.black;
             textComponent.fontStyle = FontStyles.Bold; // Corrected line to make text bold
             textComponent.alignment = TextAlignmentOptions.Center;
 
             RectTransform textRect = textObj.GetComponent<RectTransform>();
-            textRect.sizeDelta = new Vector2(300, 60); // Kích thước chữ
-            textRect.anchoredPosition = new Vector2(0, -170);  // Đặt chữ ngay bên dưới ảnh
+            textRect.sizeDelta = new Vector2(250, 60); // Kích thước chữ
+            textRect.anchoredPosition = new Vector2(0, -140);  // Đặt chữ ngay bên dưới ảnh
         }
     }
 
