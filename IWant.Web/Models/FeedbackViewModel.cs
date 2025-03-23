@@ -2,7 +2,7 @@
 
 namespace IWant.Web.Models
 {
-    public class CommentViewModel
+    public class FeedbackViewModel
     {
         public int Id { get; set; }
         public int BlogId { get; set; }

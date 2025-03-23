@@ -36,13 +36,13 @@ namespace IWant.Web.Controllers
         public async Task<IActionResult> AccountDetail([FromRoute] string id)
         {
             var account = await _context.Users.Include(a=>a.Rates)
-                                              .Include(a=>a.Comments)
+                                              .Include(a=>a.Feedbacks)
                                               .Include(a=>a.Blogs)
                                               .FirstOrDefaultAsync(a => a.Id == id);
             var accountDetailViewModel = _mapper.Map<User, AccountDetailViewModel>(account);
             accountDetailViewModel.TotalBlogs = account.Blogs.Count();
             accountDetailViewModel.TotalRates = account.Rates.Count();
-            accountDetailViewModel.TotalComments = account.Comments.Count();
+            accountDetailViewModel.TotalComments = account.Feedbacks.Count();
             return View(accountDetailViewModel);
         }
         [Authorize(Roles = "Admin")]

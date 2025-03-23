@@ -28,7 +28,7 @@ public partial class ApplicationDbContext : IdentityDbContext<User>
     public virtual DbSet<Word> Words { get; set; }
     public virtual DbSet<Blog> Blogs { get; set; }
     public virtual DbSet<Rate> Rates { get; set; }
-    public virtual DbSet<Comment> Comments { get; set; }
+    public virtual DbSet<Feedback> Feedbacks { get; set; }
     public virtual DbSet<PersonalWord> PersonalWords { get; set; }
     public virtual DbSet<Game> Games { get; set; }
 
@@ -48,7 +48,44 @@ public partial class ApplicationDbContext : IdentityDbContext<User>
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
-        base.OnModelCreating(builder);
+        //Feedback
+        builder.Entity<Feedback>()
+        .HasOne(f => f.User)
+        .WithMany(u => u.Feedbacks)
+        .HasForeignKey(f => f.UserId)
+        .OnDelete(DeleteBehavior.Restrict);
+
+        builder.Entity<Feedback>()
+        .HasOne(f => f.Blog)
+        .WithMany(b => b.Feedbacks)
+        .HasForeignKey(f => f.BlogId)
+        .OnDelete(DeleteBehavior.Restrict);
+
+        //Rate
+        builder.Entity<Rate>()
+        .HasOne(r => r.Blog)
+        .WithMany(b => b.Rates)
+        .HasForeignKey(r => r.BlogId)
+        .OnDelete(DeleteBehavior.Restrict);
+
+        builder.Entity<Rate>()
+            .HasOne(r => r.User)
+            .WithMany(u => u.Rates)
+            .HasForeignKey(r => r.UserId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        //Message
+        builder.Entity<Message>()
+        .HasOne(m => m.ToRoom)
+        .WithMany(r => r.Messages)
+        .HasForeignKey(m => m.ToRoomId)
+        .OnDelete(DeleteBehavior.Restrict); 
+
+        builder.Entity<Message>()
+            .HasOne(m => m.FromUser)
+            .WithMany(u => u.Messages)
+            .HasForeignKey(m => m.FromUserId)
+            .OnDelete(DeleteBehavior.Restrict);
 
         builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
@@ -190,7 +227,7 @@ public partial class ApplicationDbContext : IdentityDbContext<User>
                 AccessFailedCount = 0
             },
             //User Test
-            new User 
+            new User
             {
                 Id = "6b7f56a9-4fd5-47b7-8454-0aa5a7ab5019",
                 FullName = "Nguyễn Tester",
@@ -250,11 +287,11 @@ public partial class ApplicationDbContext : IdentityDbContext<User>
 
         //Blogs
         builder.Entity<Blog>().HasData(
-     new Blog
-     {
-         Id = 1,
-         Title = "Bí Quyết Trò Chuyện Cởi Mở Với Con – Hiểu Để Gần Hơn",
-         Content = @"<p style=""text-align: justify; ""><strong>Bí Quyết Trò Chuyện Cởi Mở Với Con – Hiểu Để Gần Hơn</strong></p>
+             new Blog
+             {
+                 Id = 1,
+                 Title = "Bí Quyết Trò Chuyện Cởi Mở Với Con – Hiểu Để Gần Hơn",
+                 Content = @"<p style=""text-align: justify; ""><strong>Bí Quyết Trò Chuyện Cởi Mở Với Con – Hiểu Để Gần Hơn</strong></p>
 
                     <p style=""text-align: justify;"">Cha mẹ nào cũng muốn con cái chia sẻ, tâm sự mọi chuyện. Nhưng không phải lúc nào trẻ cũng sẵn sàng mở lòng. Làm sao để con cảm thấy thoải mái khi trò chuyện, tránh xa khoảng cách thế hệ và thực sự kết nối với cha mẹ? Hãy cùng tìm hiểu cách giao tiếp cởi mở với con một cách tự nhiên nhất!</p>
 
@@ -311,16 +348,16 @@ public partial class ApplicationDbContext : IdentityDbContext<User>
                     <p style=""text-align: justify;""><strong>Kết luận</strong></p>
 
                     <p style=""text-align: justify;"">Trò chuyện với con không phải là một nhiệm vụ khó khăn, quan trọng là cha mẹ biết cách lắng nghe, thấu hiểu và tôn trọng con. Khi cha mẹ thực sự quan tâm và đồng hành, con sẽ tự nhiên mở lòng, giúp mối quan hệ gia đình ngày càng gắn kết hơn.</p>",
-         CreatedAt = new DateTime(2025, 3, 10, 12, 30, 42),
-         UpdatedAt = new DateTime(2025, 3, 10, 12, 30, 42),
-         ImageUrl = "/images/blog/1.svg",
-         ImageLocalPath = "wwwroot\\images\\blog\\1.svg",
-         Status = true,
-         ViewCount = 1,
-         UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
-         CitedImage = "Sưu tầm"
-     }
-);
+                 CreatedAt = new DateTime(2025, 3, 10, 12, 30, 42),
+                 UpdatedAt = new DateTime(2025, 3, 10, 12, 30, 42),
+                 ImageUrl = "/images/blog/1.svg",
+                 ImageLocalPath = "wwwroot\\images\\blog\\1.svg",
+                 Status = true,
+                 ViewCount = 1,
+                 UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
+                 CitedImage = "Sưu tầm"
+             }
+        );
 
         builder.Entity<Blog>().HasData(
             new Blog
@@ -453,11 +490,11 @@ public partial class ApplicationDbContext : IdentityDbContext<User>
             }
         );
         builder.Entity<Blog>().HasData(
-    new Blog
-    {
-        Id = 5,
-        Title = "ADHD Ở Trẻ Em – Hiểu Để Đồng Hành Cùng Con",
-        Content = @"<p style=""text-align: justify; "">Trẻ hiếu động, mất tập trung có phải là do nghịch ngợm hay lười biếng? Nhiều bậc phụ huynh lo lắng khi con mình không thể ngồi yên, dễ bị phân tâm và thường xuyên quên mất việc cần làm. Trên thực tế, đây có thể là dấu hiệu của rối loạn tăng động giảm chú ý (ADHD) – một tình trạng ảnh hưởng đến sự phát triển và khả năng học tập của trẻ.</p>
+            new Blog
+            {
+                Id = 5,
+                Title = "ADHD Ở Trẻ Em – Hiểu Để Đồng Hành Cùng Con",
+                Content = @"<p style=""text-align: justify; "">Trẻ hiếu động, mất tập trung có phải là do nghịch ngợm hay lười biếng? Nhiều bậc phụ huynh lo lắng khi con mình không thể ngồi yên, dễ bị phân tâm và thường xuyên quên mất việc cần làm. Trên thực tế, đây có thể là dấu hiệu của rối loạn tăng động giảm chú ý (ADHD) – một tình trạng ảnh hưởng đến sự phát triển và khả năng học tập của trẻ.</p>
 
                     <p style=""text-align: justify;""><strong>1. ADHD là gì?</strong></p>
 
@@ -517,23 +554,23 @@ public partial class ApplicationDbContext : IdentityDbContext<User>
                     <p style=""text-align: justify;""><strong>Kết luận</strong></p>
 
                     <p style=""text-align: justify;"">ADHD không phải là một `căn bệnh`, mà là một đặc điểm của sự phát triển thần kinh. Khi được hướng dẫn và hỗ trợ đúng cách, trẻ ADHD hoàn toàn có thể phát triển bình thường, thậm chí có nhiều thế mạnh riêng. Điều quan trọng nhất là cha mẹ luôn đồng hành, kiên nhẫn và giúp con phát huy tối đa tiềm năng của mình.</p>",
-        CreatedAt = new DateTime(2025, 4, 3, 19, 30, 0),
-        UpdatedAt = new DateTime(2025, 4, 3, 19, 30, 0),
-        ImageUrl = "/images/blog/5.svg",
-        ImageLocalPath = "wwwroot\\images\\blog\\5.svg",
-        CitedImage = "Internet",
-        Status = true,
-        ViewCount = 40,
-        UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974"
-    }
-);
+                CreatedAt = new DateTime(2025, 4, 3, 19, 30, 0),
+                UpdatedAt = new DateTime(2025, 4, 3, 19, 30, 0),
+                ImageUrl = "/images/blog/5.svg",
+                ImageLocalPath = "wwwroot\\images\\blog\\5.svg",
+                CitedImage = "Internet",
+                Status = true,
+                ViewCount = 40,
+                UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974"
+            }
+        );
 
         builder.Entity<Blog>().HasData(
-    new Blog
-    {
-        Id = 6,
-        Title = "Đừng Đưa Điện Thoại Cho Con Chỉ Để Con Ngồi Yên",
-        Content = @"<p style=""text-align: justify; "">Trong cuộc sống hiện đại, không khó để bắt gặp hình ảnh trẻ nhỏ chăm chú vào màn hình điện thoại, trong khi cha mẹ tranh thủ làm việc hoặc nghỉ ngơi. Nhiều bậc phụ huynh sử dụng điện thoại như một ""công cụ trấn an"" giúp con ngồi yên, bớt quấy khóc. Tuy nhiên, việc lạm dụng điện thoại có thể để lại những hậu quả nghiêm trọng đối với sự phát triển của trẻ.</p>
+        new Blog
+        {
+            Id = 6,
+            Title = "Đừng Đưa Điện Thoại Cho Con Chỉ Để Con Ngồi Yên",
+            Content = @"<p style=""text-align: justify; "">Trong cuộc sống hiện đại, không khó để bắt gặp hình ảnh trẻ nhỏ chăm chú vào màn hình điện thoại, trong khi cha mẹ tranh thủ làm việc hoặc nghỉ ngơi. Nhiều bậc phụ huynh sử dụng điện thoại như một ""công cụ trấn an"" giúp con ngồi yên, bớt quấy khóc. Tuy nhiên, việc lạm dụng điện thoại có thể để lại những hậu quả nghiêm trọng đối với sự phát triển của trẻ.</p>
 
                     <p style=""text-align: justify;""><strong>1. Tại sao cha mẹ thường cho con dùng điện thoại?</strong></p>
 
@@ -582,24 +619,24 @@ public partial class ApplicationDbContext : IdentityDbContext<User>
                     <p style=""text-align: justify;""><strong>Kết luận</strong></p>
 
                     <p style=""text-align: justify;"">Điện thoại không xấu, nhưng nếu sử dụng không đúng cách, nó có thể ảnh hưởng tiêu cực đến sự phát triển của trẻ. Cha mẹ cần kiểm soát thời gian và nội dung mà trẻ tiếp xúc, đồng thời tạo ra những hoạt động bổ ích khác để trẻ phát triển một cách toàn diện.</p>",
-        CreatedAt = new DateTime(2025, 4, 10, 9, 0, 0),
-        UpdatedAt = new DateTime(2025, 4, 10, 9, 0, 0),
-        ImageUrl = "/images/blog/6.svg",
-        ImageLocalPath = "wwwroot\\images\\blog\\6.svg",
-        CitedImage = "Internet",
-        Status = true,
-        ViewCount = 10,
-        UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974"
-    }
-);
+            CreatedAt = new DateTime(2025, 4, 10, 9, 0, 0),
+            UpdatedAt = new DateTime(2025, 4, 10, 9, 0, 0),
+            ImageUrl = "/images/blog/6.svg",
+            ImageLocalPath = "wwwroot\\images\\blog\\6.svg",
+            CitedImage = "Internet",
+            Status = true,
+            ViewCount = 10,
+            UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974"
+        }
+    );
 
 
         builder.Entity<Blog>().HasData(
-    new Blog
-    {
-        Id = 7,
-        Title = "Thực Trạng Trầm Cảm Ở Việt Nam Hiện Nay",
-        Content = @"<p style=""text-align: justify; "">Trầm cảm ngày càng trở thành một vấn đề đáng lo ngại trên toàn thế giới, trong đó có Việt Nam. Dù không dễ nhận diện ngay từ đầu, nhưng nếu không được phát hiện và điều trị kịp thời, trầm cảm có thể gây ảnh hưởng nghiêm trọng đến sức khỏe tinh thần và chất lượng cuộc sống của người mắc.</p>
+        new Blog
+        {
+            Id = 7,
+            Title = "Thực Trạng Trầm Cảm Ở Việt Nam Hiện Nay",
+            Content = @"<p style=""text-align: justify; "">Trầm cảm ngày càng trở thành một vấn đề đáng lo ngại trên toàn thế giới, trong đó có Việt Nam. Dù không dễ nhận diện ngay từ đầu, nhưng nếu không được phát hiện và điều trị kịp thời, trầm cảm có thể gây ảnh hưởng nghiêm trọng đến sức khỏe tinh thần và chất lượng cuộc sống của người mắc.</p>
 
                     <p style=""text-align: justify;""><strong>1. Tình trạng trầm cảm tại Việt Nam</strong></p>
 
@@ -646,208 +683,208 @@ public partial class ApplicationDbContext : IdentityDbContext<User>
                     <p style=""text-align: justify;""><strong>Kết luận</strong></p>
 
                     <p style=""text-align: justify;"">Trầm cảm không phải là một vấn đề có thể xem nhẹ, nhưng hoàn toàn có thể được điều trị nếu phát hiện kịp thời. Mỗi người cần nâng cao nhận thức về sức khỏe tinh thần, đồng thời chủ động tìm kiếm sự giúp đỡ khi cảm thấy không ổn. Xã hội và gia đình cũng cần đóng vai trò tích cực trong việc hỗ trợ và tạo ra một môi trường sống lành mạnh để giúp người mắc trầm cảm sớm vượt qua khó khăn.</p>",
-        CreatedAt = new DateTime(2025, 4, 22, 20, 0, 0),
-        UpdatedAt = new DateTime(2025, 4, 22, 20, 0, 0),
-        ImageUrl = "/images/blog/7.svg",
-        ImageLocalPath = "wwwroot\\images\\blog\\7.svg",
-        CitedImage = "Sưu Tầm",
-        Status = true,
-        ViewCount = 14,
-        UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974"
-    }
-);
+            CreatedAt = new DateTime(2025, 4, 22, 20, 0, 0),
+            UpdatedAt = new DateTime(2025, 4, 22, 20, 0, 0),
+            ImageUrl = "/images/blog/7.svg",
+            ImageLocalPath = "wwwroot\\images\\blog\\7.svg",
+            CitedImage = "Sưu Tầm",
+            Status = true,
+            ViewCount = 14,
+            UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974"
+        }
+    );
 
 
         builder.Entity<Blog>().HasData(
-    new Blog
-    {
-        Id = 8,
-        Title = "Trẻ Chậm Phát Triển Ngôn Ngữ: Nguyên Nhân, Dấu Hiệu Và Cách Hỗ Trợ",
-        Content = @"<p style=""text-align: justify; "">Trẻ em có tốc độ phát triển ngôn ngữ khác nhau, nhưng nếu một đứa trẻ chậm nói hơn nhiều so với bạn bè cùng trang lứa, đó có thể là dấu hiệu của chậm phát triển ngôn ngữ. Việc phát hiện sớm và can thiệp kịp thời đóng vai trò quan trọng trong việc giúp trẻ cải thiện khả năng giao tiếp.</p>
+            new Blog
+            {
+                Id = 8,
+                Title = "Trẻ Chậm Phát Triển Ngôn Ngữ: Nguyên Nhân, Dấu Hiệu Và Cách Hỗ Trợ",
+                Content = @"<p style=""text-align: justify; "">Trẻ em có tốc độ phát triển ngôn ngữ khác nhau, nhưng nếu một đứa trẻ chậm nói hơn nhiều so với bạn bè cùng trang lứa, đó có thể là dấu hiệu của chậm phát triển ngôn ngữ. Việc phát hiện sớm và can thiệp kịp thời đóng vai trò quan trọng trong việc giúp trẻ cải thiện khả năng giao tiếp.</p>
 
-                    <p style=""text-align: justify;""><strong>1. Thế nào là chậm phát triển ngôn ngữ?</strong></p>
+                            <p style=""text-align: justify;""><strong>1. Thế nào là chậm phát triển ngôn ngữ?</strong></p>
 
-                    <p style=""text-align: justify;"">Chậm phát triển ngôn ngữ là tình trạng trẻ gặp khó khăn trong việc học và sử dụng ngôn ngữ so với độ tuổi của mình. Điều này có thể biểu hiện qua việc trẻ nói ít từ, phát âm không rõ ràng hoặc không thể diễn đạt ý muốn bằng lời nói.</p>
+                            <p style=""text-align: justify;"">Chậm phát triển ngôn ngữ là tình trạng trẻ gặp khó khăn trong việc học và sử dụng ngôn ngữ so với độ tuổi của mình. Điều này có thể biểu hiện qua việc trẻ nói ít từ, phát âm không rõ ràng hoặc không thể diễn đạt ý muốn bằng lời nói.</p>
 
-                    <p style=""text-align: justify;"">Trẻ chậm phát triển ngôn ngữ có thể có các biểu hiện như:</p>
-                    <ul>
-                        <li style=""text-align: justify;"">Không bập bẹ hoặc ít phát ra âm thanh khi còn nhỏ.</li>
-                        <li style=""text-align: justify;"">Đến 2 tuổi nhưng vẫn chưa nói được câu có hai từ.</li>
-                        <li style=""text-align: justify;"">Khó hiểu lời nói của người khác hoặc không phản ứng với lời gọi.</li>
-                        <li style=""text-align: justify;"">Gặp khó khăn trong việc kết nối từ để tạo thành câu hoàn chỉnh.</li>
-                    </ul>
+                            <p style=""text-align: justify;"">Trẻ chậm phát triển ngôn ngữ có thể có các biểu hiện như:</p>
+                            <ul>
+                                <li style=""text-align: justify;"">Không bập bẹ hoặc ít phát ra âm thanh khi còn nhỏ.</li>
+                                <li style=""text-align: justify;"">Đến 2 tuổi nhưng vẫn chưa nói được câu có hai từ.</li>
+                                <li style=""text-align: justify;"">Khó hiểu lời nói của người khác hoặc không phản ứng với lời gọi.</li>
+                                <li style=""text-align: justify;"">Gặp khó khăn trong việc kết nối từ để tạo thành câu hoàn chỉnh.</li>
+                            </ul>
 
-                    <p style=""text-align: justify;""><strong>2. Nguyên nhân khiến trẻ chậm phát triển ngôn ngữ</strong></p>
+                            <p style=""text-align: justify;""><strong>2. Nguyên nhân khiến trẻ chậm phát triển ngôn ngữ</strong></p>
 
-                    <p style=""text-align: justify;"">Có nhiều yếu tố ảnh hưởng đến sự phát triển ngôn ngữ của trẻ, bao gồm:</p>
-                    <ul>
-                        <li style=""text-align: justify;""><strong>Yếu tố sinh học:</strong> Một số trẻ có vấn đề về thính giác, hệ thần kinh hoặc di truyền có thể ảnh hưởng đến khả năng nói.</li>
-                        <li style=""text-align: justify;""><strong>Môi trường giao tiếp hạn chế:</strong> Trẻ ít được nói chuyện, đọc sách hoặc tiếp xúc với ngôn ngữ có thể bị chậm phát triển ngôn ngữ.</li>
-                        <li style=""text-align: justify;""><strong>Vấn đề tâm lý:</strong> Trẻ mắc chứng tự kỷ hoặc rối loạn phát triển cũng có nguy cơ chậm nói.</li>
-                        <li style=""text-align: justify;""><strong>Ảnh hưởng từ công nghệ:</strong> Việc trẻ tiếp xúc nhiều với màn hình điện thoại, tivi mà ít tương tác trực tiếp với người xung quanh cũng có thể khiến khả năng ngôn ngữ bị trì trệ.</li>
-                    </ul>
+                            <p style=""text-align: justify;"">Có nhiều yếu tố ảnh hưởng đến sự phát triển ngôn ngữ của trẻ, bao gồm:</p>
+                            <ul>
+                                <li style=""text-align: justify;""><strong>Yếu tố sinh học:</strong> Một số trẻ có vấn đề về thính giác, hệ thần kinh hoặc di truyền có thể ảnh hưởng đến khả năng nói.</li>
+                                <li style=""text-align: justify;""><strong>Môi trường giao tiếp hạn chế:</strong> Trẻ ít được nói chuyện, đọc sách hoặc tiếp xúc với ngôn ngữ có thể bị chậm phát triển ngôn ngữ.</li>
+                                <li style=""text-align: justify;""><strong>Vấn đề tâm lý:</strong> Trẻ mắc chứng tự kỷ hoặc rối loạn phát triển cũng có nguy cơ chậm nói.</li>
+                                <li style=""text-align: justify;""><strong>Ảnh hưởng từ công nghệ:</strong> Việc trẻ tiếp xúc nhiều với màn hình điện thoại, tivi mà ít tương tác trực tiếp với người xung quanh cũng có thể khiến khả năng ngôn ngữ bị trì trệ.</li>
+                            </ul>
 
-                    <p style=""text-align: justify;""><strong>3. Khi nào nên đưa trẻ đi khám?</strong></p>
+                            <p style=""text-align: justify;""><strong>3. Khi nào nên đưa trẻ đi khám?</strong></p>
 
-                    <p style=""text-align: justify;"">Nếu trẻ có những dấu hiệu sau, cha mẹ nên đưa trẻ đến gặp chuyên gia để được đánh giá và tư vấn:</p>
-                    <ul>
-                        <li style=""text-align: justify;"">Trẻ không có phản ứng khi được gọi tên.</li>
-                        <li style=""text-align: justify;"">Trẻ 18 tháng tuổi nhưng chưa nói được từ đơn.</li>
-                        <li style=""text-align: justify;"">Trẻ 2 tuổi nhưng chưa nói được cụm từ hai từ.</li>
-                        <li style=""text-align: justify;"">Trẻ không thể giao tiếp bằng lời nói hoặc cử chỉ.</li>
-                        <li style=""text-align: justify;"">Trẻ có dấu hiệu mất khả năng ngôn ngữ sau một thời gian phát triển bình thường.</li>
-                    </ul>
+                            <p style=""text-align: justify;"">Nếu trẻ có những dấu hiệu sau, cha mẹ nên đưa trẻ đến gặp chuyên gia để được đánh giá và tư vấn:</p>
+                            <ul>
+                                <li style=""text-align: justify;"">Trẻ không có phản ứng khi được gọi tên.</li>
+                                <li style=""text-align: justify;"">Trẻ 18 tháng tuổi nhưng chưa nói được từ đơn.</li>
+                                <li style=""text-align: justify;"">Trẻ 2 tuổi nhưng chưa nói được cụm từ hai từ.</li>
+                                <li style=""text-align: justify;"">Trẻ không thể giao tiếp bằng lời nói hoặc cử chỉ.</li>
+                                <li style=""text-align: justify;"">Trẻ có dấu hiệu mất khả năng ngôn ngữ sau một thời gian phát triển bình thường.</li>
+                            </ul>
 
-                    <p style=""text-align: justify;""><strong>4. Cách hỗ trợ trẻ chậm phát triển ngôn ngữ</strong></p>
+                            <p style=""text-align: justify;""><strong>4. Cách hỗ trợ trẻ chậm phát triển ngôn ngữ</strong></p>
 
-                    <p style=""text-align: justify;"">Việc can thiệp sớm sẽ giúp trẻ cải thiện khả năng ngôn ngữ và giao tiếp. Một số phương pháp có thể áp dụng bao gồm:</p>
+                            <p style=""text-align: justify;"">Việc can thiệp sớm sẽ giúp trẻ cải thiện khả năng ngôn ngữ và giao tiếp. Một số phương pháp có thể áp dụng bao gồm:</p>
 
-                    <ul>
-                        <li style=""text-align: justify;""><strong>Tăng cường giao tiếp với trẻ:</strong> Nói chuyện với trẻ nhiều hơn, đặt câu hỏi và khuyến khích trẻ diễn đạt suy nghĩ.</li>
-                        <li style=""text-align: justify;""><strong>Đọc sách cùng trẻ:</strong> Sử dụng tranh ảnh, sách truyện để giúp trẻ tiếp thu từ vựng và cách diễn đạt.</li>
-                        <li style=""text-align: justify;""><strong>Hạn chế thời gian sử dụng thiết bị điện tử:</strong> Thay vào đó, khuyến khích trẻ tham gia các hoạt động vui chơi có tính tương tác.</li>
-                        <li style=""text-align: justify;""><strong>Áp dụng các bài tập luyện ngôn ngữ:</strong> Chơi trò chơi với âm thanh, tập phát âm từ đơn giản đến phức tạp hơn.</li>
-                        <li style=""text-align: justify;""><strong>Tham khảo ý kiến chuyên gia:</strong> Nếu trẻ có dấu hiệu chậm nói rõ rệt, cần đưa trẻ đến gặp bác sĩ hoặc chuyên gia ngôn ngữ trị liệu để có phương pháp can thiệp phù hợp.</li>
-                    </ul>
+                            <ul>
+                                <li style=""text-align: justify;""><strong>Tăng cường giao tiếp với trẻ:</strong> Nói chuyện với trẻ nhiều hơn, đặt câu hỏi và khuyến khích trẻ diễn đạt suy nghĩ.</li>
+                                <li style=""text-align: justify;""><strong>Đọc sách cùng trẻ:</strong> Sử dụng tranh ảnh, sách truyện để giúp trẻ tiếp thu từ vựng và cách diễn đạt.</li>
+                                <li style=""text-align: justify;""><strong>Hạn chế thời gian sử dụng thiết bị điện tử:</strong> Thay vào đó, khuyến khích trẻ tham gia các hoạt động vui chơi có tính tương tác.</li>
+                                <li style=""text-align: justify;""><strong>Áp dụng các bài tập luyện ngôn ngữ:</strong> Chơi trò chơi với âm thanh, tập phát âm từ đơn giản đến phức tạp hơn.</li>
+                                <li style=""text-align: justify;""><strong>Tham khảo ý kiến chuyên gia:</strong> Nếu trẻ có dấu hiệu chậm nói rõ rệt, cần đưa trẻ đến gặp bác sĩ hoặc chuyên gia ngôn ngữ trị liệu để có phương pháp can thiệp phù hợp.</li>
+                            </ul>
 
-                    <p style=""text-align: justify;""><strong>Kết luận</strong></p>
+                            <p style=""text-align: justify;""><strong>Kết luận</strong></p>
 
-                    <p style=""text-align: justify;"">Chậm phát triển ngôn ngữ không phải là vấn đề hiếm gặp, nhưng nếu không được can thiệp sớm, trẻ có thể gặp khó khăn trong học tập và giao tiếp sau này. Cha mẹ cần quan sát, đồng hành và hỗ trợ trẻ trong quá trình phát triển ngôn ngữ để giúp con có một nền tảng vững chắc trong tương lai.</p>",
-        CreatedAt = new DateTime(2025, 4, 29, 10, 0, 0),
-        UpdatedAt = new DateTime(2025, 4, 29, 10, 0, 0),
-        ImageUrl = "/images/blog/8.svg",
-        ImageLocalPath = "wwwroot\\images\\blog\\8.svg",
-        CitedImage = "Internet",
-        Status = true,
-        ViewCount = 24,
-        UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974"
-    }
-);
-
-        builder.Entity<Blog>().HasData(
-    new Blog
-    {
-        Id = 9,
-        Title = "Các Ngành Đào Tạo Tại FPT Cần Thơ – Cơ Hội Học Tập Và Phát Triển Nghề Nghiệp",
-        Content = @"<p style=""text-align: justify; "">FPT Cần Thơ là một trong những cơ sở đào tạo uy tín tại khu vực Đồng bằng Sông Cửu Long, cung cấp chương trình giáo dục hiện đại, gắn liền với thực tiễn doanh nghiệp. Trường đào tạo đa dạng các ngành từ công nghệ, kinh tế đến truyền thông, giúp sinh viên phát triển toàn diện và sẵn sàng bước vào thị trường lao động.</p>
-
-                    <p style=""text-align: justify;""><strong>1. Công Nghệ Thông Tin (CNTT)</strong></p>
-
-                    <p style=""text-align: justify;"">Ngành CNTT tại FPT Cần Thơ được thiết kế theo xu hướng công nghệ mới nhất, đảm bảo sinh viên có kiến thức vững vàng và kỹ năng thực hành chuyên sâu. Sinh viên có thể lựa chọn các chuyên ngành sau:</p>
-                    <ul>
-                        <li style=""text-align: justify;""><strong>Kỹ thuật phần mềm:</strong> Tập trung vào phát triển ứng dụng, lập trình phần mềm, xây dựng hệ thống công nghệ.</li>
-                        <li style=""text-align: justify;""><strong>Trí tuệ nhân tạo (AI):</strong> Nghiên cứu về máy học, dữ liệu lớn và các ứng dụng thông minh.</li>
-                        <li style=""text-align: justify;""><strong>An toàn thông tin:</strong> Đào tạo về bảo mật mạng, phòng chống tấn công mạng và an ninh dữ liệu.</li>
-                    </ul>
-
-                    <p style=""text-align: justify;""><strong>2. Quản Trị Kinh Doanh</strong></p>
-
-                    <p style=""text-align: justify;"">Ngành Quản trị kinh doanh trang bị cho sinh viên kiến thức về quản lý, tài chính, chiến lược kinh doanh và khởi nghiệp. Một số chuyên ngành tiêu biểu:</p>
-                    <ul>
-                        <li style=""text-align: justify;""><strong>Quản trị doanh nghiệp:</strong> Học về vận hành, quản lý doanh nghiệp và phát triển kinh doanh.</li>
-                        <li style=""text-align: justify;""><strong>Marketing số:</strong> Tập trung vào tiếp thị trực tuyến, quảng cáo kỹ thuật số và xây dựng thương hiệu.</li>
-                        <li style=""text-align: justify;""><strong>Quản trị chuỗi cung ứng:</strong> Phát triển kỹ năng về logistics, quản lý kho vận và vận hành chuỗi cung ứng.</li>
-                    </ul>
-
-                    <p style=""text-align: justify;""><strong>3. Truyền Thông Đa Phương Tiện</strong></p>
-
-                    <p style=""text-align: justify;"">Đây là ngành học kết hợp giữa công nghệ, sáng tạo và truyền thông. Sinh viên được học về thiết kế đồ họa, sản xuất nội dung số, dựng phim và marketing truyền thông.</p>
-                    <ul>
-                        <li style=""text-align: justify;""><strong>Thiết kế đồ họa:</strong> Chuyên sâu về thiết kế nhận diện thương hiệu, sáng tạo nội dung trực quan.</li>
-                        <li style=""text-align: justify;""><strong>Quay dựng video:</strong> Học về sản xuất video, dựng phim và sáng tạo nội dung truyền thông.</li>
-                        <li style=""text-align: justify;""><strong>Quảng cáo &amp; truyền thông số:</strong> Kết hợp công nghệ và sáng tạo trong chiến lược truyền thông.</li>
-                    </ul>
-
-                    <p style=""text-align: justify;""><strong>4. Ngôn Ngữ Anh</strong></p>
-
-                    <p style=""text-align: justify;"">Chương trình Ngôn ngữ Anh tại FPT Cần Thơ không chỉ giúp sinh viên thành thạo tiếng Anh mà còn trang bị kỹ năng làm việc trong môi trường quốc tế.</p>
-                    <ul>
-                        <li style=""text-align: justify;""><strong>Tiếng Anh thương mại:</strong> Ứng dụng tiếng Anh trong lĩnh vực kinh doanh, đàm phán và giao tiếp.</li>
-                        <li style=""text-align: justify;""><strong>Tiếng Anh giảng dạy:</strong> Đào tạo kỹ năng giảng dạy tiếng Anh và phương pháp truyền đạt hiệu quả.</li>
-                    </ul>
-
-                    <p style=""text-align: justify;""><strong>5. Thiết Kế Mỹ Thuật Số</strong></p>
-
-                    <p style=""text-align: justify;"">Ngành học dành cho những ai đam mê sáng tạo, kết hợp nghệ thuật và công nghệ trong thiết kế đa phương tiện.</p>
-                    <ul>
-                        <li style=""text-align: justify;""><strong>Thiết kế đồ họa:</strong> Học về UI/UX, sáng tạo hình ảnh và truyền thông thị giác.</li>
-                        <li style=""text-align: justify;""><strong>Hoạt hình kỹ thuật số:</strong> Sản xuất phim hoạt hình, mô hình 3D và hiệu ứng kỹ thuật số.</li>
-                    </ul>
-
-                    <p style=""text-align: justify;""><strong>Kết luận</strong></p>
-
-                    <p style=""text-align: justify;"">FPT Cần Thơ mang đến chương trình đào tạo chất lượng cao, giúp sinh viên có được nền tảng kiến thức vững chắc và kỹ năng thực hành chuyên sâu. Với sự kết hợp giữa lý thuyết và thực tế, sinh viên sẽ có nhiều cơ hội nghề nghiệp rộng mở ngay sau khi tốt nghiệp.</p>",
-        CreatedAt = new DateTime(2025, 5, 2, 14, 0, 0),
-        UpdatedAt = new DateTime(2025, 5, 2, 14, 0, 0),
-        ImageUrl = "/images/blog/9.svg",
-        ImageLocalPath = "wwwroot\\images\\blog\\9.svg",
-        CitedImage = "Sưu Tầm",
-        Status = true,
-        ViewCount = 10,
-        UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974"
-    }
-);
-
+                            <p style=""text-align: justify;"">Chậm phát triển ngôn ngữ không phải là vấn đề hiếm gặp, nhưng nếu không được can thiệp sớm, trẻ có thể gặp khó khăn trong học tập và giao tiếp sau này. Cha mẹ cần quan sát, đồng hành và hỗ trợ trẻ trong quá trình phát triển ngôn ngữ để giúp con có một nền tảng vững chắc trong tương lai.</p>",
+                CreatedAt = new DateTime(2025, 4, 29, 10, 0, 0),
+                UpdatedAt = new DateTime(2025, 4, 29, 10, 0, 0),
+                ImageUrl = "/images/blog/8.svg",
+                ImageLocalPath = "wwwroot\\images\\blog\\8.svg",
+                CitedImage = "Internet",
+                Status = true,
+                ViewCount = 24,
+                UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974"
+            }
+        );
 
         builder.Entity<Blog>().HasData(
-    new Blog
-    {
-        Id = 10,
-        Title = "I Want – Ứng Dụng Hỗ Trợ Giao Tiếp Cho Trẻ Tự Kỷ Thông Qua AAC",
-        Content = @"<p style=""text-align: justify; "">Giao tiếp là một phần quan trọng trong cuộc sống, nhưng không phải ai cũng có thể diễn đạt ý muốn bằng lời nói. Đối với trẻ tự kỷ và những người gặp khó khăn về ngôn ngữ, phương pháp AAC (Augmentative and Alternative Communication) đã trở thành một công cụ hỗ trợ hiệu quả. Đó chính là lý do vì sao ứng dụng <strong>I Want</strong> ra đời – một ứng dụng kết hợp giữa công nghệ hỗ trợ giao tiếp và trò chơi giáo dục, giúp trẻ vừa học vừa chơi một cách tự nhiên.</p>
+        new Blog
+        {
+            Id = 9,
+            Title = "Các Ngành Đào Tạo Tại FPT Cần Thơ – Cơ Hội Học Tập Và Phát Triển Nghề Nghiệp",
+            Content = @"<p style=""text-align: justify; "">FPT Cần Thơ là một trong những cơ sở đào tạo uy tín tại khu vực Đồng bằng Sông Cửu Long, cung cấp chương trình giáo dục hiện đại, gắn liền với thực tiễn doanh nghiệp. Trường đào tạo đa dạng các ngành từ công nghệ, kinh tế đến truyền thông, giúp sinh viên phát triển toàn diện và sẵn sàng bước vào thị trường lao động.</p>
 
-                    <p style=""text-align: justify;""><strong>1. I Want là gì?</strong></p>
+                        <p style=""text-align: justify;""><strong>1. Công Nghệ Thông Tin (CNTT)</strong></p>
 
-                    <p style=""text-align: justify;""><strong>I Want</strong> là một ứng dụng trò chơi được thiết kế đặc biệt dành cho trẻ tự kỷ và những người gặp khó khăn trong giao tiếp. Ứng dụng tích hợp phương pháp AAC giúp trẻ sử dụng hình ảnh và thẻ từ để tạo câu, đồng thời cung cấp nhiều trò chơi hấp dẫn giúp phát triển tư duy và kỹ năng vận động.</p>
+                        <p style=""text-align: justify;"">Ngành CNTT tại FPT Cần Thơ được thiết kế theo xu hướng công nghệ mới nhất, đảm bảo sinh viên có kiến thức vững vàng và kỹ năng thực hành chuyên sâu. Sinh viên có thể lựa chọn các chuyên ngành sau:</p>
+                        <ul>
+                            <li style=""text-align: justify;""><strong>Kỹ thuật phần mềm:</strong> Tập trung vào phát triển ứng dụng, lập trình phần mềm, xây dựng hệ thống công nghệ.</li>
+                            <li style=""text-align: justify;""><strong>Trí tuệ nhân tạo (AI):</strong> Nghiên cứu về máy học, dữ liệu lớn và các ứng dụng thông minh.</li>
+                            <li style=""text-align: justify;""><strong>An toàn thông tin:</strong> Đào tạo về bảo mật mạng, phòng chống tấn công mạng và an ninh dữ liệu.</li>
+                        </ul>
 
-                    <p style=""text-align: justify;""><strong>2. Các tính năng nổi bật của I Want</strong></p>
+                        <p style=""text-align: justify;""><strong>2. Quản Trị Kinh Doanh</strong></p>
 
-                    <ul>
-                        <li style=""text-align: justify;""><strong>Hỗ trợ giao tiếp bằng thẻ từ:</strong> Trẻ có thể chọn các từ được hiển thị dưới dạng hình ảnh để ghép thành câu hoàn chỉnh.</li>
-                        <li style=""text-align: justify;""><strong>Chức năng đọc to:</strong> Khi hoàn thành một câu, ứng dụng sẽ đọc to nội dung, giúp trẻ cải thiện khả năng phát âm và giao tiếp.</li>
-                        <li style=""text-align: justify;""><strong>Trò chơi giáo dục:</strong> Bao gồm các trò chơi như kéo thả đồ vật, nối điểm, tô màu, xếp tháp và thả hoa quả, giúp trẻ phát triển tư duy logic và kỹ năng vận động.</li>
-                        <li style=""text-align: justify;""><strong>Giao diện thân thiện:</strong> Thiết kế đơn giản, dễ sử dụng với màu sắc sinh động phù hợp với trẻ nhỏ.</li>
-                    </ul>
+                        <p style=""text-align: justify;"">Ngành Quản trị kinh doanh trang bị cho sinh viên kiến thức về quản lý, tài chính, chiến lược kinh doanh và khởi nghiệp. Một số chuyên ngành tiêu biểu:</p>
+                        <ul>
+                            <li style=""text-align: justify;""><strong>Quản trị doanh nghiệp:</strong> Học về vận hành, quản lý doanh nghiệp và phát triển kinh doanh.</li>
+                            <li style=""text-align: justify;""><strong>Marketing số:</strong> Tập trung vào tiếp thị trực tuyến, quảng cáo kỹ thuật số và xây dựng thương hiệu.</li>
+                            <li style=""text-align: justify;""><strong>Quản trị chuỗi cung ứng:</strong> Phát triển kỹ năng về logistics, quản lý kho vận và vận hành chuỗi cung ứng.</li>
+                        </ul>
 
-                    <p style=""text-align: justify;""><strong>3. Vì sao I Want đặc biệt?</strong></p>
+                        <p style=""text-align: justify;""><strong>3. Truyền Thông Đa Phương Tiện</strong></p>
 
-                    <ul>
-                        <li style=""text-align: justify;""><strong>Kết hợp giao tiếp và giải trí:</strong> Không chỉ là một công cụ AAC, ứng dụng còn mang đến trải nghiệm học tập thông qua các trò chơi thú vị.</li>
-                        <li style=""text-align: justify;""><strong>Giúp trẻ tự tin hơn:</strong> Khi có thể diễn đạt suy nghĩ, trẻ sẽ cảm thấy tự tin hơn trong giao tiếp hàng ngày.</li>
-                        <li style=""text-align: justify;""><strong>Phù hợp với nhiều đối tượng:</strong> Không chỉ dành cho trẻ tự kỷ, ứng dụng còn hữu ích cho những người gặp khó khăn trong ngôn ngữ do các vấn đề về phát triển.</li>
-                    </ul>
+                        <p style=""text-align: justify;"">Đây là ngành học kết hợp giữa công nghệ, sáng tạo và truyền thông. Sinh viên được học về thiết kế đồ họa, sản xuất nội dung số, dựng phim và marketing truyền thông.</p>
+                        <ul>
+                            <li style=""text-align: justify;""><strong>Thiết kế đồ họa:</strong> Chuyên sâu về thiết kế nhận diện thương hiệu, sáng tạo nội dung trực quan.</li>
+                            <li style=""text-align: justify;""><strong>Quay dựng video:</strong> Học về sản xuất video, dựng phim và sáng tạo nội dung truyền thông.</li>
+                            <li style=""text-align: justify;""><strong>Quảng cáo &amp; truyền thông số:</strong> Kết hợp công nghệ và sáng tạo trong chiến lược truyền thông.</li>
+                        </ul>
 
-                    <p style=""text-align: justify;""><strong>4. Công nghệ sử dụng trong I Want</strong></p>
+                        <p style=""text-align: justify;""><strong>4. Ngôn Ngữ Anh</strong></p>
 
-                    <p style=""text-align: justify;"">Ứng dụng được phát triển dựa trên các công nghệ tiên tiến:</p>
+                        <p style=""text-align: justify;"">Chương trình Ngôn ngữ Anh tại FPT Cần Thơ không chỉ giúp sinh viên thành thạo tiếng Anh mà còn trang bị kỹ năng làm việc trong môi trường quốc tế.</p>
+                        <ul>
+                            <li style=""text-align: justify;""><strong>Tiếng Anh thương mại:</strong> Ứng dụng tiếng Anh trong lĩnh vực kinh doanh, đàm phán và giao tiếp.</li>
+                            <li style=""text-align: justify;""><strong>Tiếng Anh giảng dạy:</strong> Đào tạo kỹ năng giảng dạy tiếng Anh và phương pháp truyền đạt hiệu quả.</li>
+                        </ul>
 
-                    <ul>
-                        <li style=""text-align: justify;""><strong>ASP .NET Core (.NET 8):</strong> Hỗ trợ xây dựng API mạnh mẽ, đảm bảo hiệu suất và bảo mật cao.</li>
-                        <li style=""text-align: justify;""><strong>Unity:</strong> Công cụ phát triển trò chơi mạnh mẽ giúp tạo ra trải nghiệm sinh động và hấp dẫn.</li>
-                        <li style=""text-align: justify;""><strong>SQL Server 2022:</strong> Quản lý dữ liệu người dùng, đảm bảo tính ổn định và bảo mật.</li>
-                    </ul>
+                        <p style=""text-align: justify;""><strong>5. Thiết Kế Mỹ Thuật Số</strong></p>
 
-                    <p style=""text-align: justify;""><strong>5. Ai có thể sử dụng I Want?</strong></p>
+                        <p style=""text-align: justify;"">Ngành học dành cho những ai đam mê sáng tạo, kết hợp nghệ thuật và công nghệ trong thiết kế đa phương tiện.</p>
+                        <ul>
+                            <li style=""text-align: justify;""><strong>Thiết kế đồ họa:</strong> Học về UI/UX, sáng tạo hình ảnh và truyền thông thị giác.</li>
+                            <li style=""text-align: justify;""><strong>Hoạt hình kỹ thuật số:</strong> Sản xuất phim hoạt hình, mô hình 3D và hiệu ứng kỹ thuật số.</li>
+                        </ul>
 
-                    <ul>
-                        <li style=""text-align: justify;""><strong>Trẻ tự kỷ và trẻ gặp khó khăn về ngôn ngữ:</strong> Ứng dụng giúp trẻ học cách giao tiếp thông qua hình ảnh và âm thanh.</li>
-                        <li style=""text-align: justify;""><strong>Phụ huynh:</strong> Công cụ hỗ trợ cha mẹ trong việc giúp con phát triển kỹ năng giao tiếp.</li>
-                        <li style=""text-align: justify;""><strong>Giáo viên và chuyên gia trị liệu:</strong> Có thể sử dụng ứng dụng như một công cụ bổ trợ trong quá trình giảng dạy và trị liệu.</li>
-                    </ul>
+                        <p style=""text-align: justify;""><strong>Kết luận</strong></p>
 
-                    <p style=""text-align: justify;""><strong>Kết luận</strong></p>
+                        <p style=""text-align: justify;"">FPT Cần Thơ mang đến chương trình đào tạo chất lượng cao, giúp sinh viên có được nền tảng kiến thức vững chắc và kỹ năng thực hành chuyên sâu. Với sự kết hợp giữa lý thuyết và thực tế, sinh viên sẽ có nhiều cơ hội nghề nghiệp rộng mở ngay sau khi tốt nghiệp.</p>",
+            CreatedAt = new DateTime(2025, 5, 2, 14, 0, 0),
+            UpdatedAt = new DateTime(2025, 5, 2, 14, 0, 0),
+            ImageUrl = "/images/blog/9.svg",
+            ImageLocalPath = "wwwroot\\images\\blog\\9.svg",
+            CitedImage = "Sưu Tầm",
+            Status = true,
+            ViewCount = 10,
+            UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974"
+        }
+    );
 
-                    <p style=""text-align: justify;""><strong>I Want</strong> không chỉ là một ứng dụng giải trí mà còn là một công cụ hỗ trợ giáo dục và giao tiếp hiệu quả cho trẻ tự kỷ. Với sự kết hợp giữa phương pháp AAC và các trò chơi tương tác, ứng dụng này mang đến cho trẻ một cách học tập mới mẻ, giúp trẻ phát triển kỹ năng ngôn ngữ một cách tự nhiên và thú vị.</p>",
-        CreatedAt = new DateTime(2025, 5, 3, 17, 0, 0),
-        UpdatedAt = new DateTime(2025, 5, 3, 17, 0, 0),
-        ImageUrl = "/images/blog/10.png",
-        ImageLocalPath = "wwwroot\\images\\blog\\10.png",
-        CitedImage = "Sưu Tầm",
-        Status = true,
-        ViewCount = 17,
-        UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974"
-    }
-);
+
+        builder.Entity<Blog>().HasData(
+        new Blog
+        {
+            Id = 10,
+            Title = "I Want – Ứng Dụng Hỗ Trợ Giao Tiếp Cho Trẻ Tự Kỷ Thông Qua AAC",
+            Content = @"<p style=""text-align: justify; "">Giao tiếp là một phần quan trọng trong cuộc sống, nhưng không phải ai cũng có thể diễn đạt ý muốn bằng lời nói. Đối với trẻ tự kỷ và những người gặp khó khăn về ngôn ngữ, phương pháp AAC (Augmentative and Alternative Communication) đã trở thành một công cụ hỗ trợ hiệu quả. Đó chính là lý do vì sao ứng dụng <strong>I Want</strong> ra đời – một ứng dụng kết hợp giữa công nghệ hỗ trợ giao tiếp và trò chơi giáo dục, giúp trẻ vừa học vừa chơi một cách tự nhiên.</p>
+
+                        <p style=""text-align: justify;""><strong>1. I Want là gì?</strong></p>
+
+                        <p style=""text-align: justify;""><strong>I Want</strong> là một ứng dụng trò chơi được thiết kế đặc biệt dành cho trẻ tự kỷ và những người gặp khó khăn trong giao tiếp. Ứng dụng tích hợp phương pháp AAC giúp trẻ sử dụng hình ảnh và thẻ từ để tạo câu, đồng thời cung cấp nhiều trò chơi hấp dẫn giúp phát triển tư duy và kỹ năng vận động.</p>
+
+                        <p style=""text-align: justify;""><strong>2. Các tính năng nổi bật của I Want</strong></p>
+
+                        <ul>
+                            <li style=""text-align: justify;""><strong>Hỗ trợ giao tiếp bằng thẻ từ:</strong> Trẻ có thể chọn các từ được hiển thị dưới dạng hình ảnh để ghép thành câu hoàn chỉnh.</li>
+                            <li style=""text-align: justify;""><strong>Chức năng đọc to:</strong> Khi hoàn thành một câu, ứng dụng sẽ đọc to nội dung, giúp trẻ cải thiện khả năng phát âm và giao tiếp.</li>
+                            <li style=""text-align: justify;""><strong>Trò chơi giáo dục:</strong> Bao gồm các trò chơi như kéo thả đồ vật, nối điểm, tô màu, xếp tháp và thả hoa quả, giúp trẻ phát triển tư duy logic và kỹ năng vận động.</li>
+                            <li style=""text-align: justify;""><strong>Giao diện thân thiện:</strong> Thiết kế đơn giản, dễ sử dụng với màu sắc sinh động phù hợp với trẻ nhỏ.</li>
+                        </ul>
+
+                        <p style=""text-align: justify;""><strong>3. Vì sao I Want đặc biệt?</strong></p>
+
+                        <ul>
+                            <li style=""text-align: justify;""><strong>Kết hợp giao tiếp và giải trí:</strong> Không chỉ là một công cụ AAC, ứng dụng còn mang đến trải nghiệm học tập thông qua các trò chơi thú vị.</li>
+                            <li style=""text-align: justify;""><strong>Giúp trẻ tự tin hơn:</strong> Khi có thể diễn đạt suy nghĩ, trẻ sẽ cảm thấy tự tin hơn trong giao tiếp hàng ngày.</li>
+                            <li style=""text-align: justify;""><strong>Phù hợp với nhiều đối tượng:</strong> Không chỉ dành cho trẻ tự kỷ, ứng dụng còn hữu ích cho những người gặp khó khăn trong ngôn ngữ do các vấn đề về phát triển.</li>
+                        </ul>
+
+                        <p style=""text-align: justify;""><strong>4. Công nghệ sử dụng trong I Want</strong></p>
+
+                        <p style=""text-align: justify;"">Ứng dụng được phát triển dựa trên các công nghệ tiên tiến:</p>
+
+                        <ul>
+                            <li style=""text-align: justify;""><strong>ASP .NET Core (.NET 8):</strong> Hỗ trợ xây dựng API mạnh mẽ, đảm bảo hiệu suất và bảo mật cao.</li>
+                            <li style=""text-align: justify;""><strong>Unity:</strong> Công cụ phát triển trò chơi mạnh mẽ giúp tạo ra trải nghiệm sinh động và hấp dẫn.</li>
+                            <li style=""text-align: justify;""><strong>SQL Server 2022:</strong> Quản lý dữ liệu người dùng, đảm bảo tính ổn định và bảo mật.</li>
+                        </ul>
+
+                        <p style=""text-align: justify;""><strong>5. Ai có thể sử dụng I Want?</strong></p>
+
+                        <ul>
+                            <li style=""text-align: justify;""><strong>Trẻ tự kỷ và trẻ gặp khó khăn về ngôn ngữ:</strong> Ứng dụng giúp trẻ học cách giao tiếp thông qua hình ảnh và âm thanh.</li>
+                            <li style=""text-align: justify;""><strong>Phụ huynh:</strong> Công cụ hỗ trợ cha mẹ trong việc giúp con phát triển kỹ năng giao tiếp.</li>
+                            <li style=""text-align: justify;""><strong>Giáo viên và chuyên gia trị liệu:</strong> Có thể sử dụng ứng dụng như một công cụ bổ trợ trong quá trình giảng dạy và trị liệu.</li>
+                        </ul>
+
+                        <p style=""text-align: justify;""><strong>Kết luận</strong></p>
+
+                        <p style=""text-align: justify;""><strong>I Want</strong> không chỉ là một ứng dụng giải trí mà còn là một công cụ hỗ trợ giáo dục và giao tiếp hiệu quả cho trẻ tự kỷ. Với sự kết hợp giữa phương pháp AAC và các trò chơi tương tác, ứng dụng này mang đến cho trẻ một cách học tập mới mẻ, giúp trẻ phát triển kỹ năng ngôn ngữ một cách tự nhiên và thú vị.</p>",
+            CreatedAt = new DateTime(2025, 5, 3, 17, 0, 0),
+            UpdatedAt = new DateTime(2025, 5, 3, 17, 0, 0),
+            ImageUrl = "/images/blog/10.png",
+            ImageLocalPath = "wwwroot\\images\\blog\\10.png",
+            CitedImage = "Sưu Tầm",
+            Status = true,
+            ViewCount = 17,
+            UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974"
+        }
+    );
 
         //Word Category
         builder.Entity<WordCategory>().HasData(
@@ -1182,5 +1219,7 @@ public partial class ApplicationDbContext : IdentityDbContext<User>
             new Game() { Id = 5, Name = "Fruit Drop", Description = "Fruit Drop is a fun and addictive puzzle game where players merge matching fruits to create bigger ones. With multiple difficulty levels, stunning graphics, and a competitive leaderboard, challenge yourself to score high and stay on top! ", VideoUrl = "https://www.youtube.com/watch?v=ynJ_nraLqU4" },
             new Game() { Id = 6, Name = "Tower Build", Description = "Tower Building is a fun and challenging game where you stack blocks to build the tallest tower possible. With simple controls and physics-based mechanics, precision and timing are key to reaching new heights. Stay tuned—the game is launching soon!", VideoUrl = "https://www.youtube.com/watch?v=ynJ_nraLqU4" }
         );
+
+        base.OnModelCreating(builder);
     }
 }

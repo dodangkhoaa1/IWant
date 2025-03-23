@@ -63,9 +63,9 @@ namespace IWant.Web.Models
 
         public User? User { get; set; }
 
-        public CommentViewModel? Comment { get; set; } = new CommentViewModel();
+        public FeedbackViewModel? Feedback { get; set; } = new FeedbackViewModel();
 
-        public List<CommentViewModel>? Comments { get; set; } = new List<CommentViewModel>();
+        public List<FeedbackViewModel>? Feedbacks { get; set; } = new List<FeedbackViewModel>();
 
         public List<RateViewModel>? Rates { get; set; } = new List<RateViewModel>();
 

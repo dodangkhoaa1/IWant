@@ -10,29 +10,29 @@ using System.Security.Claims;
 
 namespace IWant.Web.Controllers
 {
-    public class CommentController : Controller
+    public class FeedbackController : Controller
     {
         private readonly ApplicationDbContext _context;
         private readonly IMapper _mapper;
 
-        public CommentController(ApplicationDbContext context, IMapper mapper)
+        public FeedbackController(ApplicationDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
         }
 
-        [Route("Comment")]
-        [Route("Comment/Index")]
+        [Route("Feedback")]
+        [Route("Feedback/Index")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
-            var blogs = await _context.Blogs.Include(b=>b.Rates).Include(b=>b.Comments).Where(b=>b.Status == true).ToListAsync();
+            var blogs = await _context.Blogs.Include(b=>b.Rates).Include(b=>b.Feedbacks).Where(b=>b.Status == true).ToListAsync();
             var blogViewModels = _mapper.Map<List<Blog>, List<BlogViewModel>>(blogs);
             return View(blogViewModels);
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateComment(CommentViewModel model)
+        public async Task<IActionResult> CreateFeedback(FeedbackViewModel model)
         {
             /*if (!ModelState.IsValid)
             {
@@ -51,7 +51,7 @@ namespace IWant.Web.Controllers
                 return Unauthorized();
             }
 
-            var comment = new Comment
+            var feedback = new Feedback
             {
                 Content = model.Content,
                 User = user,
@@ -60,7 +60,7 @@ namespace IWant.Web.Controllers
                 CreatedAt = DateTime.Now
             };
 
-            _context.Comments.Add(comment);
+            _context.Feedbacks.Add(feedback);
             await _context.SaveChangesAsync();
 
             TempData["success"] = "Feedback successfully!";
@@ -111,22 +111,22 @@ namespace IWant.Web.Controllers
             return RedirectToAction("BlogDetail", "Blog", new { id = BlogId });
         }
 
-        public async Task<IActionResult> BanComment([FromRoute] int id)
+        public async Task<IActionResult> BanFeedback([FromRoute] int id)
         {
-            var comment = await _context.Comments.Include(c=>c.Blog).FirstOrDefaultAsync(c => c.Id == id);
-            if (comment == null)
+            var feedback = await _context.Feedbacks.Include(c=>c.Blog).FirstOrDefaultAsync(c => c.Id == id);
+            if (feedback == null)
             {
                 TempData["error"] = "Feedback not found!";
                 return NotFound();
             }
 
-            comment.Status = false;
+            feedback.Status = false;
 
-            _context.Comments.Update(comment);
+            _context.Feedbacks.Update(feedback);
             await _context.SaveChangesAsync();
 
             TempData["success"] = "Ban Feedback successfully!";
-            return RedirectToAction("BlogDetail", "Blog", new { id = comment.Blog.Id });
+            return RedirectToAction("BlogDetail", "Blog", new { id = feedback.Blog.Id });
         }
     }
 }

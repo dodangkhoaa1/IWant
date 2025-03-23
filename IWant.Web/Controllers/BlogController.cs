@@ -28,7 +28,7 @@ namespace IWant.Web.Controllers
         public async Task<IActionResult> Blogs()
         {
             var blogs = await _context.Blogs.Include(b => b.User)
-                                            .Include(b => b.Comments)
+                                            .Include(b => b.Feedbacks)
                                             .Include(b => b.Rates)
                                             .Where(b => b.Status == true)
                                             .ToListAsync();
@@ -372,7 +372,7 @@ namespace IWant.Web.Controllers
         public async Task<IActionResult> BlogDetail([FromRoute] int id)
         {
             var blog = await _context.Blogs.Include(b => b.User)
-                                           .Include(b => b.Comments)
+                                           .Include(b => b.Feedbacks)
                                            .ThenInclude(b => b.User)
                                            .Include(b => b.Rates)
                                            .ThenInclude(c => c.User)
@@ -414,7 +414,7 @@ namespace IWant.Web.Controllers
                                                   .DefaultIfEmpty(0)
                                                   .Average();
 
-                var commentViewModels = _mapper.Map<List<Comment>, List<CommentViewModel>>(blog.Comments);
+                var commentViewModels = _mapper.Map<List<Feedback>, List<FeedbackViewModel>>(blog.Feedbacks);
 
                 var relatedBlogs = await _context.Blogs.Include(b => b.User)
                                                        .Where(b => b.Id != id && b.Status == true)
@@ -433,7 +433,7 @@ namespace IWant.Web.Controllers
                     User = blog.User,
                     ImageUrl = blog.ImageUrl,
                     CitedImage = blog.CitedImage,
-                    Comments = commentViewModels,
+                    Feedbacks = commentViewModels,
                     UserRating = userRating,
                     AverageRating = (int)Math.Round(averageRating, MidpointRounding.AwayFromZero),
                     CountRate = countRates.Count()

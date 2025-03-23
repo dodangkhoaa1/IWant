@@ -28,7 +28,7 @@ namespace IWant.Web.Controllers
             var BlogCount = _context.Blogs.Count();
             var AccountCount = _context.Users.Count();
             var RateCount = _context.Rates.Count();
-            var CommentCount = _context.Comments.Count();
+            var CommentCount = _context.Feedbacks.Count();
 
             var newestBlog = _context.Blogs.OrderByDescending(x => x.CreatedAt).Take(3).ToList();
 
@@ -38,7 +38,7 @@ namespace IWant.Web.Controllers
 
             var users = _context.Users.Include(u => u.Blogs)
                                       .Include(u => u.Rates)
-                                      .Include(u => u.Comments)
+                                      .Include(u => u.Feedbacks)
                                       .ToList();
 
             int year = DateTime.Now.Year;
@@ -53,11 +53,11 @@ namespace IWant.Web.Controllers
                                                    .ToList();
 
             List<int> commentCountsByMonth = Enumerable.Range(1, 12)
-                                                    .Select(month => _context.Comments
+                                                    .Select(month => _context.Feedbacks
                                                     .Count(b => b.CreatedAt.Year == year && b.CreatedAt.Month == month))
                                                     .ToList();
 
-            var activeUsers = users.OrderByDescending(u => u.Blogs.Count + u.Rates.Count + u.Comments.Count).Take(3).ToList();
+            var activeUsers = users.OrderByDescending(u => u.Blogs.Count + u.Rates.Count + u.Feedbacks.Count).Take(3).ToList();
 
             //Line Chart 6 Months
             int currentDay = DateTime.Now.Day;
@@ -76,10 +76,10 @@ namespace IWant.Web.Controllers
                 .ToList();
 
             List<int> commentLineChart = days
-                .Select(d => _context.Comments.Count(c => c.CreatedAt.Date == d.Date))
+                .Select(d => _context.Feedbacks.Count(c => c.CreatedAt.Date == d.Date))
                 .ToList();
 
-            // Sum of Blog + Rate + Comment each day
+            // Sum of Blog + Rate + Feedback each day
             List<int> totalLineChart = blogLineChart
                 .Select((count, index) => count + rateLineChart[index] + commentLineChart[index])
                 .ToList();

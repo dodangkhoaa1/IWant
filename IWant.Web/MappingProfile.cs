@@ -32,8 +32,8 @@ namespace IWant.Web
             CreateMap<User, AccountDetailViewModel>();
             CreateMap<AccountDetailViewModel, User>();
 
-            CreateMap<Comment, CommentViewModel>();
-            CreateMap<CommentViewModel, Comment>();
+            CreateMap<Feedback, FeedbackViewModel>();
+            CreateMap<FeedbackViewModel, Feedback>();
 
             CreateMap<Rate, RateViewModel>();
             CreateMap<RateViewModel, Rate>();
