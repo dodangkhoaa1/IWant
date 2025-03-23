@@ -250,7 +250,7 @@ PrefabInstance:
     - target: {fileID: 1953074466623468496, guid: ac9e493c06d948d4ebc770f182b8f2d9, type: 3}
       propertyPath: mascotAnimator
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1834295527}
     - target: {fileID: 1953074466623468496, guid: ac9e493c06d948d4ebc770f182b8f2d9, type: 3}
       propertyPath: previousButton
       value: 
@@ -579,7 +579,7 @@ PrefabInstance:
     - target: {fileID: 5897652351646380292, guid: 7677fb0244a780d4cb9e50e794e9548d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 766622807}
     - target: {fileID: 5897652351646380292, guid: 7677fb0244a780d4cb9e50e794e9548d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SetActive
@@ -1267,6 +1267,11 @@ CanvasRenderer:
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2048830496971402213, guid: de3ad33eb71bc174faa0d86aa745680a, type: 3}
   m_PrefabInstance: {fileID: 2959103595266020896}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1834295527 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 409036866642233215, guid: 149cdc2d576074c44b4a799bcfe0b8ae, type: 3}
+  m_PrefabInstance: {fileID: 766622803}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2959103595266020896
 PrefabInstance:

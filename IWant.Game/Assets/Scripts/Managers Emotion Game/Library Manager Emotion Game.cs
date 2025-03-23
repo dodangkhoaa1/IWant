@@ -169,7 +169,7 @@ public class LibraryManagerEmotionGame : MonoBehaviour
             }
 
             RectTransform imageRect = newImageObj.GetComponent<RectTransform>();
-            imageRect.sizeDelta = new Vector2(700, 700); // Kích thước ảnh
+            imageRect.sizeDelta = new Vector2(500, 500); // Kích thước ảnh
 
             // Thêm sự kiện bấm vào ảnh để phát âm thanh
             Button button = newImageObj.GetComponent<Button>();
@@ -181,14 +181,14 @@ public class LibraryManagerEmotionGame : MonoBehaviour
 
             TextMeshProUGUI textComponent = textObj.GetComponent<TextMeshProUGUI>();
             textComponent.text = emotion.EmotionName;
-            textComponent.fontSize = 60;
+            textComponent.fontSize = 50;
             textComponent.color = Color.black;
             textComponent.fontStyle = FontStyles.Bold; // Corrected line to make text bold
             textComponent.alignment = TextAlignmentOptions.Center;
 
             RectTransform textRect = textObj.GetComponent<RectTransform>();
-            textRect.sizeDelta = new Vector2(300, 60); // Kích thước chữ
-            textRect.anchoredPosition = new Vector2(0, -400);  // Đặt chữ ngay bên dưới ảnh
+            textRect.sizeDelta = new Vector2(300, 50); // Kích thước chữ
+            textRect.anchoredPosition = new Vector2(0, -270);  // Đặt chữ ngay bên dưới ảnh
 
             // Thêm text cho ngày tháng
             GameObject dateTextObj = new GameObject("EmotionDateText", typeof(TextMeshProUGUI));
@@ -196,13 +196,14 @@ public class LibraryManagerEmotionGame : MonoBehaviour
 
             TextMeshProUGUI dateTextComponent = dateTextObj.GetComponent<TextMeshProUGUI>();
             dateTextComponent.text = emotion.Date.ToString("MM/dd/yyyy");
-            dateTextComponent.fontSize = 70;
+            dateTextComponent.fontSize = 60;
+            dateTextComponent.fontStyle = FontStyles.Bold;
             dateTextComponent.color = Color.black;
             dateTextComponent.alignment = TextAlignmentOptions.Center;
 
             RectTransform dateTextRect = dateTextObj.GetComponent<RectTransform>();
-            dateTextRect.sizeDelta = new Vector2(500, 100); // Kích thước chữ
-            dateTextRect.anchoredPosition = new Vector2(0, 400);  // Đặt chữ ngay bên trên ảnh
+            dateTextRect.sizeDelta = new Vector2(400, 80); // Kích thước chữ
+            dateTextRect.anchoredPosition = new Vector2(0, 270);  // Đặt chữ ngay bên trên ảnh
         }
     }
 }

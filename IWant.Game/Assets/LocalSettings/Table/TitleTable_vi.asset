@@ -130,6 +130,10 @@ MonoBehaviour:
     m_Localized: "H\xF4m nay b\u1EA1n c\u1EA3m th\u1EA5y th\u1EBF n\xE0o?"
     m_Metadata:
       m_Items: []
+  - m_Id: 30083475058872320
+    m_Localized: "H\xF4m nay b\u1EA1n c\u1EA3m th\u1EA5y th\u1EBF n\xE0o?"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
