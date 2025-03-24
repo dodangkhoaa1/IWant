@@ -40,47 +40,6 @@ namespace IWant.Web.Controllers
             return View(model);
         }
 
-        /*[HttpPost]
-        public IActionResult ExternalLogin(string provider, string returnUrl = null)
-        {
-            var properties = _signInManager.ConfigureExternalAuthenticationProperties(provider, returnUrl);
-            var callbackUrl = Url.Action("ExternalLoginCallback");
-            properties.RedirectUri = callbackUrl;
-            return Challenge(properties, provider);
-        }
-
-        // Allow to handle external login callback
-        public async Task<IActionResult> ExternalLoginCallback()
-        {
-            var info = await _signInManager.GetExternalLoginInfoAsync();
-            var emailClaim = info.Principal.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Email);
-            var fullNameClaim = info.Principal.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Name);
-            var genderClaim = info.Principal.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Gender);
-            var user = new User
-            {
-                Email = emailClaim.Value,
-                UserName = emailClaim.Value,
-                FullName = fullNameClaim.Value,
-                Status = true,
-                CreatedAt = DateTime.Now,
-                UpdatedAt = DateTime.Now,
-                ImageUrl = "http://localhost:5130/images/avatar/default-avatar.png",
-                ImageLocalPath = "default-avatar.png",
-                Gender = true
-            };
-            var result = await _userManager.CreateAsync(user);
-
-            if (result.Succeeded)
-            {
-                await _userManager.AddToRoleAsync(user, "Member");
-            }
-            await _userManager.AddLoginAsync(user, info);
-            await _signInManager.SignInAsync(user, false);
-
-            TempData["success"] = "Sign-in successfull!";
-            return RedirectToAction("Index", "Home");
-        }*/
-
         // Allow to handle signup form submission
         [HttpPost]
         public async Task<IActionResult> Signup(SignupViewModel model)
@@ -138,31 +97,31 @@ namespace IWant.Web.Controllers
                         {
                             var confirmationLink = Url.ActionLink("ConfirmEmail", "Identity", new { userId = user.Id, @token = token });
                             string emailBody = $@"
-                                            <div style='font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; 
-                                                        border: 1px solid #ddd; border-radius: 10px; background-color: #f9f9f9;'>
-                                                <h2 style='color: #333; text-align: center;'>Confirm Your Email Address</h2>
-                                                <p style='color: #555; font-size: 16px;'>Hello <strong>{user.Email}</strong>,</p>
-                                                <p style='color: #555; font-size: 16px;'>
-                                                    Thank you for signing up! To complete your registration, please confirm your email address by clicking the button below:
-                                                </p>
-                                                <div style='text-align: center; margin: 20px 0;'>
-                                                    <a href='{confirmationLink}' 
-                                                       style='display: inline-block; padding: 12px 20px; font-size: 16px; 
-                                                              color: white; background-color: #007bff; text-decoration: none; 
-                                                              border-radius: 5px; font-weight: bold;'>
-                                                        ✅ Confirm Email
-                                                    </a>
-                                                </div>
-                                                <p style='color: #555; font-size: 14px;'>If you did not create this account, please ignore this email.</p>
-                                                <hr style='border: 0; height: 1px; background-color: #ddd;' />
-                                                <p style='color: #777; font-size: 12px; text-align: center;'>
-                                                    If you are unable to click the button above, use the following link:
-                                                </p>
-                                                <p style='word-break: break-all; color: #007bff; text-align: center; font-size: 12px;'>
-                                                    <a href='{confirmationLink}' style='color: #007bff;'>{confirmationLink}</a>
-                                                </p>
-                                                <p style='color: #777; font-size: 12px; text-align: center;'>© 2024 IWant. All Rights Reserved.</p>
-                                            </div>";
+                                                <div style='font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; 
+                                                            border: 1px solid #ddd; border-radius: 10px; background-color: #f9f9f9;'>
+                                                    <h2 style='color: #333; text-align: center;'>Confirm Your Email Address</h2>
+                                                    <p style='color: #555; font-size: 16px;'>Hello <strong>{user.Email}</strong>,</p>
+                                                    <p style='color: #555; font-size: 16px;'>
+                                                        Thank you for signing up! To complete your registration, please confirm your email address by clicking the button below:
+                                                    </p>
+                                                    <div style='text-align: center; margin: 20px 0;'>
+                                                        <a href='{confirmationLink}' 
+                                                           style='display: inline-block; padding: 12px 20px; font-size: 16px; 
+                                                                  color: white; background-color: #007bff; text-decoration: none; 
+                                                                  border-radius: 5px; font-weight: bold;'>
+                                                            ✅ Confirm Email
+                                                        </a>
+                                                    </div>
+                                                    <p style='color: #555; font-size: 14px;'>If you did not create this account, please ignore this email.</p>
+                                                    <hr style='border: 0; height: 1px; background-color: #ddd;' />
+                                                    <p style='color: #777; font-size: 12px; text-align: center;'>
+                                                        If you are unable to click the button above, use the following link:
+                                                    </p>
+                                                    <p style='word-break: break-all; color: #007bff; text-align: center; font-size: 12px;'>
+                                                        <a href='{confirmationLink}' style='color: #007bff;'>{confirmationLink}</a>
+                                                    </p>
+                                                    <p style='color: #777; font-size: 12px; text-align: center;'>© 2024 IWant. All Rights Reserved.</p>
+                                                </div>";
 
 
                             await emailSender.SendEmailAsync("nhathmce170171@fpt.edu.vn", user.Email, "Confirm your email address", emailBody);
@@ -236,7 +195,7 @@ namespace IWant.Web.Controllers
             }
 
             var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, model.RememberMe, false);
-            
+
 
             if (!result.Succeeded)
             {
@@ -285,78 +244,78 @@ namespace IWant.Web.Controllers
         {
             /*if (ModelState.IsValid)
             {*/
-                var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == model.Email);
-                if (user == null)
-                {
-                    TempData["error"] = "Email does not exist!";
-                    return View(model);
-                }
-                Random random = new Random();
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == model.Email);
+            if (user == null)
+            {
+                TempData["error"] = "Email does not exist!";
+                return View(model);
+            }
+            Random random = new Random();
 
-                var codeOTP = random.Next(1000, 9999).ToString();
-                model.Otp = codeOTP;
+            var codeOTP = random.Next(1000, 9999).ToString();
+            model.Otp = codeOTP;
 
-                await emailSender.SendEmailAsync(
-                    "nhathmce170171@fpt.edu.vn",
-                    user.Email,
-                    "\"I Want\" Recover Password Verification",
-                    $@"
-                    <html>
-                    <head>
-                        <style>
-                            body {{
-                                font-family: Arial, sans-serif;
-                                color: #333;
-                                line-height: 1.5;
-                            }}
-                            .verification-box {{
-                                text-align: center;
-                                padding: 20px;
-                                background-color: #f5f5f5;
-                                border-radius: 8px;
-                            }}
-                            .verification-box img {{
-                                width: 300px;
-                                height: 90px;
-                            }}
-                            .otp-code {{
-                                font-size: 30px;
-                                font-weight: bold;
-                                color: #a3745e;
-                                margin-top: 20px;
-                            }}
-                            .resend-button {{
-                                display: inline-block;
-                                margin-top: 20px;
-                                padding: 10px 20px;
-                                background-color: #007bff;
-                                color: white;
-                                border: none;
-                                border-radius: 5px;
-                                text-decoration: none;
-                                font-size: 16px;
-                            }}
-                            .resend-button:hover {{
-                                background-color: #0056b3;
-                            }}
-                        </style>
-                    </head>
-                    <body>
-                        <div class='verification-box'>
-                            <h2>RESET PASSWORD OTP VERIFICATION</h2>
-                            <p>A verification email has been sent to your email <strong>{user.FullName}</strong>.</p>
-                            <p>Please check your email and verify the OTP code to recover your password.</p>
-                            <p class='otp-code'>OTP: {codeOTP}</p>
-                        </div>
-                    </body>
-                    </html>"
-                    );
+            await emailSender.SendEmailAsync(
+                "nhathmce170171@fpt.edu.vn",
+                user.Email,
+                "\"I Want\" Recover Password Verification",
+                $@"
+                        <html>
+                        <head>
+                            <style>
+                                body {{
+                                    font-family: Arial, sans-serif;
+                                    color: #333;
+                                    line-height: 1.5;
+                                }}
+                                .verification-box {{
+                                    text-align: center;
+                                    padding: 20px;
+                                    background-color: #f5f5f5;
+                                    border-radius: 8px;
+                                }}
+                                .verification-box img {{
+                                    width: 300px;
+                                    height: 90px;
+                                }}
+                                .otp-code {{
+                                    font-size: 30px;
+                                    font-weight: bold;
+                                    color: #a3745e;
+                                    margin-top: 20px;
+                                }}
+                                .resend-button {{
+                                    display: inline-block;
+                                    margin-top: 20px;
+                                    padding: 10px 20px;
+                                    background-color: #007bff;
+                                    color: white;
+                                    border: none;
+                                    border-radius: 5px;
+                                    text-decoration: none;
+                                    font-size: 16px;
+                                }}
+                                .resend-button:hover {{
+                                    background-color: #0056b3;
+                                }}
+                            </style>
+                        </head>
+                        <body>
+                            <div class='verification-box'>
+                                <h2>RESET PASSWORD OTP VERIFICATION</h2>
+                                <p>A verification email has been sent to your email <strong>{user.FullName}</strong>.</p>
+                                <p>Please check your email and verify the OTP code to recover your password.</p>
+                                <p class='otp-code'>OTP: {codeOTP}</p>
+                            </div>
+                        </body>
+                        </html>"
+                );
 
-                TempData["success"] = $"OTP was sent to {user.FullName}'s mail!";
-                TempData["Otp"] = model.Otp;
-                TempData["email"] = model.Email;
+            TempData["success"] = $"OTP was sent to {user.FullName}'s mail!";
+            TempData["Otp"] = model.Otp;
+            TempData["email"] = model.Email;
 
-                return RedirectToAction("VerifyOtp");
+            return RedirectToAction("VerifyOtp");
             /*}
             return View();*/
         }
@@ -387,6 +346,7 @@ namespace IWant.Web.Controllers
             return View();
         }
 
+        // Allow to resend OTP
         [HttpPost]
         public async Task<IActionResult> ResendOtp()
         {
@@ -414,55 +374,55 @@ namespace IWant.Web.Controllers
                     user.Email,
                     "\"I Want\" Recover Password Verification",
                     $@"
-                    <html>
-                    <head>
-                        <style>
-                            body {{
-                                font-family: Arial, sans-serif;
-                                color: #333;
-                                line-height: 1.5;
-                            }}
-                            .verification-box {{
-                                text-align: center;
-                                padding: 20px;
-                                background-color: #f5f5f5;
-                                border-radius: 8px;
-                            }}
-                            .verification-box img {{
-                                width: 300px;
-                                height: 90px;
-                            }}
-                            .otp-code {{
-                                font-size: 30px;
-                                font-weight: bold;
-                                color: #a3745e;
-                                margin-top: 20px;
-                            }}
-                            .resend-button {{
-                                display: inline-block;
-                                margin-top: 20px;
-                                padding: 10px 20px;
-                                background-color: #007bff;
-                                color: white;
-                                border: none;
-                                border-radius: 5px;
-                                text-decoration: none;
-                                font-size: 16px;
-                            }}
-                            .resend-button:hover {{
-                                background-color: #0056b3;
-                            }}
-                        </style>
-                    </head>
-                    <body>
-                        <div class='verification-box'>
-                            <h2>RESET PASSWORD OTP VERIFICATION</h2>
-                            <p>A verification email has been sent to your email <strong>{user.FullName}</strong>.</p>
-                            <p>Please check your email and verify the OTP code to recover your password.</p>
-                            <p class='otp-code'>OTP: {codeOTP}</p>
-                        </div>
-                    </body>
-                    </html>"
+                        <html>
+                        <head>
+                            <style>
+                                body {{
+                                    font-family: Arial, sans-serif;
+                                    color: #333;
+                                    line-height: 1.5;
+                                }}
+                                .verification-box {{
+                                    text-align: center;
+                                    padding: 20px;
+                                    background-color: #f5f5f5;
+                                    border-radius: 8px;
+                                }}
+                                .verification-box img {{
+                                    width: 300px;
+                                    height: 90px;
+                                }}
+                                .otp-code {{
+                                    font-size: 30px;
+                                    font-weight: bold;
+                                    color: #a3745e;
+                                    margin-top: 20px;
+                                }}
+                                .resend-button {{
+                                    display: inline-block;
+                                    margin-top: 20px;
+                                    padding: 10px 20px;
+                                    background-color: #007bff;
+                                    color: white;
+                                    border: none;
+                                    border-radius: 5px;
+                                    text-decoration: none;
+                                    font-size: 16px;
+                                }}
+                                .resend-button:hover {{
+                                    background-color: #0056b3;
+                                }}
+                            </style>
+                        </head>
+                        <body>
+                            <div class='verification-box'>
+                                <h2>RESET PASSWORD OTP VERIFICATION</h2>
+                                <p>A verification email has been sent to your email <strong>{user.FullName}</strong>.</p>
+                                <p>Please check your email and verify the OTP code to recover your password.</p>
+                                <p class='otp-code'>OTP: {codeOTP}</p>
+                            </div>
+                        </body>
+                        </html>"
                     );
 
             TempData["success"] = $"New OTP has been sent to {user.FullName}'s email!";
@@ -470,13 +430,13 @@ namespace IWant.Web.Controllers
             return RedirectToAction("VerifyOtp");
         }
 
+        // Allow to expire OTP
         [HttpPost]
         public IActionResult ExpireOtp()
         {
             TempData.Remove("Otp");
             return Json(new { success = true });
         }
-
 
         // Allow to display the reset password page
         [HttpGet]
@@ -500,35 +460,35 @@ namespace IWant.Web.Controllers
         {
             /*if (ModelState.IsValid)
             {*/
-                var emailTemp = TempData["email"];
-                var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == emailTemp);
-                if (user == null)
-                {
-                    TempData["error"] = "Email does not exist!";
-                    TempData.Keep("email");
-                    return View(model);
-                }
-                if (model.Password != model.ConfirmPassword)
-                {
-                    TempData["error"] = "Password and confirm password not match!";
-                    TempData.Keep("email");
-                    return View(model);
-                }
-                user.PasswordHash = _userManager.PasswordHasher.HashPassword(user, model.Password);
-                user.UpdatedAt = DateTime.Now;
-                try
-                {
-                    _context.Users.Update(user);
-                    await _context.SaveChangesAsync();
-                    TempData["success"] = "Reset Password successfully!";
-                    return RedirectToAction("Signin");
-                }
-                catch (Exception)
-                {
-                    TempData["error"] = "Failed to reset password!";
-                    TempData.Keep("email");
-                    return View(model);
-                }
+            var emailTemp = TempData["email"];
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == emailTemp);
+            if (user == null)
+            {
+                TempData["error"] = "Email does not exist!";
+                TempData.Keep("email");
+                return View(model);
+            }
+            if (model.Password != model.ConfirmPassword)
+            {
+                TempData["error"] = "Password and confirm password not match!";
+                TempData.Keep("email");
+                return View(model);
+            }
+            user.PasswordHash = _userManager.PasswordHasher.HashPassword(user, model.Password);
+            user.UpdatedAt = DateTime.Now;
+            try
+            {
+                _context.Users.Update(user);
+                await _context.SaveChangesAsync();
+                TempData["success"] = "Reset Password successfully!";
+                return RedirectToAction("Signin");
+            }
+            catch (Exception)
+            {
+                TempData["error"] = "Failed to reset password!";
+                TempData.Keep("email");
+                return View(model);
+            }
             /*}
             return View(model);*/
         }

@@ -25,6 +25,7 @@ namespace IWant.Web.Controllers
             this.emailSender = emailSender;
         }
 
+        // Allow to get all blogs
         public async Task<IActionResult> Blogs()
         {
             var blogs = await _context.Blogs.Include(b => b.User)
@@ -35,7 +36,7 @@ namespace IWant.Web.Controllers
 
             var blogViewModels = _mapper.Map<List<Blog>, List<BlogViewModel>>(blogs);
 
-            foreach(var blogItem in blogViewModels)
+            foreach (var blogItem in blogViewModels)
             {
                 var averageRating = _context.Rates.Where(r => r.Blog.Id == blogItem.Id)
                                                   .Select(r => r.RatingStar)
@@ -50,10 +51,11 @@ namespace IWant.Web.Controllers
             return View(blogViewModels);
         }
 
+        // Allow to get blogs based on filter type
         [HttpGet]
         [Route("Blog/Index/{filterType?}")]
         [Authorize]
-        public async Task<IActionResult> Index( string filterType)
+        public async Task<IActionResult> Index(string filterType)
         {
             List<Blog> blogs;
             List<BlogViewModel> blogViewModels = new List<BlogViewModel>();
@@ -65,20 +67,21 @@ namespace IWant.Web.Controllers
                 return RedirectToAction("Signin", "Identity");
             }
 
-            if(filterType == "show")
+            if (filterType == "show")
             {
                 if (User.IsInRole("Admin"))
                 {
                     blogs = await _context.Blogs.Include(b => b.User).Where(b => b.Status == true).ToListAsync();
                     blogViewModels = _mapper.Map<List<Blog>, List<BlogViewModel>>(blogs);
                     return View(blogViewModels);
-                } else
+                }
+                else
                 {
                     blogs = await _context.Blogs.Include(b => b.User).Where(b => b.User.Id == user.Id && b.Status == true).ToListAsync();
                     blogViewModels = _mapper.Map<List<Blog>, List<BlogViewModel>>(blogs);
                     return View(blogViewModels);
                 }
-            } 
+            }
             else if (filterType == "hide")
             {
                 if (User.IsInRole("Admin"))
@@ -93,8 +96,8 @@ namespace IWant.Web.Controllers
                     blogViewModels = _mapper.Map<List<Blog>, List<BlogViewModel>>(blogs);
                     return View(blogViewModels);
                 }
-            } 
-            else if(filterType == "waiting")
+            }
+            else if (filterType == "waiting")
             {
                 if (User.IsInRole("Admin"))
                 {
@@ -108,7 +111,8 @@ namespace IWant.Web.Controllers
                     blogViewModels = _mapper.Map<List<Blog>, List<BlogViewModel>>(blogs);
                     return View(blogViewModels);
                 }
-            } else if(filterType == "all")
+            }
+            else if (filterType == "all")
             {
                 if (User.IsInRole("Admin"))
                 {
@@ -220,6 +224,7 @@ namespace IWant.Web.Controllers
             return RedirectToAction("Index", "Blog", new { filterType = "all" });
         }
 
+        // Allow to display the edit blog page
         [Authorize]
         public IActionResult Edit(int id)
         {
@@ -233,7 +238,7 @@ namespace IWant.Web.Controllers
             return View(blogViewModel);
         }
 
-
+        // Allow to edit a blog
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(BlogViewModel model)
@@ -281,11 +286,11 @@ namespace IWant.Web.Controllers
             return RedirectToAction("Index", "Blog", new { filterType = "all" });
         }
 
-
+        // Allow to accept a blog
         [HttpPost]
         public async Task<IActionResult> AcceptBlog(int id)
         {
-            var blog = await _context.Blogs.Include(b=>b.User).FirstOrDefaultAsync(b=>b.Id == id);
+            var blog = await _context.Blogs.Include(b => b.User).FirstOrDefaultAsync(b => b.Id == id);
             if (blog == null)
             {
                 return NotFound();
@@ -313,6 +318,7 @@ namespace IWant.Web.Controllers
             return RedirectToAction("Index", "Blog", new { filterType = "all" });
         }
 
+        // Allow to reject a blog
         [HttpPost]
         public async Task<IActionResult> RejectBlog(int id, string reason)
         {
@@ -356,6 +362,7 @@ namespace IWant.Web.Controllers
             return RedirectToAction("Index", "Blog", new { filterType = "all" });
         }
 
+        // Allow to get blog details
         public async Task<IActionResult> Details([FromRoute] int id)
         {
             var blogs = await _context.Blogs.Include(b => b.User).FirstOrDefaultAsync(b => b.Id == id);
@@ -365,10 +372,11 @@ namespace IWant.Web.Controllers
             }
 
             var blogViewModels = _mapper.Map<Blog, BlogViewModel>(blogs);
-            
+
             return View(blogViewModels);
         }
 
+        // Allow to get blog detail with related information
         public async Task<IActionResult> BlogDetail([FromRoute] int id)
         {
             var blog = await _context.Blogs.Include(b => b.User)

@@ -13,6 +13,8 @@ namespace IWant.Web.Controllers
         {
             _wordService = wordService;
         }
+
+        // Allow to get the list of words
         [Route("Word")]
         [Route("Word/Index")]
         public async Task<IActionResult> Index()
@@ -21,6 +23,7 @@ namespace IWant.Web.Controllers
             return View(words);
         }
 
+        // Allow to show the create word form
         public async Task<IActionResult> Create()
         {
             var categories = await _wordService.GetCategorysAsync();
@@ -28,6 +31,7 @@ namespace IWant.Web.Controllers
             return View();
         }
 
+        // Allow to create a new word
         [HttpPost]
         public async Task<IActionResult> Create(Word word)
         {
@@ -42,6 +46,7 @@ namespace IWant.Web.Controllers
             return RedirectToAction("Index");
         }
 
+        // Allow to delete a word by id
         public async Task<IActionResult> Delete(int id)
         {
             var result = await _wordService.DeleteWordAsync(id);
@@ -53,6 +58,8 @@ namespace IWant.Web.Controllers
             TempData["error"] = "Delete Word failed.";
             return View("Error");
         }
+
+        // Allow to get the details of a word by id
         public async Task<IActionResult> Details(int id)
         {
             var word = await _wordService.GetWordByIdAsync(id);
@@ -66,6 +73,8 @@ namespace IWant.Web.Controllers
 
             return View(word);
         }
+
+        // Allow to show the edit word form
         public async Task<IActionResult> Edit(int id)
         {
             var word = await _wordService.GetWordByIdAsync(id);
@@ -83,6 +92,7 @@ namespace IWant.Web.Controllers
             return View(word);
         }
 
+        // Allow to update a word
         [HttpPost]
         //[ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Word word)

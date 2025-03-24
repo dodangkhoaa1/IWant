@@ -19,6 +19,7 @@ namespace IWant.Web.Service
             _httpClient = httpClient;
         }
 
+        // Allow to create a new word
         public async Task<Word> CreateWordAsync(Word word)
         {
             WordDTO wordDTO = new()
@@ -50,6 +51,7 @@ namespace IWant.Web.Service
             return JsonSerializer.Deserialize<Word>(result, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
         }
 
+        // Allow to delete a word by id
         public async Task<bool> DeleteWordAsync(int id)
         {
             var response = await _httpClient.DeleteAsync($"{ApiBaseUrl}/{id}");
@@ -58,6 +60,7 @@ namespace IWant.Web.Service
             return response.StatusCode == HttpStatusCode.OK;
         }
 
+        // Allow to get a word by id
         public async Task<Word> GetWordByIdAsync(int id)
         {
             var response = await _httpClient.GetAsync($"{ApiBaseUrl}/{id}");
@@ -67,6 +70,7 @@ namespace IWant.Web.Service
             return JsonSerializer.Deserialize<Word>(result, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
         }
 
+        // Allow to get all words
         public async Task<List<Word>> GetWordsAsync()
         {
             var response = await _httpClient.GetAsync(ApiBaseUrl);
@@ -76,6 +80,7 @@ namespace IWant.Web.Service
             return JsonSerializer.Deserialize<List<Word>>(result, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
         }
 
+        // Allow to update a word
         public async Task<Word> UpdateWordAsync(Word word)
         {
             WordDTO wordDTO = new()
@@ -108,6 +113,7 @@ namespace IWant.Web.Service
             return JsonSerializer.Deserialize<Word>(result, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
         }
 
+        // Allow to get all word categories
         public async Task<List<WordCategory>> GetCategorysAsync()
         {
             var response = await _httpClient.GetAsync(ApiCategoryUrl);
@@ -117,6 +123,7 @@ namespace IWant.Web.Service
             return JsonSerializer.Deserialize<List<WordCategory>>(result, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
         }
 
+        // Allow to get a word category by id
         public async Task<WordCategory> GetWordCategoryByIdAsync(int id)
         {
             var response = await _httpClient.GetAsync($"{ApiCategoryUrl}/{id}");

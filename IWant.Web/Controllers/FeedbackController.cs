@@ -21,16 +21,18 @@ namespace IWant.Web.Controllers
             _mapper = mapper;
         }
 
+        // Allow to display the feedback index page
         [Route("Feedback")]
         [Route("Feedback/Index")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
-            var blogs = await _context.Blogs.Include(b=>b.Rates).Include(b=>b.Feedbacks).Where(b=>b.Status == true).ToListAsync();
+            var blogs = await _context.Blogs.Include(b => b.Rates).Include(b => b.Feedbacks).Where(b => b.Status == true).ToListAsync();
             var blogViewModels = _mapper.Map<List<Blog>, List<BlogViewModel>>(blogs);
             return View(blogViewModels);
         }
 
+        // Allow to create feedback
         [HttpPost]
         public async Task<IActionResult> CreateFeedback(FeedbackViewModel model)
         {
@@ -111,9 +113,10 @@ namespace IWant.Web.Controllers
             return RedirectToAction("BlogDetail", "Blog", new { id = BlogId });
         }
 
+        // Allow to ban feedback
         public async Task<IActionResult> BanFeedback([FromRoute] int id)
         {
-            var feedback = await _context.Feedbacks.Include(c=>c.Blog).FirstOrDefaultAsync(c => c.Id == id);
+            var feedback = await _context.Feedbacks.Include(c => c.Blog).FirstOrDefaultAsync(c => c.Id == id);
             if (feedback == null)
             {
                 TempData["error"] = "Feedback not found!";

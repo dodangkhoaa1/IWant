@@ -23,6 +23,7 @@ namespace IWant.Web.Controllers
             _leaderboard = leaderboard;
         }
 
+        // Allow to get statistics
         public IActionResult Statistic()
         {
             var BlogCount = _context.Blogs.Count();
@@ -98,14 +99,14 @@ namespace IWant.Web.Controllers
             foreach (var item in fruitDrops)
             {
                 var user = _context.Users.FirstOrDefault(u => u.Id == item.GetUserId());
-                if(user != null)
+                if (user != null)
                 {
                     fruitDropLists.Add(new LeaderboardViewModel
                     {
                         User = user,
                         Score = item.score
                     });
-                } 
+                }
             }
 
             foreach (var item in dotConnections)

@@ -19,6 +19,7 @@ namespace IWant.Web.Controllers
             _mapper = mapper;
         }
 
+        // Allow to get game details
         public async Task<IActionResult> GameDetails()
         {
             var games = await _context.Games.ToListAsync();
@@ -26,7 +27,7 @@ namespace IWant.Web.Controllers
             return View(gameViewModels);
         }
 
-        // GET: Game
+        // Allow to get the list of games
         [Authorize(Roles = "Admin")]
         [Route("Game")]
         [Route("Game/Index")]
@@ -37,7 +38,7 @@ namespace IWant.Web.Controllers
             return View(gameViewModels);
         }
 
-        // GET: Game/Details/5
+        // Allow to get details of a specific game
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Details(int? id)
         {
@@ -58,7 +59,7 @@ namespace IWant.Web.Controllers
             return View(gameViewModel);
         }
 
-        // GET: Game/Create
+        // Allow to create a new game
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create(int? id)
         {
@@ -77,7 +78,7 @@ namespace IWant.Web.Controllers
             return View(gameViewModel);
         }
 
-        // POST: Game/Create
+        // Allow to create a new game (POST)
         [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -86,7 +87,7 @@ namespace IWant.Web.Controllers
             if (ModelState.IsValid)
             {
                 var game = _context.Games.FirstOrDefault(x => x.Id == model.Id);
-                if(game == null)
+                if (game == null)
                 {
                     return NotFound();
                 }
@@ -100,7 +101,7 @@ namespace IWant.Web.Controllers
             return View(model);
         }
 
-        // GET: Game/Edit/5
+        // Allow to edit a game
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
@@ -118,7 +119,7 @@ namespace IWant.Web.Controllers
             return View(gameViewModel);
         }
 
-        // POST: Game/Edit/5
+        // Allow to edit a game (POST)
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,VideoUrl")] GameViewModel model)
@@ -153,7 +154,7 @@ namespace IWant.Web.Controllers
             return View(model);
         }
 
-        // GET: Game/Delete/5
+        // Allow to delete a game
         [Route("Game/Delete/{id}")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete([FromRoute] int? id)

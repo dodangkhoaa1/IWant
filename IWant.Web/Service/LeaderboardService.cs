@@ -14,11 +14,11 @@ namespace IWant.Web.Service
         private readonly string _baseURL = "https://75py6bqd.api.lootlocker.io/game/leaderboards/";
 
         private readonly Dictionary<string, int> _leaderboardIDs = new()
-        {
-            { "EmotionSelection", 30287 },
-            { "DotConnection", 30388 },
-            { "FruitDrop", 30288 }
-        };
+            {
+                { "EmotionSelection", 30287 },
+                { "DotConnection", 30388 },
+                { "FruitDrop", 30288 }
+            };
 
         public LeaderboardService(HttpClient httpClient, IMemoryCache cache)
         {
@@ -26,6 +26,7 @@ namespace IWant.Web.Service
             _cache = cache;
         }
 
+        // Allow to get session token
         private async Task<string> GetSessionTokenAsync()
         {
             if (_cache.TryGetValue("SessionToken", out string cachedToken))
@@ -53,16 +54,17 @@ namespace IWant.Web.Service
             return sessionToken;
         }
 
+        // Allow to fetch leaderboard data
         private async Task<List<LeaderboardEntry>> FetchLeaderboardAsync(int leaderboardID, string sessionToken)
         {
             var url = $"{_baseURL}{leaderboardID}/list";
             var request = new HttpRequestMessage(HttpMethod.Get, url)
             {
                 Headers =
-                {
-                    { "x-api-key", _serverAPIKey },
-                    { "x-session-token", sessionToken }
-                }
+                    {
+                        { "x-api-key", _serverAPIKey },
+                        { "x-session-token", sessionToken }
+                    }
             };
 
             var response = await _httpClient.SendAsync(request);
@@ -79,6 +81,7 @@ namespace IWant.Web.Service
                 .ToList();
         }
 
+        // Allow to get leaderboards
         public async Task<LeaderboardResponse> GetLeaderboardsAsync()
         {
             string sessionToken = await GetSessionTokenAsync();
