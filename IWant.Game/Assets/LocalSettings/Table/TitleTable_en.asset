@@ -130,6 +130,10 @@ MonoBehaviour:
     m_Localized: How do you feel today?
     m_Metadata:
       m_Items: []
+  - m_Id: 30083475058872320
+    m_Localized: How do you feel today?
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

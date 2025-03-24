@@ -110,12 +110,7 @@ public class LeaderboardDotGame : MonoBehaviour
         bool done = false;
 
         // Chuyển metadata thành JSON dùng JsonUtility
-        string metadataJson = JsonConvert.SerializeObject(
-            new DotGameData(
-                DBManager.User, 
-                PlayerPrefs.GetInt("CurrentStage", 1), 
-                PlayerPrefs.GetInt("CurrentLevel", 1))
-            );
+        string metadataJson = JsonConvert.SerializeObject(DBManager.User);
 
         LootLockerSDKManager.SubmitScore(memberId, score, leaderboardKey, metadataJson, (response) =>
         {
@@ -246,8 +241,7 @@ public class LeaderboardDotGame : MonoBehaviour
         // Update the display name to use User.FullName from metadata
         foreach (var member in top5)
         {
-            DotGameData dotGameData = JsonConvert.DeserializeObject<DotGameData>(member.metadata);
-            UserResponseDTO user = dotGameData.User;
+            UserResponseDTO user = JsonConvert.DeserializeObject<UserResponseDTO>(member.metadata);
             if (user != null)
             {
                 member.player.name = DBManager.GetDisplayName(user);
@@ -259,32 +253,17 @@ public class LeaderboardDotGame : MonoBehaviour
         // Nếu currentPlayer có trong top5 thì gọi luôn sự kiện hiển thị
         if (currentPlayer != null)
         {
-            DotGameData currentdotGameData = JsonConvert.DeserializeObject<DotGameData>(currentPlayer.metadata);
-            UserResponseDTO currentUser = currentdotGameData.User;
+            UserResponseDTO currentUser = JsonConvert.DeserializeObject<UserResponseDTO>(currentPlayer.metadata);
             if (currentUser != null)
             {
                 currentPlayer.player.name = DBManager.GetDisplayName(currentUser);
-                PlayerPrefs.SetInt("CurrentStage", currentdotGameData.CurrentStage);
-                PlayerPrefs.SetInt("CurrentLevel", currentdotGameData.CurrentLevel);
-                PlayerPrefs.SetInt("HighScoreDotGame", currentdotGameData.CurrentLevel);//set diem lon nhat
+                if (PlayerPrefs.GetInt("HighScoreDotGame", 0) == 0)
+                {
+                    PlayerPrefs.SetInt("HighScoreDotGame", currentPlayer.score);
+                }
 
             }
             onCurrentPlayerFetched?.Invoke(currentPlayer);
-        }
-    }
-
-    [Serializable]
-    public class DotGameData
-    {
-        public UserResponseDTO User { get; set; }
-        public int CurrentStage { get; set; }
-        public int CurrentLevel { get; set; }
-
-        public DotGameData(UserResponseDTO user, int currentStage, int currentLevel)
-        {
-            User = user;
-            CurrentStage = currentStage;
-            CurrentLevel = currentLevel;
         }
     }
 

@@ -53,14 +53,7 @@ public class Fruit : MonoBehaviour
     {
         ManageCollision(collision);
 
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        if (collision.contacts.Length > 0)
-        {
-            Vector2 pushDirection = collision.contacts[0].normal; // Hướng ngược lại va chạm
-            rb.velocity += pushDirection * 0.1f; // Đẩy ra một chút
-        }
     }
-
     private void OnCollisionStay2D(Collision2D collision)
     {
 

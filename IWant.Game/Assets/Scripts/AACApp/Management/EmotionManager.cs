@@ -72,13 +72,20 @@ public class EmotionManager : MonoBehaviour
             return;
         }
 
+        // Remove emotions older than 30 days
+        DateTime thirtyDaysAgo = DateTime.Now.AddDays(-30);
+        emotions = emotions.Where(e => e.Date >= thirtyDaysAgo).ToList();
+
         Emotion newEmotion = new Emotion
         {
             UserId = DBManager.User.UserId,
             EmotionName = emotionName,
             Date = DateTime.Now
         };
+
+        //newEmotion.Date = thirtyDaysAgo.AddDays(-30);
         emotions.Add(newEmotion);
+
         SaveEmotions();
         SubmitScoreWithMetadata(emotions.Count, JsonConvert.SerializeObject(emotions));
     }

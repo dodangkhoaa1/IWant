@@ -11,8 +11,12 @@ namespace IWant.Web.Service
     public class WordService : IWordService
     {
         private readonly HttpClient _httpClient;
-        private const string ApiBaseUrl = "http://localhost:5000/api/Words";
-        private const string ApiCategoryUrl = "http://localhost:5000/api/WordCategories";
+
+        //private const string HOST = "http://localhost:5000"; //local
+        private const string HOST = "https://iwantapiservice.azurewebsites.net"; //cloud
+
+        private const string ApiBaseUrl = $"{HOST}/api/Words";
+        private const string ApiCategoryUrl = $"{HOST}/api/WordCategories";
 
         public WordService(HttpClient httpClient)
         {
