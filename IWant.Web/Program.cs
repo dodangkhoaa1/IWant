@@ -8,7 +8,20 @@ using IWant.BusinessObject.Enitities;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var connString = builder.Configuration["ConnectionStrings:Default"];
+var environment = builder.Environment.EnvironmentName;
+
+if (environment == Environments.Development) 
+{
+    var config = new ConfigurationBuilder()
+        .SetBasePath(Path.Combine(Directory.GetCurrentDirectory(), "../IWant.DataAccess"))
+        .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+        .Build();
+
+    builder.Configuration.AddConfiguration(config);
+}
+
+var connString = builder.Configuration.GetConnectionString("Default");
+builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connString));
 
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connString));
 builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
@@ -74,7 +87,6 @@ builder.Services.AddAuthorization(options =>
 
 IMvcBuilder build = builder.Services.AddRazorPages();
 #if DEBUG
-var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
 if (environment == Environments.Development)
 {
     build.AddRazorRuntimeCompilation();

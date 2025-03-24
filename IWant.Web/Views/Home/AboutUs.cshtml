@@ -3,6 +3,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <link rel="stylesheet" href="~/css/main.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.6/lottie.min.js"></script>
 
 <style>
     .aboutus-container {
@@ -80,23 +81,16 @@
             <div class="col-md-6 p-3">
                 <div class="card-person">
                     <div class="card-img-container">
-                        <img src="/images/default_team.jpg" alt="Ảnh 1" class="profile-img">
+                        <img src="/images/aboutus/default_team.jpg" alt="Ảnh 1" class="profile-img">
                     </div>
-                    <div class="profile-info">
-                        <h4>Thầy</h4>
-                        <p>Mô tả ngắn gọn về nhân vật này.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6 p-3">
-                <div class="card-person">
-                    <div class="card-img-container">
-                        <img src="/images/default_team.jpg" alt="Ảnh 2" class="profile-img">
-                    </div>
-                    <div class="profile-info">
-                        <h4>Người 2</h4>
-                        <p>Mô tả ngắn gọn về nhân vật này.</p>
+                    <div class="profile-info d-flex flex-column h-100 text-center">
+                        <div class="member-name">
+                            <h4>Lữ Thanh Quy (Mentor)</h4>
+                            <hr />
+                        </div>
+                        <div style="text-align:justify" class="member-description">
+                            <p>Mô tả ngắn gọn về nhân vật này.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -104,23 +98,16 @@
             <div class="col-md-6 p-3">
                 <div class="card-person">
                     <div class="card-img-container">
-                        <img src="/images/default_team.jpg" alt="Ảnh 3" class="profile-img">
+                        <img src="/images/aboutus/VMN.jpg" alt="Ảnh 2" class="profile-img">
                     </div>
-                    <div class="profile-info">
-                        <h4>Người 3</h4>
-                        <p>Thông tin thêm về nhân vật.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6 p-3">
-                <div class="card-person">
-                    <div class="card-img-container">
-                        <img src="/images/default_team.jpg" alt="Ảnh 4" class="profile-img">
-                    </div>
-                    <div class="profile-info">
-                        <h4>Người 4</h4>
-                        <p>Thông tin thêm về nhân vật.</p>
+                    <div class="profile-info d-flex flex-column h-100 text-center">
+                        <div class="member-name">
+                            <h4>Võ Minh Nhựt (Leader)</h4>
+                            <hr />
+                        </div>
+                        <div  style="text-align:justify" class="member-description">
+                            <p>Mô tả ngắn gọn về nhân vật này.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -128,11 +115,16 @@
             <div class="col-md-6 p-3">
                 <div class="card-person">
                     <div class="card-img-container">
-                        <img src="/images/default_team.jpg" alt="Ảnh 5" class="profile-img">
+                        <img src="/images/aboutus/NTTT.jpg" alt="Ảnh 3" class="profile-img">
                     </div>
-                    <div class="profile-info">
-                        <h4>Người 5</h4>
-                        <p>Thông tin thêm về nhân vật.</p>
+                    <div class="profile-info d-flex flex-column h-100 text-center">
+                        <div class="member-name">
+                            <h4>Nguyễn Trần Trung Thành</h4>
+                            <hr />
+                        </div>
+                        <div  style="text-align:justify" class="member-description">
+                            <p>Mô tả ngắn gọn về nhân vật này.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -140,11 +132,50 @@
             <div class="col-md-6 p-3">
                 <div class="card-person">
                     <div class="card-img-container">
-                        <img src="/images/default_team.jpg" alt="Ảnh 6" class="profile-img">
+                        <img src="/images/aboutus/DDK.jpg" alt="Ảnh 4" class="profile-img">
                     </div>
-                    <div class="profile-info">
-                        <h4>Người 6</h4>
-                        <p>Thông tin thêm về nhân vật.</p>
+                    <div class="profile-info d-flex flex-column h-100 text-center">
+                        <div class="member-name">
+                            <h4>Đỗ Đăng Khoa</h4>
+                            <hr />
+                        </div>
+                        <div  style="text-align:justify" class="member-description">
+                            <p>Mô tả ngắn gọn về nhân vật này.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 p-3">
+                <div class="card-person">
+                    <div class="card-img-container">
+                        <img src="/images/aboutus/HMN.jpg" alt="Ảnh 5" class="profile-img">
+                    </div>
+                    <div class="profile-info d-flex flex-column h-100 text-center">
+                        <div class="member-name">
+                            <h4>Hồ Minh Nhật</h4>
+                            <hr />
+                        </div>
+                        <div  style="text-align:justify" class="member-description">
+                            <p>Mô tả ngắn gọn về nhân vật này.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 p-3">
+                <div class="card-person">
+                    <div class="card-img-container">
+                        <img src="/images/aboutus/NHN.jpg" alt="Ảnh 6" class="profile-img">
+                    </div>
+                    <div class="profile-info d-flex flex-column h-100 text-center">
+                        <div class="member-name">
+                            <h4>Nguyễn Huỳnh Như</h4>
+                            <hr />
+                        </div>
+                        <div  style="text-align:justify" class="member-description">
+                            <p>Mô tả ngắn gọn về nhân vật này.</p>
+                        </div>
                     </div>
                 </div>
             </div>

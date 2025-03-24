@@ -22,28 +22,30 @@ namespace IWant.Web.Controllers
             ApplicationDbContext context,
             IMapper mapper,
             IWebHostEnvironment environment,
-            IHubContext<ChatHub> hubContext,
-            IConfiguration configuration)
+            IHubContext<ChatHub> hubContext)
         {
             _context = context;
             _mapper = mapper;
             _environment = environment;
             _hubContext = hubContext;
-
-            FileSizeLimit = configuration.GetSection("FileUpload").GetValue<int>("FileSizeLimit");
-            AllowedExtensions = configuration.GetSection("FileUpload").GetValue<string>("AllowedExtensions").Split(",");
         }
 
         // Allow to upload a file and send a message to the chat room
         public async Task<IActionResult> Upload([FromForm] UploadViewModel uploadViewModel)
         {
-            /*if (!ModelState.IsValid || !Validate(uploadViewModel.File))
+            if (uploadViewModel.File == null || uploadViewModel.File.Length == 0)
             {
-                ViewBag.ErrorMessage = "Validation failed!";
+                ViewBag.ErrorMessage = "Invalid file!";
                 return View("Index");
-            }*/
+            }
 
-            var fileName = DateTime.Now.ToString("yyyyMMddHHmmss") + "_" + Path.GetFileName(uploadViewModel.File.FileName);
+            if (!Validate(uploadViewModel.File))
+            {
+                ViewBag.ErrorMessage = "File validation failed! File must be PNG, SVG, JPG, or GIF and <= 5MB.";
+                return View("Index");
+            }
+
+            var fileName = $"{DateTime.Now:yyyyMMddHHmmss}_{Path.GetFileName(uploadViewModel.File.FileName)}";
             var folderPath = Path.Combine(_environment.WebRootPath, "uploads");
             var filePath = Path.Combine(folderPath, fileName);
 
@@ -64,12 +66,12 @@ namespace IWant.Web.Controllers
                 return View("Index");
             }
 
-            string htmlImage = string.Format(
-                "<a href=\"/uploads/{0}\" target=\"_blank\">" +
-                "<img src=\"/uploads/{0}\" class=\"post-image\">" +
-                "</a>", fileName);
+            string htmlImage = $@"
+        <a href=""/uploads/{fileName}"" target=""_blank"">
+            <img src=""/uploads/{fileName}"" class=""post-image"">
+        </a>";
 
-            var message = new Message()
+            var message = new Message
             {
                 Content = Regex.Replace(htmlImage, @"(?i)<(?!img|a|/a|/img).*?>", string.Empty),
                 TimeStamp = DateTime.Now,
@@ -84,21 +86,23 @@ namespace IWant.Web.Controllers
             await _hubContext.Clients.Group(room.Name).SendAsync("newMessage", messageViewModel);
 
             ViewBag.SuccessMessage = "File uploaded successfully!";
-            return View("Index");
+            return Ok(new { message = "File uploaded successfully!", fileName });
         }
+
 
         // Allow to validate the uploaded file
         private bool Validate(IFormFile file)
         {
-            if (file.Length > FileSizeLimit)
+            const int MaxFileSize = 5 * 1024 * 1024; // 5MB
+            string[] AllowedExtensions = { ".png", ".svg", ".jpg", ".gif" };
+
+            if (file.Length > MaxFileSize)
                 return false;
 
             var extension = Path.GetExtension(file.FileName).ToLowerInvariant();
-            if (string.IsNullOrEmpty(extension) || !AllowedExtensions.Any(s => s.Contains(extension)))
-                return false;
-
-            return true;
+            return !string.IsNullOrEmpty(extension) && AllowedExtensions.Contains(extension);
         }
+
     }
 
 }
