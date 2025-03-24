@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LootLocker.Extension.DataTypes;
+using System;
 
 #nullable enable
 [Serializable]
@@ -13,6 +14,8 @@ public class WordDTO
     public bool Status;
     public int? WordCategoryId;
     public WordCategoryDTO? WordCategory;
+    public string UserId;
+    public User? User;
     public byte[]? Image;
 
 }

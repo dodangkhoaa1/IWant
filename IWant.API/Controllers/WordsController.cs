@@ -21,8 +21,10 @@ namespace IWant.API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<WordDTO>>> GetWords()
         {
+            string adminId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974";
             var words = await _context.Words
-                .Include(w => w.WordCategory) // Include related WordCategory if needed
+                .Include(w => w.WordCategory)
+                .Where(w => w.UserId == adminId) // Include related WordCategory if needed
                 .ToListAsync();
 
             return Ok(words);
@@ -41,6 +43,8 @@ namespace IWant.API.Controllers
 
             return word;
         }
+
+
 
         // PUT: api/Words/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
@@ -82,6 +86,7 @@ namespace IWant.API.Controllers
             existingWord.UpdatedAt = word.UpdatedAt;
             existingWord.Status = word.Status;
             existingWord.WordCategoryId = word.WordCategoryId;
+            existingWord.UserId = word.UserId;
 
             _context.Entry(existingWord).State = EntityState.Modified;
 
@@ -122,7 +127,12 @@ namespace IWant.API.Controllers
                 string uniqueFileName = $"{Guid.NewGuid()}.png";
                 string savePath = Path.Combine("wwwroot", "images", "word", categoryFolder, uniqueFileName);
                 string relativePath = Path.Combine("images", "word", categoryFolder, uniqueFileName).Replace("\\", "/");
+                string directoryPath = Path.GetDirectoryName(savePath); // Lấy thư mục chứa file
 
+                if (!Directory.Exists(directoryPath))
+                {
+                    Directory.CreateDirectory(directoryPath); // Tạo thư mục nếu chưa có
+                }
                 // Save the image to the specified path
                 await System.IO.File.WriteAllBytesAsync(savePath, word.Image);
 
@@ -137,8 +147,10 @@ namespace IWant.API.Controllers
                 UpdatedAt = word.UpdatedAt,
                 ImagePath = word.ImagePath,
                 Status = word.Status,
-                WordCategoryId = word.WordCategoryId
+                WordCategoryId = word.WordCategoryId,
+                UserId = word.UserId
             };
+
 
             _context.Words.Add(wordToAdd);
             await _context.SaveChangesAsync();
@@ -177,6 +189,39 @@ namespace IWant.API.Controllers
         private bool WordExists(int id)
         {
             return _context.Words.Any(e => e.Id == id);
+        }
+
+        [HttpGet("user/{userId}")]
+        public async Task<ActionResult<IEnumerable<Word>>> GetWordsByUserId(string userId)
+        {
+            var wordsInDB = await _context.Words
+                .Include(pw => pw.User)
+                .Include(w => w.WordCategory)
+                .Where(w => w.UserId == userId)
+                .ToListAsync();
+
+            if (wordsInDB == null)
+            {
+                return NotFound();
+            }
+
+            var wordsWithImage = wordsInDB.Select(word => new WordDTO
+            {
+                Id = word.Id,
+                VietnameseText = word.VietnameseText,
+                EnglishText = word.EnglishText,
+                CreatedAt = word.CreatedAt,
+                UpdatedAt = word.UpdatedAt,
+                ImagePath = word.ImagePath,
+                Status = word.Status,
+                WordCategoryId = (int)word.WordCategoryId,
+                WordCategory = word.WordCategory,
+                Image = !string.IsNullOrEmpty(word.ImagePath) && System.IO.File.Exists(Path.Combine("wwwroot", word.ImagePath))
+                    ? System.IO.File.ReadAllBytes(Path.Combine("wwwroot", word.ImagePath))
+                    : null
+            }).ToList();
+
+            return Ok(wordsWithImage);
         }
     }
 }

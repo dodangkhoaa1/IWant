@@ -125,7 +125,7 @@ public class AACWordSpawner : MonoBehaviour
     // Load personal words from API
     private IEnumerator LoadPersonalWordsFromAPI()
     {
-        UnityWebRequest request = new UnityWebRequest(AddressAPI.PERSONAL_WORD_URL + "?userId=" + DBManager.User.UserId, "GET");
+        UnityWebRequest request = new UnityWebRequest($"{AddressAPI.WORD_URL}/user/{DBManager.User.UserId}", "GET");
         request.downloadHandler = new DownloadHandlerBuffer();
         yield return request.SendWebRequest();
 
