@@ -53,8 +53,8 @@
 
             body.no-scroll #navbarNav {
                 pointer-events: auto;
-                overflow:auto;
-                padding-top:65px;
+                overflow: auto;
+                padding-top: 65px;
             }
 
         .dropdown a {
@@ -162,43 +162,47 @@
         </div>
     </div>
     <partial name="_Notification" />
-    <footer id="footer" class="footer">
-        <div class="footer-content position-relative">
-            <div class="container">
-                <div class="row justify-content-between align-items-center">
-                    <div class="col-lg-3 col-md-3 footer-links">
-                        <h4>GAME</h4>
-                        <ul>
-                            <li><a href="#">Learn To Love Growth</a></li>
-                            <li><a href="#">And Change And You Will</a></li>
-                            <li><a href="#">Be A Success. Microsoft</a></li>
-                            <li><a href="#">Patch</a></li>
-                        </ul>
-                    </div>
-                    <div class="vertical-divider"></div>
-                    <div class="col-lg-3 col-md-3 text-center">
-                        <div class="social-links d-flex justify-content-center mb-2">
-                            <a href="#" class="d-flex align-items-center justify-content-center mx-2">
-                                <i class="fa-brands fa-facebook"></i>
-                            </a>
-                            <a href="#" class="d-flex align-items-center justify-content-center mx-2">
-                                <i class="fa-brands fa-youtube"></i>
-                            </a>
-                            <a href="#" class="d-flex align-items-center justify-content-center mx-2">
-                                <i class="fa-brands fa-instagram"></i>
-                            </a>
+    <footer id="footer">
+        <div style="background: url(/images/footerbanner.svg) no-repeat center bottom; background-size: cover;" class="container-fluid footer py-5 wow fadeIn text-dark" data-wow-delay="0.1s">
+            <div class="container py-5">
+                <div class="row g-5 justify-content-between">
+                    <div class="col-md-6 col-lg-4 col-xl-4">
+                        <div class="footer-item">
+                            <h2 class="mb-5"><img style="width:12vw" src="/images/iWantLogo.png" alt="Alternate Text" /></h2>
+                            <p style="text-align:justify" class="mb-5 fs-5">I Want - Alternative communication application for autistic children, combining educational games to help express emotions and develop thinking. </p>
+                            <div class="position-relative mx-auto rounded text-dark mb-5" style="max-width: 400px">
+                                <img style="width:60%" src="/images/fpt-logo.png" alt="Fpt Logo" />
+                            </div>
                         </div>
-                        <h4>IWANT</h4>
                     </div>
-                    <div class="vertical-divider"></div>
-                    <div class="col-lg-3 col-md-3 footer-links">
-                        <h4>BLOG</h4>
-                        <ul>
-                            <li><a href="#">Career</a></li>
-                            <li><a href="#">Contact Us</a></li>
-                            <li><a href="#">Government Securities</a></li>
-                            <li><a href="#">Examples</a></li>
-                        </ul>
+                    <div class="col-md-6 col-lg-4 col-xl-3">
+                        <div class="footer-item">
+                            <h4 class="text-warning mb-4 border-bottom border-warning border-2 d-inline-block p-2 title-border-radius text-dark fs-4">GAME</h4>
+                            <div class="d-flex flex-column p-4 ps-5 text-dark border border-warning text-start"
+                                 style="border-radius: 50% 20% / 10% 40%">
+                                <a asp-action="GameDetails" asp-controller="Game" asp-fragment="AAC-section" class="fs-5 mb-4 text-black">AAC</a>
+                                <a asp-action="GameDetails" asp-controller="Game" asp-fragment="Fruit-section" class="fs-5 mb-4 text-black">Fruit Drop</a>
+                                <a asp-action="GameDetails" asp-controller="Game" asp-fragment="Dot-section" class="fs-5 mb-4 text-black">Dot Connection</a>
+                                <a asp-action="GameDetails" asp-controller="Game" asp-fragment="Emotion-section" class="fs-5 mb-4 text-black">Emotion Selection</a>
+                                <a asp-action="GameDetails" asp-controller="Game" asp-fragment="Color-section" class="fs-5 mb-4 text-black">Coloring</a>
+                                <a asp-action="GameDetails" asp-controller="Game" asp-fragment="Tower-section" class="fs-5 text-black">Tower Build</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 col-xl-3">
+                        <div class="footer-item">
+                            <h4 class="text-warning mb-4 border-bottom border-warning border-2 d-inline-block p-2 title-border-radius text-dark fs-4">LOCATION</h4>
+                            <div class="d-flex flex-column align-items-start">
+                                <p href="" class="text-start rounded-0 text-dark mb-4 fs-5"><i class="fa fa-map-marker-alt text-warning me-2"></i> 104 North tower New York, USA</p>
+                                <p href="" class="text-start rounded-0 text-dark mb-4 fs-5"><i class="fa fa-phone-alt text-warning me-2"></i> (+012) 3456 7890 123</p>
+                                <p href="" class="text-start rounded-0 text-dark mb-4 fs-5"><i class="fas fa-envelope text-warning me-2"></i> exampleemail@gmail.com</p>
+                                <p href="" class="text-start rounded-0 text-dark mb-4 fs-5"><i class="fa fa-clock text-warning me-2"></i> 26/7 Hours Service</p>
+                                <div class="footer-icon d-flex justify-content-between">
+                                    <a style="width: 50px;" href="https://www.facebook.com/vo.minh.nhut.947669" class="btn btn-warning btn-sm-square me-3 rounded-circle text-dark fs-4"><i class="fab fa-facebook-f"></i></a>
+                                    <a style="width: 50px;" href="https://www.youtube.com/%40IWantGameOfficial" class="btn btn-warning btn-sm-square rounded-circle text-dark fs-4"><i class="fab fa-youtube"></i></a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

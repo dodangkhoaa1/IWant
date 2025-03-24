@@ -1929,10 +1929,10 @@ h6 {
     # Footer
     --------------------------------------------------------------*/
 .footer {
-    background: #fff;
     padding: 20px 0;
     font-size: 14px;
     border-top: 1px solid #6c757d;
+    background: url("/images/footerbanner.svg");
 }
 
     .footer h4 {
