@@ -30,15 +30,15 @@ public class GreetingUser : MonoBehaviour
     // Allow to greet the user with a localized string
     public void GreetUser()
     {
-        if (DBManager.User == null || string.IsNullOrEmpty(DBManager.User.FullName))
+        if (DBManager.User == null || string.IsNullOrEmpty(DBManager.GetDisplayName(DBManager.User)))
         {
             Debug.Log("User or User's FullName is null or empty.");
             SceneManager.LoadScene(SceneName.SignInScene.ToString());
             return;
         }
 
-        string fullName = DBManager.User.FullName;
-        string[] wordInName = fullName.Trim().Split(' ');
+        string displayName = DBManager.GetDisplayName(DBManager.User);
+        string[] wordInName = displayName.Trim().Split(' ');
         string lastName = wordInName[wordInName.Length - 1];
         localGreeting.Arguments = new object[] { lastName };
         localGreeting.StringChanged += UpdateText;
