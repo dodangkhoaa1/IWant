@@ -14,6 +14,9 @@ namespace IWant.Web.Models.DTO
         public int WordCategoryId { get; set; }
 
         public WordCategory? WordCategory { get; set; }
+        public string UserId { get; set; }
+
+        public User? User { get; set; }
         public byte[]? Image { get; set; }
     }
 }

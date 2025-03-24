@@ -27,5 +27,10 @@ namespace IWant.BusinessObject.Enitities
 
         [ForeignKey(nameof(WordCategoryId))]
         public WordCategory? WordCategory { get; set; }
+        [Required(ErrorMessage = "UserId is required.")]
+        public string UserId { get; set; }
+
+        [ForeignKey(nameof(UserId))]
+        public User? User { get; set; }
     }
 }

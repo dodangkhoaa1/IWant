@@ -7,7 +7,6 @@ public static class AddressAPI
 
     public static readonly string USER_URL = BASE_URL + "/api/users";
     public static readonly string WORD_URL = BASE_URL + "/api/words";
-    public static readonly string PERSONAL_WORD_URL = BASE_URL + "/api/PersonalWords";
     public static readonly string WORD_CATEGORY_URL = BASE_URL + "/api/wordCategories";
 
     public static readonly string TEXT_TO_SPEECH_URL = "https://api.edenai.run/v2/audio/text_to_speech";

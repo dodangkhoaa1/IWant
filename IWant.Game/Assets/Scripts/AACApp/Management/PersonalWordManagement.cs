@@ -1,4 +1,5 @@
 ﻿using EasyUI.Toast;
+using LootLocker.Extension.DataTypes;
 using Newtonsoft.Json;
 using System.Collections;
 using System.Collections.Generic;
@@ -26,7 +27,7 @@ public class PersonalWordManagement : MonoBehaviour
     [Header("Loading Management")]
     public LoadingManagement loadingManagement;
 
-    private List<WordDTO> personalWords;
+    private List<WordDTO> words;
 
     private void Start()
     {
@@ -45,16 +46,16 @@ public class PersonalWordManagement : MonoBehaviour
 
     private IEnumerator LoadPersonalWordsFromAPI()
     {
-        UnityWebRequest request = new UnityWebRequest(AddressAPI.PERSONAL_WORD_URL + "?userId=" + DBManager.User.UserId, "GET");
+        UnityWebRequest request = new UnityWebRequest($"{AddressAPI.WORD_URL}/user/{DBManager.User.UserId}", "GET");
         request.downloadHandler = new DownloadHandlerBuffer();
         yield return request.SendWebRequest();
 
         if (request.result == UnityWebRequest.Result.Success)
         {
             string responseText = request.downloadHandler.text;
-            personalWords = JsonConvert.DeserializeObject<List<WordDTO>>(responseText);
+            words = JsonConvert.DeserializeObject<List<WordDTO>>(responseText);
 
-            if (personalWords.Count == 0)
+            if (words.Count == 0)
             {
                 string toastStr = PrefsKey.LANGUAGE == PrefsKey.ENGLISH_CODE ? "List Is Empty!" : "Danh Sách Trống!";
                 Toast.Show(toastStr, ToastColor.Yellow, ToastPosition.BottomCenter);
@@ -69,7 +70,7 @@ public class PersonalWordManagement : MonoBehaviour
 
     private void SpawnPersonalWords()
     {
-        if (personalWords == null)
+        if (words == null)
         {
             Debug.LogError("personalWords is null. Ensure LoadPersonalWordsFromAPI is called and completed successfully.");
             return;
@@ -80,7 +81,7 @@ public class PersonalWordManagement : MonoBehaviour
             Destroy(child.gameObject);
         }
 
-        foreach (var word in personalWords)
+        foreach (var word in words)
         {
             Button newTTSBtn = Instantiate(wordButtonPrefab, wordContainer.transform, false);
             newTTSBtn.GetComponentInChildren<TextMeshProUGUI>().text = PrefsKey.LANGUAGE == PrefsKey.VIETNAM_CODE ? word.VietnameseText : word.EnglishText;
@@ -113,7 +114,7 @@ public class PersonalWordManagement : MonoBehaviour
     private IEnumerator DeleteWord(int wordId, GameObject wordButton)
     {
         loadingManagement.EnableLoadingPanel();
-        UnityWebRequest request = UnityWebRequest.Delete(AddressAPI.PERSONAL_WORD_URL + "/" + wordId);
+        UnityWebRequest request = UnityWebRequest.Delete(AddressAPI.WORD_URL + "/" + wordId);
         yield return request.SendWebRequest();
 
         if (request.result == UnityWebRequest.Result.Success)
@@ -132,6 +133,7 @@ public class PersonalWordManagement : MonoBehaviour
 
     private void OnChoosePhotoFromLibraryBtnClicked()
     {
+        PickImageFromGallery();
         if (Application.platform == RuntimePlatform.Android)
         {
             if (!Permission.HasUserAuthorizedPermission(Permission.ExternalStorageRead))
@@ -186,17 +188,17 @@ public class PersonalWordManagement : MonoBehaviour
 
     }
 
-    //private void PickImageFromFileExplorer()
-    //{
-    //    string path = UnityEditor.EditorUtility.OpenFilePanel("Select an image", "", "png,jpg,jpeg");
-    //    if (!string.IsNullOrEmpty(path))
-    //    {
-    //        byte[] fileData = System.IO.File.ReadAllBytes(path);
-    //        Texture2D texture = new Texture2D(2, 2);
-    //        texture.LoadImage(fileData);
-    //        displaySelectedImage.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
-    //    }
-    //}
+    private void PickImageFromFileExplorer()
+    {
+        string path = UnityEditor.EditorUtility.OpenFilePanel("Select an image", "", "png,jpg,jpeg");
+        if (!string.IsNullOrEmpty(path))
+        {
+            byte[] fileData = System.IO.File.ReadAllBytes(path);
+            Texture2D texture = new Texture2D(2, 2);
+            texture.LoadImage(fileData);
+            displaySelectedImage.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+        }
+    }
 
     private void OnCreatePersonalBtnClicked()
     {
@@ -215,16 +217,17 @@ public class PersonalWordManagement : MonoBehaviour
         loadingManagement.EnableLoadingPanel();
         Texture2D texture = displaySelectedImage.sprite.texture;
 
-        PersonalWordDTO newWord = new PersonalWordDTO
+        WordDTO newWord = new WordDTO
         {
             EnglishText = englishText.text,
             VietnameseText = vietnameseText.text,
             UserId = DBManager.User.UserId,
+            WordCategoryId = 1,
             Image = texture.EncodeToPNG()
         };
 
         string jsonData = JsonConvert.SerializeObject(newWord);
-        UnityWebRequest request = new UnityWebRequest(AddressAPI.PERSONAL_WORD_URL, "POST");
+        UnityWebRequest request = new UnityWebRequest(AddressAPI.WORD_URL, "POST");
         byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(jsonData);
         request.uploadHandler = new UploadHandlerRaw(bodyRaw);
         request.downloadHandler = new DownloadHandlerBuffer();

@@ -36,6 +36,7 @@ namespace IWant.Web.Service
                 Status = word.Status,
                 WordCategoryId = word.WordCategoryId,
                 WordCategory = word.WordCategory,
+                UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974"
             };
             // Kiểm tra nếu có file ảnh
             if (word.ImageFile != null)
@@ -77,7 +78,7 @@ namespace IWant.Web.Service
         // Allow to get all words
         public async Task<List<Word>> GetWordsAsync()
         {
-            var response = await _httpClient.GetAsync(ApiBaseUrl);
+            var response = await _httpClient.GetAsync($"{ApiBaseUrl}/user/0bcbb4f7-72f9-435f-9cb3-1621b4503974");
             response.EnsureSuccessStatusCode();
 
             var result = await response.Content.ReadAsStringAsync();
@@ -90,6 +91,7 @@ namespace IWant.Web.Service
             WordDTO wordDTO = new()
             {
                 Id = word.Id,
+                UserId = word.UserId,
                 VietnameseText = word.VietnameseText,
                 EnglishText = word.EnglishText,
                 CreatedAt = word.CreatedAt,

@@ -239,7 +239,6 @@
     <Compile Include="Assets\Scripts\Managers\Score Manager.cs" />
     <Compile Include="Assets\LevelGenerator\Scripts\GenerateMethods\GraphRandom.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\TestingZLegacyExt.cs" />
-    <Compile Include="Assets\Scripts\AACApp\DTOs\PersonalWordDTO.cs" />
     <Compile Include="Assets\Project\Scripts\LevelButton.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SkewTextExample.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
@@ -288,7 +287,6 @@
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
-    <None Include="Assets\AddressableAssetsData\link.xml" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />

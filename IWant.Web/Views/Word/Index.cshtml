@@ -188,6 +188,7 @@
                     </td>
                     <td>
                         <img src="@("https://iwantapiservice.azurewebsites.net/" + item.ImagePath)" alt="@item.EnglishText" class="img-thumbnail" style="width: 110px;" />
+                        @* <img src="@("http://localhost:5000/" + item.ImagePath)" alt="@item.EnglishText" class="img-thumbnail" style="width: 110px;" /> *@
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.EnglishText)

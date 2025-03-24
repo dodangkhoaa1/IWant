@@ -52,6 +52,9 @@
         <div class="card-body p-4 pb-3">
             <form asp-action="Edit" enctype="multipart/form-data">
                 <div class="row">
+
+                    <input asp-for="UserId" type="hidden"/>
+
                     <div class="col-md-4 mb-3">
                         <div id="uploadBox" class="upload-box">
                             <img id="imgPreview" src="@Model.ImagePath" alt="Image Preview" style="max-height: 100%; max-width: 100%;" />
