@@ -109,6 +109,28 @@
                 background-color: #FEDA15;
                 color: #fff;
             }
+
+        .footer-item .game a:hover {
+            color: #ff9800 !important;
+            font-weight:bold
+        }
+
+        .footer-item .social .facebook:hover {
+            background-color: #3F51B5;
+        }
+
+        .footer-item .social .facebook:hover i{
+            color: white;
+        }
+        
+        .footer-item .social .youtube:hover {
+            background-color: #FF3D00;
+            color: white;
+        }
+
+        .footer-item .social .youtube:hover i{
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -156,50 +178,55 @@
             </nav>
         </header>
         <div style="margin-top:70px" class="body">
-            <main role="main" class="pb-3">
+            <main role="main" class="">
                 @RenderBody()
             </main>
         </div>
     </div>
     <partial name="_Notification" />
     <footer id="footer">
-        <div style="background: url(/images/footerbanner.svg) no-repeat center bottom; background-size: cover;" class="container-fluid footer py-5 wow fadeIn text-dark" data-wow-delay="0.1s">
+        <div style="background: url(/images/footerbanner.svg) no-repeat center bottom; background-size: cover;" class="container-fluid footer py-1 wow fadeIn text-dark" data-wow-delay="0.1s">
             <div class="container py-5">
                 <div class="row g-5 justify-content-between">
                     <div class="col-md-6 col-lg-4 col-xl-4">
                         <div class="footer-item">
-                            <h2 class="mb-5"><img style="width:12vw" src="/images/iWantLogo.png" alt="Alternate Text" /></h2>
-                            <p style="text-align:justify" class="mb-5 fs-5">I Want - Alternative communication application for autistic children, combining educational games to help express emotions and develop thinking. </p>
-                            <div class="position-relative mx-auto rounded text-dark mb-5" style="max-width: 400px">
-                                <img style="width:60%" src="/images/fpt-logo.png" alt="Fpt Logo" />
+                            <h2 class="">
+                                <a asp-action="Index" asp-controller="Home">
+                                    <img style="width:12vw" src="/images/iWantLogo.png" alt="Alternate Text" />
+                                </a>
+                            </h2>
+                            <p style="text-align:justify" class="mb-4 fs-6">I Want - Alternative communication application for autistic children, combining educational games to help express emotions and develop thinking. </p>
+                            <div class="position-relative mx-auto rounded text-dark mb-2" style="max-width: 400px">
+                                <a href="https://daihoc.fpt.edu.vn/truong-thanh-vien/truong-dai-hoc-fpt-can-tho/" target="_blank">
+                                    <img style="width:60%" src="/images/fpt-logo.png" alt="Fpt Logo" />
+                                </a>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-4 col-xl-3">
                         <div class="footer-item">
                             <h4 class="text-warning mb-4 border-bottom border-warning border-2 d-inline-block p-2 title-border-radius text-dark fs-4">GAME</h4>
-                            <div class="d-flex flex-column p-4 ps-5 text-dark border border-warning text-start"
+                            <div class="d-flex flex-column p-2 ps-2 text-dark border border-warning text-start game"
                                  style="border-radius: 50% 20% / 10% 40%">
-                                <a asp-action="GameDetails" asp-controller="Game" asp-fragment="AAC-section" class="fs-5 mb-4 text-black">AAC</a>
-                                <a asp-action="GameDetails" asp-controller="Game" asp-fragment="Fruit-section" class="fs-5 mb-4 text-black">Fruit Drop</a>
-                                <a asp-action="GameDetails" asp-controller="Game" asp-fragment="Dot-section" class="fs-5 mb-4 text-black">Dot Connection</a>
-                                <a asp-action="GameDetails" asp-controller="Game" asp-fragment="Emotion-section" class="fs-5 mb-4 text-black">Emotion Selection</a>
-                                <a asp-action="GameDetails" asp-controller="Game" asp-fragment="Color-section" class="fs-5 mb-4 text-black">Coloring</a>
-                                <a asp-action="GameDetails" asp-controller="Game" asp-fragment="Tower-section" class="fs-5 text-black">Tower Build</a>
+                                <a asp-action="GameDetails" asp-controller="Game" asp-fragment="AAC-section" class="fs-6 mb-4 ms-4 text-black">AAC</a>
+                                <a asp-action="GameDetails" asp-controller="Game" asp-fragment="Fruit-section" class="fs-6 mb-4 ms-4 text-black">Fruit Drop</a>
+                                <a asp-action="GameDetails" asp-controller="Game" asp-fragment="Dot-section" class="fs-6 mb-4 ms-4 text-black">Dot Connection</a>
+                                <a asp-action="GameDetails" asp-controller="Game" asp-fragment="Emotion-section" class="fs-6 mb-4 ms-4 text-black">Emotion Selection</a>
+                                <a asp-action="GameDetails" asp-controller="Game" asp-fragment="Color-section" class="fs-6 mb-4 ms-4 text-black">Coloring</a>
+                                <a asp-action="GameDetails" asp-controller="Game" asp-fragment="Tower-section" class="fs-6 ms-4 text-black">Tower Build</a>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-lg-4 col-xl-3">
+                    <div class="col-md-6 col-lg-4 col-xl-4">
                         <div class="footer-item">
                             <h4 class="text-warning mb-4 border-bottom border-warning border-2 d-inline-block p-2 title-border-radius text-dark fs-4">LOCATION</h4>
-                            <div class="d-flex flex-column align-items-start">
-                                <p href="" class="text-start rounded-0 text-dark mb-4 fs-5"><i class="fa fa-map-marker-alt text-warning me-2"></i> 104 North tower New York, USA</p>
-                                <p href="" class="text-start rounded-0 text-dark mb-4 fs-5"><i class="fa fa-phone-alt text-warning me-2"></i> (+012) 3456 7890 123</p>
-                                <p href="" class="text-start rounded-0 text-dark mb-4 fs-5"><i class="fas fa-envelope text-warning me-2"></i> exampleemail@gmail.com</p>
-                                <p href="" class="text-start rounded-0 text-dark mb-4 fs-5"><i class="fa fa-clock text-warning me-2"></i> 26/7 Hours Service</p>
-                                <div class="footer-icon d-flex justify-content-between">
-                                    <a style="width: 50px;" href="https://www.facebook.com/vo.minh.nhut.947669" class="btn btn-warning btn-sm-square me-3 rounded-circle text-dark fs-4"><i class="fab fa-facebook-f"></i></a>
-                                    <a style="width: 50px;" href="https://www.youtube.com/%40IWantGameOfficial" class="btn btn-warning btn-sm-square rounded-circle text-dark fs-4"><i class="fab fa-youtube"></i></a>
+                            <div class="d-flex flex-column align-items-start flex-column justify-content-between">
+                                <p href="" class="text-start rounded-0 text-dark mb-4 fs-6"><i class="fa fa-map-marker-alt text-warning me-2"></i>Ninh Kieu district, Can Tho city, Viet Nam</p>
+                                <p href="" class="text-start rounded-0 text-dark mb-4 fs-6"><i class="fa fa-phone-alt text-warning me-2"></i> (+84) 888 408 052</p>
+                                <p href="" class="text-start rounded-0 text-dark mb-4 fs-6"><i class="fas fa-envelope text-warning me-2"></i>iwantofficial@gmail.com</p>
+                                <div class="footer-icon d-flex justify-content-between social">
+                                    <a style="width: 50px;" href="https://www.facebook.com/vo.minh.nhut.947669" class="btn btn-warning btn-sm-square me-3 rounded-circle text-dark fs-4 facebook"><i class="fab fa-facebook-f"></i></a>
+                                    <a style="width: 50px;" href="https://www.youtube.com/%40IWantGameOfficial" class="btn btn-warning btn-sm-square rounded-circle text-dark fs-4 youtube"><i class="fab fa-youtube"></i></a>
                                 </div>
                             </div>
                         </div>

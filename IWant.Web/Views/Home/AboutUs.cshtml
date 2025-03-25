@@ -28,65 +28,118 @@
         z-index: -1;
     }
 
+    .team-title {
+        font-size: 3rem;
+        font-weight: bold;
+        margin-bottom: 40px;
+        color: #333;
+        position: relative;
+        text-transform: none !important
+    }
+
+        .team-title::after {
+            content: '';
+            display: block;
+            width: 200px;
+            height: 4px;
+            background-color: #555;
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
     .card-person {
         background-color: #fff;
-        border: 2px solid #fff;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        margin: 20px auto 0;
+        border-radius: 20px;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+        margin: 10px auto 0;
         display: flex;
         align-items: center;
-        gap: 30px;
-        height: 300px;
-        padding: 15px;
+        gap: 15px;
+        height: 250px;
+        padding: 10px;
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+        cursor: pointer;
     }
+
+        .card-person:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 16px 40px rgba(0,0,0,0.15);
+        }
 
     .card-img-container {
         flex: 0 0 auto;
         height: 100%;
+        overflow: hidden;
+        border-radius: 15px;
+        width: 180px;
     }
 
         .card-img-container img {
             height: 100%;
-            width: auto;
-            border-radius: 5px;
+            width: 100%;
+            object-fit:cover;
+            border-radius: 15px;
+            transition: transform 0.5s ease;
         }
+
+    .card-person:hover .card-img-container img {
+        transform: scale(1.15);
+    }
 
     .profile-info {
         flex: 1;
     }
 
         .profile-info h4 {
-            margin: 0 0 10px;
-            font-size: 1.25rem;
+            margin: 0 10px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2c3e50;
+            transition: color 0.3s;
         }
 
-        .profile-info p {
-            margin: 0;
-            font-size: 1rem;
+    .card-person h4::after {
+        content: '';
+        display: block;
+        width: 100px;
+        height: 4px;
+        margin-top: 10px;
+        background-color: currentColor;
+        transition: width 0.3s, background-color 0.3s;
+    }
+
+    .card-person.hovered h4 {
+        transition: color 0.3s;
+    }
+
+        .card-person.hovered h4::after {
+            width: 160px;
         }
 
-    .team-title {
-        font-size: 2rem;
-        font-weight: bold;
-        margin-bottom: 20px;
+    .member-description p {
+        margin: 10px;
+        font-size: 1rem;
+        color: #555;
+        line-height: 1.5;
+        text-align: justify;
     }
 
 </style>
+
+
 <div class="aboutus-container">
     <div class="confetti-container"></div>
-    <div class="container py-5">
-        <p class="team-title text-center">My Team</p>
+    <div class="container pb-5">
+        <p class="team-title text-center">We Do It Together!</p>
         <div class="row g-4 justify-content-center">
-            <div class="col-md-6 p-3">
+            <div class="col-md-6">
                 <div class="card-person">
                     <div class="card-img-container">
-                        <img src="/images/aboutus/default_team.jpg" alt="Ảnh 1" class="profile-img">
+                        <img src="/images/aboutus/LTQ.jpg" alt="Ảnh 1" class="profile-img">
                     </div>
-                    <div class="profile-info d-flex flex-column h-100 text-center">
+                    <div class="profile-info d-flex flex-column h-100 flex-column justify-content-between">
                         <div class="member-name">
                             <h4>Lữ Thanh Quy (Mentor)</h4>
-                            <hr />
                         </div>
                         <div style="text-align:justify" class="member-description">
                             <p>Mô tả ngắn gọn về nhân vật này.</p>
@@ -95,94 +148,94 @@
                 </div>
             </div>
 
-            <div class="col-md-6 p-3">
-                <div class="card-person">
-                    <div class="card-img-container">
-                        <img src="/images/aboutus/VMN.jpg" alt="Ảnh 2" class="profile-img">
-                    </div>
-                    <div class="profile-info d-flex flex-column h-100 text-center">
-                        <div class="member-name">
-                            <h4>Võ Minh Nhựt (Leader)</h4>
-                            <hr />
-                        </div>
-                        <div  style="text-align:justify" class="member-description">
-                            <p>Mô tả ngắn gọn về nhân vật này.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6 p-3">
-                <div class="card-person">
-                    <div class="card-img-container">
-                        <img src="/images/aboutus/NTTT.jpg" alt="Ảnh 3" class="profile-img">
-                    </div>
-                    <div class="profile-info d-flex flex-column h-100 text-center">
-                        <div class="member-name">
-                            <h4>Nguyễn Trần Trung Thành</h4>
-                            <hr />
-                        </div>
-                        <div  style="text-align:justify" class="member-description">
-                            <p>Mô tả ngắn gọn về nhân vật này.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6 p-3">
+            <div class="col-md-6">
                 <div class="card-person">
                     <div class="card-img-container">
                         <img src="/images/aboutus/DDK.jpg" alt="Ảnh 4" class="profile-img">
                     </div>
-                    <div class="profile-info d-flex flex-column h-100 text-center">
+                    <div class="profile-info d-flex flex-column h-100 flex-column justify-content-between">
                         <div class="member-name">
                             <h4>Đỗ Đăng Khoa</h4>
-                            <hr />
                         </div>
-                        <div  style="text-align:justify" class="member-description">
-                            <p>Mô tả ngắn gọn về nhân vật này.</p>
+                        <div style="text-align:justify" class="member-description">
+                            <p>This project... it started as just a subject, but it quickly became something more. I found joy, frustration, excitement — all of it. I hope it brings happiness to the kids who use it.</p>
                         </div>
+                        <div></div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-6 p-3">
-                <div class="card-person">
-                    <div class="card-img-container">
-                        <img src="/images/aboutus/HMN.jpg" alt="Ảnh 5" class="profile-img">
-                    </div>
-                    <div class="profile-info d-flex flex-column h-100 text-center">
-                        <div class="member-name">
-                            <h4>Hồ Minh Nhật</h4>
-                            <hr />
-                        </div>
-                        <div  style="text-align:justify" class="member-description">
-                            <p>Mô tả ngắn gọn về nhân vật này.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6 p-3">
+            <div class="col-md-6">
                 <div class="card-person">
                     <div class="card-img-container">
                         <img src="/images/aboutus/NHN.jpg" alt="Ảnh 6" class="profile-img">
                     </div>
-                    <div class="profile-info d-flex flex-column h-100 text-center">
+                    <div class="profile-info d-flex flex-column h-100 flex-column justify-content-between">
                         <div class="member-name">
                             <h4>Nguyễn Huỳnh Như</h4>
-                            <hr />
                         </div>
-                        <div  style="text-align:justify" class="member-description">
-                            <p>Mô tả ngắn gọn về nhân vật này.</p>
+                        <div style="text-align:justify" class="member-description">
+                            <p>I Want feels like a little piece of my heart. Every hour spent working on it made me realize how much I wanted to bring something good into the world.</p>
                         </div>
+                        <div></div>
                     </div>
                 </div>
             </div>
+            <div class="col-md-6">
+                <div class="card-person">
+                    <div class="card-img-container">
+                        <img src="/images/aboutus/VMN.jpg" alt="Ảnh 2" class="profile-img">
+                    </div>
+                    <div class="profile-info d-flex flex-column h-100 flex-column justify-content-between">
+                        <div class="member-name">
+                            <h4>Võ Minh Nhựt</h4>
+                        </div>
+                        <div style="text-align:justify" class="member-description">
+                            <p>I Want is something I put so much of myself into — my time, my energy, and my heart. I hope what we’ve built can help kids and their families in a real way.</p>
+                        </div>
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card-person">
+                    <div class="card-img-container">
+                        <img src="/images/aboutus/NTTT.jpg" alt="Ảnh 3" class="profile-img">
+                    </div>
+                    <div class="profile-info d-flex flex-column h-100 flex-column justify-content-between">
+                        <div class="member-name">
+                            <h4>Nguyễn Trần Trung Thành</h4>
+                        </div>
+                        <div style="text-align:justify" class="member-description">
+                            <p>I Want taught me patience, teamwork, and how rewarding it feels to build something that matters. It wasn’t perfect, and neither were we, but we gave it our best.</p>
+                        </div>
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card-person">
+                    <div class="card-img-container">
+                        <img src="/images/aboutus/HMN.jpg" alt="Ảnh 5" class="profile-img">
+                    </div>
+                    <div class="profile-info d-flex flex-column h-100 flex-column justify-content-between">
+                        <div class="member-name">
+                            <h4>Hồ Minh Nhật</h4>
+                        </div>
+                        <div style="text-align:justify" class="member-description">
+                            <p>I Want became more than just a project — it became a part of me. I’m proud of what we’ve created with my team.</p>
+                        </div>
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
     </div>
 </div>
-
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         const confettiContainer = document.querySelector('.confetti-container');
@@ -211,5 +264,37 @@
         }
 
         setInterval(createConfetti, 200);
+    });
+</script>
+<script>
+    const colors = [
+        '#FFD700', '#FF4500', '#1E90FF', '#32CD32', '#FF69B4', '#8A2BE2',
+        '#FF6347', '#00FA9A', '#9400D3', '#FF7F50', '#00CED1', '#FFB6C1',
+        '#4B0082', '#ADFF2F'
+    ];
+
+    function shuffle(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
+
+    const shuffledColors = shuffle(colors.slice());
+
+    document.querySelectorAll('.card-person').forEach((card, index) => {
+        const color = shuffledColors[index % shuffledColors.length];
+        const h4 = card.querySelector('h4');
+
+        card.addEventListener('mouseenter', () => {
+            h4.style.color = color;
+            card.classList.add('hovered');
+        });
+
+        card.addEventListener('mouseleave', () => {
+            h4.style.color = '#2c3e50';
+            card.classList.remove('hovered');
+        });
     });
 </script>
