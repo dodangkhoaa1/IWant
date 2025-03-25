@@ -1,5 +1,4 @@
 ﻿using EasyUI.Toast;
-using LootLocker.Extension.DataTypes;
 using Newtonsoft.Json;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,7 +6,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Android;
 using UnityEngine.Networking;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PersonalWordManagement : MonoBehaviour
@@ -133,7 +131,7 @@ public class PersonalWordManagement : MonoBehaviour
 
     private void OnChoosePhotoFromLibraryBtnClicked()
     {
-        PickImageFromGallery();
+        //PickImageFromGallery();
         if (Application.platform == RuntimePlatform.Android)
         {
             if (!Permission.HasUserAuthorizedPermission(Permission.ExternalStorageRead))
@@ -188,17 +186,17 @@ public class PersonalWordManagement : MonoBehaviour
 
     }
 
-    private void PickImageFromFileExplorer()
-    {
-        string path = UnityEditor.EditorUtility.OpenFilePanel("Select an image", "", "png,jpg,jpeg");
-        if (!string.IsNullOrEmpty(path))
-        {
-            byte[] fileData = System.IO.File.ReadAllBytes(path);
-            Texture2D texture = new Texture2D(2, 2);
-            texture.LoadImage(fileData);
-            displaySelectedImage.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
-        }
-    }
+    //private void PickImageFromFileExplorer()
+    //{
+    //    string path = UnityEditor.EditorUtility.OpenFilePanel("Select an image", "", "png,jpg,jpeg");
+    //    if (!string.IsNullOrEmpty(path))
+    //    {
+    //        byte[] fileData = System.IO.File.ReadAllBytes(path);
+    //        Texture2D texture = new Texture2D(2, 2);
+    //        texture.LoadImage(fileData);
+    //        displaySelectedImage.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+    //    }
+    //}
 
     private void OnCreatePersonalBtnClicked()
     {
