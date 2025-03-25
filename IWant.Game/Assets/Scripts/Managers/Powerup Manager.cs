@@ -37,8 +37,8 @@ public class PowerupManager : MonoBehaviour
 
         for (int i = 0; i < smallFruits.Length; i++)
             smallFruits[i].Merge();
-
-        CoinManager.instance.AddCoins(-blastPrice);
+        if (CoinManager.instance.CanPurchase(blastPrice))
+            CoinManager.instance.AddCoins(-blastPrice);
     }
 
     private void ManageBlastButtonInteractability()
