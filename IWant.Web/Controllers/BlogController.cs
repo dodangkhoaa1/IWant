@@ -286,6 +286,34 @@ namespace IWant.Web.Controllers
             return RedirectToAction("Index", "Blog", new { filterType = "all" });
         }
 
+        // Allow to delete a blog
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> UpdateBlogStatus(int id)
+        {
+            var blog = await _context.Blogs.FindAsync(id);
+            if (blog == null)
+            {
+                return NotFound();
+            }
+
+            if (blog.Status == true)
+            {
+                blog.Status = false;
+            }
+            else
+            {
+                blog.Status = true;
+            }
+
+            _context.Blogs.Update(blog);
+            await _context.SaveChangesAsync();
+
+            TempData["success"] = blog.Status == true ? "Show Blog successfull!" : "Hide Blog Successfull!";
+
+            return RedirectToAction("Index", "Blog", new { filterType = "all" });
+        }
+
         // Allow to accept a blog
         [HttpPost]
         public async Task<IActionResult> AcceptBlog(int id)

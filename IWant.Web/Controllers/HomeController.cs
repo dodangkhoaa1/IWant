@@ -40,6 +40,7 @@ namespace IWant.Web.Controllers
                     Content = x.Content,
                     ImageUrl = x.ImageUrl,
                     CreatedAt = x.CreatedAt,
+                    ViewCount = x.ViewCount,
                     User = x.User
                 }).ToList()
             };

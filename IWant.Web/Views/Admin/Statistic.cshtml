@@ -300,7 +300,7 @@
             <div class="col-md-3">
                 <div class="card-custom d-flex justify-content-between align-items-center">
                     <div>
-                        <div class="card-title">Comment</div>
+                        <div class="card-title">Feedback</div>
                         <div class="card-value">@commentCount</div>
                     </div>
                     <div class="card-icon" style="background: linear-gradient(to bottom right, #B8E0FF, #1E5EFF );">
@@ -482,7 +482,7 @@
                                             <h6 class="mb-1 ">@user.FullName</h6>
                                             <div class="d-flex justify-content-between">
                                                 <h6 class="mb-0 text-warning">Blog: @user.Blogs.Count()</h6>
-                                                <h6 class="mb-0 text-success">Comment: @user.Feedbacks.Count()</h6>
+                                                <h6 class="mb-0 text-success">Feedback: @user.Feedbacks.Count()</h6>
                                                 <h6 class="mb-0 text-danger">Rate: @user.Rates.Count()</h6>
                                             </div>
                                         </div>
@@ -555,7 +555,7 @@
                         backgroundColor: 'rgba(54, 162, 235, 0.5)',
                         data: userCountByMonthData
                     }, {
-                        label: 'Comment',
+                        label: 'Feedback',
                         backgroundColor: 'rgba(75, 192, 192, 0.5)',
                         data: commentCountByMonthData
                     }]
@@ -600,7 +600,7 @@
                             fill: true
                         },
                         {
-                            label: 'Comment',
+                            label: 'Feedback',
                             borderColor: '#36a2eb',
                             backgroundColor: 'rgba(54, 162, 235, 0.2)',
                             data: commentLineChartData,

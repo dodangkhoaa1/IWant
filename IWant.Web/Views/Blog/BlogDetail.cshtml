@@ -422,7 +422,7 @@
                                             <p style="font-size:18px" class="mb-0 text-dark">@feedback.Content</p>
                                             @if (feedback.Status)
                                             {
-                                                <a asp-action="BanComment" asp-controller="Comment" asp-route-id="@feedback.Id"
+                                                <a asp-action="BanFeedback" asp-controller="Feedback" asp-route-id="@feedback.Id"
                                                    class="btn btn-danger btn-sm" style="font-size: 1.2rem;">Ban</a>
                                             }
                                         </div>
