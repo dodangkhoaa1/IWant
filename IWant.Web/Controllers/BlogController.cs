@@ -449,8 +449,15 @@ namespace IWant.Web.Controllers
                                                   .AsEnumerable()
                                                   .DefaultIfEmpty(0)
                                                   .Average();
+                List<FeedbackViewModel> commentViewModels = new List<FeedbackViewModel>();
 
-                var commentViewModels = _mapper.Map<List<Feedback>, List<FeedbackViewModel>>(blog.Feedbacks);
+                if (User.IsInRole("Member") || !User.Identity.IsAuthenticated)
+                {
+                    commentViewModels = _mapper.Map<List<Feedback>, List<FeedbackViewModel>>(blog.Feedbacks.Where(f => f.Status == true).ToList());
+                } else
+                {
+                    commentViewModels = _mapper.Map<List<Feedback>, List<FeedbackViewModel>>(blog.Feedbacks);
+                }
 
                 var relatedBlogs = await _context.Blogs.Include(b => b.User)
                                                        .Where(b => b.Id != id && b.Status == true)

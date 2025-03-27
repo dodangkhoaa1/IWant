@@ -11,10 +11,12 @@
         Layout = "~/Views/Shared/_Layout.cshtml";
     }
 }
+
 @if(User.IsInRole("Member")){
     <style>
         .body{
             background-color: #FEDA15;
+            padding: 40px 0;
         }
     </style>
 }
