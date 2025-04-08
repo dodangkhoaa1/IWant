@@ -12,7 +12,8 @@
             "name": "Animation",
             "scenes": [
               "Assets/Scenes/AACApp/AACScene.unity",
-              "Assets/Scenes/AACApp/PersonalWord.unity"
+              "Assets/Scenes/AACApp/PersonalWord.unity",
+              "Assets/Scenes/SignInScene.unity"
             ],
             "dependencyType": 0,
             "icon": null
@@ -29,7 +30,8 @@
               "Assets/Scenes/Coloring/PictureSelection.unity",
               "Assets/Scenes/DotGame/MainMenus.unity",
               "Assets/Scenes/EmotionGame/EmotionGame.unity",
-              "Assets/Scenes/FruitDropGame/FruitDrop.unity"
+              "Assets/Scenes/FruitDropGame/FruitDrop.unity",
+              "Assets/Scenes/SignInScene.unity"
             ],
             "dependencyType": 0,
             "icon": null
@@ -46,7 +48,8 @@
               "Assets/Scenes/Coloring/PictureSelection.unity",
               "Assets/Scenes/DotGame/MainMenus.unity",
               "Assets/Scenes/EmotionGame/EmotionGame.unity",
-              "Assets/Scenes/FruitDropGame/FruitDrop.unity"
+              "Assets/Scenes/FruitDropGame/FruitDrop.unity",
+              "Assets/Scenes/SignInScene.unity"
             ],
             "dependencyType": 0,
             "icon": null
@@ -63,7 +66,8 @@
               "Assets/Scenes/Coloring/PictureSelection.unity",
               "Assets/Scenes/DotGame/MainMenus.unity",
               "Assets/Scenes/EmotionGame/EmotionGame.unity",
-              "Assets/Scenes/FruitDropGame/FruitDrop.unity"
+              "Assets/Scenes/FruitDropGame/FruitDrop.unity",
+              "Assets/Scenes/SignInScene.unity"
             ],
             "dependencyType": 1,
             "icon": null
