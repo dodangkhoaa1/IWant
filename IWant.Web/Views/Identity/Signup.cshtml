@@ -72,7 +72,7 @@
                         <input type="email" asp-for="Email" placeholder="Email" class="custom-input" />
                         <span asp-validation-for="Email" class="text-danger"></span>
                         <label>Birthday mm/dd/yyyy</label>
-                        <input type="date" asp-for="Birthday" class="custom-input" min="1925-01-01" value="1925-01-01"/>
+                        <input type="date" asp-for="Birthday" class="custom-input" value="1925-01-01"/>
                         <span asp-validation-for="Birthday" class="text-danger"></span>
                         <div>
                             <label asp-for="Gender"></label>
@@ -95,7 +95,7 @@
                         <input type="text" asp-for="ChildName" placeholder="Child Name" class="custom-input" />
                         <input type="text" asp-for="ChildNickName" placeholder="Child Nickname" class="custom-input" />
                         <label>Child Birthday mm/dd/yyyy</label>
-                        <input type="date" asp-for="ChildBirthday" class="custom-input" />
+                        <input type="date" asp-for="ChildBirthday" class="custom-input" value="1925-01-01" />
                         <label>Child Gender</label>
                         <select asp-for="ChildGender" class="custom-input">
                             <option value="true">Male</option>

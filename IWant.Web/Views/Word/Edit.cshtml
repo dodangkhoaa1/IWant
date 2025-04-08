@@ -125,13 +125,13 @@
                 const fileExtension = fileName.split('.').pop();
 
                 if (!allowedExtensions.includes(fileExtension)) {
-                    errorSpan.text("Invalid file format! Only PNG, JPG, JPEG, GIF are allowed.").show();
+                    errorSpan.text("Invalid file format. Only PNG, JPG, JPEG, GIF are allowed.").show();
                     this.value = ''; // Xóa file input
                     return;
                 }
 
                 if (fileSize > maxSize) {
-                    errorSpan.text("File size must be less than 5MB!").show();
+                    errorSpan.text("File size must be less than 5MB.").show();
                     this.value = ''; // Xóa file input
                     return;
                 }

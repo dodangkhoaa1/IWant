@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IWant.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250324103233_IntialDb")]
-    partial class IntialDb
+    [Migration("20250402072536_InittialDB")]
+    partial class InittialDB
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -300,11 +300,17 @@ namespace IWant.DataAccess.Migrations
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("VideoUrl")
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Games");
 
@@ -314,6 +320,7 @@ namespace IWant.DataAccess.Migrations
                             Id = 1,
                             Description = "Dot Connection is a fun and addictive puzzle game where you connect dots of the same color to overcome challenges. With relaxing gameplay, a variety of levels, and an intuitive design, it offers a light yet engaging entertainment experience. Conquer the levels and secure your spot on the leaderboard!",
                             Name = "Dot Connection",
+                            UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VideoUrl = "https://www.youtube.com/watch?v=ynJ_nraLqU4"
                         },
                         new
@@ -321,6 +328,7 @@ namespace IWant.DataAccess.Migrations
                             Id = 2,
                             Description = "Coloring is an engaging and interactive game designed for children, offering a wide selection of drawings, vibrant colors, and user-friendly tools. Perfect for all ages, it provides a relaxing and educational experience that keeps young artists entertained for hours!",
                             Name = "Coloring",
+                            UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VideoUrl = "https://www.youtube.com/watch?v=ynJ_nraLqU4"
                         },
                         new
@@ -328,6 +336,7 @@ namespace IWant.DataAccess.Migrations
                             Id = 3,
                             Description = "AAC is an assistive communication app designed for individuals with speech challenges. Through picture cards and easy touch interactions, it enables users to express their thoughts and needs more effortlessly. AAC surely makes communication more intuitive and accessible for all!",
                             Name = "AAC",
+                            UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VideoUrl = "https://www.youtube.com/watch?v=ynJ_nraLqU4"
                         },
                         new
@@ -335,6 +344,7 @@ namespace IWant.DataAccess.Migrations
                             Id = 4,
                             Description = "Emotion Selection is a fun and interactive game that teaches children about human emotions through matching gameplay. With a visually appealing design, it challenges players to think fast and act quickly to earn high scores and climb the leaderboard! ",
                             Name = "Emotion Selection",
+                            UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VideoUrl = "https://www.youtube.com/watch?v=ynJ_nraLqU4"
                         },
                         new
@@ -342,6 +352,7 @@ namespace IWant.DataAccess.Migrations
                             Id = 5,
                             Description = "Fruit Drop is a fun and addictive puzzle game where players merge matching fruits to create bigger ones. With multiple difficulty levels, stunning graphics, and a competitive leaderboard, challenge yourself to score high and stay on top! ",
                             Name = "Fruit Drop",
+                            UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VideoUrl = "https://www.youtube.com/watch?v=ynJ_nraLqU4"
                         },
                         new
@@ -349,6 +360,7 @@ namespace IWant.DataAccess.Migrations
                             Id = 6,
                             Description = "Tower Building is a fun and challenging game where you stack blocks to build the tallest tower possible. With simple controls and physics-based mechanics, precision and timing are key to reaching new heights. Stay tuned—the game is launching soon!",
                             Name = "Tower Build",
+                            UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VideoUrl = "https://www.youtube.com/watch?v=ynJ_nraLqU4"
                         });
                 });
@@ -552,7 +564,7 @@ namespace IWant.DataAccess.Migrations
                             AccessFailedCount = 0,
                             Birthday = new DateOnly(2003, 11, 24),
                             ChildBirthday = new DateOnly(1, 1, 1),
-                            ConcurrencyStamp = "6700c857-a9e8-4b79-89cc-a04964be9e8d",
+                            ConcurrencyStamp = "20e3859c-bc62-4346-8033-6b24f840d2c3",
                             CreatedAt = new DateTime(1999, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "nhunhce170053@fpt.edu.vn",
                             EmailConfirmed = true,
@@ -566,7 +578,7 @@ namespace IWant.DataAccess.Migrations
                             PasswordHash = "AQAAAAIAAYagAAAAEGr/htC0131/1iKNmo0AiuzyeRytHJQHIlsbvYWIBvnsI+YxSX4LkDwooyxR+8P55g==",
                             PhoneNumber = "0888408052",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "68a25bf1-a27d-4e80-9640-d0701333b175",
+                            SecurityStamp = "1fd7bab0-e86f-48d9-babb-b22ea26b7e38",
                             Status = true,
                             TwoFactorEnabled = false,
                             UserName = "nhunhce170053@fpt.edu.vn"
@@ -577,7 +589,7 @@ namespace IWant.DataAccess.Migrations
                             AccessFailedCount = 0,
                             Birthday = new DateOnly(2003, 7, 16),
                             ChildBirthday = new DateOnly(1, 1, 1),
-                            ConcurrencyStamp = "4194eb1e-3bf1-4d48-97df-f4c3b3b79504",
+                            ConcurrencyStamp = "708640c5-3dc1-4910-8550-3955237ee51b",
                             Email = "khoaddce170883@fpt.edu.vn",
                             EmailConfirmed = true,
                             FullName = "Đỗ Đăng Khoa",
@@ -590,7 +602,7 @@ namespace IWant.DataAccess.Migrations
                             PasswordHash = "AQAAAAIAAYagAAAAEGr/htC0131/1iKNmo0AiuzyeRytHJQHIlsbvYWIBvnsI+YxSX4LkDwooyxR+8P55g==",
                             PhoneNumber = "0784419071",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "f6fcdf3a-e9d7-489a-b438-1ddd6981c4c5",
+                            SecurityStamp = "fb0ea4d3-a17d-4b64-9359-a025a5bf687a",
                             Status = true,
                             TwoFactorEnabled = false,
                             UserName = "khoaddce170883@fpt.edu.vn"
@@ -601,7 +613,7 @@ namespace IWant.DataAccess.Migrations
                             AccessFailedCount = 0,
                             Birthday = new DateOnly(2003, 7, 16),
                             ChildBirthday = new DateOnly(1, 1, 1),
-                            ConcurrencyStamp = "15341f46-ef6f-4a25-83fe-a812a7648e02",
+                            ConcurrencyStamp = "d8ecf13a-ea1e-4583-883d-e34d389b5e1f",
                             Email = "nhutvmce171686@fpt.edu.vn",
                             EmailConfirmed = true,
                             FullName = "Võ Minh Nhựt",
@@ -614,7 +626,7 @@ namespace IWant.DataAccess.Migrations
                             PasswordHash = "AQAAAAIAAYagAAAAEGr/htC0131/1iKNmo0AiuzyeRytHJQHIlsbvYWIBvnsI+YxSX4LkDwooyxR+8P55g==",
                             PhoneNumber = "0784419071",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "728f6d78-aa9e-4066-87bb-2c59a3c7626d",
+                            SecurityStamp = "654663f0-2859-4a3c-9b1d-8a9f44e50403",
                             Status = true,
                             TwoFactorEnabled = false,
                             UserName = "nhutvmce171686@fpt.edu.vn"
@@ -625,7 +637,7 @@ namespace IWant.DataAccess.Migrations
                             AccessFailedCount = 0,
                             Birthday = new DateOnly(2003, 7, 16),
                             ChildBirthday = new DateOnly(1, 1, 1),
-                            ConcurrencyStamp = "2d522511-c94d-453f-aaa9-33ce2fde9215",
+                            ConcurrencyStamp = "6c70716d-0be2-40ba-8cc0-d5c6bfb8869b",
                             Email = "thanhnttce170901@fpt.edu.vn",
                             EmailConfirmed = true,
                             FullName = "Nguyễn Trần Trung Thành",
@@ -638,7 +650,7 @@ namespace IWant.DataAccess.Migrations
                             PasswordHash = "AQAAAAIAAYagAAAAEGr/htC0131/1iKNmo0AiuzyeRytHJQHIlsbvYWIBvnsI+YxSX4LkDwooyxR+8P55g==",
                             PhoneNumber = "0784419071",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "b484d364-2ad7-4a8c-899d-259ef5281194",
+                            SecurityStamp = "7377688e-f3c9-4e74-8b4c-56bb1280a42d",
                             Status = true,
                             TwoFactorEnabled = false,
                             UserName = "thanhnttce170901@fpt.edu.vn"
@@ -649,7 +661,7 @@ namespace IWant.DataAccess.Migrations
                             AccessFailedCount = 0,
                             Birthday = new DateOnly(2003, 7, 16),
                             ChildBirthday = new DateOnly(1, 1, 1),
-                            ConcurrencyStamp = "50675754-27e0-451b-9c82-8db93e202a76",
+                            ConcurrencyStamp = "22556823-af3d-4349-932e-af662ac7e4ca",
                             Email = "test@gmail.com",
                             EmailConfirmed = true,
                             FullName = "Nguyễn Tester",
@@ -662,7 +674,7 @@ namespace IWant.DataAccess.Migrations
                             PasswordHash = "AQAAAAIAAYagAAAAEGr/htC0131/1iKNmo0AiuzyeRytHJQHIlsbvYWIBvnsI+YxSX4LkDwooyxR+8P55g==",
                             PhoneNumber = "0784419071",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "b7054ef1-e296-48b8-b353-aedd8f2e9dca",
+                            SecurityStamp = "acde63b0-0c5b-42fd-b9a4-fac85f09778b",
                             Status = true,
                             TwoFactorEnabled = false,
                             UserName = "test@gmail.com"
@@ -719,11 +731,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5051),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2716),
                             EnglishText = "Brush Hair",
                             ImagePath = "images/word/actions/Brush hair.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5051),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2717),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Chải Tóc",
                             WordCategoryId = 2
@@ -731,11 +743,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5053),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2720),
                             EnglishText = "Brush Teeth",
                             ImagePath = "images/word/actions/Brush teeth.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5054),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2720),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Đánh Răng",
                             WordCategoryId = 2
@@ -743,11 +755,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5056),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2723),
                             EnglishText = "Close",
                             ImagePath = "images/word/actions/Close.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5056),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2723),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Đóng",
                             WordCategoryId = 2
@@ -755,11 +767,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5058),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2725),
                             EnglishText = "Drink",
                             ImagePath = "images/word/actions/Drink.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5059),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2726),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Uống",
                             WordCategoryId = 2
@@ -767,11 +779,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 5,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5061),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2728),
                             EnglishText = "Eat",
                             ImagePath = "images/word/actions/Eat.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5061),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2728),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Ăn",
                             WordCategoryId = 2
@@ -779,11 +791,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 6,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5063),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2730),
                             EnglishText = "Look",
                             ImagePath = "images/word/actions/Look.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5063),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2731),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Nhìn",
                             WordCategoryId = 2
@@ -791,11 +803,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 7,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5065),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2733),
                             EnglishText = "Off",
                             ImagePath = "images/word/actions/Off.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5066),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2733),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Tắt",
                             WordCategoryId = 2
@@ -803,11 +815,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 8,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5068),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2735),
                             EnglishText = "On",
                             ImagePath = "images/word/actions/On.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5068),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2735),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Bật",
                             WordCategoryId = 2
@@ -815,11 +827,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 9,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5070),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2738),
                             EnglishText = "Open",
                             ImagePath = "images/word/actions/Open.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5071),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2738),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Mở",
                             WordCategoryId = 2
@@ -827,11 +839,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 10,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5072),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2740),
                             EnglishText = "Play",
                             ImagePath = "images/word/actions/Play.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5073),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2740),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Chơi",
                             WordCategoryId = 2
@@ -839,11 +851,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 11,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5075),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2753),
                             EnglishText = "Put On",
                             ImagePath = "images/word/actions/Put on.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5075),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2754),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Mặc Vào",
                             WordCategoryId = 2
@@ -851,11 +863,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 12,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5077),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2756),
                             EnglishText = "Run",
                             ImagePath = "images/word/actions/Run.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5077),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2757),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Chạy",
                             WordCategoryId = 2
@@ -863,11 +875,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 13,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5079),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2759),
                             EnglishText = "Sit",
                             ImagePath = "images/word/actions/Sit.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5080),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2759),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Ngồi",
                             WordCategoryId = 2
@@ -875,11 +887,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 14,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5081),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2761),
                             EnglishText = "Sleep",
                             ImagePath = "images/word/actions/Sleep.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5082),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2762),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Ngủ",
                             WordCategoryId = 2
@@ -887,11 +899,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 15,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5084),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2764),
                             EnglishText = "Stand",
                             ImagePath = "images/word/actions/Stand.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5084),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2764),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Đứng",
                             WordCategoryId = 2
@@ -899,11 +911,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 16,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5086),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2767),
                             EnglishText = "Swim",
                             ImagePath = "images/word/actions/Swim.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5086),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2768),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Bơi",
                             WordCategoryId = 2
@@ -911,11 +923,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 17,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5095),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2770),
                             EnglishText = "Take Off",
                             ImagePath = "images/word/actions/Take off.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5096),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2770),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Cởi Ra",
                             WordCategoryId = 2
@@ -923,11 +935,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 18,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5098),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2772),
                             EnglishText = "Talk",
                             ImagePath = "images/word/actions/Talk.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5098),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2773),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Nói Chuyện",
                             WordCategoryId = 2
@@ -935,11 +947,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 19,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5100),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2775),
                             EnglishText = "Wake Up",
                             ImagePath = "images/word/actions/Wake up.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5100),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2775),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Thức Dậy",
                             WordCategoryId = 2
@@ -947,11 +959,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 20,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5102),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2777),
                             EnglishText = "Go",
                             ImagePath = "images/word/actions/Go.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5103),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2777),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Đi",
                             WordCategoryId = 2
@@ -959,11 +971,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 21,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5104),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2779),
                             EnglishText = "Wash",
                             ImagePath = "images/word/actions/Wash.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5105),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2780),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Rửa Tay",
                             WordCategoryId = 2
@@ -971,11 +983,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 22,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5137),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2807),
                             EnglishText = "Bee",
                             ImagePath = "images/word/animals/Bee.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5137),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2808),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Ong",
                             WordCategoryId = 3
@@ -983,11 +995,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 23,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5139),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2810),
                             EnglishText = "Bird",
                             ImagePath = "images/word/animals/Bird.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5139),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2810),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Chim",
                             WordCategoryId = 3
@@ -995,11 +1007,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 24,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5141),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2812),
                             EnglishText = "Butterfly",
                             ImagePath = "images/word/animals/Butterfly.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5142),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2812),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Bướm",
                             WordCategoryId = 3
@@ -1007,11 +1019,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 25,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5143),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2814),
                             EnglishText = "Cat",
                             ImagePath = "images/word/animals/Cat.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5144),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2815),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Mèo",
                             WordCategoryId = 3
@@ -1019,11 +1031,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 26,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5146),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2817),
                             EnglishText = "Chicken",
                             ImagePath = "images/word/animals/Chicken.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5146),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2818),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Gà",
                             WordCategoryId = 3
@@ -1031,11 +1043,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 27,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5148),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2820),
                             EnglishText = "Cow",
                             ImagePath = "images/word/animals/Cow.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5149),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2821),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Bò",
                             WordCategoryId = 3
@@ -1043,11 +1055,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 28,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5150),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2827),
                             EnglishText = "Dog",
                             ImagePath = "images/word/animals/Dog.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5151),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2827),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Chó",
                             WordCategoryId = 3
@@ -1055,11 +1067,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 29,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5153),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2829),
                             EnglishText = "Duck",
                             ImagePath = "images/word/animals/Duck.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5153),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2830),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Vịt",
                             WordCategoryId = 3
@@ -1067,11 +1079,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 30,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5155),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2832),
                             EnglishText = "Fish",
                             ImagePath = "images/word/animals/Fish.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5155),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2832),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Cá",
                             WordCategoryId = 3
@@ -1079,11 +1091,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 31,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5157),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2834),
                             EnglishText = "Horse",
                             ImagePath = "images/word/animals/Horse.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5158),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2835),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Ngựa",
                             WordCategoryId = 3
@@ -1091,11 +1103,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 32,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5159),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2836),
                             EnglishText = "Mouse",
                             ImagePath = "images/word/animals/Mouse.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5160),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2837),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Chuột",
                             WordCategoryId = 3
@@ -1103,11 +1115,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 33,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5162),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2839),
                             EnglishText = "Pig",
                             ImagePath = "images/word/animals/Pig.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5162),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2839),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Heo",
                             WordCategoryId = 3
@@ -1115,11 +1127,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 34,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5188),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2863),
                             EnglishText = "Arm",
                             ImagePath = "images/word/bodyParts/Arm.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5188),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2863),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Cánh tay",
                             WordCategoryId = 4
@@ -1127,11 +1139,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 35,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5190),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2865),
                             EnglishText = "Back",
                             ImagePath = "images/word/bodyParts/Back.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5191),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2866),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Lưng",
                             WordCategoryId = 4
@@ -1139,11 +1151,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 36,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5193),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2868),
                             EnglishText = "Belly",
                             ImagePath = "images/word/bodyParts/Belly.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5194),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2868),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Bụng",
                             WordCategoryId = 4
@@ -1151,11 +1163,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 37,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5196),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2871),
                             EnglishText = "Bottom",
                             ImagePath = "images/word/bodyParts/Bottom.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5196),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2871),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Mông",
                             WordCategoryId = 4
@@ -1163,11 +1175,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 38,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5198),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2873),
                             EnglishText = "Ear",
                             ImagePath = "images/word/bodyParts/Ear.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5198),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2873),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Tai",
                             WordCategoryId = 4
@@ -1175,11 +1187,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 39,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5200),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2875),
                             EnglishText = "Eye",
                             ImagePath = "images/word/bodyParts/Eye.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5200),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2876),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Mắt",
                             WordCategoryId = 4
@@ -1187,11 +1199,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 40,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5202),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2878),
                             EnglishText = "Face",
                             ImagePath = "images/word/bodyParts/Face.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5203),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2878),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Khuôn mặt",
                             WordCategoryId = 4
@@ -1199,11 +1211,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 41,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5205),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2880),
                             EnglishText = "Finger",
                             ImagePath = "images/word/bodyParts/Finger.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5205),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2881),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Ngón tay",
                             WordCategoryId = 4
@@ -1211,11 +1223,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 42,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5207),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2883),
                             EnglishText = "Foot",
                             ImagePath = "images/word/bodyParts/Foot.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5208),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2884),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Bàn chân",
                             WordCategoryId = 4
@@ -1223,11 +1235,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 43,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5210),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2886),
                             EnglishText = "Hair",
                             ImagePath = "images/word/bodyParts/Hair.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5210),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2886),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Tóc",
                             WordCategoryId = 4
@@ -1235,11 +1247,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 44,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5212),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2888),
                             EnglishText = "Hand",
                             ImagePath = "images/word/bodyParts/Hand.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5212),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2888),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Bàn tay",
                             WordCategoryId = 4
@@ -1247,11 +1259,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 45,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5214),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2890),
                             EnglishText = "Leg",
                             ImagePath = "images/word/bodyParts/Leg.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5214),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2891),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Chân",
                             WordCategoryId = 4
@@ -1259,11 +1271,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 46,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5216),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2893),
                             EnglishText = "Lips",
                             ImagePath = "images/word/bodyParts/Lips.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5217),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2893),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Môi",
                             WordCategoryId = 4
@@ -1271,11 +1283,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 47,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5218),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2895),
                             EnglishText = "Nose",
                             ImagePath = "images/word/bodyParts/Nose.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5219),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2896),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Mũi",
                             WordCategoryId = 4
@@ -1283,11 +1295,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 48,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5221),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2898),
                             EnglishText = "Teeth",
                             ImagePath = "images/word/bodyParts/Teeth.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5221),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2898),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Răng",
                             WordCategoryId = 4
@@ -1295,11 +1307,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 49,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5223),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2900),
                             EnglishText = "Throat",
                             ImagePath = "images/word/bodyParts/Throat.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5223),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2900),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Họng",
                             WordCategoryId = 4
@@ -1307,11 +1319,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 50,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5226),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2903),
                             EnglishText = "Toe",
                             ImagePath = "images/word/bodyParts/Toe.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5226),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2903),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Ngón chân",
                             WordCategoryId = 4
@@ -1319,11 +1331,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 51,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5228),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2905),
                             EnglishText = "Tongue",
                             ImagePath = "images/word/bodyParts/Tongue.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5228),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2905),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Lưỡi",
                             WordCategoryId = 4
@@ -1331,11 +1343,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 52,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5253),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2928),
                             EnglishText = "Backpack",
                             ImagePath = "images/word/clothes/Backpack.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5253),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2928),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Ba lô",
                             WordCategoryId = 5
@@ -1343,11 +1355,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 53,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5255),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2930),
                             EnglishText = "Cap",
                             ImagePath = "images/word/clothes/Cap.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5256),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2931),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Mũ lưỡi trai",
                             WordCategoryId = 5
@@ -1355,11 +1367,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 54,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5257),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2933),
                             EnglishText = "Jacket",
                             ImagePath = "images/word/clothes/Jacket.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5258),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2933),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Áo khoác",
                             WordCategoryId = 5
@@ -1367,11 +1379,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 55,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5259),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2935),
                             EnglishText = "Pajamas",
                             ImagePath = "images/word/clothes/Pajamas.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5260),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2935),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Đồ ngủ",
                             WordCategoryId = 5
@@ -1379,11 +1391,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 56,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5262),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2937),
                             EnglishText = "Pants",
                             ImagePath = "images/word/clothes/Pants.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5262),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2938),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Quần dài",
                             WordCategoryId = 5
@@ -1391,11 +1403,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 57,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5264),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2940),
                             EnglishText = "Scarf",
                             ImagePath = "images/word/clothes/Scarf.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5264),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2940),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Khăn quàng cổ",
                             WordCategoryId = 5
@@ -1403,11 +1415,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 58,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5266),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2942),
                             EnglishText = "Shirt",
                             ImagePath = "images/word/clothes/Shirt.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5266),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2943),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Áo sơ mi",
                             WordCategoryId = 5
@@ -1415,11 +1427,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 59,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5268),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2945),
                             EnglishText = "Shoes",
                             ImagePath = "images/word/clothes/Shoes.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5268),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2945),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Giày",
                             WordCategoryId = 5
@@ -1427,11 +1439,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 60,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5270),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2947),
                             EnglishText = "Shorts",
                             ImagePath = "images/word/clothes/Short.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5271),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2948),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Quần short",
                             WordCategoryId = 5
@@ -1439,11 +1451,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 61,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5272),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2950),
                             EnglishText = "Skirt",
                             ImagePath = "images/word/clothes/Skirt.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5273),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2950),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Váy ngắn",
                             WordCategoryId = 5
@@ -1451,11 +1463,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 62,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5275),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2952),
                             EnglishText = "Socks",
                             ImagePath = "images/word/clothes/Socks.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5276),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2953),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Tất",
                             WordCategoryId = 5
@@ -1463,11 +1475,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 63,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5277),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2955),
                             EnglishText = "Sweater",
                             ImagePath = "images/word/clothes/Sweater.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5278),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2955),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Áo len",
                             WordCategoryId = 5
@@ -1475,11 +1487,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 64,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5280),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2957),
                             EnglishText = "Swimsuit",
                             ImagePath = "images/word/clothes/Swimsuit.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5280),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2957),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Đồ bơi",
                             WordCategoryId = 5
@@ -1487,11 +1499,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 65,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5282),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2959),
                             EnglishText = "T-Shirt",
                             ImagePath = "images/word/clothes/T-Shirt.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5282),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2960),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Áo phông",
                             WordCategoryId = 5
@@ -1499,11 +1511,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 66,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5284),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2962),
                             EnglishText = "Underwear",
                             ImagePath = "images/word/clothes/Underwear.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5284),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2962),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Đồ lót",
                             WordCategoryId = 5
@@ -1511,11 +1523,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 67,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5316),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2992),
                             EnglishText = "Black",
                             ImagePath = "images/word/color/Black.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5316),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2992),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Màu đen",
                             WordCategoryId = 6
@@ -1523,11 +1535,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 68,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5318),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2994),
                             EnglishText = "Blue",
                             ImagePath = "images/word/color/Blue.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5318),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2995),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Màu xanh dương",
                             WordCategoryId = 6
@@ -1535,11 +1547,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 69,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5320),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2997),
                             EnglishText = "Green",
                             ImagePath = "images/word/color/Green.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5321),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2997),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Màu xanh lá",
                             WordCategoryId = 6
@@ -1547,11 +1559,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 70,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5322),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2999),
                             EnglishText = "Orange",
                             ImagePath = "images/word/color/Orange.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5323),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2999),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Màu cam",
                             WordCategoryId = 6
@@ -1559,11 +1571,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 71,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5325),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3001),
                             EnglishText = "Pink",
                             ImagePath = "images/word/color/Pink.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5325),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3002),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Màu hồng",
                             WordCategoryId = 6
@@ -1571,11 +1583,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 72,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5327),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3004),
                             EnglishText = "Red",
                             ImagePath = "images/word/color/Red.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5327),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3004),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Màu đỏ",
                             WordCategoryId = 6
@@ -1583,11 +1595,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 73,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5329),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3006),
                             EnglishText = "Violet",
                             ImagePath = "images/word/color/Violet.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5329),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3006),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Màu tím",
                             WordCategoryId = 6
@@ -1595,11 +1607,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 74,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5331),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3009),
                             EnglishText = "White",
                             ImagePath = "images/word/color/White.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5332),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3009),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Màu trắng",
                             WordCategoryId = 6
@@ -1607,11 +1619,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 75,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5334),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3011),
                             EnglishText = "Yellow",
                             ImagePath = "images/word/color/Yellow.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5334),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3011),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Màu vàng",
                             WordCategoryId = 6
@@ -1619,11 +1631,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 76,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5355),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3031),
                             EnglishText = "Agree",
                             ImagePath = "images/word/feeling/Agree.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5355),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3032),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Đồng ý",
                             WordCategoryId = 7
@@ -1631,11 +1643,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 77,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5357),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3034),
                             EnglishText = "Angry",
                             ImagePath = "images/word/feeling/Angry.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5357),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3034),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Tức giận",
                             WordCategoryId = 7
@@ -1643,11 +1655,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 78,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5359),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3036),
                             EnglishText = "Bored",
                             ImagePath = "images/word/feeling/Bored.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5360),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3037),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Chán nản",
                             WordCategoryId = 7
@@ -1655,11 +1667,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 79,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5361),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3039),
                             EnglishText = "Disagree",
                             ImagePath = "images/word/feeling/Disagree.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5362),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3039),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Không đồng ý",
                             WordCategoryId = 7
@@ -1667,11 +1679,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 80,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5364),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3042),
                             EnglishText = "Embarrassing",
                             ImagePath = "images/word/feeling/Embarrassing.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5364),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3042),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Xấu hổ",
                             WordCategoryId = 7
@@ -1679,11 +1691,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 81,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5366),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3044),
                             EnglishText = "Happy",
                             ImagePath = "images/word/feeling/Happy.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5366),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3045),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Vui vẻ",
                             WordCategoryId = 7
@@ -1691,11 +1703,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 82,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5368),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3047),
                             EnglishText = "Hungry",
                             ImagePath = "images/word/feeling/Hungry.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5368),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3047),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Đói",
                             WordCategoryId = 7
@@ -1703,11 +1715,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 83,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5370),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3049),
                             EnglishText = "Hurt",
                             ImagePath = "images/word/feeling/Hurt.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5371),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3050),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Đau",
                             WordCategoryId = 7
@@ -1715,11 +1727,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 84,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5372),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3052),
                             EnglishText = "Not understand",
                             ImagePath = "images/word/feeling/Not understand.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5373),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3052),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Không hiểu",
                             WordCategoryId = 7
@@ -1727,11 +1739,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 85,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5374),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3054),
                             EnglishText = "Sad",
                             ImagePath = "images/word/feeling/Sad.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5375),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3055),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Buồn",
                             WordCategoryId = 7
@@ -1739,11 +1751,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 86,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5377),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3057),
                             EnglishText = "Scared",
                             ImagePath = "images/word/feeling/Scared.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5377),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3057),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Sợ hãi",
                             WordCategoryId = 7
@@ -1751,11 +1763,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 87,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5379),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3060),
                             EnglishText = "Sick",
                             ImagePath = "images/word/feeling/Sick.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5379),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3060),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Ốm",
                             WordCategoryId = 7
@@ -1763,11 +1775,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 88,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5382),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3062),
                             EnglishText = "Sleepy",
                             ImagePath = "images/word/feeling/Sleepy.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5382),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3062),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Buồn ngủ",
                             WordCategoryId = 7
@@ -1775,11 +1787,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 89,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5384),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3065),
                             EnglishText = "Thirsty",
                             ImagePath = "images/word/feeling/Thirsty.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5384),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3065),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Khát",
                             WordCategoryId = 7
@@ -1787,11 +1799,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 90,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5386),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3067),
                             EnglishText = "Tired",
                             ImagePath = "images/word/feeling/Tired.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5387),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3067),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Mệt mỏi",
                             WordCategoryId = 7
@@ -1799,11 +1811,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 91,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5393),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3069),
                             EnglishText = "Vomit",
                             ImagePath = "images/word/feeling/Vomited.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5393),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3070),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Nôn mửa",
                             WordCategoryId = 7
@@ -1811,11 +1823,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 92,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5395),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3072),
                             EnglishText = "Yucky",
                             ImagePath = "images/word/feeling/Yucky.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5395),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3072),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Ghê tởm",
                             WordCategoryId = 7
@@ -1823,11 +1835,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 93,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5397),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3075),
                             EnglishText = "Yummy",
                             ImagePath = "images/word/feeling/Yummy.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5397),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3075),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Ngon miệng",
                             WordCategoryId = 7
@@ -1835,11 +1847,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 94,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5422),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3100),
                             EnglishText = "Bread",
                             ImagePath = "images/word/food/Bread.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5423),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3101),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Bánh mì",
                             WordCategoryId = 8
@@ -1847,11 +1859,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 95,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5424),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3103),
                             EnglishText = "Cake",
                             ImagePath = "images/word/food/Cake.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5425),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3103),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Bánh kem",
                             WordCategoryId = 8
@@ -1859,11 +1871,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 96,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5427),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3105),
                             EnglishText = "Chocolate",
                             ImagePath = "images/word/food/Chocolate.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5427),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3105),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Sô cô la",
                             WordCategoryId = 8
@@ -1871,11 +1883,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 97,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5429),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3108),
                             EnglishText = "Cookie",
                             ImagePath = "images/word/food/Cookie.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5429),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3108),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Bánh quy",
                             WordCategoryId = 8
@@ -1883,11 +1895,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 98,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5431),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3111),
                             EnglishText = "Gum",
                             ImagePath = "images/word/food/Gum.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5432),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3112),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Kẹo cao su",
                             WordCategoryId = 8
@@ -1895,11 +1907,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 99,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5433),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3114),
                             EnglishText = "Hamburger",
                             ImagePath = "images/word/food/Hambuger.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5434),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3114),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Bánh hamburger",
                             WordCategoryId = 8
@@ -1907,11 +1919,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 100,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5436),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3116),
                             EnglishText = "Ice Cream",
                             ImagePath = "images/word/food/IceCream.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5436),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3116),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Kem",
                             WordCategoryId = 8
@@ -1919,11 +1931,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 101,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5439),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3118),
                             EnglishText = "Juice",
                             ImagePath = "images/word/food/Juice.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5439),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3119),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Nước ép",
                             WordCategoryId = 8
@@ -1931,11 +1943,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 102,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5441),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3121),
                             EnglishText = "Milk",
                             ImagePath = "images/word/food/Milk.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5441),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3121),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Sữa",
                             WordCategoryId = 8
@@ -1943,11 +1955,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 103,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5443),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3123),
                             EnglishText = "Pizza",
                             ImagePath = "images/word/food/Pizza.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5444),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3124),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Pizza",
                             WordCategoryId = 8
@@ -1955,11 +1967,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 104,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5445),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3126),
                             EnglishText = "Rice",
                             ImagePath = "images/word/food/Rice.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5446),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3126),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Cơm",
                             WordCategoryId = 8
@@ -1967,11 +1979,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 105,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5448),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3129),
                             EnglishText = "Sandwich",
                             ImagePath = "images/word/food/Sandwich.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5448),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3129),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Bánh sandwich",
                             WordCategoryId = 8
@@ -1979,11 +1991,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 106,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5450),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3131),
                             EnglishText = "Snack",
                             ImagePath = "images/word/food/Snack.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5450),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3132),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Đồ ăn vặt",
                             WordCategoryId = 8
@@ -1991,11 +2003,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 107,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5452),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3134),
                             EnglishText = "Soup",
                             ImagePath = "images/word/food/Soup.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5452),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3134),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Súp",
                             WordCategoryId = 8
@@ -2003,11 +2015,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 108,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5454),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3136),
                             EnglishText = "Spaghetti",
                             ImagePath = "images/word/food/Spagetti.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5454),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3136),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Mì Ý",
                             WordCategoryId = 8
@@ -2015,11 +2027,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 109,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5456),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3138),
                             EnglishText = "Tea",
                             ImagePath = "images/word/food/Tea.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5457),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3139),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Trà",
                             WordCategoryId = 8
@@ -2027,11 +2039,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 110,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5458),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3141),
                             EnglishText = "Water",
                             ImagePath = "images/word/food/Water.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5459),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3141),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Nước",
                             WordCategoryId = 8
@@ -2039,11 +2051,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 111,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5460),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3143),
                             EnglishText = "Yogurt",
                             ImagePath = "images/word/food/Yogurt.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5461),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3143),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Sữa chua",
                             WordCategoryId = 8
@@ -2051,11 +2063,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 112,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5486),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3167),
                             EnglishText = "Apple",
                             ImagePath = "images/word/fruits/Apple.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5487),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3167),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Táo",
                             WordCategoryId = 9
@@ -2063,11 +2075,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 113,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5488),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3169),
                             EnglishText = "Avocado",
                             ImagePath = "images/word/fruits/Avocado.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5489),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3170),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Bơ",
                             WordCategoryId = 9
@@ -2075,11 +2087,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 114,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5491),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3172),
                             EnglishText = "Banana",
                             ImagePath = "images/word/fruits/Banana.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5491),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3172),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Chuối",
                             WordCategoryId = 9
@@ -2087,11 +2099,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 115,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5493),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3174),
                             EnglishText = "Dragon Fruit",
                             ImagePath = "images/word/fruits/Dragon Fruit.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5493),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3175),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Thanh long",
                             WordCategoryId = 9
@@ -2099,11 +2111,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 116,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5495),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3176),
                             EnglishText = "Grape",
                             ImagePath = "images/word/fruits/Grape.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5495),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3177),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Nho",
                             WordCategoryId = 9
@@ -2111,11 +2123,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 117,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5497),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3179),
                             EnglishText = "Guava",
                             ImagePath = "images/word/fruits/Guava.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5498),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3179),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Ổi",
                             WordCategoryId = 9
@@ -2123,11 +2135,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 118,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5499),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3182),
                             EnglishText = "Kiwi",
                             ImagePath = "images/word/fruits/Kiwi.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5500),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3182),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Kiwi",
                             WordCategoryId = 9
@@ -2135,11 +2147,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 119,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5501),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3185),
                             EnglishText = "Orange",
                             ImagePath = "images/word/fruits/Orange.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5502),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3185),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Cam",
                             WordCategoryId = 9
@@ -2147,11 +2159,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 120,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5504),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3188),
                             EnglishText = "Peach",
                             ImagePath = "images/word/fruits/Peace.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5504),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3188),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Đào",
                             WordCategoryId = 9
@@ -2159,11 +2171,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 121,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5506),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3190),
                             EnglishText = "Pineapple",
                             ImagePath = "images/word/fruits/Pineapple.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5506),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3191),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Dứa",
                             WordCategoryId = 9
@@ -2171,11 +2183,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 122,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5508),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3193),
                             EnglishText = "Strawberry",
                             ImagePath = "images/word/fruits/Strawberry.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5509),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3193),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Dâu tây",
                             WordCategoryId = 9
@@ -2183,11 +2195,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 123,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5510),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3195),
                             EnglishText = "Watermelon",
                             ImagePath = "images/word/fruits/Watermelon.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5511),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3195),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Dưa hấu",
                             WordCategoryId = 9
@@ -2195,11 +2207,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 124,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5533),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3221),
                             EnglishText = "One",
                             ImagePath = "images/word/number/One.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5533),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3221),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Một",
                             WordCategoryId = 10
@@ -2207,11 +2219,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 125,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5535),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3223),
                             EnglishText = "Two",
                             ImagePath = "images/word/number/Two.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5536),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3223),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Hai",
                             WordCategoryId = 10
@@ -2219,11 +2231,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 126,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5538),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3226),
                             EnglishText = "Three",
                             ImagePath = "images/word/number/Three.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5539),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3226),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Ba",
                             WordCategoryId = 10
@@ -2231,11 +2243,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 127,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5540),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3228),
                             EnglishText = "Four",
                             ImagePath = "images/word/number/Four.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5541),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3228),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Bốn",
                             WordCategoryId = 10
@@ -2243,11 +2255,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 128,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5553),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3230),
                             EnglishText = "Five",
                             ImagePath = "images/word/number/Five.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5553),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3231),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Năm",
                             WordCategoryId = 10
@@ -2255,11 +2267,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 129,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5555),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3233),
                             EnglishText = "Six",
                             ImagePath = "images/word/number/Six.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5556),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3233),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Sáu",
                             WordCategoryId = 10
@@ -2267,11 +2279,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 130,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5557),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3235),
                             EnglishText = "Seven",
                             ImagePath = "images/word/number/Seven.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5558),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3236),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Bảy",
                             WordCategoryId = 10
@@ -2279,11 +2291,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 131,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5560),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3238),
                             EnglishText = "Eight",
                             ImagePath = "images/word/number/Eight.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5560),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3238),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Tám",
                             WordCategoryId = 10
@@ -2291,11 +2303,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 132,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5562),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3240),
                             EnglishText = "Nine",
                             ImagePath = "images/word/number/Nine.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5562),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3240),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Chín",
                             WordCategoryId = 10
@@ -2303,11 +2315,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 133,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5564),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3242),
                             EnglishText = "Ten",
                             ImagePath = "images/word/number/Ten.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5564),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3243),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Mười",
                             WordCategoryId = 10
@@ -2315,11 +2327,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 134,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5588),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3265),
                             EnglishText = "Again",
                             ImagePath = "images/word/people/Again.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5588),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3265),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Lại lần nữa",
                             WordCategoryId = 11
@@ -2327,11 +2339,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 135,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5590),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3267),
                             EnglishText = "Baby",
                             ImagePath = "images/word/people/Baby.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5591),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3268),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Em bé",
                             WordCategoryId = 11
@@ -2339,11 +2351,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 136,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5593),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3270),
                             EnglishText = "Boy",
                             ImagePath = "images/word/people/Boy.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5593),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3270),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Cậu bé",
                             WordCategoryId = 11
@@ -2351,11 +2363,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 137,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5595),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3272),
                             EnglishText = "Dad",
                             ImagePath = "images/word/people/Dad.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5595),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3272),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Bố",
                             WordCategoryId = 11
@@ -2363,11 +2375,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 138,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5597),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3274),
                             EnglishText = "Everyone",
                             ImagePath = "images/word/people/Everyone.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5597),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3275),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Mọi người",
                             WordCategoryId = 11
@@ -2375,11 +2387,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 139,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5600),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3277),
                             EnglishText = "Girl",
                             ImagePath = "images/word/people/Girl.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5600),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3277),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Cô bé",
                             WordCategoryId = 11
@@ -2387,11 +2399,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 140,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5602),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3279),
                             EnglishText = "Grandma",
                             ImagePath = "images/word/people/Grandma.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5603),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3279),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Bà",
                             WordCategoryId = 11
@@ -2399,11 +2411,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 141,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5604),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3281),
                             EnglishText = "Grandpa",
                             ImagePath = "images/word/people/Grandpa.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5605),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3282),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Ông",
                             WordCategoryId = 11
@@ -2411,11 +2423,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 142,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5606),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3284),
                             EnglishText = "How much",
                             ImagePath = "images/word/people/How much.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5607),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3284),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Bao nhiêu tiền",
                             WordCategoryId = 11
@@ -2423,11 +2435,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 143,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5609),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3286),
                             EnglishText = "Mom",
                             ImagePath = "images/word/people/Mom.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5609),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3287),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Mẹ",
                             WordCategoryId = 11
@@ -2435,11 +2447,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 144,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5611),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3289),
                             EnglishText = "Older brother",
                             ImagePath = "images/word/people/Older brother.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5611),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3290),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Anh trai",
                             WordCategoryId = 11
@@ -2447,11 +2459,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 145,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5613),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3292),
                             EnglishText = "Older sister",
                             ImagePath = "images/word/people/Older sister.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5613),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3292),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Chị gái",
                             WordCategoryId = 11
@@ -2459,11 +2471,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 146,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5615),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3294),
                             EnglishText = "What",
                             ImagePath = "images/word/people/What.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5615),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3294),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Cái gì",
                             WordCategoryId = 11
@@ -2471,11 +2483,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 147,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5617),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3296),
                             EnglishText = "When",
                             ImagePath = "images/word/people/When.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5618),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3297),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Khi nào",
                             WordCategoryId = 11
@@ -2483,11 +2495,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 148,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5619),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3299),
                             EnglishText = "Where",
                             ImagePath = "images/word/people/Where.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5620),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3299),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Ở đâu",
                             WordCategoryId = 11
@@ -2495,11 +2507,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 149,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5621),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3301),
                             EnglishText = "Which one",
                             ImagePath = "images/word/people/Which one.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5622),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3302),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Cái nào",
                             WordCategoryId = 11
@@ -2507,11 +2519,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 150,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5624),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3304),
                             EnglishText = "Who",
                             ImagePath = "images/word/people/Who.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5624),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3304),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Ai",
                             WordCategoryId = 11
@@ -2519,11 +2531,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 151,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5626),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3306),
                             EnglishText = "Why",
                             ImagePath = "images/word/people/Why.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5627),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3306),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Tại sao",
                             WordCategoryId = 11
@@ -2531,11 +2543,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 152,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5628),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3308),
                             EnglishText = "Younger brother",
                             ImagePath = "images/word/people/Younger brother.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5629),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3309),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Em trai",
                             WordCategoryId = 11
@@ -2543,11 +2555,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 153,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5630),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3311),
                             EnglishText = "Younger sister",
                             ImagePath = "images/word/people/Younger sister.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5631),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3311),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Em gái",
                             WordCategoryId = 11
@@ -2555,11 +2567,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 154,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5633),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3313),
                             EnglishText = "What time",
                             ImagePath = "images/word/people/What time.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5633),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3313),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Mấy giờ",
                             WordCategoryId = 11
@@ -2567,11 +2579,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 155,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5660),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3341),
                             EnglishText = "Aquarium",
                             ImagePath = "images/word/places/Aquarium.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5660),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3341),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Thủy cung",
                             WordCategoryId = 12
@@ -2579,11 +2591,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 156,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5662),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3343),
                             EnglishText = "Bathroom",
                             ImagePath = "images/word/places/Bathroom.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5663),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3343),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Phòng tắm",
                             WordCategoryId = 12
@@ -2591,11 +2603,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 157,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5664),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3345),
                             EnglishText = "Bedroom",
                             ImagePath = "images/word/places/Bedroom.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5665),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3346),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Phòng ngủ",
                             WordCategoryId = 12
@@ -2603,11 +2615,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 158,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5667),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3348),
                             EnglishText = "Hospital",
                             ImagePath = "images/word/places/Hospital.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5667),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3348),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Bệnh viện",
                             WordCategoryId = 12
@@ -2615,11 +2627,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 159,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5669),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3350),
                             EnglishText = "House",
                             ImagePath = "images/word/places/House.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5669),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3350),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Ngôi nhà",
                             WordCategoryId = 12
@@ -2627,11 +2639,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 160,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5671),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3352),
                             EnglishText = "Kitchen",
                             ImagePath = "images/word/places/Kitchen.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5671),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3353),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Nhà bếp",
                             WordCategoryId = 12
@@ -2639,11 +2651,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 161,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5673),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3355),
                             EnglishText = "Living room",
                             ImagePath = "images/word/places/Living room.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5673),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3355),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Phòng khách",
                             WordCategoryId = 12
@@ -2651,11 +2663,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 162,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5675),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3357),
                             EnglishText = "Park",
                             ImagePath = "images/word/places/Park.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5675),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3358),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Công viên",
                             WordCategoryId = 12
@@ -2663,11 +2675,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 163,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5677),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3360),
                             EnglishText = "School",
                             ImagePath = "images/word/places/School.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5678),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3360),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Trường học",
                             WordCategoryId = 12
@@ -2675,11 +2687,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 164,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5679),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3362),
                             EnglishText = "Supermarket",
                             ImagePath = "images/word/places/Supermarket.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5680),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3362),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Siêu thị",
                             WordCategoryId = 12
@@ -2687,11 +2699,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 165,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5686),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3364),
                             EnglishText = "Toilet",
                             ImagePath = "images/word/places/Toilet.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5686),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3365),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Nhà vệ sinh",
                             WordCategoryId = 12
@@ -2699,11 +2711,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 166,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5688),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3367),
                             EnglishText = "Zoo",
                             ImagePath = "images/word/places/Zoo.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5688),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3367),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Sở thú",
                             WordCategoryId = 12
@@ -2711,11 +2723,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 167,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5709),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3387),
                             EnglishText = "Again",
                             ImagePath = "images/word/questions/Again.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5710),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3388),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Lại lần nữa",
                             WordCategoryId = 13
@@ -2723,11 +2735,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 168,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5712),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3390),
                             EnglishText = "How much",
                             ImagePath = "images/word/questions/How much.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5712),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3390),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Bao nhiêu tiền",
                             WordCategoryId = 13
@@ -2735,11 +2747,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 169,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5714),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3392),
                             EnglishText = "What time",
                             ImagePath = "images/word/questions/WHat time.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5714),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3393),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Mấy giờ",
                             WordCategoryId = 13
@@ -2747,11 +2759,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 170,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5716),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3395),
                             EnglishText = "What",
                             ImagePath = "images/word/questions/What.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5716),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3395),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Cái gì",
                             WordCategoryId = 13
@@ -2759,11 +2771,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 171,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5718),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3404),
                             EnglishText = "When",
                             ImagePath = "images/word/questions/When.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5719),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3404),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Khi nào",
                             WordCategoryId = 13
@@ -2771,11 +2783,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 172,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5721),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3406),
                             EnglishText = "Where",
                             ImagePath = "images/word/questions/Where.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5721),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3406),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Ở đâu",
                             WordCategoryId = 13
@@ -2783,11 +2795,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 173,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5723),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3408),
                             EnglishText = "Which one",
                             ImagePath = "images/word/questions/Which one.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5724),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3409),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Cái nào",
                             WordCategoryId = 13
@@ -2795,11 +2807,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 174,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5726),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3411),
                             EnglishText = "Who",
                             ImagePath = "images/word/questions/Who.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5726),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3411),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Ai",
                             WordCategoryId = 13
@@ -2807,11 +2819,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 175,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5728),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3413),
                             EnglishText = "Why",
                             ImagePath = "images/word/questions/Why.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5729),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3414),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Tại sao",
                             WordCategoryId = 13
@@ -2819,11 +2831,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 176,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5752),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3432),
                             EnglishText = "Above",
                             ImagePath = "images/word/relations/Above.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5752),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3433),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Ở trên",
                             WordCategoryId = 14
@@ -2831,11 +2843,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 177,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5755),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3435),
                             EnglishText = "Behind",
                             ImagePath = "images/word/relations/Behind.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5756),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3435),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Phía sau",
                             WordCategoryId = 14
@@ -2843,11 +2855,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 178,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(3855),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3437),
                             EnglishText = "Below",
                             ImagePath = "images/word/relations/Below.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(3855),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3437),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Ở dưới",
                             WordCategoryId = 14
@@ -2855,11 +2867,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 179,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(3862),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3439),
                             EnglishText = "Few",
                             ImagePath = "images/word/relations/Few.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(3862),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3440),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Ít",
                             WordCategoryId = 14
@@ -2867,11 +2879,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 180,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(3864),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3442),
                             EnglishText = "Heavy",
                             ImagePath = "images/word/relations/Heavy.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(3865),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3442),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Nặng",
                             WordCategoryId = 14
@@ -2879,11 +2891,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 181,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(3867),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3444),
                             EnglishText = "High",
                             ImagePath = "images/word/relations/High.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(3867),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3445),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Cao",
                             WordCategoryId = 14
@@ -2891,11 +2903,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 182,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(3876),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3451),
                             EnglishText = "In front",
                             ImagePath = "images/word/relations/In front.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(3877),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3451),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Phía trước",
                             WordCategoryId = 14
@@ -2903,11 +2915,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 183,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(3879),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3453),
                             EnglishText = "Inside",
                             ImagePath = "images/word/relations/Inside.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(3879),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3453),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Ở trong",
                             WordCategoryId = 14
@@ -2915,11 +2927,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 184,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(3881),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3455),
                             EnglishText = "Large",
                             ImagePath = "images/word/relations/Large.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(3881),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3456),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Lớn",
                             WordCategoryId = 14
@@ -2927,11 +2939,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 185,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(3883),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3458),
                             EnglishText = "Light",
                             ImagePath = "images/word/relations/Light.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(3884),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3458),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Nhẹ",
                             WordCategoryId = 14
@@ -2939,11 +2951,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 186,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(3885),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3460),
                             EnglishText = "Long",
                             ImagePath = "images/word/relations/Long.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(3886),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3460),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Dài",
                             WordCategoryId = 14
@@ -2951,11 +2963,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 187,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(3888),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3462),
                             EnglishText = "Low",
                             ImagePath = "images/word/relations/Low.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(3888),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3463),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Thấp",
                             WordCategoryId = 14
@@ -2963,11 +2975,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 188,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(3890),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3465),
                             EnglishText = "Many",
                             ImagePath = "images/word/relations/Many.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(3890),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3465),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Nhiều",
                             WordCategoryId = 14
@@ -2975,11 +2987,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 189,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(3892),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3467),
                             EnglishText = "Outside",
                             ImagePath = "images/word/relations/Outside.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(3893),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3468),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Bên ngoài",
                             WordCategoryId = 14
@@ -2987,11 +2999,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 190,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(3896),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3470),
                             EnglishText = "Short",
                             ImagePath = "images/word/relations/Short.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(3896),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3470),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Ngắn",
                             WordCategoryId = 14
@@ -2999,11 +3011,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 191,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(3898),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3472),
                             EnglishText = "Small",
                             ImagePath = "images/word/relations/Small.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(3899),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3472),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Nhỏ",
                             WordCategoryId = 14
@@ -3011,11 +3023,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 192,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(3900),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3474),
                             EnglishText = "Thick",
                             ImagePath = "images/word/relations/Thick.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(3901),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3475),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Dày",
                             WordCategoryId = 14
@@ -3023,11 +3035,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 193,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(3903),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3477),
                             EnglishText = "Thin",
                             ImagePath = "images/word/relations/Thin.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(3903),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3477),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Mỏng",
                             WordCategoryId = 14
@@ -3035,11 +3047,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 194,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4067),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3501),
                             EnglishText = "Afternoon",
                             ImagePath = "images/word/time/Afternoon.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4068),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3502),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Buổi chiều",
                             WordCategoryId = 15
@@ -3047,11 +3059,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 195,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4070),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3504),
                             EnglishText = "Evening",
                             ImagePath = "images/word/time/Evening.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4071),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3504),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Buổi tối",
                             WordCategoryId = 15
@@ -3059,11 +3071,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 196,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4072),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3507),
                             EnglishText = "Morning",
                             ImagePath = "images/word/time/Morning.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4073),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3507),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Buổi sáng",
                             WordCategoryId = 15
@@ -3071,11 +3083,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 197,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4075),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3509),
                             EnglishText = "Night",
                             ImagePath = "images/word/time/Night.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4075),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3509),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Ban đêm",
                             WordCategoryId = 15
@@ -3083,11 +3095,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 198,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4077),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3511),
                             EnglishText = "One Hour",
                             ImagePath = "images/word/time/One Hour.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4077),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3512),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Một giờ",
                             WordCategoryId = 15
@@ -3095,11 +3107,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 199,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4079),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3514),
                             EnglishText = "Ten Minutes",
                             ImagePath = "images/word/time/Ten Minutes.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4079),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3514),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Mười phút",
                             WordCategoryId = 15
@@ -3107,11 +3119,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 200,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4081),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3516),
                             EnglishText = "Thirty Minutes",
                             ImagePath = "images/word/time/Thirdty Minutes.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4082),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3517),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Ba mươi phút",
                             WordCategoryId = 15
@@ -3119,11 +3131,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 201,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4083),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3519),
                             EnglishText = "Today",
                             ImagePath = "images/word/time/Today.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4084),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3519),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Hôm nay",
                             WordCategoryId = 15
@@ -3131,11 +3143,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 202,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4085),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3521),
                             EnglishText = "Tomorrow",
                             ImagePath = "images/word/time/Tomorrow.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4086),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3522),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Ngày mai",
                             WordCategoryId = 15
@@ -3143,11 +3155,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 203,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4088),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3524),
                             EnglishText = "Yesterday",
                             ImagePath = "images/word/time/Yesterday.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4089),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3524),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Hôm qua",
                             WordCategoryId = 15
@@ -3155,11 +3167,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 204,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4112),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3545),
                             EnglishText = "Ball",
                             ImagePath = "images/word/toys/Ball.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4112),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3545),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Bóng",
                             WordCategoryId = 16
@@ -3167,11 +3179,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 205,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4114),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3547),
                             EnglishText = "Balloon",
                             ImagePath = "images/word/toys/Ballon.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4114),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3548),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Bóng bay",
                             WordCategoryId = 16
@@ -3179,11 +3191,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 206,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4116),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3550),
                             EnglishText = "Bear",
                             ImagePath = "images/word/toys/Bear.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4117),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3550),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Gấu bông",
                             WordCategoryId = 16
@@ -3191,11 +3203,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 207,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4119),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3552),
                             EnglishText = "Block",
                             ImagePath = "images/word/toys/Block.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4119),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3553),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Khối xếp hình",
                             WordCategoryId = 16
@@ -3203,11 +3215,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 208,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4121),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3555),
                             EnglishText = "Board Game",
                             ImagePath = "images/word/toys/BoardGame.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4122),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3555),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Cờ bàn",
                             WordCategoryId = 16
@@ -3215,11 +3227,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 209,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4123),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3557),
                             EnglishText = "Bubble",
                             ImagePath = "images/word/toys/Bubble.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4124),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3557),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Bong bóng xà phòng",
                             WordCategoryId = 16
@@ -3227,11 +3239,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 210,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4125),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3559),
                             EnglishText = "Car",
                             ImagePath = "images/word/toys/Car.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4126),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3560),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Xe hơi",
                             WordCategoryId = 16
@@ -3239,11 +3251,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 211,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4128),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3562),
                             EnglishText = "Clay",
                             ImagePath = "images/word/toys/Clay.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4128),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3562),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Đất nặn",
                             WordCategoryId = 16
@@ -3251,11 +3263,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 212,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4130),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3564),
                             EnglishText = "Coloring",
                             ImagePath = "images/word/toys/Coloring.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4130),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3565),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Tô màu",
                             WordCategoryId = 16
@@ -3263,11 +3275,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 213,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4132),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3567),
                             EnglishText = "Crayon",
                             ImagePath = "images/word/toys/Crayon.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4132),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3567),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Bút màu",
                             WordCategoryId = 16
@@ -3275,11 +3287,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 214,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4134),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3569),
                             EnglishText = "Doll",
                             ImagePath = "images/word/toys/Doll.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4135),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3569),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Búp bê",
                             WordCategoryId = 16
@@ -3287,11 +3299,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 215,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4136),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3571),
                             EnglishText = "Kite",
                             ImagePath = "images/word/toys/Kite.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4137),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3572),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Diều",
                             WordCategoryId = 16
@@ -3299,11 +3311,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 216,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4139),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3574),
                             EnglishText = "Puzzle",
                             ImagePath = "images/word/toys/Puzzle.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4140),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3574),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Trò chơi ghép hình",
                             WordCategoryId = 16
@@ -3311,11 +3323,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 217,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4141),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3576),
                             EnglishText = "Television",
                             ImagePath = "images/word/toys/Television.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4142),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3576),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Tivi",
                             WordCategoryId = 16
@@ -3323,11 +3335,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 218,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4144),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3578),
                             EnglishText = "Toy",
                             ImagePath = "images/word/toys/Toy.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4144),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3579),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Đồ chơi",
                             WordCategoryId = 16
@@ -3335,11 +3347,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 219,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4169),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3600),
                             EnglishText = "Airplane",
                             ImagePath = "images/word/vehicles/Airplane.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4169),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3601),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Máy bay",
                             WordCategoryId = 17
@@ -3347,11 +3359,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 220,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4172),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3603),
                             EnglishText = "Bike",
                             ImagePath = "images/word/vehicles/Bike.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4172),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3603),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Xe đạp",
                             WordCategoryId = 17
@@ -3359,11 +3371,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 221,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4174),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3605),
                             EnglishText = "Bus",
                             ImagePath = "images/word/vehicles/Bus.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4174),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3606),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Xe buýt",
                             WordCategoryId = 17
@@ -3371,11 +3383,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 222,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4176),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3608),
                             EnglishText = "Car",
                             ImagePath = "images/word/vehicles/Car.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4176),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3609),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Xe hơi",
                             WordCategoryId = 17
@@ -3383,11 +3395,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 223,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4178),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3611),
                             EnglishText = "Motorbike",
                             ImagePath = "images/word/vehicles/Motorbike.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4179),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3611),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Xe máy",
                             WordCategoryId = 17
@@ -3395,11 +3407,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 224,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4181),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3613),
                             EnglishText = "Ship",
                             ImagePath = "images/word/vehicles/Ship.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4181),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3614),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Tàu thủy",
                             WordCategoryId = 17
@@ -3407,11 +3419,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 225,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4200),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3631),
                             EnglishText = "Hug",
                             ImagePath = "images/word/want/Hug.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4200),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3631),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Ôm",
                             WordCategoryId = 18
@@ -3419,11 +3431,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 226,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4202),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3633),
                             EnglishText = "I don't want",
                             ImagePath = "images/word/want/I don't want.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4203),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3634),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Con không muốn",
                             WordCategoryId = 18
@@ -3431,11 +3443,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 227,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4204),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3636),
                             EnglishText = "I want",
                             ImagePath = "images/word/want/I want.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4205),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3636),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Con muốn",
                             WordCategoryId = 18
@@ -3443,11 +3455,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 228,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4207),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3638),
                             EnglishText = "No",
                             ImagePath = "images/word/want/No.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4207),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3638),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Không",
                             WordCategoryId = 18
@@ -3455,11 +3467,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 229,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4209),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3640),
                             EnglishText = "Sorry",
                             ImagePath = "images/word/want/Sorry.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4209),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3641),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Xin lỗi",
                             WordCategoryId = 18
@@ -3467,11 +3479,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 230,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4211),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3643),
                             EnglishText = "Thank you",
                             ImagePath = "images/word/want/Thank you.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4211),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3643),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Cảm ơn",
                             WordCategoryId = 18
@@ -3479,11 +3491,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 231,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4213),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3645),
                             EnglishText = "Yes",
                             ImagePath = "images/word/want/Yes.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4214),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3646),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Có",
                             WordCategoryId = 18
@@ -3491,11 +3503,11 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 232,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4233),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3663),
                             EnglishText = "Mango",
                             ImagePath = "images/word/fruits/Mango.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 302, DateTimeKind.Local).AddTicks(4234),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(3664),
                             UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
                             VietnameseText = "Xoài",
                             WordCategoryId = 9
@@ -3540,181 +3552,181 @@ namespace IWant.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(4974),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2640),
                             EnglishName = "Personal Words",
                             ImagePath = "images/wordCategories/Personal.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(4975),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2641),
                             VietnameseName = "Từ Cá Nhân"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(4977),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2645),
                             EnglishName = "Actions",
                             ImagePath = "images/wordCategories/Actions.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(4978),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2646),
                             VietnameseName = "Hành Động"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(4981),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2648),
                             EnglishName = "Animals",
                             ImagePath = "images/wordCategories/Animals.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(4981),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2648),
                             VietnameseName = "Động Vật"
                         },
                         new
                         {
                             Id = 4,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(4983),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2650),
                             EnglishName = "Body Parts",
                             ImagePath = "images/wordCategories/BodyParts.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(4983),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2650),
                             VietnameseName = "Bộ Phận Cơ Thể"
                         },
                         new
                         {
                             Id = 5,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(4985),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2652),
                             EnglishName = "Clothes",
                             ImagePath = "images/wordCategories/Clothes.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(4986),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2653),
                             VietnameseName = "Quần Áo"
                         },
                         new
                         {
                             Id = 6,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(4987),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2655),
                             EnglishName = "Colors",
                             ImagePath = "images/wordCategories/Colors.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(4988),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2656),
                             VietnameseName = "Màu Sắc"
                         },
                         new
                         {
                             Id = 7,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(4990),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2657),
                             EnglishName = "Feeling",
                             ImagePath = "images/wordCategories/Feeling.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(4990),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2658),
                             VietnameseName = "Cảm Xúc"
                         },
                         new
                         {
                             Id = 8,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(4992),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2659),
                             EnglishName = "Food",
                             ImagePath = "images/wordCategories/Food.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(4992),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2660),
                             VietnameseName = "Thức Ăn"
                         },
                         new
                         {
                             Id = 9,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(4994),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2662),
                             EnglishName = "Fruits",
                             ImagePath = "images/wordCategories/Fruits.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(4994),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2662),
                             VietnameseName = "Trái Cây"
                         },
                         new
                         {
                             Id = 10,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(4996),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2664),
                             EnglishName = "Numbers",
                             ImagePath = "images/wordCategories/Numbers.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(4996),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2664),
                             VietnameseName = "Con Số"
                         },
                         new
                         {
                             Id = 11,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(4998),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2666),
                             EnglishName = "People",
                             ImagePath = "images/wordCategories/People.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(4999),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2667),
                             VietnameseName = "Con Người"
                         },
                         new
                         {
                             Id = 12,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5000),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2668),
                             EnglishName = "Places",
                             ImagePath = "images/wordCategories/Places.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5001),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2669),
                             VietnameseName = "Địa Điểm"
                         },
                         new
                         {
                             Id = 13,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5002),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2671),
                             EnglishName = "Questions",
                             ImagePath = "images/wordCategories/Questions.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5003),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2671),
                             VietnameseName = "Câu Hỏi"
                         },
                         new
                         {
                             Id = 14,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5004),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2673),
                             EnglishName = "Relations",
                             ImagePath = "images/wordCategories/Relations.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5005),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2673),
                             VietnameseName = "Mối Quan Hệ"
                         },
                         new
                         {
                             Id = 15,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5006),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2675),
                             EnglishName = "Time",
                             ImagePath = "images/wordCategories/Time.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5007),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2675),
                             VietnameseName = "Thời Gian"
                         },
                         new
                         {
                             Id = 16,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5009),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2677),
                             EnglishName = "Toys",
                             ImagePath = "images/wordCategories/Toys.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5009),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2678),
                             VietnameseName = "Đồ Chơi"
                         },
                         new
                         {
                             Id = 17,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5011),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2679),
                             EnglishName = "Vehicles",
                             ImagePath = "images/wordCategories/Vehicles.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5011),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2680),
                             VietnameseName = "Phương Tiện"
                         },
                         new
                         {
                             Id = 18,
-                            CreatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5013),
+                            CreatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2682),
                             EnglishName = "Want",
                             ImagePath = "images/wordCategories/Want.png",
                             Status = true,
-                            UpdatedAt = new DateTime(2025, 3, 24, 17, 32, 32, 298, DateTimeKind.Local).AddTicks(5014),
+                            UpdatedAt = new DateTime(2025, 4, 2, 14, 25, 35, 904, DateTimeKind.Local).AddTicks(2682),
                             VietnameseName = "Mong Muốn"
                         });
                 });
@@ -3935,6 +3947,17 @@ namespace IWant.DataAccess.Migrations
                         .IsRequired();
 
                     b.Navigation("Blog");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("IWant.BusinessObject.Enitities.Game", b =>
+                {
+                    b.HasOne("IWant.BusinessObject.Enitities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("User");
                 });

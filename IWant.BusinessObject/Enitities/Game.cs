@@ -24,5 +24,10 @@ namespace IWant.BusinessObject.Enitities
         [MaxLength(length: 255)]
         [Column(TypeName = "nvarchar(255)")]
         public string? VideoUrl { get; set; }
+
+        public string UserId { get; set; }
+
+        [ForeignKey(nameof(UserId))]
+        public virtual User User { get; set; }
     }
 }

@@ -197,7 +197,7 @@ namespace IWant.Web.Controllers
             var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, model.RememberMe, false);
 
 
-            if (!result.Succeeded)
+            if (result.Succeeded)
             {
                 if (result.IsLockedOut || (user != null && user.Status == false))
                 {
@@ -217,15 +217,15 @@ namespace IWant.Web.Controllers
                 }
                 else
                 {
-                    TempData["error"] = "Invalid credentials!";
-                    Console.WriteLine("Sign-in failed: Invalid credentials!");
+                    Console.WriteLine("Sign-in successful!");
+                    TempData["success"] = "Sign In successfully!";
+                    return RedirectToAction("Index", "Home");
                 }
             }
             else
             {
-                Console.WriteLine("Sign-in successful!");
-                TempData["success"] = "Sign In successfully!";
-                return RedirectToAction("Index", "Home");
+                TempData["error"] = "Invalid credentials!";
+                Console.WriteLine("Sign-in failed: Invalid credentials!");
             }
             /*}*/
             return View(model);

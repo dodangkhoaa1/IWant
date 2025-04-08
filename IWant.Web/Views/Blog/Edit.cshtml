@@ -137,7 +137,7 @@
                 const errorSpan = $("#fileInput").closest('.mt-3').find('.text-danger');
 
                 if (!file) {
-                    errorSpan.text("Image is required!").show();
+                    errorSpan.text("Image is required.").show();
                     return;
                 }
 
@@ -146,18 +146,18 @@
                 const fileExtension = fileName.split('.').pop();
 
                 if (!allowedExtensions.includes(fileExtension)) {
-                    errorSpan.text("Invalid file format! Only PNG, JPG, JPEG, GIF are allowed.").show();
-                    this.value = ''; // Xóa file input
+                    errorSpan.text("Invalid file format. Only PNG, JPG, JPEG, GIF are allowed.").show();
+                    this.value = ''; 
                     return;
                 }
 
                 if (fileSize > maxSize) {
-                    errorSpan.text("File size must be less than 5MB!").show();
-                    this.value = ''; // Xóa file input
+                    errorSpan.text("File size must be less than 5MB.").show();
+                    this.value = ''; 
                     return;
                 }
 
-                errorSpan.text(""); // Xóa lỗi nếu hợp lệ
+                errorSpan.text("");
 
                 const reader = new FileReader();
                 reader.onload = function (e) {
@@ -176,7 +176,7 @@
                 if (content === "" || content === "<p><br></p>" || content === "<br>") {
                     e.preventDefault();
                     $(".summernote").val("");
-                    $(".summernote").closest('.mb-3').find('.text-danger').text("Content is required!").show();
+                    $(".summernote").closest('.mb-3').find('.text-danger').text("Content is required.").show();
                     isValid = false;
                 }
 

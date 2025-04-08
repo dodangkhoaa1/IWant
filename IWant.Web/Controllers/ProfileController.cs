@@ -5,6 +5,7 @@ using IWant.Web.Service;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages;
 using System.Reflection.Metadata;
@@ -15,12 +16,10 @@ namespace IWant.Web.Controllers
     public class ProfileController : Controller
     {
         private readonly ApplicationDbContext _context;
-        private readonly IEmailSender emailSender;
 
-        public ProfileController(ApplicationDbContext context, IEmailSender emailSender)
+        public ProfileController(ApplicationDbContext context)
         {
             _context = context;
-            this.emailSender = emailSender;
         }
 
         // Allow to display the update profile page
@@ -56,6 +55,17 @@ namespace IWant.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateProfile(UpdateProfileViewModel model)
         {
+            ModelState.Remove(nameof(model.ImageUrl));
+            ModelState.Remove(nameof(model.ImageLocalPath));
+            ModelState.Remove(nameof(model.Email));
+            ModelState.Remove(nameof(model.CreatedAt));
+            ModelState.Remove(nameof(model.UpdatedAt));
+
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
             var user = await _context.Users.FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
             if (user == null)
             {

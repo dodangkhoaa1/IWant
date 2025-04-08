@@ -220,7 +220,7 @@ namespace IWant.Web.Controllers
             _context.Blogs.Update(blog);
             await _context.SaveChangesAsync();
 
-            TempData["success"] = "Create Blog successfully!";
+            if (User.IsInRole("Admin")) TempData["success"] = "Create Blog successfully!"; else TempData["success"] = "Submit successfully!";
             return RedirectToAction("Index", "Blog", new { filterType = "all" });
         }
 
@@ -286,7 +286,7 @@ namespace IWant.Web.Controllers
             return RedirectToAction("Index", "Blog", new { filterType = "all" });
         }
 
-        // Allow to delete a blog
+        // Allow to update a blog
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> UpdateBlogStatus(int id)

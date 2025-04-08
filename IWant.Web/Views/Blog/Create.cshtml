@@ -165,7 +165,7 @@
                 const errorSpan = $("#fileInput").closest('.mt-3').find('.text-danger');
 
                 if (!file) {
-                    errorSpan.text("Image is required!").show();
+                    errorSpan.text("Image is required.").show();
                     return;
                 }
 
@@ -174,13 +174,13 @@
                 const fileExtension = fileName.split('.').pop();
 
                 if (!allowedExtensions.includes(fileExtension)) {
-                    errorSpan.text("Invalid file format! Only PNG, JPG, JPEG, GIF are allowed.").show();
+                    errorSpan.text("Invalid file format. Only PNG, JPG, JPEG, GIF are allowed.").show();
                     this.value = ''; // Xóa file input
                     return;
                 }
 
                 if (fileSize > maxSize) {
-                    errorSpan.text("File size must be less than 5MB!").show();
+                    errorSpan.text("File size must be less than 5MB.").show();
                     this.value = ''; // Xóa file input
                     return;
                 }
@@ -204,14 +204,14 @@
                 if (content === "" || content === "<p><br></p>" || content === "<br>") {
                     e.preventDefault();
                     $(".summernote").val("");
-                    $(".summernote").closest('.mb-3').find('.text-danger').text("Content is required!").show();
+                    $(".summernote").closest('.mb-3').find('.text-danger').text("Content is required.").show();
                     isValid = false;
                 }
 
                 // Kiểm tra hình ảnh có được chọn không
                 if ($('#fileInput').get(0).files.length === 0) {
                     e.preventDefault();
-                    $("#fileInput").closest('.mt-3').find('.text-danger').text("Image is required!").show();
+                    $("#fileInput").closest('.mt-3').find('.text-danger').text("Image is required.").show();
                     isValid = false;
                 }
 

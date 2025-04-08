@@ -22,7 +22,7 @@ namespace IWant.Web.Controllers
         public async Task<IActionResult> Index()
         {
             var games = await _context.Games.ToListAsync();
-            var blogs = await _context.Blogs.Include(b => b.User).ToListAsync();
+            var blogs = await _context.Blogs.Include(b => b.User).Where(b => b.Status == true).ToListAsync();
 
             var homeViewModel = new HomeViewModel
             {

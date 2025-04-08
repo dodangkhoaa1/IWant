@@ -667,4 +667,16 @@
             });
         });
     </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelector(".create-comment").addEventListener("submit", function (event) {
+                let contentInput = document.querySelector("input[name='Content']");
+                let contentValue = contentInput.value.trim();
+
+                if (contentValue === "") {
+                    event.preventDefault(); // Ngăn chặn form submit
+                }
+            });
+        });
+    </script>
 </body>

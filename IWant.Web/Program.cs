@@ -21,7 +21,6 @@ if (environment == Environments.Development)
 }
 
 var connString = builder.Configuration.GetConnectionString("Default");
-builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connString));
 
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connString));
 builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();

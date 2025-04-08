@@ -37,6 +37,7 @@ namespace IWant.Web.Models
         [DisplayName("Child Nick Name")]
         public string? ChildNickName { get; set; }
         [DisplayName("Child Birthday")]
+        [ValidBirthday]
         public DateOnly ChildBirthday { get; set; }
         [DisplayName("Child Gender")]
         public bool? ChildGender { get; set; }

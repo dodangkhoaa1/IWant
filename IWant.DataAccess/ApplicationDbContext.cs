@@ -111,9 +111,9 @@ public partial class ApplicationDbContext : IdentityDbContext<User>
             new User
             {
                 Id = "0bcbb4f7-72f9-435f-9cb3-1621b4503974",
-                FullName = "Hồ Minh Nhật",
-                ImageUrl = "/images/avatar/default-avatar.png",
-                ImageLocalPath = "default-avatar.png",
+                FullName = "I Want Administrator",
+                ImageUrl = "/images/avatar/0bcbb4f7-72f9-435f-9cb3-1621b4503974.png",
+                ImageLocalPath = "avatar/0bcbb4f7-72f9-435f-9cb3-1621b4503974.png",
                 PhoneNumber = "0888408052",
                 Gender = true,
                 Birthday = DateOnly.Parse("2003-11-24"),
@@ -1211,12 +1211,12 @@ public partial class ApplicationDbContext : IdentityDbContext<User>
         );
 
         builder.Entity<Game>().HasData(
-            new Game() { Id = 1, Name = "Dot Connection", Description = "Dot Connection is a fun and addictive puzzle game where you connect dots of the same color to overcome challenges. With relaxing gameplay, a variety of levels, and an intuitive design, it offers a light yet engaging entertainment experience. Conquer the levels and secure your spot on the leaderboard!", VideoUrl = "https://www.youtube.com/watch?v=ynJ_nraLqU4" },
-            new Game() { Id = 2, Name = "Coloring", Description = "Coloring is an engaging and interactive game designed for children, offering a wide selection of drawings, vibrant colors, and user-friendly tools. Perfect for all ages, it provides a relaxing and educational experience that keeps young artists entertained for hours!", VideoUrl = "https://www.youtube.com/watch?v=ynJ_nraLqU4" },
-            new Game() { Id = 3, Name = "AAC", Description = "AAC is an assistive communication app designed for individuals with speech challenges. Through picture cards and easy touch interactions, it enables users to express their thoughts and needs more effortlessly. AAC surely makes communication more intuitive and accessible for all!", VideoUrl = "https://www.youtube.com/watch?v=ynJ_nraLqU4" },
-            new Game() { Id = 4, Name = "Emotion Selection", Description = "Emotion Selection is a fun and interactive game that teaches children about human emotions through matching gameplay. With a visually appealing design, it challenges players to think fast and act quickly to earn high scores and climb the leaderboard! ", VideoUrl = "https://www.youtube.com/watch?v=ynJ_nraLqU4" },
-            new Game() { Id = 5, Name = "Fruit Drop", Description = "Fruit Drop is a fun and addictive puzzle game where players merge matching fruits to create bigger ones. With multiple difficulty levels, stunning graphics, and a competitive leaderboard, challenge yourself to score high and stay on top! ", VideoUrl = "https://www.youtube.com/watch?v=ynJ_nraLqU4" },
-            new Game() { Id = 6, Name = "Tower Build", Description = "Tower Building is a fun and challenging game where you stack blocks to build the tallest tower possible. With simple controls and physics-based mechanics, precision and timing are key to reaching new heights. Stay tuned—the game is launching soon!", VideoUrl = "https://www.youtube.com/watch?v=ynJ_nraLqU4" }
+            new Game() { Id = 1, UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974", Name = "Dot Connection", Description = "Dot Connection is a fun and addictive puzzle game where you connect dots of the same color to overcome challenges. With relaxing gameplay, a variety of levels, and an intuitive design, it offers a light yet engaging entertainment experience. Conquer the levels and secure your spot on the leaderboard!", VideoUrl = "https://www.youtube.com/watch?v=ynJ_nraLqU4" },
+            new Game() { Id = 2, UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974", Name = "Coloring", Description = "Coloring is an engaging and interactive game designed for children, offering a wide selection of drawings, vibrant colors, and user-friendly tools. Perfect for all ages, it provides a relaxing and educational experience that keeps young artists entertained for hours!", VideoUrl = "https://www.youtube.com/watch?v=ynJ_nraLqU4" },
+            new Game() { Id = 3, UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974", Name = "AAC", Description = "AAC is an assistive communication app designed for individuals with speech challenges. Through picture cards and easy touch interactions, it enables users to express their thoughts and needs more effortlessly. AAC surely makes communication more intuitive and accessible for all!", VideoUrl = "https://www.youtube.com/watch?v=ynJ_nraLqU4" },
+            new Game() { Id = 4, UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974", Name = "Emotion Selection", Description = "Emotion Selection is a fun and interactive game that teaches children about human emotions through matching gameplay. With a visually appealing design, it challenges players to think fast and act quickly to earn high scores and climb the leaderboard! ", VideoUrl = "https://www.youtube.com/watch?v=ynJ_nraLqU4" },
+            new Game() { Id = 5, UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974", Name = "Fruit Drop", Description = "Fruit Drop is a fun and addictive puzzle game where players merge matching fruits to create bigger ones. With multiple difficulty levels, stunning graphics, and a competitive leaderboard, challenge yourself to score high and stay on top! ", VideoUrl = "https://www.youtube.com/watch?v=ynJ_nraLqU4" },
+            new Game() { Id = 6, UserId = "0bcbb4f7-72f9-435f-9cb3-1621b4503974", Name = "Tower Build", Description = "Tower Building is a fun and challenging game where you stack blocks to build the tallest tower possible. With simple controls and physics-based mechanics, precision and timing are key to reaching new heights. Stay tuned—the game is launching soon!", VideoUrl = "https://www.youtube.com/watch?v=ynJ_nraLqU4" }
         );
 
         base.OnModelCreating(builder);

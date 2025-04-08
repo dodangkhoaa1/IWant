@@ -49,6 +49,7 @@ namespace IWant.Web.Models
         public string? ChildNickName { get; set; }
 
         [DisplayName("Child Birthday")]
+        [ValidBirthday]
         public DateOnly ChildBirthday { get; set; }
 
         [DisplayName("Child Gender")]

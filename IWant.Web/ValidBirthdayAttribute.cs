@@ -8,13 +8,13 @@ namespace IWant.Web
         {
             if (value is DateOnly birthday)
             {
-                var today = DateOnly.FromDateTime(DateTime.Today);
+                var today = new DateOnly(DateTime.Today.Year, 1, 1);
                 var minDate = today.AddYears(-100);
                 var maxDate = today.AddYears(-6); 
 
                 if (birthday < minDate || birthday > maxDate)
                 {
-                    return new ValidationResult($"Birthday must be from {minDate.Year} to {maxDate.Year}.");
+                    return new ValidationResult($"Birthday must be from {minDate.ToString("MM/dd/yyyy")} to {maxDate.ToString("MM/dd/yyyy")}.");
                 }
             }
 

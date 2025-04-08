@@ -86,6 +86,7 @@
                 </div>
             }
             <form asp-action="UpdateProfile" method="post" enctype="multipart/form-data">
+                <input type="hidden" id="originalAvatar" asp-for="ImageUrl" />
                 <div class="profile-headerprofile d-flex" style="margin-bottom: 30px">
                     <label for="avatarInput" class="avatar-container position-relative me-3">
                         <img id="avatarPreview"
@@ -117,7 +118,7 @@
 
                         <div class="form-group">
                             <label asp-for="Birthday" style="color: #888; font-size: 12px; display: block; margin-top: 10px;">Birthday mm/dd/yyyy</label>
-                            <input asp-for="Birthday" type="date" class="custom-input" />
+                            <input type="date" asp-for="Birthday" class="custom-input"/>
                             <span asp-validation-for="Birthday" class="text-danger"></span>
                         </div>
 
@@ -178,50 +179,38 @@
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         let formModified = false;
-        const formElements = document.querySelectorAll('input, select, textarea');
-        const updateButton = document.querySelector('button[type="submit"]');
         const avatarPreview = document.getElementById("avatarPreview");
         const avatarInput = document.getElementById("avatarInput");
+        const originalAvatar = document.getElementById("originalAvatar");
 
-        // Đánh dấu form đã thay đổi khi có sự thay đổi trong form
-        formElements.forEach(element => {
-            element.addEventListener('change', () => {
-                formModified = true;
-            });
-        });
-
-        updateButton.addEventListener('click', () => {
-            formModified = false;
-        });
-
-        window.addEventListener('beforeunload', (event) => {
-            if (formModified) {
-                event.preventDefault();
-                event.returnValue = '';
-            }
-        });
-
-        avatarInput.addEventListener('change', function () {
+        // Khi thay đổi hình ảnh
+        avatarInput.addEventListener("change", function () {
             if (avatarInput.files && avatarInput.files[0]) {
                 const file = avatarInput.files[0];
 
-                if (!file.type.startsWith('image/')) {
+                if (!file.type.startsWith("image/")) {
                     alert("Please upload a valid image file.");
                     return;
                 }
 
                 const reader = new FileReader();
-
                 reader.onload = function (e) {
                     avatarPreview.src = e.target.result;
                 };
-
                 reader.readAsDataURL(file);
             }
         });
-    });
 
+        // Sau khi reload, nếu không có ảnh mới thì hiển thị lại ảnh cũ
+        window.addEventListener("load", function () {
+            if (!avatarInput.value) {
+                avatarPreview.src = originalAvatar.value;
+            }
+        });
+    });
 </script>
+
+
 
 
 
