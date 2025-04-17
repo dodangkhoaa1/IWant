@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: xx_CommingSoon 2
   m_EditorClassIdentifier: 
   name: Candy
-  price: 99999
+  price: 3000
   objectPrefabs:
   - {fileID: -8688454736407915001, guid: 6a060e42b3276b44abdba247e2603b75, type: 3}
   spawnablePrefabs:
