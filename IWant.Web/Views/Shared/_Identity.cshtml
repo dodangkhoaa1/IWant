@@ -12,7 +12,7 @@
 @if (loggedIn)
 {
     var user = await UserManager.GetUserAsync(User);
-    var imageUrl = user?.ImageUrl ?? "~/images/default-avatar.png";
+    var imageUrl = user?.ImageUrl ?? "/images/default-avatar.png";
 
 
     <li class="nav-item">

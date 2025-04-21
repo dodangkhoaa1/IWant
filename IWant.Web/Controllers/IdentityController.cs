@@ -70,8 +70,8 @@ namespace IWant.Web.Controllers
                         Email = model.Email,
                         UserName = model.Email,
                         FullName = model.FullName,
-                        ImageUrl = "http://localhost:5130/images/avatar/default-avatar.png",
-                        ImageLocalPath = "default-avatar.png",
+                        ImageUrl = "/images/avatar/default-avatar.png",
+                        ImageLocalPath = "avatar/default-avatar.png",
                         Birthday = model.Birthday,
                         Status = true,
                         CreatedAt = DateTime.Now,
@@ -485,7 +485,7 @@ namespace IWant.Web.Controllers
             }
             catch (Exception)
             {
-                TempData["error"] = "Failed to reset password!";
+                TempData["error"] = "Reset Password failed!";
                 TempData.Keep("email");
                 return View(model);
             }

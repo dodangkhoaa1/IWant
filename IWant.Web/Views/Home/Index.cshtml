@@ -7,13 +7,13 @@
     var blogs = Model.Blogs;
     var games = Model.Games;
 
-    var newestBlog = blogs.OrderByDescending(b => b.CreatedAt).Take(6).ToList();
+    var newestBlog = blogs?.OrderByDescending(b => b.CreatedAt).Take(6).ToList();
 }
 <link rel="stylesheet" href="~/css/main.css" />
 
 <section id="banner" class="banner">
 
-    <div class="info d-flex align-items-center">
+    @* <div class="info d-flex align-items-center">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-6 text-center">
@@ -25,13 +25,21 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> *@
 
     <div id="hero-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
 
-        <div class="carousel-item active" style="background-image: url('/images/banner.jpg');">
+        <div class="carousel-item active" style="background-image: url('/images/banner1.jpg');">
         </div>
-        <div class="carousel-item" style="background-image: url('/images/banner1.jpg')"></div>
+
+        <div class="carousel-item" style="background-image: url('/images/banner2.jpg')">
+        </div>
+
+        <div class="carousel-item" style="background-image: url('/images/banner3.jpg')">
+        </div>
+
+        <div class="carousel-item" style="background-image: url('/images/banner4.jpg')">
+        </div>
 
         <a class="carousel-control-prev" href="#hero-carousel" role="button" data-bs-slide="prev">
             <i class="fas fa-chevron-left" aria-hidden="true"></i>

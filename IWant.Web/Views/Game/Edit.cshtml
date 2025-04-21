@@ -17,6 +17,7 @@
             <form asp-action="Edit">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <input type="hidden" asp-for="Id" />
+                <input type="hidden" asp-for="UserId" />
                 <div class="mb-3">
                     <label asp-for="Name" class="control-label" style="font-weight:600; color:#333;"></label>
                     <input asp-for="Name" class="form-control" style="border:1px solid #ccc;" readonly />

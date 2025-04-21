@@ -122,7 +122,7 @@ namespace IWant.Web.Controllers
         // Allow to edit a game (POST)
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,VideoUrl")] GameViewModel model)
+        public async Task<IActionResult> Edit(int id, GameViewModel model)
         {
             if (id != model.Id)
             {
