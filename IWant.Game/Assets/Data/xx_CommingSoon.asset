@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: xx_CommingSoon
   m_EditorClassIdentifier: 
   name: Ball
-  price: 99999
+  price: 1000
   objectPrefabs:
   - {fileID: 3231349117300130763, guid: 37c87b50278f9ed40a8383ef9c4c49c7, type: 3}
   spawnablePrefabs:

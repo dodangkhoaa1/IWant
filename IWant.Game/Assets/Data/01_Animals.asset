@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 01_Animals
   m_EditorClassIdentifier: 
   name: Animals
-  price: 2120
+  price: 50
   objectPrefabs:
   - {fileID: 3089275129421153749, guid: 2e36b868617fae540b2d85a4a5513697, type: 3}
   - {fileID: 5129200393640579661, guid: b6271b920a55ee84485845f56e7f2f7c, type: 3}

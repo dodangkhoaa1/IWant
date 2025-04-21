@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: xx_CommingSoon 1
   m_EditorClassIdentifier: 
   name: SeaShell
-  price: 99999
+  price: 2000
   objectPrefabs:
   - {fileID: -3490122742642995856, guid: 317d46f9588b3dc4ca693282ccc86f87, type: 3}
   spawnablePrefabs:
