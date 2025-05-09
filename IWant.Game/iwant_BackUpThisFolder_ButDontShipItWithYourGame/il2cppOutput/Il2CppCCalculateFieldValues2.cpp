@@ -11712,6 +11712,7 @@ struct UserResponseDTO_tAAAD286115AC355A0429CC79CC0ECDF013E00B6A  : public Runti
 	String_t* ___UserId;
 	String_t* ___FullName;
 	String_t* ___Email;
+	bool ___EmailConfirmed;
 	Nullable_1_t78F453FADB4A9F50F267A4E349019C34410D1A01 ___Gender;
 	String_t* ___ChildName;
 	String_t* ___ChildNickName;
@@ -25950,9 +25951,9 @@ IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable8390[5] =
 IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable8391[2] = 
 {
 	static_cast<int32_t>(offsetof(SignInRequestDto_t6C08B7957A3EE37A2B8532195A2E34BF2AFFFFC8, ___UserName)),static_cast<int32_t>(offsetof(SignInRequestDto_t6C08B7957A3EE37A2B8532195A2E34BF2AFFFFC8, ___PasswordHash)),};
-IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable8392[8] = 
+IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable8392[9] = 
 {
-	static_cast<int32_t>(offsetof(UserResponseDTO_tAAAD286115AC355A0429CC79CC0ECDF013E00B6A, ___UserId)),static_cast<int32_t>(offsetof(UserResponseDTO_tAAAD286115AC355A0429CC79CC0ECDF013E00B6A, ___FullName)),static_cast<int32_t>(offsetof(UserResponseDTO_tAAAD286115AC355A0429CC79CC0ECDF013E00B6A, ___Email)),static_cast<int32_t>(offsetof(UserResponseDTO_tAAAD286115AC355A0429CC79CC0ECDF013E00B6A, ___Gender)),static_cast<int32_t>(offsetof(UserResponseDTO_tAAAD286115AC355A0429CC79CC0ECDF013E00B6A, ___ChildName)),static_cast<int32_t>(offsetof(UserResponseDTO_tAAAD286115AC355A0429CC79CC0ECDF013E00B6A, ___ChildNickName)),static_cast<int32_t>(offsetof(UserResponseDTO_tAAAD286115AC355A0429CC79CC0ECDF013E00B6A, ___ChildGender)),static_cast<int32_t>(offsetof(UserResponseDTO_tAAAD286115AC355A0429CC79CC0ECDF013E00B6A, ___Status)),};
+	static_cast<int32_t>(offsetof(UserResponseDTO_tAAAD286115AC355A0429CC79CC0ECDF013E00B6A, ___UserId)),static_cast<int32_t>(offsetof(UserResponseDTO_tAAAD286115AC355A0429CC79CC0ECDF013E00B6A, ___FullName)),static_cast<int32_t>(offsetof(UserResponseDTO_tAAAD286115AC355A0429CC79CC0ECDF013E00B6A, ___Email)),static_cast<int32_t>(offsetof(UserResponseDTO_tAAAD286115AC355A0429CC79CC0ECDF013E00B6A, ___EmailConfirmed)),static_cast<int32_t>(offsetof(UserResponseDTO_tAAAD286115AC355A0429CC79CC0ECDF013E00B6A, ___Gender)),static_cast<int32_t>(offsetof(UserResponseDTO_tAAAD286115AC355A0429CC79CC0ECDF013E00B6A, ___ChildName)),static_cast<int32_t>(offsetof(UserResponseDTO_tAAAD286115AC355A0429CC79CC0ECDF013E00B6A, ___ChildNickName)),static_cast<int32_t>(offsetof(UserResponseDTO_tAAAD286115AC355A0429CC79CC0ECDF013E00B6A, ___ChildGender)),static_cast<int32_t>(offsetof(UserResponseDTO_tAAAD286115AC355A0429CC79CC0ECDF013E00B6A, ___Status)),};
 IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable8393[8] = 
 {
 	static_cast<int32_t>(offsetof(WordCategoryDTO_tF2BD27D90FD585FC1A8C3157D9DBA60743FD6173, ___Id)),static_cast<int32_t>(offsetof(WordCategoryDTO_tF2BD27D90FD585FC1A8C3157D9DBA60743FD6173, ___VietnameseName)),static_cast<int32_t>(offsetof(WordCategoryDTO_tF2BD27D90FD585FC1A8C3157D9DBA60743FD6173, ___EnglishName)),static_cast<int32_t>(offsetof(WordCategoryDTO_tF2BD27D90FD585FC1A8C3157D9DBA60743FD6173, ___CreatedAt)),static_cast<int32_t>(offsetof(WordCategoryDTO_tF2BD27D90FD585FC1A8C3157D9DBA60743FD6173, ___UpdatedAt)),static_cast<int32_t>(offsetof(WordCategoryDTO_tF2BD27D90FD585FC1A8C3157D9DBA60743FD6173, ___ImagePath)),static_cast<int32_t>(offsetof(WordCategoryDTO_tF2BD27D90FD585FC1A8C3157D9DBA60743FD6173, ___Status)),static_cast<int32_t>(offsetof(WordCategoryDTO_tF2BD27D90FD585FC1A8C3157D9DBA60743FD6173, ___Image)),};

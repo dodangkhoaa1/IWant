@@ -62,6 +62,7 @@ namespace IWant.API.Controllers
                 UserId = userInDB.Id,
                 FullName = userInDB.FullName ?? string.Empty,
                 Email = userInDB.Email ?? string.Empty,
+                EmailConfirmed = userInDB.EmailConfirmed,
                 Gender = userInDB.Gender,
                 ChildName = userInDB.ChildName ?? string.Empty,
                 ChildNickName = userInDB.ChildNickName ?? string.Empty,

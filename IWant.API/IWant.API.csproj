@@ -24,8 +24,4 @@
 	  <Folder Include="wwwroot\images\word\personal words\" />
 	</ItemGroup>
 
-	<ItemGroup>
-		<Content Remove="appsettings.json" />
-	</ItemGroup>
-
 </Project>

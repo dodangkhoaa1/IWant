@@ -47,7 +47,8 @@ public class SignIn : MonoBehaviour
         }
 
         string errorString = VerifyInputs();
-        if (errorString != "") {
+        if (errorString != "")
+        {
             Toast.Show(errorString, 1.5f, ToastColor.Red, ToastPosition.BottomCenter);
             loadingManagement.DisableLoadingPanel();
             yield break;
@@ -75,6 +76,14 @@ public class SignIn : MonoBehaviour
                 try
                 {
                     UserResponseDTO response = JsonConvert.DeserializeObject<UserResponseDTO>(responseText);
+                    if (!response.EmailConfirmed)
+                    {
+                        toastString = PrefsKey.LANGUAGE == PrefsKey.ENGLISH_CODE
+                                    ? "Sign-in failed! Please confirm your email address!"
+                                    : "Đăng nhập thất bại! Vui lòng xác nhận địa chỉ email!";
+                        Toast.Show(toastString, 1.5f, ToastColor.Red, ToastPosition.BottomCenter);
+                        return;
+                    }
 
                     if (response != null && !string.IsNullOrEmpty(response.FullName))
                     {
@@ -83,6 +92,8 @@ public class SignIn : MonoBehaviour
                             //DBManager.USER_DATA = (UserResponseDTO)response;
                             // Chuyển đổi response thành JSON và lưu vào PlayerPrefs
                             string userJson = JsonConvert.SerializeObject(response);
+
+
                             DBManager.USER_DATA = userJson;
 
                             Debug.Log("User data saved to PlayerPrefs: " + userJson);
@@ -149,8 +160,8 @@ public class SignIn : MonoBehaviour
                     ? "Sign In failed. Please check your internet connection!"
                     : "Đăng nhập thất bại. Vui lòng kiểm tra kết nối mạng!";
                 }
-                    Toast.Show(toastString, 1.5f, ToastColor.Red, ToastPosition.BottomCenter);
-                    loadingManagement.DisableLoadingPanel();
+                Toast.Show(toastString, 1.5f, ToastColor.Red, ToastPosition.BottomCenter);
+                loadingManagement.DisableLoadingPanel();
             }
         );
     }

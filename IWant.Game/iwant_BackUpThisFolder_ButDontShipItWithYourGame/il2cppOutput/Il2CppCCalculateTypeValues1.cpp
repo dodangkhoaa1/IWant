@@ -28701,6 +28701,7 @@ struct UserResponseDTO_tAAAD286115AC355A0429CC79CC0ECDF013E00B6A  : public Runti
 	String_t* ___UserId;
 	String_t* ___FullName;
 	String_t* ___Email;
+	bool ___EmailConfirmed;
 	Nullable_1_t78F453FADB4A9F50F267A4E349019C34410D1A01 ___Gender;
 	String_t* ___ChildName;
 	String_t* ___ChildNickName;
